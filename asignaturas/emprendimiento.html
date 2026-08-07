@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprendimiento - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder" id="header-icon">🚀</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · EMPRENDIMIENTO</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">🚀</span>
+            <h1 class="subject-title" id="subject-title">Emprendimiento</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para ver las actividades semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+        // ══════════════════════════════════════════════
+        // CONTENIDO POR NIVEL
+        // ══════════════════════════════════════════════
+        const contenido = {
+            basica: {
+                badge: "🌱 Básica Secundaria · Grados 6 y 7",
+                subtitle: "Grados 6 · 7 · Semillas de Emprendimiento",
+                desc: "Descubriendo talentos, identificando oportunidades y construyendo ideas de negocio desde el entorno local.",
+                icon: "🌱",
+                periodos: {
+                    periodo1: [
+                        {
+                            semana: 1,
+                            tema: "¿Qué es emprender?",
+                            actividad: "Exploración del concepto de emprendimiento a través de historias de emprendedores colombianos exitosos. Los estudiantes identifican características de un emprendedor y las comparan con su propia personalidad."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Mis talentos y habilidades",
+                            actividad: "Ejercicio de autoconocimiento: cada estudiante descubre sus fortalezas, habilidades y pasiones a través de una rueda de la vida adaptada. Reflexión sobre cómo convertir talentos en oportunidades."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Observando mi entorno",
+                            actividad: "Salida de campo o recorrido virtual por la vereda Chichalá para identificar necesidades, problemas y oportunidades de negocio en la comunidad. Registro fotográfico y diario de observación."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Lluvia de ideas creativas",
+                            actividad: "Técnicas de creatividad: brainstorming, mapa mental y SCAMPER aplicadas para generar ideas de emprendimiento relacionadas con la agroindustria, el turismo o los servicios locales."
+                        },
+                        {
+                            semana: 5,
+                            tema: "El mercado y los clientes",
+                            actividad: "Introducción al concepto de mercado: ¿quién compra?, ¿qué necesita?, ¿por qué pagaría? Diseño del perfil del cliente ideal usando la herramienta del Mapa de Empatía."
+                        },
+                        {
+                            semana: 6,
+                            tema: "La propuesta de valor",
+                            actividad: "¿Qué hace especial a mi idea? Construcción de la propuesta de valor usando el Canvas de Propuesta de Valor simplificado. Diferenciación frente a otros productos o servicios similares."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mi primera idea de negocio",
+                            actividad: "Cada estudiante o equipo plasma su idea de negocio en una ficha de presentación: nombre, descripción, problema que resuelve, cliente objetivo y propuesta de valor única."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Feria de ideas del período",
+                            actividad: "Presentación de ideas de negocio al grupo en formato de feria. Retroalimentación constructiva entre compañeros y docente. Votación por la idea más innovadora, viable y de mayor impacto social."
+                        }
+                    ],
+                    periodo2: [
+                        {
+                            semana: 1,
+                            tema: "El modelo de negocio Canvas",
+                            actividad: "Introducción al Business Model Canvas simplificado. Los 9 bloques explicados con ejemplos locales: negocios de la vereda, tiendas del pueblo y microempresas familiares de la región."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Segmento de clientes",
+                            actividad: "Profundización en el bloque de clientes del Canvas. Técnicas de segmentación básica: demográfica, geográfica y por comportamiento. Encuesta a 10 personas del entorno para validar el segmento."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Canales de distribución",
+                            actividad: "¿Cómo llega mi producto o servicio al cliente? Análisis de canales físicos y digitales. Comparación de tienda física, redes sociales, WhatsApp Business y mercados locales."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Fuentes de ingresos",
+                            actividad: "¿Cómo genera dinero mi negocio? Modelos de ingreso: venta directa, suscripción, publicidad y comisiones. Cálculo simple de precio de venta con base en costos y margen de ganancia."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Recursos y actividades clave",
+                            actividad: "Identificación de los recursos necesarios para el negocio: físicos, humanos, económicos e intelectuales. Mapa de actividades clave para que el negocio funcione correctamente."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Alianzas estratégicas",
+                            actividad: "¿Con quién me alío para crecer? Identificación de socios, proveedores y colaboradores clave. Ejercicio práctico: los estudiantes negocian alianzas entre sus propios proyectos."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mi Canvas completo",
+                            actividad: "Construcción del Business Model Canvas completo para la idea de negocio de cada equipo. Presentación visual en formato de poster o presentación digital usando Canva."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Evaluación del Canvas",
+                            actividad: "Socialización del Business Model Canvas ante el grupo. Evaluación por rúbrica con criterios de coherencia, viabilidad, creatividad e impacto en la comunidad de Chichalá."
+                        }
+                    ],
+                    periodo3: [
+                        {
+                            semana: 1,
+                            tema: "Prototipado de productos",
+                            actividad: "¿Cómo hago tangible mi idea? Técnicas de prototipado rápido con materiales del entorno. Construcción del primer prototipo físico o digital del producto o servicio diseñado."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Marca y nombre del negocio",
+                            actividad: "Diseño de la identidad de marca: nombre, eslogan, colores corporativos y logotipo básico. Uso de Canva para crear el logo y los primeros materiales de comunicación del negocio."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Marketing en redes sociales",
+                            actividad: "Estrategia básica de marketing digital para negocios locales: Instagram, Facebook y WhatsApp Business. Creación del perfil del negocio y diseño de las primeras 3 publicaciones."
+                        },
+                        {
+                            semana: 4,
+                            tema: "El poder del storytelling",
+                            actividad: "Cómo contar la historia de mi negocio de forma emocionante y auténtica. Los estudiantes escriben y graban un video corto de 60 segundos presentando su emprendimiento."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Costos y presupuesto básico",
+                            actividad: "Diferencia entre costos fijos y variables. Cálculo del punto de equilibrio de forma sencilla. Diseño del presupuesto inicial del emprendimiento usando una hoja de cálculo."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Validación con clientes reales",
+                            actividad: "Prueba del prototipo con 5 personas de la comunidad. Aplicación de encuesta de satisfacción y registro de comentarios. Análisis de resultados y plan de mejoras."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Ajuste y mejora del prototipo",
+                            actividad: "Implementación de las mejoras identificadas en la validación con clientes. Segunda versión del prototipo con ajustes en diseño, precio o funcionalidad según la retroalimentación recibida."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Presentación del prototipo mejorado",
+                            actividad: "Exposición del prototipo mejorado ante el grupo. Presentación del video de storytelling y el perfil de redes sociales del negocio. Evaluación integral por rúbrica."
+                        }
+                    ],
+                    periodo4: [
+                        {
+                            semana: 1,
+                            tema: "El pitch de negocios",
+                            actividad: "¿Cómo convencer a un inversionista en 2 minutos? Estructura del pitch perfecto: problema, solución, mercado, modelo de negocio, equipo y llamado a la acción. Análisis de pitches exitosos."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Oratoria y comunicación efectiva",
+                            actividad: "Técnicas de comunicación oral: contacto visual, lenguaje corporal, manejo de la voz y control de los nervios. Práctica de microdiscursos de 1 minuto sobre el emprendimiento."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Emprendimiento social y ambiental",
+                            actividad: "¿Puede un negocio cambiar el mundo? Casos de emprendimiento social en Colombia y América Latina. Los estudiantes evalúan el impacto social y ambiental de su propio emprendimiento."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Legalización de mi negocio",
+                            actividad: "Pasos básicos para formalizar un negocio en Colombia: RUT, Cámara de Comercio, regímenes tributarios simplificados. Simulación del proceso de registro del emprendimiento escolar."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Finanzas personales y del negocio",
+                            actividad: "Diferencia entre las finanzas personales y las del negocio. Hábitos financieros saludables: ahorro, inversión y crédito responsable. Diseño del plan financiero de cierre del año."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Ensayo general de la Feria",
+                            actividad: "Simulacro completo de la Feria de Emprendimiento. Cada equipo presenta su proyecto en 3 minutos ante un jurado interno. Retroalimentación detallada para la presentación final."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Preparación del stand y materiales",
+                            actividad: "Diseño y montaje del stand de la Feria de Emprendimiento: exhibición del prototipo, materiales impresos, muestras del producto y preparación del discurso de bienvenida a visitantes."
+                        },
+                        {
+                            semana: 8,
+                            tema: "🏆 Feria de Emprendimiento Chichalá",
+                            actividad: "Gran Feria de Emprendimiento ante la comunidad educativa y familias. Presentación de todos los proyectos, degustación de productos y networking estudiantil. Reconocimiento a los mejores emprendimientos del año."
+                        }
+                    ]
+                }
+            },
+            media: {
+                badge: "🏆 Media · Grados 8 y 9",
+                subtitle: "Grados 8 · 9 · Innovación y Empresa",
+                desc: "Creación de empresas reales, estrategias de mercado avanzadas, financiación y pitch ante inversionistas.",
+                icon: "🏆",
+                periodos: {
+                    periodo1: [
+                        {
+                            semana: 1,
+                            tema: "Ecosistema emprendedor colombiano",
+                            actividad: "Análisis del ecosistema de startups en Colombia: iNNpulsa, Apps.co, Ruta N. Casos de éxito de emprendedores jóvenes colombianos. Mapa mental del ecosistema emprendedor regional del Tolima."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Design Thinking: empatía",
+                            actividad: "Primera etapa del Design Thinking: empatía. Entrevistas en profundidad a miembros de la comunidad para descubrir necesidades no satisfechas. Síntesis de hallazgos en mapa de empatía avanzado."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Design Thinking: definición e ideación",
+                            actividad: "Etapas de definición e ideación del Design Thinking. Formulación del desafío de diseño (How Might We). Generación de 50 ideas en 30 minutos usando técnicas avanzadas de creatividad."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Design Thinking: prototipado y prueba",
+                            actividad: "Construcción rápida de prototipos de baja fidelidad. Prueba con usuarios reales en menos de 24 horas. Iteración del prototipo basada en retroalimentación directa del mercado objetivo."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Lean Startup: construir, medir, aprender",
+                            actividad: "Metodología Lean Startup aplicada al emprendimiento escolar. El ciclo Construir-Medir-Aprender. Definición del MVP (Producto Mínimo Viable) del proyecto de emprendimiento del año."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Análisis de la competencia",
+                            actividad: "Investigación de mercado competitivo: análisis DOFA del emprendimiento propio y de 3 competidores directos. Identificación de ventajas competitivas sostenibles en el mercado local y regional."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Propuesta de valor avanzada",
+                            actividad: "Construcción del Value Proposition Canvas completo. Ajuste entre el perfil del cliente y el mapa de valor. Validación de la propuesta con 10 clientes potenciales de la comunidad."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Presentación del MVP",
+                            actividad: "Presentación del Producto Mínimo Viable ante el grupo y docente. Evaluación técnica y de mercado. Retroalimentación para iniciar el proceso de desarrollo del producto final del año."
+                        }
+                    ],
+                    periodo2: [
+                        {
+                            semana: 1,
+                            tema: "Estrategia de marketing digital avanzada",
+                            actividad: "Embudo de ventas digital, SEO básico, email marketing y contenido estratégico. Creación de un plan de marketing digital de 30 días para el emprendimiento del equipo."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Redes sociales para negocios",
+                            actividad: "Estrategia de contenidos para Instagram, TikTok y YouTube orientada a negocios. Creación del calendario editorial del mes y producción de 5 piezas de contenido para el emprendimiento."
+                        },
+                        {
+                            semana: 3,
+                            tema: "E-commerce: vender por internet",
+                            actividad: "Plataformas de comercio electrónico accesibles para emprendedores: Tiendanube, WooCommerce, Shopify básico. Creación de la tienda online del emprendimiento con catálogo y pasarela de pago simulada."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Finanzas para emprendedores",
+                            actividad: "Estado de resultados, flujo de caja y balance general simplificados. Análisis de punto de equilibrio avanzado. Proyección financiera a 12 meses del emprendimiento usando Excel o Google Sheets."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Fuentes de financiación",
+                            actividad: "Opciones de financiación para emprendedores en Colombia: Fondo Emprender, microcréditos, crowdfunding, ángeles inversionistas. Preparación de una solicitud de financiación simulada."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Negociación y ventas efectivas",
+                            actividad: "Técnicas de negociación: BATNA, negociación basada en intereses y manejo de objeciones. Role-playing de situaciones de venta y negociación con clientes y proveedores simulados."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Responsabilidad social empresarial",
+                            actividad: "El negocio como actor social: ODS de la ONU aplicados al emprendimiento local. Diseño del plan de RSE del emprendimiento: impacto ambiental, social y económico en Chichalá."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Evaluación del período",
+                            actividad: "Presentación del plan de marketing digital, la tienda online y la proyección financiera. Evaluación integral por rúbrica con énfasis en viabilidad comercial y sostenibilidad del negocio."
+                        }
+                    ],
+                    periodo3: [
+                        {
+                            semana: 1,
+                            tema: "Constitución legal de la empresa",
+                            actividad: "Tipos de sociedades en Colombia: SAS, S.A., ESAL. Proceso de constitución de una SAS: pasos, costos y beneficios. Simulación del proceso de creación legal del emprendimiento escolar."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Propiedad intelectual e innovación",
+                            actividad: "Patentes, marcas registradas, derechos de autor y secretos comerciales en Colombia. Proceso de registro de marca ante la SIC. Evaluación de qué proteger en el emprendimiento propio."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Liderazgo y trabajo en equipo",
+                            actividad: "Estilos de liderazgo y su impacto en el equipo emprendedor. Herramientas de gestión de equipos ágiles: Trello, Notion o tablero Kanban físico. Definición de roles y responsabilidades."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Innovación disruptiva",
+                            actividad: "¿Qué es disrumpir un mercado? Casos de Rappi, Merqueo y otros unicornios colombianos. Los estudiantes identifican oportunidades de disrupción en mercados tradicionales de la región."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Exportaciones y mercados internacionales",
+                            actividad: "Oportunidades de exportación para productos agroindustriales del Tolima. Rutas de exportación, certificaciones y tratados de libre comercio de Colombia. Plan de internacionalización básico."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Tecnología aplicada al negocio",
+                            actividad: "Integración de herramientas tecnológicas al emprendimiento: CRM básico, facturación electrónica, automatización con IA y análisis de datos para la toma de decisiones empresariales."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Preparación del plan de negocios",
+                            actividad: "Estructura completa del plan de negocios: resumen ejecutivo, análisis de mercado, plan de marketing, plan operativo y plan financiero. Redacción de los primeros tres capítulos del documento."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Revisión del plan de negocios",
+                            actividad: "Presentación del avance del plan de negocios ante el grupo. Retroalimentación técnica del docente y pares. Ajustes finales para la presentación ante el jurado externo del período 4."
+                        }
+                    ],
+                    periodo4: [
+                        {
+                            semana: 1,
+                            tema: "El pitch ante inversionistas",
+                            actividad: "Estructura del pitch deck para inversionistas: 10 diapositivas clave según el método Guy Kawasaki. Análisis de pitch decks exitosos de startups colombianas y latinoamericanas."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Construcción del pitch deck",
+                            actividad: "Diseño profesional del pitch deck del emprendimiento usando Canva o PowerPoint avanzado. Cada diapositiva cuenta una parte de la historia del negocio con datos, gráficas e impacto."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Storytelling empresarial avanzado",
+                            actividad: "El arco narrativo del emprendimiento: el héroe, el problema, la solución y la transformación. Los estudiantes construyen el relato de su marca con técnicas de storytelling cinematográfico."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Simulacro ante jurado externo",
+                            actividad: "Presentación del pitch completo ante un jurado conformado por docentes, directivos o emprendedores de la comunidad. Retroalimentación profesional y lista de mejoras para la presentación final."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Ajustes finales del emprendimiento",
+                            actividad: "Implementación de las mejoras sugeridas por el jurado externo. Actualización del plan de negocios, el pitch deck y el prototipo final. Ensayo general de la presentación ante la comunidad."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Montaje de la Feria Empresarial",
+                            actividad: "Preparación del stand profesional de la Feria Empresarial: exhibición del prototipo, materiales impresos, muestras del producto, infografías de impacto y sistema de ventas real."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Cierre y reflexión del proceso",
+                            actividad: "Reflexión metacognitiva sobre el proceso emprendedor del año: ¿qué aprendí?, ¿qué cambiaría?, ¿qué sigue? Elaboración del diario del emprendedor y proyección del negocio a 5 años."
+                        },
+                        {
+                            semana: 8,
+                            tema: "🏆 Gran Feria Empresarial Chichalá",
+                            actividad: "Evento de cierre del año: Feria Empresarial ante la comunidad educativa, familias, autoridades locales y emprendedores de la región. Presentación de pitch, ventas reales y reconocimiento a los mejores emprendimientos."
+                        }
+                    ]
+                }
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // DETECTAR NIVEL Y CARGAR INTERFAZ
+        // ══════════════════════════════════════════════
+        const params  = new URLSearchParams(window.location.search);
+        const nivel   = params.get('nivel') || 'basica';
+        const cfg     = contenido[nivel] || contenido.basica;
+
+        document.getElementById('header-sub').textContent   = cfg.subtitle;
+        document.getElementById('level-badge').textContent  = cfg.badge;
+        document.getElementById('subject-icon').textContent = cfg.icon;
+        document.getElementById('subject-desc').textContent = cfg.desc;
+
+        if (nivel === 'media') {
+            document.getElementById('level-badge').style.background =
+                'linear-gradient(135deg, #F4872B, #F7C325)';
+        }
+
+        // ══════════════════════════════════════════════
+        // GENERAR ACORDEÓN
+        // ══════════════════════════════════════════════
+        function generarAcordeon() {
+            const container = document.getElementById('accordion-container');
+            if (!container) return;
+
+            const periodos = [
+                { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+                { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+                { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+                { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+            ];
+
+            periodos.forEach(periodo => {
+                const semanas = cfg.periodos[periodo.key];
+                let semanasHTML = '';
+
+                semanas.forEach(s => {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                });
+
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <button class="accordion-header">
+                        <span>${periodo.label}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        ${semanasHTML}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+
+            initAccordion();
+        }
+
+        // ══════════════════════════════════════════════
+        // INIT
+        // ══════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            generarAcordeon();
+            initSequentialAnimations();
+        });
+
+    </script>
+</body>
+</html>

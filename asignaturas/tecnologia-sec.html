@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Secundaria - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder" id="header-icon">🖥️</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · TECNOLOGÍA SECUNDARIA</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">🖥️</span>
+            <h1 class="subject-title" id="subject-title">Tecnología</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para ver las actividades semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+        // ══════════════════════════════════════════════
+        // CONTENIDO POR NIVEL
+        // ══════════════════════════════════════════════
+        const contenido = {
+            basica: {
+                badge: "🖥️ Básica Secundaria · Grados 6 y 7",
+                subtitle: "Grados 6 · 7 · Tecnología para la vida",
+                desc: "Sistemas operativos, ofimática avanzada, internet responsable y programación con bloques.",
+                icon: "🖥️",
+                periodos: {
+                    periodo1: [
+                        { semana: 1, tema: "Sistema operativo Windows", actividad: "Exploración avanzada del sistema operativo. Gestión de archivos y carpetas, accesos directos, configuración básica del escritorio y personalización del entorno de trabajo." },
+                        { semana: 2, tema: "Organización de archivos", actividad: "Creación de una estructura de carpetas para organizar trabajos escolares. Uso de nombres descriptivos, fechas y categorías. Backup básico en USB o nube." },
+                        { semana: 3, tema: "Word avanzado: estilos y tablas", actividad: "Aplicación de estilos de texto, creación de tablas dinámicas, inserción de imágenes y uso de encabezados y pies de página en documentos formales." },
+                        { semana: 4, tema: "Word: carta formal y CV básico", actividad: "Redacción de una carta formal y diseño de un currículum vitae básico aplicando las normas de presentación de documentos profesionales en Word." },
+                        { semana: 5, tema: "Excel: datos y fórmulas", actividad: "Creación de tablas de datos reales del entorno. Uso de fórmulas de suma, promedio, máximo y mínimo. Formato condicional básico para resaltar valores." },
+                        { semana: 6, tema: "Excel: gráficas estadísticas", actividad: "Construcción de gráficas de barras, líneas y pastel a partir de encuestas realizadas en el salón. Interpretación y análisis de los resultados obtenidos." },
+                        { semana: 7, tema: "PowerPoint: presentación de impacto", actividad: "Diseño de una presentación profesional de 8 diapositivas usando plantillas, animaciones, transiciones y recursos multimedia sobre un tema de interés." },
+                        { semana: 8, tema: "Evaluación del período", actividad: "Presentación del documento Word y la presentación PowerPoint ante el grupo. Evaluación por rúbrica y retroalimentación constructiva entre pares." }
+                    ],
+                    periodo2: [
+                        { semana: 1, tema: "Internet seguro y ciudadanía digital", actividad: "Conceptos de identidad digital, huella en internet, ciberbullying y netiqueta. Debate sobre el uso responsable de redes sociales en la adolescencia." },
+                        { semana: 2, tema: "Buscadores y fuentes confiables", actividad: "Técnicas avanzadas de búsqueda en Google. Evaluación de fuentes: cómo distinguir información confiable de fake news usando criterios de verificación." },
+                        { semana: 3, tema: "Google Drive y trabajo colaborativo", actividad: "Creación de documentos compartidos en Google Drive. Edición simultánea, comentarios y control de versiones. Trabajo en equipo en la nube." },
+                        { semana: 4, tema: "Google Forms: encuestas digitales", actividad: "Diseño de una encuesta sobre hábitos tecnológicos del colegio usando Google Forms. Recolección de datos y análisis de resultados en tiempo real." },
+                        { semana: 5, tema: "Canva: diseño gráfico básico", actividad: "Introducción a Canva. Creación de un afiche digital, tarjeta de presentación y banner para redes sociales usando plantillas y elementos gráficos." },
+                        { semana: 6, tema: "Canva: infografía educativa", actividad: "Diseño de una infografía sobre un tema de ciencias o sociales usando Canva. Aplicación de principios básicos de diseño: contraste, jerarquía y espacio." },
+                        { semana: 7, tema: "Introducción a la IA", actividad: "¿Qué es la Inteligencia Artificial? Exploración de herramientas de IA para estudiantes: asistentes virtuales, generadores de imagen y sus implicaciones éticas." },
+                        { semana: 8, tema: "Evaluación del período", actividad: "Presentación de la infografía diseñada en Canva y el análisis de la encuesta de Google Forms. Socialización de aprendizajes sobre ciudadanía digital." }
+                    ],
+                    periodo3: [
+                        { semana: 1, tema: "Pensamiento computacional", actividad: "Introducción a los cuatro pilares: descomposición, reconocimiento de patrones, abstracción y algoritmos. Resolución de retos lógicos sin computador." },
+                        { semana: 2, tema: "Scratch avanzado: variables", actividad: "Uso de variables en Scratch para crear contadores, marcadores y sistemas de puntos. Diseño de un juego con sistema de puntuación funcional." },
+                        { semana: 3, tema: "Scratch: condicionales if/else", actividad: "Programación de condiciones lógicas en Scratch. El personaje toma decisiones según las acciones del usuario. Mini aventura de texto interactiva." },
+                        { semana: 4, tema: "Scratch: proyecto colaborativo", actividad: "Trabajo en parejas para crear un proyecto Scratch que resuelva un problema o cuente una historia sobre la comunidad de Chichalá." },
+                        { semana: 5, tema: "Introducción a HTML", actividad: "Primeros pasos en el lenguaje de marcado web. Estructura básica de una página HTML: head, body, títulos, párrafos, imágenes y enlaces." },
+                        { semana: 6, tema: "Mi primera página web", actividad: "Creación de una página web personal simple con información del estudiante, sus intereses y un enlace a su proyecto Scratch favorito." },
+                        { semana: 7, tema: "CSS básico: estilos visuales", actividad: "Introducción a CSS para dar estilo a la página web creada: colores de fondo, tipografía, márgenes y bordes. La página cobra vida visual." },
+                        { semana: 8, tema: "Feria tecnológica", actividad: "Exposición de la página web personal y el proyecto Scratch colaborativo. Evaluación por rúbrica con criterios de creatividad, funcionalidad y presentación." }
+                    ],
+                    periodo4: [
+                        { semana: 1, tema: "Robótica educativa: introducción", actividad: "Conceptos básicos de robótica: sensores, actuadores y controladores. Simulación de robots con Tinkercad o actividades desenchufadas de lógica robótica." },
+                        { semana: 2, tema: "Algoritmos en la vida real", actividad: "Identificación de algoritmos cotidianos: recetas, instrucciones de juegos, rutas de transporte. Representación mediante diagramas de flujo." },
+                        { semana: 3, tema: "Internet de las Cosas (IoT)", actividad: "¿Qué es el IoT? Exploración de dispositivos inteligentes del hogar y la ciudad. Debate sobre privacidad, datos personales y el futuro de la conectividad." },
+                        { semana: 4, tema: "Proyecto integrador: tecnología y campo", actividad: "Diseño de una solución tecnológica para un problema del entorno agrícola de Chichalá: riego inteligente, monitoreo de cultivos o tienda virtual." },
+                        { semana: 5, tema: "Desarrollo del proyecto integrador", actividad: "Trabajo en equipos para desarrollar el prototipo o maqueta digital del proyecto. Uso de Canva, Scratch o HTML según el tipo de solución elegida." },
+                        { semana: 6, tema: "Pruebas y ajustes del proyecto", actividad: "Fase de prueba del proyecto integrador. Identificación de errores, ajustes de diseño y preparación de la presentación final ante el público." },
+                        { semana: 7, tema: "Preparación de la exposición final", actividad: "Ensayo de la presentación del proyecto. Elaboración del material de apoyo: diapositivas, afiche o video promocional del prototipo tecnológico." },
+                        { semana: 8, tema: "Feria de Innovación Tecnológica", actividad: "Presentación del proyecto integrador ante la comunidad educativa. Evaluación por rúbrica con énfasis en innovación, impacto social y uso de la tecnología." }
+                    ]
+                }
+            },
+            media: {
+                badge: "🤖 Media · Grados 8 y 9",
+                subtitle: "Grados 8 · 9 · Tecnología e Innovación",
+                desc: "Programación web, inteligencia artificial, ciberseguridad y desarrollo de proyectos tecnológicos de impacto.",
+                icon: "🤖",
+                periodos: {
+                    periodo1: [
+                        { semana: 1, tema: "HTML5 y CSS3 avanzado", actividad: "Creación de páginas web estructuradas con HTML5 semántico y estilos avanzados en CSS3: flexbox, grid, variables CSS y diseño responsivo." },
+                        { semana: 2, tema: "JavaScript: introducción", actividad: "Primeros pasos en JavaScript: variables, tipos de datos, operadores y funciones básicas. Interactividad simple en una página web: cambiar colores y textos." },
+                        { semana: 3, tema: "JavaScript: condicionales y bucles", actividad: "Programación de estructuras de control: if/else, for y while. Creación de un quiz interactivo de 5 preguntas usando JavaScript puro." },
+                        { semana: 4, tema: "DOM: manipulación de la web", actividad: "Manipulación del Document Object Model para cambiar elementos de la página dinámicamente. Creación de una lista de tareas interactiva con JS." },
+                        { semana: 5, tema: "Responsive Design", actividad: "Diseño web adaptable a dispositivos móviles usando media queries en CSS. Prueba del sitio web en diferentes resoluciones de pantalla." },
+                        { semana: 6, tema: "Proyecto web personal", actividad: "Desarrollo de un portafolio web personal con secciones de presentación, proyectos y contacto. Aplicación de todo lo aprendido en HTML, CSS y JS." },
+                        { semana: 7, tema: "Publicación web con GitHub Pages", actividad: "Introducción a Git y GitHub. Publicación del portafolio web en GitHub Pages para que sea accesible desde cualquier navegador del mundo." },
+                        { semana: 8, tema: "Evaluación y socialización", actividad: "Presentación del portafolio web publicado en GitHub Pages. Retroalimentación técnica y visual entre compañeros usando rúbrica de evaluación web." }
+                    ],
+                    periodo2: [
+                        { semana: 1, tema: "Inteligencia Artificial: fundamentos", actividad: "¿Cómo aprenden las máquinas? Conceptos de machine learning, redes neuronales y big data explicados con ejemplos cotidianos y herramientas visuales." },
+                        { semana: 2, tema: "Herramientas de IA para estudiantes", actividad: "Exploración ética de herramientas de IA: ChatGPT, Gemini, DALL-E, Canva AI. Uso responsable, ventajas, limitaciones y riesgos de la IA generativa." },
+                        { semana: 3, tema: "Machine Learning visual con Teachable Machine", actividad: "Entrenamiento de un modelo de IA con Google Teachable Machine para reconocer imágenes, sonidos o poses. Integración del modelo en una web sencilla." },
+                        { semana: 4, tema: "Ética de la IA", actividad: "Debate sobre sesgos algorítmicos, privacidad de datos, deepfakes y el futuro del trabajo con IA. Análisis de casos reales de impacto social de la IA." },
+                        { semana: 5, tema: "Ciberseguridad: amenazas actuales", actividad: "Tipos de ataques informáticos: phishing, malware, ransomware. Cómo proteger cuentas con contraseñas fuertes, doble factor y navegación segura." },
+                        { semana: 6, tema: "Privacidad y datos personales", actividad: "Legislación colombiana de protección de datos (Ley 1581). Análisis de los permisos de las apps más usadas por los estudiantes y sus implicaciones." },
+                        { semana: 7, tema: "Proyecto IA: solución para Chichalá", actividad: "Diseño de una idea de solución usando IA para un problema real de la vereda: clasificación de cultivos, chatbot de ayuda escolar o detector de plagas." },
+                        { semana: 8, tema: "Evaluación del período", actividad: "Presentación de la propuesta de solución con IA. Evaluación por rúbrica con criterios de innovación, viabilidad técnica, impacto social y ética." }
+                    ],
+                    periodo3: [
+                        { semana: 1, tema: "Desarrollo de apps con herramientas No-Code", actividad: "Introducción a plataformas No-Code (Glide, Adalo o AppSheet). Creación de una app móvil simple usando una hoja de cálculo como base de datos." },
+                        { semana: 2, tema: "Diseño UX/UI básico", actividad: "Principios de experiencia de usuario: usabilidad, accesibilidad y diseño centrado en el usuario. Creación de wireframes de la app en papel o Figma." },
+                        { semana: 3, tema: "Base de datos con Google Sheets", actividad: "Uso de Google Sheets como base de datos para la app. Relaciones entre tablas, filtros avanzados y validación de datos para garantizar la integridad." },
+                        { semana: 4, tema: "App funcional: prototipo", actividad: "Desarrollo del prototipo funcional de la app en la plataforma No-Code elegida. Primera versión navegable con las funcionalidades principales operativas." },
+                        { semana: 5, tema: "Pruebas de usuario", actividad: "Sesiones de prueba con usuarios reales (compañeros o docentes). Registro de errores, sugerencias y análisis de la experiencia de uso de la app." },
+                        { semana: 6, tema: "Iteración y mejora del prototipo", actividad: "Aplicación de las mejoras identificadas en las pruebas de usuario. Segunda versión del prototipo con interfaz mejorada y funcionalidades ajustadas." },
+                        { semana: 7, tema: "Video demo de la app", actividad: "Grabación de un video de demostración de la app de máximo 2 minutos explicando el problema que resuelve, cómo funciona y su impacto esperado." },
+                        { semana: 8, tema: "Presentación del prototipo", actividad: "Exposición del prototipo de app ante el grupo. Evaluación técnica y de impacto social. Retroalimentación para la versión final del proyecto integrador." }
+                    ],
+                    periodo4: [
+                        { semana: 1, tema: "Internet de las Cosas (IoT) avanzado", actividad: "Proyectos IoT con Arduino o simuladores online (Tinkercad). Conexión de sensores virtuales y programación de respuestas automáticas del sistema." },
+                        { semana: 2, tema: "Cloud Computing", actividad: "Servicios en la nube: IaaS, PaaS y SaaS. Comparativa de plataformas (AWS, Google Cloud, Azure) y uso de servicios gratuitos para proyectos estudiantiles." },
+                        { semana: 3, tema: "Proyecto integrador: Tech for Good", actividad: "Inicio del proyecto final: una solución tecnológica real para un problema de la comunidad de Chichalá usando todo lo aprendido durante el año." },
+                        { semana: 4, tema: "Desarrollo del proyecto integrador", actividad: "Sprint de desarrollo: trabajo en equipo para construir la solución. Uso de metodología ágil SCRUM adaptada: tareas, responsables y entregas semanales." },
+                        { semana: 5, tema: "Pruebas e iteración final", actividad: "Fase de pruebas finales del proyecto. Corrección de errores críticos, ajuste de la interfaz y validación de que la solución cumple con el objetivo planteado." },
+                        { semana: 6, tema: "Pitch tecnológico", actividad: "Preparación del pitch de presentación del proyecto: problema, solución, tecnología usada, impacto esperado y próximos pasos. Ensayo ante el grupo." },
+                        { semana: 7, tema: "Documentación técnica", actividad: "Elaboración del documento técnico del proyecto: descripción, arquitectura, instrucciones de uso y posibilidades de mejora futura. Entrega del repositorio." },
+                        { semana: 8, tema: "Feria de Innovación · Clausura del año", actividad: "Gran feria tecnológica de cierre del año. Presentación de todos los proyectos ante la comunidad educativa. Reconocimiento de los mejores proyectos." }
+                    ]
+                }
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // DETECTAR NIVEL Y CARGAR CONTENIDO
+        // ══════════════════════════════════════════════
+        const params = new URLSearchParams(window.location.search);
+        const nivel  = params.get('nivel') || 'basica';
+        const cfg    = contenido[nivel] || contenido.basica;
+
+        // Actualizar interfaz
+        document.getElementById('header-sub').textContent    = cfg.subtitle;
+        document.getElementById('level-badge').textContent   = cfg.badge;
+        document.getElementById('subject-icon').textContent  = cfg.icon;
+        document.getElementById('subject-desc').textContent  = cfg.desc;
+
+        if (nivel === 'media') {
+            document.getElementById('level-badge').style.background =
+                'linear-gradient(135deg, #7C3AED, #4F46E5)';
+        }
+
+        // ══════════════════════════════════════════════
+        // GENERAR ACORDEÓN
+        // ══════════════════════════════════════════════
+        function generarAcordeon() {
+            const container = document.getElementById('accordion-container');
+            if (!container) return;
+
+            const periodos = [
+                { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+                { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+                { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+                { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+            ];
+
+            periodos.forEach(periodo => {
+                const semanas = cfg.periodos[periodo.key];
+                let semanasHTML = '';
+
+                semanas.forEach(s => {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                });
+
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <button class="accordion-header">
+                        <span>${periodo.label}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        ${semanasHTML}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+
+            initAccordion();
+        }
+
+        // ══════════════════════════════════════════════
+        // INIT
+        // ══════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            generarAcordeon();
+            initSequentialAnimations();
+        });
+
+    </script>
+</body>
+</html>
