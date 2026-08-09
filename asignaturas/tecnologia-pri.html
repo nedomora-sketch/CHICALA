@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Primaria - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder">💻</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · TECNOLOGÍA PRIMARIA</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">💻</span>
+            <h1 class="subject-title" id="subject-title">Tecnología</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para explorar competencias y objetos de aprendizaje
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+    // ══════════════════════════════════════════════
+    // CONTENIDO OFICIAL POR GRADO Y PERÍODO
+    // Fuente: Malla Curricular Tecnología - IE Camacho Angarita
+    // ══════════════════════════════════════════════
+    const contenido = {
+
+        grado3: {
+            badge:    "💻 Básica Primaria · Grado 3°",
+            subtitle: "Grado 3° · Tecnología e Informática",
+            desc:     "Artefactos analógicos y digitales, ensamble, herramientas y pensamiento tecnológico.",
+            icon:     "💻",
+            color:    "linear-gradient(135deg, #3DBE8C, #1A9BAB)",
+            periodos: {
+                periodo1: [
+                    {
+                        semana: 1,
+                        tema: "Elementos naturales vs. artefactos",
+                        desempeno: "1.3 T&I.I — Diferencio los elementos naturales de algunos artefactos analógicos y digitales usados por el hombre a lo largo de la historia.",
+                        objeto: "Elementos naturales · Materia prima · Artefactos analógicos del pasado y el presente · Artefactos digitales del pasado y el presente.",
+                        ciudadana: "Expreso mis sentimientos e ideas en el salón y escucho respetuosamente a los demás. (CC 2.1)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Semejanzas y diferencias entre artefactos",
+                        desempeno: "1.4 T&I.I — Reconozco semejanzas y diferencias entre artefactos analógicos y digitales que se utilizan hoy y que no se empleaban en épocas pasadas.",
+                        objeto: "Comparación de artefactos del pasado y el presente en casa, barrio y escuela.",
+                        ciudadana: "Identifico diferencias y semejanzas de género, etnia, origen social y costumbres entre mis compañeros. (CC 3.1)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Materiales caseros y reciclaje tecnológico",
+                        desempeno: "2.6 T&I.I — Identifico materiales caseros y partes de artefactos en desuso para construir objetos que satisfagan necesidades y preserven el medioambiente.",
+                        objeto: "Características físicas y uso de artefactos · Reciclaje de artefactos dañados · Ensamble y elaboración de artefactos.",
+                        ciudadana: "Expreso mis ideas e intereses y escucho a los demás con respeto. (CC 2.1)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Medidas y ensamble de artefactos sencillos",
+                        desempeno: "3.3 T&I.I — Comparo longitudes, magnitudes y cantidades en el armado y desarmado de artefactos y dispositivos sencillos.",
+                        objeto: "Armado y desarmado de artefactos sencillos · Unidades de medida y escalas.",
+                        ciudadana: "Expreso mis ideas e intereses y escucho a los demás con respeto. (CC 2.1)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Historia y evolución del computador",
+                        desempeno: "4.1 T&I.I — Manifiesto interés por temas de tecnología e informática a través de preguntas e intercambio de ideas.",
+                        objeto: "Historia y evolución del computador · Artefactos y medioambiente.",
+                        ciudadana: "Identifico diferencias y semejanzas entre las personas de mi entorno. (CC 3.1)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Impacto tecnológico en el medioambiente",
+                        desempeno: "4.2 T&I.I — Relato cómo mis acciones sobre el medioambiente afectan a otros y cómo las acciones de otros me afectan a mí.",
+                        objeto: "Artefactos y medioambiente · Relación tecnología–naturaleza.",
+                        ciudadana: "Identifico diferencias y semejanzas entre las personas de mi entorno. (CC 3.1)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Trabajo colaborativo: proyecto tecnológico",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto integrador del período: construcción de un artefacto sencillo con materiales reciclados.",
+                        ciudadana: "Expreso mis ideas e intereses y escucho a los demás con respeto. (CC 2.1)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del artefacto construido. Exposición ante el grupo explicando materiales usados, función y aprendizajes del período."
+                    }
+                ],
+                periodo2: [
+                    {
+                        semana: 1,
+                        tema: "Historia de la electricidad",
+                        desempeno: "1.7 T&I.I — Comparo artefactos analógicos y digitales pasados y presentes que contribuyeron en actividades personales y colectivas.",
+                        objeto: "Historia de la electricidad · Importancia del uso de artefactos · Evolución y transformación de distintos artefactos.",
+                        ciudadana: "Reconozco que mis acciones se relacionan con mis emociones y aprendo a manejarlas. (CC 1.12)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Herramientas para construir artefactos",
+                        desempeno: "2.7 T&I.I — Manejo en forma segura instrumentos, herramientas y materiales adecuados durante procesos de construcción básicos.",
+                        objeto: "Instrumentos para construir artefactos · Herramientas para tareas escolares · Seguridad en el uso de herramientas.",
+                        ciudadana: "Comprendo qué es una norma y qué es un acuerdo. (CC 2.5)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Ensamble según instrucciones gráficas",
+                        desempeno: "3.4 T&I.I — Ensamblo y desarmo artefactos y dispositivos sencillos siguiendo instrucciones gráficas.",
+                        objeto: "Ensamble de artefactos y dispositivos sencillos · Desarmado siguiendo pasos ilustrados.",
+                        ciudadana: "Comprendo qué es una norma y qué es un acuerdo. (CC 2.5)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Tecnología en el aula de clase",
+                        desempeno: "4.1 T&I.I — Manifiesto interés por temas de tecnología e informática a través de preguntas e intercambio de ideas.",
+                        objeto: "Elementos informáticos y tecnológicos en el aula · Artefactos y medioambiente.",
+                        ciudadana: "Identifico diferencias y semejanzas entre las personas de mi entorno. (CC 3.3)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Impacto de la tecnología en los estilos de vida",
+                        desempeno: "4.3 T&I.I — Indago y discuto con otros sobre los impactos que algunos productos tecnológicos tienen en los estilos de vida de las personas.",
+                        objeto: "Impacto de artefactos en la vida cotidiana · Tecnología y bienestar.",
+                        ciudadana: "Identifico diferencias y semejanzas entre las personas de mi entorno. (CC 3.3)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto: ensamble guiado de un artefacto sencillo por instrucciones gráficas.",
+                        ciudadana: "Comprendo qué es una norma y qué es un acuerdo. (CC 2.5)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Repaso y consolidación",
+                        desempeno: "Revisión general de los desempeños del período con actividades lúdicas y preguntas orientadoras.",
+                        objeto: "Consolidación de ensamble, herramientas e impacto tecnológico.",
+                        ciudadana: "Reconozco y acepto la diversidad de grupos en mi entorno. (CC 3.2)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Exposición del proyecto ensamblado. Evaluación por rúbrica: seguridad, uso de herramientas y trabajo en equipo."
+                    }
+                ],
+                periodo3: [
+                    {
+                        semana: 1,
+                        tema: "El trabajo manual y eléctrico",
+                        desempeno: "1.8 T&I.I — Uso diferentes lenguajes para describir la forma y el funcionamiento de artefactos tecnológicos analógicos y digitales.",
+                        objeto: "El trabajo manual y eléctrico · Descripción de artefactos analógicos y su funcionamiento.",
+                        ciudadana: "Entiendo las acciones reparadoras cuando incumplo normas o acuerdos. (CC 2.6)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Mensajes y contenidos digitales",
+                        desempeno: "2.8 T&I.I — Clasifico diferentes tipos de mensajes y contenidos digitales según las fuentes de información.",
+                        objeto: "Mensajes digitales: imágenes, videos, audios, textos · Clasificación de contenidos digitales.",
+                        ciudadana: "Reconozco y acepto la existencia de grupos con diversas características. (CC 3.2)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Selección de herramientas digitales",
+                        desempeno: "2.9 T&I.I — Empleo criterios para la selección de contenidos, herramientas y dispositivos digitales más apropiados para tareas específicas.",
+                        objeto: "Criterios de selección de herramientas digitales · Uso adecuado según la tarea.",
+                        ciudadana: "Reconozco y acepto la existencia de grupos con diversas características. (CC 3.2)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Word y PowerPoint: herramientas de trabajo",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Word · PowerPoint · Bloc de notas · Manejo del teclado · Proyectos tecnológicos.",
+                        ciudadana: "Comprendo que las normas ayudan a evitar el maltrato. (CC 1.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Peligros de la tecnología y salud",
+                        desempeno: "4.4 T&I.I — Identifico consecuencias en mi salud y el ambiente derivadas del uso de productos tecnológicos analógicos y digitales.",
+                        objeto: "Peligros de la tecnología · ¿Cómo afecta la tecnología mi salud?",
+                        ciudadana: "Comprendo que las normas ayudan a evitar el maltrato. (CC 1.10)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Tecnología y condiciones de vida",
+                        desempeno: "4.6 T&I.I — Esquematizo las maneras en que los artefactos analógicos y digitales afectan las condiciones de vida de las personas y otras especies.",
+                        objeto: "Impacto de la tecnología en la calidad de vida · Relación artefactos–personas–naturaleza.",
+                        ciudadana: "Entiendo las acciones reparadoras cuando incumplo normas o acuerdos. (CC 2.6)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Límites en el uso de tecnología",
+                        desempeno: "4.7 T&I.I — Comprendo los límites que los adultos colocan al uso de tecnologías como el computador, la televisión y otros dispositivos.",
+                        objeto: "Restricciones al uso de artefactos tecnológicos · Uso responsable y seguro.",
+                        ciudadana: "Reconozco y acepto la existencia de grupos con diversas características. (CC 3.2)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Evaluación de conocimientos con actividad práctica en Word o PowerPoint. Socialización de aprendizajes sobre salud y tecnología."
+                    }
+                ],
+                periodo4: [
+                    {
+                        semana: 1,
+                        tema: "La innovación y los avances tecnológicos",
+                        desempeno: "1.11 T&I.I — Explico los desarrollos que tendrán los artefactos analógicos y digitales en el futuro.",
+                        objeto: "La innovación · Avances tecnológicos · Proyección futura de la tecnología.",
+                        ciudadana: "Me preocupo porque los animales, plantas y recursos del medioambiente reciban buen trato. (CC 1.15)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Correo electrónico y redes sociales",
+                        desempeno: "2.10 T&I.I — Comparto, bajo criterios establecidos, contenidos digitales usando diferentes herramientas de comunicación.",
+                        objeto: "Correo electrónico · Las redes sociales y sus usos responsables.",
+                        ciudadana: "Colaboro activamente en metas comunes y reconozco la importancia de las normas. (CC 2.7)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Eficiencia de los artefactos tecnológicos",
+                        desempeno: "3.10 T&I.I — Comparo, bajo criterios dados, la eficiencia y eficacia de ciertos artefactos analógicos y digitales.",
+                        objeto: "Ventajas y desventajas de productos tecnológicos · Eficiencia en casa y la escuela.",
+                        ciudadana: "Colaboro activamente en metas comunes y reconozco la importancia de las normas. (CC 2.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Proyectos tecnológicos y accesorios de Windows",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyectos tecnológicos · Accesorios de Windows · Inserción de imágenes.",
+                        ciudadana: "Manifiesto desagrado cuando excluyen a alguien por su género, etnia o condición física. (CC 3.5)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Mis propios límites con la tecnología",
+                        desempeno: "4.8 T&I.I — Establezco mis propios límites de tiempo y lugar para el uso adecuado de artefactos analógicos y digitales.",
+                        objeto: "Uso correcto y autónomo de artefactos tecnológicos · Autorregulación digital.",
+                        ciudadana: "Me preocupo porque los animales, plantas y recursos del medioambiente reciban buen trato. (CC 1.15)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Decisiones tecnológicas para mi salud",
+                        desempeno: "4.9 T&I.I — Tomo decisiones sobre qué artefactos analógicos y digitales usar para evitar problemas en mi salud o la de los demás.",
+                        objeto: "Relación tecnología–salud · Decisiones informadas sobre el uso tecnológico.",
+                        ciudadana: "Manifiesto desagrado cuando excluyen a alguien por su género, etnia o condición física. (CC 3.5)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Repaso general del año",
+                        desempeno: "Consolidación de todos los desempeños del año escolar con actividad lúdica integradora.",
+                        objeto: "Repaso: artefactos, herramientas, contenidos digitales, salud e innovación.",
+                        ciudadana: "Colaboro activamente en metas comunes y reconozco la importancia de las normas. (CC 2.7)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación final del año",
+                        actividad: "Presentación del portafolio digital del año. Autoevaluación y heteroevaluación del proceso tecnológico."
+                    }
+                ]
+            }
+        },
+
+        grado4: {
+            badge:    "💻 Básica Primaria · Grado 4°",
+            subtitle: "Grado 4° · Tecnología e Informática",
+            desc:     "Productos tecnológicos, herramientas TIC, soluciones digitales e impacto social y ambiental.",
+            icon:     "💻",
+            color:    "linear-gradient(135deg, #1A9BAB, #7C3AED)",
+            periodos: {
+                periodo1: [
+                    {
+                        semana: 1,
+                        tema: "La sala de informática y el computador",
+                        desempeno: "1.1 T&I.II — Establezco la manera en que los conocimientos tecnológicos e informáticos están presentes en los productos que empleo.",
+                        objeto: "La sala de informática · Artefactos en contextos sociales, económicos y culturales.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas en situaciones de conflicto. (CC 1.5)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "PowerPoint y herramientas de presentación",
+                        desempeno: "2.4 T&I.II — Utilizo tecnologías de la información y la comunicación disponibles en mi entorno.",
+                        objeto: "Reconocimiento y uso de PowerPoint · Elaboración de presentaciones en PowerPoint, Genially o Prezi.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista en discusiones grupales. (CC 2.4)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Servicios públicos y tecnología",
+                        desempeno: "4.1 T&I.II — Identifico bienes y servicios que ofrece mi comunidad y velo por su cuidado y buen uso.",
+                        objeto: "Los servicios públicos: agua, luz, gas, antena parabólica y TV por cable.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Construcción de objetos tecnológicos",
+                        desempeno: "3.1 T&I.II — Describo con esquemas, dibujos y textos instrucciones de ensamble de artefactos tecnológicos.",
+                        objeto: "Construcción de objetos tecnológicos · Fallas en artefactos y procesos.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Ciberbullying: tecnología y convivencia",
+                        desempeno: "4.2 T&I.II — Utilizo diferentes fuentes de información y medios de comunicación para sustentar mis ideas.",
+                        objeto: "Lecturas sobre el ciberbullying · Cultura y tecnología.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Fallas en artefactos y seguridad digital",
+                        desempeno: "3.3 T&I.II — Identifico fallas sencillas en artefactos o procesos tecnológicos y actúo en forma segura frente a ellas.",
+                        objeto: "Fallas tecnológicas · Riesgos en entornos informáticos · Seguridad digital básica.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista en discusiones grupales. (CC 2.4)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto integrador: presentación en PowerPoint sobre un servicio público de la comunidad.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista en discusiones grupales. (CC 2.4)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del proyecto en PowerPoint. Evaluación por rúbrica: contenido, diseño y uso de la herramienta."
+                    }
+                ],
+                periodo2: [
+                    {
+                        semana: 1,
+                        tema: "Inventos e innovaciones tecnológicas",
+                        desempeno: "1.2 T&I.II — Ejemplifico la manera en que distintos inventos e innovaciones contribuyen al desarrollo de mi familia, comunidad, región y país.",
+                        objeto: "Procesadores de texto: WordPad · Inventos e innovaciones · Ventajas de las invenciones.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Dibujos, diagramas y representaciones",
+                        desempeno: "2.1 T&I.II — Realizo representaciones gráficas (esquemas, dibujos, diagramas) que describen el funcionamiento de productos tecnológicos.",
+                        objeto: "Características y uso de terminales básicas · Dibujos y diagramas.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Ventajas y desventajas tecnológicas",
+                        desempeno: "3.4 T&I.II — Comparo ventajas y desventajas de distintas soluciones tecnológicas o informáticas sobre un mismo problema.",
+                        objeto: "Accesorios de Windows · ClassDojo · Proyectos tecnológicos y medioambiente.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Herramientas manuales en construcción",
+                        desempeno: "2.5 T&I.II — Utilizo de forma segura herramientas manuales en procesos de construcción básicos (medición, trazado, corte, doblado y unión).",
+                        objeto: "Uso seguro de herramientas · Construcción de modelos y maquetas.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Conectividad y efectos tecnológicos",
+                        desempeno: "4.5 T&I.II — Participo en discusiones sobre los posibles efectos del uso o no de artefactos y productos tecnológicos en mi entorno.",
+                        objeto: "Lectura sobre conectividad · Soluciones tecnológicas · Efectos del uso tecnológico.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Dificultades y riesgos tecnológicos",
+                        desempeno: "3.2 T&I.II — Describo características, dificultades, deficiencias o riesgos asociados con el empleo de la tecnología y la informática.",
+                        objeto: "Descripción de riesgos tecnológicos · Dificultades en el uso de herramientas digitales.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto: elaboración de un diagrama en WordPad o Word sobre una innovación tecnológica.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Socialización del diagrama elaborado. Evaluación por rúbrica: creatividad, uso de herramientas y trabajo colaborativo."
+                    }
+                ],
+                periodo3: [
+                    {
+                        semana: 1,
+                        tema: "Productos tecnológicos vs. productos naturales",
+                        desempeno: "1.4 T&I.II — Comparo distintos productos tecnológicos con productos naturales, teniendo en cuenta recursos, procesos y sistemas involucrados.",
+                        objeto: "Herramientas de Windows: calculadora · Productos tecnológicos y naturales.",
+                        ciudadana: "Identifico múltiples opciones para manejar conflictos y veo las posibles consecuencias. (CC 1.6)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Clasificación de productos tecnológicos",
+                        desempeno: "1.5 T&I.II — Clasifico los productos tecnológicos a partir de sus propiedades y los beneficios que generan.",
+                        objeto: "Clasificación de productos tecnológicos · Selección y categorización según propiedades.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones en el salón. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Manuales de uso de productos tecnológicos",
+                        desempeno: "2.2 T&I.II — Interpreto y aplico las instrucciones de los manuales para la utilización de productos tecnológicos.",
+                        objeto: "Construcción o modelaje con artefactos del entorno · Selección y clasificación · Uso de manuales.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Clasificación de artefactos del entorno",
+                        desempeno: "2.3 T&I.II — Clasifico artefactos de mi entorno con base en materiales, forma, estructura y función.",
+                        objeto: "Categorización de artefactos del hogar y la escuela por sus características.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones en el salón. (CC 2.6)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "YouTube y búsqueda de información",
+                        desempeno: "3.8 T&I.II — Propongo posibles soluciones a un problema sencillo, indicando ventajas y desventajas de cada una.",
+                        objeto: "YouTube: búsqueda de información · Artefactos para solución de problemas · Soluciones y sus ventajas.",
+                        ciudadana: "Identifico múltiples opciones para manejar conflictos. (CC 1.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Proyectos tecnológicos y recursos naturales",
+                        desempeno: "4.6 T&I.II — Me involucro en proyectos tecnológicos relacionados con el buen uso de recursos naturales y disposición de residuos.",
+                        objeto: "Cuento en Word y PowerPoint · Efectos relacionados con el uso de artefactos.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto: cuento digital en Word o PowerPoint sobre tecnología y naturaleza.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones en el salón. (CC 2.6)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del cuento digital. Evaluación por rúbrica: narrativa, diseño, uso del procesador y trabajo en equipo."
+                    }
+                ],
+                periodo4: [
+                    {
+                        semana: 1,
+                        tema: "Las TIC y su función en la sociedad",
+                        desempeno: "1.8 T&I.II — Explico mediante ejemplos las funciones y aplicaciones de las TIC en educación, comunicación y comercio.",
+                        objeto: "Herramientas de Windows: bloc de notas · Artefactos para las TIC.",
+                        ciudadana: "Ayudo a cuidar las plantas, animales y el medioambiente en mi entorno. (CC 1.16)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Funcionalidades de productos tecnológicos",
+                        desempeno: "2.8 T&I.II — Utilizo las funcionalidades y características de algunos productos tecnológicos en mis actividades diarias.",
+                        objeto: "Construcción con artefactos ambientales · Las TIC y la comunidad · Funcionamiento de productos tecnológicos.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos orientados al bien común. (CC 2.8)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Soluciones tecnológicas con simulación",
+                        desempeno: "3.10 T&I.II — Diseño posibles soluciones tecnológicas utilizando maquetas, modelos o programas sencillos de simulación.",
+                        objeto: "Medios masivos de comunicación · Soluciones tecnológicas con programas de simulación.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Fuentes de información y medios de comunicación",
+                        desempeno: "4.2 T&I.II — Utilizo diferentes fuentes de información y medios de comunicación para sustentar mis ideas.",
+                        objeto: "Toma de imágenes · Diseño de folleto · Exposiciones y entrega de folletos.",
+                        ciudadana: "Ayudo a cuidar las plantas, animales y el medioambiente en mi entorno. (CC 1.16)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Proyectos tecnológicos sostenibles",
+                        desempeno: "4.6 T&I.II — Me involucro en proyectos tecnológicos relacionados con el buen uso de recursos naturales y la adecuada disposición de residuos.",
+                        objeto: "Proyectos con uso responsable de recursos · Tecnología al servicio del entorno.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos orientados al bien común. (CC 2.8)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Debate tecnológico: celulares, redes y energía",
+                        desempeno: "4.5 T&I.II — Participo en discusiones sobre los posibles efectos del uso de artefactos y productos tecnológicos en mi entorno.",
+                        objeto: "Debate sobre celulares, computadores, redes sociales, energía y sus efectos.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos. (CC 2.8)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Repaso general del año",
+                        desempeno: "Consolidación de todos los desempeños del año con actividad lúdica integradora.",
+                        objeto: "Repaso: TIC, soluciones, manuales, sostenibilidad y comunicación.",
+                        ciudadana: "Ayudo a cuidar las plantas, animales y el medioambiente en mi entorno. (CC 1.16)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación final del año",
+                        actividad: "Presentación del folleto digital diseñado. Autoevaluación y coevaluación del proceso tecnológico del año."
+                    }
+                ]
+            }
+        },
+
+        grado5: {
+            badge:    "💻 Básica Primaria · Grado 5°",
+            subtitle: "Grado 5° · Tecnología e Informática",
+            desc:     "Diseño tecnológico, programación con Scratch, herramientas digitales avanzadas y proyectos de impacto.",
+            icon:     "💻",
+            color:    "linear-gradient(135deg, #7C3AED, #F4872B)",
+            periodos: {
+                periodo1: [
+                    {
+                                                semana: 1,
+                        tema: "Tecnología, informática y ciencia",
+                        desempeno: "1.3 T&I.II — Explico los propósitos y relaciones entre la tecnología, la informática y la ciencia al diseñar y fabricar un producto tecnológico.",
+                        objeto: "Diferencia entre artefacto y proceso · Relaciones entre tecnología, informática y ciencia · Diseño y fabricación de productos.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas en situaciones de conflicto. (CC 1.5)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Redes sociales y uso responsable",
+                        desempeno: "2.4 T&I.II — Utilizo tecnologías de la información y la comunicación disponibles en mi entorno para el desarrollo de diversas actividades.",
+                        objeto: "PowerPoint · Facebook, Twitter e Instagram · Cuidado con el uso de las redes sociales.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista en discusiones grupales. (CC 2.4)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Construcción de objetos tecnológicos",
+                        desempeno: "3.1 T&I.II — Describo con esquemas, dibujos y textos instrucciones de ensamble de artefactos tecnológicos.",
+                        objeto: "Construcción de objetos tecnológicos · Proporción de artefactos y usuarios.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Relación artefactos y usuarios",
+                        desempeno: "3.6 T&I.II — Establezco relaciones entre artefactos, teniendo en cuenta características de los usuarios (tamaño, edad, aspectos físicos).",
+                        objeto: "Adaptación de artefactos según el usuario · Ergonomía básica.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Bienes y servicios de mi comunidad",
+                        desempeno: "4.1 T&I.II — Identifico bienes y servicios que ofrece mi comunidad y velo por su cuidado y buen uso valorando sus beneficios sociales.",
+                        objeto: "Beneficios de los servicios que se ofrecen en la comunidad · Garantía de calidad de artefactos.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Fuentes de información y verificación",
+                        desempeno: "4.2 T&I.II — Utilizo diferentes fuentes de información y medios de comunicación para sustentar mis ideas.",
+                        objeto: "Fuentes confiables de información tecnológica · Medios de comunicación digital.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto: presentación en PowerPoint sobre un bien o servicio tecnológico de la comunidad.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del proyecto colaborativo. Evaluación por rúbrica: contenido, diseño y sustentación oral."
+                    }
+                ],
+                periodo2: [
+                    {
+                        semana: 1,
+                        tema: "Clasificación de productos tecnológicos",
+                        desempeno: "1.5 T&I.II — Clasifico los productos tecnológicos a partir de sus propiedades y los beneficios que generan en mi familia, comunidad, región y país.",
+                        objeto: "Productos tecnológicos y sus propiedades · Beneficios en el hogar, comunidad, región y país.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Diagramas de flujo y funciones tecnológicas",
+                        desempeno: "2.1 T&I.II — Realizo representaciones gráficas (esquemas, dibujos, diagramas) que describen el funcionamiento de productos tecnológicos.",
+                        objeto: "Diagramas de flujo · Funciones de productos tecnológicos · Accesorios de Windows.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Manuales y su aplicación práctica",
+                        desempeno: "2.2 T&I.II — Interpreto y aplico las instrucciones de los manuales para la utilización de productos tecnológicos.",
+                        objeto: "ClassDojo · Terminales básicas · Manuales y su aplicación.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Mal uso de la tecnología",
+                        desempeno: "3.2 T&I.II — Describo características, dificultades, deficiencias o riesgos asociados con el empleo de la tecnología y la informática.",
+                        objeto: "Mal uso de la tecnología · Secuencias de instrucciones para resolver retos.",
+                        ciudadana: "Expongo mis posiciones y escucho las posiciones ajenas. (CC 1.5)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Secuencias y soluciones tecnológicas",
+                        desempeno: "3.7 T&I.II — Estructuro secuencias basadas en un conjunto seleccionado de instrucciones para resolver un reto con o sin artefactos electrónicos.",
+                        objeto: "Secuencias de instrucciones · Soluciones para el ahorro y conservación de energía.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Conectividad y protección de bienes",
+                        desempeno: "4.2 T&I.II — Utilizo diferentes fuentes de información y medios de comunicación para sustentar mis ideas.",
+                        objeto: "Conectividad · Protección de bienes y servicios tecnológicos.",
+                        ciudadana: "Identifico mi origen cultural y respeto semejanzas y diferencias con otros. (CC 3.3)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto colaborativo del período",
+                        desempeno: "3.9 T&I.I — Participo en equipos de trabajo para desarrollar y probar proyectos con componentes tecnológicos.",
+                        objeto: "Proyecto: diagrama de flujo digital de un proceso tecnológico cotidiano.",
+                        ciudadana: "Expreso en forma asertiva mis puntos de vista. (CC 2.4)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Socialización del diagrama de flujo. Evaluación por rúbrica: lógica, presentación y trabajo colaborativo."
+                    }
+                ],
+                periodo3: [
+                    {
+                        semana: 1,
+                        tema: "Fuentes y tipos de energía",
+                        desempeno: "1.6 T&I.II — Reconozco los principios tecnológicos que sustentan el aprovechamiento de fuentes y tipos de energía en actividades cotidianas.",
+                        objeto: "Herramientas de Windows: calculadora · Necesidades tecnológicas de mi comunidad.",
+                        ciudadana: "Identifico múltiples opciones para manejar conflictos. (CC 1.6)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Construcción segura con herramientas manuales",
+                        desempeno: "2.5 T&I.II — Utilizo de forma segura herramientas manuales en la construcción de representaciones gráficas, modelos y maquetas.",
+                        objeto: "Seguridad en artefactos y procesos · Técnicas para cuidar el medioambiente · Uso y cuidado de herramientas.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Herramientas digitales para el aprendizaje",
+                        desempeno: "2.7 T&I.II — Aprovecho contenidos, herramientas y dispositivos digitales en estrategias de comunicación para el aprendizaje.",
+                        objeto: "Buscadores · Espacios personales · Classroom · Canva.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Scratch y lenguajes de programación",
+                        desempeno: "3.5 T&I.II — Selecciono lenguajes de programación que me permitan controlar elementos cotidianos de un entorno digital.",
+                        objeto: "Relación artefactos–usuarios · Técnicas de digitación · Scratch · Code Monkey.",
+                        ciudadana: "Identifico múltiples opciones para manejar conflictos. (CC 1.6)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Scratch: mi proyecto interactivo",
+                        desempeno: "3.9 T&I.II — Formulo analogías o adaptaciones de soluciones ya existentes a nuevos problemas.",
+                        objeto: "Scratch: creación de proyecto interactivo · Adaptación de soluciones para nuevos problemas.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones. (CC 2.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Instituciones de protección al consumidor",
+                        desempeno: "4.4 T&I.II — Identifico instituciones y autoridades a las que puedo acudir para solicitar protección de bienes y servicios.",
+                        objeto: "Red Nacional de Protección al Consumidor · INVIMA · Bienes y servicios para beneficios sociales.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Debate tecnológico: efectos en la sociedad",
+                        desempeno: "4.5 T&I.II — Participo en discusiones sobre los posibles efectos del uso de artefactos tecnológicos en mi entorno.",
+                        objeto: "Debate: celulares, computadores, redes sociales, energía, vacunas y tecnología.",
+                        ciudadana: "Propongo distintas opciones cuando tomamos decisiones. (CC 2.6)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del proyecto en Scratch. Evaluación por rúbrica: lógica de programación, creatividad e impacto."
+                    }
+                ],
+                periodo4: [
+                    {
+                        semana: 1,
+                        tema: "Interdependencia tecnológica e informática",
+                        desempeno: "1.7 T&I.II — Argumento las relaciones interdependientes entre componentes tecnológicos e informáticos que hacen posible el funcionamiento de productos de uso diario.",
+                        objeto: "Interdependencia tecnología–informática · Funcionamiento de productos cotidianos · Procesos tecnológicos.",
+                        ciudadana: "Ayudo a cuidar las plantas, animales y el medioambiente. (CC 1.16)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Elaboración de videos e infografías",
+                        desempeno: "2.6 T&I.II — Construyo contenidos digitales que incorporan elementos multimedia básicos de texto e imagen a partir de información validada.",
+                        objeto: "Elaboración de videos · Elaboración de infografías · Difusión de contenido multimedia · WeTransfer.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos para el bien común. (CC 2.8)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Herramientas digitales para comunicar ideas",
+                        desempeno: "2.7 T&I.II — Aprovecho contenidos, herramientas y dispositivos digitales en el desarrollo de estrategias de comunicación para el aprendizaje.",
+                        objeto: "Herramientas manuales · Medios masivos de comunicación · Estrategias digitales.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Diseño y construcción de artefactos",
+                        desempeno: "3.11 T&I.II — Construyo, adapto y reparo artefactos sencillos reutilizando materiales caseros, teniendo en cuenta normas de seguridad.",
+                        objeto: "Diseño, construcción y reparación de artefactos · Elementos y normas de seguridad.",
+                        ciudadana: "Ayudo a cuidar las plantas, animales y el medioambiente. (CC 1.16)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Proyectos tecnológicos sostenibles",
+                        desempeno: "4.6 T&I.II — Me involucro en proyectos tecnológicos relacionados con el buen uso de recursos naturales y la adecuada disposición de residuos.",
+                        objeto: "Proyectos tecnológicos sostenibles · Toma de imágenes · Diseño de folletos.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos para el bien común. (CC 2.8)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Calidad y garantía de productos tecnológicos",
+                        desempeno: "4.7 T&I.II — Diferencio los intereses del que fabrica, vende o compra un producto, y me intereso por obtener garantía de calidad.",
+                        objeto: "Calidad de productos tecnológicos · Simulaciones de compra y venta · Garantía de productos.",
+                        ciudadana: "Identifico y reflexiono sobre las consecuencias de la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Repaso general del año",
+                        desempeno: "Consolidación de todos los desempeños del año con actividad integradora y lúdica.",
+                        objeto: "Repaso: programación, diseño, sostenibilidad, multimedia y calidad tecnológica.",
+                        ciudadana: "Participo con mis compañeros en proyectos colectivos para el bien común. (CC 2.8)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación final del año",
+                        actividad: "Exposición del portafolio digital del año. Autoevaluación, coevaluación y presentación final ante el grupo."
+                    }
+                ]
+            }
+        }
+    };
+
+    // ══════════════════════════════════════════════
+    // DETECTAR GRADO Y CARGAR CONTENIDO
+    // ══════════════════════════════════════════════
+    const params = new URLSearchParams(window.location.search);
+    const grado  = params.get('grado') || 'grado3';
+    const cfg    = contenido[grado] || contenido.grado3;
+
+    // Actualizar interfaz
+    document.getElementById('header-sub').textContent   = cfg.subtitle;
+    document.getElementById('level-badge').textContent  = cfg.badge;
+    document.getElementById('subject-icon').textContent = cfg.icon;
+    document.getElementById('subject-desc').textContent = cfg.desc;
+    document.getElementById('level-badge').style.background = cfg.color;
+
+    // ══════════════════════════════════════════════
+    // GENERAR ACORDEÓN CON MALLA OFICIAL
+    // ══════════════════════════════════════════════
+    function generarAcordeon() {
+        const container = document.getElementById('accordion-container');
+        if (!container) return;
+
+        const periodos = [
+            { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+            { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+            { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+            { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+        ];
+
+        periodos.forEach(periodo => {
+            const semanas = cfg.periodos[periodo.key];
+            let semanasHTML = '';
+
+            semanas.forEach(s => {
+                // Semana de evaluación (solo tiene 'actividad')
+                if (s.actividad) {
+                    semanasHTML += `
+                        <div class="week-container week-eval">
+                            <h3>⭐ Semana ${s.semana} · ${s.tema}</h3>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                } else {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <h3>📌 Semana ${s.semana} · ${s.tema}</h3>
+                            <div class="week-detail">
+                                <span class="week-tag tag-desempeno">🎯 Desempeño</span>
+                                <p>${s.desempeno}</p>
+                            </div>
+                            <div class="week-detail">
+                                <span class="week-tag tag-objeto">📚 Objeto de Aprendizaje</span>
+                                <p>${s.objeto}</p>
+                            </div>
+                            <div class="week-detail">
+                                <span class="week-tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+                                <p>${s.ciudadana}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <button class="accordion-header" style="--periodo-color: ${periodo.color}">
+                    <span>${periodo.label}</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    ${semanasHTML}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        initAccordion();
+    }
+
+    // ══════════════════════════════════════════════
+    // INIT
+    // ══════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        generarAcordeon();
+        initSequentialAnimations();
+    });
+
+    </script>
+
+    <!-- ══════════════════════════════════════════
+         ESTILOS ADICIONALES PARA LA MALLA OFICIAL
+    ══════════════════════════════════════════ -->
+    <style>
+        /* Selector de grado */
+        .grado-selector {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .grado-btn {
+            padding: 10px 24px;
+            border: 2px solid rgba(26,155,171,0.3);
+            border-radius: 50px;
+            background: white;
+            color: var(--texto);
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .grado-btn:hover,
+        .grado-btn.active {
+            background: linear-gradient(135deg, var(--verde), var(--azul));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(61,190,140,0.35);
+        }
+
+        /* Tags dentro de cada semana */
+        .week-detail {
+            margin-top: 10px;
+        }
+
+        .week-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+
+        .tag-desempeno  { background: rgba(26,155,171,0.12);  color: #1A9BAB; }
+        .tag-objeto     { background: rgba(124,58,237,0.12);  color: #7C3AED; }
+        .tag-ciudadana  { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
+
+        .week-detail p {
+            font-size: 0.88rem;
+            color: var(--gris);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Semana de evaluación */
+        .week-eval {
+            border-left-color: var(--amarillo) !important;
+            background: #FFFBEB !important;
+        }
+
+        .week-eval h3 { color: #B45309 !important; }
+
+        /* Header del subject */
+        .subject-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subject-icon  { font-size: 3.5rem; }
+        .subject-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            color: var(--texto);
+        }
+        .subject-subtitle {
+            font-size: 1rem;
+            color: var(--gris);
+            font-weight: 600;
+            max-width: 520px;
+        }
+    </style>
+
+</body>
+</html>

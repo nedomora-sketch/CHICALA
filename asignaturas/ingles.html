@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inglés - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder" id="header-icon">🌎</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · INGLÉS</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">🌎</span>
+            <h1 class="subject-title">Inglés</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <!-- SELECTOR DE GRADO -->
+        <div class="grade-selector animate-seq" id="grade-selector" data-delay="350">
+            <!-- Se genera dinámicamente -->
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="450">
+            Selecciona un período para ver los contenidos semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+    // ══════════════════════════════════════════════
+    // MALLA CURRICULAR OFICIAL - INGLÉS
+    // Fuente: IE Camacho Angarita
+    // Competencias: Lingüística, Pragmática,
+    // Sociolingüística
+    // ══════════════════════════════════════════════
+    const malla = {
+
+        // ─────────────────────────────────────────
+        // GRADO 6°
+        // ─────────────────────────────────────────
+        grado6: {
+            periodo1: [
+                {
+                    semana: 1,
+                    tema: "Información personal y saludos",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia y mi entorno (DBA 3,4). Objetos de aprendizaje: Información personal, lenguaje social y expresiones cotidianas. Competencia ciudadana: Conozco procesos y técnicas de mediación de conflictos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura de textos informativos sencillos",
+                    actividad: "Lectura: Comprensión de instrucciones escritas para actividades cotidianas y académicas (DBA 3,4,8). Extracción de información general y específica de textos cortos. Identificación de elementos culturales como costumbres y celebraciones."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura descriptiva: personas y lugares",
+                    actividad: "Escritura: Descripción con frases cortas de personas, lugares y hechos familiares (DBA 3,4,7). Escritura de texto corto sobre mí, mi familia y mi entorno. Uso de vocabulario adecuado para dar coherencia a los escritos."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: describir rutinas diarias",
+                    actividad: "Monólogo: Descripción con oraciones simples de personas, lugares u objetos familiares (DBA 3,4,5). Expresión de lo que me gusta y disgusta. Narración de hechos y actividades familiares. Descripción de mi rutina diaria y la de otras personas."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: expresiones cotidianas",
+                    actividad: "Conversación: Responder con frases cortas a preguntas sencillas sobre temas familiares (DBA 1,2,6). Solicitar explicaciones sobre situaciones en la escuela y el entorno cercano. Participar en situaciones comunicativas cotidianas."
+                },
+                {
+                    semana: 6,
+                    tema: "Vocabulario: instrucciones y órdenes en el aula",
+                    actividad: "Integración de habilidades: Uso de instrucciones orales y escritas en el contexto del aula. Expresión de necesidades y gustos. Dar instrucciones orales sencillas en situaciones escolares y familiares (DBA 3,4,5)."
+                },
+                {
+                    semana: 7,
+                    tema: "Comprensión de relaciones: and, but, first, second",
+                    actividad: "Lectura avanzada: Comprensión de relaciones establecidas por palabras de adición (and), contraste (but) y orden temporal (first, second) en enunciados sencillos (DBA 3,4,8). Identificación del significado de palabras en el diccionario según el contexto."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora del período mediante exposición oral y escrita. Inicio, mantenimiento y cierre de una conversación sencilla sobre un tema conocido (DBA 1,2,6). Retroalimentación grupal y autoevaluación del desempeño comunicativo."
+                }
+            ],
+            periodo2: [
+                {
+                    semana: 1,
+                    tema: "Información personal, gustos y opiniones",
+                    actividad: "Escucha: Comprensión de mensajes cortos y simples relacionados con el entorno e intereses personales y académicos (DBA 3,4). Objetos de aprendizaje: Información personal, gustos y opiniones. Competencia ciudadana: Conozco la Declaración Universal de los Derechos Humanos."
+                },
+                {
+                    semana: 2,
+                    tema: "Textos literarios y académicos sencillos",
+                    actividad: "Lectura: Comprensión de textos literarios, académicos y de interés general escritos con lenguaje sencillo (DBA 3,4). Extracción de información general y específica. Comprensión de relaciones de adición, contraste y orden temporal."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: contraste, adición, causa y efecto",
+                    actividad: "Escritura: Producción de textos cortos que expresan contraste, adición, causa y efecto entre ideas (DBA 3,4,7). Descripción de personas, lugares y hechos familiares. Uso adecuado de vocabulario para dar coherencia a los escritos."
+                },
+                {
+                    semana: 4,
+                    tema: "Comparaciones entre personajes y lugares",
+                    actividad: "Monólogo: Establecimiento de comparaciones entre personajes, lugares y objetos (DBA 3,4,5). Descripción de rutinas diarias propias y de otras personas. Presentaciones sencillas sobre lo personal y cotidiano."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: favores, disculpas y agradecimientos",
+                    actividad: "Conversación: Participación en situaciones comunicativas cotidianas como pedir favores, disculparse y agradecer (DBA 1,2,6). Inicio, mantenimiento y cierre de una conversación sencilla sobre temas conocidos."
+                },
+                {
+                    semana: 6,
+                    tema: "Costumbres y celebraciones en textos",
+                    actividad: "Lectura cultural: Identificación de elementos culturales como costumbres y celebraciones en textos sencillos (DBA 3,4,8). Comprensión del tema e información general de textos cortos apoyándose en imágenes, títulos y palabras clave."
+                },
+                {
+                    semana: 7,
+                    tema: "Escritura de textos sobre familia y amigos",
+                    actividad: "Escritura integrada: Producción de texto corto sobre la familia, amigos y entorno (DBA 3,4,7). Solicitud de explicaciones sobre situaciones puntuales en la escuela y el entorno cercano (DBA 1,2,6)."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante taller y guía didáctica. Presentaciones sencillas sobre lo personal y cotidiano. Retroalimentación constructiva entre pares usando rúbrica de evaluación comunicativa."
+                }
+            ],
+            periodo3: [
+                {
+                    semana: 1,
+                    tema: "Información personal e instrucciones secuenciales",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia, amigos y entorno (DBA 3,4). Comprensión de mensajes cortos relacionados con intereses personales y académicos. Objetos de aprendizaje: Información personal, instrucciones y secuencias sencillas."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: extracción de información específica",
+                    actividad: "Lectura: Comprensión de textos literarios y académicos escritos con lenguaje sencillo (DBA 3,4,8). Extracción de información general y específica. Comprensión de relaciones de adición, contraste y orden temporal en enunciados sencillos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: causa y efecto en textos cortos",
+                    actividad: "Escritura: Producción de textos cortos que expresan contraste, adición, causa y efecto (DBA 3,4,7). Uso del vocabulario adecuado para dar coherencia a los escritos. Composiciones sencillas en esquemas controlados y semicontrolados."
+                },
+                {
+                    semana: 4,
+                    tema: "Narración de hechos y actividades familiares",
+                    actividad: "Monólogo: Narración y descripción de forma sencilla de hechos y actividades familiares (DBA 3,4,5). Presentaciones sencillas y guiadas sobre temas del entorno. Competencia ciudadana: comprendo que las intenciones de la gente a veces son mejores de lo que pensé."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: reparación comunicativa",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sencillas sobre temas familiares (DBA 1,2,6). Participación en situaciones comunicativas cotidianas. Inicio, mantenimiento y cierre de una conversación sencilla."
+                },
+                {
+                    semana: 6,
+                    tema: "Uso del diccionario y vocabulario contextual",
+                    actividad: "Vocabulario estratégico: Identificación del significado adecuado de las palabras en el diccionario según el contexto (DBA 3,4,8). Identificación de elementos culturales como costumbres y celebraciones en textos sencillos."
+                },
+                {
+                    semana: 7,
+                    tema: "Integración de habilidades: texto sobre el entorno",
+                    actividad: "Escritura integradora: Producción de texto corto sobre la familia, amigos, entorno o hechos familiares (DBA 3,4,7). Expresión de contraste, adición, causa y efecto entre ideas en textos cortos."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante exposición y relatoría. Presentaciones sencillas y guiadas. Retroalimentación colectiva y reconocimiento de avances en las competencias comunicativas del período."
+                }
+            ],
+            periodo4: [
+                {
+                    semana: 1,
+                    tema: "Información personal, preferencias y descripciones",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia, amigos y entorno (DBA 3,4). Comprensión de mensajes cortos relacionados con intereses personales y académicos. Objetos de aprendizaje: Información personal, preferencias y descripciones."
+                },
+                {
+                    semana: 2,
+                    tema: "Comprensión de textos literarios y de interés general",
+                    actividad: "Lectura: Comprensión de textos literarios, académicos y de interés general con lenguaje sencillo (DBA 3,4,8). Extracción de información general y específica. Identificación de elementos culturales en textos sencillos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: descripciones de personas y lugares",
+                    actividad: "Escritura: Descripción con frases cortas de personas, lugares, objetos o hechos relacionados con situaciones familiares (DBA 3,4,7). Producción de texto corto sobre la familia, amigos y entorno."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: comparaciones y narraciones",
+                    actividad: "Monólogo: Descripción con oraciones simples de personas, lugares u objetos familiares (DBA 3,4,5). Establecimiento de comparaciones entre personajes, lugares y objetos. Narración sencilla de hechos y actividades."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: temas personales y preferencias",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sencillas sobre temas familiares (DBA 1,2,6). Participación en situaciones comunicativas cotidianas. Información personal, descripciones y preferencias."
+                },
+                {
+                    semana: 6,
+                    tema: "Identificación del significado según contexto",
+                    actividad: "Vocabulario en contexto: Identificación del significado adecuado de palabras en el diccionario (DBA 3,4,8). Comprensión del tema e información general de textos cortos apoyándose en imágenes, títulos y palabras clave."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto final: presentación sobre mi comunidad",
+                    actividad: "Proyecto integrador: Descripción oral y escrita de características básicas de personas, cosas y lugares de la escuela y comunidad de Chichalá (DBA 5). Respuesta a preguntas sobre qué, quién y cuándo en textos cortos y sencillos."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación final y cierre del año",
+                    actividad: "Evaluación integradora del año escolar. Inicio, mantenimiento y cierre de conversación sobre un tema conocido. Reflexión sobre el proceso de aprendizaje del inglés durante el año. Competencia ciudadana: actúo con independencia frente a situaciones de exclusión."
+                }
+            ]
+        },
+
+        // ─────────────────────────────────────────
+        // GRADO 7°
+        // ─────────────────────────────────────────
+        grado7: {
+            periodo1: [
+                {
+                    semana: 1,
+                    tema: "Información personal, gustos y rutinas",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia, amigos y entorno (DBA 5,6,7). Comprensión de mensajes cortos relacionados con intereses personales y académicos. Objetos de aprendizaje: Información personal, gustos y rutinas."
+                },
+                {
+                    semana: 2,
+                    tema: "Textos descriptivos cortos",
+                    actividad: "Lectura: Comprensión de instrucciones escritas para actividades cotidianas y académicas (DBA 4). Comprensión de textos literarios y académicos con lenguaje sencillo. Extracción de información general y específica de textos cortos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: textos sobre familia y entorno",
+                    actividad: "Escritura: Producción de texto corto sobre mí, mi familia, mis amigos y mi entorno (DBA 3). Uso de vocabulario adecuado para dar coherencia a los escritos. Composiciones sencillas en esquemas controlados."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: gustos, disgustos y rutinas",
+                    actividad: "Monólogo: Expresión sencilla de lo que me gusta y disgusta (DBA 2,6,7). Narración y descripción de hechos y actividades familiares. Descripción de la rutina diaria propia y de otras personas. Presentaciones breves y sencillas guiadas."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: información personal e intenciones",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sencillas sobre temas familiares (DBA 1). Participación en situaciones comunicativas cotidianas (pedir favores, disculparse, agradecer). Inicio, mantenimiento y cierre de conversación sencilla."
+                },
+                {
+                    semana: 6,
+                    tema: "Costumbres y celebraciones en textos",
+                    actividad: "Lectura cultural: Identificación de elementos culturales como costumbres y celebraciones en textos sencillos (DBA 4). Comprensión de relaciones de adición, contraste y orden temporal. Identificación del significado de palabras según el contexto."
+                },
+                {
+                    semana: 7,
+                    tema: "Integración: describir personas y acciones",
+                    actividad: "Integración de habilidades: Reconocimiento de información específica sobre objetos, personas y acciones cuando son conocidos (DBA 5). Descripción de acciones relacionadas con el entorno familiar o escolar usando oraciones sencillas apoyadas en imágenes."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora del período mediante exposición oral y taller escrito. Inicio, mantenimiento y cierre de conversación sencilla. Competencia ciudadana: sirvo de mediador en conflictos fomentando el diálogo y el entendimiento."
+                }
+            ],
+            periodo2: [
+                {
+                    semana: 1,
+                    tema: "Información personal y expresiones sociales",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia, amigos y entorno (DBA 5,6,7). Comprensión de mensajes cortos relacionados con intereses personales y académicos. Objetos de aprendizaje: Información personal y expresiones sociales."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura de textos descriptivos: idea principal",
+                    actividad: "Lectura: Comprensión de textos literarios y académicos con lenguaje sencillo (DBA 4). Extracción de información general y específica de textos cortos. Identificación de elementos culturales en textos sencillos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: contraste, adición, causa y efecto",
+                    actividad: "Escritura: Producción de textos cortos que expresan contraste, adición, causa y efecto entre ideas (DBA 3). Uso de vocabulario adecuado para dar coherencia a los escritos. Composiciones sencillas en esquemas controlados y semicontrolados."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: expresar gustos y preferencias",
+                    actividad: "Monólogo: Expresión sencilla de lo que me gusta y disgusta (DBA 2,6,7). Presentaciones sencillas guiadas sobre temas personales y cotidianos."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: propuestas y sugerencias",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sobre temas familiares (DBA 1). Solicitud de explicaciones sobre situaciones puntuales. Hacer propuestas a compañeros sobre qué hacer, dónde, cuándo o cómo (DBA 1). Inicio, mantenimiento y cierre de conversación."
+                },
+                {
+                    semana: 6,
+                    tema: "Estrategias de lectura: skimming y scanning",
+                    actividad: "Lectura estratégica: Extracción de información general y específica de textos cortos (DBA 4). Comprensión de relaciones de adición, contraste y orden temporal. Identificación del significado de palabras en el diccionario según el contexto."
+                },
+                {
+                    semana: 7,
+                    tema: "Dar y recibir instrucciones y recomendaciones",
+                    actividad: "Integración de habilidades: Dar y recibir instrucciones, recomendaciones y sugerencias sobre temas del entorno cotidiano (DBA 6). Descripción de acciones relacionadas con el entorno familiar o escolar usando oraciones sencillas."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante taller y guía didáctica. Retroalimentación constructiva entre pares usando rúbrica de evaluación. Competencia ciudadana: comprendo que el engaño afecta la confianza entre las personas."
+                }
+            ],
+            periodo3: [
+                {
+                    semana: 1,
+                    tema: "Información personal y contexto local",
+                    actividad: "Escucha: Comprensión de preguntas y expresiones orales sobre mí, mi familia, amigos y entorno (DBA 5,6,7). Comprensión de mensajes cortos sobre intereses personales y académicos. Objetos de aprendizaje: Información personal y sobre su contexto local (Chichalá)."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: lugares, momentos y acciones",
+                    actividad: "Lectura: Comprensión de instrucciones escritas para actividades cotidianas y académicas (DBA 4). Extracción de información general y específica. Comprensión de relaciones de adición, contraste y orden temporal en enunciados sencillos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: descripción de personas del entorno",
+                    actividad: "Escritura: Descripción con frases cortas de personas, lugares, objetos o hechos familiares (DBA 3). Producción de texto corto sobre la familia, amigos y entorno. Escritura de textos que expresan contraste, adición, causa y efecto."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: comparaciones y descripciones",
+                    actividad: "Monólogo: Descripción con oraciones simples de personas, lugares y objetos familiares (DBA 2,6,7). Dar instrucciones orales sencillas en situaciones escolares y familiares. Establecimiento de comparaciones entre personajes, lugares y objetos."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: comparaciones y opiniones",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sobre temas familiares (DBA 1). Solicitud de explicaciones sobre situaciones puntuales. Participación en situaciones comunicativas cotidianas. Hacer propuestas a compañeros."
+                },
+                {
+                    semana: 6,
+                    tema: "Presentaciones: temas personales y costumbres",
+                    actividad: "Monólogo avanzado: Presentaciones sobre temas personales, lugares, costumbres y personas (DBA 2,6,7). Identificación de elementos culturales en textos sencillos (DBA 4). Actividad: Presentación oral sobre la vereda Chichalá y sus costumbres."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto: describir mi comunidad en inglés",
+                    actividad: "Proyecto integrador: Descripción oral y escrita de personas, actividades y lugares de la comunidad de Chichalá. Uso de oraciones sencillas apoyadas en imágenes. Escritura de textos cortos sobre acciones, experiencias y planes familiares."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante exposición oral y relatoría escrita. Competencia ciudadana: comprendo que todas las familias tienen derecho al trabajo, la salud, la vivienda y la educación."
+                }
+            ],
+            periodo4: [
+                {
+                    semana: 1,
+                    tema: "Información general y específica sobre temas conocidos",
+                    actividad: "Escucha: Comprensión de mensajes cortos y simples sobre el entorno e intereses personales y académicos (DBA 5,6,7). Objetos de aprendizaje: Información general y específica sencilla sobre temas personales y conocidos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura de textos descriptivos: detalles y estructura",
+                    actividad: "Lectura: Comprensión de textos literarios y académicos con lenguaje sencillo (DBA 4). Extracción de información general y específica de textos cortos. Identificación de elementos culturales y del significado de palabras en contexto."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: narraciones cortas y sencillas",
+                    actividad: "Escritura: Descripción con frases cortas de personas, lugares y hechos familiares (DBA 3). Producción de texto corto sobre la familia, amigos y entorno. Composiciones sencillas en esquemas controlados y semicontrolados."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: exposiciones sencillas y guiadas",
+                    actividad: "Monólogo: Descripción con oraciones simples de personas, lugares y objetos (DBA 2,6,7). Narración y descripción sencilla de hechos y actividades familiares. Presentaciones o exposiciones sencillas y guiadas ante el grupo."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: lo cotidiano y el entorno",
+                    actividad: "Conversación: Respuesta con frases cortas a preguntas sobre temas familiares (DBA 1). Participación en situaciones comunicativas cotidianas como pedir favores, disculparse y agradecer. Inicio, mantenimiento y cierre de conversación."
+                },
+                {
+                    semana: 6,
+                    tema: "Proyecto integrador: poster o video de la comunidad",
+                    actividad: "Proyecto final: Creación de un poster digital o video corto en inglés sobre la vereda Chichalá, su gente, sus costumbres y su gastronomía. Aplicación de todas las habilidades del año: escucha, lectura, escritura, monólogo y conversación."
+                },
+                {
+                    semana: 7,
+                    tema: "Repaso integrador del año",
+                    actividad: "Actividad lúdica de repaso: juego de roles, concurso de vocabulario y mini diálogos en inglés sobre los temas del año. Reconocimiento de los avances en las competencias lingüística, pragmática y sociolingüística."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación final y clausura del año",
+                    actividad: "Evaluación final del año. Presentación del proyecto integrador ante el grupo. Competencia ciudadana: comprendo que el disenso y la discusión constructiva contribuyen al progreso del grupo."
+                }
+            ]
+        },
+
+        // ─────────────────────────────────────────
+        // GRADO 8°
+        // ─────────────────────────────────────────
+        grado8: {
+            periodo1: [
+                {
+                    semana: 1,
+                    tema: "Información general y específica: temas personales",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica a partir de un texto oral. Identificación de información clave en conversaciones breves acompañadas por imágenes. Objetos de aprendizaje: Información general y específica sobre temas personales y conocidos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: iniciación, nudo y desenlace",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace en una narración (DBA 3). Reconocimiento del propósito de una descripción en textos narrativos de mediana extensión. Identificación de puntos a favor y en contra en textos argumentativos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: narraciones sobre experiencias personales",
+                    actividad: "Escritura: Producción de narraciones sobre experiencias personales y hechos del entorno (DBA 2,8). Producción de textos con funciones de descripción, narración y argumentación. Organización de párrafos coherentes cortos con ortografía y puntuación correctas."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: presentaciones sobre temas cotidianos",
+                    actividad: "Monólogo: Presentaciones cortas y ensayadas sobre temas cotidianos y personales (DBA 5,6,7,8). Expresión de opiniones sobre asuntos de interés general. Explicación y justificación de planes y acciones. Descripción de asuntos cotidianos del entorno."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: información personal y opiniones",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en una conversación (DBA 1,4). Intercambio de información sobre temas académicos del entorno escolar a través de conversaciones sencillas, diálogos y juego de roles."
+                },
+                {
+                    semana: 6,
+                    tema: "Estrategias de lectura: previsualización y predicción",
+                    actividad: "Lectura estratégica: Uso de estrategias de lectura como previsualización (imágenes, títulos, subtítulos), predicción (subrayado, palabras clave) e identificación del sentido general del texto (skimming). Identificación de recurrencia de ideas y relaciones de significado."
+                },
+                {
+                    semana: 7,
+                    tema: "Edición de textos: ortografía y gramática",
+                    actividad: "Escritura avanzada: Edición de escritos en clase teniendo en cuenta reglas de ortografía, adecuación del vocabulario y estructuras gramaticales (DBA 2,8). Identificación de elementos culturales presentes en textos sencillos."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora del período mediante exposición oral y taller escrito. Solicitud y entrega de información sobre experiencias y planes de manera clara y breve. Competencia ciudadana: entiendo la importancia de mantener el afecto y cuidado mutuo a pesar de las diferencias."
+                }
+            ],
+            periodo2: [
+                {
+                    semana: 1,
+                    tema: "Imperativos e información general",
+                    actividad: "Escucha: Seguimiento de instrucciones dadas en clase para actividades académicas (DBA 3). Identificación de ideas generales y específicas en textos orales. Inferencia de información específica. Objetos de aprendizaje: Imperativos e información general y específica sobre temas personales y conocidos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: textos narrativos y argumentativos",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace en narraciones (DBA 3). Reconocimiento del propósito de descripciones en textos narrativos. Identificación de puntos a favor y en contra en textos argumentativos. Comprensión de relaciones de adición, contraste, causa y efecto."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: textos narrativos y formatos sencillos",
+                    actividad: "Escritura: Producción de textos con funciones de descripción, narración y argumentación (DBA 2,8). Organización de párrafos coherentes cortos con ortografía y puntuación correctas. Composiciones narrativas y formatos sencillos en esquemas controlados."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: opiniones y descripción del entorno",
+                    actividad: "Monólogo: Presentaciones cortas y ensayadas sobre temas cotidianos y personales (DBA 5,6,7,8). Expresión de opiniones, gustos y preferencias sobre temas trabajados en clase. Uso de estrategias para monitorear la pronunciación."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: descripciones sobre la cotidianidad",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en conversaciones (DBA 1,4). Recomendaciones a personas de la comunidad sobre qué hacer, dónde, cuándo o cómo, basadas en situaciones cotidianas."
+                },
+                {
+                    semana: 6,
+                    tema: "Estructura de textos: descriptivos, narrativos, argumentativos",
+                    actividad: "Lectura avanzada: Diferenciación de la estructura organizativa de textos descriptivos, narrativos y argumentativos (DBA 3). Comprensión de información implícita en textos de interés. Identificación de elementos culturales en textos sencillos."
+                },
+                {
+                    semana: 7,
+                    tema: "Exposiciones breves sobre temas académicos",
+                    actividad: "Monólogo avanzado: Exposiciones breves sobre un tema académico relacionado con el entorno escolar o la comunidad, considerando hechos relevantes, detalles concretos y vocabulario específico (DBA 6). Preparación previa con compañeros y docente."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante taller y guía didáctica. Edición de escritos teniendo en cuenta ortografía, vocabulario y gramática. Competencia ciudadana: conozco y utilizo estrategias creativas para solucionar conflictos."
+                }
+            ],
+            periodo3: [
+                {
+                    semana: 1,
+                    tema: "Experiencias pasadas y planes futuros",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica. Identificación de información clave en conversaciones breves con imágenes. Objetos de aprendizaje: Información general y específica sobre temas personales y conocidos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: estructura narrativa y argumentativa",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace (DBA 3). Identificación de puntos a favor y en contra en textos argumentativos. Comprensión de relaciones de adición, contraste, orden temporal y causa-efecto en enunciados sencillos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: narraciones y textos descriptivos",
+                    actividad: "Escritura: Producción de narraciones sobre experiencias personales y hechos del entorno (DBA 2,8). Producción de textos con funciones descriptivas, narrativas y argumentativas. Organización de párrafos coherentes con ortografía y puntuación correctas."
+                },
+                                {
+                    semana: 3,
+                    tema: "Escritura: narraciones y textos descriptivos",
+                    actividad: "Escritura: Producción de narraciones sobre experiencias personales y hechos del entorno (DBA 2,8). Producción de textos con funciones descriptivas, narrativas y argumentativas. Organización de párrafos coherentes con ortografía y puntuación correctas."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: justificación de planes y acciones",
+                    actividad: "Monólogo: Presentaciones cortas y ensayadas sobre temas cotidianos y personales (DBA 5,6,7,8). Explicación y justificación de planes y acciones. Descripción de asuntos cotidianos del entorno usando vocabulario específico."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: recomendaciones y sugerencias",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en conversaciones (DBA 1,4). Recomendaciones sobre qué hacer, dónde, cuándo o cómo en situaciones cotidianas. Intercambio de información sobre temas académicos."
+                },
+                {
+                    semana: 6,
+                    tema: "Comprensión de textos implícitos y culturales",
+                    actividad: "Lectura avanzada: Comprensión de información implícita en textos de interés (DBA 3). Identificación de elementos culturales en textos sencillos. Diferenciación de la estructura organizativa de textos descriptivos, narrativos y argumentativos."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto: exposición sobre un tema académico",
+                    actividad: "Proyecto integrador: Exposición breve sobre un tema académico relacionado con la comunidad de Chichalá, considerando hechos relevantes, detalles concretos y vocabulario específico (DBA 6). Trabajo previo colaborativo con compañeros y docente."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante conferencia magistral y mapa conceptual. Edición de escritos teniendo en cuenta ortografía, vocabulario y estructuras gramaticales. Competencia ciudadana: comprendo la importancia de cumplir los acuerdos para la convivencia."
+                }
+            ],
+            periodo4: [
+                {
+                    semana: 1,
+                    tema: "Descripción de personas, lugares y eventos",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica. Identificación de información clave en conversaciones breves. Objetos de aprendizaje: Descripción de personas, lugares y eventos del entorno."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: comprensión de textos de interés",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace en narraciones (DBA 3). Identificación de puntos a favor y en contra en textos argumentativos. Comprensión de relaciones de adición, contraste, orden temporal y causa-efecto."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: textos argumentativos sencillos",
+                    actividad: "Escritura: Producción de textos con funciones descriptivas, narrativas y argumentativas (DBA 2,8). Organización de párrafos coherentes con ortografía y puntuación correctas. Edición de escritos teniendo en cuenta reglas gramaticales."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: exposición con vocabulario específico",
+                    actividad: "Monólogo: Exposiciones breves sobre temas académicos considerando hechos relevantes, detalles concretos y vocabulario específico (DBA 6). Expresión de opiniones sobre asuntos de interés general. Uso de estrategias para monitorear la pronunciación."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: intercambio sobre temas académicos",
+                    actividad: "Conversación: Intercambio de información sobre temas académicos del entorno escolar a través de conversaciones sencillas, diálogos y juego de roles (DBA 1,4). Apoyo en conocimientos generales del mundo para participar en conversaciones."
+                },
+                {
+                    semana: 6,
+                    tema: "Estrategias de escritura: edición y revisión",
+                    actividad: "Escritura avanzada: Edición de escritos en clase teniendo en cuenta reglas de ortografía, adecuación del vocabulario y estructuras gramaticales correctas (DBA 2,8). Identificación y corrección de errores frecuentes en la escritura en inglés."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto final: video o presentación en inglés",
+                    actividad: "Proyecto integrador de cierre: Creación de un video corto o presentación en inglés sobre un tema de interés personal o de la comunidad de Chichalá. Aplicación de todas las habilidades comunicativas desarrolladas durante el año escolar."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación final y clausura del año",
+                    actividad: "Evaluación final del año. Presentación del proyecto integrador ante el grupo. Reflexión metacognitiva sobre el proceso de aprendizaje del inglés. Competencia ciudadana: comprendo que mis acciones pueden afectar el bienestar del grupo y de la comunidad."
+                }
+            ]
+        },
+
+        // ─────────────────────────────────────────
+        // GRADO 9°
+        // ─────────────────────────────────────────
+        grado9: {
+            periodo1: [
+                {
+                    semana: 1,
+                    tema: "Comprensión de textos orales: ideas y detalles",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica a partir de un texto oral. Identificación de información clave en conversaciones breves con apoyo de imágenes. Objetos de aprendizaje: Información general y específica sobre temas personales y académicos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: narraciones y textos descriptivos",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace en narraciones (DBA 3). Reconocimiento del propósito de una descripción en textos narrativos. Uso de estrategias de previsualización, predicción y skimming para comprender textos."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: párrafos coherentes y bien estructurados",
+                    actividad: "Escritura: Organización de párrafos coherentes cortos con ortografía y puntuación correctas (DBA 2,8). Producción de narraciones sobre experiencias personales y hechos del entorno. Edición de escritos con reglas de ortografía y gramática."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: presentaciones sobre el entorno",
+                    actividad: "Monólogo: Presentaciones cortas y ensayadas sobre temas cotidianos y personales (DBA 5,6,7,8). Descripción de asuntos cotidianos del entorno usando vocabulario específico. Expresión de opiniones sobre asuntos de interés general."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: temas académicos y cotidianos",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en conversaciones (DBA 1,4). Intercambio de información sobre temas académicos del entorno escolar. Conversaciones sencillas, diálogos y juego de roles."
+                },
+                {
+                    semana: 6,
+                    tema: "Comprensión de textos argumentativos",
+                    actividad: "Lectura avanzada: Identificación de puntos a favor y en contra en textos argumentativos (DBA 3). Comprensión de información implícita en textos de interés. Diferenciación de la estructura organizativa de textos descriptivos, narrativos y argumentativos."
+                },
+                {
+                    semana: 7,
+                    tema: "Escritura de textos con causa y efecto",
+                    actividad: "Escritura integradora: Producción de textos con funciones de descripción, narración y argumentación (DBA 2,8). Uso de conectores de causa-efecto, adición y contraste. Edición y revisión colaborativa de los textos producidos."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora del período mediante exposición oral y taller escrito. Solicitud y entrega de información sobre experiencias y planes de manera clara y breve. Competencia ciudadana: comprendo la importancia de cuidar el medio ambiente y actúo en consecuencia."
+                }
+            ],
+            periodo2: [
+                {
+                    semana: 1,
+                    tema: "Instrucciones y expresiones formales",
+                    actividad: "Escucha: Seguimiento de instrucciones dadas en clase para actividades académicas (DBA 3). Identificación de ideas generales y específicas en textos orales. Inferencia de información específica. Objetos de aprendizaje: Instrucciones y expresiones formales e informales."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: estructura y propósito de textos",
+                    actividad: "Lectura: Reconocimiento del propósito de una descripción en textos narrativos de mediana extensión (DBA 3). Identificación de puntos a favor y en contra en textos argumentativos. Comprensión de relaciones de adición, contraste y causa-efecto."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: argumentación y opinión",
+                    actividad: "Escritura: Producción de textos con funciones argumentativas (DBA 2,8). Organización de párrafos coherentes con ortografía y puntuación correctas. Edición de escritos teniendo en cuenta reglas gramaticales y adecuación del vocabulario."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: exposiciones académicas",
+                    actividad: "Monólogo: Exposiciones breves sobre temas académicos considerando hechos relevantes, detalles concretos y vocabulario específico (DBA 6). Expresión de opiniones, gustos y preferencias sobre temas trabajados en clase."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: recomendaciones y planes",
+                    actividad: "Conversación: Recomendaciones a personas de la comunidad sobre qué hacer, dónde, cuándo o cómo en situaciones cotidianas (DBA 1,4). Intercambio de información académica a través de conversaciones sencillas y juego de roles."
+                },
+                {
+                    semana: 6,
+                    tema: "Comprensión implícita y elementos culturales",
+                    actividad: "Lectura avanzada: Comprensión de información implícita en textos de interés (DBA 3). Identificación de elementos culturales en textos sencillos. Diferenciación de la estructura organizativa de textos descriptivos, narrativos y argumentativos."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto: texto argumentativo sobre un tema local",
+                    actividad: "Proyecto integrador: Producción de un texto argumentativo corto sobre un problema o situación de la vereda Chichalá en inglés. Aplicación de las habilidades de escritura, vocabulario y gramática desarrolladas durante el período."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante taller y guía didáctica. Edición colaborativa de escritos. Competencia ciudadana: reconozco la importancia de las normas y los acuerdos para la convivencia pacífica en mi entorno."
+                }
+            ],
+            periodo3: [
+                {
+                    semana: 1,
+                    tema: "Textos orales: inferencia e ideas clave",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica a partir de un texto oral. Identificación de información clave en conversaciones breves. Objetos de aprendizaje: Información general y específica sobre temas personales y académicos."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: narraciones de mediana extensión",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace en narraciones de mediana extensión (DBA 3). Comprensión de relaciones de adición, contraste, orden temporal y causa-efecto. Uso de estrategias de lectura como previsualización y predicción."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: narraciones sobre el entorno local",
+                    actividad: "Escritura: Producción de narraciones sobre experiencias personales y hechos del entorno (DBA 2,8). Organización de párrafos coherentes con ortografía y puntuación correctas. Producción de textos con funciones descriptivas y narrativas."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: justificación de opiniones",
+                    actividad: "Monólogo: Presentaciones cortas y ensayadas sobre temas cotidianos (DBA 5,6,7,8). Explicación y justificación de planes y acciones. Descripción de asuntos cotidianos del entorno usando vocabulario específico."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: intercambio de opiniones",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en conversaciones (DBA 1,4). Intercambio de información sobre temas académicos del entorno escolar a través de conversaciones sencillas, diálogos y juego de roles."
+                },
+                {
+                    semana: 6,
+                    tema: "Vocabulario específico y pronunciación",
+                    actividad: "Monólogo avanzado: Uso de estrategias para monitorear la pronunciación durante exposiciones (DBA 6). Exposiciones breves sobre temas académicos considerando hechos relevantes, detalles concretos y vocabulario específico de la agroindustria y el campo."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto: exposición bilingüe sobre Chichalá",
+                    actividad: "Proyecto integrador: Preparación y presentación de una exposición bilingüe sobre la vereda Chichalá, su agroindustria, costumbres y comunidad. Integración de todas las habilidades comunicativas desarrolladas durante el período."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y cierre del período",
+                    actividad: "Evaluación integradora mediante conferencia magistral y mapa conceptual. Retroalimentación colectiva sobre el proceso comunicativo del período. Competencia ciudadana: actúo con responsabilidad frente al cuidado del ambiente y los recursos naturales de mi comunidad."
+                }
+            ],
+            periodo4: [
+                {
+                    semana: 1,
+                    tema: "Comprensión oral avanzada: ideas y contexto",
+                    actividad: "Escucha: Identificación de ideas generales y específicas en textos orales (DBA 3). Inferencia de información específica. Identificación de información clave en conversaciones breves. Objetos de aprendizaje: Información general y específica sobre temas académicos y del entorno."
+                },
+                {
+                    semana: 2,
+                    tema: "Lectura: textos narrativos y argumentativos",
+                    actividad: "Lectura: Identificación de iniciación, nudo y desenlace (DBA 3). Identificación de puntos a favor y en contra en textos argumentativos. Comprensión de relaciones de adición, contraste, orden temporal y causa-efecto en enunciados."
+                },
+                {
+                    semana: 3,
+                    tema: "Escritura: textos argumentativos y de opinión",
+                    actividad: "Escritura: Producción de textos con funciones de descripción, narración y argumentación (DBA 2,8). Organización de párrafos coherentes. Edición de escritos teniendo en cuenta ortografía, vocabulario y estructuras gramaticales."
+                },
+                {
+                    semana: 4,
+                    tema: "Monólogo: presentación final integradora",
+                    actividad: "Monólogo: Exposiciones breves sobre temas académicos con vocabulario específico (DBA 6). Expresión de opiniones sobre asuntos de interés general. Uso de estrategias para monitorear la pronunciación durante la presentación."
+                },
+                {
+                    semana: 5,
+                    tema: "Conversación: debate sencillo en inglés",
+                    actividad: "Conversación: Apoyo en conocimientos generales del mundo para participar en un debate sencillo (DBA 1,4). Intercambio de información académica. Recomendaciones sobre situaciones cotidianas de la comunidad."
+                },
+                {
+                    semana: 6,
+                    tema: "Revisión y edición final de textos",
+                    actividad: "Escritura avanzada: Edición de escritos teniendo en cuenta reglas de ortografía, adecuación del vocabulario y estructuras gramaticales (DBA 2,8). Revisión colaborativa de los textos finales del año para el portafolio de inglés."
+                },
+                {
+                    semana: 7,
+                    tema: "Proyecto final: portafolio de inglés",
+                    actividad: "Proyecto integrador de cierre del año: Presentación del portafolio de inglés que recoge los mejores trabajos escritos y orales del año. Video final o presentación en inglés sobre un tema de impacto en la comunidad de Chichalá."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación final y clausura del año",
+                    actividad: "Evaluación final del año. Gran presentación de inglés ante la comunidad educativa. Reflexión metacognitiva sobre el proceso de aprendizaje del idioma. Competencia ciudadana: contribuyo activamente al bienestar de mi comunidad y al cuidado del entorno."
+                }
+            ]
+        }
+    };
+
+    // ══════════════════════════════════════════════
+    // CONFIGURACIÓN POR NIVEL
+    // ══════════════════════════════════════════════
+    const configNivel = {
+        basica: {
+            badge: "🌎 Básica Secundaria · Grados 6 y 7",
+            subtitle: "Grados 6 · 7 · Competencias Comunicativas en Inglés",
+            desc: "Lingüística, Pragmática y Sociolingüística: información personal, rutinas, gustos y expresiones cotidianas.",
+            icon: "🌎",
+            grados: ['grado6', 'grado7'],
+            labels: ['Grado 6°', 'Grado 7°']
+        },
+        media: {
+            badge: "🚀 Media · Grados 8 y 9",
+            subtitle: "Grados 8 · 9 · Inglés Avanzado e Integrado",
+            desc: "Textos narrativos, argumentativos y descriptivos: opiniones, exposiciones y proyectos comunicativos de impacto.",
+            icon: "🚀",
+            grados: ['grado8', 'grado9'],
+            labels: ['Grado 8°', 'Grado 9°']
+        }
+    };
+
+    // ══════════════════════════════════════════════
+    // DETECTAR NIVEL DESDE URL
+    // ══════════════════════════════════════════════
+    const params = new URLSearchParams(window.location.search);
+    const nivel  = params.get('nivel') || 'basica';
+    const cfg    = configNivel[nivel] || configNivel.basica;
+
+    // Actualizar interfaz
+    document.getElementById('header-sub').textContent   = cfg.subtitle;
+    document.getElementById('level-badge').textContent  = cfg.badge;
+    document.getElementById('subject-icon').textContent = cfg.icon;
+    document.getElementById('subject-desc').textContent = cfg.desc;
+
+    if (nivel === 'media') {
+        document.getElementById('level-badge').style.background =
+            'linear-gradient(135deg, #7C3AED, #4F46E5)';
+    }
+
+    // ══════════════════════════════════════════════
+    // GENERAR SELECTOR DE GRADO
+    // ══════════════════════════════════════════════
+    let gradoActual = cfg.grados[0];
+
+    function generarSelector() {
+        const selector = document.getElementById('grade-selector');
+        if (!selector) return;
+        selector.innerHTML = '';
+
+        cfg.grados.forEach((grado, idx) => {
+            const btn = document.createElement('button');
+            btn.className   = `grade-btn${idx === 0 ? ' active' : ''}`;
+            btn.dataset.grado = grado;
+            btn.textContent = cfg.labels[idx];
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.grade-btn')
+                        .forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                gradoActual = grado;
+                generarAcordeon(gradoActual);
+                if (navigator.vibrate) navigator.vibrate(20);
+            });
+            selector.appendChild(btn);
+        });
+    }
+
+    // ══════════════════════════════════════════════
+    // GENERAR ACORDEÓN POR GRADO
+    // ══════════════════════════════════════════════
+    const coloresPeriodos = [
+        { label: '📅 Período 1', color: '#3DBE8C' },
+        { label: '📅 Período 2', color: '#1A9BAB' },
+        { label: '📅 Período 3', color: '#7C3AED' },
+        { label: '📅 Período 4', color: '#F4872B' }
+    ];
+
+    function generarAcordeon(grado) {
+        const container = document.getElementById('accordion-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const periodos = ['periodo1','periodo2','periodo3','periodo4'];
+
+        periodos.forEach((key, idx) => {
+            const semanas = malla[grado][key];
+            let semanasHTML = '';
+
+            semanas.forEach(s => {
+                semanasHTML += `
+                    <div class="week-container">
+                        <h3>Semana ${s.semana} · ${s.tema}</h3>
+                        <p>${s.actividad}</p>
+                    </div>
+                `;
+            });
+
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <button class="accordion-header">
+                    <span>${coloresPeriodos[idx].label}</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    ${semanasHTML}
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        initAccordion();
+    }
+
+    // ══════════════════════════════════════════════
+    // INIT GLOBAL
+    // ══════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        generarSelector();
+        generarAcordeon(gradoActual);
+        initSequentialAnimations();
+    });
+
+    </script>
+</body>
+</html>

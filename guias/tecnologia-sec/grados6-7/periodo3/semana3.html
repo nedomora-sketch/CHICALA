@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: El Arquitecto Rural | Semana 3 - Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde: #3DBE8C;
+            --azul: #1A9BAB;
+            --morado: #7C3AED;
+            --naranja: #F4872B;
+            --amarillo: #F7C325;
+            --texto: #2D3748;
+            --fondo: #F7FAFC;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Header Institucional */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--verde);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--azul);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--naranja);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        /* Secciones */
+        .seccion {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border-left: 5px solid var(--azul);
+        }
+
+        .seccion h3 {
+            color: var(--azul);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seccion h3::before {
+            content: "🌱";
+        }
+
+        .seccion-geometria h3::before { content: "📐"; color: var(--morado); }
+        .seccion-creativa h3::before { content: "🎨"; color: var(--naranja); }
+
+        /* Niveles */
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado3 { border-color: var(--verde); }
+        .nivel-card.grado4 { border-color: var(--azul); }
+        .nivel-card.grado5 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            background: var(--texto);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .grado3 .nivel-badge { background: var(--verde); }
+        .grado4 .nivel-badge { background: var(--azul); }
+        .grado5 .nivel-badge { background: var(--morado); }
+
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .actividad-lista li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        /* Materiales */
+        .materiales-box {
+            background: #FFFBE6;
+            border: 2px dashed var(--amarillo);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .materiales-box strong { color: #B45309; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+                        color: #718096;
+            font-size: 0.85rem;
+        }
+
+        .footer p { margin: 3px 0; }
+
+        /* Evaluación */
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--amarillo);
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 15px;
+        }
+
+        .eval-box h4 {
+            color: #B45309;
+            margin: 0 0 8px;
+        }
+
+        /* Reflexión */
+        .reflexion-box {
+            background: linear-gradient(135deg, rgba(61,190,140,0.1), rgba(26,155,171,0.1));
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--azul);
+            margin: 0;
+        }
+
+        /* Tag de área */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(26,155,171,0.12); color: #1A9BAB; }
+        .tag-objeto    { background: rgba(124,58,237,0.12);  color: #7C3AED; }
+        .tag-ciudadana { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
+
+        /* Línea separadora de grados en impresión */
+        .page-break { page-break-before: always; }
+
+        /* Btn Imprimir */
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--verde), var(--azul));
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(61,190,140,0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(61,190,140,0.45);
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--azul);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        /* Espacio para escribir */
+        .espacio-escritura {
+            border: 2px dashed #CBD5E0;
+            border-radius: 8px;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #FAFAFA;
+        }
+
+        .espacio-escritura::before {
+            content: "✏️  Escribe aquí tu respuesta:";
+            display: block;
+            font-size: 0.8rem;
+            color: #A0AEC0;
+            margin-bottom: 5px;
+        }
+
+        /* Líneas de escritura para impresión */
+        .lineas {
+            margin-top: 10px;
+        }
+
+        .linea {
+            border-bottom: 1px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        /* ══════════════════
+           ESTILOS DE IMPRESIÓN
+        ══════════════════ */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .btn-print { display: none; }
+            .btn-volver { display: none; }
+
+            .nivel-card {
+                break-inside: avoid;
+            }
+
+            .seccion {
+                break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .espacio-escritura {
+                background: white;
+            }
+
+            .espacio-escritura::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ══ BOTÓN IMPRIMIR ══ -->
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>📐 El Arquitecto Rural</h1>
+        <h2>Matemáticas · Semana 3 · Período 3</h2>
+        <p>Grados 6° y 7° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p><strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+           <strong>Fecha:</strong> _________________________</p>
+        <p><strong>Nombre del estudiante:</strong> _____________________________________________</p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: BIENVENIDA AL RETO ══ -->
+    <div class="seccion">
+        <h3>El Reto del día</h3>
+        <p>
+            En la vereda Chichalá, las familias campesinas construyen cercas, parcelas,
+            trapiches y artesanías usando <strong>formas geométricas</strong> todo el tiempo,
+            aunque no siempre lo noten. Hoy seremos <strong>arquitectos rurales</strong>:
+            usaremos la geometría para entender, diseñar y construir desde nuestro territorio.
+        </p>
+        <p>
+            Cada grado tiene su propio desafío, pero <strong>todos comparten el mismo campo,
+            la misma vereda y el mismo orgullo de ser de Chichalá. 🌿</strong>
+        </p>
+    </div>
+
+    <!-- ══ SECCIÓN 2: MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Materiales para hoy:</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+            <li>Hoja de papel cuadriculado o blanco</li>
+            <li>Regla y lápiz</li>
+            <li>Tijeras y colores</li>
+            <li>Material reciclado: cartón, palitos, tapas, hojas de caña o guadua</li>
+            <li>Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 3: INDICADORES DE DESEMPEÑO ══ -->
+    <div class="seccion">
+        <h3>¿Qué vamos a aprender hoy?</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Reconozco la <strong>igualdad y semejanza</strong> de figuras geométricas,
+            identificando sus características en objetos del entorno rural de Chichalá.</p>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Comprendo situaciones de <strong>proporcionalidad directa e inversa</strong>
+            usando fracciones, aplicadas a repartos y medidas del campo.</p>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Identifico y clasifico <strong>cuerpos geométricos</strong> por sus caras,
+            aristas y vértices, relacionándolos con estructuras reales de la finca y la vereda.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: CONCEPTOS CLAVE ══ -->
+    <div class="seccion seccion-geometria">
+        <h3>Conceptos clave</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>Figuras iguales:</strong> tienen el mismo tamaño y la misma forma.<br>
+                <strong>Figuras semejantes:</strong> tienen la misma forma pero diferente tamaño
+                (como una parcela grande y su maqueta pequeña). <br>
+                <strong>Ejemplos del campo:</strong> las hojas del cafeto, los cuadros de una
+                cerca, las tejas del trapiche.
+            </p>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>Proporcionalidad directa:</strong> si uno aumenta, el otro también
+                aumenta. (Si cosecho más café, gano más dinero). <br>
+                <strong>Proporcionalidad inversa:</strong> si uno aumenta, el otro disminuye.
+                (Si más personas ayudan en la cosecha, se demoran menos tiempo). <br>
+                Se expresan con <strong>fracciones</strong> y tablas de valores.
+            </p>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>Cuerpo geométrico:</strong> figura tridimensional con volumen.<br>
+                <strong>Cara:</strong> cada superficie plana del cuerpo.<br>
+                <strong>Arista:</strong> línea donde se unen dos caras.<br>
+                <strong>Vértice:</strong> punto donde se unen tres o más aristas.<br>
+                <strong>Ejemplos del campo:</strong> una paca de heno (prisma rectangular),
+                un silo de maíz (cilindro), un techo de rancho (pirámide).
+            </p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 5: ACTIVIDADES PASO A PASO ══ -->
+    <div class="seccion seccion-creativa">
+        <h3>Actividades paso a paso</h3>
+
+        <!-- GRADO 3 -->
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3° · Figuras del campo</span>
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Paso 1 — Observa:</strong> Dibuja 3 objetos de la finca o la
+                    escuela que tengan formas geométricas (un tablón de café,
+                    la cancha, la ventana del salón).
+                </li>
+                <li>
+                    <strong>Paso 2 — Compara:</strong> De tus 3 dibujos, ¿cuáles tienen
+                    la misma forma? ¿Cuáles tienen el mismo tamaño? Rodea con verde
+                    las figuras iguales y con azul las semejantes.
+                </li>
+                <li>
+                    <strong>Paso 3 — Construye:</strong> Con papel cuadriculado, dibuja
+                    una figura y luego dibuja una figura semejante que sea el doble
+                    de grande. ¿Qué cambia y qué permanece igual?
+                </li>
+                <li>
+                    <strong>Paso 4 — Conecta:</strong> Recorta tu figura y su semejante.
+                    Colócalas juntas. Imagina que la pequeña es el plano de una parcela
+                    y la grande es la parcela real. ¿Cuántas veces cabe la pequeña
+                    dentro de la grande?
+                </li>
+            </ul>
+            <div class="espacio-escritura">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+
+        <!-- GRADO 4 -->
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4° · El reparto justo de la cosecha</span>
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Paso 1 — El problema:</strong> Don Efraín cosechó
+                    <strong>120 kg de café</strong> en su finca de Chichalá.
+                    Completa la tabla de proporcionalidad directa:
+                    <table style="width:100%; margin-top:10px; border-collapse:collapse; font-size:0.9rem;">
+                        <tr style="background:rgba(26,155,171,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Días trabajados</th>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">1</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">2</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">3</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">4</td>
+                        </tr>
+                        <tr>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Kg cosechados</th>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">30</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Paso 2 — Inversa:</strong> Si 1 persona tarda
+                    <strong>12 días</strong> en cosechar toda la finca, completa:
+                    <table style="width:100%; margin-top:10px; border-collapse:collapse; font-size:0.9rem;">
+                        <tr style="background:rgba(124,58,237,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Personas</th>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">1</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">2</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">3</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">4</td>
+                        </tr>
+                        <tr>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Días</th>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">12</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;"> </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Paso 3 — Reflexiona:</strong> ¿Cuál es la diferencia entre
+                    las dos situaciones? Escribe con tus palabras qué pasa con los
+                    días cuando cambia la cantidad de personas.
+                </li>
+                <li>
+                    <strong>Paso 4 — Crea tu propio problema:</strong> Inventa una
+                    situación de proporcionalidad directa usando productos del campo
+                    de Chichalá (panela, plátano, yuca, maíz).
+                </li>
+            </ul>
+            <div class="espacio-escritura">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+
+        <!-- GRADO 5 -->
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5° · Construyendo la finca con geometría</span>
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Paso 1 — Reconoce:</strong> Observa los objetos del salón
+                    y de tu entorno. Identifica 4 cuerpos geométricos y completa
+                    la tabla:
+                    <table style="width:100%; margin-top:10px; border-collapse:collapse; font-size:0.9rem;">
+                        <tr style="background:rgba(124,58,237,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Objeto del campo</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Cuerpo geométrico</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Caras</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Aristas</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;">Vértices</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">Ej: Paca de heno</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">Prisma rectangular</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">6</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">12</td>
+                            <td style="padding:8px; border:1px solid #CBD5E0; text-align:center;">8</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0; height:32px;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0; height:32px;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0; height:32px;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;"> </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Paso 2 — Construye:</strong> Con cartón reciclado o
+                    palitos del entorno, construye el desarrollo plano de un prisma
+                    rectangular (como una caja de panela). Recórtalo, dóblalo
+                    y pégalo para armar el cuerpo.
+                </li>
+                <li>
+                    <strong>Paso 3 — Analiza:</strong> Cuenta las caras, aristas
+                    y vértices de tu cuerpo construido. ¿Coincide con la tabla?
+                    ¿Qué descubriste?
+                </li>
+                <li>
+                    <strong>Paso 4 — Desafío:</strong> Diseña en papel la
+                    <em>maqueta de una finca de Chichalá</em> usando al menos
+                    3 cuerpos geométricos diferentes: la casa, el silo, el techo
+                    del rancho. Identifica cada cuerpo con su nombre.
+                </li>
+            </ul>
+            <div class="espacio-escritura">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: EJERCICIOS DE PRÁCTICA ══ -->
+    <div class="seccion">
+        <h3>Practiquemos juntos</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <p>¿Verdadero o falso? Escribe V o F:</p>
+            <ul class="actividad-lista">
+                <li>Dos figuras semejantes siempre tienen el mismo tamaño. ( __ )</li>
+                <li>Un tablón de café pequeño y uno grande son figuras semejantes. ( __ )</li>
+                <li>Dos figuras iguales tienen la misma forma y el mismo tamaño. ( __ )</li>
+            </ul>
+            <p>Dibuja en el recuadro un par de figuras semejantes inspiradas en algo de la vereda:</p>
+            <div style="border:2px solid #CBD5E0; border-radius:8px; height:100px; margin-top:8px; background:#FAFAFA;"></div>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <p>Resuelve con fracciones:</p>
+            <ul class="actividad-lista">
+                <li>Si 1/4 del cultivo de panela produce 20 kg, ¿cuánto produce el cultivo completo?</li>
+                <li>Si 3 familias tardan 6 días en recoger la cosecha, ¿cuánto tardarían 9 familias?</li>
+            </ul>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <p>Completa el desafío:</p>
+            <ul class="actividad-lista">
+                <li>Una pirámide triangular tiene __ caras, __ aristas y __ vértices.</li>
+                <li>Un cubo tiene __ caras, __ aristas y __ vértices.</li>
+                <li>¿Qué objeto de la finca de Chichalá tiene forma de cilindro? _______________</li>
+            </ul>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 7: COMPETENCIA CIUDADANA ══ -->
+    <div class="seccion">
+        <h3>Convivencia en el campo</h3>
+        <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+        <p style="margin-top:10px;">
+            En la vereda Chichalá, trabajar en equipo es parte de la cultura campesina.
+            Hoy, mientras construyes tu maqueta o resuelves tus problemas, practica:
+        </p>
+        <ul class="actividad-lista">
+            <li>Escuchar a tus compañeros de otros grados cuando explican su actividad.</li>
+            <li>Ofrecer ayuda si alguien tiene dificultades con los materiales.</li>
+            <li>Valorar que cada grado tiene un reto diferente pero igual de importante.</li>
+        </ul>
+        <p>
+            <strong>Reflexión:</strong> ¿De qué forma el trabajo colaborativo en la finca
+            se parece al trabajo en equipo dentro del salón?
+        </p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 8: EVALUACIÓN ══ -->
+    <div class="seccion">
+        <h3>¿Cómo te fue hoy?</h3>
+
+        <div class="eval-box">
+            <h4>⭐ Rúbrica de autoevaluación</h4>
+            <p>Marca con una X según tu desempeño de hoy:</p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+                <tr style="background:#FFFBE6;">
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">Lo logré 😄</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">En proceso 🙂</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">Me faltó 😕</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Entendí el concepto principal de mi grado</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Completé todas las actividades</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Relacioné la geometría con mi entorno rural</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Trabajé con respeto y colaboración</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;">__</td>
+                </tr>
+            </table>
+        </div>
+
+        <p><strong>¿Qué fue lo más difícil de hoy? ¿Cómo lo resolví?</strong></p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 9: ACTIVIDAD PARA LA CASA ══ -->
+    <div class="seccion">
+        <h3>Tarea en casa · Mis ojos de arquitecto rural</h3>
+        <p>
+            Camina por tu finca o por la vereda Chichalá y busca
+            <strong>5 objetos con formas geométricas</strong>.
+            Anótalos aquí:
+        </p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
+            <tr style="background:rgba(61,190,140,0.1);">
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">#</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Objeto encontrado</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Figura o cuerpo geométrico</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">¿Dónde lo encontré?</th>
+            </tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">1</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">2</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">3</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">4</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">5</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+        </table>
+    </div>
+
+    <!-- ══ SECCIÓN 10: REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>🌿 "La geometría no está solo en los libros.<br>
+        Está en la cerca de tu finca, en el techo de tu rancho,<br>
+        en la parcela de café que cuidas con tus manos.<br>
+        <strong>Chichalá es tu mejor aula de matemáticas."</strong></p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer" style="text-align:center; margin-top:30px;
+         padding-top:20px; border-top:1px solid #E2E8F0;
+         color:#718096; font-size:0.85rem;">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:8px; font-style:italic;">
+            "Paz, Tolerancia y Convivencia"
+        </p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+    </div>
+
+</div>
+</body>
+</html>

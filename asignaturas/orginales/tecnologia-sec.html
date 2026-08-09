@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Primaria - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder">💻</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · TECNOLOGÍA PRIMARIA</p>
+            <p class="header-sub">Grados 3 · 4 · 5 · Explorando el mundo digital</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge">💻 Básica Primaria · Grados 3, 4 y 5</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon">💻</span>
+            <h1 class="subject-title">Tecnología</h1>
+            <p class="subject-subtitle">
+                Explorando herramientas digitales, lógica y pensamiento computacional
+            </p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para ver las actividades semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+        // ══════════════════════════════════════════════
+        // CONTENIDO POR PERÍODO Y SEMANA
+        // ══════════════════════════════════════════════
+        const contenido = {
+            periodo1: [
+                {
+                    semana: 1,
+                    tema: "¿Qué es la tecnología?",
+                    actividad: "Exploración del entorno tecnológico del hogar y la escuela. Los estudiantes identifican objetos tecnológicos en su vida cotidiana y los clasifican según su función."
+                },
+                {
+                    semana: 2,
+                    tema: "Partes del computador",
+                    actividad: "Reconocimiento de los componentes básicos del computador: monitor, teclado, mouse, CPU. Práctica de encendido y apagado correcto del equipo."
+                },
+                {
+                    semana: 3,
+                    tema: "El escritorio y sus elementos",
+                    actividad: "Exploración del escritorio del sistema operativo. Identificación de íconos, barra de tareas y fondo de pantalla. Práctica de doble clic y arrastre."
+                },
+                {
+                    semana: 4,
+                    tema: "Uso del mouse y teclado",
+                    actividad: "Ejercicios de digitación básica y control del mouse. Juegos educativos interactivos para afianzar el manejo de periféricos con destreza."
+                },
+                {
+                    semana: 5,
+                    tema: "Paint: colores y formas",
+                    actividad: "Introducción al programa Paint. Creación de dibujos libres usando herramientas de pincel, formas geométricas y paleta de colores."
+                },
+                {
+                    semana: 6,
+                    tema: "Paint: mi mundo digital",
+                    actividad: "Creación de una ilustración digital sobre el entorno escolar o familiar usando Paint. Guardar y nombrar el archivo correctamente."
+                },
+                {
+                    semana: 7,
+                    tema: "Word: mi primera carta",
+                    actividad: "Introducción al procesador de texto. Escritura de una carta corta a un amigo usando fuentes, tamaños y colores básicos en Word."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación y exposición del período",
+                    actividad: "Presentación de los trabajos realizados durante el período. Cada estudiante muestra su carta y su dibujo digital ante el grupo."
+                }
+            ],
+            periodo2: [
+                {
+                    semana: 1,
+                    tema: "Internet: ¿qué es y para qué sirve?",
+                    actividad: "Introducción al concepto de internet. Diferencia entre uso seguro e inseguro de la red. Reglas básicas de navegación responsable para niños."
+                },
+                {
+                    semana: 2,
+                    tema: "Navegadores web",
+                    actividad: "Conocimiento y uso de navegadores (Chrome, Firefox). Práctica de escritura de URLs y uso de la barra de búsqueda para temas educativos."
+                },
+                {
+                    semana: 3,
+                    tema: "Buscadores educativos",
+                    actividad: "Uso guiado de buscadores seguros para niños (Kiddle, Google SafeSearch). Búsqueda de información sobre temas de ciencias y matemáticas."
+                },
+                {
+                    semana: 4,
+                    tema: "Correo electrónico",
+                    actividad: "Introducción al correo electrónico. Estructura de un mensaje: destinatario, asunto y cuerpo. Simulación de envío y recepción de mensajes educativos."
+                },
+                {
+                    semana: 5,
+                    tema: "Presentaciones con diapositivas",
+                    actividad: "Introducción a PowerPoint o Google Slides. Creación de una presentación de 3 diapositivas sobre un animal de la región usando imágenes y texto."
+                },
+                {
+                    semana: 6,
+                    tema: "Mi presentación: animales del Tolima",
+                    actividad: "Continuación y finalización de la presentación sobre fauna local. Aplicación de transiciones, colores y fondos para hacerla visualmente atractiva."
+                },
+                {
+                    semana: 7,
+                    tema: "Seguridad digital",
+                    actividad: "Conceptos clave de seguridad en internet: no compartir datos personales, contraseñas seguras y cómo actuar ante contenido inapropiado."
+                },
+                {
+                    semana: 8,
+                    tema: "Evaluación del período",
+                    actividad: "Exposición de la presentación sobre animales del Tolima. Retroalimentación grupal y autoevaluación del desempeño tecnológico del período."
+                }
+            ],
+            periodo3: [
+                {
+                    semana: 1,
+                    tema: "¿Qué es la programación?",
+                    actividad: "Introducción al pensamiento computacional. Conceptos de algoritmo, secuencia y lógica aplicados a situaciones de la vida real sin usar computador."
+                },
+                {
+                    semana: 2,
+                    tema: "Scratch: mi primer proyecto",
+                    actividad: "Introducción a la plataforma Scratch. Exploración de la interfaz, personajes (sprites) y escenarios. Creación de una animación simple de bienvenida."
+                },
+                {
+                    semana: 3,
+                    tema: "Scratch: movimientos y eventos",
+                    actividad: "Programación de movimientos básicos del sprite usando bloques de eventos y movimiento. El personaje responde a teclas del teclado."
+                },
+                {
+                    semana: 4,
+                    tema: "Scratch: sonidos y disfraces",
+                    actividad: "Incorporación de sonidos y cambio de disfraces al personaje. Creación de una pequeña animación con diálogo entre dos personajes."
+                },
+                {
+                    semana: 5,
+                    tema: "Scratch: bucles y repeticiones",
+                    actividad: "Uso del bloque 'repetir' para crear movimientos continuos. Programación de un personaje que camina, salta o baila de forma automática."
+                },
+                {
+                    semana: 6,
+                    tema: "Scratch: mi historia animada",
+                    actividad: "Creación de una historia animada corta de 3 escenas que cuente un cuento o situación de la vida en Chichalá usando todos los elementos aprendidos."
+                },
+                {
+                    semana: 7,
+                    tema: "Scratch: mini juego",
+                    actividad: "Diseño de un mini juego simple donde el usuario controla un personaje y debe recoger objetos o evitar obstáculos usando bloques de condición."
+                },
+                {
+                    semana: 8,
+                    tema: "Feria de proyectos Scratch",
+                    actividad: "Presentación de los proyectos Scratch ante el grupo. Votación por el más creativo, el más divertido y el más educativo. Celebración del logro."
+                }
+            ],
+            periodo4: [
+                {
+                    semana: 1,
+                    tema: "Hojas de cálculo: Excel básico",
+                    actividad: "Introducción a Excel o Google Sheets. Concepto de celda, fila y columna. Creación de una tabla sencilla con nombres y calificaciones del grupo."
+                },
+                {
+                    semana: 2,
+                    tema: "Fórmulas básicas",
+                    actividad: "Uso de fórmulas simples: suma, resta y promedio. Los estudiantes calculan sus propias notas del año usando las fórmulas aprendidas."
+                },
+                {
+                    semana: 3,
+                    tema: "Gráficas en Excel",
+                    actividad: "Creación de gráficas de barras y torta a partir de datos reales del salón (color favorito, deporte favorito, etc.). Interpretación de resultados."
+                },
+                {
+                    semana: 4,
+                    tema: "Tecnología y medio ambiente",
+                    actividad: "Reflexión sobre el impacto ambiental de los dispositivos tecnológicos. Debate sobre reciclaje electrónico y uso responsable de la energía digital."
+                },
+                {
+                    semana: 5,
+                    tema: "Creación de un afiche digital",
+                    actividad: "Diseño de un afiche sobre tecnología y medio ambiente usando Canva o Word con imágenes, texto llamativo y colores que inviten a la reflexión."
+                },
+                {
+                    semana: 6,
+                    tema: "Mi portafolio digital",
+                    actividad: "Organización de todos los trabajos del año en una carpeta digital bien estructurada. Creación de un documento índice con descripción de cada trabajo."
+                },
+                {
+                    semana: 7,
+                    tema: "Repaso y consolidación anual",
+                    actividad: "Actividad lúdica de repaso general: concurso de preguntas sobre los temas del año. Retroalimentación colectiva y reconocimiento de logros."
+                },
+                {
+                    semana: 8,
+                    tema: "Exposición final del año",
+                    actividad: "Presentación del portafolio digital ante el grupo y el docente. Autoevaluación del proceso de aprendizaje tecnológico durante el año escolar."
+                }
+            ]
+        };
+
+        // ══════════════════════════════════════════════
+        // GENERAR ACORDEÓN DINÁMICAMENTE
+        // ══════════════════════════════════════════════
+        function generarAcordeon() {
+            const container = document.getElementById('accordion-container');
+            if (!container) return;
+
+            const periodos = [
+                { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+                { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+                { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+                { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+            ];
+
+            periodos.forEach(periodo => {
+                const semanas = contenido[periodo.key];
+                let semanasHTML = '';
+
+                semanas.forEach(s => {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                });
+
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <button class="accordion-header" style="--periodo-color: ${periodo.color}">
+                        <span>${periodo.label}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        ${semanasHTML}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+
+            // Inicializar acordeón
+            initAccordion();
+        }
+
+        // ══════════════════════════════════════════════
+        // INIT
+        // ══════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            generarAcordeon();
+            initSequentialAnimations();
+        });
+
+    </script>
+</body>
+</html>

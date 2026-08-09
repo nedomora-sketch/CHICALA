@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder">🔢</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · MATEMÁTICAS</p>
+            <p class="header-sub">Básica Primaria · Grados 3°, 4° y 5°</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge">🔢 Básica Primaria · Grados 3, 4 y 5</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon">🔢</span>
+            <h1 class="subject-title">Matemáticas</h1>
+            <p class="subject-subtitle">
+                Pensamiento Numérico · Geométrico · Métrico · Aleatorio · Variacional
+            </p>
+        </div>
+
+        <!-- SELECTOR DE GRADO -->
+        <div class="grade-selector animate-seq" data-delay="400">
+            <button class="grade-btn active" data-grado="grado3">Grado 3°</button>
+            <button class="grade-btn" data-grado="grado4">Grado 4°</button>
+            <button class="grade-btn" data-grado="grado5">Grado 5°</button>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="500">
+            Selecciona un período para ver los contenidos semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+    // ══════════════════════════════════════════════
+    // MALLA CURRICULAR OFICIAL - MATEMÁTICAS
+    // Fuente: IE Camacho Angarita
+    // ══════════════════════════════════════════════
+    const malla = {
+        grado3: {
+            periodo1: [
+                { semana: 1, tema: "Relaciones entre suma y multiplicación", actividad: "Pensamiento Numérico: Exploración de las relaciones entre la suma y la multiplicación. Problemas que involucran sumas, restas y multiplicación. Lectura, escritura y orden de números desde 1.000 hasta 10.000." },
+                { semana: 2, tema: "Valor posicional en el sistema de numeración", actividad: "Pensamiento Numérico: Uso del valor posicional en el Sistema de Numeración Decimal (SND). Comparación de cantidades y representación de números hasta 10.000 en diferentes formas." },
+                { semana: 3, tema: "Traslación, reflexión y rotación de figuras", actividad: "Pensamiento Geométrico: Concepto y nociones de traslación, reflexión y rotación de figuras. Descripción de la posición y trayectorias de un objeto en el entorno." },
+                { semana: 4, tema: "Localización de objetos en representaciones planas", actividad: "Pensamiento Geométrico: Interpretación de la información en una representación plana para localizar objetos o personas. Resolución de problemas de posición y dirección." },
+                { semana: 5, tema: "Medidas de longitud: mm, cm, m y km", actividad: "Pensamiento Métrico: Uso práctico de medidas de longitud: milímetro, centímetro, metro y kilómetro. Uso de la regla para medir objetos del entorno escolar y del hogar." },
+                { semana: 6, tema: "Unidades de medida de peso y tiempo", actividad: "Pensamiento Métrico: Unidades de medida de peso. Medición del tiempo con calendario, reloj análogo y digital. Actividades prácticas de estimación y medición." },
+                { semana: 7, tema: "Recolección y organización de datos", actividad: "Pensamiento Aleatorio: Recolección y organización de datos en tablas de conteo. Creación de gráficos de barras y pictogramas a partir de tablas de conteo del entorno escolar." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Pensamiento Variacional: Uso y comprensión de los signos de suma +, resta − e igualdad = en la equivalencia de expresiones numéricas. Evaluación integradora del período 1 mediante talleres y mapas conceptuales." }
+            ],
+            periodo2: [
+                { semana: 1, tema: "Cálculos mentales y algoritmos para suma y resta", actividad: "Pensamiento Numérico: Cálculos mentales exactos y estimativos para suma, resta y multiplicación. Multiplicación por la unidad seguida de ceros. Estrategias de cálculo mental eficientes." },
+                { semana: 2, tema: "Problemas con varias operaciones", actividad: "Pensamiento Numérico: Resolución de problemas que involucran varias operaciones. Aplicación de estrategias de estimación y cálculo en situaciones de la vida cotidiana de Chichalá." },
+                { semana: 3, tema: "Eje de simetría en figuras", actividad: "Pensamiento Geométrico: Identificación del eje de simetría en figuras geométricas. Plegados y dobleces usando la simetría. Completar dibujos simétricos con papel cuadriculado." },
+                { semana: 4, tema: "Ampliación y reducción de figuras", actividad: "Pensamiento Geométrico: Concepto de ampliación y reducción de figuras. Concepto de igualdad y semejanza de figuras. Relaciones entre triángulos, cuadrados y rectángulos." },
+                { semana: 5, tema: "Medidas de longitud y peso con instrumentos", actividad: "Pensamiento Métrico: Estimaciones y mediciones de longitud y peso usando instrumentos convencionales. Uso de la regla y la báscula en problemas reales del entorno." },
+                { semana: 6, tema: "Tiempo con calendario y reloj", actividad: "Pensamiento Métrico: Medición del tiempo con calendario, reloj análogo y digital. Resolución de situaciones cotidianas que involucran el tiempo: horas, días, semanas y meses." },
+                { semana: 7, tema: "Gráficos de barras y pictogramas", actividad: "Pensamiento Aleatorio: Creación e interpretación de gráficos de barras y pictogramas a partir de tablas de conteo. Identificación del dato que más se repite (moda)." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Pensamiento Variacional: Problemas que involucran series proporcionales. Búsqueda de datos faltantes para calcular un valor desconocido. Evaluación integradora mediante el taller y la guía didáctica." }
+            ],
+            periodo3: [
+                { semana: 1, tema: "La división y sus términos", actividad: "Pensamiento Numérico: Introducción al uso y comprensión del signo ÷ de la división. Relaciones entre repartos, la división y la multiplicación. División por una cifra y su relación con las tablas de multiplicar." },
+                { semana: 2, tema: "División por una cifra: algoritmos y problemas", actividad: "Pensamiento Numérico: Problemas vinculados a la división que involucren iteraciones y análisis del resto. Uso de la calculadora para verificar cálculos multiplicativos y divisibles." },
+                { semana: 3, tema: "Semejanza e igualdad de figuras geométricas", actividad: "Pensamiento Geométrico: Concepto de igualdad y semejanza de figuras. Relaciones entre triángulos, cuadrados y rectángulos. Exploración de características de cuerpos geométricos." },
+                { semana: 4, tema: "Desarrollo plano de cuerpos geométricos", actividad: "Pensamiento Geométrico: Análisis de vértices y aristas en situaciones de construcción. Desarrollo plano de cuerpos geométricos usando papel, tijeras y moldes." },
+                { semana: 5, tema: "Área y perímetro de figuras planas", actividad: "Pensamiento Métrico: Concepto de área y perímetro de figuras planas y sus unidades. Relaciones entre triángulos, cuadrados y rectángulos en composición y descomposición." },
+                { semana: 6, tema: "Volumen y unidades de medida", actividad: "Pensamiento Métrico: Concepto de volumen y unidades. Relaciones entre cuerpos geométricos y su volumen en composición y descomposición de figuras del entorno." },
+                { semana: 7, tema: "Experimentos y eventos aleatorios", actividad: "Pensamiento Aleatorio: Nociones de experimentos, eventos y sucesos aleatorios. Concepto de posibilidad de ocurrencia de un evento simple usando ejemplos cotidianos del aula." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Pensamiento Variacional: Secuencias y patrones numéricos, geométricos y de tiempo. Análisis de equivalencias entre cálculos. Evaluación integradora mediante exposición y relatoría." }
+            ],
+            periodo4: [
+                { semana: 1, tema: "Algoritmos para dividir y fracciones", actividad: "Pensamiento Numérico: Algoritmos para dividir. Partes de la división y primer acercamiento al concepto de fracción como parte-todo. Noción de fracción: numerador y denominador." },
+                { semana: 2, tema: "Problemas con las cuatro operaciones", actividad: "Pensamiento Numérico: Problemas que involucran sumas, restas, multiplicación y división. Problemas vinculados a la división con iteraciones y análisis del resto." },
+                { semana: 3, tema: "Caracterización de cuerpos geométricos", actividad: "Pensamiento Geométrico: Caracterización de cuerpos geométricos en función de sus elementos y propiedades (cara, arista, vértice). Identificación en objetos del entorno real." },
+                { semana: 4, tema: "Área y perímetro: relaciones y cálculos", actividad: "Pensamiento Métrico: Concepto de área y perímetro de figuras planas. Relaciones entre triángulos, cuadrados y rectángulos en composición y descomposición de figuras." },
+                { semana: 5, tema: "Volumen de cuerpos geométricos", actividad: "Pensamiento Métrico: Concepto de volumen y unidades. Relaciones entre cuerpos geométricos con su volumen en composición y descomposición. Situaciones problema de la vida real." },
+                { semana: 6, tema: "Posibles resultados de experimentos aleatorios", actividad: "Pensamiento Aleatorio: Identificación de posibles resultados de un experimento aleatorio. Uso de escala cualitativa: mayor, menor e igual posibilidad de ocurrencia." },
+                { semana: 7, tema: "Secuencias numéricas y geométricas", actividad: "Pensamiento Variacional: Construcción de secuencias numéricas y geométricas utilizando propiedades de los números y de las figuras. Búsqueda de datos faltantes." },
+                { semana: 8, tema: "Evaluación final y cierre del año", actividad: "Evaluación integradora del año escolar. Feria de Matemáticas: cada estudiante presenta un proyecto creativo que integre los cinco pensamientos matemáticos trabajados durante el año." }
+            ]
+        },
+        grado4: {
+            periodo1: [
+                { semana: 1, tema: "Números naturales mayores a 10.000", actividad: "Pensamiento Numérico: Lectura, escritura, orden y valor posicional de números naturales mayores o iguales a 10.000. Sistema de numeración romano y comparación con el decimal." },
+                { semana: 2, tema: "Sumas, restas, multiplicaciones y divisiones", actividad: "Pensamiento Numérico: Problemas y cálculos que involucran las cuatro operaciones básicas. Uso de estrategias de cálculo mental y estimación para resolver situaciones reales." },
+                { semana: 3, tema: "Noción de fracción: representaciones y significados", actividad: "Pensamiento Numérico: Noción de fracción: numerador, denominador y representación literal. Fracción como división indicada (3/5) y como razón (3:5). Representaciones geométricas en la recta numérica." },
+                { semana: 4, tema: "Ángulos: medición y clasificación", actividad: "Pensamiento Geométrico: Los ángulos como característica de las figuras. Medición y clasificación de ángulos (agudo, recto, obtuso). Movimientos y modificaciones a figuras geométricas." },
+                { semana: 5, tema: "Atributos medibles: longitud, área y volumen", actividad: "Pensamiento Métrico: Diferenciación y ordenación de propiedades medibles en objetos y eventos. Comparación de instrumentos y unidades de medición según las necesidades del contexto." },
+                { semana: 6, tema: "Recolección de datos y tablas de frecuencia", actividad: "Pensamiento Aleatorio: Recolección de datos y elaboración de encuestas sencillas del entorno escolar. Uso de tablas de frecuencia para organizar la información recolectada." },
+                { semana: 7, tema: "Proporcionalidad directa", actividad: "Pensamiento Variacional: Problemas diversos que involucran relaciones de proporcionalidad. Identificación de propiedades y constante de proporcionalidad en situaciones cotidianas." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Evaluación integradora del período mediante exposición, taller y resumen cognitivo. Retroalimentación grupal y autoevaluación del desempeño matemático del período." }
+            ],
+            periodo2: [
+                { semana: 1, tema: "Múltiplos, divisores y criterios de divisibilidad", actividad: "Pensamiento Numérico: Noción de múltiplo y divisor. Máximo común divisor y mínimo común múltiplo. Criterios de divisibilidad. Multiplicación y división por potencias de 10." },
+                { semana: 2, tema: "Fracciones propias, impropias y equivalentes", actividad: "Pensamiento Numérico: Fracciones propias e impropias. Números mixtos. Fracciones equivalentes. Amplificación y simplificación de fracciones. Relaciones de orden y comparación." },
+                { semana: 3, tema: "Construcción y clasificación de triángulos", actividad: "Pensamiento Geométrico: Construcción de triángulos a partir de sus lados. Características de lados y ángulos de triángulos. Paralelismo y perpendicularidad en cuadrados y rectángulos." },
+                { semana: 4, tema: "Círculo, circunferencia y sus propiedades", actividad: "Pensamiento Geométrico: Características de figuras con circunferencias. Círculo y circunferencia como conjunto de puntos que cumplen ciertas condiciones geométricas." },
+                { semana: 5, tema: "Unidades de longitud, peso y capacidad", actividad: "Pensamiento Métrico: Equivalencias entre kilómetro, metro, centímetro y milímetro. Equivalencias entre gramo, miligramo, kilogramo y tonelada. Equivalencias entre litro, mililitro y cm³." },
+                { semana: 6, tema: "Pictogramas, gráficos de barras y de líneas", actividad: "Pensamiento Aleatorio: Organización de datos en pictogramas con escala, gráficos de barras y de líneas. Interpretación de gráficos e identificación de moda y rango del conjunto de datos." },
+                { semana: 7, tema: "Secuencias y patrones numéricos y geométricos", actividad: "Pensamiento Variacional: Secuencias y patrones numéricos, geométricos y gráficos. Identificación de la regla de formación para predecir términos de una secuencia." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Evaluación integradora mediante taller y guía didáctica. Retroalimentación constructiva entre pares usando la rúbrica de evaluación del período." }
+            ],
+            periodo3: [
+                { semana: 1, tema: "Adición y sustracción de fracciones homogéneas", actividad: "Pensamiento Numérico: Ubicación de fraccionarios en la recta numérica. Adición y sustracción de fracciones homogéneas. Problemas contextualizados con fracciones del entorno." },
+                { semana: 2, tema: "Fracciones heterogéneas y uso del M.C.M.", actividad: "Pensamiento Numérico: Adición y sustracción de fracciones heterogéneas usando el Mínimo Común Múltiplo. Multiplicación y división de fracciones. Situaciones reales de la vereda." },
+                { semana: 3, tema: "Proporcionalidad directa e inversa con fracciones", actividad: "Pensamiento Numérico: Situaciones que involucran relaciones de proporcionalidad directa e inversa. Relaciones de fracciones en situaciones de proporcionalidad del entorno cotidiano." },
+                { semana: 4, tema: "Poliedros: prismas y pirámides", actividad: "Pensamiento Geométrico: Características y clasificación de cuerpos geométricos (poliedros) en función de caras, aristas y vértices. Características de prismas y pirámides." },
+                { semana: 5, tema: "Desarrollos planos de cuerpos geométricos", actividad: "Pensamiento Geométrico: Construcción de desarrollos planos de cuerpos geométricos. Relación entre la red plana y el sólido tridimensional usando material concreto." },
+                { semana: 6, tema: "Unidades de área y volumen", actividad: "Pensamiento Métrico: Equivalencias entre metro cuadrado, centímetro cuadrado y kilómetro cuadrado. Unidades de volumen y su relación con las unidades de capacidad." },
+                { semana: 7, tema: "Gráficas estadísticas: circular y de líneas", actividad: "Pensamiento Aleatorio: Uso de pictogramas con escala, gráficos de barras, de líneas y diagramas circulares. Interpretación de moda y rango a partir de datos del entorno escolar." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Pensamiento Variacional: Secuencias y patrones numéricos, geométricos y gráficos. Evaluación integradora mediante exposición oral y relatoría escrita del período." }
+            ],
+            periodo4: [
+                { semana: 1, tema: "Introducción a los números decimales", actividad: "Pensamiento Numérico: Introducción a los números decimales y sus unidades. Lectura, escritura, orden y valor posicional de números decimales en la recta numérica." },
+                { semana: 2, tema: "Suma y resta de decimales", actividad: "Pensamiento Numérico: Suma y resta de números decimales. Representaciones y significados de la fracción como decimal y como porcentaje. Situaciones problema del entorno." },
+                { semana: 3, tema: "Identificación de poliedros desde diferentes vistas", actividad: "Pensamiento Geométrico: Descomposición de figuras tridimensionales. Identificación de un poliedro desde diferentes puntos de vista. Puntos cardinales y ubicación en mapas." },
+                { semana: 4, tema: "Situaciones problema con unidades de medida", actividad: "Pensamiento Métrico: Situaciones problema con unidades de longitud, área, volumen, peso y capacidad. Medidas expresadas con fracciones y decimales en contextos reales." },
+                { semana: 5, tema: "Experimentos y eventos aleatorios", actividad: "Pensamiento Aleatorio: Experimentos, eventos y sucesos aleatorios. Eventos determinísticos, aleatorios y el azar. Posibilidad de ocurrencia de un evento simple en juegos y situaciones cotidianas." },
+                { semana: 6, tema: "Variaciones en secuencias y patrones", actividad: "Pensamiento Variacional: Secuencias y patrones numéricos, geométricos y gráficos. Búsqueda de datos faltantes. Identificación de operaciones faltantes en un cálculo numérico." },
+                { semana: 7, tema: "Repaso integrador del año", actividad: "Actividad de repaso general integrando los cinco pensamientos matemáticos. Concurso de preguntas, juegos de lógica y resolución de problemas en equipo." },
+                { semana: 8, tema: "Evaluación final y cierre del año", actividad: "Evaluación final del año. Presentación del portafolio matemático personal. Feria de Matemáticas: exposición de proyectos creativos que integren todos los pensamientos del año escolar." }
+            ]
+        },
+        grado5: {
+            periodo1: [
+                { semana: 1, tema: "Fracciones propias e impropias", actividad: "Pensamiento Numérico: La fracción y sus partes. Fracciones propias e impropias. Fracción de un número natural y comparación de fracciones usando la recta numérica." },
+                { semana: 2, tema: "Adición y sustracción de fracciones", actividad: "Pensamiento Numérico: Adición y sustracción de fracciones homogéneas y heterogéneas usando el M.C.M. Multiplicación y división de fracciones. Problemas contextualizados." },
+                { semana: 3, tema: "Tipos de triángulos y sus construcciones", actividad: "Pensamiento Geométrico: Tipos de triángulos. Construcción de triángulos a partir de sus lados. Suma de los ángulos interiores de un triángulo. Construcciones a partir de diferentes datos." },
+                { semana: 4, tema: "Cuadriláteros: cuadrado, rectángulo, rombo y paralelogramo", actividad: "Pensamiento Geométrico: Características de cuadrados, rectángulos, rombos y paralelogramos. Propiedades de lados y ángulos de cuadriláteros a partir de sus construcciones geométricas." },
+                { semana: 5, tema: "Sistema métrico inglés y equivalencias", actividad: "Pensamiento Métrico: Unidades fundamentales del sistema métrico inglés. Equivalencia entre unidades de medida de longitud, peso y capacidad. Elección de unidades convenientes." },
+                { semana: 6, tema: "Frecuencia relativa y absoluta", actividad: "Pensamiento Aleatorio: Conceptos de frecuencia relativa y absoluta. Elaboración de gráficos estadísticos a partir de datos del entorno escolar y de la comunidad de Chichalá." },
+                { semana: 7, tema: "Secuencias y patrones: variación", actividad: "Pensamiento Variacional: Secuencias y patrones numéricos, geométricos y gráficos. Identificación de datos y operaciones faltantes para calcular un valor desconocido." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Evaluación integradora del período mediante el taller, la exposición y el esquema mental. Retroalimentación grupal y autoevaluación del proceso de aprendizaje matemático." }
+            ],
+            periodo2: [
+                { semana: 1, tema: "Decimales: lectura, escritura y valor posicional", actividad: "Pensamiento Numérico: Relaciones entre fracciones decimales y expresiones decimales. Lectura, escritura, orden, valor posicional y ubicación en la recta numérica de números decimales." },
+                { semana: 2, tema: "Operaciones aritméticas con decimales", actividad: "Pensamiento Numérico: Suma, resta, multiplicación y división de números decimales. La fracción como división indicada (3/5), razón (3:5), decimal (0,6) y porcentaje (60%)." },
+                { semana: 3, tema: "Ángulos interiores de cuadriláteros y cuerpos", actividad: "Pensamiento Geométrico: Suma de ángulos interiores de cuadriláteros. Propiedades de lados y ángulos. Características de cuerpos en función de sus caras, aristas y vértices." },
+                { semana: 4, tema: "Prismas y pirámides: desarrollos planos", actividad: "Pensamiento Geométrico: Características de prismas y pirámides. Elaboración de desarrollos planos de cuerpos geométricos usando materiales del entorno." },
+                { semana: 5, tema: "Unidades de área y cálculo de áreas", actividad: "Pensamiento Métrico: Unidades de área. Áreas de figuras planas: triángulos, cuadrados, rectángulos. Cálculo de áreas por descomposición de figuras irregulares." },
+                { semana: 6, tema: "Media, mediana y moda", actividad: "Pensamiento Aleatorio: Introducción a los conceptos de media, mediana y moda. Elaboración de gráficos estadísticos. Interpretación de grupos de datos con sus respectivas gráficas." },
+                { semana: 7, tema: "Patrones de variación en secuencias", actividad: "Pensamiento Variacional: Predicción de patrones de variación en secuencias numéricas, geométricas o gráficas. Situaciones donde se elaboran tablas y gráficas a partir de secuencias." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Evaluación integradora del período. Presentación de problemas resueltos con decimales y estadística. Retroalimentación entre pares usando rúbrica de evaluación matemática." }
+            ],
+            periodo3: [
+                { semana: 1, tema: "Fracciones como porcentaje y decimal", actividad: "Pensamiento Numérico: Representaciones de la fracción como división indicada (3/5), razón (3:5), decimal (0,6) y porcentaje (60%). Situaciones problema con operaciones y distintas representaciones." },
+                { semana: 2, tema: "Proporcionalidad directa e inversa", actividad: "Pensamiento Numérico: Situaciones problema que involucren proporcionalidad directa e inversa con fracciones y decimales. Aplicaciones en contextos de la vereda Chichalá." },
+                { semana: 3, tema: "Cuerpos geométricos: caras, aristas y vértices", actividad: "Pensamiento Geométrico: Características de cuerpos en función de sus caras, aristas y vértices. Características de prismas y pirámides. Desarrollos planos de cuerpos geométricos." },
+                { semana: 4, tema: "Volumen de sólidos por composición", actividad: "Pensamiento Geométrico: Volumen de algunos sólidos por composición y descomposición. Relación entre el área de las caras de un cuerpo geométrico con su volumen en situaciones problema." },
+                { semana: 5, tema: "Relaciones entre área y volumen", actividad: "Pensamiento Métrico: Unidades de volumen. Volumen de cuerpos geométricos y sólidos. Relación entre el área de las caras de un cuerpo geométrico con su volumen respectivo." },
+                { semana: 6, tema: "Mediana, media y moda en conjuntos de datos", actividad: "Pensamiento Aleatorio: Mediana, media y moda en conjuntos de datos, tablas de frecuencias y gráficos estadísticos. Uso en situaciones reales para resumir y comparar datos." },
+                { semana: 7, tema: "Ecuaciones numéricas y proporcionalidad", actividad: "Pensamiento Variacional: Propiedades de las relaciones de proporcionalidad. Proporcionalidad directa e inversa con fracciones y decimales. Resolución de ecuaciones numéricas sencillas." },
+                { semana: 8, tema: "Evaluación y cierre del período", actividad: "Evaluación integradora mediante conferencia magistral y mapas conceptuales. Retroalimentación colectiva y reconocimiento de los avances del período en el área de matemáticas." }
+            ],
+            periodo4: [
+                { semana: 1, tema: "Potenciación con naturales, fracciones y decimales", actividad: "Pensamiento Numérico: Potenciación con números naturales, fracciones y números decimales. Radicación y su relación con la base de una potenciación. Situaciones problema integradoras." },
+                { semana: 2, tema: "Radicación y logaritmación", actividad: "Pensamiento Numérico: Logaritmación y su relación con el exponente de una potenciación. Situaciones problema que involucran la potenciación, radicación y logaritmación en contextos reales." },
+                { semana: 3, tema: "Plano cartesiano y coordenadas", actividad: "Pensamiento Geométrico: Plano cartesiano y sistemas de coordenadas cartesianas. Ubicación de coordenadas en el plano cartesiano. Transformación de figuras geométricas en el plano." },
+                { semana: 4, tema: "Perímetros, áreas y volúmenes", actividad: "Pensamiento Métrico: Situaciones que involucren cálculo de perímetros, áreas y volúmenes en figuras planas y sólidos tridimensionales del entorno cotidiano y agroindustrial." },
+                { semana: 5, tema: "Experimentos aleatorios y posibilidad de ocurrencia", actividad: "Pensamiento Aleatorio: Experimentos, eventos y sucesos aleatorios determinísticos. Posibilidad de ocurrencia de un evento simple. Media, mediana y moda en tablas de frecuencias." },
+                { semana: 6, tema: "Regla de tres simple", actividad: "Pensamiento Variacional: Nociones de la regla de tres simple para situaciones de proporcionalidad directa e inversa. Aplicación en problemas de la vida cotidiana y del campo." },
+                { semana: 7, tema: "Repaso integrador del año", actividad: "Actividad de repaso general: los cinco pensamientos matemáticos en juego. Resolución colaborativa de problemas complejos que integren todos los contenidos del año escolar." },
+                { semana: 8, tema: "Evaluación final y clausura del año", actividad: "Gran Feria de Matemáticas: presentación de proyectos integradores ante la comunidad educativa. Evaluación final del año. Celebración del aprendizaje matemático en la Sede Chichalá." }
+            ]
+        }
+    };
+
+    // ══════════════════════════════════════════════
+    // RUTA BASE DE GUÍAS
+    // Estructura: guias/matematicas/grados3-5/periodoX/semanaX.html
+    // ══════════════════════════════════════════════
+    const GUIAS_BASE = '../guias/matematicas/grados3-5';
+
+    // ══════════════════════════════════════════════
+    // VERIFICAR SI EXISTE UNA GUÍA
+    // Usa fetch HEAD para detectar si el archivo
+    // existe en el servidor/GitHub Pages
+    // ══════════════════════════════════════════════
+    async function existeGuia(url) {
+        try {
+            const res = await fetch(url, { method: 'HEAD' });
+            return res.ok;
+        } catch {
+            return false;
+        }
+    }
+
+    // ══════════════════════════════════════════════
+    // GENERAR ACORDEÓN POR GRADO
+    // ══════════════════════════════════════════════
+    let gradoActual = 'grado3';
+
+    const coloresPeriodos = [
+        { label: '📅 Período 1', color: '#3DBE8C' },
+        { label: '📅 Período 2', color: '#1A9BAB' },
+        { label: '📅 Período 3', color: '#7C3AED' },
+        { label: '📅 Período 4', color: '#F4872B' }
+    ];
+
+    async function generarAcordeon(grado) {
+        const container = document.getElementById('accordion-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const periodos = ['periodo1','periodo2','periodo3','periodo4'];
+
+        for (let idx = 0; idx < periodos.length; idx++) {
+            const key    = periodos[idx];
+            const semanas = malla[grado][key];
+            let semanasHTML = '';
+
+            for (let s of semanas) {
+                // ── Construir ruta de la guía ──
+                const numPeriodo = idx + 1;
+                const rutaGuia   =
+                    `${GUIAS_BASE}/periodo${numPeriodo}/semana${s.semana}.html`;
+
+                // ── Verificar si la guía existe ──
+                const hayGuia = await existeGuia(rutaGuia);
+
+                // ── Botón condicional ──
+                const btnGuia = hayGuia ? `
+                    <a href="${rutaGuia}"
+                       class="btn-guia"
+                       title="Ver guía de trabajo">
+                        📄 Ver Guía
+                    </a>` : '';
+
+                semanasHTML += `
+                    <div class="week-container">
+                        <div class="week-header-row">
+                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            ${btnGuia}
+                        </div>
+                        <p>${s.actividad}</p>
+                    </div>
+                `;
+            }
+
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <button class="accordion-header"
+                        style="--periodo-color: ${coloresPeriodos[idx].color}">
+                    <span>${coloresPeriodos[idx].label}</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    ${semanasHTML}
+                </div>
+            `;
+            container.appendChild(item);
+        }
+
+        initAccordion();
+    }
+
+    // ══════════════════════════════════════════════
+    // MANEJO DEL SELECTOR DE GRADO
+    // ══════════════════════════════════════════════
+    function initGradeSelector() {
+        const buttons = document.querySelectorAll('.grade-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                gradoActual = btn.dataset.grado;
+                generarAcordeon(gradoActual);
+                if (navigator.vibrate) navigator.vibrate(20);
+            });
+        });
+    }
+
+    // ══════════════════════════════════════════════
+    // INIT GLOBAL
+    // ══════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        generarAcordeon(gradoActual);
+        initGradeSelector();
+        initSequentialAnimations();
+    });
+
+    </script>
+
+    <!-- ══════════════════════════════════════════
+         ESTILOS DEL BOTÓN DE GUÍA
+    ══════════════════════════════════════════ -->
+    <style>
+        /* Fila superior de cada semana */
+        .week-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .week-header-row h3 {
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Botón Ver Guía */
+        .btn-guia {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #3DBE8C, #1A9BAB);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(61,190,140,0.2);
+        }
+
+        .btn-guia:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(61,190,140,0.3);
+        }
+
+        .btn-guia:active {
+            transform: translateY(0);
+        }
+
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .week-header-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-guia {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+
+</body>
+</html>

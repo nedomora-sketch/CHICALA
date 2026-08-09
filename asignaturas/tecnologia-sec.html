@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Secundaria - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder" id="header-icon">🖥️</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · TECNOLOGÍA SECUNDARIA</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">🖥️</span>
+            <h1 class="subject-title" id="subject-title">Tecnología</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para ver los contenidos semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+    // ══════════════════════════════════════════════
+    // MALLA CURRICULAR OFICIAL - TECNOLOGÍA SEC.
+    // Fuente: IE Camacho Angarita
+    // Grupos: 6°-7° (basica) y 8°-9° (media)
+    // Contexto: Vereda Chichalá · Chaparral, Tolima
+    // ══════════════════════════════════════════════
+    const contenido = {
+
+        // ──────────────────────────────────────────
+        // BÁSICA SECUNDARIA — GRADOS 6° Y 7°
+        // ──────────────────────────────────────────
+        basica: {
+            badge:    "🖥️ Básica Secundaria · Grados 6 y 7",
+            subtitle: "Grados 6 · 7 · Tecnología e Informática",
+            desc:     "Naturaleza de la tecnología, creación digital, programación y ciudadanía digital desde el territorio rural de Chichalá.",
+            icon:     "🖥️",
+            color:    "linear-gradient(135deg, #1A9BAB, #3DBE8C)",
+            periodos: {
+
+                // ── PERÍODO 1 ──
+                periodo1: [
+                    {
+                        semana: 1,
+                        tema: "La tecnología en mi vereda: del hacha al computador",
+                        desempeno: "1.3 T&I.III — Propongo relaciones entre conceptos de tecnología e informática y factores contextuales que hacen posible los desarrollos tecnológicos a través de la historia.",
+                        objeto: "Historia y evolución de la tecnología · Artefactos analógicos y digitales en Chichalá · Del trabajo manual al trabajo digital en la agroindustria del Tolima.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único e irrepetible que merece mi respeto y consideración. (CC 1.14)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Herramientas digitales para trabajar en equipo",
+                        desempeno: "2.5 T&I.III — Uso las TIC para procesar información, comunicar ideas creativamente y trabajar colaborativamente.",
+                        objeto: "Herramientas colaborativas: Jamboard, Padlet, Slack · Trabajo en equipo digital · Aplicaciones al aprendizaje rural.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Infografías: contando a Chichalá con datos",
+                        desempeno: "3.9 T&I.III — Propongo procesos sencillos de innovación como solución a deficiencias detectadas en productos, procesos y sistemas tecnológicos.",
+                        objeto: "Organizadores gráficos: infografías digitales · Herramientas: Canva, Piktochart · Datos del entorno rural como materia prima de la infografía.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Contenidos digitales: imágenes, videos y audios",
+                        desempeno: "2.6 T&I.III — Construyo contenidos digitales que incluyen recursos de información en diversos formatos para diferentes situaciones de la vida cotidiana.",
+                        objeto: "Tipos de contenidos digitales · Formatos: texto, imagen, video, audio · Elaboración de contenido digital sobre el territorio de Chichalá.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Fake News: ¿verdad o mentira en el campo digital?",
+                        desempeno: "2.6 T&I.III — Construyo contenidos digitales con criterio ético, reconociendo fuentes confiables y desinformación.",
+                        objeto: "Noticias falsas (Fake News) · Verificación de información · Movie Maker y editores de video · Uso ético de los medios digitales.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Tablas estadísticas con datos de la vereda",
+                        desempeno: "3.7 T&I.III — Adapto soluciones tecnológicas o informáticas en diferentes contextos y problemas.",
+                        objeto: "Construcción de tablas estadísticas · Recolección de datos reales de Chichalá · Interpretación y comunicación de resultados.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: tecnología y territorio",
+                        desempeno: "3.9 T&I.III — Propongo procesos sencillos de innovación en mi entorno como solución a deficiencias detectadas.",
+                        objeto: "Proyecto integrador del período · Presentación digital sobre un producto o proceso tecnológico de Chichalá · Uso de herramientas aprendidas.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Socialización del proyecto integrador ante el grupo. Evaluación por rúbrica: creatividad, uso de herramientas, pertinencia territorial y trabajo colaborativo."
+                    }
+                ],
+
+                // ── PERÍODO 2 ──
+                periodo2: [
+                    {
+                        semana: 1,
+                        tema: "Netiqueta: buenos modales en el mundo digital",
+                        desempeno: "4.4 T&I.III — Reconozco los derechos de las comunidades para acceder a bienes y servicios tecnológicos.",
+                        objeto: "Netiqueta · Normas de convivencia digital · Comportamiento ético en redes sociales y plataformas educativas.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Derechos de autor: protegiendo la creatividad rural",
+                        desempeno: "4.4 T&I.III — Reconozco los derechos de las comunidades para acceder a bienes y servicios tecnológicos.",
+                        objeto: "Derechos de autor · Licencias Creative Commons · Cómo proteger las creaciones digitales sobre el territorio y la cultura de Chichalá.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "CapCut: editando videos desde la vereda",
+                        desempeno: "2.5 T&I.III — Uso las TIC para procesar información y generar representaciones de la realidad en múltiples formatos.",
+                        objeto: "Reconocimiento y uso de CapCut · Edición básica de video · Creación de un video corto sobre un producto o paisaje de Chichalá.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Recursos naturales y tecnología: una relación vital",
+                        desempeno: "4.4 T&I.III — Reconozco los derechos de las comunidades para acceder a recursos energéticos e hídricos.",
+                        objeto: "Transformación de recursos naturales con tecnología · Agua, energía y conectividad en zonas rurales · Impacto ambiental de los artefactos tecnológicos.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Prevención de fallas tecnológicas en el aula",
+                        desempeno: "3.7 T&I.III — Adapto soluciones tecnológicas en diferentes contextos y problemas.",
+                        objeto: "Fallas comunes en equipos tecnológicos · Procedimientos básicos de mantenimiento preventivo · Soluciones prácticas con los recursos disponibles en Chichalá.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Modelos y prototipos tecnológicos del entorno",
+                        desempeno: "2.6 T&I.III — Construyo contenidos digitales que incluyen recursos de información en diversos formatos.",
+                        objeto: "Modelos y prototipos tecnológicos · Representación digital de artefactos del campo · Diseño básico de soluciones para necesidades rurales.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: mi video sobre Chichalá",
+                        desempeno: "2.5 T&I.III — Uso las TIC para comunicar ideas creativamente y generar representaciones de la realidad.",
+                        objeto: "Proyecto integrador: video editado con CapCut sobre un aspecto de la vereda Chichalá · Aplicación de netiqueta, derechos de autor y edición ética.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del video de Chichalá ante el grupo. Evaluación por rúbrica: calidad de edición, pertinencia del contenido, ética digital y creatividad."
+                    }
+                ],
+
+                // ── PERÍODO 3 ──
+                periodo3: [
+                    {
+                        semana: 1,
+                        tema: "Del trapiche a la 4.0: energía y tecnología",
+                        desempeno: "1.7 T&I.III — Argumento sobre las transformaciones y utilización de fuentes de energía y redes en la actualidad.",
+                        objeto: "Recursos energéticos rurales · Transformación de fuentes de energía · Revolución 4.0 y su llegada a las zonas rurales del Tolima.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único e irrepetible. (CC 1.14)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "CapCut avanzado: el campo en movimiento",
+                        desempeno: "2.5 T&I.III — Uso las TIC para procesar información, comunicar ideas creativamente y trabajar colaborativamente.",
+                        objeto: "CapCut: funciones avanzadas · Ventajas y desventajas de sistemas tecnológicos de la comunidad · Producción de contenido digital de calidad sobre Chichalá.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Infografías digitales: datos que cuentan el territorio",
+                        desempeno: "3.9 T&I.III — Propongo procesos sencillos de innovación en mi entorno como solución a deficiencias detectadas.",
+                        objeto: "Infografías digitales con datos reales de Chichalá · Scratch básico como herramienta de organización · Análisis de datos del entorno rural.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "La verdad digital: información y desinformación rural",
+                        desempeno: "2.7 T&I.III — Organizo información sobre productos tecnológicos mediante contenidos digitales en diferentes formatos.",
+                        objeto: "Administración de información digital · Fake News sobre el campo y la agroindustria · Verificación de fuentes en el contexto rural del Tolima.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Scratch: el campo en código",
+                        desempeno: "3.8 T&I.III — Descompongo un problema en secuencia de pasos proponiendo soluciones a los problemas planteados.",
+                        objeto: "Scratch aplicado a problemas reales de la vereda · Algoritmos simples para simular procesos del campo · Pensamiento computacional rural.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Ética digital y criterios de uso tecnológico",
+                        desempeno: "4.3 T&I.III — Participo en discusiones sobre el uso racional de artefactos tecnológicos analógicos y digitales.",
+                        objeto: "Criterios éticos para el uso de la tecnología · Límites de uso responsable · Impacto del consumo tecnológico en el medioambiente de Chichalá.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: tecnología con propósito rural",
+                        desempeno: "3.6 T&I.III — Detecto fallas en sistemas tecnológicos y propongo estrategias de solución.",
+                        objeto: "Proyecto integrador: infografía + Scratch + video sobre un problema tecnológico o ambiental de la vereda Chichalá · Presentación ante el grupo.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del proyecto integrador ante el grupo. Evaluación por rúbrica: pertinencia territorial, uso de herramientas, creatividad, ética digital y trabajo colaborativo."
+                    }
+                ],
+
+                // ── PERÍODO 4 ──
+                periodo4: [
+                    {
+                        semana: 1,
+                        tema: "Conocimiento tecnológico nuevo: ¿qué viene después?",
+                        desempeno: "1.8 T&I.III — Expongo puntos de encuentro y desencuentro sobre cómo los desarrollos tecnológicos transformarán el entorno natural, social y cultural.",
+                        objeto: "Conocimiento tecnológico nuevo · Tecnologías emergentes y su impacto en zonas rurales · ¿Cómo cambiará la vereda Chichalá en los próximos 10 años?",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Sistemas automáticos y funcionamiento tecnológico",
+                        desempeno: "1.7 T&I.III — Argumento sobre las transformaciones y utilización de fuentes de energía en la actualidad.",
+                        objeto: "Funcionamiento automático de sistemas · Sistemas de riego automatizado · Domótica básica aplicada a la finca cafetera.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Procesamiento del lenguaje natural: la IA habla",
+                        desempeno: "3.8 T&I.III — Descompongo un problema en secuencia de pasos proponiendo soluciones tecnológicas.",
+                        objeto: "Procesamiento del lenguaje natural básico · Analítica de datos sencilla · Herramientas de IA accesibles para el estudiante rural.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Comportamientos legales y responsables en la red",
+                        desempeno: "4.5 T&I.III — Asumo comportamientos legales y respetuosos relacionados con el uso de los recursos tecnológicos.",
+                        objeto: "Derechos y deberes digitales · Legalidad en el uso de contenidos · Comportamiento ético en plataformas educativas y redes sociales.",
+                        ciudadana: "Uso mi libertad de expresión y respeto las opiniones ajenas. (CC 2.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "La comunidad y el medioambiente: mi impacto digital",
+                        desempeno: "4.5 T&I.III — Asumo comportamientos legales y respetuosos relacionados con el uso de los recursos tecnológicos.",
+                        objeto: "Impacto ambiental del uso tecnológico · Huella digital · Consumo responsable de dispositivos en zonas rurales · Reciclaje electrónico en el campo.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Problemas del entorno y soluciones tecnológicas",
+                        desempeno: "3.8 T&I.III — Descompongo un problema en secuencia de pasos proponiendo soluciones.",
+                        objeto: "Problemas reales de la vereda Chichalá · Diseño de soluciones tecnológicas sencillas · Aplicación de conocimientos del año a contextos rurales.",
+                        ciudadana: "Reconozco que los derechos se basan en la igualdad de los seres humanos. (CC 3.2)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto final: mi propuesta tecnológica para Chichalá",
+                        desempeno: "3.9 T&I.III — Propongo procesos sencillos de innovación como solución a deficiencias detectadas.",
+                        objeto: "Proyecto final del año · Propuesta tecnológica innovadora para un problema real de la vereda · Presentación ante la comunidad educativa.",
+                        ciudadana: "Reconozco que los seres vivos y el medio ambiente son un recurso único. (CC 1.14)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación final y cierre del año",
+                        actividad: "Gran Feria de Tecnología: presentación de proyectos finales ante la comunidad educativa, familias y autoridades del Corregimiento El Limón. Evaluación integral del proceso de aprendizaje tecnológico del año."
+                    }
+                               ]
+            }
+        },
+
+        // ──────────────────────────────────────────
+        // MEDIA — GRADOS 8° Y 9°
+        // ──────────────────────────────────────────
+        media: {
+            badge:    "🤖 Media · Grados 8 y 9",
+            subtitle: "Grados 8 · 9 · Innovación Tecnológica desde el Sur del Tolima",
+            desc:     "Robótica, IA, STEAM y ciudadanía digital avanzada: tecnología que transforma la agroindustria y el territorio de Chichalá.",
+            icon:     "🤖",
+            color:    "linear-gradient(135deg, #F4872B, #7C3AED)",
+            periodos: {
+
+                // ── PERÍODO 1 ──
+                periodo1: [
+                    {
+                        semana: 1,
+                        tema: "Tecnología que transforma: de la finca al mundo",
+                        desempeno: "1.5 T&I.IV — Esquematizo interacciones que surgen entre sistemas tecnológicos durante la realización de actividades humanas en diferentes periodos de la historia.",
+                        objeto: "Evolución de la tecnología en la agroindustria del Tolima · Del beneficio manual del café al procesamiento tecnificado · Sistemas tecnológicos en la finca cafetera.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana en los que distintos derechos entran en conflicto. (CC 1.10)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Robótica e IA: el futuro llega a Chichalá",
+                        desempeno: "2.6 T&I.IV — Utilizo herramientas colaborativas para el desarrollo de contenidos y recursos digitales transmedia.",
+                        objeto: "Inicios de robótica e inteligencia artificial · Uso responsable de la IA · Aplicaciones de robótica en la agroindustria rural del Tolima.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades de las personas. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Herramientas colaborativas para el campo digital",
+                        desempeno: "2.7 T&I.IV — Caracterizo y gestiono programas y canales de difusión para crear una propuesta comunicativa propia.",
+                        objeto: "Canal de YouTube sobre Chichalá · Google Sites como vitrina del territorio · Trabajo colaborativo digital aplicado a la comunidad rural.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones pueden contribuir a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "STEAM: ciencia y tecnología desde el territorio",
+                        desempeno: "3.5 T&I.IV — Comparo distintas soluciones tecnológicas frente a un mismo problema según sus características y eficiencia.",
+                        objeto: "Educación STEAM aplicada al entorno rural · Proyectos interdisciplinares: café, panela, agua, suelo y tecnología · Comparación de soluciones tecnológicas.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Detección de fallas: diagnóstico tecnológico rural",
+                        desempeno: "3.6 T&I.IV — Detecto fallas o deficiencias en sistemas tecnológicos y propongo soluciones o mejoras.",
+                        objeto: "Detección de fallas tecnológicas e informáticas · Diagnóstico de equipos del aula · Soluciones prácticas con recursos disponibles en Chichalá.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Avances tecnológicos en salud y agroindustria",
+                        desempeno: "1.8 T&I.IV — Formulo necesidades de saber tecnológico e informático para el diseño de productos tecnológicos novedosos.",
+                        objeto: "Avances tecnológicos en procesos médicos · Tecnología aplicada a la agroindustria alimentaria · Debate: ¿cómo benefician estos avances a Chichalá?",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: solución STEAM para la vereda",
+                        desempeno: "3.6 T&I.IV — Detecto fallas en sistemas tecnológicos y propongo soluciones o mejoras.",
+                        objeto: "Proyecto integrador del período · Diseño de una solución STEAM para un problema real de Chichalá · Presentación con sustentación técnica y territorial.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del proyecto STEAM ante el grupo. Evaluación por rúbrica: rigor técnico, pertinencia rural, innovación, trabajo colaborativo e impacto comunitario."
+                    }
+                ],
+
+                // ── PERÍODO 2 ──
+                periodo2: [
+                    {
+                        semana: 1,
+                        tema: "Actividades preventivas: cuidar la tecnología del aula",
+                        desempeno: "2.4 T&I.IV — Realizo actividades preventivas frente al correcto funcionamiento de productos tecnológicos.",
+                        objeto: "Mantenimiento preventivo de equipos · Limpieza, organización y cuidado de dispositivos · Protocolos de uso responsable en la sala de tecnología.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Contenido digital transmedia: más allá del texto",
+                        desempeno: "2.6 T&I.IV — Utilizo herramientas colaborativas para el desarrollo de contenidos y recursos digitales transmedia.",
+                        objeto: "Contenidos transmedia: texto, imagen, video, audio e interactividad · Principios estéticos, éticos y legales · Creación de contenido sobre la cultura cafetera de Chichalá.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Google Sites: la vitrina digital de mi comunidad",
+                        desempeno: "2.7 T&I.IV — Caracterizo y gestiono canales de difusión para crear una propuesta comunicativa aplicada en un contexto escolar o social.",
+                        objeto: "Google Sites: diseño y publicación · Estructuración de un sitio sobre la vereda Chichalá · Contenidos: historia, productos, paisajes y comunidad.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Normas de seguridad informática en la era digital",
+                        desempeno: "4.6 T&I.IV — Ejerzo mi papel de ciudadano responsable con el uso adecuado de los diversos sistemas tecnológicos.",
+                        objeto: "Normas de seguridad informática · Contraseñas seguras · Protección de datos personales · Seguridad digital para jóvenes rurales.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Prevención del sexting: mi privacidad vale",
+                        desempeno: "4.6 T&I.IV — Ejerzo mi papel de ciudadano responsable con el uso adecuado de los sistemas tecnológicos.",
+                        objeto: "Prevención del sexting · Riesgos del uso irresponsable de dispositivos · Estrategias de autoprotección digital para adolescentes rurales.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Ciclo de vida de productos tecnológicos",
+                        desempeno: "4.7 T&I.IV — Explico el ciclo de vida de algunos productos tecnológicos y evalúo las consecuencias de su desuso acelerado.",
+                        objeto: "Ciclo de vida de artefactos tecnológicos · Obsolescencia programada · Impacto ambiental del desecho tecnológico en zonas rurales como Chichalá.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: mi canal digital de Chichalá",
+                        desempeno: "2.7 T&I.IV — Caracterizo y gestiono canales de difusión para crear una propuesta comunicativa propia.",
+                        objeto: "Proyecto integrador: canal de YouTube o Google Sites sobre un aspecto de la vereda · Aplicación de normas éticas, estéticas y de seguridad digital.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del canal digital o Google Sites ante el grupo. Evaluación por rúbrica: calidad del contenido, diseño, pertinencia territorial, ética digital y seguridad."
+                    }
+                ],
+
+                // ── PERÍODO 3 ──
+                periodo3: [
+                    {
+                        semana: 1,
+                        tema: "Interacciones tecnológicas en la agroindustria rural",
+                        desempeno: "1.5 T&I.IV — Esquematizo interacciones que surgen entre sistemas tecnológicos durante la realización de actividades humanas.",
+                        objeto: "Interacciones entre tecnología, informática y TIC · Cadena productiva del café y la panela desde la tecnología · Calidad en procesos y productos tecnológicos.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "IA y robótica: aliadas del campo del futuro",
+                        desempeno: "2.8 T&I.IV — Experimento con herramientas digitales emergentes que aprovechan las ventajas de la inteligencia artificial.",
+                        objeto: "Robótica aplicada a la agricultura · IA en la agroindustria del Tolima · Computación en la nube para pequeños productores rurales.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Documentos compartidos: colaborando desde la vereda",
+                        desempeno: "2.6 T&I.IV — Utilizo herramientas colaborativas para el desarrollo de contenidos digitales con principios éticos y legales.",
+                        objeto: "Google Docs, Sheets y Slides compartidos · Trabajo colaborativo en tiempo real · Normas de seguridad en el trabajo digital colaborativo.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Diseñando soluciones: seguridad, ergonomía y ambiente",
+                        desempeno: "3.2 T&I.IV — Establezco para mis diseños aspectos relacionados con la seguridad, ergonomía e impacto en el medioambiente.",
+                        objeto: "Diseño tecnológico con criterios de seguridad · Ergonomía aplicada al trabajo rural · Impacto ambiental de los diseños tecnológicos en Chichalá.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Avances médicos y agroindustriales: tecnología que salva",
+                        desempeno: "1.8 T&I.IV — Formulo necesidades de saber tecnológico para el diseño de productos novedosos.",
+                        objeto: "Avances tecnológicos en procesos médicos · Biotecnología aplicada a la agroindustria alimentaria · Debate: ¿cómo accede Chichalá a estos avances?",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Disposición final de productos tecnológicos contaminantes",
+                        desempeno: "4.1 T&I.IV — Mantengo una actitud analítica con relación al uso de productos tecnológicos contaminantes y su disposición final.",
+                        objeto: "Basura electrónica y su impacto ambiental · Puntos de recolección de residuos tecnológicos · Responsabilidad ambiental del consumidor rural.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto integrador: programa digital para Chichalá",
+                        desempeno: "3.11 T&I.IV — Diseño programas digitales que permitan dar solución a los problemas propuestos en contextos de la informática o la robótica.",
+                        objeto: "Diseño de un programa digital sencillo para un problema real de la vereda · Aplicación de criterios de seguridad, ergonomía y sostenibilidad ambiental.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación del período",
+                        actividad: "Presentación del programa digital ante el grupo. Evaluación por rúbrica: funcionalidad, pertinencia territorial, criterios de diseño, sostenibilidad e innovación."
+                    }
+                ],
+
+                // ── PERÍODO 4 ──
+                periodo4: [
+                    {
+                        semana: 1,
+                        tema: "Calidad tecnológica: exigir lo mejor para el campo",
+                        desempeno: "1.5 T&I.IV — Esquematizo interacciones entre sistemas tecnológicos en diferentes periodos de la historia.",
+                        objeto: "Calidad en procesos y productos tecnológicos · Estándares de calidad aplicados a la agroindustria · ¿Qué significa calidad tecnológica para Chichalá?",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 2,
+                        tema: "Mantenimiento de equipos: cuidar para durar",
+                        desempeno: "2.4 T&I.IV — Realizo actividades preventivas frente al correcto funcionamiento de productos tecnológicos.",
+                        objeto: "Mantenimiento preventivo y correctivo de equipos · Cuidado de productos tecnológicos · Protocolos de mantenimiento adaptados al contexto rural.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 3,
+                        tema: "Las TIC y su influencia en la cultura rural",
+                        desempeno: "4.5 T&I.IV — Juzgo la influencia de las TIC en los cambios culturales, individuales y sociales.",
+                        objeto: "Influencia de las TIC en la identidad cultural de Chichalá · Cambios en las costumbres rurales por el uso de tecnología · Preservar la cultura en la era digital.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 4,
+                        tema: "Prevención del ciberbullying: respeto en la red",
+                        desempeno: "4.6 T&I.IV — Ejerzo mi papel de ciudadano responsable con el uso adecuado de los sistemas tecnológicos.",
+                        objeto: "Ciberbullying: definición, tipos y consecuencias · Estrategias de prevención y denuncia · Protocolo de actuación ante casos en la comunidad escolar de Chichalá.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 5,
+                        tema: "Ciudadanía digital responsable desde el campo",
+                        desempeno: "4.6 T&I.IV — Ejerzo mi papel de ciudadano responsable con el uso adecuado de los diversos sistemas tecnológicos.",
+                        objeto: "Derechos y deberes del ciudadano digital · Uso ético de plataformas y redes · El joven rural como creador y difusor responsable de contenido digital.",
+                        ciudadana: "Cuestiono y analizo los argumentos de quienes limitan las libertades. (CC 2.6)"
+                    },
+                    {
+                        semana: 6,
+                        tema: "Repaso integrador: tecnología que nos une",
+                        desempeno: "4.5 T&I.IV — Juzgo la influencia de las TIC en los cambios culturales, individuales y sociales.",
+                        objeto: "Repaso integrador de los cuatro componentes del año · Conexión entre naturaleza de la tecnología,  apropiación, solución de problemas y sociedad · Reflexión sobre el papel de la tecnología en el futuro de Chichalá.",
+                        ciudadana: "Analizo mis prácticas cotidianas e identifico cómo mis acciones contribuyen a la discriminación. (CC 3.7)"
+                    },
+                    {
+                        semana: 7,
+                        tema: "Proyecto final: mi legado tecnológico para Chichalá",
+                        desempeno: "3.11 T&I.IV — Diseño programas digitales que permitan dar solución a los problemas propuestos en contextos de la informática o la robótica.",
+                        objeto: "Proyecto final del año · Propuesta tecnológica innovadora con impacto real en la vereda Chichalá · Presentación ante la comunidad educativa y familias.",
+                        ciudadana: "Argumento y debato sobre dilemas de la vida cotidiana. (CC 1.10)"
+                    },
+                    {
+                        semana: 8,
+                        tema: "Evaluación final y cierre del año",
+                        actividad: "Gran Feria de Tecnología e Innovación Rural: presentación de proyectos finales ante la comunidad educativa, familias y autoridades del Corregimiento El Limón. Evaluación integral del proceso tecnológico del año escolar."
+                    }
+                ]
+            }
+        }
+    };
+
+    // ══════════════════════════════════════════════
+    // RUTAS BASE DE GUÍAS POR NIVEL
+    // ══════════════════════════════════════════════
+    const GUIAS_BASE = {
+        basica: '../guias/tecnologia-sec/grados6-7',
+        media:  '../guias/tecnologia-sec/grados8-9'
+    };
+
+    // ══════════════════════════════════════════════
+    // DETECTAR NIVEL Y CARGAR INTERFAZ
+    // ══════════════════════════════════════════════
+    const params = new URLSearchParams(window.location.search);
+    const nivel  = params.get('nivel') || 'basica';
+    const cfg    = contenido[nivel] || contenido.basica;
+
+    document.getElementById('header-sub').textContent          = cfg.subtitle;
+    document.getElementById('level-badge').textContent         = cfg.badge;
+    document.getElementById('subject-icon').textContent        = cfg.icon;
+    document.getElementById('subject-desc').textContent        = cfg.desc;
+    document.getElementById('level-badge').style.background    = cfg.color;
+
+    if (nivel === 'media') {
+        document.getElementById('header-icon').textContent = '🤖';
+        document.getElementById('subject-title').textContent = 'Tecnología · IA & Innovación';
+    }
+
+    // ══════════════════════════════════════════════
+    // VERIFICAR SI EXISTE UNA GUÍA
+    // ══════════════════════════════════════════════
+    async function existeGuia(url) {
+        if (window.location.protocol === 'file:') return false;
+        try {
+            const res = await fetch(url, { method: 'HEAD' });
+            return res.ok;
+        } catch {
+            return false;
+        }
+    }
+
+    // ══════════════════════════════════════════════
+    // GENERAR ACORDEÓN CON MALLA OFICIAL Y BOTÓN GUÍA
+    // ══════════════════════════════════════════════
+    const periodosMeta = [
+        { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+        { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+        { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+        { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+    ];
+
+    async function generarAcordeon() {
+        const container = document.getElementById('accordion-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const baseGuia = GUIAS_BASE[nivel];
+
+        for (let idx = 0; idx < periodosMeta.length; idx++) {
+            const periodo  = periodosMeta[idx];
+            const semanas  = cfg.periodos[periodo.key];
+            let semanasHTML = '';
+
+            for (let s of semanas) {
+                const numPeriodo = idx + 1;
+                const rutaGuia   =
+                    `${baseGuia}/periodo${numPeriodo}/semana${s.semana}.html`;
+                const hayGuia    = await existeGuia(rutaGuia);
+
+                const btnGuia = hayGuia ? `
+                    <a href="${rutaGuia}"
+                       class="btn-guia"
+                       title="Ver guía de trabajo">
+                        📄 Ver Guía
+                    </a>` : '';
+
+                // Semana de evaluación (solo tiene 'actividad')
+                if (s.actividad) {
+                    semanasHTML += `
+                        <div class="week-container week-eval">
+                            <div class="week-header-row">
+                                <h3>⭐ Semana ${s.semana} · ${s.tema}</h3>
+                                ${btnGuia}
+                            </div>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                } else {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <div class="week-header-row">
+                                <h3>📌 Semana ${s.semana} · ${s.tema}</h3>
+                                ${btnGuia}
+                            </div>
+                            <div class="week-detail">
+                                <span class="week-tag tag-desempeno">🎯 Desempeño</span>
+                                <p>${s.desempeno}</p>
+                            </div>
+                            <div class="week-detail">
+                                <span class="week-tag tag-objeto">📚 Objeto de Aprendizaje</span>
+                                <p>${s.objeto}</p>
+                            </div>
+                            <div class="week-detail">
+                                <span class="week-tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+                                <p>${s.ciudadana}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            item.innerHTML = `
+                <button class="accordion-header"
+                        style="--periodo-color: ${periodo.color}">
+                    <span>${periodo.label}</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    ${semanasHTML}
+                </div>
+            `;
+            container.appendChild(item);
+        }
+
+        initAccordion();
+    }
+
+    // ══════════════════════════════════════════════
+    // INIT
+    // ══════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+        generarAcordeon();
+        initSequentialAnimations();
+    });
+
+    </script>
+
+    <!-- ══════════════════════════════════════════
+         ESTILOS ADICIONALES
+    ══════════════════════════════════════════ -->
+    <style>
+        /* Fila superior de cada semana */
+        .week-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .week-header-row h3 {
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Botón Ver Guía */
+        .btn-guia {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #3DBE8C, #1A9BAB);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(61,190,140,0.2);
+            white-space: nowrap;
+        }
+
+        .btn-guia:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(61,190,140,0.35);
+        }
+
+        .btn-guia:active { transform: translateY(0); }
+
+        /* Tags dentro de cada semana */
+        .week-detail { margin-top: 10px; }
+
+        .week-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+
+        .tag-desempeno { background: rgba(26,155,171,0.12);  color: #1A9BAB; }
+        .tag-objeto    { background: rgba(124,58,237,0.12);  color: #7C3AED; }
+        .tag-ciudadana { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
+
+        .week-detail p {
+            font-size: 0.88rem;
+            color: var(--gris);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Semana de evaluación */
+        .week-eval {
+            border-left-color: var(--amarillo) !important;
+            background: #FFFBEB !important;
+        }
+
+        .week-eval h3 { color: #B45309 !important; }
+
+        /* Media (8°-9°): ícono 🤖 y gradiente naranja-morado */
+        .media-badge {
+            background: linear-gradient(135deg, #F4872B, #7C3AED) !important;
+        }
+
+        /* Responsivo móvil */
+        @media (max-width: 768px) {
+            .week-header-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-guia {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+</body>
+</html>

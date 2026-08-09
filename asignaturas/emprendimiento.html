@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprendimiento - Plan de Estudios</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <header class="header">
+        <div class="logo-placeholder" id="header-icon">🚀</div>
+        <div class="header-info">
+            <p class="header-inst">SEDE CHICHALÁ · EMPRENDIMIENTO</p>
+            <p class="header-sub" id="header-sub">Cargando nivel...</p>
+        </div>
+    </header>
+
+    <main class="hero">
+
+        <div class="hero-badge" id="level-badge">Cargando...</div>
+
+        <div class="subject-header animate-seq" data-delay="200">
+            <span class="subject-icon" id="subject-icon">🚀</span>
+            <h1 class="subject-title" id="subject-title">Emprendimiento</h1>
+            <p class="subject-subtitle" id="subject-desc">Cargando descripción...</p>
+        </div>
+
+        <p class="hero-subtitle animate-seq" data-delay="400">
+            Selecciona un período para ver las actividades semanales
+        </p>
+
+        <!-- ACORDEÓN -->
+        <div class="accordion-container" id="accordion-container"></div>
+
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+
+    </main>
+
+    <footer class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+
+        // ══════════════════════════════════════════════
+        // CONTENIDO POR NIVEL
+        // Contexto: Vereda Chichalá · Corregimiento El Limón
+        // Chaparral, Tolima · Agroindustria Alimentaria
+        // ══════════════════════════════════════════════
+        const contenido = {
+
+            // ──────────────────────────────────────────
+            // BÁSICA SECUNDARIA — GRADOS 6 Y 7
+            // ──────────────────────────────────────────
+            basica: {
+                badge:    "🌱 Básica Secundaria · Grados 6 y 7",
+                subtitle: "Grados 6 · 7 · Semillas de Emprendimiento Rural",
+                desc:     "Descubriendo talentos, identificando oportunidades y construyendo ideas de negocio desde el campo de Chichalá.",
+                icon:     "🌱",
+                periodos: {
+
+                    // ── PERÍODO 1 ──
+                    periodo1: [
+                        {
+                            semana: 1,
+                            tema: "¿Qué significa emprender en el campo?",
+                            actividad: "Exploramos el concepto de emprendimiento desde la realidad rural de Chichalá. Los estudiantes identifican a personas de la vereda que han emprendido (caficultores, paneleros, artesanos) y reconocen las características que los hacen emprendedores exitosos."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Mis talentos y los del territorio",
+                            actividad: "Ejercicio de autoconocimiento: cada estudiante descubre sus fortalezas y las relaciona con los recursos de su entorno rural. ¿Qué sé hacer? ¿Qué produce mi familia? ¿Cómo puedo convertir lo que tengo en oportunidad de negocio?"
+                        },
+                        {
+                            semana: 3,
+                            tema: "Recorrido emprendedor por Chichalá",
+                            actividad: "Salida de campo por la vereda para observar y registrar actividades productivas: cultivos de café y caña, crianza de animales, procesamiento de panela, artesanías. Diario de observación con fotos y apuntes sobre oportunidades identificadas."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Lluvia de ideas desde el campo",
+                            actividad: "Aplicamos técnicas de creatividad (brainstorming, mapa mental, SCAMPER) para generar ideas de negocio con productos del territorio: café especial, panela orgánica, mermeladas artesanales, turismo de finca, artesanías en fique y guadua."
+                        },
+                        {
+                            semana: 5,
+                            tema: "¿Quién compra lo que producimos?",
+                            actividad: "Introducción al concepto de mercado desde la perspectiva rural. ¿Quién compra el café, la panela o las artesanías de Chichalá? Construimos el perfil del cliente ideal usando el Mapa de Empatía con ejemplos del mercado local y regional del Tolima."
+                        },
+                        {
+                            semana: 6,
+                            tema: "¿Qué hace especial nuestro producto?",
+                            actividad: "Construimos la propuesta de valor de un producto rural: ¿qué tiene el café o la panela de Chichalá que no tiene otro? Origen, proceso artesanal, sabor único y compromiso con el territorio como ventajas competitivas reales."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mi primera idea de negocio rural",
+                            actividad: "Cada estudiante o equipo plasma su idea en una ficha de presentación: nombre del emprendimiento, producto o servicio basado en recursos de Chichalá, problema que resuelve, cliente objetivo y lo que lo hace único en el mercado del Tolima."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Feria de ideas del período",
+                            actividad: "Presentación de ideas de negocio rurales en formato de feria. Retroalimentación entre compañeros y docente. Votación por la idea más innovadora, viable e impactante para la comunidad de Chichalá y el corregimiento El Limón."
+                        }
+                    ],
+
+                    // ── PERÍODO 2 ──
+                    periodo2: [
+                        {
+                            semana: 1,
+                            tema: "El modelo Canvas aplicado al campo",
+                            actividad: "Introducción al Business Model Canvas con ejemplos de negocios rurales del Tolima: tienda de café de finca, trapiche panelero familiar, taller de artesanías en guadua. Los 9 bloques explicados desde la realidad de Chichalá."
+                        },
+                        {
+                            semana: 2,
+                            tema: "¿A quién le vendo mis productos del campo?",
+                            actividad: "Profundización en el segmento de clientes. ¿Quién compra café especial, panela orgánica o artesanías del Tolima? Hacemos una encuesta a 10 personas del entorno (familias, vecinos, comerciantes de Chaparral) para validar nuestro mercado."
+                        },
+                        {
+                            semana: 3,
+                            tema: "¿Cómo llega mi producto al cliente?",
+                            actividad: "Análisis de canales de distribución para productos rurales: mercado campesino de Chaparral, tiendas del corregimiento, pedidos por WhatsApp, ferias artesanales del Tolima y canales digitales accesibles desde la vereda."
+                        },
+                        {
+                            semana: 4,
+                            tema: "¿Cuánto vale el trabajo del campo?",
+                            actividad: "¿Cómo fijar el precio justo a la panela, el café o una artesanía? Calculamos costos de producción rurales (insumos, mano de obra familiar, transporte) y aplicamos un margen de ganancia justo que valore el trabajo campesino."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Recursos de la finca como activos del negocio",
+                            actividad: "Identificamos los recursos disponibles en el entorno rural como activos del emprendimiento: la tierra, el cultivo, el conocimiento ancestral, las herramientas del campo y la red de vecinos y familias como capital social invaluable."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Alianzas entre familias y comunidades",
+                            actividad: "¿Con quién me uno para crecer? Identificamos aliados clave: asociaciones de caficultores, JAC de Chichalá, Alcaldía de Chaparral, SENA Tolima, compradores de café especial. Los estudiantes diseñan su red de alianzas para su proyecto."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mi Canvas rural completo",
+                            actividad: "Construimos el Business Model Canvas completo para el emprendimiento rural de cada equipo. Lo presentamos en un poster o en Canva, mostrando cómo el territorio de Chichalá es el corazón del negocio."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Evaluación del Canvas rural",
+                            actividad: "Socialización del Canvas ante el grupo. Evaluación por rúbrica con criterios de coherencia, viabilidad en contexto rural, creatividad y potencial de impacto positivo en la comunidad de Chichalá y el Corregimiento El Limón."
+                        }
+                    ],
+
+                    // ── PERÍODO 3 ──
+                    periodo3: [
+                        {
+                            semana: 1,
+                            tema: "De la finca al producto: prototipos rurales",
+                            actividad: "¿Cómo transformamos los productos del campo en algo que se pueda vender? Técnicas de prototipado con materiales del entorno: elaboración de muestras de café tostado, panela pulverizada, mermelada de fruta local o una pieza artesanal básica."
+                        },
+                        {
+                            semana: 2,
+                            tema: "La marca de mi emprendimiento campesino",
+                            actividad: "Diseñamos la identidad de marca de nuestro producto rural: nombre que evoque el territorio (la montaña, el río, el café), eslogan con sabor a Tolima y logo básico en Canva que represente la esencia de Chichalá y sus productos."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Cómo mostrar mi producto en redes sociales",
+                            actividad: "Estrategia básica de marketing digital para emprendimientos rurales: fotografía de producto en el campo, publicaciones en WhatsApp Business, Instagram y Facebook. Diseñamos las primeras 3 publicaciones mostrando el origen rural del producto."
+                        },
+                        {
+                            semana: 4,
+                            tema: "La historia de mi producto: storytelling rural",
+                            actividad: "Contamos la historia de nuestro emprendimiento de forma auténtica: el paisaje cafetero, las manos que procesan la panela, la tradición artesanal de la familia. Los estudiantes graban un video de 60 segundos desde su finca o entorno natural."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Costos de producción en el campo",
+                            actividad: "Calculamos los costos reales de un producto rural: semillas, abonos, agua, mano de obra familiar, transporte hasta Chaparral. Diferenciamos costos fijos y variables y calculamos el punto de equilibrio de nuestro emprendimiento campesino."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Probando el producto con la comunidad",
+                            actividad: "Llevamos el prototipo a 5 personas de la vereda: vecinos, padres de familia, tenderos del corregimiento. Aplicamos una encuesta sencilla de satisfacción, registramos comentarios y elaboramos un plan de mejoras basado en la voz de la comunidad."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mejorando el producto con lo aprendido",
+                            actividad: "Implementamos las mejoras sugeridas por la comunidad: ajuste en el sabor, presentación, empaque o precio del producto. Segunda versión del prototipo con los cambios aplicados, siempre usando recursos disponibles en el entorno de Chichalá."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Presentación del prototipo mejorado",
+                            actividad: "Exposición del prototipo mejorado ante el grupo: producto, video de storytelling y perfil en redes sociales del emprendimiento rural. Evaluación integral por rúbrica valorando creatividad, viabilidad y arraigo al territorio de Chaparral."
+                        }
+                    ],
+
+                    // ── PERÍODO 4 ──
+                    periodo4: [
+                        {
+                            semana: 1,
+                            tema: "¿Cómo presento mi negocio rural?",
+                            actividad: "¿Cómo convencer a un comprador, tendero o turista en 2 minutos? Aprendemos la estructura del pitch adaptada al emprendimiento campesino: el problema rural que resuelvo, mi producto, mis clientes y por qué Chichalá es el origen diferenciador."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Hablar con seguridad sobre mi emprendimiento",
+                            actividad: "Técnicas de comunicación oral para jóvenes rurales: cómo hablar con confianza de lo que producimos, mirar a los ojos, usar las manos para mostrar el producto y controlar los nervios. Práctica de presentaciones de 1 minuto en el salón."
+                        },
+                        {
+                            semana: 3,
+                            tema: "El campo también puede cambiar el mundo",
+                            actividad: "Casos de emprendimiento social y ambiental en zonas rurales de Colombia y el Tolima. Los estudiantes evalúan el impacto de su propio emprendimiento: ¿cuida el agua?, ¿genera empleo en la vereda?, ¿preserva la tradición cultural de Chichalá?"
+                        },
+                        {
+                            semana: 4,
+                            tema: "Cómo formalizar un negocio campesino",
+                            actividad: "Pasos básicos para formalizar un negocio rural en Colombia: RUT, registro en Cámara de Comercio de Ibagué, beneficios del régimen simplificado para el pequeño productor. Simulación del registro de nuestro emprendimiento escolar."
+                        },
+                        {
+                            semana: 5,
+                            tema: "El dinero del negocio y el dinero de la casa",
+                            actividad: "Diferencia fundamental entre las finanzas del negocio y las de la familia campesina. Hábitos financieros rurales: el ahorro de la cosecha, la reinversión en el cultivo y el crédito responsable. Diseño del plan financiero de cierre del año escolar."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Ensayo general de la Feria",
+                            actividad: "Simulacro completo de la Feria de Emprendimiento Rural. Cada equipo presenta su proyecto en 3 minutos ante un jurado interno: producto, precio, historia y mercado. Retroalimentación detallada para afinar la presentación final."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Preparación del stand y los productos",
+                            actividad: "Diseño y montaje del stand de la Feria: exhibición del prototipo rural, muestras del producto (café, panela, artesanías), materiales impresos con la historia del emprendimiento y preparación del discurso de bienvenida a visitantes."
+                        },
+                        {
+                            semana: 8,
+                            tema: "🏆 Feria de Emprendimiento Rural Chichalá",
+                            actividad: "Gran Feria de Emprendimiento ante la comunidad educativa, familias y vecinos de la vereda. Presentación de proyectos, degustación de productos del territorio (café, panela, mermeladas), muestra artesanal y reconocimiento a los mejores emprendimientos rurales del año."
+                        }
+                    ]
+                }
+            },
+
+            // ──────────────────────────────────────────
+            // MEDIA — GRADOS 8 Y 9
+            // ──────────────────────────────────────────
+            media: {
+                badge:    "🏆 Media · Grados 8 y 9",
+                subtitle: "Grados 8 · 9 · Empresa Rural e Innovación Agroindustrial",
+                desc:     "Creación de empresas rurales, agroindustria del Tolima, mercados especiales y pitch ante la comunidad.",
+                icon:     "🏆",
+                periodos: {
+
+                    // ── PERÍODO 1 ──
+                    periodo1: [
+                        {
+                            semana: 1,
+                            tema: "El ecosistema emprendedor del Tolima rural",
+                            actividad: "Analizamos el ecosistema emprendedor de la región: asociaciones de caficultores del Tolima, trapiches paneleros de Chaparral, artesanos del sur del Tolima y programas de apoyo como iNNpulsa, SENA Emprende Rural y el Fondo Emprender. Mapa mental del ecosistema productivo local."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Design Thinking: entendiendo al campesino consumidor",
+                            actividad: "Primera etapa del Design Thinking aplicada al contexto rural. Entrevistas a productores, madres de familia y tenderos de Chichalá y El Limón para descubrir necesidades reales no satisfechas en la cadena productiva del café, la panela o las artesanías locales."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Design Thinking: definir e idear desde el territorio",
+                            actividad: "Etapas de definición e ideación del Design Thinking con foco rural. Formulamos el desafío: ¿Cómo podríamos añadir valor al café o la panela de Chichalá? Generamos ideas innovadoras: cafés especiales, panela con frutas tropicales, turismo de cosecha, productos con sello de origen."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Prototipando con lo que nos da el campo",
+                            actividad: "Construimos prototipos de bajo costo con recursos del entorno rural: muestras de café molido con empaque artesanal, panela en presentaciones novedosas, productos de transformación básica (mermeladas, bocadillos, aromáticas) usando frutas y plantas de la zona."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Lean Startup en la finca: probar antes de invertir",
+                            actividad: "Aplicamos la metodología Lean Startup al emprendimiento rural. Definimos el MVP (Producto Mínimo Viable) de nuestro negocio agroindustrial: la versión más sencilla del producto que podemos llevar al mercado de Chaparral para validar si tiene demanda real."
+                        },
+                        {
+                            semana: 6,
+                            tema: "¿Quién más produce lo que yo produzco en el Tolima?",
+                            actividad: "Investigación del mercado competitivo regional. Análisis DOFA de nuestro emprendimiento rural frente a otros productores de café, panela y artesanías del Tolima. Identificamos nuestra ventaja competitiva: origen Chichalá, proceso artesanal, sabor único, historia del territorio."
+                        },
+                        {
+                            semana: 7,
+                            tema: "La propuesta de valor del producto campesino",
+                            actividad: "Construimos el Value Proposition Canvas para nuestro producto rural. ¿Qué gana el cliente que compra café o panela de Chichalá? ¿Qué problemas le resolvemos? Validamos la propuesta con 10 clientes potenciales de la vereda, el corregimiento y Chaparral."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Presentación del MVP agroindustrial",
+                            actividad: "Presentación del Producto Mínimo Viable ante el grupo y el docente. Evaluación técnica y de mercado del prototipo rural. Retroalimentación para iniciar el proceso de desarrollo del producto final que se presentará en la Gran Feria Empresarial de Chichalá."
+                        }
+                    ],
+
+                    // ── PERÍODO 2 ──
+                    periodo2: [
+                        {
+                            semana: 1,
+                            tema: "Cómo vender productos rurales en la era digital",
+                            actividad: "Estrategia de marketing digital para emprendimientos rurales del Tolima. Cómo usar WhatsApp Business, Instagram y Facebook para vender café especial, panela orgánica o artesanías desde la vereda. Creamos un plan de contenidos de 30 días con fotos del proceso productivo."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Contenido que conecta: mostrar el campo con orgullo",
+                            actividad: "Producimos contenido digital auténtico: fotos del proceso de beneficio del café, el trapiche en acción, las manos artesanas trabajando. Calendarios de publicación, uso de hashtags rurales y estrategia de reels cortos para mostrar el origen del producto con orgullo campesino."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Vender por internet desde Chichalá",
+                            actividad: "Plataformas accesibles para vender productos rurales en línea: tiendas en WhatsApp Business, catálogos digitales en Canva, marketplaces de artesanías y cafés especiales. Creamos el catálogo digital del emprendimiento con precios, descripción de origen y formas de pedido."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Las finanzas del negocio agroindustrial",
+                            actividad: "Estado de resultados, flujo de caja y punto de equilibrio aplicados a una microempresa rural del Tolima. Proyección financiera a 12 meses de un negocio de café especial, panela orgánica o artesanías usando Google Sheets o Excel con datos reales del entorno."
+                        },
+                        {
+                            semana: 5,
+                            tema: "¿Dónde consigo recursos para mi negocio del campo?",
+                            actividad: "Fuentes de financiación para emprendedores rurales en Colombia: SENA Emprende Rural, Fondo Emprender, Banco Agrario, Finagro, microcréditos solidarios y convocatorias de la Gobernación del Tolima. Simulamos una solicitud de financiación para nuestro emprendimiento rural."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Negociar el precio justo del campo",
+                            actividad: "Técnicas de negociación aplicadas al productor rural: cómo negociar el precio del café con el intermediario, cómo acordar condiciones justas con compradores de panela y artesanías. Role-playing de situaciones reales de venta en Chaparral y el mercado regional del Tolima."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Mi negocio cuida el campo: responsabilidad ambiental",
+                            actividad: "El negocio rural como actor ambiental y social. Aplicamos los ODS de la ONU al emprendimiento agroindustrial de Chichalá: ¿cuida el agua?, ¿conserva el suelo?, ¿genera empleo digno en la vereda? Diseñamos el plan de responsabilidad ambiental y social del emprendimiento."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Evaluación del período",
+                            actividad: "Presentación del plan de marketing digital, el catálogo en línea y la proyección financiera del emprendimiento rural. Evaluación integral por rúbrica con énfasis en viabilidad comercial, sostenibilidad ambiental y potencial de impacto en la comunidad de Chichalá."
+                        }
+                    ],
+
+                    // ── PERÍODO 3 ──
+                    periodo3: [
+                        {
+                            semana: 1,
+                            tema: "¿Cómo legalizar mi empresa rural en Colombia?",
+                            actividad: "Tipos de organizaciones para el emprendimiento rural: SAS, asociación campesina, cooperativa, ESAL. Proceso de constitución de una SAS o cooperativa de productores: pasos, costos y beneficios para caficultores, paneleros y artesanos de Chaparral."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Proteger el nombre y la marca de mi producto",
+                            actividad: "Propiedad intelectual en el emprendimiento rural: cómo registrar la marca de un café especial o una artesanía ante la SIC, sellos de origen y denominación de origen para productos del Tolima. Evaluamos qué vale la pena proteger en nuestro emprendimiento."
+                        },
+                        {
+                            semana: 3,
+                            tema: "Liderar el equipo del campo",
+                            actividad: "Liderazgo en equipos rurales: cómo organizar una asociación de productores, repartir roles y responsabilidades. Usamos un tablero Kanban físico para gestionar las tareas del emprendimiento escolar. El líder rural: servicial, conocedor del territorio y comprometido con su comunidad."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Innovar en lo que siempre ha existido: el campo",
+                            actividad: "¿Cómo disrumpir el mercado rural del Tolima? Casos de innovación agroindustrial en Colombia: cafés de especialidad, panela pulverizada con valor añadido, aceites esenciales de plantas nativas, turismo de experiencia en finca. Los estudiantes diseñan su propuesta de innovación para Chichalá."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Los productos de Chichalá pueden llegar lejos",
+                            actividad: "Oportunidades de exportación para productos agroindustriales del Tolima: café especial de alta montaña, panela orgánica, artesanías en fique y guadua. Rutas de exportación, certificaciones (Rainforest, Orgánico, Fairtrade) y tratados de libre comercio que benefician al productor rural colombiano."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Tecnología al servicio del productor rural",
+                            actividad: "Herramientas tecnológicas accesibles para el emprendedor rural: apps de gestión de finca, facturación electrónica, plataformas de venta de café especial en línea, uso de IA para diseñar empaques y análisis de precios del mercado. Aplicamos una herramienta digital al emprendimiento propio."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Construyendo el plan de negocios rural",
+                            actividad: "Redactamos los primeros capítulos del plan de negocios del emprendimiento: resumen ejecutivo con descripción del producto rural, análisis del mercado de Chaparral y el Tolima, plan de marketing territorial y plan operativo de producción en la vereda."
+                        },
+                        {
+                            semana: 8,
+                            tema: "Revisión del plan de negocios",
+                            actividad: "Presentación del avance del plan de negocios ante el grupo. Retroalimentación del docente y los pares con criterios de viabilidad rural, sostenibilidad ambiental y pertinencia para el contexto de Chichalá. Ajustes finales para la presentación ante jurado externo en el período 4."
+                        }
+                    ],
+
+                    // ── PERÍODO 4 ──
+                    periodo4: [
+                        {
+                            semana: 1,
+                            tema: "El pitch del productor rural",
+                            actividad: "Estructura del pitch empresarial adaptado al contexto rural: cómo presentar un negocio de café especial, panela orgánica o artesanías ante un comprador, inversionista o entidad de apoyo. Analizamos pitches exitosos de emprendedores agroindustriales colombianos."
+                        },
+                        {
+                            semana: 2,
+                            tema: "Diseñando el pitch deck del campo",
+                            actividad: "Diseño profesional del pitch deck en Canva o PowerPoint: portada con imagen del territorio, problema rural que resolvemos, nuestro producto, el mercado del Tolima, modelo de negocio, equipo y el sueño de llevar Chichalá al mundo. Cada diapositiva cuenta una parte del territorio."
+                        },
+                        {
+                            semana: 3,
+                            tema: "La historia del emprendimiento rural: storytelling",
+                            actividad: "El arco narrativo del emprendimiento campesino: la tierra como héroe, el reto de la producción tradicional, la solución innovadora y la transformación del territorio. Los estudiantes construyen el relato auténtico de su marca rural con imágenes, emociones y datos del campo de Chichalá."
+                        },
+                        {
+                            semana: 4,
+                            tema: "Presentación ante jurado externo",
+                            actividad: "Presentación del pitch completo ante un jurado conformado por docentes, directivos, líderes comunales de Chichalá o emprendedores de Chaparral. Retroalimentación profesional con énfasis en viabilidad rural, impacto comunitario y potencial de crecimiento agroindustrial."
+                        },
+                        {
+                            semana: 5,
+                            tema: "Puliendo el emprendimiento para la feria",
+                            actividad: "Implementamos las mejoras sugeridas por el jurado: ajuste en el discurso, el plan de negocios, el prototipo del producto o la estrategia de precios. Ensayo general completo de la presentación ante la comunidad de Chichalá y el Corregimiento El Limón."
+                        },
+                        {
+                            semana: 6,
+                            tema: "Montaje de la Feria Empresarial Rural",
+                            actividad: "Preparación del stand de la Gran Feria: exhibición del producto rural terminado, muestras para degustación (café, panela, mermeladas, aromáticas), infografías de la cadena productiva, catálogo de precios y sistema de ventas real a la comunidad visitante."
+                        },
+                        {
+                            semana: 7,
+                            tema: "Cierre y proyección del sueño emprendedor",
+                            actividad: "Reflexión metacognitiva del proceso: ¿qué aprendí sobre el valor del campo?, ¿qué cambiaría en mi emprendimiento?, ¿cómo lo veo en 5 años? Elaboración del diario del emprendedor rural y trazado de la ruta de crecimiento del negocio desde Chichalá hacia el Tolima y el mundo."
+                        },
+                        {
+                            semana: 8,
+                            tema: "🏆 Gran Feria Empresarial Rural Chichalá",
+                            actividad: "Evento de cierre del año escolar: Gran Feria Empresarial ante la comunidad educativa, familias, autoridades del Corregimiento El Limón, líderes de Chaparral y emprendedores del Tolima. Presentación de pitch, ventas reales de productos del territorio, muestra artesanal y reconocimiento a los mejores emprendimientos rurales de la IE Camacho Angarita."
+                        }
+                    ]
+                }
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // DETECTAR NIVEL Y CARGAR INTERFAZ
+        // ══════════════════════════════════════════════
+        const params  = new URLSearchParams(window.location.search);
+        const nivel   = params.get('nivel') || 'basica';
+        const cfg     = contenido[nivel] || contenido.basica;
+
+        document.getElementById('header-sub').textContent   = cfg.subtitle;
+        document.getElementById('level-badge').textContent  = cfg.badge;
+        document.getElementById('subject-icon').textContent = cfg.icon;
+        document.getElementById('subject-desc').textContent = cfg.desc;
+
+        if (nivel === 'media') {
+            document.getElementById('level-badge').style.background =
+                'linear-gradient(135deg, #F4872B, #F7C325)';
+        }
+
+        // ══════════════════════════════════════════════
+        // GENERAR ACORDEÓN
+        // ══════════════════════════════════════════════
+        function generarAcordeon() {
+            const container = document.getElementById('accordion-container');
+            if (!container) return;
+
+            const periodos = [
+                { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
+                { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
+                { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
+                { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
+            ];
+
+            periodos.forEach(periodo => {
+                const semanas = cfg.periodos[periodo.key];
+                let semanasHTML = '';
+
+                semanas.forEach(s => {
+                    semanasHTML += `
+                        <div class="week-container">
+                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            <p>${s.actividad}</p>
+                        </div>
+                    `;
+                });
+
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <button class="accordion-header">
+                        <span>${periodo.label}</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        ${semanasHTML}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+
+            initAccordion();
+        }
+
+        // ══════════════════════════════════════════════
+        // INIT
+        // ══════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', () => {
+            generarAcordeon();
+            initSequentialAnimations();
+        });
+
+    </script>
+</body>
+</html>
