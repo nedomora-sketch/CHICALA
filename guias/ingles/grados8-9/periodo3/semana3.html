@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Narradores de Nuestra Tierra | Inglés · Semana 3 · Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde: #3DBE8C;
+            --azul: #1A9BAB;
+            --morado: #7C3AED;
+            --naranja: #F4872B;
+            --amarillo: #F7C325;
+            --texto: #2D3748;
+            --fondo: #F7FAFC;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Header Institucional */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--morado);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--azul);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--naranja);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        /* Secciones */
+        .seccion {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border-left: 5px solid var(--morado);
+        }
+
+        .seccion h3 {
+            color: var(--morado);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seccion h3::before {
+            content: "🌿";
+        }
+
+        .seccion-escritura h3::before { content: "✍️"; color: var(--azul); }
+        .seccion-creativa h3::before { content: "🎭"; color: var(--naranja); }
+
+        /* Niveles */
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado8 { border-color: var(--azul); }
+        .nivel-card.grado9 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            background: var(--texto);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .grado8 .nivel-badge { background: var(--azul); }
+        .grado9 .nivel-badge { background: var(--morado); }
+
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .actividad-lista li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        /* Materiales */
+        .materiales-box {
+            background: #FFFBE6;
+            border: 2px dashed var(--amarillo);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .materiales-box strong { color: #B45309; }
+
+        /* Vocabulario */
+        .vocab-box {
+            background: #E6FFFA;
+            border: 2px solid #81E6D9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .vocab-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 3px solid var(--azul);
+        }
+
+        .vocab-en {
+            font-weight: 800;
+            color: var(--azul);
+            font-size: 1rem;
+        }
+
+        .vocab-es {
+            color: #718096;
+            font-size: 0.85rem;
+        }
+
+        /* Conectores */
+        .conector-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .conector-tag {
+            background: linear-gradient(135deg, var(--morado), #6B46C1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.85rem;
+        }
+
+        .footer p { margin: 3px 0; }
+
+        /* Evaluación */
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--amarillo);
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 15px;
+        }
+
+        .eval-box h4 {
+            color: #B45309;
+            margin: 0 0 8px;
+        }
+
+        /* Reflexión */
+        .reflexion-box {
+            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(26,155,171,0.1));
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--morado);
+            margin: 0;
+        }
+
+        /* Tag de área */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(26,155,171,0.12); color: #1A9BAB; }
+        .tag-objeto    { background: rgba(124,58,237,0.12);  color: #7C3AED; }
+        .tag-ciudadana { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
+
+        /* Línea separadora de grados en impresión */
+        .page-break { page-break-before: always; }
+
+        /* Btn Imprimir */
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--morado), var(--azul));
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(124,58,237,0.45);
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--azul);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        /* Espacio para escribir */
+        .espacio-escritura {
+            border: 2px dashed #CBD5E0;
+            border-radius: 8px;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #FAFAFA;
+        }
+
+        .espacio-escritura::before {
+            content: "✏️  Escribe aquí tu respuesta:";
+            display: block;
+            font-size: 0.8rem;
+            color: #A0AEC0;
+            margin-bottom: 5px;
+        }
+
+        /* Líneas de escritura para impresión */
+        .lineas {
+            margin-top: 10px;
+        }
+
+        .linea {
+            border-bottom: 1px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        /* Texto bilingüe */
+        .bilingue {
+            background: #f0f9ff;
+            border-left: 3px solid var(--azul);
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .bilingue .en {
+            font-weight: 700;
+            color: var(--azul);
+        }
+
+        .bilingue .es {
+            color: #718096;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* ══════════════════
+           ESTILOS DE IMPRESIÓN
+        ══════════════════ */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                border-radius: 0;
+            }
+
+            .btn-print { display: none; }
+            .btn-volver { display: none; }
+
+            .nivel-card {
+                break-inside: avoid;
+            }
+
+            .seccion {
+                break-inside: avoid;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .espacio-escritura {
+                background: white;
+            }
+
+            .espacio-escritura::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ══ BOTÓN IMPRIMIR ══ -->
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>✍️ Narradores de Nuestra Tierra</h1>
+        <h2>Inglés · Semana 3 · Período 3</h2>
+        <p>Grados 8° y 9° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p><strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+           <strong>Fecha:</strong> _________________________</p>
+        <p><strong>Nombre del estudiante:</strong> _____________________________________________</p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: BIENVENIDA AL RETO ══ -->
+    <div class="seccion">
+        <h3>El Reto del día</h3>
+        <p>
+            En la vereda Chichalá, cada rincón cuenta una historia: el trapiche de panela,
+            los cafetales de la ladera, las artesanías de nuestras abuelas. Hoy seremos
+            <strong>narradores bilingües</strong>: escribiremos sobre nuestro territorio
+            usando el inglés para compartir nuestra cultura con el mundo.
+        </p>
+        <p>
+            Cada grado tiene su propio desafío, pero <strong>todos compartimos la misma
+            vereda, el mismo orgullo de ser de Chichalá, y la misma voz que merece ser
+            escuchada en todos los idiomas. 🌿</strong>
+                </p>
+    </div>
+
+    <!-- ══ SECCIÓN 2: MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Materiales para hoy:</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+            <li>Hoja de papel o cuaderno de inglés</li>
+            <li>Lápiz, esfero y colores</li>
+            <li>Diccionario de inglés (físico o digital)</li>
+            <li>Fotos o recuerdos de la vereda Chichalá</li>
+            <li>Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 3: VOCABULARIO CLAVE ══ -->
+    <div class="seccion seccion-escritura">
+        <h3>Vocabulario del territorio</h3>
+        <p>Antes de escribir, repasa estas palabras clave del campo y la comunidad:</p>
+
+        <div class="vocab-grid">
+            <div class="vocab-item">
+                <div class="vocab-en">☕ coffee harvest</div>
+                <div class="vocab-es">cosecha de café</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌿 sugarcane / panela</div>
+                <div class="vocab-es">caña de azúcar / panela</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🏡 farmhouse</div>
+                <div class="vocab-es">casa de campo / finca</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌄 countryside</div>
+                <div class="vocab-es">campo / zona rural</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">👨‍🌾 farmer</div>
+                <div class="vocab-es">campesino / agricultor</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌾 to harvest</div>
+                <div class="vocab-es">cosechar</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">💧 stream / river</div>
+                <div class="vocab-es">quebrada / río</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🤝 community</div>
+                <div class="vocab-es">comunidad / vereda</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌳 landscape</div>
+                <div class="vocab-es">paisaje</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🏺 craftsmanship</div>
+                <div class="vocab-es">artesanía</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌧️ rainy season</div>
+                <div class="vocab-es">temporada de lluvias</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🐄 livestock</div>
+                <div class="vocab-es">ganado / animales de granja</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: CONECTORES DE ESCRITURA ══ -->
+    <div class="seccion">
+        <h3>Conectores para narrar y describir</h3>
+        <p>Usa estos conectores para darle cohesión y coherencia a tus textos:</p>
+
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
+            <tr style="background:rgba(124,58,237,0.1);">
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Función</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Conector</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Ejemplo</th>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Adición</strong></td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">also</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">and</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">furthermore</span>
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
+                    We grow coffee. <strong>Also,</strong> we produce panela.
+                </td>
+            </tr>
+            <tr style="background:#f8fafc;">
+                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Contraste</strong></td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">but</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">however</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">although</span>
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
+                    The road is difficult, <strong>however,</strong> we love our village.
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Causa</strong></td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">because</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">since</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">due to</span>
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
+                    We wake up early <strong>because</strong> we work on the farm.
+                </td>
+            </tr>
+            <tr style="background:#f8fafc;">
+                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Efecto</strong></td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">therefore</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">so</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">as a result</span>
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
+                    It rained a lot, <strong>therefore</strong> the harvest was excellent.
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Secuencia</strong></td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">first</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">then</span>
+                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">finally</span>
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
+                    <strong>First,</strong> we pick the coffee. <strong>Then,</strong> we dry it.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ══ SECCIÓN 5: INDICADORES DE DESEMPEÑO ══ -->
+    <div class="seccion">
+        <h3>¿Qué vamos a aprender hoy?</h3>
+
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Produzco <strong>narraciones sobre experiencias personales</strong> y hechos del
+            entorno, organizando párrafos coherentes con ortografía y puntuación correctas
+            (DBA 2, 8).</p>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>Textos con funciones de <strong>descripción, narración y argumentación</strong>.
+            Organización de párrafos coherentes con ortografía y puntuación correctas.</p>
+            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+            <p>Comprendo la importancia de <strong>cumplir los acuerdos</strong> para la
+            convivencia en mi comunidad.</p>
+        </div>
+
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Produzco <strong>narraciones sobre experiencias personales y hechos del entorno</strong>
+            con párrafos coherentes, aplicando conectores de causa, efecto, adición y contraste
+            (DBA 2, 8).</p>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>Textos con funciones <strong>descriptivas y narrativas</strong> contextualizados
+            en Chichalá: su gente, su campo, su cultura.</p>
+            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+            <p>Actúo con <strong>responsabilidad frente al cuidado del ambiente</strong> y los
+            recursos naturales de mi comunidad.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: TEXTO MODELO ══ -->
+    <div class="seccion seccion-escritura">
+        <h3>Texto modelo: aprende del ejemplo</h3>
+        <p>Lee con atención este texto narrativo-descriptivo sobre Chichalá.
+        Identifica los <strong>conectores</strong> y las <strong>funciones textuales</strong>
+        marcadas en color:</p>
+
+        <div style="background:#f0f9ff; border:2px solid #BAE6FD; border-radius:12px;
+                    padding:20px; margin:15px 0; font-size:0.95rem; line-height:1.9;">
+            <p style="font-weight:800; color:var(--azul); margin:0 0 12px;">
+                🌄 My Village: Chichalá
+            </p>
+            <p>
+                I live in Chichalá, a small but beautiful village in Chaparral, Tolima.
+                <span style="background:rgba(26,155,171,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
+                The landscape is full of green mountains and clear streams.</span>
+                <em style="color:#718096">(descripción)</em>
+            </p>
+            <p>
+                My family grows coffee and sugarcane.
+                <span style="background:rgba(61,190,140,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>Because</u> the weather is perfect for farming,</span>
+                our harvests are always very good.
+                <em style="color:#718096">(causa)</em>
+                <span style="background:rgba(244,135,43,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>As a result,</u> we sell our products in Chaparral every month.</span>
+                <em style="color:#718096">(efecto)</em>
+            </p>
+            <p>
+                Life in the countryside is hard work,
+                <span style="background:rgba(124,58,237,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>however,</u> it is also full of joy and community.</span>
+                <em style="color:#718096">(contraste)</em>
+                <span style="background:rgba(26,155,171,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>Furthermore,</u> our traditions keep us united as a family and as a village.</span>
+                <em style="color:#718096">(adición)</em>
+            </p>
+            <p>
+                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>First,</u> every morning begins with a warm cup of agua de panela.</span>
+                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>Then,</u> we go out to the fields.</span>
+                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
+                <u>Finally,</u> at sunset, we gather as a family and share stories.</span>
+                <em style="color:#718096">(secuencia)</em>
+            </p>
+            <p style="margin:0;">
+                I am proud of Chichalá. It is not just a place — it is my identity.
+            </p>
+        </div>
+
+        <div class="materiales-box" style="background:#F0FFF4; border-color:#68D391;">
+            <strong style="color:#276749;">💡 Analiza el texto:</strong>
+            <ul style="margin:8px 0 0; padding-left:20px;">
+                <li>¿Cuántos conectores de causa y efecto encontraste? __________</li>
+                <li>¿Cuántos conectores de contraste y adición encontraste? __________</li>
+                <li>¿En qué párrafo se narra la secuencia del día? __________</li>
+                <li>Escribe con tus palabras de qué trata el texto:
+                    <div class="lineas" style="margin-top:6px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 7: ACTIVIDADES PASO A PASO ══ -->
+    <div class="seccion seccion-creativa">
+        <h3>Actividades paso a paso</h3>
+
+        <!-- GRADO 8 -->
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8° · Mi historia en el campo</span>
+
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Paso 1 — Planea tu narración:</strong>
+                    Piensa en una experiencia real o imaginaria en la vereda Chichalá.
+                    Responde estas preguntas en español primero:
+                    <table style="width:100%; border-collapse:collapse;
+                                  font-size:0.88rem; margin-top:10px;">
+                        <tr style="background:rgba(26,155,171,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left;">Pregunta</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left;">Tu respuesta</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                ¿Qué pasó? (What happened?)
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                ¿Cuándo pasó? (When did it happen?)
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                ¿Por qué fue importante? (Why was it important?)
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                ¿Cómo terminó? (How did it end?)
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Paso 2 — Primer borrador:</strong>
+                    Escribe un párrafo de <strong>mínimo 5 oraciones</strong> en inglés
+                    sobre tu experiencia. Usa al menos:
+                    <div class="conector-box" style="margin:8px 0;">
+                        <span class="conector-tag">1 conector de causa</span>
+                        <span class="conector-tag">1 conector de efecto</span>
+                        <span class="conector-tag">1 conector de adición o contraste</span>
+                    </div>
+                    <div class="espacio-escritura">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Paso 3 — Revisa y edita:</strong>
+                    Lee tu borrador y comprueba:
+                    <ul style="margin-top:8px; padding-left:15px;">
+                        <li>¿Cada oración empieza con mayúscula? ___</li>
+                        <li>¿Usaste punto al final de cada oración? ___</li>
+                        <li>¿Los conectores están bien usados? ___</li>
+                        <li>¿El texto tiene sentido y secuencia lógica? ___</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Paso 4 — Versión final:</strong>
+                    Reescribe tu texto corregido en el espacio de abajo.
+                    <div class="espacio-escritura">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- GRADO 9 -->
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9° · Chichalá en palabras y en el mundo</span>
+
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Paso 1 — Elige tu tema:</strong>
+                    Selecciona uno de estos temas para escribir tu texto narrativo-descriptivo:
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin:10px 0;">
+                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px; font-weight:700;
+                                    color:var(--morado); font-size:0.9rem;">
+                            🌿 La historia de una cosecha de café
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px; font-weight:700;
+                                    color:var(--morado); font-size:0.9rem;">
+                            🏡 Un día en la finca de mi familia
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px; font-weight:700;
+                                    color:var(--morado); font-size:0.9rem;">
+                            💧 El río y los recursos naturales de Chichalá
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px; font-weight:700;
+                                    color:var(--morado); font-size:0.9rem;">
+                            🎭 Una tradición o celebración de la vereda
+                        </div>
+                    </div>
+                    <p style="margin:4px 0;">Tema elegido: ________________________________</p>
+                </li>
+                <li>
+                    <strong>Paso 2 — Estructura tu texto:</strong>
+                    Organiza tu escritura en tres partes:
+                    <table style="width:100%; border-collapse:collapse;
+                                  font-size:0.88rem; margin-top:10px;">
+                        <tr style="background:rgba(124,58,237,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left; width:25%;">Parte</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left; width:40%;">¿Qué incluir?</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left;">Conector sugerido</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Introducción</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Presenta el tema y el lugar (Chichalá)
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                I live in... / Chichalá is...
+                            </td>
+                        </tr>
+                        <tr style="background:#f8fafc;">
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Desarrollo</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Narra los hechos con causa, efecto y contraste
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                because / however / as a result
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Conclusión</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Reflexión sobre lo que sientes por tu comunidad
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                therefore / I believe / In conclusion
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Paso 3 — Escribe tu texto:</strong>
+                    Desarrolla <strong>mínimo 3 párrafos</strong> usando la estructura
+                    de arriba. Incluye al menos <strong>4 conectores diferentes</strong>
+                    (causa, efecto, contraste, adición).
+                    <div class="espacio-escritura" style="min-height:140px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+                <li>
+                    <strong>Paso 4 — Reto bilingüe:</strong>
+                    Traduce al español tu párrafo favorito del texto y compáralo.
+                    ¿Qué cambia y qué permanece igual en el mensaje?
+                    <div class="lineas" style="margin-top:8px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 8: EJERCICIOS DE PRÁCTICA ══ -->
+    <div class="seccion">
+        <h3>Practiquemos juntos</h3>
+
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8°</span>
+            <p>Completa las oraciones con el conector correcto
+            (<em>because, however, also, therefore, first</em>):</p>
+            <div style="font-size:0.95rem; line-height:2.8;">
+                1. We work hard on the farm __________ we love what we do.<br>
+                2. The coffee harvest was small. __________, we earned less money.<br>
+                3. Life in Chichalá is simple, __________
+                   it is full of love and nature.<br>
+                4. __________, we pick the coffee. Then, we dry it in the sun.<br>
+                5. We grow coffee. __________, we produce panela and corn.
+            </div>
+            <div class="lineas" style="margin-top:8px;">
+                <div class="linea"></div>
+            </div>
+            <p style="font-size:0.85rem; color:#718096; margin-top:8px;">
+                💡 <strong>Respuestas:</strong>
+                1. because &nbsp;|&nbsp; 2. Therefore &nbsp;|&nbsp;
+                3. however &nbsp;|&nbsp; 4. First &nbsp;|&nbsp; 5. Also
+            </p>
+        </div>
+
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9°</span>
+            <p>Reescribe las oraciones conectando las dos ideas con el conector indicado:</p>
+            <ul class="actividad-lista">
+                <li>
+                    <em>"It rains a lot in Chichalá."</em> +
+                    <em>"The crops grow very well."</em>
+                    → Usa <strong>therefore</strong>:
+                    <div class="lineas"><div class="linea"></div></div>
+                </li>
+                <li>
+                    <em>"The road to the village is difficult."</em> +
+                    <em>"People are proud to live there."</em>
+                    → Usa <strong>although</strong>:
+                    <div class="lineas"><div class="linea"></div></div>
+                </li>
+                <li>
+                    <em>"Farmers wake up early."</em> +
+                    <em>"They take care of the animals before breakfast."</em>
+                    → Usa <strong>furthermore</strong>:
+                    <div class="lineas"><div class="linea"></div></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 9: COMPETENCIA CIUDADANA ══ -->
+    <div class="seccion">
+        <h3>Convivencia y territorio</h3>
+        <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+        <p style="margin-top:10px;">
+            Escribir en inglés sobre nuestra comunidad es un acto de
+            <strong>orgullo, respeto y responsabilidad</strong>.
+            Al narrar nuestro territorio, también lo cuidamos y lo valoramos.
+        </p>
+
+        <div class="nivel-card grado8" style="margin-top:15px;">
+            <span class="nivel-badge">Grado 8°</span>
+            <p><strong>Reflexión:</strong> ¿De qué forma cumplir los acuerdos de la comunidad
+            (como no contaminar el río o cuidar los cultivos) se refleja en las historias
+            que contamos sobre Chichalá?</p>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+
+        <div class="nivel-card grado9" style="margin-top:15px;">
+            <span class="nivel-badge">Grado 9°</span>
+            <p><strong>Reflexión:</strong> En tu texto en inglés, ¿cómo puedes incluir
+            un mensaje sobre el cuidado del ambiente y los recursos naturales de Chichalá?
+            Escribe una oración en inglés que transmita ese mensaje:</p>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 10: EVALUACIÓN ══ -->
+    <div class="seccion">
+        <h3>¿Cómo te fue hoy?</h3>
+
+        <div class="eval-box">
+            <h4>⭐ Rúbrica de autoevaluación</h4>
+            <p>Marca con una X según tu desempeño de hoy:</p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+                <tr style="background:#FFFBE6;">
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center;">Lo logré 😄</th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center;">En proceso 🙂</th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center;">Me faltó 😕</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Usé conectores de causa, efecto, adición y contraste
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Escribí párrafos coherentes con ortografía correcta
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                                                              text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Relacioné mi texto con el entorno rural de Chichalá
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Revisé y edité mi texto antes de la versión final
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Participé con respeto y colaboré con mis compañeros
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;
+                    margin-top:15px;">
+            <div>
+                <p><strong>⭐ Lo que más me gustó de esta guía:</strong></p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+            <div>
+                <p><strong>🔧 Lo que me resultó más difícil:</strong></p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:15px;">
+            <p><strong>🚀 Una cosa que voy a mejorar la próxima semana:</strong></p>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 11: ACTIVIDAD PARA LA CASA ══ -->
+    <div class="seccion">
+        <h3>Tarea en casa · Mi Chichalá en inglés</h3>
+        <p>
+            Camina por la vereda, la finca o el camino al colegio.
+            Elige <strong>3 momentos o lugares especiales</strong> y escribe
+            una oración en inglés sobre cada uno usando un conector diferente:
+        </p>
+        <table style="width:100%; border-collapse:collapse;
+                      font-size:0.9rem; margin-top:10px;">
+            <tr style="background:rgba(124,58,237,0.1);">
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left; width:5%;">#</th>
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left; width:30%;">Lugar o momento</th>
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left; width:20%;">Conector usado</th>
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left;">Oración en inglés</th>
+            </tr>
+            <tr>
+                <td style="padding:10px; border:1px solid #CBD5E0;">1</td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+            </tr>
+            <tr style="background:#f8fafc;">
+                <td style="padding:10px; border:1px solid #CBD5E0;">2</td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+            </tr>
+            <tr>
+                <td style="padding:10px; border:1px solid #CBD5E0;">3</td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
+            </tr>
+        </table>
+
+        <div class="materiales-box" style="margin-top:15px; background:#F0FFF4;
+             border-color:#68D391;">
+            <strong style="color:#276749;">🌟 Reto extra (Grado 9°):</strong>
+            <p style="margin:6px 0 0;">
+                Escribe un párrafo completo en inglés sobre uno de esos momentos
+                y compártelo con un familiar. Pregúntale:
+                <em>"¿Entendiste algo de lo que escribí?"</em>
+                Anota su reacción aquí:
+            </p>
+            <div class="lineas" style="margin-top:8px;">
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 12: REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>
+            🌿 "Nuestra historia merece ser contada en todos los idiomas.<br>
+            Cuando escribes sobre Chichalá en inglés,<br>
+            le dices al mundo que este rincón del Tolima<br>
+            <strong>tiene voz, tiene nombre y tiene orgullo."</strong>
+        </p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer" style="text-align:center; margin-top:30px;
+         padding-top:20px; border-top:1px solid #E2E8F0;
+         color:#718096; font-size:0.85rem;">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:8px; font-style:italic;">
+            "Paz, Tolerancia y Convivencia"
+        </p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+    </div>
+
+</div>
+</body>
+</html>

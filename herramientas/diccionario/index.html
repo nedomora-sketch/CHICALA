@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chichalá Dictionary · IE Técnica Camacho Angarita</title>
+    <link rel="stylesheet" href="dictionary.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ══ PARTÍCULAS DE FONDO ══ -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ══ TOAST ══ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ══ HEADER ══ -->
+    <header class="dict-header">
+        <div class="dict-header__inner">
+            <div class="dict-header__logo">📖</div>
+            <div class="dict-header__info">
+                <p class="dict-header__inst">SEDE CHICHALÁ · IE TÉCNICA CAMACHO ANGARITA</p>
+                <h1 class="dict-header__title">The Chichalá Dictionary</h1>
+                <p class="dict-header__sub">Vocabulario contextualizado · Todos los grados</p>
+            </div>
+            <div class="dict-header__stats">
+                <div class="stat-box">
+                    <span class="stat-num" id="stat-total">100</span>
+                    <span class="stat-label">palabras</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num" id="stat-favs">0</span>
+                    <span class="stat-label">favoritas</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num" id="stat-cats">8</span>
+                    <span class="stat-label">categorías</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══ CONTROLES ══ -->
+    <div class="controls-bar">
+        <div class="controls-bar__inner">
+
+            <!-- BÚSQUEDA -->
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="Search a word... (Busca una palabra...)"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button class="search-clear" id="search-clear" title="Limpiar">✕</button>
+            </div>
+
+            <!-- FILTRO FAVORITOS -->
+            <button class="btn-favs" id="btn-favs">
+                ⭐ Mis favoritas
+            </button>
+
+            <!-- BOTÓN VOLVER -->
+            <a href="../../index.html" class="btn-back">⬅ Inicio</a>
+
+        </div>
+
+        <!-- CATEGORÍAS -->
+        <div class="categories-row" id="categories-row">
+            <button class="cat-btn active" data-cat="all">🌐 Todas</button>
+            <button class="cat-btn" data-cat="rural">🌿 Campo</button>
+            <button class="cat-btn" data-cat="school">🏫 Escuela</button>
+            <button class="cat-btn" data-cat="family">👨‍👩‍👧 Familia</button>
+            <button class="cat-btn" data-cat="connectors">🔗 Conectores</button>
+            <button class="cat-btn" data-cat="instructions">📋 Instrucciones</button>
+            <button class="cat-btn" data-cat="environment">🌎 Ambiente</button>
+            <button class="cat-btn" data-cat="entrepreneurship">💼 Emprendimiento</button>
+            <button class="cat-btn" data-cat="technology">🤖 Tecnología</button>
+        </div>
+
+        <!-- RESULTADO DE BÚSQUEDA -->
+        <div class="results-info" id="results-info">
+            Mostrando <strong id="results-count">100</strong> palabras
+        </div>
+    </div>
+
+    <!-- ══ GRID DE PALABRAS ══ -->
+    <main class="dict-main">
+        <div class="words-grid" id="words-grid">
+            <!-- Generado por JS -->
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="empty-state" style="display:none;">
+            <div class="empty-state__emoji">🔍</div>
+            <p class="empty-state__title">No encontramos esa palabra</p>
+            <p class="empty-state__sub">
+                Intenta con otra búsqueda o selecciona una categoría diferente.
+            </p>
+        </div>
+    </main>
+
+    <!-- ══ MODAL DE PALABRA ══ -->
+    <div class="word-modal" id="word-modal">
+        <div class="word-modal__overlay" id="modal-overlay"></div>
+        <div class="word-modal__card" id="modal-card">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-emoji" id="modal-emoji"></div>
+            <div class="modal-cat-tag" id="modal-cat-tag"></div>
+            <h2 class="modal-word" id="modal-word"></h2>
+            <p class="modal-phonetic" id="modal-phonetic"></p>
+            <p class="modal-translation" id="modal-translation"></p>
+            <div class="modal-example" id="modal-example"></div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn--speak" id="modal-speak">
+                    🔊 Escuchar pronunciación
+                </button>
+                <button class="modal-btn modal-btn--fav" id="modal-fav">
+                    ⭐ Agregar a favoritas
+                </button>
+            </div>
+            <div class="modal-nav">
+                <button class="modal-nav-btn" id="modal-prev">← Anterior</button>
+                <button class="modal-nav-btn" id="modal-next">Siguiente →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="dict-footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p style="font-style:italic; margin-top:4px;">"Paz, Tolerancia y Convivencia"</p>
+    </footer>
+
+    <script src="dictionary.js"></script>
+
+</body>
+</html>

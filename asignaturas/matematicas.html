@@ -201,6 +201,11 @@
     // existe en el servidor/GitHub Pages
     // ══════════════════════════════════════════════
     async function existeGuia(url) {
+    if (window.location.protocol === 'file:') {
+        // En modo local, asumimos que el archivo existe si la ruta es válida
+        // Esto es un hack para que funcione sin internet
+        return true;
+        }
         try {
             const res = await fetch(url, { method: 'HEAD' });
             return res.ok;
