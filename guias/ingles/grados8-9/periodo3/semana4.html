@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Voices of Our Land | Inglés · Semana 4 · Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde:    #3DBE8C;
+            --azul:     #1A9BAB;
+            --morado:   #7C3AED;
+            --naranja:  #F4872B;
+            --amarillo: #F7C325;
+            --texto:    #2D3748;
+            --fondo:    #F7FAFC;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--azul);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--azul);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--naranja);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        .seccion {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8fafc;
+            border-left: 5px solid var(--azul);
+        }
+
+        .seccion h3 {
+            color: var(--azul);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seccion h3::before        { content: "🌿"; }
+        .seccion-escritura h3::before { content: "✍️"; }
+        .seccion-oral h3::before   { content: "🗣️"; }
+        .seccion-creativa h3::before { content: "🎭"; }
+        .seccion-eval h3::before   { content: "⭐"; }
+
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado8 { border-color: var(--azul); }
+        .nivel-card.grado9 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .grado8 .nivel-badge { background: var(--azul); }
+        .grado9 .nivel-badge { background: var(--morado); }
+
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .actividad-lista li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        .materiales-box {
+            background: #FFFBE6;
+            border: 2px dashed var(--amarillo);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .materiales-box strong { color: #B45309; }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .vocab-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 3px solid var(--azul);
+        }
+
+        .vocab-en {
+            font-weight: 800;
+            color: var(--azul);
+            font-size: 1rem;
+        }
+
+        .vocab-es {
+            color: #718096;
+            font-size: 0.85rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(26,155,171,0.12);  color: #1A9BAB; }
+        .tag-objeto    { background: rgba(124,58,237,0.12);   color: #7C3AED; }
+        .tag-ciudadana { background: rgba(61,190,140,0.12);   color: #2A9B6A; }
+
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--amarillo);
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 15px;
+        }
+
+        .eval-box h4 { color: #B45309; margin: 0 0 8px; }
+
+        .reflexion-box {
+            background: linear-gradient(135deg,
+                rgba(26,155,171,0.1),
+                rgba(124,58,237,0.1));
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--azul);
+            margin: 0;
+        }
+
+        .bilingue {
+            background: #eff6ff;
+            border-left: 3px solid var(--azul);
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .bilingue .en {
+            font-weight: 700;
+            color: var(--azul);
+        }
+
+        .bilingue .es {
+            color: #718096;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .story-frame {
+            background: #eff6ff;
+            border: 2px solid #BFDBFE;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            line-height: 1.9;
+        }
+
+        .story-frame p { margin: 0 0 10px; }
+        .story-frame p:last-child { margin: 0; }
+
+        .oral-card {
+            background: linear-gradient(135deg,
+                rgba(26,155,171,0.08),
+                rgba(61,190,140,0.08));
+            border: 2px solid rgba(26,155,171,0.25);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+        }
+
+        .oral-card__title {
+            font-weight: 800;
+            color: var(--azul);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .step-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: white;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-num--azul   { background: var(--azul); }
+        .step-num--morado { background: var(--morado); }
+
+        .step-content { flex: 1; }
+        .step-content strong { color: var(--texto); }
+
+        .lineas { margin-top: 10px; }
+
+        .linea {
+            border-bottom: 1px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        .espacio-escritura {
+            border: 2px dashed #CBD5E0;
+            border-radius: 8px;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #FAFAFA;
+        }
+
+        .espacio-escritura::before {
+            content: "✏️  Escribe aquí tu respuesta:";
+            display: block;
+            font-size: 0.8rem;
+            color: #A0AEC0;
+            margin-bottom: 5px;
+        }
+
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--azul), #0E7490);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(26,155,171,0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(26,155,171,0.45);
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--azul);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        .page-break { page-break-before: always; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; border-radius: 0; }
+            .btn-print  { display: none; }
+            .btn-volver { display: none; }
+            .nivel-card { break-inside: avoid; }
+            .seccion    { break-inside: avoid; }
+            .espacio-escritura { background: white; }
+            .espacio-escritura::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ══ BOTÓN IMPRIMIR ══ -->
+    <button class="btn-print" onclick="window.print()">
+        🖨️ Imprimir / Exportar PDF
+    </button>
+
+    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>🎙️ Voices of Our Land</h1>
+        <h2>Inglés · Semana 4 · Período 3</h2>
+        <p>Grados 8° y 9° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>
+            <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+            <strong>Fecha:</strong> _________________________
+        </p>
+        <p>
+            <strong>Nombre del estudiante:</strong>
+            _____________________________________________
+        </p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: EL RETO ══ -->
+    <div class="seccion">
+        <h3>El Reto del día</h3>
+        <p>
+            Las grandes historias no siempre se escriben en los libros de texto.
+            Muchas están en las manos callosas de un caficultor, en la receta
+            de panela de una abuela, en el camino de tierra que recorremos
+            cada mañana hacia el colegio. Hoy <strong>daremos voz a esas historias
+            en inglés</strong>, porque lo que somos merece ser presentado
+            con orgullo ante el mundo.
+        </p>
+        <p>
+            Grado 8° presentará <strong>narraciones justificadas</strong>
+            sobre su entorno familiar y comunitario.
+            Grado 9° irá más lejos: construirá
+            <strong>discursos argumentativos breves</strong>
+            conectando su historia personal con los
+            recursos naturales y el futuro de Chichalá. 🌿
+        </p>
+    </div>
+
+    <!-- ══ SECCIÓN 2: MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Materiales para hoy:</strong>
+        <ul style="margin:8px 0 0; padding-left:20px;">
+            <li>Cuaderno de inglés y lápiz o esfero</li>
+            <li>Una historia familiar real o imaginaria de Chichalá</li>
+            <li>Diccionario de inglés (The Chichalá Dictionary recomendado)</li>
+            <li>Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 3: VOCABULARIO ══ -->
+    <div class="seccion seccion-escritura">
+        <h3>Vocabulario de la semana</h3>
+        <p>Estas palabras son clave para narrar,
+        justificar y presentar con profundidad:</p>
+        <div class="vocab-grid">
+            <div class="vocab-item">
+                <div class="vocab-en">🗣️ to justify</div>
+                <div class="vocab-es">justificar</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">📢 to present</div>
+                <div class="vocab-es">presentar</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">💡 to argue</div>
+                <div class="vocab-es">argumentar</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌱 to grow up</div>
+                <div class="vocab-es">crecer / criarse</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🤝 to commit</div>
+                <div class="vocab-es">comprometerse</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🏔️ rural community</div>
+                <div class="vocab-es">comunidad rural</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">💪 to overcome</div>
+                <div class="vocab-es">superar / vencer</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌿 natural resources</div>
+                <div class="vocab-es">recursos naturales</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🎯 purpose</div>
+                <div class="vocab-es">propósito</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🔥 challenge</div>
+                <div class="vocab-es">desafío / reto</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🌅 opportunity</div>
+                <div class="vocab-es">oportunidad</div>
+            </div>
+            <div class="vocab-item">
+                <div class="vocab-en">🏡 roots</div>
+                <div class="vocab-es">raíces</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: INDICADORES DE DESEMPEÑO ══ -->
+    <div class="seccion">
+        <h3>¿Qué vamos a aprender hoy?</h3>
+
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Explico y justifico <strong>planes y acciones</strong>
+            relacionados con mi entorno familiar y comunitario
+            en presentaciones cortas y ensayadas (DBA 5, 6, 7, 8).</p>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>Descripción detallada de <strong>asuntos cotidianos
+            del entorno</strong> usando vocabulario específico
+            y conectores de causa, efecto y contraste.</p>
+            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+            <p>Comprendo la importancia de
+            <strong>cumplir los acuerdos</strong>
+            para mantener la convivencia en mi comunidad.</p>
+        </div>
+
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Construyo <strong>discursos argumentativos breves</strong>
+            sobre hechos, experiencias y planes personales
+            conectados con el territorio (DBA 5, 6, 7, 8).</p>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>Presentación estructurada sobre
+            <strong>el entorno local, los recursos naturales
+            y el futuro de Chichalá</strong>
+            con vocabulario específico y argumentación sólida.</p>
+            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+            <p>Actúo con <strong>responsabilidad frente
+            al cuidado del ambiente</strong>
+            y los recursos naturales de mi comunidad.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 5: TEXTO MODELO ══ -->
+    <div class="seccion seccion-escritura">
+        <h3>Texto modelo: una voz de Chichalá</h3>
+        <p>Lee con atención. Identifica las
+        <strong>justificaciones</strong>,
+        los <strong>conectores</strong> y la
+        <strong>estructura argumentativa</strong>:</p>
+
+        <div class="story-frame">
+            <p style="font-weight:800; color:var(--azul); margin-bottom:14px;">
+                🎙️ Growing Up in Chichalá: A Story Worth Telling
+            </p>
+            <p>
+                My name is Camilo and I grew up in Chichalá,
+                a small but extraordinary village in the mountains of Tolima.
+                <span style="background:rgba(26,155,171,0.15);
+                             padding:2px 5px; border-radius:4px; font-weight:700">
+                    <u>Because</u> my family has been farming this land
+                    for three generations,</span>
+                I learned early that hard work and respect for nature
+                are the foundations of everything we are.
+                <em style="color:#718096; font-size:0.88rem">(justificación)</em>
+            </p>
+            <p>
+                Life here is not without challenges.
+                <span style="background:rgba(124,58,237,0.15);
+                             padding:2px 5px; border-radius:4px; font-weight:700">
+                    <u>However</u>, every obstacle has taught me something
+                    valuable about resilience and community.</span>
+                <em style="color:#718096; font-size:0.88rem">(contraste)</em>
+                <span style="background:rgba(61,190,140,0.15);
+                             padding:2px 5px; border-radius:4px; font-weight:700">
+                    <u>For example</u>, when the road to school was flooded,
+                    our neighbors worked together to clear the path.</span>
+                <em style="color:#718096; font-size:0.88rem">(ejemplo)</em>
+            </p>
+            <p>
+                <span style="background:rgba(244,135,43,0.15);
+                             padding:2px 5px; border-radius:4px; font-weight:700">
+                    <u>As a result</u>, I believe that our greatest resource
+                    is not the coffee or the sugarcane —
+                    it is the people of Chichalá.</span>
+                <em style="color:#718096; font-size:0.88rem">(efecto / conclusión)</em>
+            </p>
+            <p style="margin:0; font-style:italic; color:#718096;">
+                <strong>I commit to taking care of this land and these people,
+                because our roots are the source of our strength.</strong> 🌿
+            </p>
+        </div>
+
+        <div class="materiales-box"
+             style="background:#F0FFF4; border-color:#68D391; margin-top:14px;">
+            <strong style="color:#276749;">💡 Analiza el texto:</strong>
+            <ul style="margin:8px 0 0; padding-left:20px;">
+                <li>¿Qué conector de causa usó Camilo? __________</li>
+                <li>¿Cómo introduce el contraste? __________</li>
+                <li>¿Cuál es la conclusión o argumento principal del texto?
+                    <div class="lineas" style="margin-top:6px;">
+                        <div class="linea"></div>
+                    </div>
+                </li>
+                <li>¿Qué frase conecta con la Competencia Ciudadana? Escríbela:
+                    <div class="lineas" style="margin-top:6px;">
+                        <div class="linea"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: ACTIVIDADES PASO A PASO ══ -->
+    <div class="seccion seccion-creativa">
+        <h3>Actividades paso a paso</h3>
+
+        <!-- GRADO 8 -->
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8° · My Story, My Voice</span>
+
+            <div class="step-box">
+                <div class="step-num step-num--azul">1</div>
+                <div class="step-content">
+                    <strong>Planea tu presentación:</strong>
+                    Responde estas preguntas como borrador de ideas:
+                    <table style="width:100%; border-collapse:collapse;
+                                  font-size:0.88rem; margin-top:10px;">
+                        <tr style="background:rgba(26,155,171,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left; width:45%;">
+                                Pregunta guía
+                            </th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left;">
+                                Tu respuesta (en inglés)
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Where did you grow up?
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                What does your family do every day?
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                What is the biggest challenge in your community?
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                How does your family overcome that challenge?
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                What is your purpose or commitment to Chichalá?
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       height:32px;"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-num step-num--azul">2</div>
+                <div class="step-content">
+                    <strong>Escribe tu narración justificada:</strong>
+                    Usa las respuestas del Paso 1 para escribir
+                    <strong>mínimo 5 oraciones</strong>.
+                    Incluye: <em>because, however, therefore,
+                    for example, as a result</em>.
+                    <div class="espacio-escritura" style="min-height:120px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-num step-num--azul">3</div>
+                <div class="step-content">
+                    <strong>Revisa y edita:</strong>
+                    Antes de presentar, verifica tu texto:
+                    <ul style="margin-top:8px; padding-left:15px;
+                               font-size:0.9rem; line-height:2;">
+                        <li>¿Cada oración tiene sujeto y verbo? ___</li>
+                        <li>¿Los conectores están bien usados? ___</li>
+                        <li>¿El texto tiene introducción, desarrollo y conclusión? ___</li>
+                        <li>¿Incluye una justificación o argumento claro? ___</li>
+                        <li>¿La ortografía y puntuación son correctas? ___</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-num step-num--azul">4</div>
+                <div class="step-content">
+                    <strong>Compromiso ciudadano:</strong>
+                    Escribe en inglés un acuerdo personal
+                    sobre cómo vas a contribuir al bienestar
+                    de tu comunidad en Chichalá:
+                    <div class="bilingue" style="margin-top:10px;">
+                        <div class="en">
+                            Modelo: "I commit to _____ because I believe
+                            that Chichalá deserves _____."
+                        </div>
+                        <div class="es">
+                            Me comprometo a _____ porque creo que
+                            Chichalá merece _____.
+                        </div>
+                    </div>
+                    <div class="lineas" style="margin-top:10px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRADO 9 -->
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9° · Our Land, Our Future</span>
+
+            <div class="step-box">
+                <div class="step-num step-num--morado">1</div>
+                <div class="step-content">
+                    <strong>Elige tu argumento central:</strong>
+                    Selecciona uno de estos temas para tu discurso:
+                    <div style="display:flex; flex-wrap:wrap; gap:10px;
+                                margin:10px 0;">
+                        <div style="background:rgba(124,58,237,0.1);
+                                    border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px;
+                                    font-weight:700; color:var(--morado);
+                                    font-size:0.9rem;">
+                            🌿 Why we must protect the rivers of Chichalá
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1);
+                                    border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px;
+                                    font-weight:700; color:var(--morado);
+                                    font-size:0.9rem;">
+                            ☕ Coffee farming as a sustainable way of life
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1);
+                                    border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px;
+                                    font-weight:700; color:var(--morado);
+                                    font-size:0.9rem;">
+                            🏫 Education as the best harvest of Chichalá
+                        </div>
+                        <div style="background:rgba(124,58,237,0.1);
+                                    border:2px solid var(--morado);
+                                    border-radius:8px; padding:10px 15px;
+                                    font-weight:700; color:var(--morado);
+                                    font-size:0.9rem;">
+                            🤝 Community agreements that protect our land
+                        </div>
+                    </div>
+                    <p style="margin:4px 0; font-size:0.9rem;">
+                        Tema elegido: ________________________________
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-num step-num--morado">2</div>
+                <div class="step-content">
+                    <strong>Estructura tu discurso argumentativo:</strong>
+                    <table style="width:100%; border-collapse:collapse;
+                                  font-size:0.88rem; margin-top:10px;">
+                        <tr style="background:rgba(124,58,237,0.1);">
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left; width:20%;">Parte</th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left; width:40%;">
+                                ¿Qué incluir?
+                            </th>
+                            <th style="padding:8px; border:1px solid #CBD5E0;
+                                       text-align:left;">
+                                Conector sugerido
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Tesis</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Tu posición clara sobre el tema
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                I believe that... / In my opinion...
+                            </td>
+                        </tr>
+                        <tr style="background:#f8fafc;">
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Argumento 1</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Primera razón con ejemplo de Chichalá
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                First of all... / Because...
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Argumento 2</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Segunda razón que refuerza tu tesis
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                Furthermore... / In addition...
+                            </td>
+                        </tr>
+                        <tr style="background:#f8fafc;">
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Contraargumento</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Una objeción y tu respuesta a ella
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                Although... / However...
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                <strong>Conclusión</strong>
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;">
+                                Tu compromiso personal con el tema
+                            </td>
+                            <td style="padding:8px; border:1px solid #CBD5E0;
+                                       font-style:italic; color:var(--morado);">
+                                Therefore... / I commit to...
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-num step-num--morado">3</div>
+                <div class="step-content">
+                    <strong>Escribe tu discurso:</strong>
+                    Desarrolla <strong>mínimo 5 párrafos</strong>
+                    siguiendo la estructura anterior.
+                    Usa el vocabulario de la semana y
+                    <strong>mínimo 5 conectores diferentes</strong>.
+                    <div class="espacio-escritura" style="min-height:160px;">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                        <div class="linea"></div> <div class="linea"></div> </div> </div> </div>
+        <div class="step-box">
+            <div class="step-num step-num--morado">4</div>
+            <div class="step-content">
+                <strong>Conexión ciudadana:</strong>
+                En tu discurso, incluye una oración que explique
+                cómo tu compromiso está relacionado con el cuidado
+                del ambiente y los recursos naturales de Chichalá.
+                <div class="lineas" style="margin-top:8px;">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+                <p style="font-size:0.85rem; color:#718096; margin-top:6px;">
+                    💡 Puedes usar:
+                    <em>"Protecting _____ is essential because _____."</em>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ SECCIÓN 7: PRESENTACIÓN ORAL ══ -->
+<div class="seccion seccion-oral">
+    <h3>Presentación oral guiada</h3>
+    <p>
+        Cada estudiante presentará su trabajo en voz alta durante
+        <strong>2 minutos</strong>.
+        El docente evaluará la fluidez, la estructura y la confianza.
+    </p>
+
+    <div class="oral-card">
+        <div class="oral-card__title">🎤 Estructura para Grado 8°</div>
+        <ol style="padding-left:20px; font-size:0.93rem; line-height:2;">
+            <li><strong>Greeting:</strong>
+                "Good morning/afternoon. My name is _____ and I’m from Chichalá."</li>
+            <li><strong>Introduction:</strong>
+                "Today I’m going to present my story about _____."</li>
+            <li><strong>Justification:</strong>
+                "I believe this because _____."</li>
+                            <li><strong>Example:</strong>
+                    "For example, in my family/community _____."</li>
+                <li><strong>Challenge and solution:</strong>
+                    "One challenge we face is _____.
+                    However, we overcome it by _____."</li>
+                <li><strong>Commitment:</strong>
+                    "Therefore, I commit to _____ for Chichalá."</li>
+                <li><strong>Closing:</strong>
+                    "Thank you for listening. Chichalá is my home
+                    and I am proud of my roots."</li>
+            </ol>
+        </div>
+
+        <div class="oral-card"
+             style="background:linear-gradient(135deg,
+                    rgba(124,58,237,0.08),
+                    rgba(61,190,140,0.08));
+                    border-color:rgba(124,58,237,0.25);">
+            <div class="oral-card__title" style="color:var(--morado);">
+                🎤 Estructura para Grado 9°
+            </div>
+            <ol style="padding-left:20px; font-size:0.93rem; line-height:2;">
+                <li><strong>Hook:</strong>
+                    "Imagine a place where the mountains teach you
+                    resilience and the rivers teach you generosity.
+                    That place is Chichalá."</li>
+                <li><strong>Thesis:</strong>
+                    "I believe that _____ because _____."</li>
+                <li><strong>Argument 1:</strong>
+                    "First of all, _____. For example, _____."</li>
+                <li><strong>Argument 2:</strong>
+                    "Furthermore, _____. As a result, _____."</li>
+                <li><strong>Counter-argument:</strong>
+                    "Although some people think _____, I argue that _____."</li>
+                <li><strong>Environmental commitment:</strong>
+                    "Protecting our natural resources is essential because _____."</li>
+                <li><strong>Closing:</strong>
+                    "Therefore, I commit to _____.
+                    Our land is our identity. Thank you."</li>
+            </ol>
+        </div>
+
+        <div class="materiales-box"
+             style="background:#EFF6FF; border-color:#BFDBFE;">
+            <strong style="color:#1E40AF;">
+                💡 Consejo para el Profe Nelson:
+            </strong>
+            <p style="margin:6px 0 0; font-size:0.9rem;">
+                Para grado 9°, permita que los estudiantes usen notas
+                como apoyo durante los primeros 30 segundos,
+                luego pídales hablar sin leer. Esto desarrolla
+                la confianza progresivamente sin generar bloqueos.
+            </p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 8: PRÁCTICA ══ -->
+    <div class="seccion">
+        <h3>Practiquemos juntos</h3>
+
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8°</span>
+            <p>Completa las oraciones con el conector correcto
+            (<em>because, however, therefore, for example, as a result</em>):</p>
+            <div style="font-size:0.95rem; line-height:3;">
+                1. My family works on the farm every day
+                   __________ we depend on the land to survive.<br>
+                2. The harvest was difficult this year.
+                   __________, we learned to be more efficient.<br>
+                3. Life in Chichalá is challenging,
+                   __________, it is full of meaning and purpose.<br>
+                4. __________, my grandfather built a water system
+                   for our entire community.<br>
+                5. We take care of the river __________
+                   it provides water for our crops and animals.
+            </div>
+            <p style="font-size:0.85rem; color:#718096; margin-top:10px;">
+                💡 <strong>Respuestas:</strong>
+                1.&nbsp;because &nbsp;|&nbsp;
+                2.&nbsp;As a result &nbsp;|&nbsp;
+                3.&nbsp;however &nbsp;|&nbsp;
+                4.&nbsp;For example &nbsp;|&nbsp;
+                5.&nbsp;because
+            </p>
+        </div>
+
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9°</span>
+            <p>Transforma estas ideas simples en argumentos sólidos
+            usando los conectores indicados:</p>
+            <ul class="actividad-lista">
+                <li>
+                    <em>"We should protect the forest."</em>
+                    → Amplía con <strong>because + for example</strong>:
+                    <div class="lineas">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+                <li>
+                    <em>"Coffee farming is important for Chichalá."</em>
+                    → Amplía con <strong>furthermore + as a result</strong>:
+                    <div class="lineas">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+                <li>
+                    <em>"Some people leave the village to find work."</em>
+                    → Añade un <strong>contraargumento con although + however</strong>:
+                    <div class="lineas">
+                        <div class="linea"></div>
+                        <div class="linea"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 9: EVALUACIÓN ══ -->
+    <div class="seccion seccion-eval">
+        <h3>¿Cómo te fue hoy?</h3>
+
+        <!-- AUTOEVALUACIÓN -->
+        <div class="eval-box">
+            <h4>⭐ Rúbrica de autoevaluación</h4>
+            <p>Marca con una X según tu desempeño:</p>
+            <table style="width:100%; border-collapse:collapse;
+                          font-size:0.88rem;">
+                <tr style="background:#FFFBE6;">
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center; width:18%;">
+                        Lo logré 😄
+                    </th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center; width:18%;">
+                        En proceso 🙂
+                    </th>
+                    <th style="padding:8px; border:1px solid #FCD34D;
+                               text-align:center; width:18%;">
+                        Me faltó 😕
+                    </th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Usé el vocabulario específico de la semana
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Construí oraciones con estructura sujeto-verbo-objeto
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Usé mínimo 4 conectores diferentes y correctamente
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Mi texto tiene introducción, desarrollo y conclusión
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Me expresé con confianza en la presentación oral
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Conecté mi texto con la Competencia Ciudadana
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">__</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- EVALUACIÓN DEL DOCENTE -->
+        <div class="eval-box"
+             style="background:#F0FFF4; border-left-color:#68D391;">
+            <h4 style="color:#276749;">👨‍🏫 Evaluación del Docente</h4>
+            <p style="font-size:0.9rem; color:#718096; margin-bottom:10px;">
+                Distribución: Texto escrito (40%) · Presentación oral (40%) ·
+                Participación y actitud (20%) · Total: 100 puntos.
+            </p>
+            <table style="width:100%; border-collapse:collapse;
+                          font-size:0.88rem;">
+                <tr style="background:rgba(61,190,140,0.12);">
+                    <th style="padding:8px; border:1px solid #A7F3D0;
+                               text-align:left;">Aspecto evaluado</th>
+                    <th style="padding:8px; border:1px solid #A7F3D0;
+                               text-align:left; width:30%;">Descriptores</th>
+                    <th style="padding:8px; border:1px solid #A7F3D0;
+                               text-align:center; width:15%;">Puntos</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Texto escrito: vocabulario, conectores,
+                        coherencia y argumentación
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               font-size:0.82rem; color:#718096;">
+                        Excelente (36-40) · Bueno (28-35) ·
+                        Básico (20-27) · Bajo (0-19)
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">___ / 40</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Presentación oral: fluidez,
+                        pronunciación y estructura
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               font-size:0.82rem; color:#718096;">
+                        Excelente (36-40) · Bueno (28-35) ·
+                        Básico (20-27) · Bajo (0-19)
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">___ / 40</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">
+                        Participación, actitud y
+                        conexión con la ciudadanía
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               font-size:0.82rem; color:#718096;">
+                        Excelente (18-20) · Bueno (14-17) ·
+                        Básico (10-13) · Bajo (0-9)
+                    </td>
+                    <td style="padding:8px; border:1px solid #E2E8F0;
+                               text-align:center;">___ / 20</td>
+                </tr>
+                <tr style="background:rgba(61,190,140,0.08);
+                           font-weight:800;">
+                    <td style="padding:8px; border:1px solid #A7F3D0;"
+                        colspan="2">TOTAL</td>
+                    <td style="padding:8px; border:1px solid #A7F3D0;
+                               text-align:center; color:#276749;">
+                        ___ / 100
+                    </td>
+                </tr>
+            </table>
+
+            <div style="margin-top:12px;">
+                <p style="font-size:0.9rem; font-weight:700; color:#276749;">
+                    Observaciones del docente:
+                </p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REFLEXIÓN PERSONAL -->
+        <div style="display:grid; grid-template-columns:1fr 1fr;
+                    gap:15px; margin-top:15px;">
+            <div>
+                <p><strong>⭐ Lo que más me gustó de esta guía:</strong></p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+            <div>
+                <p><strong>🔧 Lo que necesito practicar más:</strong></p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:15px;">
+            <p><strong>🚀 Mi meta para la próxima semana:</strong></p>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 10: COMPETENCIA CIUDADANA ══ -->
+    <div class="seccion">
+        <h3>Convivencia y territorio</h3>
+        <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+        <p style="margin-top:10px;">
+            Narrar nuestra historia en inglés es un acto político y cultural.
+            Le dice al mundo que Chichalá existe, que su gente tiene voz,
+            que sus recursos naturales merecen ser protegidos
+            y que sus acuerdos comunitarios son la base de la convivencia.
+        </p>
+
+        <div class="nivel-card grado8" style="margin-top:15px;">
+            <span class="nivel-badge">Grado 8°</span>
+            <p><strong>Reflexión:</strong>
+            "Comprendo la importancia de cumplir los acuerdos
+            para la convivencia."</p>
+            <p style="margin-top:8px;">
+                En tu comunidad, ¿qué acuerdos existen para cuidar
+                el agua, el campo o los caminos?
+                ¿Qué pasa cuando alguien no los cumple?
+                Escribe en inglés tu respuesta:
+            </p>
+            <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+
+        <div class="nivel-card grado9" style="margin-top:15px;">
+            <span class="nivel-badge">Grado 9°</span>
+            <p><strong>Reflexión:</strong>
+            "Actúo con responsabilidad frente al cuidado del ambiente
+            y los recursos naturales de mi comunidad."</p>
+            <p style="margin-top:8px;">
+                Escribe en inglés un compromiso concreto y medible
+                que puedas cumplir esta semana para cuidar
+                los recursos naturales de Chichalá:
+            </p>
+            <div class="bilingue" style="margin-top:10px;">
+                <div class="en">
+                    Modelo: "This week I will _____ to protect _____
+                    because it is essential for the future of Chichalá."
+                </div>
+                <div class="es">
+                    Esta semana voy a _____ para proteger _____
+                    porque es esencial para el futuro de Chichalá.
+                </div>
+            </div>
+            <div class="lineas" style="margin-top:10px;">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 11: TAREA PARA LA CASA ══ -->
+    <div class="seccion">
+        <h3>Tarea en casa · My Voice, My Land</h3>
+        <p>
+            Graba un video de <strong>máximo 1 minuto</strong> en tu teléfono
+            presentando tu narración o discurso en inglés.
+            Si no tienes cómo grabar, escribe la versión final en tu cuaderno
+            y preséntala en voz alta frente a un familiar.
+        </p>
+
+        <table style="width:100%; border-collapse:collapse;
+                      font-size:0.9rem; margin-top:10px;">
+            <tr style="background:rgba(26,155,171,0.1);">
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left; width:25%;">Tarea</th>
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:left;">Detalles</th>
+                <th style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:center; width:20%;">¿Lo hice?</th>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Versión final del texto
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Reescribe tu narración/discurso corregido en el cuaderno
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:center;">Sí__ No__</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Presentación oral
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Practica 3 veces en voz alta antes de clase
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:center;">Sí__ No__</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Vocabulario
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Aprende 6 palabras nuevas de la semana en The Chichalá Dictionary
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:center;">Sí__ No__</td>
+            </tr>
+            <tr>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Reto extra (Grado 9°)
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;">
+                    Escribe un segundo argumento que no usaste en clase
+                    y tráelo la próxima semana
+                </td>
+                <td style="padding:8px; border:1px solid #CBD5E0;
+                           text-align:center;">Sí__ No__</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ══ SECCIÓN 12: REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>
+            🌿 "Hay historias que no están en los libros.<br>
+            Están en las manos de un caficultor,<br>
+            en el agua de nuestra quebrada,<br>
+            en el camino de tierra que recorremos cada día.<br>
+            <strong>Cuando las contamos en inglés,<br>
+            le damos al mundo la oportunidad<br>
+            de conocer a Chichalá."</strong>
+        </p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer"
+         style="text-align:center; margin-top:30px; padding-top:20px;
+                border-top:1px solid #E2E8F0; color:#718096;
+                font-size:0.85rem;">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:8px; font-style:italic;">
+            "Paz, Tolerancia y Convivencia"
+        </p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../../index.html" class="btn-volver">
+            ⬅ Volver al Inicio
+        </a>
+    </div>
+
+</div>
+</body>
+</html>
