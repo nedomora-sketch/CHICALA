@@ -1,0 +1,3159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Inventores de Chichalá: Misión Digital · Tecnología 3°-4°-5° · Semana 1 · Período 3"/>
+  <title>🔧 Inventores de Chichalá: Misión Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../../../css/guia-estilos.css"/>
+  <style>
+/* ══════════════════════════════════════════════
+   INVENTORES DE CHICHALÁ · MISIÓN DIGITAL
+   Tecnología · Grados 3°-4°-5° · Período 3
+   Semana 1 · IE Técnica Camacho Angarita
+   v4 — Correcciones DragDrop + InfoNodo + Hero Internet
+══════════════════════════════════════════════ */
+
+:root {
+  --inv-naranja:  #FF6B35;
+  --inv-azul:     #1A9BAB;
+  --inv-verde:    #3DBE8C;
+  --inv-morado:   #7C3AED;
+  --inv-amarillo: #FFD23F;
+  --inv-rosa:     #FF6B9D;
+  --inv-rojo:     #EF4444;
+  --inv-celeste:  #38BDF8;
+  --inv-bg:       #F0F9FF;
+  --inv-card:     #FFFFFF;
+  --inv-texto:    #1E293B;
+  --inv-dim:      #64748B;
+  --inv-border:   #E2E8F0;
+  --sombra-sm:    0 4px 12px rgba(0,0,0,0.08);
+  --sombra-md:    0 8px 24px rgba(0,0,0,0.12);
+  --sombra-lg:    0 16px 40px rgba(0,0,0,0.16);
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 36px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--inv-bg);
+  color: var(--inv-texto);
+  margin: 0;
+  padding: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(26,155,171,0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,107,53,0.04) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  background: white;
+  padding: 32px;
+  border-radius: var(--r-xl);
+  box-shadow: var(--sombra-lg);
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   BARRA DE PROGRESO
+══════════════════════════════════════ */
+.barra-mision-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-radius: var(--r-lg);
+  padding: 12px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-sm);
+  border: 2px solid var(--inv-border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.barra-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--inv-dim);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.barra-track {
+  flex: 1;
+  min-width: 140px;
+  height: 14px;
+  background: var(--inv-border);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.barra-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--inv-verde), var(--inv-azul));
+  border-radius: 50px;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px rgba(61,190,140,0.4);
+}
+
+.barra-piezas { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.pieza {
+  font-size: 1.2rem;
+  filter: grayscale(1) opacity(0.35);
+  transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+.pieza.obtenida {
+  filter: grayscale(0) opacity(1);
+  animation: piezaPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+@keyframes piezaPop {
+  0%   { transform: scale(0) rotate(-20deg); }
+  60%  { transform: scale(1.4) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ══════════════════════════════════════
+   HERO HEADER
+══════════════════════════════════════ */
+.hero-header {
+  background: linear-gradient(135deg, #1A9BAB 0%, #3DBE8C 50%, #FF6B35 100%);
+  border-radius: var(--r-xl);
+  padding: 36px 32px;
+  margin-bottom: 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.hero-header::before {
+  content: '⚙️';
+  position: absolute;
+  font-size: 10rem;
+  opacity: 0.07;
+  top: -20px; left: -20px;
+  animation: floatIcon 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.hero-header::after {
+  content: '📱';
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.07;
+  bottom: -10px; right: -10px;
+  animation: floatIcon 8s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}
+
+@keyframes floatIcon {
+  0%   { transform: translateY(0) rotate(-10deg) scale(1); }
+  100% { transform: translateY(-20px) rotate(10deg) scale(1.1); }
+}
+
+.hero-inst {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  animation: pulseBadge 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+  50%     { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+}
+
+.hero-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+.hero-subtitulo {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 18px;
+}
+
+.hero-datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hero-dato {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hero-campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--r-md);
+  padding: 16px;
+}
+
+.hero-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  min-width: 180px;
+}
+
+.hero-campo label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.hero-campo-linea {
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,0.5);
+  background: transparent;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  outline: none;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.hero-campo-linea::placeholder { color: rgba(255,255,255,0.5); font-weight: 400; }
+
+/* ══════════════════════════════════════
+   SECCIONES
+══════════════════════════════════════ */
+.seccion {
+  background: white;
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-lg);
+  padding: 26px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-sm);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.seccion:hover { box-shadow: var(--sombra-md); }
+
+.seccion::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  border-radius: 6px 0 0 6px;
+}
+
+.seccion-mision::before    { background: linear-gradient(180deg, var(--inv-naranja), var(--inv-amarillo)); }
+.seccion-conceptos::before { background: linear-gradient(180deg, var(--inv-azul),    var(--inv-celeste)); }
+.seccion-juego::before     { background: linear-gradient(180deg, var(--inv-verde),   var(--inv-azul)); }
+.seccion-internet::before  { background: linear-gradient(180deg, var(--inv-morado),  var(--inv-rosa)); }
+.seccion-ciudadana::before { background: linear-gradient(180deg, var(--inv-verde),   var(--inv-amarillo)); }
+
+.seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.seccion-titulo-icono {
+  font-size: 2rem;
+  animation: floatIcon 4s ease-in-out infinite alternate;
+}
+
+.seccion-titulo h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--inv-texto);
+  margin: 0;
+}
+
+.seccion-titulo small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--inv-dim);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════
+   EFECTOS SECCIÓN INTERNET · v2
+══════════════════════════════════════ */
+
+/* Indicador de estado de conexión */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--inv-verde);
+  background: rgba(61,190,140,0.1);
+  padding: 4px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(61,190,140,0.3);
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDownFade 0.8s ease forwards 0.5s;
+}
+
+.blink-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--inv-verde);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--inv-verde);
+  flex-shrink: 0;
+  animation: blinkDot 1.5s infinite;
+}
+
+@keyframes blinkDot {
+  0%,100% { opacity: 1; box-shadow: 0 0 8px var(--inv-verde); }
+  50%     { opacity: 0.3; box-shadow: none; }
+}
+
+@keyframes slideDownFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Título tecnológico */
+.tech-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--inv-texto);
+  margin: 6px 0 0;
+  line-height: 1.2;
+  cursor: default;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.tech-title:hover {
+  color: var(--inv-azul);
+  text-shadow: 0 0 18px rgba(26,155,171,0.35);
+}
+
+/* Subtítulo tipo terminal */
+.subtitle-terminal {
+  font-family: 'Courier New', monospace;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--inv-celeste);
+  margin-top: 4px;
+  min-height: 1.4em;
+  opacity: 0;
+  animation: fadeInSub 0.4s ease forwards 1.6s;
+}
+
+@keyframes fadeInSub {
+  to { opacity: 1; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  animation: blinkDot 0.9s infinite;
+  color: var(--inv-azul);
+  font-weight: 900;
+  margin-left: 1px;
+}
+
+/* Ripple en icono */
+.icono-internet-wrap {
+  position: relative;
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+}
+
+.ripple-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--inv-celeste);
+  opacity: 0;
+  animation: rippleOut 2.4s ease-out infinite;
+}
+
+.ripple-ring:nth-child(2) { animation-delay: 0.8s; }
+.ripple-ring:nth-child(3) { animation-delay: 1.6s; }
+
+@keyframes rippleOut {
+  0%   { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   OBJETIVOS
+══════════════════════════════════════ */
+.objetivos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.objetivo-card {
+  background: linear-gradient(135deg, #F0FDF4, #EFF6FF);
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.objetivo-card:hover { transform: translateY(-3px); box-shadow: var(--sombra-md); }
+
+.objetivo-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  animation: floatIcon 5s ease-in-out infinite alternate;
+}
+
+.objetivo-texto { font-size: 0.85rem; line-height: 1.6; color: var(--inv-texto); }
+.objetivo-texto strong { color: var(--inv-azul); }
+
+/* ══════════════════════════════════════
+   MATERIALES
+══════════════════════════════════════ */
+.materiales-box {
+  background: linear-gradient(135deg, #FFFBEB, #FFF7ED);
+  border: 2px dashed var(--inv-amarillo);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  margin-bottom: 22px;
+}
+
+.materiales-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #B45309;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.materiales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.material-item {
+  background: white;
+  border: 2px solid #FDE68A;
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.material-item:hover { transform: scale(1.03); }
+
+/* ══════════════════════════════════════
+   NIVELES / GRADOS
+══════════════════════════════════════ */
+.niveles-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.nivel-tab {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 50px;
+  border: 2px solid var(--inv-border);
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: var(--inv-dim);
+}
+
+.nivel-tab:hover { transform: translateY(-2px); box-shadow: var(--sombra-sm); }
+.nivel-tab.activo-3 { background: var(--inv-verde);  border-color: var(--inv-verde);  color: white; box-shadow: 0 4px 12px rgba(61,190,140,0.35); }
+.nivel-tab.activo-4 { background: var(--inv-azul);   border-color: var(--inv-azul);   color: white; box-shadow: 0 4px 12px rgba(26,155,171,0.35); }
+.nivel-tab.activo-5 { background: var(--inv-morado); border-color: var(--inv-morado); color: white; box-shadow: 0 4px 12px rgba(124,58,237,0.35); }
+
+.nivel-panel { display: none; }
+.nivel-panel.activo { display: block; animation: fadeSlide 0.4s ease; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nivel-card {
+  background: white;
+  border: 3px solid var(--inv-border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  position: relative;
+}
+
+.nivel-card.grado3 { border-color: var(--inv-verde); }
+.nivel-card.grado4 { border-color: var(--inv-azul);  }
+.nivel-card.grado5 { border-color: var(--inv-morado);}
+
+.nivel-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.nivel-badge {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 50px;
+  color: white;
+}
+
+.grado3 .nivel-badge { background: var(--inv-verde);  }
+.grado4 .nivel-badge { background: var(--inv-azul);   }
+.grado5 .nivel-badge { background: var(--inv-morado); }
+
+.nivel-dba {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(26,155,171,0.1);
+  color: var(--inv-azul);
+  border: 1px solid rgba(26,155,171,0.25);
+}
+
+/* ══════════════════════════════════════
+   CONCEPTOS CLAVE
+══════════════════════════════════════ */
+.conceptos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.concepto-card {
+  border-radius: var(--r-md);
+  padding: 18px 14px;
+  text-align: center;
+  border: 3px solid transparent;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.concepto-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--sombra-md); }
+
+.concepto-card.manual    { background: rgba(255,107,53,0.07); border-color: var(--inv-naranja); }
+.concepto-card.electrico { background: rgba(26,155,171,0.07); border-color: var(--inv-azul); }
+.concepto-card.analogico { background: rgba(61,190,140,0.07); border-color: var(--inv-verde); }
+.concepto-card.digital   { background: rgba(124,58,237,0.07); border-color: var(--inv-morado); }
+.concepto-card.internet  { background: rgba(56,189,248,0.07); border-color: var(--inv-celeste); }
+.concepto-card.recursos  { background: rgba(255,210,63,0.1);  border-color: var(--inv-amarillo); }
+
+.concepto-emoji { font-size: 2.8rem; display: block; margin-bottom: 10px; animation: floatIcon 4s ease-in-out infinite alternate; }
+
+.concepto-titulo { font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; color: var(--inv-texto); margin-bottom: 8px; }
+.concepto-desc   { font-size: 0.78rem; color: var(--inv-dim); line-height: 1.6; }
+
+.concepto-card .concepto-flip {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--r-md) - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: white;
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: all 0.3s ease;
+}
+
+.concepto-card.manual    .concepto-flip { background: var(--inv-naranja); }
+.concepto-card.electrico .concepto-flip { background: var(--inv-azul); }
+.concepto-card.analogico .concepto-flip { background: var(--inv-verde); }
+.concepto-card.digital   .concepto-flip { background: var(--inv-morado); }
+.concepto-card.internet  .concepto-flip { background: var(--inv-celeste); color: var(--inv-texto); }
+.concepto-card.recursos  .concepto-flip { background: var(--inv-amarillo); color: var(--inv-texto); }
+
+.concepto-card:hover .concepto-flip { opacity: 1; transform: rotateY(0deg); }
+
+/* ══════════════════════════════════════
+   ARTEFACTOS · BANCO
+══════════════════════════════════════ */
+.artefactos-banco {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.artefacto-card {
+  background: white;
+  border: 3px solid var(--inv-border);
+  border-radius: var(--r-md);
+  padding: 14px 8px;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
+  user-select: none;
+  position: relative;
+}
+
+.artefacto-card:hover { transform: translateY(-5px) scale(1.05); box-shadow: var(--sombra-md); border-color: var(--inv-azul); }
+.artefacto-card.dragging { opacity: 0.5; cursor: grabbing; transform: rotate(5deg) scale(1.1); }
+
+@keyframes cardCorrecto {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes cardError {
+  0%,100% { transform: translateX(0); }
+  25%     { transform: translateX(-8px); }
+  75%     { transform: translateX(8px); }
+}
+
+.artefacto-card.clasificado-correcto   { animation: cardCorrecto 0.6s cubic-bezier(0.175,0.885,0.32,1.275); }
+.artefacto-card.clasificado-incorrecto { animation: cardError 0.5s ease; }
+
+.artefacto-emoji  { font-size: 2.2rem; display: block; margin-bottom: 6px; }
+.artefacto-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--inv-texto); margin-bottom: 4px; }
+
+.artefacto-tag { font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 50px; display: inline-block; margin-top: 4px; }
+.tag-manual    { background: rgba(255,107,53,0.15); color: #C05621; }
+.tag-electrico { background: rgba(26,155,171,0.15);  color: #0E7490; }
+.tag-digital   { background: rgba(124,58,237,0.15);  color: #6D28D9; }
+.tag-analogico { background: rgba(61,190,140,0.15);  color: #065F46; }
+
+/* Zonas de clasificación */
+.zonas-clasificacion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.zona-drop {
+  border-radius: var(--r-md);
+  padding: 16px;
+  min-height: 140px;
+  border: 3px dashed var(--inv-border);
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zona-drop.zona-manual    { background: rgba(255,107,53,0.04); border-color: var(--inv-naranja); }
+.zona-drop.zona-electrico { background: rgba(26,155,171,0.04); border-color: var(--inv-azul);   }
+.zona-drop.drag-over { transform: scale(1.02); box-shadow: var(--sombra-md); border-style: solid; }
+
+.zona-titulo { font-family: 'Fredoka', sans-serif; font-size: 0.95rem; font-weight: 700; text-align: center; padding: 8px; border-radius: var(--r-sm); margin-bottom: 4px; }
+.zona-manual    .zona-titulo { background: var(--inv-naranja); color: white; }
+.zona-electrico .zona-titulo { background: var(--inv-azul);    color: white; }
+
+.zona-items { display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px; align-content: flex-start; }
+
+.zona-chip {
+  background: white;
+  border: 2px solid var(--inv-border);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.zona-chip:hover { background: #FEF2F2; border-color: var(--inv-rojo); color: var(--inv-rojo); }
+
+/* ══════════════════════════════════════
+   INTERNET · MAPA Y NODOS
+══════════════════════════════════════ */
+.internet-mapa {
+  background: linear-gradient(135deg, #F0F9FF, #EFF6FF);
+  border: 2px solid var(--inv-celeste);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.internet-nodos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.nodo {
+  background: white;
+  border: 3px solid var(--inv-border);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+  transition: all 0.3s;
+  cursor: pointer;
+  animation: floatIcon 4s ease-in-out infinite alternate;
+}
+
+.nodo:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); }
+.nodo-celular  { border-color: var(--inv-verde);   animation-delay: 0s; }
+.nodo-tablet   { border-color: var(--inv-azul);    animation-delay: 0.5s; }
+.nodo-pc       { border-color: var(--inv-morado);  animation-delay: 1s; }
+.nodo-tv       { border-color: var(--inv-naranja); animation-delay: 1.5s; }
+.nodo-internet {
+  background: linear-gradient(135deg, var(--inv-azul), var(--inv-morado));
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 16px 22px;
+  animation-delay: 0.25s;
+  box-shadow: 0 6px 20px rgba(26,155,171,0.35);
+}
+
+.nodo-flecha {
+  font-size: 1.4rem;
+  color: var(--inv-celeste);
+  animation: pulseArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseArrow {
+  0%,100% { transform: scale(1) translateX(0); opacity: 1; }
+  50%     { transform: scale(1.2) translateX(4px); opacity: 0.6; }
+}
+
+.recursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.recurso-card {
+  background: white;
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-md);
+  padding: 16px 12px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.recurso-card:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); border-color: var(--inv-azul); }
+.recurso-emoji  { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+.recurso-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.recurso-desc   { font-size: 0.72rem; color: var(--inv-dim); line-height: 1.5; }
+
+/* ══════════════════════════════════════
+   ACTIVIDADES
+══════════════════════════════════════ */
+.actividad-lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.actividad-lista li {
+  background: #F8FAFC;
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-md);
+  padding: 18px;
+  position: relative;
+  padding-left: 52px;
+  transition: box-shadow 0.2s;
+}
+
+.actividad-lista li:hover { box-shadow: var(--sombra-sm); }
+
+.actividad-lista li::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 14px; top: 18px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--inv-azul);
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grado3 .actividad-lista li::before { background: var(--inv-verde); }
+.grado4 .actividad-lista li::before { background: var(--inv-azul); }
+.grado5 .actividad-lista li::before { background: var(--inv-morado); }
+
+.act-titulo-item {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--inv-texto);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ══════════════════════════════════════
+   DIAGRAMA Y TABLA
+══════════════════════════════════════ */
+.diagrama-box {
+  background: linear-gradient(135deg, #F8FAFC, #EFF6FF);
+  border: 2px dashed var(--inv-celeste);
+  border-radius: var(--r-md);
+  padding: 20px;
+    text-align: center;
+  margin: 14px 0;
+}
+
+.diagrama-emoji { font-size: 4rem; display: block; margin-bottom: 12px; animation: floatIcon 3s ease-in-out infinite alternate; }
+
+.diagrama-partes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.diagrama-parte {
+  background: white;
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-sm);
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.diagrama-parte:hover { border-color: var(--inv-azul); background: rgba(26,155,171,0.06); transform: scale(1.05); }
+
+/* ══════════════════════════════════════
+   TABLA COMPARATIVA
+══════════════════════════════════════ */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin: 14px 0;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: var(--sombra-sm);
+}
+
+.tabla-comparativa th {
+  padding: 11px 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: white;
+  font-size: 0.88rem;
+}
+
+.tabla-comparativa th.col-manual    { background: var(--inv-naranja); }
+.tabla-comparativa th.col-electrico { background: var(--inv-azul);   }
+.tabla-comparativa th.col-criterio  { background: var(--inv-texto);  }
+
+.tabla-comparativa td { padding: 10px 14px; border: 1px solid var(--inv-border); }
+.tabla-comparativa tr:nth-child(even) td { background: #F8FAFC; }
+.tabla-comparativa tr:hover td { background: rgba(26,155,171,0.05); transition: background 0.2s; }
+
+/* ══════════════════════════════════════
+   LÍNEAS DE ESCRITURA
+══════════════════════════════════════ */
+.lineas { margin-top: 10px; }
+
+.linea {
+  border-bottom: 2px dashed #CBD5E0;
+  height: 32px;
+  margin-bottom: 6px;
+  border-radius: 2px;
+  transition: border-color 0.2s;
+}
+
+.linea:focus-within { border-color: var(--inv-azul); }
+
+.espacio-escritura {
+  border: 2px dashed var(--inv-border);
+  border-radius: var(--r-md);
+  min-height: 100px;
+  padding: 12px 14px;
+  background: #FAFAFA;
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--inv-dim);
+  transition: border-color 0.2s;
+}
+
+.espacio-escritura:focus-within { border-color: var(--inv-azul); }
+
+/* ══════════════════════════════════════
+   AUTOEVALUACIÓN
+══════════════════════════════════════ */
+.eval-box {
+  background: linear-gradient(135deg, #FFFBEB, #FFF7ED);
+  border-left: 5px solid var(--inv-amarillo);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+}
+
+.eval-box h4 { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: #B45309; margin: 0 0 12px; }
+
+.eval-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+.eval-tabla th { padding: 10px 12px; border: 2px solid #FCD34D; font-weight: 800; }
+.eval-tabla th:first-child { background: #FFFBEB; color: #92400E; text-align: left; }
+.eval-tabla th.col-logre   { background: #D1FAE5; color: #065F46; text-align: center; }
+.eval-tabla th.col-casi    { background: #DBEAFE; color: #1E40AF; text-align: center; }
+.eval-tabla th.col-ayuda   { background: #FEE2E2; color: #991B1B; text-align: center; }
+
+.eval-tabla td { padding: 10px 12px; border: 1px solid #E2E8F0; }
+
+.eval-tabla td.check-cell {
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.eval-tabla td.check-cell:hover { background: rgba(26,155,171,0.08); transform: scale(1.1); }
+.eval-tabla td.check-cell.marcado { background: rgba(61,190,140,0.12); font-size: 1.4rem; animation: piezaPop 0.3s ease; }
+.eval-tabla tr:nth-child(even) td { background: #F8FAFC; }
+
+/* ══════════════════════════════════════
+   COFRE DEL SABER
+══════════════════════════════════════ */
+.cofre-wrap { text-align: center; margin: 20px 0; }
+
+.btn-cofre {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--inv-amarillo), var(--inv-naranja));
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #B45309, 0 8px 20px rgba(255,107,53,0.35);
+  transition: all 0.15s;
+  animation: wobbleBtn 3s ease-in-out infinite;
+  letter-spacing: 0.04em;
+}
+
+.btn-cofre:hover  { transform: translateY(-4px); box-shadow: 0 10px 0 #B45309, 0 14px 28px rgba(255,107,53,0.4); }
+.btn-cofre:active { transform: translateY(3px);  box-shadow: 0 2px 0 #B45309, 0 4px 10px rgba(255,107,53,0.2); }
+
+@keyframes wobbleBtn {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(-2deg) scale(1.02); }
+  75%     { transform: rotate(2deg) scale(1.02); }
+}
+
+.cofre-secreto {
+  display: none;
+  background: linear-gradient(135deg, #EFF6FF, #F0FDF4);
+  border: 3px solid var(--inv-celeste);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  margin-top: 16px;
+  animation: fadeSlide 0.5s ease;
+}
+
+.cofre-secreto.visible { display: block; }
+
+.cofre-secreto-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--inv-azul);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cofre-secreto p { font-size: 0.92rem; color: var(--inv-texto); line-height: 1.8; margin-bottom: 10px; }
+
+.cofre-dato {
+  background: white;
+  border: 2px solid var(--inv-border);
+  border-radius: var(--r-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--inv-texto);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+
+.cofre-dato:hover { transform: translateX(4px); }
+.cofre-dato-icon  { font-size: 1.4rem; flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   DIPLOMA
+══════════════════════════════════════ */
+.diploma-wrap {
+  display: none;
+  background: linear-gradient(135deg,
+    rgba(255,210,63,0.12),
+    rgba(61,190,140,0.1),
+    rgba(26,155,171,0.08));
+  border: 4px solid var(--inv-amarillo);
+  border-radius: var(--r-xl);
+  padding: 36px 28px;
+  text-align: center;
+  margin: 24px 0;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlide 0.6s ease;
+}
+
+.diploma-wrap.visible { display: block; }
+
+.diploma-wrap::before, .diploma-wrap::after { content: '⭐'; position: absolute; font-size: 6rem; opacity: 0.06; pointer-events: none; }
+.diploma-wrap::before { top: -20px; left: -10px; }
+.diploma-wrap::after  { bottom: -20px; right: -10px; transform: rotate(20deg); }
+
+.diploma-titulo { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--inv-dim); margin-bottom: 8px; }
+.diploma-nombre-display { font-family: 'Fredoka', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; color: var(--inv-azul); margin: 8px 0 14px; }
+.diploma-insignia { font-size: 4rem; display: block; margin: 14px auto; animation: floatIcon 3s ease-in-out infinite alternate; }
+.diploma-texto { font-size: 0.9rem; color: var(--inv-texto); line-height: 1.8; max-width: 480px; margin: 0 auto 16px; }
+
+.diploma-grado-badge {
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--inv-verde), var(--inv-azul));
+  box-shadow: 0 4px 0 rgba(26,155,171,0.4);
+}
+
+/* ══════════════════════════════════════
+   REFLEXIÓN FINAL
+══════════════════════════════════════ */
+.reflexion-final {
+  background: linear-gradient(135deg,
+    rgba(255,107,53,0.08),
+    rgba(26,155,171,0.08));
+  border-radius: var(--r-xl);
+  padding: 28px;
+  text-align: center;
+  margin: 24px 0;
+}
+
+.reflexion-final p { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--inv-azul); line-height: 1.8; margin: 0 0 8px; }
+
+/* ══════════════════════════════════════
+   TARJETAS RECORTABLES
+══════════════════════════════════════ */
+.tarjetas-recortables {
+  border: 3px dashed var(--inv-border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  background: #FAFAFA;
+  margin-top: 20px;
+}
+
+.tarjetas-titulo { font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; color: var(--inv-texto); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+
+.tarjetas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+
+.tarjeta-frase {
+  background: white;
+  border: 2px solid var(--inv-naranja);
+  border-radius: var(--r-sm);
+  padding: 12px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tarjeta-frase:hover { transform: translateY(-3px); box-shadow: var(--sombra-sm); }
+.tarjeta-emoji  { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+.tarjeta-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--inv-texto); }
+.tarjeta-tipo   { font-size: 0.68rem; color: var(--inv-dim); margin-top: 2px; }
+
+/* ══════════════════════════════════════
+   BOTÓN COMPLETAR
+══════════════════════════════════════ */
+.btn-completar {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--inv-verde), var(--inv-azul));
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #0E7490, 0 8px 20px rgba(26,155,171,0.3);
+  transition: all 0.15s;
+}
+
+.btn-completar:hover  { transform: translateY(-3px); box-shadow: 0 8px 0 #0E7490, 0 12px 24px rgba(26,155,171,0.35); }
+.btn-completar:active { transform: translateY(2px);  box-shadow: 0 2px 0 #0E7490; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.footer {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 2px solid var(--inv-border);
+  color: var(--inv-dim);
+  font-size: 0.82rem;
+}
+
+.footer p { margin: 3px 0; }
+
+.btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--inv-azul);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 10px 24px;
+  border: 2px solid var(--inv-azul);
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.btn-volver:hover { background: var(--inv-azul); color: white; transform: translateY(-2px); box-shadow: var(--sombra-sm); }
+
+.btn-print {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, var(--inv-verde), var(--inv-azul));
+  color: white;
+  border: none;
+  padding: 13px 36px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #0E7490, 0 8px 20px rgba(26,155,171,0.35);
+  transition: all 0.15s;
+}
+
+.btn-print:hover  { transform: translateY(-3px); box-shadow: 0 8px 0 #0E7490, 0 12px 28px rgba(26,155,171,0.4); }
+.btn-print:active { transform: translateY(2px);  box-shadow: 0 2px 0 #0E7490; }
+
+/* ══════════════════════════════════════
+   CONFETI
+══════════════════════════════════════ */
+@keyframes caerConfeti {
+  0%   { transform: translateY(-40px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .container           { padding: 18px; }
+  .hero-header         { padding: 24px 16px; }
+  .zonas-clasificacion { grid-template-columns: 1fr; }
+  .conceptos-grid      { grid-template-columns: repeat(2, 1fr); }
+  .artefactos-banco    { grid-template-columns: repeat(3, 1fr); }
+  .recursos-grid       { grid-template-columns: repeat(2, 1fr); }
+  .internet-nodos      { gap: 6px; }
+  .nodo                { min-width: 80px; font-size: 0.78rem; padding: 8px 10px; }
+  .hero-titulo         { font-size: 1.6rem; }
+  .tech-title          { font-size: 1.1rem; }
+  .status-indicator    { font-size: 0.65rem; }
+}
+
+@media print {
+  body                 { background: white; padding: 0; }
+  .container           { box-shadow: none; border-radius: 0; }
+  .btn-print,
+  .btn-volver,
+  .barra-mision-wrap   { display: none !important; }
+  .nivel-panel         { display: block !important; }
+  .seccion             { break-inside: avoid; }
+  .nivel-card          { break-inside: avoid; }
+  .status-indicator,
+  .ripple-ring         { animation: none !important; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Botón Imprimir -->
+  <button class="btn-print">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- ══════════════════════
+       BARRA DE PROGRESO
+  ══════════════════════ -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">⚙️ MISIÓN</span>
+    <div class="barra-track">
+      <div class="barra-fill" id="barra-fill"></div>
+    </div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Clasificador de Artefactos">🔧</span>
+      <span class="pieza" id="pieza-2" title="Explorador de Conceptos">💡</span>
+      <span class="pieza" id="pieza-3" title="Navegante del Internet">🌐</span>
+      <span class="pieza" id="pieza-4" title="Inventor Digital">📱</span>
+      <span class="pieza" id="pieza-5" title="Misión Completa">🏆</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       HERO HEADER
+  ══════════════════════ -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">⚙️ MISIÓN DIGITAL ACTIVA</div>
+    <h1 class="hero-titulo">🔧 Inventores de Chichalá<br/>¡Misión Digital!</h1>
+    <p class="hero-subtitulo">Tecnología · Semana 1 · Período 3 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 4°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 14 agosto 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       MATERIALES
+  ══════════════════════ -->
+  <div class="materiales-box">
+    <div class="materiales-titulo">🧺 Materiales para hoy:</div>
+    <div class="materiales-grid">
+      <div class="material-item">📄 Esta guía impresa</div>
+      <div class="material-item">✏️ Lápiz y colores</div>
+      <div class="material-item">✂️ Tijeras</div>
+      <div class="material-item">📱 Celular o tablet (si hay)</div>
+      <div class="material-item">💻 Computador del aula</div>
+      <div class="material-item">🎒 Un artefacto del hogar</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 1: MISIÓN
+  ══════════════════════ -->
+  <div class="seccion seccion-mision">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🚀</span>
+      <h3>Misión de la Semana
+        <small>¿Qué vamos a aprender hoy?</small>
+      </h3>
+    </div>
+    <p>
+      <strong>¡Hola, Inventor/a de Chichalá!</strong> 🌿 En nuestra vereda
+      usamos herramientas todos los días: el azadón para cultivar, la licuadora
+      para el guarapo, el celular para hablar con familiares...
+      <strong>¿Sabes cuáles funcionan con tus manos y cuáles necesitan electricidad?
+      ¿Y sabes qué tienen en común el celular, la tablet y el computador?</strong>
+    </p>
+    <p style="margin-top:10px;">
+      Esta semana serás un <strong>Inventor Digital de Chichalá</strong> 🔧:
+      aprenderás a reconocer, clasificar y describir artefactos tecnológicos,
+      descubrirás qué es el internet y cómo los usamos para aprender.
+      ¡Cada actividad te da una pieza para reparar el gran trapiche digital! ⚙️
+    </p>
+    <div class="objetivos-grid">
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🎯</span>
+        <div class="objetivo-texto">
+          Uso diferentes lenguajes para <strong>describir</strong> artefactos
+          tecnológicos analógicos y digitales. <strong>(1.8 T&amp;I.I)</strong>
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">📚</span>
+        <div class="objetivo-texto">
+          Reconozco la diferencia entre <strong>trabajo manual y eléctrico</strong>
+          con ejemplos reales de Chichalá y del mundo digital.
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🌐</span>
+        <div class="objetivo-texto">
+          Aprendo qué es el <strong>internet</strong> y cómo lo usamos para
+          aprender con <strong>recursos educativos digitales</strong>.
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🤝</span>
+        <div class="objetivo-texto">
+          Entiendo las <strong>acciones reparadoras</strong> cuando incumplo
+          normas o acuerdos en el aula. <strong>(CC 2.6)</strong>
+        </div>
+      </div>
+    </div>
+    <div class="nivel-badge-wrap" style="margin-top:16px;">
+      <span class="nivel-badge" style="background:var(--inv-verde);">Grado 3°</span>
+      <span style="font-size:0.85rem;">Identifico si un artefacto es manual o eléctrico y lo describo.</span>
+    </div>
+    <div class="nivel-badge-wrap" style="margin-top:8px;">
+      <span class="nivel-badge" style="background:var(--inv-azul);">Grado 4°</span>
+      <span style="font-size:0.85rem;">Describo forma y función de artefactos con diagramas y tablas.</span>
+    </div>
+    <div class="nivel-badge-wrap" style="margin-top:8px;">
+      <span class="nivel-badge" style="background:var(--inv-morado);">Grado 5°</span>
+      <span style="font-size:0.85rem;">Uso tres lenguajes para explicar cómo funciona un artefacto digital.</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 2: CONCEPTOS
+  ══════════════════════ -->
+  <div class="seccion seccion-conceptos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave
+        <small>¡Toca las tarjetas para descubrir más! 👆</small>
+      </h3>
+    </div>
+    <div class="conceptos-grid">
+      <div class="concepto-card manual" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">💪</span>
+        <div class="concepto-titulo">Trabajo Manual</div>
+        <div class="concepto-desc">Usa la fuerza del cuerpo. No necesita electricidad.</div>
+        <div class="concepto-flip">🌿 Ejemplos en Chichalá:<br/>Azadón · Machete · Palanca del trapiche · Tijeras · Molino de mano · Balanza</div>
+      </div>
+      <div class="concepto-card electrico" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">⚡</span>
+        <div class="concepto-titulo">Trabajo Eléctrico</div>
+        <div class="concepto-desc">Necesita energía eléctrica para funcionar.</div>
+        <div class="concepto-flip">⚡ Ejemplos:<br/>Licuadora · Ventilador · Radio · Bombilla · Celular · Computador · Impresora · Tablet</div>
+      </div>
+      <div class="concepto-card analogico" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">⚙️</span>
+        <div class="concepto-titulo">Analógico</div>
+        <div class="concepto-desc">Usa mecanismos físicos: ruedas, palancas, resortes.</div>
+        <div class="concepto-flip">⚙️ Ejemplos:<br/>Reloj de agujas · Trapiche manual · Balanza · Termómetro de vidrio · Regla graduada</div>
+      </div>
+      <div class="concepto-card digital" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📱</span>
+        <div class="concepto-titulo">Digital</div>
+        <div class="concepto-desc">Procesa información en código 0 y 1 (binario).</div>
+        <div class="concepto-flip">📱 Ejemplos:<br/>Celular · Tablet · Computador · Televisor Smart · Calculadora digital · Impresora · Parlante Bluetooth</div>
+      </div>
+      <div class="concepto-card internet" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🌐</span>
+        <div class="concepto-titulo">Internet</div>
+        <div class="concepto-desc">Red gigante de computadoras conectadas en todo el mundo.</div>
+        <div class="concepto-flip">🌐 ¿Para qué usamos internet?<br/>Ver videos · Buscar información · Enviar mensajes · Aprender en línea · Videollamadas · Juegos educativos</div>
+      </div>
+      <div class="concepto-card recursos" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📚</span>
+        <div class="concepto-titulo">Recursos Digitales</div>
+        <div class="concepto-desc">Apps y páginas que usamos para aprender.</div>
+        <div class="concepto-flip">📚 Ejemplos:<br/>YouTube Educativo · Khan Academy · Google Classroom · Duolingo · BBC Learning · Portal CHICALA 🌿</div>
+      </div>
+    </div>
+
+    <p style="font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:700; margin:20px 0 10px; color:var(--inv-texto);">
+      📊 Manual vs Eléctrico · Comparación:
+    </p>
+    <table class="tabla-comparativa">
+      <tr>
+        <th class="col-criterio">Criterio</th>
+        <th class="col-manual">💪 Manual</th>
+        <th class="col-electrico">⚡ Eléctrico / Digital</th>
+      </tr>
+      <tr>
+        <td><strong>Fuente de energía</strong></td>
+        <td>Fuerza humana o animal</td>
+        <td>Electricidad (red o batería)</td>
+      </tr>
+      <tr>
+        <td><strong>Ejemplo en Chichalá</strong></td>
+        <td>Machete · Palanca del trapiche</td>
+        <td>Celular · Computador del aula</td>
+      </tr>
+      <tr>
+        <td><strong>Ventaja principal</strong></td>
+        <td>No depende de la luz eléctrica</td>
+        <td>Más rápido · Se conecta a internet</td>
+      </tr>
+      <tr>
+        <td><strong>Desventaja</strong></td>
+        <td>Requiere más esfuerzo físico</td>
+        <td>Si se va la luz, no funciona</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECCIÓN 3: INTERNET · VERSIÓN 2.0
+       Encabezado interactivo tipo "Terminal de Red"
+  ══════════════════════════════════════════ -->
+  <div class="seccion seccion-internet" id="seccion-internet">
+
+    <!-- ── Encabezado renovado ── -->
+    <div class="seccion-titulo" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+
+      <!-- Indicador de estado -->
+      <div class="status-indicator">
+        <span class="blink-dot"></span>
+        <span>CONEXIÓN ESTABLECIDA</span>
+      </div>
+
+      <!-- Fila icono + textos -->
+      <div style="display: flex; align-items: center; gap: 14px;">
+
+        <!-- Icono con anillos ripple -->
+        <div class="icono-internet-wrap">
+          <span class="ripple-ring"></span>
+          <span class="ripple-ring"></span>
+          <span class="ripple-ring"></span>
+          <span style="position: relative; z-index: 1; font-size: 2.2rem;">🌐</span>
+        </div>
+
+        <div>
+          <!-- Título con hover glow -->
+          <h3 class="tech-title">¿Qué es el Internet?</h3>
+          <!-- Subtítulo con efecto de escritura terminal -->
+          <div class="subtitle-terminal">
+            <span id="typing-text"></span><span class="cursor-blink">|</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Mapa de nodos ── -->
+    <div class="internet-mapa">
+      <p style="font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:700; color:var(--inv-azul); margin-bottom:16px;">
+        El internet conecta todos estos artefactos entre sí:
+        <br/><span style="font-size:0.8rem; color:var(--inv-dim); font-weight:600;">
+          👆 ¡Toca cada artefacto para descubrir cómo lo usamos!
+        </span>
+      </p>
+
+      <div class="internet-nodos">
+
+        <!-- ✅ FIX: data-titulo / data-texto en el HTML -->
+        <!-- onclick pasa solo (this), coherente con mostrarInfoNodo(elementoTocado) -->
+        <div class="nodo nodo-celular"
+          data-titulo="📱 Celular"
+          data-texto="Lo usamos para llamar, enviar mensajes, ver videos y conectarnos a internet desde cualquier lugar de Chichalá. ¡Es una computadora de bolsillo!"
+          onclick="mostrarInfoNodo(this)">
+          📱<br/>Celular
+        </div>
+
+        <span class="nodo-flecha">→</span>
+
+        <div class="nodo nodo-tablet"
+          data-titulo="📚 Tablet"
+          data-texto="Perfecta para leer, escribir, dibujar y usar apps educativas como Khan Academy o el Portal CHICALA. ¡Ideal para aprender jugando!"
+          onclick="mostrarInfoNodo(this)">
+          📚<br/>Tablet
+        </div>
+
+        <span class="nodo-flecha">→</span>
+
+        <div class="nodo nodo-internet"
+          data-titulo="🌐 INTERNET"
+          data-texto="¡El corazón de la red! Es una red gigante de computadoras conectadas en todo el mundo. Viaja por cables, WiFi, datos móviles y hasta satélites. 🛰️"
+          onclick="mostrarInfoNodo(this)">
+          🌐<br/>INTERNET
+        </div>
+
+        <span class="nodo-flecha">→</span>
+
+        <div class="nodo nodo-pc"
+          data-titulo="💻 Computador"
+          data-texto="Con él hacemos tareas, diseñamos, programamos y accedemos a recursos educativos. En el aula del colegio, es nuestra principal herramienta digital."
+          onclick="mostrarInfoNodo(this)">
+          💻<br/>Computador
+        </div>
+
+        <span class="nodo-flecha">→</span>
+
+        <div class="nodo nodo-tv"
+          data-titulo="📺 Televisor Smart"
+          data-texto="Los televisores modernos también se conectan a internet. Podemos ver clases, documentales educativos y videos de YouTube directamente en la pantalla grande."
+          onclick="mostrarInfoNodo(this)">
+          📺<br/>Televisor
+        </div>
+      </div>
+
+      <!-- Panel de info del nodo -->
+      <div id="nodo-info-panel"
+        style="display:none; margin-top:18px; background:white;
+          border-radius:var(--r-md); padding:16px 20px;
+          border:2px solid var(--inv-celeste);
+          animation:fadeSlide 0.35s ease; box-shadow:var(--sombra-sm);">
+        <div id="nodo-info-titulo"
+          style="font-family:'Fredoka',sans-serif; font-size:1.05rem;
+                        font-weight:700; color:var(--inv-azul); margin-bottom:6px;">
+        </div>
+        <p id="nodo-info-texto"
+          style="font-size:0.88rem; color:var(--inv-texto);
+            line-height:1.75; margin:8px 0 0;">
+        </p>
+      </div>
+
+      <p style="font-size:0.78rem; color:var(--inv-dim); margin-top:14px; text-align:center;">
+        🌿 En Chichalá, el internet puede llegar por señal de celular 📶,
+        WiFi del colegio 🏫 o antenas satelitales 🛰️
+      </p>
+    </div>
+
+    <!-- Recursos Digitales -->
+    <p style="font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:700;
+       margin:20px 0 12px; color:var(--inv-texto);">
+      🎓 Recursos Educativos Digitales · Los más usados:
+    </p>
+    <div class="recursos-grid">
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">▶️</span>
+        <div class="recurso-nombre">YouTube Edu</div>
+        <div class="recurso-desc">Videos de ciencias, matemáticas, historia y más.</div>
+      </div>
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">📐</span>
+        <div class="recurso-nombre">Khan Academy</div>
+        <div class="recurso-desc">Juegos y lecciones de matemáticas y lectura.</div>
+      </div>
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">📋</span>
+        <div class="recurso-nombre">G. Classroom</div>
+        <div class="recurso-desc">Recibe y entrega tareas con el profe en línea.</div>
+      </div>
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">🦉</span>
+        <div class="recurso-nombre">Duolingo</div>
+        <div class="recurso-desc">Aprende inglés jugando, con puntos y niveles.</div>
+      </div>
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">🌿</span>
+        <div class="recurso-nombre">Portal CHICALA</div>
+        <div class="recurso-desc">Las guías del Profe Nelson, ¡en línea! 🚀</div>
+      </div>
+      <div class="recurso-card" onclick="sonar('flip')">
+        <span class="recurso-emoji">🔬</span>
+        <div class="recurso-nombre">Cerebriti</div>
+        <div class="recurso-desc">Juegos educativos de todas las materias.</div>
+      </div>
+    </div>
+  </div><!-- fin seccion-internet -->
+
+  <!-- ══════════════════════
+       SECCIÓN 4: ACTIVIDADES
+  ══════════════════════ -->
+  <div class="seccion seccion-juego">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎮</span>
+      <h3>¡A Jugar y Aprender!
+        <small>Elige tu nivel y completa las misiones 🏆</small>
+      </h3>
+    </div>
+
+    <!-- Tabs de nivel -->
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">
+        🟢 Grado 3° · Detective
+      </button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">
+        🔵 Grado 4° · Analista
+      </button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">
+        🟣 Grado 5° · Inventor
+      </button>
+    </div>
+
+    <!-- ══════════════════════
+         PANEL GRADO 3
+    ══════════════════════ -->
+    <div class="nivel-panel activo" id="panel-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Detective de Artefactos</span>
+          <span class="nivel-dba">DBA 1 · 1.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+
+          <!-- ✅ MISIÓN 1 · DRAG & DROP CORREGIDO -->
+          <li data-num="1">
+            <div class="act-titulo-item">🕵️ Misión 1 — ¡Arrastra y Clasifica!</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Arrastra cada artefacto a la columna correcta:
+              <strong>¿trabaja con tus manos o necesita electricidad?</strong>
+              Cuando clasifiques bien, ¡escucharás un sonido de victoria! 🎵
+            </p>
+
+            <!-- Banco de artefactos -->
+            <!-- ✅ FIX: data-tipo y data-nombre correctos en cada tarjeta -->
+            <div class="artefactos-banco" id="banco-artefactos-3">
+              <div class="artefacto-card" draggable="true"
+                data-tipo="manual" data-nombre="Sierra" id="art-1">
+                <span class="artefacto-emoji">🪚</span>
+                <div class="artefacto-nombre">Sierra</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="electrico" data-nombre="Bombilla" id="art-2">
+                <span class="artefacto-emoji">💡</span>
+                <div class="artefacto-nombre">Bombilla</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="electrico" data-nombre="Celular" id="art-3">
+                <span class="artefacto-emoji">📱</span>
+                <div class="artefacto-nombre">Celular</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="manual" data-nombre="Balde" id="art-4">
+                <span class="artefacto-emoji">🪣</span>
+                <div class="artefacto-nombre">Balde</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="electrico" data-nombre="Ventilador" id="art-5">
+                <span class="artefacto-emoji">🌀</span>
+                <div class="artefacto-nombre">Ventilador</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="manual" data-nombre="Trapiche" id="art-6">
+                <span class="artefacto-emoji">⚙️</span>
+                <div class="artefacto-nombre">Trapiche</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="electrico" data-nombre="Radio" id="art-7">
+                <span class="artefacto-emoji">📻</span>
+                <div class="artefacto-nombre">Radio</div>
+              </div>
+              <div class="artefacto-card" draggable="true"
+                data-tipo="manual" data-nombre="Palanca" id="art-8">
+                <span class="artefacto-emoji">🦾</span>
+                <div class="artefacto-nombre">Palanca</div>
+              </div>
+            </div>
+
+            <!-- Zonas de clasificación -->
+            <div class="zonas-clasificacion">
+              <div class="zona-drop zona-manual" id="zona-manual-3">
+                <div class="zona-titulo">💪 Trabajo Manual</div>
+                <div class="zona-items" id="zona-items-manual-3">
+                  <span style="font-size:0.75rem; color:#A0AEC0;
+                    font-style:italic; padding:4px;">
+                    Arrastra aquí los artefactos manuales...
+                  </span>
+                </div>
+              </div>
+              <div class="zona-drop zona-electrico" id="zona-electrico-3">
+                <div class="zona-titulo">⚡ Trabajo Eléctrico</div>
+                <div class="zona-items" id="zona-items-electrico-3">
+                  <span style="font-size:0.75rem; color:#A0AEC0;
+                    font-style:italic; padding:4px;">
+                    Arrastra aquí los artefactos eléctricos...
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón verificar -->
+            <div style="text-align:center; margin-top:16px;">
+              <button class="btn-completar"
+                id="btn-verificar-3"
+                onclick="verificarClasificacion(3)">
+                ✅ Verificar Clasificación
+              </button>
+            </div>
+          </li>
+
+          <li data-num="2">
+            <div class="act-titulo-item">✏️ Misión 2 — ¡Dibuja y Describe!</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Elige un artefacto que uses en tu casa o finca.
+              <strong>Dibújalo en el espacio de abajo</strong> y escribe
+              para qué sirve. ¡Usa colores!
+            </p>
+            <div class="espacio-escritura" style="min-height:130px;">
+              <span style="font-size:0.78rem; color:#A0AEC0;">
+                ✏️ Dibuja aquí tu artefacto favorito:
+              </span>
+            </div>
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:12px;">
+              <div style="flex:1; min-width:180px;">
+                <div style="font-size:0.78rem; font-weight:800;
+                  color:var(--inv-dim); margin-bottom:4px;">NOMBRE DEL ARTEFACTO:</div>
+                <div class="linea"></div>
+              </div>
+              <div style="flex:1; min-width:180px;">
+                <div style="font-size:0.78rem; font-weight:800;
+                  color:var(--inv-dim); margin-bottom:4px;">¿PARA QUÉ SIRVE?</div>
+                <div class="linea"></div>
+              </div>
+              <div style="flex:1; min-width:180px;">
+                <div style="font-size:0.78rem; font-weight:800;
+                  color:var(--inv-dim); margin-bottom:4px;">¿MANUAL O ELÉCTRICO?</div>
+                <div class="linea"></div>
+              </div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m2g3', 1)">
+                🎨 ¡Terminé mi dibujo!
+              </button>
+            </div>
+          </li>
+
+          <li data-num="3">
+            <div class="act-titulo-item">🌐 Misión 3 — ¡Descubre el Internet!</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              El internet es como una <strong>red de telaraña gigante</strong>
+              que conecta todos los computadores, celulares y tablets del mundo. 🕸️
+              <br/>Mira las imágenes y responde:
+            </p>
+            <div style="background:linear-gradient(135deg,#F0F9FF,#EFF6FF);
+              border:2px solid var(--inv-celeste); border-radius:var(--r-md);
+              padding:16px; margin-bottom:14px;">
+              <div style="display:flex; flex-wrap:wrap; gap:12px;
+                justify-content:center; margin-bottom:12px;">
+                <div style="text-align:center; padding:10px 14px; background:white;
+                  border-radius:var(--r-sm); border:2px solid var(--inv-border); min-width:90px;">
+                  <div style="font-size:2rem;">📱</div>
+                  <div style="font-size:0.72rem; font-weight:700;">Celular</div>
+                </div>
+                <div style="font-size:1.4rem; color:var(--inv-celeste); display:flex; align-items:center;">→</div>
+                <div style="text-align:center; padding:10px 14px;
+                  background:linear-gradient(135deg,var(--inv-azul),var(--inv-morado));
+                  border-radius:var(--r-sm); color:white; min-width:90px;">
+                  <div style="font-size:2rem;">🌐</div>
+                  <div style="font-size:0.72rem; font-weight:700;">INTERNET</div>
+                </div>
+                <div style="font-size:1.4rem; color:var(--inv-celeste); display:flex; align-items:center;">→</div>
+                <div style="text-align:center; padding:10px 14px; background:white;
+                  border-radius:var(--r-sm); border:2px solid var(--inv-border); min-width:90px;">
+                  <div style="font-size:2rem;">📚</div>
+                  <div style="font-size:0.72rem; font-weight:700;">Aprendizaje</div>
+                </div>
+              </div>
+              <p style="font-size:0.82rem; text-align:center; color:var(--inv-dim); margin:0;">
+                🌿 En Chichalá usamos internet para ver clases, hablar con familiares y buscar información.
+              </p>
+            </div>
+            <p style="font-size:0.88rem; font-weight:700; margin-bottom:6px;">
+              ✏️ ¿Para qué usas o usarías internet tú?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m3g3', 2)">
+                🌐 ¡Ya conozco el internet!
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div><!-- fin panel-3 -->
+
+    <!-- ══════════════════════
+         PANEL GRADO 4
+    ══════════════════════ -->
+    <div class="nivel-panel" id="panel-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Analista de Funciones</span>
+          <span class="nivel-dba">DBA 1 · 1.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+          <li data-num="1">
+            <div class="act-titulo-item">🔍 Misión 1 — Diagrama del Trapiche Digital</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Observa el artefacto y escribe el
+              <strong>nombre y la función de cada parte</strong>.
+              Luego responde: ¿es analógico o digital? ¿Por qué?
+            </p>
+            <div class="diagrama-box">
+              <span class="diagrama-emoji">⚙️</span>
+              <p style="font-family:'Fredoka',sans-serif; font-weight:700;
+                color:var(--inv-naranja); font-size:1rem; margin-bottom:12px;">
+                El Trapiche · Artefacto Icónico de Chichalá
+              </p>
+              <div class="diagrama-partes">
+                <div class="diagrama-parte">🌿 Entrada de la caña</div>
+                <div class="diagrama-parte">⚙️ Engranajes</div>
+                <div class="diagrama-parte">🪵 Moledora</div>
+                <div class="diagrama-parte">🦾 Palanca / Motor</div>
+                <div class="diagrama-parte">🧃 Salida del guarapo</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:14px;">
+              <div style="flex:1; min-width:200px;">
+                <div style="font-size:0.78rem; font-weight:800;
+                  color:var(--inv-dim); margin-bottom:6px;">¿QUÉ FUNCIÓN TIENE LA MOLEDORA?</div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+              </div>
+              <div style="flex:1; min-width:200px;">
+                <div style="font-size:0.78rem; font-weight:800;
+                  color:var(--inv-dim); margin-bottom:6px;">¿ANALÓGICO O DIGITAL? ¿POR QUÉ?</div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+              </div>
+            </div>
+            <p style="font-family:'Fredoka',sans-serif; font-size:0.95rem;
+              font-weight:700; margin:16px 0 8px; color:var(--inv-texto);">
+              📊 Compara los dos tipos de trapiche:
+            </p>
+            <table class="tabla-comparativa">
+              <tr>
+                <th class="col-criterio">Aspecto</th>
+                <th class="col-manual">⚙️ Trapiche Manual</th>
+                <th class="col-electrico">⚡ Trapiche Eléctrico</th>
+              </tr>
+              <tr>
+                <td><strong>Fuente de energía</strong></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+              </tr>
+              <tr>
+                <td><strong>¿Qué pasa sin luz?</strong></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+              </tr>
+              <tr>
+                <td><strong>Velocidad</strong></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+                <td><div class="linea" style="min-width:80px;"></div></td>
+              </tr>
+              <tr>
+                <td><strong>¿Cuál usarías y por qué?</strong></td>
+                <td colspan="2"><div class="linea"></div></td>
+              </tr>
+            </table>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m1g4', 1)">
+                ⚙️ ¡Diagrama listo!
+              </button>
+            </div>
+          </li>
+
+          <li data-num="2">
+            <div class="act-titulo-item">📱 Misión 2 — Los Artefactos Digitales de Hoy</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Los niños y jóvenes de hoy usamos artefactos digitales
+              <strong>todos los días</strong> para aprender, comunicarnos y
+              entretenernos. Observa los artefactos y completa la tabla:
+            </p>
+            <div class="artefactos-banco" style="grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">💻</span><div class="artefacto-nombre">Computador</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">🖨️</span><div class="artefacto-nombre">Impresora</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">📺</span><div class="artefacto-nombre">Televisor</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">🔊</span><div class="artefacto-nombre">Parlante</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">📚</span><div class="artefacto-nombre">Tablet</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="sonar('flip')"><span class="artefacto-emoji">📡</span><div class="artefacto-nombre">Módem WiFi</div><span class="artefacto-tag tag-digital">Digital</span></div>
+            </div>
+            <table class="tabla-comparativa" style="margin-top:14px;">
+              <tr>
+                <th class="col-criterio">Artefacto</th>
+                <th class="col-electrico">¿Para qué sirve?</th>
+                <th class="col-manual" style="background:var(--inv-morado);">¿Lo usas tú?</th>
+              </tr>
+              <tr><td>💻 Computador</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>🖨️ Impresora</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>📺 Televisor</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>🔊 Parlante</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>📡 Módem WiFi</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+            </table>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m2g4', 2)">
+                📱 ¡Tabla completada!
+              </button>
+            </div>
+          </li>
+
+          <li data-num="3">
+            <div class="act-titulo-item">🌐 Misión 3 — ¿Cómo nos conectamos a Internet?</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              El internet llega a nuestros artefactos de diferentes formas.
+              <strong>Une con flechas</strong> cada artefacto con la manera
+              en que se conecta a internet:
+            </p>
+            <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:center; margin-bottom:14px;">
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="background:white; border:2px solid var(--inv-border); border-radius:var(--r-sm); padding:10px 14px; font-weight:700; font-size:0.88rem; text-align:center;">📱 Celular</div>
+                <div style="background:white; border:2px solid var(--inv-border); border-radius:var(--r-sm); padding:10px 14px; font-weight:700; font-size:0.88rem; text-align:center;">💻 Computador</div>
+                <div style="background:white; border:2px solid var(--inv-border); border-radius:var(--r-sm); padding:10px 14px; font-weight:700; font-size:0.88rem; text-align:center;">📺 Televisor Smart</div>
+                <div style="background:white; border:2px solid var(--inv-border); border-radius:var(--r-sm); padding:10px 14px; font-weight:700; font-size:0.88rem; text-align:center;">📚 Tablet</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px; align-items:center; color:var(--inv-celeste); font-size:1.4rem;">
+                <span>→</span><span>→</span><span>→</span><span>→</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="background:rgba(26,155,171,0.08); border:2px solid var(--inv-azul); border-radius:var(--r-sm); padding:10px 14px; font-size:0.85rem; font-weight:600;">📶 WiFi (señal inalámbrica)</div>
+                <div style="background:rgba(124,58,237,0.08); border:2px solid var(--inv-morado); border-radius:var(--r-sm); padding:10px 14px; font-size:0.85rem; font-weight:600;">🔌 Cable de red (Ethernet)</div>
+                <div style="background:rgba(255,107,53,0.08); border:2px solid var(--inv-naranja); border-radius:var(--r-sm); padding:10px 14px; font-size:0.85rem; font-weight:600;">📡 Datos móviles (4G/5G)</div>
+                <div style="background:rgba(56,189,248,0.08); border:2px solid var(--inv-celeste); border-radius:var(--r-sm); padding:10px 14px; font-size:0.85rem; font-weight:600;">🛰️ Satélite (zonas rurales)</div>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; font-weight:700; color:var(--inv-dim); margin-bottom:6px;">
+              🌿 En Chichalá, ¿cómo crees que llega el internet? Escribe tu respuesta:
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m3g4', 3)">
+                🌐 ¡Conexiones mapeadas!
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div><!-- fin panel-4 -->
+
+    <!-- ══════════════════════
+         PANEL GRADO 5
+    ══════════════════════ -->
+    <div class="nivel-panel" id="panel-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟣 Grado 5° · Inventor Digital</span>
+          <span class="nivel-dba">DBA 1 · 1.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+          <li data-num="1">
+            <div class="act-titulo-item">🧠 Misión 1 — Describe con Tres Lenguajes</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Elige un artefacto digital y descríbelo usando los
+              <strong>tres lenguajes tecnológicos</strong>:
+            </p>
+            <div class="artefactos-banco" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); margin-bottom:16px;">
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Celular')"><span class="artefacto-emoji">📱</span><div class="artefacto-nombre">Celular</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Computador')"><span class="artefacto-emoji">💻</span><div class="artefacto-nombre">Computador</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Impresora')"><span class="artefacto-emoji">🖨️</span><div class="artefacto-nombre">Impresora</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Televisor')"><span class="artefacto-emoji">📺</span><div class="artefacto-nombre">Televisor</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Parlante')"><span class="artefacto-emoji">🔊</span><div class="artefacto-nombre">Parlante</div><span class="artefacto-tag tag-digital">Digital</span></div>
+              <div class="artefacto-card" onclick="elegirArtefacto(this,'Tablet')"><span class="artefacto-emoji">📚</span><div class="artefacto-nombre">Tablet</div><span class="artefacto-tag tag-digital">Digital</span></div>
+            </div>
+            <div id="artefacto-elegido-label"
+              style="font-family:'Fredoka',sans-serif; font-size:0.92rem;
+              font-weight:700; color:var(--inv-morado); margin-bottom:12px; min-height:24px;">
+              👆 Selecciona un artefacto para comenzar...
+            </div>
+            <!-- Lenguaje 1 -->
+            <div style="background:#F8FAFC; border:2px solid var(--inv-border); border-radius:var(--r-md); padding:16px; margin-bottom:12px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem; font-weight:700; color:var(--inv-morado); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--inv-morado); color:white; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.8rem;">1</span>
+                ✍️ Lenguaje Escrito
+              </div>
+              <p style="font-size:0.82rem; color:var(--inv-dim); margin-bottom:8px;">Escribe qué es, para qué sirve y cómo funciona (mínimo 3 oraciones):</p>
+              <div class="lineas"><div class="linea"></div><div class="linea"></div><div class="linea"></div></div>
+            </div>
+            <!-- Lenguaje 2 -->
+            <div style="background:#F8FAFC; border:2px solid var(--inv-border); border-radius:var(--r-md); padding:16px; margin-bottom:12px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem; font-weight:700; color:var(--inv-azul); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--inv-azul); color:white; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.8rem;">2</span>
+                🎨 Lenguaje Gráfico
+              </div>
+              <p style="font-size:0.82rem; color:var(--inv-dim); margin-bottom:8px;">Dibuja el artefacto y señala sus partes con flechas y etiquetas:</p>
+              <div class="espacio-escritura" style="min-height:120px;"><span style="font-size:0.78rem; color:#A0AEC0;">✏️ Dibuja y etiqueta aquí:</span></div>
+            </div>
+            <!-- Lenguaje 3 -->
+            <div style="background:#F8FAFC; border:2px solid var(--inv-border); border-radius:var(--r-md); padding:16px; margin-bottom:14px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem; font-weight:700; color:var(--inv-verde); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--inv-verde); color:white; width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:0.8rem;">3</span>
+                🔣 Lenguaje Simbólico
+              </div>
+              <p style="font-size:0.82rem; color:var(--inv-dim); margin-bottom:8px;">
+                Usa íconos o símbolos para representar el proceso de funcionamiento.<br/>
+                Ejemplo: <span style="background:#EEF2FF; padding:3px 10px; border-radius:50px; font-weight:700; font-size:0.82rem;">🔌 → ⚡ → 📱 → 🌐 → 📚</span>
+              </p>
+              <div class="linea"></div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m1g5', 1)">
+                🧠 ¡Descripción completada!
+              </button>
+            </div>
+          </li>
+
+          <li data-num="2">
+            <div class="act-titulo-item">📊 Misión 2 — Analógico vs Digital: ¡El Gran Duelo!</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Compara el <strong>reloj de agujas</strong> (analógico) con el
+              <strong>celular</strong> (digital) como artefactos para medir el tiempo.
+              Escribe al menos <strong>2 similitudes y 3 diferencias</strong>:
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+              <div style="background:rgba(255,107,53,0.06); border:2px solid var(--inv-naranja); border-radius:var(--r-md); padding:14px;">
+                <div style="text-align:center; font-size:2.2rem; margin-bottom:8px;">⏰</div>
+                <div style="font-family:'Fredoka',sans-serif; font-weight:700; text-align:center; color:var(--inv-naranja); margin-bottom:10px;">🔄 Similitudes</div>
+                <div class="linea"></div><div class="linea"></div>
+              </div>
+              <div style="background:rgba(26,155,171,0.06); border:2px solid var(--inv-azul); border-radius:var(--r-md); padding:14px;">
+                <div style="text-align:center; font-size:2.2rem; margin-bottom:8px;">📱</div>
+                <div style="font-family:'Fredoka',sans-serif; font-weight:700; text-align:center; color:var(--inv-azul); margin-bottom:10px;">                ⚡ Diferencias</div>
+                <div class="linea"></div><div class="linea"></div><div class="linea"></div>
+              </div>
+            </div>
+            <p style="font-size:0.88rem; font-weight:700; margin-bottom:6px;">
+              💬 En tu opinión: ¿cuál es mejor y por qué?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m2g5', 2)">
+                📊 ¡Comparación lista!
+              </button>
+            </div>
+          </li>
+
+          <li data-num="3">
+            <div class="act-titulo-item">🌐 Misión 3 — Recursos Educativos Digitales</div>
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+              Los recursos educativos digitales nos permiten aprender desde cualquier
+              lugar. <strong>Investiga o recuerda</strong> y completa la tabla:
+            </p>
+            <table class="tabla-comparativa">
+              <tr>
+                <th class="col-criterio">Recurso Digital</th>
+                <th class="col-electrico">¿Para qué sirve?</th>
+                <th class="col-manual" style="background:var(--inv-morado);">¿Lo has usado?</th>
+              </tr>
+              <tr><td>▶️ YouTube Educativo</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>📐 Khan Academy</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>🦉 Duolingo</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>🌿 Portal CHICALA</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+              <tr><td>🔍 Otro que conozcas:</td><td><div class="linea"></div></td><td style="text-align:center;">Sí ☐ &nbsp; No ☐</td></tr>
+            </table>
+            <p style="font-size:0.88rem; font-weight:700; margin:14px 0 6px;">
+              💡 ¿Cuál recurso digital usarías para aprender tecnología? ¿Por qué?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar" onclick="completarMision('m3g5', 3)">
+                🌐 ¡Recursos explorados!
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div><!-- fin panel-5 -->
+  </div><!-- fin seccion-juego -->
+
+  <!-- ══════════════════════
+       SECCIÓN 5: CIUDADANÍA
+  ══════════════════════ -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Acciones Reparadoras · Convivencia
+        <small>Competencia Ciudadana · CC 2.6</small>
+      </h3>
+    </div>
+    <p>
+      En tecnología, cuando un artefacto falla, lo <strong>reparamos</strong>:
+      lo revisamos, encontramos el error y lo corregimos.
+      En la convivencia pasa igual: cuando incumplimos una norma o un acuerdo,
+      debemos reconocerlo y aplicar una <strong>acción reparadora</strong>
+      para restaurar la confianza. 🔧
+    </p>
+    <div style="background:rgba(61,190,140,0.07); border:2px solid var(--inv-verde);
+      border-radius:var(--r-md); padding:18px; margin-top:14px;">
+      <p style="font-weight:700; color:#065F46; font-size:0.92rem;">
+        💬 <strong>Reflexiona y responde:</strong> Imagina que en clase
+        rompiste accidentalmente el artefacto que tu compañero/a trajo
+        para la actividad. ¿Cuál sería tu acción reparadora?
+        ¿Cómo lo arreglarías con esa persona y con el grupo?
+      </p>
+      <div class="lineas" style="margin-top:10px;">
+        <div class="linea"></div>
+        <div class="linea"></div>
+        <div class="linea"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 6: COFRE DEL SABER
+  ══════════════════════ -->
+  <div class="seccion" style="border-color:var(--inv-amarillo);">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📦</span>
+      <h3>Cofre del Saber
+        <small>¡Ábrelo cuando termines tus misiones! 🔓</small>
+      </h3>
+    </div>
+    <div class="cofre-wrap">
+      <button class="btn-cofre" onclick="abrirCofre()">
+        🔐 ¡Abrir Cofre del Saber!
+      </button>
+      <div class="cofre-secreto" id="cofre-secreto">
+        <div class="cofre-secreto-titulo">💡 ¡El Secreto del Internet!</div>
+        <p>
+          El internet es como una <strong>red de telaraña invisible</strong>
+          que une todas las computadoras del mundo. Fue inventado en 1969
+          por científicos de los Estados Unidos para compartir información
+          entre universidades. ¡Hoy lo usan más de 5.400 millones de personas! 🌍
+        </p>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">🌐</span>
+          <span>El internet viaja por cables bajo el mar que conectan continentes.
+          ¡Hay más de 400 cables submarinos en el mundo!</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">⚡</span>
+          <span>En Chichalá, el internet puede llegar por señal de celular (4G),
+          por WiFi del colegio, o por antenas satelitales.
+          ¡La tecnología llega hasta la vereda! 🌿</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">📱</span>
+          <span>El celular que usas es una computadora de bolsillo.
+          Tiene más poder que los computadores que llevaron
+          al hombre a la Luna en 1969. ¡Increíble! 🚀</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">🎓</span>
+          <span>Con internet puedes aprender matemáticas, inglés, ciencias
+          y tecnología desde Chichalá, igual que un estudiante
+          de Bogotá, Madrid o Nueva York. 🌍</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 7: AUTOEVALUACIÓN
+  ══════════════════════ -->
+  <div class="seccion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📊</span>
+      <h3>Reporte de Misión
+        <small>¿Cómo te fue hoy, Inventor/a? ⭐</small>
+      </h3>
+    </div>
+    <div class="eval-box">
+      <h4>⭐ Autoevaluación · Marca con clic o con X</h4>
+      <table class="eval-tabla">
+        <tr>
+          <th>Criterio de la misión</th>
+          <th class="col-logre">¡Lo logré! 😄</th>
+          <th class="col-casi">Casi 🙂</th>
+          <th class="col-ayuda">Necesito ayuda 😕</th>
+        </tr>
+        <tr>
+          <td>Identifico si un artefacto es manual o eléctrico</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Describo un artefacto con palabras, dibujos o símbolos</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Reconozco la diferencia entre analógico y digital</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Sé qué es el internet y para qué sirve</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Conozco al menos un recurso educativo digital</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Entiendo qué es una acción reparadora en convivencia</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Participé activamente y respeté las opiniones del grupo</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+      </table>
+    </div>
+    <p style="font-weight:800; font-size:0.88rem; margin-bottom:6px;">
+      ⚡ ¿Qué fue lo más difícil hoy? ¿Cómo lo resolviste?
+    </p>
+    <div class="lineas">
+      <div class="linea"></div>
+      <div class="linea"></div>
+      <div class="linea"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 8: TAREA EN CASA
+  ══════════════════════ -->
+  <div class="seccion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🏡</span>
+      <h3>Tarea en Casa
+        <small>¡Sé un Detective Tecnológico en tu hogar! 🔍</small>
+      </h3>
+    </div>
+    <p style="font-size:0.9rem; margin-bottom:14px;">
+      Recorre tu casa o finca y encuentra
+      <strong>2 artefactos manuales</strong> y
+      <strong>2 artefactos eléctricos o digitales</strong>.
+      Para cada uno completa la tabla:
+    </p>
+    <table class="tabla-comparativa">
+      <tr>
+        <th class="col-criterio">Artefacto</th>
+        <th class="col-manual">¿Manual o Eléctrico?</th>
+        <th class="col-electrico">¿Analógico o Digital?</th>
+        <th class="col-criterio" style="background:var(--inv-morado);">Una parte y su función</th>
+        <th class="col-criterio" style="background:var(--inv-verde);">Símbolo / Ícono</th>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center; font-size:1.4rem;">__</td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center; font-size:1.4rem;">__</td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center; font-size:1.4rem;">__</td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center; font-size:1.4rem;">__</td>
+      </tr>
+    </table>
+
+    <!-- Tarjetas recortables -->
+    <div class="tarjetas-recortables">
+      <div class="tarjetas-titulo">✂️ Recorta y guarda estas tarjetas de referencia:</div>
+      <div class="tarjetas-grid">
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">⚙️</span><div class="tarjeta-nombre">Trapiche</div><div class="tarjeta-tipo">Manual · Analógico</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">📱</span><div class="tarjeta-nombre">Celular</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">💻</span><div class="tarjeta-nombre">Computador</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">🖨️</span><div class="tarjeta-nombre">Impresora</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">📺</span><div class="tarjeta-nombre">Televisor</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">🔊</span><div class="tarjeta-nombre">Parlante</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">⏰</span><div class="tarjeta-nombre">Reloj Agujas</div><div class="tarjeta-tipo">Manual · Analógico</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">📡</span><div class="tarjeta-nombre">Módem WiFi</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">🪚</span><div class="tarjeta-nombre">Sierra</div><div class="tarjeta-tipo">Manual · Analógico</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">📻</span><div class="tarjeta-nombre">Radio</div><div class="tarjeta-tipo">Eléctrico · Analógico</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">📚</span><div class="tarjeta-nombre">Tablet</div><div class="tarjeta-tipo">Eléctrico · Digital</div></div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"><span class="tarjeta-emoji">🌐</span><div class="tarjeta-nombre">Internet</div><div class="tarjeta-tipo">Red global · Digital</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       DIPLOMA
+  ══════════════════════ -->
+  <div class="diploma-wrap" id="diploma-wrap">
+    <div class="diploma-titulo">🏆 IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="diploma-titulo" style="margin-top:6px;">CERTIFICA QUE EL/LA INVENTOR/A:</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">¡Tu Nombre Aquí!</div>
+    <span class="diploma-insignia">🔧</span>
+    <div class="diploma-texto">
+      Ha completado con éxito la
+      <strong>Misión Digital: Inventores de Chichalá</strong>,
+      demostrando que sabe clasificar artefactos tecnológicos,
+      conoce el internet y los recursos educativos digitales,
+      y está listo/a para ser un
+      <strong>Inventor/a Digital del siglo XXI</strong>. 🌿🚀
+    </div>
+    <div class="diploma-grado-badge" id="diploma-grado">
+      ⚙️ Inventor/a Digital · Chichalá
+    </div>
+    <div style="margin-top:18px; font-size:0.8rem; color:var(--inv-dim); font-style:italic;">
+      Profe Nelson · Tecnología · Período 3 · Semana 1
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       REFLEXIÓN FINAL
+  ══════════════════════ -->
+  <div class="reflexion-final">
+    <p>
+      ⚙️ "En Chichalá, cada herramienta tiene una historia.<br/>
+      El machete que abre caminos, el trapiche que endulza la vida,<br/>
+      el celular que nos conecta con el mundo entero.<br/>
+      <strong>Entender cómo funcionan las cosas<br/>
+      es el primer paso para inventar cosas nuevas."</strong>
+    </p>
+    <p style="font-size:0.82rem; margin-top:10px; color:var(--inv-dim); font-style:italic;">
+      🌿 Profe Nelson · Tecnología · IE Técnica Camacho Angarita · Sede Chichalá
+    </p>
+  </div>
+
+  <!-- ══════════════════════
+       FOOTER
+  ══════════════════════ -->
+  <div class="footer">
+    <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    <p>Corregimiento El Limón · Chaparral, Tolima</p>
+    <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+    <p style="margin-top:8px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+  </div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <a href="../../../../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+  </div>
+
+</div><!-- fin .container -->
+
+<script>
+/* ══════════════════════════════════════════════
+   INVENTORES DE CHICHALÁ · MISIÓN DIGITAL
+   JavaScript · Profe Nelson
+   Tecnología · Grados 3°-4°-5° · Período 3
+   v4 — DragDrop + InfoNodo + Terminal Internet
+══════════════════════════════════════════════ */
+'use strict';
+
+// ─────────────────────────────────────────────
+// SONIDOS · Web Audio API (100% offline)
+// ─────────────────────────────────────────────
+const audioCtx = window.AudioContext
+  ? new AudioContext()
+  : window.webkitAudioContext
+    ? new webkitAudioContext()
+    : null;
+
+function sonar(tipo) {
+  if (!audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const configs = {
+    correcto:  { freq: [523, 659, 784],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+    error:     { freq: [200, 150],             dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+    flip:      { freq: [440, 554],             dur: 0.08, gain: 0.2,  type: 'sine'     },
+    nodo:      { freq: [660, 880],             dur: 0.1,  gain: 0.2,  type: 'sine'     },
+    eureka:    { freq: [523, 659, 784, 1047],  dur: 0.1,  gain: 0.25, type: 'sine'     },
+    completar: { freq: [784, 880, 1047],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+    cofre:     { freq: [392, 494, 587, 784],   dur: 0.14, gain: 0.28, type: 'sine'     },
+  };
+
+  const cfg = configs[tipo] || configs.flip;
+  cfg.freq.forEach((f, i) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type            = cfg.type;
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+    );
+    osc.start(audioCtx.currentTime + i * cfg.dur);
+    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+  });
+}
+
+// ─────────────────────────────────────────────
+// ESTADO GLOBAL
+// ─────────────────────────────────────────────
+const STORAGE_KEY = 'chicala_tec_p3s1_inv';
+
+let estado = JSON.parse(
+  localStorage.getItem(STORAGE_KEY) ||
+  JSON.stringify({ misionesCompletas: [], piezasObtenidas: 0 })
+);
+
+// ─────────────────────────────────────────────
+// BARRA DE PROGRESO
+// ─────────────────────────────────────────────
+const TOTAL_PIEZAS = 5;
+
+function actualizarBarra() {
+  const pct  = Math.round((estado.piezasObtenidas / TOTAL_PIEZAS) * 100);
+  const fill = document.getElementById('barra-fill');
+  if (fill) fill.style.width = pct + '%';
+  for (let i = 1; i <= TOTAL_PIEZAS; i++) {
+    const p = document.getElementById(`pieza-${i}`);
+    if (p && i <= estado.piezasObtenidas) p.classList.add('obtenida');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CAMBIAR PANEL DE NIVEL
+// ─────────────────────────────────────────────
+function cambiarNivel(num, btn) {
+  sonar('flip');
+  document.querySelectorAll('.nivel-panel')
+    .forEach(p => p.classList.remove('activo'));
+  document.querySelectorAll('.nivel-tab')
+    .forEach(t => t.className = 'nivel-tab');
+  const panel = document.getElementById(`panel-${num}`);
+  if (panel) panel.classList.add('activo');
+  if (btn)   btn.classList.add(`activo-${num}`);
+}
+
+// ─────────────────────────────────────────────
+// ✅ FIX: DRAG & DROP UNIFICADO
+// Sistema único. Se elimina dragElemento global
+// y manejarDrop(). Llamado en DOMContentLoaded.
+// ─────────────────────────────────────────────
+function iniciarDragDrop() {
+
+  // ── DESKTOP ──────────────────────────────────
+  document.addEventListener('dragstart', e => {
+    const card = e.target.closest('.artefacto-card[draggable="true"]');
+    if (!card) return;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', card.id);
+    sonar('flip');
+  });
+
+  document.addEventListener('dragend', e => {
+    const card = e.target.closest('.artefacto-card');
+    if (card) card.classList.remove('dragging');
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+  });
+
+  document.addEventListener('dragover', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+    zona.classList.add('drag-over');
+  });
+
+  // ✅ FIX: dragleave solo limpia si el cursor
+  // sale realmente de la zona (no de un hijo)
+  document.addEventListener('dragleave', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    if (!zona.contains(e.relatedTarget)) {
+      zona.classList.remove('drag-over');
+    }
+  });
+
+  document.addEventListener('drop', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    e.preventDefault();
+    zona.classList.remove('drag-over');
+    const id   = e.dataTransfer.getData('text/plain');
+    const card = document.getElementById(id);
+    if (!card) return;
+    const tipoZona = zona.classList.contains('zona-manual')
+      ? 'manual' : 'electrico';
+    procesarClasificacion(card, tipoZona);
+  });
+
+  // ── TOUCH ─────────────────────────────────────
+  let touchCard = null;
+  let clon      = null;
+  let cardW     = 0;
+  let cardH     = 0;
+
+  document.addEventListener('touchstart', e => {
+    const card = e.target.closest('.artefacto-card[draggable="true"]');
+    if (!card) return;
+    if (parseFloat(card.style.opacity) < 0.5) return;
+
+    touchCard = card;
+    cardW     = card.offsetWidth;
+    cardH     = card.offsetHeight;
+    const t   = e.touches[0];
+
+    clon = card.cloneNode(true);
+    clon.style.cssText = `
+      position       : fixed;
+      z-index        : 9999;
+      opacity        : 0.88;
+      pointer-events : none;
+      width          : ${cardW}px;
+      left           : ${t.clientX - cardW / 2}px;
+      top            : ${t.clientY - cardH / 2}px;
+      transform      : rotate(4deg) scale(1.08);
+      border-radius  : var(--r-md);
+      box-shadow     : 0 14px 36px rgba(0,0,0,0.22);
+      transition     : none;
+    `;
+    document.body.appendChild(clon);
+    card.style.opacity = '0.35';
+    sonar('flip');
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!clon || !touchCard) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    clon.style.left = `${t.clientX - cardW / 2}px`;
+    clon.style.top  = `${t.clientY - cardH / 2}px`;
+
+    // ✅ FIX: ocultar clon para detectar zona bajo el dedo
+    clon.style.display = 'none';
+    const elDebajo = document.elementFromPoint(t.clientX, t.clientY);
+    clon.style.display = '';
+
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+    const zona = elDebajo ? elDebajo.closest('.zona-drop') : null;
+    if (zona) zona.classList.add('drag-over');
+  }, { passive: false });
+
+  document.addEventListener('touchend', e => {
+    if (!touchCard) return;
+    if (clon) { clon.remove(); clon = null; }
+    touchCard.style.opacity = '1';
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+
+    const t        = e.changedTouches[0];
+    const elDebajo = document.elementFromPoint(t.clientX, t.clientY);
+    const zona     = elDebajo ? elDebajo.closest('.zona-drop') : null;
+
+    if (zona) {
+      const tipoZona = zona.classList.contains('zona-manual')
+        ? 'manual' : 'electrico';
+      procesarClasificacion(touchCard, tipoZona);
+    } else {
+      mostrarToast('👆 Suelta el artefacto dentro de una columna.', 'error');
+    }
+    touchCard = null;
+  });
+}
+
+// ─────────────────────────────────────────────
+// PROCESAR CLASIFICACIÓN
+// ─────────────────────────────────────────────
+function procesarClasificacion(card, tipoZona) {
+  const tipoCard   = card.dataset.tipo;
+  const nombre     = card.dataset.nombre;
+  const emoji      = card.querySelector('.artefacto-emoji').textContent;
+  const esCorrecta = tipoCard === tipoZona;
+  const gradoNum   = 3;
+
+  const zonaItems = document.getElementById(
+    `zona-items-${tipoZona}-${gradoNum}`
+  );
+  if (!zonaItems) return;
+
+  // Limpiar placeholder
+  zonaItems.querySelectorAll('span').forEach(s => {
+    if (s.textContent.includes('Arrastra aquí')) s.remove();
+  });
+
+  // Evitar duplicado en la misma zona
+  if (zonaItems.querySelector(`[data-card-id="${card.id}"]`)) {
+    mostrarToast(`⚠️ "${nombre}" ya está en esta columna.`, 'error');
+    card.style.opacity       = '1';
+    card.style.pointerEvents = 'auto';
+    return;
+  }
+
+  // Quitar de la otra zona si ya estaba
+  const otraZona  = tipoZona === 'manual' ? 'electrico' : 'manual';
+  const otraItems = document.getElementById(
+    `zona-items-${otraZona}-${gradoNum}`
+  );
+  if (otraItems) {
+    const chipAnterior = otraItems.querySelector(
+      `[data-card-id="${card.id}"]`
+    );
+    if (chipAnterior) chipAnterior.remove();
+  }
+
+  // Crear chip en la zona
+  const chip = document.createElement('div');
+  chip.className          = 'zona-chip';
+  chip.dataset.cardId     = card.id;
+  // ✅ FIX: guardar resultado como dataset para leerlo en verificación
+  chip.dataset.esCorrecta = String(esCorrecta);
+  chip.title              = '↩️ Toca para devolver al banco';
+  chip.innerHTML = `
+    <span>${emoji}</span>
+    <span style="font-weight:700; font-size:0.82rem;">${nombre}</span>
+    <span style="font-size:0.95rem;">${esCorrecta ? '✅' : '❌'}</span>`;
+
+  // Devolver al banco al hacer clic en el chip
+  chip.addEventListener('click', () => {
+    chip.remove();
+    card.style.opacity       = '1';
+    card.style.pointerEvents = 'auto';
+    card.style.transform     = '';
+    sonar('flip');
+    mostrarToast(
+      `↩️ "${nombre}" devuelto al banco. ¡Inténtalo de nuevo!`,
+      'error'
+    );
+  });
+
+  zonaItems.appendChild(chip);
+
+  // Animación en la tarjeta del banco
+  card.classList.add(
+    esCorrecta ? 'clasificado-correcto' : 'clasificado-incorrecto'
+  );
+  setTimeout(() => card.classList.remove(
+    'clasificado-correcto', 'clasificado-incorrecto'
+  ), 700);
+
+  // Atenuar tarjeta clasificada en el banco
+  card.style.opacity       = '0.4';
+  card.style.pointerEvents = 'none';
+
+  sonar(esCorrecta ? 'correcto' : 'error');
+  mostrarToast(
+    esCorrecta
+      ? `✅ ¡Correcto! "${nombre}" es ${tipoZona === 'manual'
+          ? 'trabajo Manual 💪' : 'trabajo Eléctrico ⚡'}`
+      : `❌ ¡Oops! "${nombre}" no va ahí. Toca ❌ para corregirlo.`,
+    esCorrecta ? 'success' : 'error'
+  );
+}
+
+// ─────────────────────────────────────────────
+// VERIFICAR CLASIFICACIÓN GRADO 3
+// ─────────────────────────────────────────────
+function verificarClasificacion(grado) {
+  const chips = document.querySelectorAll(
+    `#zona-items-manual-${grado} .zona-chip,
+     #zona-items-electrico-${grado} .zona-chip`
+  );
+
+  if (chips.length < 4) {
+    sonar('error');
+    mostrarToast(
+      '⚠️ Clasifica al menos 4 artefactos antes de verificar.',
+      'error'
+    );
+    return;
+  }
+
+  // ✅ FIX: leer dataset.esCorrecta en lugar de buscar '✅' en texto
+  let correctos = 0;
+  chips.forEach(chip => {
+    if (chip.dataset.esCorrecta === 'true') correctos++;
+  });
+
+  const total = chips.length;
+
+  if (correctos >= Math.ceil(total * 0.75)) {
+    sonar('eureka');
+    mostrarToast(
+      `🎉 ¡Excelente! ${correctos}/${total} correctos. ¡Pieza obtenida!`,
+      'success'
+    );
+    completarMision(`clasificacion-${grado}`, 0);
+
+    // ✅ FIX: desbloquear pieza 1 al completar Misión 1
+    if (!estado.misionesCompletas.includes('m1g3-pieza')) {
+              estado.misionesCompletas.push('m1g3-pieza');
+      if (estado.piezasObtenidas < 1) {
+        estado.piezasObtenidas = 1;
+        const pieza = document.getElementById('pieza-1');
+        if (pieza) pieza.classList.add('obtenida');
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+      actualizarBarra();
+    }
+  } else {
+    sonar('error');
+    mostrarToast(
+      `💪 ${correctos}/${total} correctos. ¡Sigue intentando!`,
+      'error'
+    );
+  }
+}
+
+// ─────────────────────────────────────────────
+// COMPLETAR MISIÓN → OBTENER PIEZA
+// ─────────────────────────────────────────────
+function completarMision(idMision, indicePieza) {
+  if (estado.misionesCompletas.includes(idMision)) {
+    mostrarToast('✅ ¡Esta misión ya la completaste!', 'success');
+    return;
+  }
+
+  estado.misionesCompletas.push(idMision);
+
+  if (indicePieza > 0 && estado.piezasObtenidas < indicePieza) {
+    estado.piezasObtenidas = indicePieza;
+    const pieza = document.getElementById(`pieza-${indicePieza}`);
+    if (pieza) pieza.classList.add('obtenida');
+    sonar('completar');
+    mostrarToast(
+      `🔧 ¡Pieza ${indicePieza} del trapiche obtenida!`,
+      'success'
+    );
+  }
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+  actualizarBarra();
+
+  if (estado.piezasObtenidas >= TOTAL_PIEZAS) {
+    setTimeout(() => mostrarDiploma(), 800);
+  }
+}
+
+// ─────────────────────────────────────────────
+// ABRIR COFRE DEL SABER
+// ─────────────────────────────────────────────
+function abrirCofre() {
+  const cofre    = document.getElementById('cofre-secreto');
+  const btnCofre = document.querySelector('.btn-cofre');
+  if (!cofre) return;
+
+  sonar('cofre');
+  lanzarConfeti();
+  cofre.classList.add('visible');
+
+  if (btnCofre) {
+    btnCofre.textContent = '🔓 ¡Cofre Abierto!';
+    btnCofre.disabled    = true;
+    btnCofre.style.background =
+      'linear-gradient(135deg, var(--inv-verde), var(--inv-azul))';
+  }
+
+  completarMision('cofre-saber', 5);
+  mostrarToast('📦 ¡El Cofre del Saber ha sido abierto! 🌟', 'success');
+}
+
+// ─────────────────────────────────────────────
+// ELEGIR ARTEFACTO (GRADO 5)
+// ─────────────────────────────────────────────
+function elegirArtefacto(card, nombre) {
+  sonar('flip');
+  document.querySelectorAll('#panel-5 .artefacto-card').forEach(c => {
+    c.style.border     = '3px solid var(--inv-border)';
+    c.style.background = 'white';
+  });
+  card.style.border     = '3px solid var(--inv-morado)';
+  card.style.background = 'rgba(124,58,237,0.08)';
+
+  const label = document.getElementById('artefacto-elegido-label');
+  if (label) {
+    label.textContent =
+      `✅ Artefacto elegido: ${card.querySelector('.artefacto-emoji').textContent} `
+      + `${nombre}. ¡Ahora descríbelo con los tres lenguajes!`;
+  }
+}
+
+// ─────────────────────────────────────────────
+// AUTOEVALUACIÓN
+// ─────────────────────────────────────────────
+function marcarEval(celda) {
+  const fila     = celda.parentElement;
+  const celdas   = fila.querySelectorAll('.check-cell');
+  const yaEstaba = celda.classList.contains('marcado');
+
+  celdas.forEach(c => {
+    c.classList.remove('marcado');
+    c.textContent = '☐';
+  });
+
+  if (!yaEstaba) {
+    celda.classList.add('marcado');
+    celda.textContent = '☑';
+    sonar('flip');
+  }
+}
+
+// ─────────────────────────────────────────────
+// DIPLOMA
+// ─────────────────────────────────────────────
+function mostrarDiploma() {
+  const diploma = document.getElementById('diploma-wrap');
+  if (!diploma) return;
+  diploma.classList.add('visible');
+  diploma.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  sonar('eureka');
+  lanzarConfeti();
+  mostrarToast(
+    '🏆 ¡Felicitaciones! ¡Has completado la Misión Digital! 🚀🌿',
+    'success'
+  );
+}
+
+// ─────────────────────────────────────────────
+// ✅ FIX: MOSTRAR INFO NODO
+// Firma unificada: recibe solo el elemento tocado.
+// Lee data-titulo y data-texto desde el dataset.
+// Compatible con onclick="mostrarInfoNodo(this)"
+// ─────────────────────────────────────────────
+function mostrarInfoNodo(elementoTocado) {
+  sonar('nodo');
+
+  // Subir al ancestro .nodo aunque el click
+  // venga de un texto o emoji hijo
+  const nodoEl = elementoTocado.closest
+    ? elementoTocado.closest('.nodo')
+    : elementoTocado;
+  if (!nodoEl) return;
+
+  const titulo = nodoEl.dataset.titulo || '';
+  const texto  = nodoEl.dataset.texto  || '';
+  if (!titulo) return;
+
+  const panel    = document.getElementById('nodo-info-panel');
+  const tituloEl = document.getElementById('nodo-info-titulo');
+  const textoEl  = document.getElementById('nodo-info-texto');
+  if (!panel || !tituloEl || !textoEl) return;
+
+  // Toggle: cerrar si ya estaba abierto con el mismo nodo
+  if (panel.style.display === 'block' &&
+      tituloEl.textContent === titulo) {
+    cerrarInfoNodo();
+    return;
+  }
+
+  // Resetear estilos de todos los nodos
+  document.querySelectorAll('.nodo').forEach(n => {
+    n.style.transform = '';
+    n.style.outline   = '';
+  });
+
+  // Resaltar nodo activo
+  nodoEl.style.transform = 'translateY(-6px) scale(1.08)';
+  nodoEl.style.outline   = '3px solid var(--inv-amarillo)';
+
+  tituloEl.textContent = titulo;
+  textoEl.textContent  = texto;
+  panel.style.display  = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  mostrarToast(`${titulo} — ¡Toca otro para explorar más!`, 'success');
+}
+
+function cerrarInfoNodo() {
+  const panel = document.getElementById('nodo-info-panel');
+  if (panel) panel.style.display = 'none';
+  document.querySelectorAll('.nodo').forEach(n => {
+    n.style.transform = '';
+    n.style.outline   = '';
+  });
+}
+
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+let toastTimer = null;
+
+function mostrarToast(mensaje, tipo = 'default') {
+  let toast = document.getElementById('inv-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'inv-toast';
+    toast.style.cssText = `
+      position      : fixed;
+      bottom        : 28px;
+      left          : 50%;
+      transform     : translateX(-50%) translateY(120px);
+      background    : white;
+      border-radius : 50px;
+      padding       : 13px 30px;
+      font-family   : 'Fredoka', sans-serif;
+      font-size     : 0.95rem;
+      font-weight   : 600;
+      z-index       : 9999;
+      box-shadow    : 0 8px 32px rgba(0,0,0,0.15);
+      transition    : transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      white-space   : nowrap;
+      max-width     : 92vw;
+      text-align    : center;
+      border        : 2px solid transparent;
+    `;
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent       = mensaje;
+  toast.style.borderColor =
+    tipo === 'success' ? '#6EE7B7' :
+    tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
+  toast.style.color =
+    tipo === 'success' ? '#065F46' :
+    tipo === 'error'   ? '#991B1B' : '#92400E';
+
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(120px)';
+  }, 3200);
+}
+
+// ─────────────────────────────────────────────
+// CONFETI
+// ─────────────────────────────────────────────
+function lanzarConfeti() {
+  const emojis = [
+    '🔧','⚙️','💡','📱','🌐','⭐','🎉','🏆','✨','💻','🚀'
+  ];
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position        : fixed;
+      top             : -40px;
+      left            : ${Math.random() * 100}vw;
+      font-size       : ${1 + Math.random() * 1.6}rem;
+      animation       : caerConfeti ${1.5 + Math.random() * 2.5}s ease-in forwards;
+      z-index         : 9998;
+      pointer-events  : none;
+      animation-delay : ${Math.random() * 0.6}s;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4500);
+  }
+}
+
+// ─────────────────────────────────────────────
+// ✅ FIX: EFECTO TERMINAL · SUBTÍTULO INTERNET
+// Escribe el subtítulo letra a letra como
+// una terminal de Linux, con delay calculado
+// para sincronizar con la animación del header.
+// ─────────────────────────────────────────────
+function iniciarEfectoTerminal() {
+  const textToType  = 'Tu ventana al mundo digital 🚀';
+  const typingEl    = document.getElementById('typing-text');
+  const cursorEl    = document.querySelector('.cursor-blink');
+  if (!typingEl) return;
+
+  let i = 0;
+  const typeSpeed = 48; // ms por carácter
+
+  function typeWriter() {
+    if (i < textToType.length) {
+      // Usar textContent acumulado para evitar
+      // problemas con emojis multi-byte
+      typingEl.textContent += textToType[i];
+      i++;
+      setTimeout(typeWriter, typeSpeed);
+    } else {
+      // Escritura completa: cursor sigue parpadeando normalmente
+      if (cursorEl) cursorEl.style.animationDuration = '0.8s';
+    }
+  }
+
+  // Delay: espera a que la animación del header termine
+  setTimeout(typeWriter, 1900);
+}
+
+// ─────────────────────────────────────────────
+// ✅ FIX: DOMContentLoaded
+// Punto de entrada principal.
+// iniciarDragDrop() se llama aquí — era la causa
+// principal del fallo: la función existía pero
+// nunca se invocaba.
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. Sistema de drag & drop unificado
+  iniciarDragDrop();
+
+  // 2. Barra de progreso con estado guardado
+  actualizarBarra();
+
+  // 3. Efecto terminal en subtítulo de Internet
+  iniciarEfectoTerminal();
+
+  // 4. Diploma: nombre en tiempo real
+  const inputNombre = document.getElementById('input-nombre');
+  if (inputNombre) {
+    inputNombre.addEventListener('input', () => {
+      const dn = document.getElementById('diploma-nombre');
+      if (dn) dn.textContent = inputNombre.value || '¡Tu Nombre Aquí!';
+    });
+  }
+
+  // 5. Diploma: grado en tiempo real
+  const inputGrado = document.getElementById('input-grado');
+  if (inputGrado) {
+    inputGrado.addEventListener('input', () => {
+      const dg = document.getElementById('diploma-grado');
+      if (dg) dg.textContent =
+        `⚙️ Inventor/a Digital · Grado ${inputGrado.value} · Chichalá`;
+    });
+  }
+
+  // 6. Validación visual de campos al perder foco
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('blur', () => {
+      input.style.borderBottomColor = input.value.trim() === ''
+        ? '#F4872B'   // Naranja: campo vacío
+        : '#3DBE8C';  // Verde: campo con contenido
+    });
+  });
+
+  // 7. Botón imprimir
+  const btnPrint = document.querySelector('.btn-print');
+  if (btnPrint) {
+    btnPrint.addEventListener('click', () => window.print());
+  }
+
+  // 8. Toast de bienvenida con delay
+  setTimeout(() => {
+    mostrarToast(
+      '⚙️ ¡Bienvenido/a, Inventor/a de Chichalá! '
+      + 'Elige tu nivel y empieza la misión. 🚀',
+      'success'
+    );
+  }, 700);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,4129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mensajes y Contenidos Digitales · Tecnología 3°-4°-5° · Semana 2 · Período 3"/>
+  <title>📡 Mensajes y Contenidos Digitales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../../../css/guia-estilos.css"/>
+  <style>
+/* ══════════════════════════════════════════════
+   MENSAJES Y CONTENIDOS DIGITALES
+   Tecnología · Grados 3°-4°-5° · Período 3
+   Semana 2 · IE Técnica Camacho Angarita
+   Paleta: Índigo · Rosa · Ámbar · Esmeralda
+══════════════════════════════════════════════ */
+
+:root {
+  /* Paleta Semana 2 — diferenciada de Semana 1 */
+  --s2-indigo:    #6366F1;
+  --s2-rosa:      #EC4899;
+  --s2-ambar:     #F59E0B;
+  --s2-esmeralda: #10B981;
+  --s2-azul:      #3B82F6;
+  --s2-violeta:   #8B5CF6;
+  --s2-rojo:      #EF4444;
+  --s2-celeste:   #06B6D4;
+
+  /* Colores por tipo de contenido */
+  --tipo-imagen:  #6366F1;
+  --tipo-video:   #EC4899;
+  --tipo-audio:   #F59E0B;
+  --tipo-texto:   #10B981;
+  --tipo-mixto:   #3B82F6;
+
+  /* Neutros */
+  --s2-bg:      #F5F3FF;
+  --s2-card:    #FFFFFF;
+  --s2-texto:   #1E1B4B;
+  --s2-dim:     #6B7280;
+  --s2-border:  #E5E7EB;
+
+  /* Sombras */
+  --sombra-sm: 0 4px 12px rgba(0,0,0,0.08);
+  --sombra-md: 0 8px 24px rgba(0,0,0,0.12);
+  --sombra-lg: 0 16px 40px rgba(0,0,0,0.16);
+
+  /* Bordes */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 36px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--s2-bg);
+  color: var(--s2-texto);
+  margin: 0;
+  padding: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Fondo animado con ondas digitales */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(99,102,241,0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(236,72,153,0.04) 1px, transparent 1px);
+  background-size: 44px 44px, 66px 66px;
+  background-position: 0 0, 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  background: white;
+  padding: 32px;
+  border-radius: var(--r-xl);
+  box-shadow: var(--sombra-lg);
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   BARRA DE SEÑAL (reemplaza barra progreso)
+══════════════════════════════════════ */
+.barra-mision-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-radius: var(--r-lg);
+  padding: 12px 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-sm);
+  border: 2px solid var(--s2-border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.barra-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--s2-dim);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.barra-track {
+  flex: 1;
+  min-width: 140px;
+  height: 14px;
+  background: var(--s2-border);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.barra-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--s2-indigo), var(--s2-rosa));
+  border-radius: 50px;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px rgba(99,102,241,0.4);
+}
+
+.barra-senales {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.senal {
+  font-size: 1.2rem;
+  filter: grayscale(1) opacity(0.3);
+  transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+.senal.obtenida {
+  filter: grayscale(0) opacity(1);
+  animation: senalPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+@keyframes senalPop {
+  0%   { transform: scale(0) rotate(-20deg); }
+  60%  { transform: scale(1.5) rotate(8deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ══════════════════════════════════════
+   HERO HEADER · SEMANA 2
+══════════════════════════════════════ */
+.hero-header {
+  background: linear-gradient(135deg,
+    #6366F1 0%, #8B5CF6 40%, #EC4899 100%);
+  border-radius: var(--r-xl);
+  padding: 36px 32px;
+  margin-bottom: 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+/* Ondas de fondo animadas */
+.hero-header::before {
+  content: '📡';
+  position: absolute;
+  font-size: 10rem;
+  opacity: 0.07;
+  top: -20px; left: -20px;
+  animation: floatHero 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.hero-header::after {
+  content: '📱';
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.07;
+  bottom: -10px; right: -10px;
+  animation: floatHero 8s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}
+
+@keyframes floatHero {
+  0%   { transform: translateY(0) rotate(-8deg) scale(1); }
+  100% { transform: translateY(-22px) rotate(8deg) scale(1.1); }
+}
+
+/* Partículas de señal en el hero */
+.hero-particulas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-particula {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: volarParticula 4s ease-in-out infinite;
+}
+
+@keyframes volarParticula {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.5); }
+  30%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-60px) scale(1.2); }
+}
+
+.hero-inst {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  animation: pulseBadge 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+  50%     { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+}
+
+.hero-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+.hero-subtitulo {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 18px;
+}
+
+.hero-datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hero-dato {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* Tipos de contenido en el hero */
+.hero-tipos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hero-tipo-chip {
+  background: rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  cursor: default;
+  animation: floatHero 5s ease-in-out infinite alternate;
+}
+
+.hero-tipo-chip:nth-child(1) { animation-delay: 0s; }
+.hero-tipo-chip:nth-child(2) { animation-delay: 0.4s; }
+.hero-tipo-chip:nth-child(3) { animation-delay: 0.8s; }
+.hero-tipo-chip:nth-child(4) { animation-delay: 1.2s; }
+.hero-tipo-chip:nth-child(5) { animation-delay: 1.6s; }
+
+.hero-campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--r-md);
+  padding: 16px;
+}
+
+.hero-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  min-width: 180px;
+}
+
+.hero-campo label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+.hero-campo-linea {
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,0.5);
+  background: transparent;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  outline: none;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.hero-campo-linea::placeholder {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════
+   SECCIONES
+══════════════════════════════════════ */
+.seccion {
+  background: white;
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-lg);
+  padding: 26px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-sm);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.seccion:hover { box-shadow: var(--sombra-md); }
+
+.seccion::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  border-radius: 6px 0 0 6px;
+}
+
+.seccion-mision::before    { background: linear-gradient(180deg, var(--s2-indigo),    var(--s2-violeta)); }
+.seccion-conceptos::before { background: linear-gradient(180deg, var(--s2-rosa),      var(--s2-ambar)); }
+.seccion-fuentes::before   { background: linear-gradient(180deg, var(--s2-azul),      var(--s2-celeste)); }
+.seccion-juego::before     { background: linear-gradient(180deg, var(--s2-esmeralda), var(--s2-azul)); }
+.seccion-diversidad::before{ background: linear-gradient(180deg, var(--s2-ambar),     var(--s2-rosa)); }
+.seccion-eval::before      { background: linear-gradient(180deg, var(--s2-violeta),   var(--s2-indigo)); }
+
+.seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.seccion-titulo-icono {
+  font-size: 2rem;
+  animation: floatHero 4s ease-in-out infinite alternate;
+}
+
+.seccion-titulo h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin: 0;
+}
+
+.seccion-titulo small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--s2-dim);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════
+   OBJETIVOS
+══════════════════════════════════════ */
+.objetivos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.objetivo-card {
+  background: linear-gradient(135deg, #F5F3FF, #EFF6FF);
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.objetivo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-md);
+}
+
+.objetivo-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  animation: floatHero 5s ease-in-out infinite alternate;
+}
+
+.objetivo-texto { font-size: 0.85rem; line-height: 1.6; }
+.objetivo-texto strong { color: var(--s2-indigo); }
+
+/* ══════════════════════════════════════
+   MATERIALES
+══════════════════════════════════════ */
+.materiales-box {
+  background: linear-gradient(135deg, #FFFBEB, #FFF7ED);
+  border: 2px dashed var(--s2-ambar);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  margin-bottom: 22px;
+}
+
+.materiales-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #92400E;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.materiales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.material-item {
+  background: white;
+  border: 2px solid #FDE68A;
+  border-radius: var(--r-sm);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.material-item:hover { transform: scale(1.03); }
+
+/* ══════════════════════════════════════
+   TARJETAS DE CONCEPTO · TIPO CONTENIDO
+══════════════════════════════════════ */
+.conceptos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.concepto-card {
+  border-radius: var(--r-md);
+  padding: 20px 14px;
+  text-align: center;
+  border: 3px solid transparent;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.concepto-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--sombra-md);
+}
+
+.concepto-card.tipo-imagen  { background: rgba(99,102,241,0.07);  border-color: var(--tipo-imagen);  }
+.concepto-card.tipo-video   { background: rgba(236,72,153,0.07);  border-color: var(--tipo-video);   }
+.concepto-card.tipo-audio   { background: rgba(245,158,11,0.08);  border-color: var(--tipo-audio);   }
+.concepto-card.tipo-texto   { background: rgba(16,185,129,0.07);  border-color: var(--tipo-texto);   }
+.concepto-card.tipo-mixto   { background: rgba(59,130,246,0.07);  border-color: var(--tipo-mixto);   }
+
+.concepto-emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: floatHero 4s ease-in-out infinite alternate;
+}
+
+.concepto-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin-bottom: 6px;
+}
+
+.concepto-desc {
+  font-size: 0.78rem;
+  color: var(--s2-dim);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.concepto-ejemplos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.concepto-ejemplo-chip {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid currentColor;
+}
+
+/* Flip del concepto */
+.concepto-flip {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--r-md) - 2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: white;
+  opacity: 0;
+  transform: rotateY(90deg);
+  transition: all 0.35s ease;
+  text-align: center;
+}
+
+.tipo-imagen .concepto-flip { background: var(--tipo-imagen); }
+.tipo-video  .concepto-flip { background: var(--tipo-video);  }
+.tipo-audio  .concepto-flip { background: var(--tipo-audio); color: #1E1B4B; }
+.tipo-texto  .concepto-flip { background: var(--tipo-texto);  }
+.tipo-mixto  .concepto-flip { background: var(--tipo-mixto);  }
+
+.concepto-card:hover .concepto-flip {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+/* ══════════════════════════════════════
+   MENSAJES · BANCO DE TARJETAS
+══════════════════════════════════════ */
+.mensajes-banco {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.mensaje-card {
+  background: white;
+  border: 3px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 14px 8px;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
+  user-select: none;
+  position: relative;
+}
+
+.mensaje-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--sombra-md);
+}
+
+.mensaje-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+  transform: rotate(5deg) scale(1.1);
+}
+
+@keyframes msgCorrecto {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25) rotate(5deg); }
+  100% { transform: scale(1); }
+}
+
+@keyframes msgError {
+  0%,100% { transform: translateX(0); }
+  25%     { transform: translateX(-8px); }
+  75%     { transform: translateX(8px); }
+}
+
+.mensaje-card.correcto   { animation: msgCorrecto 0.6s ease; }
+.mensaje-card.incorrecto { animation: msgError 0.5s ease; }
+
+.mensaje-emoji  { font-size: 2.2rem; display: block; margin-bottom: 6px; }
+.mensaje-nombre {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.mensaje-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.tag-imagen  { background: rgba(99,102,241,0.15);  color: #4338CA; }
+.tag-video   { background: rgba(236,72,153,0.15);  color: #BE185D; }
+.tag-audio   { background: rgba(245,158,11,0.15);  color: #92400E; }
+.tag-texto   { background: rgba(16,185,129,0.15);  color: #065F46; }
+.tag-mixto   { background: rgba(59,130,246,0.15);  color: #1D4ED8; }
+
+/* ══════════════════════════════════════
+   ZONAS DE CLASIFICACIÓN · 5 TIPOS
+══════════════════════════════════════ */
+.zonas-5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.zona-drop {
+  border-radius: var(--r-md);
+  padding: 14px;
+  min-height: 130px;
+  border: 3px dashed var(--s2-border);
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zona-imagen  { background: rgba(99,102,241,0.04);  border-color: var(--tipo-imagen); }
+.zona-video   { background: rgba(236,72,153,0.04);  border-color: var(--tipo-video);  }
+.zona-audio   { background: rgba(245,158,11,0.04);  border-color: var(--tipo-audio);  }
+.zona-texto   { background: rgba(16,185,129,0.04);  border-color: var(--tipo-texto);  }
+.zona-mixto   { background: rgba(59,130,246,0.04);  border-color: var(--tipo-mixto);  }
+
+.zona-drop.drag-over {
+  transform: scale(1.03);
+  box-shadow: var(--sombra-md);
+  border-style: solid;
+}
+
+.zona-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 7px;
+  border-radius: var(--r-sm);
+  color: white;
+  margin-bottom: 4px;
+}
+
+.zona-imagen .zona-titulo { background: var(--tipo-imagen); }
+.zona-video  .zona-titulo { background: var(--tipo-video);  }
+.zona-audio  .zona-titulo { background: var(--tipo-audio); color: #1E1B4B; }
+.zona-texto  .zona-titulo { background: var(--tipo-texto);  }
+.zona-mixto  .zona-titulo { background: var(--tipo-mixto);  }
+
+.zona-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 50px;
+  align-content: flex-start;
+}
+
+.zona-chip {
+  background: white;
+  border: 2px solid var(--s2-border);
+  border-radius: 50px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.zona-chip:hover {
+  background: #FEF2F2;
+  border-color: var(--s2-rojo);
+  color: var(--s2-rojo);
+}
+
+/* ══════════════════════════════════════
+   SEMÁFORO DE CONFIABILIDAD
+══════════════════════════════════════ */
+.semaforo-wrap {
+  background: linear-gradient(135deg, #F8FAFC, #F0FDF4);
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin: 16px 0;
+}
+
+.semaforo-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.semaforo-niveles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.semaforo-nivel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  border: 2px solid var(--s2-border);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.semaforo-nivel:hover {
+  transform: translateX(6px);
+  box-shadow: var(--sombra-sm);
+}
+
+.semaforo-luz {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s;
+}
+
+.semaforo-nivel:hover .semaforo-luz {
+  box-shadow: 0 0 12px currentColor;
+}
+
+.luz-verde    { background: #22C55E; color: #22C55E; }
+.luz-amarilla { background: #F59E0B; color: #F59E0B; }
+.luz-roja     { background: #EF4444; color: #EF4444; }
+
+.semaforo-nivel-texto h5 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--s2-texto);
+}
+
+.semaforo-nivel-texto p {
+  font-size: 0.8rem;
+  color: var(--s2-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.semaforo-nivel.activo {
+  border-color: currentColor;
+  background: rgba(34,197,94,0.05);
+}
+
+.semaforo-nivel.activo-verde    { border-color: #22C55E; background: rgba(34,197,94,0.06); }
+.semaforo-nivel.activo-amarilla { border-color: #F59E0B; background: rgba(245,158,11,0.06); }
+.semaforo-nivel.activo-roja     { border-color: #EF4444; background: rgba(239,68,68,0.06); }
+
+/* ══════════════════════════════════════
+   FUENTES DE INFORMACIÓN
+══════════════════════════════════════ */
+.fuentes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.fuente-card {
+  background: white;
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.fuente-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-md);
+}
+
+.fuente-card.confiable     { border-color: #22C55E; }
+.fuente-card.media         { border-color: #F59E0B; }
+.fuente-card.no-confiable  { border-color: #EF4444; }
+
+.fuente-emoji  { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+.fuente-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.fuente-desc   { font-size: 0.72rem; color: var(--s2-dim); line-height: 1.5; margin-bottom: 8px; }
+
+.fuente-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.badge-confiable    { background: rgba(34,197,94,0.15);  color: #15803D; }
+.badge-media        { background: rgba(245,158,11,0.15); color: #92400E; }
+.badge-no-confiable { background: rgba(239,68,68,0.15);  color: #991B1B; }
+
+/* ══════════════════════════════════════
+   CONSTRUCTOR DE MENSAJES
+══════════════════════════════════════ */
+.constructor-wrap {
+  background: linear-gradient(135deg, #F5F3FF, #EFF6FF);
+  border: 2px solid var(--s2-indigo);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin: 16px 0;
+}
+
+.constructor-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--s2-indigo);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.constructor-tipos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tipo-btn {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 2px solid var(--s2-border);
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--s2-dim);
+}
+
+.tipo-btn:hover { transform: translateY(-2px); box-shadow: var(--sombra-sm); }
+.tipo-btn.seleccionado-imagen  { background: var(--tipo-imagen);  border-color: var(--tipo-imagen);  color: white; }
+.tipo-btn.seleccionado-video   { background: var(--tipo-video);   border-color: var(--tipo-video);   color: white; }
+.tipo-btn.seleccionado-audio   { background: var(--tipo-audio);   border-color: var(--tipo-audio);   color: #1E1B4B; }
+.tipo-btn.seleccionado-texto   { background: var(--tipo-texto);   border-color: var(--tipo-texto);   color: white; }
+.tipo-btn.seleccionado-mixto   { background: var(--tipo-mixto);   border-color: var(--tipo-mixto);   color: white; }
+
+.constructor-preview {
+  background: white;
+  border: 2px dashed var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 18px;
+  min-height: 100px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.constructor-preview.activo {
+  border-style: solid;
+  animation: previewEntrada 0.4s ease;
+}
+
+@keyframes previewEntrada {
+  from { transform: scale(0.95); opacity: 0.7; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   QUIZ RÁPIDO
+══════════════════════════════════════ */
+.quiz-wrap {
+  background: linear-gradient(135deg, #FDF4FF, #F5F3FF);
+  border: 2px solid var(--s2-violeta);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin: 16px 0;
+}
+
+.quiz-pregunta {
+  background: white;
+    border: 2px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 18px;
+  margin-bottom: 14px;
+  transition: all 0.3s;
+}
+
+.quiz-pregunta-num {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--s2-violeta);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.quiz-pregunta-texto {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.quiz-opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.quiz-opcion {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  border: 2px solid var(--s2-border);
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-opcion:hover {
+  border-color: var(--s2-indigo);
+  background: rgba(99,102,241,0.05);
+  transform: translateY(-2px);
+}
+
+.quiz-opcion.correcta {
+  background: rgba(16,185,129,0.1);
+  border-color: var(--s2-esmeralda);
+  color: #065F46;
+}
+
+.quiz-opcion.incorrecta {
+  background: rgba(239,68,68,0.08);
+  border-color: var(--s2-rojo);
+  color: #991B1B;
+}
+
+.quiz-opcion:disabled { cursor: default; transform: none; }
+
+.quiz-puntaje-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quiz-puntaje-display {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--s2-violeta);
+  background: rgba(139,92,246,0.1);
+  padding: 6px 18px;
+  border-radius: 50px;
+  border: 2px solid rgba(139,92,246,0.2);
+}
+
+.quiz-progreso-txt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--s2-dim);
+}
+
+.quiz-feedback {
+  border-radius: var(--r-sm);
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 10px;
+  display: none;
+  animation: fadeSlide 0.3s ease;
+}
+
+.quiz-feedback.correcto  { background: rgba(16,185,129,0.1);  color: #065F46; border: 2px solid var(--s2-esmeralda); }
+.quiz-feedback.incorrecto{ background: rgba(239,68,68,0.08);  color: #991B1B; border: 2px solid var(--s2-rojo); }
+.quiz-feedback.visible   { display: block; }
+
+/* ══════════════════════════════════════
+   SECCIÓN DIVERSIDAD DIGITAL · CC 3.2
+══════════════════════════════════════ */
+.diversidad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.diversidad-card {
+  background: white;
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 18px 12px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.diversidad-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-md);
+}
+
+.diversidad-card::after {
+  content: attr(data-mensaje);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--s2-indigo), var(--s2-violeta));
+  color: white;
+  border-radius: calc(var(--r-md) - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.diversidad-card:hover::after { opacity: 1; }
+
+.diversidad-emoji  { font-size: 2.6rem; display: block; margin-bottom: 8px; }
+.diversidad-grupo  { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--s2-texto); margin-bottom: 4px; }
+.diversidad-desc   { font-size: 0.72rem; color: var(--s2-dim); line-height: 1.5; }
+
+/* ══════════════════════════════════════
+   NIVELES / TABS
+══════════════════════════════════════ */
+.niveles-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.nivel-tab {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 50px;
+  border: 2px solid var(--s2-border);
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: var(--s2-dim);
+}
+
+.nivel-tab:hover { transform: translateY(-2px); box-shadow: var(--sombra-sm); }
+.nivel-tab.activo-3 { background: var(--s2-esmeralda); border-color: var(--s2-esmeralda); color: white; box-shadow: 0 4px 12px rgba(16,185,129,0.35); }
+.nivel-tab.activo-4 { background: var(--s2-indigo);    border-color: var(--s2-indigo);    color: white; box-shadow: 0 4px 12px rgba(99,102,241,0.35); }
+.nivel-tab.activo-5 { background: var(--s2-rosa);      border-color: var(--s2-rosa);      color: white; box-shadow: 0 4px 12px rgba(236,72,153,0.35); }
+
+.nivel-panel { display: none; }
+.nivel-panel.activo { display: block; animation: fadeSlide 0.4s ease; }
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nivel-card {
+  background: white;
+  border: 3px solid var(--s2-border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+}
+
+.nivel-card.grado3 { border-color: var(--s2-esmeralda); }
+.nivel-card.grado4 { border-color: var(--s2-indigo);    }
+.nivel-card.grado5 { border-color: var(--s2-rosa);      }
+
+.nivel-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.nivel-badge {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 50px;
+  color: white;
+}
+
+.grado3 .nivel-badge { background: var(--s2-esmeralda); }
+.grado4 .nivel-badge { background: var(--s2-indigo);    }
+.grado5 .nivel-badge { background: var(--s2-rosa);      }
+
+.nivel-dba {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(99,102,241,0.1);
+  color: var(--s2-indigo);
+  border: 1px solid rgba(99,102,241,0.25);
+}
+
+/* ══════════════════════════════════════
+   ACTIVIDADES
+══════════════════════════════════════ */
+.actividad-lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.actividad-lista li {
+  background: #F8FAFC;
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-md);
+  padding: 18px;
+  position: relative;
+  padding-left: 52px;
+  transition: box-shadow 0.2s;
+}
+
+.actividad-lista li:hover { box-shadow: var(--sombra-sm); }
+
+.actividad-lista li::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 14px; top: 18px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grado3 .actividad-lista li::before { background: var(--s2-esmeralda); }
+.grado4 .actividad-lista li::before { background: var(--s2-indigo);    }
+.grado5 .actividad-lista li::before { background: var(--s2-rosa);      }
+
+.act-titulo-item {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--s2-texto);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ══════════════════════════════════════
+   TABLA COMPARATIVA
+══════════════════════════════════════ */
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin: 14px 0;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  box-shadow: var(--sombra-sm);
+}
+
+.tabla-comparativa th {
+  padding: 11px 14px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: white;
+  font-size: 0.88rem;
+}
+
+.col-imagen  { background: var(--tipo-imagen);  }
+.col-video   { background: var(--tipo-video);   }
+.col-audio   { background: var(--tipo-audio); color: #1E1B4B !important; }
+.col-texto   { background: var(--tipo-texto);   }
+.col-mixto   { background: var(--tipo-mixto);   }
+.col-fuente  { background: var(--s2-texto);     }
+.col-indigo  { background: var(--s2-indigo);    }
+.col-rosa    { background: var(--s2-rosa);      }
+
+.tabla-comparativa td { padding: 10px 14px; border: 1px solid var(--s2-border); }
+.tabla-comparativa tr:nth-child(even) td { background: #F8FAFC; }
+.tabla-comparativa tr:hover td { background: rgba(99,102,241,0.04); transition: background 0.2s; }
+
+/* ══════════════════════════════════════
+   LÍNEAS Y ESPACIOS DE ESCRITURA
+══════════════════════════════════════ */
+.lineas { margin-top: 10px; }
+
+.linea {
+  border-bottom: 2px dashed #CBD5E0;
+  height: 32px;
+  margin-bottom: 6px;
+  border-radius: 2px;
+  transition: border-color 0.2s;
+}
+
+.espacio-escritura {
+  border: 2px dashed var(--s2-border);
+  border-radius: var(--r-md);
+  min-height: 100px;
+  padding: 12px 14px;
+  background: #FAFAFA;
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--s2-dim);
+  transition: border-color 0.2s;
+}
+
+/* ══════════════════════════════════════
+   AUTOEVALUACIÓN
+══════════════════════════════════════ */
+.eval-box {
+  background: linear-gradient(135deg, #FFFBEB, #FFF7ED);
+  border-left: 5px solid var(--s2-ambar);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+}
+
+.eval-box h4 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  color: #92400E;
+  margin: 0 0 12px;
+}
+
+.eval-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+.eval-tabla th { padding: 10px 12px; border: 2px solid #FCD34D; font-weight: 800; }
+.eval-tabla th:first-child { background: #FFFBEB; color: #92400E; text-align: left; }
+.eval-tabla th.col-logre   { background: #D1FAE5; color: #065F46; text-align: center; }
+.eval-tabla th.col-casi    { background: #DBEAFE; color: #1E40AF; text-align: center; }
+.eval-tabla th.col-ayuda   { background: #FEE2E2; color: #991B1B; text-align: center; }
+.eval-tabla td { padding: 10px 12px; border: 1px solid #E2E8F0; }
+
+.eval-tabla td.check-cell {
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.eval-tabla td.check-cell:hover { background: rgba(99,102,241,0.08); }
+.eval-tabla td.check-cell.marcado { background: rgba(16,185,129,0.12); font-size: 1.4rem; animation: senalPop 0.3s ease; }
+.eval-tabla tr:nth-child(even) td { background: #F8FAFC; }
+
+/* ══════════════════════════════════════
+   COFRE DEL COMUNICADOR
+══════════════════════════════════════ */
+.cofre-wrap { text-align: center; margin: 20px 0; }
+
+.btn-cofre {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--s2-indigo), var(--s2-rosa));
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #3730A3, 0 8px 20px rgba(99,102,241,0.4);
+  transition: all 0.15s;
+  animation: wobbleBtn 3s ease-in-out infinite;
+  letter-spacing: 0.04em;
+}
+
+.btn-cofre:hover  { transform: translateY(-4px); box-shadow: 0 10px 0 #3730A3, 0 14px 28px rgba(99,102,241,0.45); }
+.btn-cofre:active { transform: translateY(3px);  box-shadow: 0 2px 0 #3730A3; }
+
+@keyframes wobbleBtn {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(-2deg) scale(1.02); }
+  75%     { transform: rotate(2deg)  scale(1.02); }
+}
+
+.cofre-secreto {
+  display: none;
+  background: linear-gradient(135deg, #F5F3FF, #EFF6FF);
+  border: 3px solid var(--s2-indigo);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  margin-top: 16px;
+  animation: fadeSlide 0.5s ease;
+}
+
+.cofre-secreto.visible { display: block; }
+
+.cofre-secreto-titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--s2-indigo);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cofre-secreto p { font-size: 0.92rem; line-height: 1.8; margin-bottom: 10px; }
+
+.cofre-dato {
+  background: white;
+  border: 2px solid var(--s2-border);
+  border-radius: var(--r-sm);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+
+.cofre-dato:hover { transform: translateX(4px); }
+.cofre-dato-icon  { font-size: 1.4rem; flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   DIPLOMA · COMUNICADOR DIGITAL
+══════════════════════════════════════ */
+.diploma-wrap {
+  display: none;
+  background: linear-gradient(135deg,
+    rgba(99,102,241,0.1),
+    rgba(236,72,153,0.08),
+    rgba(16,185,129,0.07));
+  border: 4px solid var(--s2-indigo);
+  border-radius: var(--r-xl);
+  padding: 36px 28px;
+  text-align: center;
+  margin: 24px 0;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlide 0.6s ease;
+}
+
+.diploma-wrap.visible { display: block; }
+.diploma-wrap::before { content: '📡'; position: absolute; font-size: 7rem; opacity: 0.05; top: -10px; left: -10px; pointer-events: none; }
+.diploma-wrap::after  { content: '🌐'; position: absolute; font-size: 6rem; opacity: 0.05; bottom: -10px; right: -10px; transform: rotate(15deg); pointer-events: none; }
+
+.diploma-titulo         { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: var(--s2-dim); margin-bottom: 8px; }
+.diploma-nombre-display { font-family: 'Fredoka', sans-serif; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 700; color: var(--s2-indigo); margin: 8px 0 14px; }
+.diploma-insignia       { font-size: 4rem; display: block; margin: 14px auto; animation: floatHero 3s ease-in-out infinite alternate; }
+.diploma-texto          { font-size: 0.9rem; line-height: 1.8; max-width: 480px; margin: 0 auto 16px; }
+
+.diploma-grado-badge {
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--s2-indigo), var(--s2-rosa));
+  box-shadow: 0 4px 0 rgba(99,102,241,0.4);
+}
+
+/* ══════════════════════════════════════
+   REFLEXIÓN FINAL
+══════════════════════════════════════ */
+.reflexion-final {
+  background: linear-gradient(135deg,
+    rgba(99,102,241,0.08), rgba(236,72,153,0.08));
+  border-radius: var(--r-xl);
+  padding: 28px;
+  text-align: center;
+  margin: 24px 0;
+}
+
+.reflexion-final p {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--s2-indigo);
+  line-height: 1.8;
+  margin: 0 0 8px;
+}
+
+/* ══════════════════════════════════════
+   TARJETAS RECORTABLES
+══════════════════════════════════════ */
+.tarjetas-recortables {
+  border: 3px dashed var(--s2-border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  background: #FAFAFA;
+  margin-top: 20px;
+}
+
+.tarjetas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.tarjeta-frase {
+  background: white;
+  border: 2px solid var(--s2-indigo);
+  border-radius: var(--r-sm);
+  padding: 12px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tarjeta-frase:hover { transform: translateY(-3px); box-shadow: var(--sombra-sm); }
+.tarjeta-emoji  { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+.tarjeta-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--s2-texto); }
+.tarjeta-tipo   { font-size: 0.68rem; color: var(--s2-dim); margin-top: 2px; }
+
+/* ══════════════════════════════════════
+   BOTONES GENERALES
+══════════════════════════════════════ */
+.btn-completar {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--s2-indigo), var(--s2-violeta));
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #3730A3, 0 8px 20px rgba(99,102,241,0.3);
+  transition: all 0.15s;
+}
+
+.btn-completar:hover  { transform: translateY(-3px); box-shadow: 0 8px 0 #3730A3, 0 12px 24px rgba(99,102,241,0.35); }
+.btn-completar:active { transform: translateY(2px);  box-shadow: 0 2px 0 #3730A3; }
+
+.btn-print {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, var(--s2-indigo), var(--s2-rosa));
+  color: white;
+  border: none;
+  padding: 13px 36px;
+  border-radius: 50px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #3730A3, 0 8px 20px rgba(99,102,241,0.35);
+  transition: all 0.15s;
+}
+
+.btn-print:hover  { transform: translateY(-3px); box-shadow: 0 8px 0 #3730A3, 0 12px 28px rgba(99,102,241,0.4); }
+.btn-print:active { transform: translateY(2px);  box-shadow: 0 2px 0 #3730A3; }
+
+.btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--s2-indigo);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 10px 24px;
+  border: 2px solid var(--s2-indigo);
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.btn-volver:hover { background: var(--s2-indigo); color: white; transform: translateY(-2px); }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.footer {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 2px solid var(--s2-border);
+  color: var(--s2-dim);
+  font-size: 0.82rem;
+}
+
+.footer p { margin: 3px 0; }
+
+/* ══════════════════════════════════════
+   CONFETI
+══════════════════════════════════════ */
+@keyframes caerConfeti {
+  0%   { transform: translateY(-40px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .container          { padding: 18px; }
+  .hero-header        { padding: 24px 16px; }
+  .zonas-5            { grid-template-columns: repeat(2, 1fr); }
+  .conceptos-grid     { grid-template-columns: repeat(2, 1fr); }
+  .mensajes-banco     { grid-template-columns: repeat(3, 1fr); }
+  .quiz-opciones      { grid-template-columns: 1fr; }
+  .diversidad-grid    { grid-template-columns: repeat(2, 1fr); }
+  .fuentes-grid       { grid-template-columns: repeat(2, 1fr); }
+  .hero-titulo        { font-size: 1.6rem; }
+  .constructor-tipos  { gap: 6px; }
+  .tipo-btn           { font-size: 0.78rem; padding: 8px 12px; }
+}
+
+@media print {
+  body                { background: white; padding: 0; }
+  .container          { box-shadow: none; border-radius: 0; }
+  .btn-print,
+  .btn-volver,
+  .barra-mision-wrap  { display: none !important; }
+  .nivel-panel        { display: block !important; }
+  .seccion            { break-inside: avoid; }
+  .nivel-card         { break-inside: avoid; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Botón Imprimir -->
+  <button class="btn-print">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- ══════════════════════
+       BARRA DE SEÑAL
+  ══════════════════════ -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">📡 SEÑAL</span>
+    <div class="barra-track">
+      <div class="barra-fill" id="barra-fill"></div>
+    </div>
+    <div class="barra-senales" id="barra-senales">
+      <span class="senal" id="senal-1" title="Identificador de Mensajes">🖼️</span>
+      <span class="senal" id="senal-2" title="Detector de Fuentes">🎬</span>
+      <span class="senal" id="senal-3" title="Verificador de Contenidos">🎵</span>
+      <span class="senal" id="senal-4" title="Productor Digital">📝</span>
+      <span class="senal" id="senal-5" title="Comunicador Certificado">📡</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       HERO HEADER
+  ══════════════════════ -->
+  <div class="hero-header">
+    <!-- Partículas flotantes -->
+    <div class="hero-particulas">
+      <span class="hero-particula" style="left:10%; animation-delay:0s;">🖼️</span>
+      <span class="hero-particula" style="left:25%; animation-delay:0.8s;">🎬</span>
+      <span class="hero-particula" style="left:45%; animation-delay:1.6s;">🎵</span>
+      <span class="hero-particula" style="left:65%; animation-delay:0.4s;">📝</span>
+      <span class="hero-particula" style="left:82%; animation-delay:1.2s;">📱</span>
+    </div>
+
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">📡 TRANSMISIÓN EN CURSO</div>
+    <h1 class="hero-titulo">📡 Mensajes y Contenidos<br/>Digitales</h1>
+    <p class="hero-subtitulo">Tecnología · Semana 2 · Período 3 · Grados 3°, 4° y 5°</p>
+
+    <!-- Chips de tipos de contenido -->
+    <div class="hero-tipos">
+      <div class="hero-tipo-chip">🖼️ Imagen</div>
+      <div class="hero-tipo-chip">🎬 Video</div>
+      <div class="hero-tipo-chip">🎵 Audio</div>
+      <div class="hero-tipo-chip">📝 Texto</div>
+      <div class="hero-tipo-chip">📱 Mixto</div>
+    </div>
+
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text"
+          placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text"
+          placeholder="Ej: 4°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text"
+          placeholder="Ej: 21 agosto 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       MATERIALES
+  ══════════════════════ -->
+  <div class="materiales-box">
+    <div class="materiales-titulo">🧺 Materiales para hoy:</div>
+    <div class="materiales-grid">
+      <div class="material-item">📄 Esta guía impresa</div>
+      <div class="material-item">✏️ Lápiz y colores</div>
+      <div class="material-item">✂️ Tijeras y pegante</div>
+      <div class="material-item">📱 Celular o tablet (si hay)</div>
+      <div class="material-item">💻 Computador del aula</div>
+      <div class="material-item">📰 Revista o periódico</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 1: MISIÓN
+  ══════════════════════ -->
+  <div class="seccion seccion-mision">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🚀</span>
+      <h3>Misión de la Semana
+        <small>¿Qué vamos a aprender hoy?</small>
+      </h3>
+    </div>
+
+    <p>
+      <strong>¡Bienvenido/a de nuevo, Comunicador/a Digital!</strong> 📡
+      Cada día recibimos y enviamos mensajes: una foto en WhatsApp, un video
+      en YouTube, una canción en Spotify, un texto en un chat...
+      <strong>¿Sabes identificar qué tipo de mensaje es cada uno?
+      ¿Y sabes de dónde viene la información que recibes?</strong>
+    </p>
+    <p style="margin-top:10px;">
+      Esta semana te convertirás en un
+      <strong>Clasificador de Contenidos Digitales</strong> 🔍:
+      aprenderás a identificar los tipos de mensajes digitales,
+      a reconocer sus fuentes y a usar esa información con
+      responsabilidad y respeto por la diversidad. 🌍
+      ¡Cada misión te da una señal para completar tu antena digital! 📡
+    </p>
+
+    <div class="objetivos-grid">
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🎯</span>
+        <div class="objetivo-texto">
+          <strong>Clasifico</strong> diferentes tipos de mensajes y contenidos
+          digitales: imágenes, videos, audios, textos y mixtos.
+          <strong>(2.8 T&amp;I.I)</strong>
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🔍</span>
+        <div class="objetivo-texto">
+          Reconozco las <strong>fuentes de información</strong> digitales
+          y evalúo su confiabilidad usando el semáforo digital.
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🌍</span>
+        <div class="objetivo-texto">
+          <strong>Produzco</strong> un mensaje digital creativo eligiendo
+          el tipo de contenido más adecuado para mi idea.
+        </div>
+      </div>
+      <div class="objetivo-card">
+        <span class="objetivo-icon">🤝</span>
+        <div class="objetivo-texto">
+          Reconozco y acepto la existencia de
+          <strong>grupos con diversas características</strong>
+          en el mundo digital. <strong>(CC 3.2)</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="nivel-badge-wrap" style="margin-top:16px;">
+      <span class="nivel-badge" style="background:var(--s2-esmeralda);">Grado 3°</span>
+      <span style="font-size:0.85rem;">Identifico el tipo de mensaje digital y lo clasifico.</span>
+    </div>
+    <div class="nivel-badge-wrap" style="margin-top:8px;">
+      <span class="nivel-badge" style="background:var(--s2-indigo);">Grado 4°</span>
+      <span style="font-size:0.85rem;">Clasifico contenidos según su fuente y evalúo su confiabilidad.</span>
+    </div>
+    <div class="nivel-badge-wrap" style="margin-top:8px;">
+            <span class="nivel-badge" style="background:var(--s2-rosa);">Grado 5°</span>
+      <span style="font-size:0.85rem;">Analizo, produzco y evalúo contenidos digitales con tres lenguajes.</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 2: CONCEPTOS CLAVE
+  ══════════════════════ -->
+  <div class="seccion seccion-conceptos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Los 5 Tipos de Contenido Digital
+        <small>¡Toca cada tarjeta para descubrir ejemplos! 👆</small>
+      </h3>
+    </div>
+
+    <div class="conceptos-grid">
+
+      <div class="concepto-card tipo-imagen" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🖼️</span>
+        <div class="concepto-titulo">Imagen</div>
+        <div class="concepto-desc">Contenido visual estático que comunica con una sola foto o dibujo.</div>
+        <div class="concepto-ejemplos">
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-imagen);">Foto</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-imagen);">Meme</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-imagen);">Captura</span>
+        </div>
+        <div class="concepto-flip">
+          📸 Ejemplos en Chichalá:<br/><br/>
+          Foto del cultivo en WhatsApp ·
+          Imagen del mapa en el libro digital ·
+          Captura de pantalla de una tarea ·
+          Dibujo escaneado · Infografía
+        </div>
+      </div>
+
+      <div class="concepto-card tipo-video" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🎬</span>
+        <div class="concepto-titulo">Video</div>
+        <div class="concepto-desc">Imágenes en movimiento con sonido que cuentan una historia.</div>
+        <div class="concepto-ejemplos">
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-video);">YouTube</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-video);">Reels</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-video);">Tutorial</span>
+        </div>
+        <div class="concepto-flip">
+          🎥 Ejemplos cotidianos:<br/><br/>
+          Video del profe explicando en YouTube ·
+          Reel de TikTok · Videollamada por WhatsApp ·
+          Película en Netflix · Noticia en TV digital ·
+          Tutorial de manualidades
+        </div>
+      </div>
+
+      <div class="concepto-card tipo-audio" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🎵</span>
+        <div class="concepto-titulo">Audio</div>
+        <div class="concepto-desc">Contenido que solo se escucha: música, voz o sonidos.</div>
+        <div class="concepto-ejemplos">
+          <span class="concepto-ejemplo-chip" style="color:#92400E;">Canción</span>
+          <span class="concepto-ejemplo-chip" style="color:#92400E;">Podcast</span>
+          <span class="concepto-ejemplo-chip" style="color:#92400E;">Nota voz</span>
+        </div>
+        <div class="concepto-flip">
+          🎧 Ejemplos cotidianos:<br/><br/>
+          Nota de voz en WhatsApp ·
+          Canción en Spotify ·
+          Podcast educativo ·
+          Radio por internet ·
+          Audiolibro · Alarma del celular
+        </div>
+      </div>
+
+      <div class="concepto-card tipo-texto" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📝</span>
+        <div class="concepto-titulo">Texto</div>
+        <div class="concepto-desc">Palabras escritas que transmiten ideas, noticias o conversaciones.</div>
+        <div class="concepto-ejemplos">
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-texto);">Chat</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-texto);">Noticia</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-texto);">Correo</span>
+        </div>
+        <div class="concepto-flip">
+          ✉️ Ejemplos cotidianos:<br/><br/>
+          Mensaje de WhatsApp ·
+          Noticia en página web ·
+          Correo electrónico ·
+          Libro digital (PDF) ·
+          Tuit · Comentario en redes ·
+          Tarea en Google Classroom
+        </div>
+      </div>
+
+      <div class="concepto-card tipo-mixto" onclick="sonar('flip'); this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📱</span>
+        <div class="concepto-titulo">Mixto</div>
+        <div class="concepto-desc">Combina dos o más tipos: imagen + texto + audio + video.</div>
+        <div class="concepto-ejemplos">
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-mixto);">Web</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-mixto);">App</span>
+          <span class="concepto-ejemplo-chip" style="color:var(--tipo-mixto);">Presentación</span>
+        </div>
+        <div class="concepto-flip">
+          🌐 Ejemplos cotidianos:<br/><br/>
+          Página web (texto + imágenes + videos) ·
+          Presentación de PowerPoint ·
+          Videojuego educativo ·
+          App del celular ·
+          Guía digital del Profe Nelson 🌿
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabla comparativa de tipos -->
+    <p style="font-family:'Fredoka',sans-serif; font-size:1rem; font-weight:700;
+       margin:22px 0 10px; color:var(--s2-texto);">
+      📊 Comparación de los 5 Tipos de Contenido Digital:
+    </p>
+    <table class="tabla-comparativa">
+      <tr>
+        <th class="col-fuente">Tipo</th>
+        <th class="col-imagen">🖼️ Imagen</th>
+        <th class="col-video">🎬 Video</th>
+        <th class="col-audio">🎵 Audio</th>
+        <th class="col-texto">📝 Texto</th>
+        <th class="col-mixto">📱 Mixto</th>
+      </tr>
+      <tr>
+        <td><strong>¿Qué usa?</strong></td>
+        <td>Vista</td>
+        <td>Vista + Oído</td>
+        <td>Oído</td>
+        <td>Vista + Lectura</td>
+        <td>Todo</td>
+      </tr>
+      <tr>
+        <td><strong>Ejemplo digital</strong></td>
+        <td>Foto WhatsApp</td>
+        <td>YouTube</td>
+        <td>Spotify</td>
+        <td>Chat</td>
+        <td>Página web</td>
+      </tr>
+      <tr>
+        <td><strong>¿Necesita internet?</strong></td>
+        <td>A veces</td>
+        <td>Casi siempre</td>
+        <td>A veces</td>
+        <td>A veces</td>
+        <td>Casi siempre</td>
+      </tr>
+      <tr>
+        <td><strong>Ejemplo en Chichalá</strong></td>
+        <td>Foto del cultivo</td>
+        <td>Video del trapiche</td>
+        <td>Nota de voz</td>
+        <td>Tarea por chat</td>
+        <td>Esta guía 🌿</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 3: FUENTES
+  ══════════════════════ -->
+  <div class="seccion seccion-fuentes">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🔍</span>
+      <h3>¿De dónde vienen los contenidos?
+        <small>Fuentes de información digital · ¡No todo lo que ves es verdad! 🚦</small>
+      </h3>
+    </div>
+
+    <p style="font-size:0.9rem; margin-bottom:16px;">
+      Un <strong>contenido digital</strong> puede venir de muchas fuentes.
+      Algunas son <strong>confiables</strong> (verificadas por expertos),
+      otras son de <strong>cuidado</strong> (pueden tener errores) y otras
+      son <strong>peligrosas</strong> (información falsa o dañina).
+      ¡Toca cada fuente para saber en qué semáforo está!
+    </p>
+
+    <!-- Fuentes interactivas -->
+    <div class="fuentes-grid">
+      <div class="fuente-card confiable" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">📚</span>
+        <div class="fuente-nombre">Enciclopedia digital</div>
+        <div class="fuente-desc">Sitios como Wikipedia o Britannica con autores identificados.</div>
+        <span class="fuente-badge badge-confiable">✅ Confiable</span>
+      </div>
+      <div class="fuente-card confiable" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">🏫</span>
+        <div class="fuente-nombre">Portal educativo</div>
+        <div class="fuente-desc">MEN, Colombia Aprende, Khan Academy, BBC Learning.</div>
+        <span class="fuente-badge badge-confiable">✅ Confiable</span>
+      </div>
+      <div class="fuente-card confiable" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">📰</span>
+        <div class="fuente-nombre">Periódico oficial</div>
+        <div class="fuente-desc">El Tiempo, Semana, BBC Mundo con periodistas verificados.</div>
+        <span class="fuente-badge badge-confiable">✅ Confiable</span>
+      </div>
+      <div class="fuente-card media" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">📱</span>
+        <div class="fuente-nombre">Redes sociales</div>
+        <div class="fuente-desc">Facebook, Instagram, TikTok: cualquiera puede publicar.</div>
+        <span class="fuente-badge badge-media">⚠️ Verificar</span>
+      </div>
+      <div class="fuente-card media" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">💬</span>
+        <div class="fuente-nombre">Grupos de WhatsApp</div>
+        <div class="fuente-desc">Mensajes entre familiares: pueden tener errores o rumores.</div>
+        <span class="fuente-badge badge-media">⚠️ Verificar</span>
+      </div>
+      <div class="fuente-card no-confiable" onclick="mostrarInfoFuente(this)">
+        <span class="fuente-emoji">⚠️</span>
+        <div class="fuente-nombre">Noticias falsas</div>
+        <div class="fuente-desc">Titulares exagerados, sin autor, sin fecha: ¡FAKE NEWS!</div>
+        <span class="fuente-badge badge-no-confiable">🚫 No confiable</span>
+      </div>
+    </div>
+
+    <!-- Panel de info de fuente seleccionada -->
+    <div id="fuente-info-panel" style="display:none; margin-top:16px;
+      background:white; border-radius:var(--r-md); padding:16px 20px;
+      border:2px solid var(--s2-indigo); animation:fadeSlide 0.35s ease;
+      box-shadow:var(--sombra-sm);">
+      <div id="fuente-info-titulo" style="font-family:'Fredoka',sans-serif;
+        font-size:1.05rem; font-weight:700; color:var(--s2-indigo);
+        margin-bottom:6px;"></div>
+      <p id="fuente-info-texto" style="font-size:0.88rem; line-height:1.75;
+        margin:0; color:var(--s2-texto);"></p>
+    </div>
+
+    <!-- Semáforo de confiabilidad -->
+    <div class="semaforo-wrap" style="margin-top:20px;">
+      <div class="semaforo-titulo">
+        🚦 Semáforo de Confiabilidad Digital
+        <span style="font-size:0.75rem; color:var(--s2-dim); font-weight:600;">
+          · Toca cada nivel para aprender a verificar
+        </span>
+      </div>
+      <div class="semaforo-niveles">
+        <div class="semaforo-nivel" onclick="activarSemaforo(this, 'verde')">
+          <div class="semaforo-luz luz-verde"></div>
+          <div class="semaforo-nivel-texto">
+            <h5>🟢 Verde — Puedo compartir</h5>
+            <p>La fuente tiene autor identificado, fecha, institución reconocida
+               y el contenido puede verificarse en otros sitios confiables.</p>
+          </div>
+        </div>
+        <div class="semaforo-nivel" onclick="activarSemaforo(this, 'amarilla')">
+          <div class="semaforo-luz luz-amarilla"></div>
+          <div class="semaforo-nivel-texto">
+            <h5>🟡 Amarillo — Debo verificar primero</h5>
+            <p>El contenido viene de redes sociales o grupos de chat.
+               Busca la misma noticia en una fuente verde antes de compartir.</p>
+          </div>
+        </div>
+        <div class="semaforo-nivel" onclick="activarSemaforo(this, 'roja')">
+          <div class="semaforo-luz luz-roja"></div>
+          <div class="semaforo-nivel-texto">
+            <h5>🔴 Rojo — No compartir</h5>
+            <p>Titulares exagerados, sin autor, sin fecha, con faltas de ortografía
+               o que generan miedo o odio. ¡Es una FAKE NEWS! No la compartas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 4: ACTIVIDADES
+  ══════════════════════ -->
+  <div class="seccion seccion-juego">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎮</span>
+      <h3>¡A Clasificar y Crear!
+        <small>Elige tu nivel y completa las misiones 🏆</small>
+      </h3>
+    </div>
+
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">
+        🟢 Grado 3° · Identificador
+      </button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">
+        🔵 Grado 4° · Clasificador
+      </button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">
+        🩷 Grado 5° · Productor
+      </button>
+    </div>
+
+    <!-- ══════════════════════
+         PANEL GRADO 3
+    ══════════════════════ -->
+    <div class="nivel-panel activo" id="panel-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Identificador de Mensajes</span>
+          <span class="nivel-dba">DBA 2 · 2.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+
+          <!-- MISIÓN 1 · DRAG & DROP 5 ZONAS -->
+          <li data-num="1">
+            <div class="act-titulo-item">🕵️ Misión 1 — ¡Identifica el Tipo de Mensaje!</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Arrastra cada mensaje a la columna correcta según su tipo.
+              <strong>¿Es imagen, video, audio, texto o mixto?</strong>
+              ¡Escucharás un sonido cuando clasifiques bien! 🎵
+            </p>
+
+            <!-- Banco de mensajes -->
+            <div class="mensajes-banco" id="banco-mensajes-3">
+              <div class="mensaje-card" draggable="true"
+                data-tipo="imagen" data-nombre="Foto de WhatsApp" id="msg-1">
+                <span class="mensaje-emoji">📸</span>
+                <div class="mensaje-nombre">Foto de WhatsApp</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="video" data-nombre="Video de YouTube" id="msg-2">
+                <span class="mensaje-emoji">▶️</span>
+                <div class="mensaje-nombre">Video de YouTube</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="audio" data-nombre="Nota de voz" id="msg-3">
+                <span class="mensaje-emoji">🎙️</span>
+                <div class="mensaje-nombre">Nota de voz</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="texto" data-nombre="Chat de texto" id="msg-4">
+                <span class="mensaje-emoji">💬</span>
+                <div class="mensaje-nombre">Chat de texto</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="mixto" data-nombre="Página web" id="msg-5">
+                <span class="mensaje-emoji">🌐</span>
+                <div class="mensaje-nombre">Página web</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="imagen" data-nombre="Meme gracioso" id="msg-6">
+                <span class="mensaje-emoji">😂</span>
+                <div class="mensaje-nombre">Meme gracioso</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="audio" data-nombre="Canción de Spotify" id="msg-7">
+                <span class="mensaje-emoji">🎵</span>
+                <div class="mensaje-nombre">Canción Spotify</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="texto" data-nombre="Correo electrónico" id="msg-8">
+                <span class="mensaje-emoji">📧</span>
+                <div class="mensaje-nombre">Correo electrónico</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="video" data-nombre="Tutorial de cocina" id="msg-9">
+                <span class="mensaje-emoji">👨‍🍳</span>
+                <div class="mensaje-nombre">Tutorial cocina</div>
+              </div>
+              <div class="mensaje-card" draggable="true"
+                data-tipo="mixto" data-nombre="App educativa" id="msg-10">
+                <span class="mensaje-emoji">📱</span>
+                <div class="mensaje-nombre">App educativa</div>
+              </div>
+            </div>
+
+            <!-- Zonas de clasificación · 5 tipos -->
+            <div class="zonas-5">
+              <div class="zona-drop zona-imagen" id="zona-imagen-3">
+                <div class="zona-titulo">🖼️ Imagen</div>
+                <div class="zona-items" id="zona-items-imagen-3">
+                  <span style="font-size:0.72rem; color:#A0AEC0; font-style:italic; padding:4px;">
+                    Arrastra aquí...
+                  </span>
+                </div>
+              </div>
+              <div class="zona-drop zona-video" id="zona-video-3">
+                <div class="zona-titulo">🎬 Video</div>
+                <div class="zona-items" id="zona-items-video-3">
+                  <span style="font-size:0.72rem; color:#A0AEC0; font-style:italic; padding:4px;">
+                    Arrastra aquí...
+                  </span>
+                </div>
+              </div>
+              <div class="zona-drop zona-audio" id="zona-audio-3">
+                <div class="zona-titulo">🎵 Audio</div>
+                <div class="zona-items" id="zona-items-audio-3">
+                  <span style="font-size:0.72rem; color:#A0AEC0; font-style:italic; padding:4px;">
+                    Arrastra aquí...
+                  </span>
+                </div>
+              </div>
+              <div class="zona-drop zona-texto" id="zona-texto-3">
+                <div class="zona-titulo">📝 Texto</div>
+                <div class="zona-items" id="zona-items-texto-3">
+                  <span style="font-size:0.72rem; color:#A0AEC0; font-style:italic; padding:4px;">
+                    Arrastra aquí...
+                  </span>
+                </div>
+              </div>
+              <div class="zona-drop zona-mixto" id="zona-mixto-3">
+                <div class="zona-titulo">📱 Mixto</div>
+                <div class="zona-items" id="zona-items-mixto-3">
+                  <span style="font-size:0.72rem; color:#A0AEC0; font-style:italic; padding:4px;">
+                    Arrastra aquí...
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:16px;">
+              <button class="btn-completar"
+                onclick="verificarClasificacion5(3)">
+                ✅ Verificar Clasificación
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 2 · CREAR MENSAJE -->
+          <li data-num="2">
+            <div class="act-titulo-item">✏️ Misión 2 — ¡Crea tu Propio Mensaje!</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Imagina que quieres contarle algo especial de Chichalá
+              a un amigo que vive en otra ciudad.
+              <strong>¿Qué tipo de mensaje digital enviarías?</strong>
+              Elige el tipo y luego descríbelo:
+            </p>
+
+            <div class="constructor-wrap">
+              <div class="constructor-titulo">
+                📲 Constructor de Mensaje Digital
+              </div>
+              <!-- Selector de tipo -->
+              <div class="constructor-tipos" id="selector-tipo-3">
+                <button class="tipo-btn" onclick="seleccionarTipo(this, '3', 'imagen', '🖼️ Imagen')">🖼️ Imagen</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this, '3', 'video',  '🎬 Video')">🎬 Video</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this, '3', 'audio',  '🎵 Audio')">🎵 Audio</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this, '3', 'texto',  '📝 Texto')">📝 Texto</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this, '3', 'mixto',  '📱 Mixto')">📱 Mixto</button>
+              </div>
+              <!-- Preview del mensaje -->
+              <div class="constructor-preview" id="preview-3">
+                <span style="font-size:0.82rem; color:#A0AEC0;">
+                  👆 Selecciona un tipo de mensaje para comenzar...
+                </span>
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700; margin:14px 0 6px;">
+              ✏️ Describe tu mensaje: ¿qué contarías de Chichalá?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m2g3', 1)">
+                📲 ¡Mensaje creado!
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 3 · CC 3.2 -->
+          <li data-num="3">
+            <div class="act-titulo-item">🌍 Misión 3 — Diversidad en el Mundo Digital</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              En internet hay personas de todos los países, culturas, edades
+              e idiomas. Todos merecen respeto y tienen mensajes valiosos
+              que compartir. <strong>Observa estos grupos y responde:</strong>
+            </p>
+
+            <div class="diversidad-grid">
+              <div class="diversidad-card"
+                data-mensaje="Sus videos de cocina tradicional en YouTube nos enseñan saberes que no están en libros. ¡Su conocimiento es digital!">
+                <span class="diversidad-emoji">👴</span>
+                <div class="diversidad-grupo">Abuelos</div>
+                <div class="diversidad-desc">Comparten saberes ancestrales por WhatsApp y videos</div>
+              </div>
+              <div class="diversidad-card"
+                data-mensaje="Los niños aprenden más rápido las tecnologías nuevas y crean contenidos creativos en plataformas educativas. ¡Son nativos digitales!">
+                <span class="diversidad-emoji">👧</span>
+                <div class="diversidad-grupo">Niños y niñas</div>
+                <div class="diversidad-desc">Crean contenidos creativos en plataformas digitales</div>
+              </div>
+              <div class="diversidad-card"
+                data-mensaje="Los indígenas usan las redes para preservar sus lenguas y tradiciones. Hay podcasts, videos y páginas web en lenguas nativas de Colombia.">
+                <span class="diversidad-emoji">🌿</span>
+                <div class="diversidad-grupo">Comunidades indígenas</div>
+                <div class="diversidad-desc">Preservan lenguas y tradiciones en redes digitales</div>
+              </div>
+              <div class="diversidad-card"
+                data-mensaje="Personas con discapacidad usan tecnología adaptada: lectores de pantalla, subtítulos, señas en video. ¡La tecnología debe ser para todos!">
+                <span class="diversidad-emoji">♿</span>
+                <div class="diversidad-grupo">Personas con discapacidad</div>
+                <div class="diversidad-desc">Usan tecnología adaptada para acceder a contenidos</div>
+              </div>
+              <div class="diversidad-card"
+                data-mensaje="En Chichalá, los agricultores usan WhatsApp para vender productos, ver precios del mercado y aprender nuevas técnicas de cultivo. ¡El campo también es digital!">
+                <span class="diversidad-emoji">🌾</span>
+                <div class="diversidad-grupo">Agricultores de Chichalá</div>
+                <div class="diversidad-desc">Usan WhatsApp y YouTube para el trabajo del campo</div>
+              </div>
+              <div class="diversidad-card"
+                data-mensaje="Las mujeres lideran comunidades digitales, crean blogs, podcasts y grupos de emprendimiento en redes. Su voz digital es igual de importante.">
+                <span class="diversidad-emoji">👩</span>
+                <div class="diversidad-grupo">Mujeres emprendedoras</div>
+                <div class="diversidad-desc">Lideran comunidades y negocios en plataformas digitales</div>
+              </div>
+            </div>
+
+            <p style="font-size:0.85rem; font-weight:700;
+              color:var(--s2-indigo); margin:16px 0 6px;">
+              ✏️ ¿Por qué es importante respetar los mensajes digitales
+              de todas las personas, aunque sean diferentes a nosotros?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m3g3', 2)">
+                🌍 ¡Diversidad explorada!
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div><!-- fin panel-3 -->
+
+    <!-- ══════════════════════
+         PANEL GRADO 4
+    ══════════════════════ -->
+    <div class="nivel-panel" id="panel-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Clasificador de Fuentes</span>
+          <span class="nivel-dba">DBA 2 · 2.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+
+          <!-- MISIÓN 1 · QUIZ INTERACTIVO -->
+          <li data-num="1">
+            <div class="act-titulo-item">🧩 Misión 1 — Quiz: ¿Qué Tipo de Contenido Es?</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Lee cada descripción y elige el tipo de contenido digital correcto.
+              <strong>¡Tienes solo un intento por pregunta!</strong>
+              El puntaje se acumula en tiempo real. 🏆
+            </p>
+
+            <div class="quiz-wrap">
+              <div class="quiz-puntaje-wrap">
+                <div class="quiz-puntaje-display">
+                  ⭐ Puntaje: <span id="quiz-puntaje-4">0</span> / <span id="quiz-total-4">5</span>
+                </div>
+                <div class="quiz-progreso-txt">
+                  Pregunta <span id="quiz-num-4">1</span> de 5
+                </div>
+              </div>
+
+              <div id="quiz-container-4">
+                <!-- Las preguntas se renderizan con JS -->
+              </div>
+
+              <div id="quiz-resultado-4" style="display:none; text-align:center;
+                padding:20px; background:linear-gradient(135deg,#F5F3FF,#EFF6FF);
+                border-radius:var(--r-md); margin-top:14px;">
+                <div style="font-size:3rem; margin-bottom:10px;" id="quiz-trofeo-4">🏆</div>
+                <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem;
+                  font-weight:700; color:var(--s2-indigo);" id="quiz-mensaje-4">
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m1g4', 1)">
+                🧩 ¡Quiz completado!
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 2 · SEMÁFORO APLICADO -->
+          <li data-num="2">
+            <div class="act-titulo-item">🚦 Misión 2 — ¿Confiable o No?</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Lee cada mensaje y decide en qué color del semáforo lo ubicarías.
+              <strong>Escribe V (Verde), A (Amarillo) o R (Rojo)</strong>
+              y explica por qué:
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+
+              <div style="background:white; border:2px solid var(--s2-border);
+                border-radius:var(--r-md); padding:16px;">
+                <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                  <span style="font-size:1.8rem;">📰</span>
+                  <div style="flex:1; min-width:200px;">
+                    <p style="font-size:0.88rem; font-weight:700; margin:0 0 8px;">
+                      "Artículo del Ministerio de Educación sobre tecnología escolar,
+                      firmado por el ministro, con fecha y fuentes citadas."
+                    </p>
+                    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                      <span style="font-size:0.78rem; font-weight:800; color:var(--s2-dim);">
+                        Semáforo:
+                      </span>
+                      <div class="linea" style="width:60px; min-width:60px;"></div>
+                      <span style="font-size:0.78rem; font-weight:800; color:var(--s2-dim);">
+                        ¿Por qué?
+                      </span>
+                      <div class="linea" style="flex:1; min-width:100px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:white; border:2px solid var(--s2-border);
+                border-radius:var(--r-md); padding:16px;">
+                <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                  <span style="font-size:1.8rem;">💬</span>
+                  <div style="flex:1; min-width:200px;">
+                    <p style="font-size:0.88rem; font-weight:700; margin:0 0 8px;">
+                      "Mensaje en el grupo familiar de WhatsApp:
+                      '¡URGENTE! Comparte esto o te pasará algo malo.
+                      Un científico descubrió que los celulares matan en 5 años.'"
+                    </p>
+                    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                      <span style="font-size:0.78rem; font-weight:800; color:var(--s2-dim);">
+                        Semáforo:
+                      </span>
+                      <div class="linea" style="width:60px; min-width:60px;"></div>
+                      <span style="font-size:0.78rem; font-weight:800; color:var(--s2-dim);">
+                        ¿Por qué?
+                      </span>
+                      <div class="linea" style="flex:1; min-width:100px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:white; border:2px solid var(--s2-border);
+                border-radius:var(--r-md); padding:16px;">
+                <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+                  <span style="font-size:1.8rem;">📱</span>
+                  <div style="flex:1; min-width:200px;">
+                    <p style="font-size:0.88rem; font-weight:700; margin:0 0 8px;">
+                      "Video de TikTok de un estudiante mostrando cómo
+                      preparar una receta de cocina tradicional de Tolima."
+                    </p>
+                    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                      <span style="font-size:0.78rem;
+                                            font-weight:800; color:var(--s2-dim);">
+                        Semáforo:
+                      </span>
+                      <div class="linea" style="width:60px; min-width:60px;"></div>
+                      <span style="font-size:0.78rem; font-weight:800; color:var(--s2-dim);">
+                        ¿Por qué?
+                      </span>
+                      <div class="linea" style="flex:1; min-width:100px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- fin casos semáforo -->
+
+            <div style="text-align:center; margin-top:16px;">
+              <button class="btn-completar"
+                onclick="completarMision('m2g4', 2)">
+                🚦 ¡Semáforo aplicado!
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 3 · MAPA DE CONTENIDOS -->
+          <li data-num="3">
+            <div class="act-titulo-item">🗺️ Misión 3 — Mapa de Contenidos de mi Día</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Piensa en el último día que usaste algún dispositivo digital.
+              <strong>Registra los contenidos que viste, escuchaste o enviaste</strong>
+              y clasifícalos en la tabla:
+            </p>
+
+            <table class="tabla-comparativa">
+              <tr>
+                <th class="col-fuente">Contenido que recibí / envié</th>
+                <th class="col-indigo">Tipo</th>
+                <th class="col-rosa">Fuente</th>
+                <th class="col-fuente" style="background:var(--s2-esmeralda);">
+                  Semáforo 🚦
+                </th>
+              </tr>
+              <tr>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td style="text-align:center;">🟢 ☐ &nbsp; 🟡 ☐ &nbsp; 🔴 ☐</td>
+              </tr>
+              <tr>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td style="text-align:center;">🟢 ☐ &nbsp; 🟡 ☐ &nbsp; 🔴 ☐</td>
+              </tr>
+              <tr>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td style="text-align:center;">🟢 ☐ &nbsp; 🟡 ☐ &nbsp; 🔴 ☐</td>
+              </tr>
+              <tr>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td><div class="linea"></div></td>
+                <td style="text-align:center;">🟢 ☐ &nbsp; 🟡 ☐ &nbsp; 🔴 ☐</td>
+              </tr>
+            </table>
+
+            <p style="font-size:0.85rem; font-weight:700; margin:14px 0 6px;">
+              💡 ¿Cuál fue el tipo de contenido que más usaste ese día? ¿Por qué crees que fue ese?
+            </p>
+            <div class="lineas">
+              <div class="linea"></div>
+              <div class="linea"></div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m3g4', 3)">
+                🗺️ ¡Mapa completado!
+              </button>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div><!-- fin panel-4 -->
+
+    <!-- ══════════════════════
+         PANEL GRADO 5
+    ══════════════════════ -->
+    <div class="nivel-panel" id="panel-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🩷 Grado 5° · Productor de Contenidos</span>
+          <span class="nivel-dba">DBA 2 · 2.8 T&amp;I.I</span>
+        </div>
+
+        <ul class="actividad-lista">
+
+          <!-- MISIÓN 1 · TRES LENGUAJES -->
+          <li data-num="1">
+            <div class="act-titulo-item">🧠 Misión 1 — Analiza un Contenido con Tres Lenguajes</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Elige un contenido digital que hayas visto recientemente
+              y analízalo con los <strong>tres lenguajes tecnológicos</strong>:
+            </p>
+
+            <!-- Selector de tipo de contenido -->
+            <div class="constructor-wrap" style="margin-bottom:16px;">
+              <div class="constructor-titulo">🎯 Paso 1 — Elige el tipo de contenido que vas a analizar:</div>
+              <div class="constructor-tipos" id="selector-tipo-5">
+                <button class="tipo-btn" onclick="seleccionarTipo(this,'5','imagen','🖼️ Imagen')">🖼️ Imagen</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this,'5','video','🎬 Video')">🎬 Video</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this,'5','audio','🎵 Audio')">🎵 Audio</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this,'5','texto','📝 Texto')">📝 Texto</button>
+                <button class="tipo-btn" onclick="seleccionarTipo(this,'5','mixto','📱 Mixto')">📱 Mixto</button>
+              </div>
+              <div class="constructor-preview" id="preview-5">
+                <span style="font-size:0.82rem; color:#A0AEC0;">
+                  👆 Selecciona el tipo para activar el análisis...
+                </span>
+              </div>
+            </div>
+
+            <!-- Lenguaje 1: Escrito -->
+            <div style="background:#F8FAFC; border:2px solid var(--s2-border);
+              border-radius:var(--r-md); padding:16px; margin-bottom:12px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem;
+                font-weight:700; color:var(--s2-indigo); margin-bottom:8px;
+                display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--s2-indigo); color:white; width:26px; height:26px;
+                  border-radius:50%; display:inline-flex; align-items:center;
+                  justify-content:center; font-size:0.8rem;">1</span>
+                ✍️ Lenguaje Escrito
+              </div>
+              <p style="font-size:0.82rem; color:var(--s2-dim); margin-bottom:8px;">
+                Describe el contenido: ¿qué es?, ¿de qué trata?,
+                ¿quién lo publicó?, ¿es confiable? (mínimo 3 oraciones):
+              </p>
+              <div class="lineas">
+                <div class="linea"></div>
+                <div class="linea"></div>
+                <div class="linea"></div>
+              </div>
+            </div>
+
+            <!-- Lenguaje 2: Gráfico -->
+            <div style="background:#F8FAFC; border:2px solid var(--s2-border);
+              border-radius:var(--r-md); padding:16px; margin-bottom:12px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem;
+                font-weight:700; color:var(--s2-rosa); margin-bottom:8px;
+                display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--s2-rosa); color:white; width:26px; height:26px;
+                  border-radius:50%; display:inline-flex; align-items:center;
+                  justify-content:center; font-size:0.8rem;">2</span>
+                🎨 Lenguaje Gráfico
+              </div>
+              <p style="font-size:0.82rem; color:var(--s2-dim); margin-bottom:8px;">
+                Dibuja el contenido o haz un esquema con sus partes y características:
+              </p>
+              <div class="espacio-escritura" style="min-height:110px;">
+                <span style="font-size:0.78rem; color:#A0AEC0;">
+                  ✏️ Dibuja o esquematiza aquí:
+                </span>
+              </div>
+            </div>
+
+            <!-- Lenguaje 3: Simbólico -->
+            <div style="background:#F8FAFC; border:2px solid var(--s2-border);
+              border-radius:var(--r-md); padding:16px; margin-bottom:14px;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:0.92rem;
+                font-weight:700; color:var(--s2-esmeralda); margin-bottom:8px;
+                display:flex; align-items:center; gap:8px;">
+                <span style="background:var(--s2-esmeralda); color:white; width:26px; height:26px;
+                  border-radius:50%; display:inline-flex; align-items:center;
+                  justify-content:center; font-size:0.8rem;">3</span>
+                🔣 Lenguaje Simbólico
+              </div>
+              <p style="font-size:0.82rem; color:var(--s2-dim); margin-bottom:8px;">
+                Usa emojis y símbolos para representar el flujo del contenido.<br/>
+                Ejemplo:
+                <span style="background:#EEF2FF; padding:3px 10px; border-radius:50px;
+                  font-weight:700; font-size:0.82rem;">
+                  👤 → 📸 → 📱 → 🌐 → 👥 → 💬
+                </span>
+              </p>
+              <div class="linea"></div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m1g5', 1)">
+                🧠 ¡Análisis completado!
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 2 · PRODUCTOR DIGITAL -->
+          <li data-num="2">
+            <div class="act-titulo-item">🎬 Misión 2 — ¡Soy Productor de Contenido!</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Diseña un contenido digital sobre
+              <strong>Chichalá, tu vereda o tu colegio</strong>.
+              Planifica cada detalle como un productor profesional:
+            </p>
+
+            <div style="background:linear-gradient(135deg,#F5F3FF,#FDF4FF);
+              border:2px solid var(--s2-violeta); border-radius:var(--r-lg);
+              padding:20px; margin-bottom:14px;">
+
+              <p style="font-family:'Fredoka',sans-serif; font-weight:700;
+                color:var(--s2-violeta); font-size:0.95rem; margin-bottom:14px;">
+                📋 Ficha de Producción Digital
+              </p>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800;
+                    color:var(--s2-dim); margin-bottom:4px;">
+                    TIPO DE CONTENIDO:
+                  </div>
+                  <div class="linea"></div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800;
+                    color:var(--s2-dim); margin-bottom:4px;">
+                    PLATAFORMA DONDE LO PUBLICARÍA:
+                  </div>
+                  <div class="linea"></div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800;
+                    color:var(--s2-dim); margin-bottom:4px;">
+                    TEMA (¿de qué trata?):
+                  </div>
+                  <div class="linea"></div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800;
+                    color:var(--s2-dim); margin-bottom:4px;">
+                    PÚBLICO (¿para quién?):
+                  </div>
+                  <div class="linea"></div>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                  <div style="font-size:0.75rem; font-weight:800;
+                    color:var(--s2-dim); margin-bottom:4px;">
+                    MENSAJE PRINCIPAL (¿qué quiero comunicar?):
+                  </div>
+                  <div class="linea"></div>
+                  <div class="linea"></div>
+                </div>
+              </div>
+
+              <!-- Boceto del contenido -->
+              <div style="margin-top:14px;">
+                <div style="font-size:0.75rem; font-weight:800;
+                  color:var(--s2-dim); margin-bottom:6px;">
+                  ✏️ BOCETO O ESQUEMA DE TU CONTENIDO:
+                </div>
+                <div class="espacio-escritura" style="min-height:120px;">
+                  <span style="font-size:0.78rem; color:#A0AEC0;">
+                    Dibuja o describe cómo sería tu contenido digital...
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m2g5', 2)">
+                🎬 ¡Producción lista!
+              </button>
+            </div>
+          </li>
+
+          <!-- MISIÓN 3 · CC 3.2 AVANZADO -->
+          <li data-num="3">
+            <div class="act-titulo-item">🌍 Misión 3 — Diversidad, Contenidos e Inclusión Digital</div>
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+              Los contenidos digitales pueden incluir o excluir personas
+              según cómo se diseñen. <strong>Un productor de contenido
+              responsable piensa en todos.</strong>
+            </p>
+
+            <div style="background:linear-gradient(135deg,rgba(99,102,241,0.07),
+              rgba(236,72,153,0.06)); border:2px solid var(--s2-indigo);
+              border-radius:var(--r-lg); padding:20px; margin-bottom:14px;">
+
+              <p style="font-family:'Fredoka',sans-serif; font-weight:700;
+                color:var(--s2-indigo); font-size:0.95rem; margin-bottom:12px;">
+                🔍 Casos para analizar:
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:12px;">
+
+                <div style="background:white; border-radius:var(--r-sm);
+                  padding:14px; border:2px solid var(--s2-border);">
+                  <p style="font-size:0.85rem; font-weight:700; margin:0 0 8px;">
+                    📹 Caso 1: Un video educativo sin subtítulos para personas sordas.
+                  </p>
+                  <p style="font-size:0.8rem; color:var(--s2-dim); margin:0 0 6px;">
+                    ¿Qué grupo queda excluido? ¿Cómo lo mejorarías?
+                  </p>
+                  <div class="linea"></div>
+                </div>
+
+                <div style="background:white; border-radius:var(--r-sm);
+                  padding:14px; border:2px solid var(--s2-border);">
+                  <p style="font-size:0.85rem; font-weight:700; margin:0 0 8px;">
+                    📝 Caso 2: Una noticia escrita solo en inglés sobre Chichalá.
+                  </p>
+                  <p style="font-size:0.8rem; color:var(--s2-dim); margin:0 0 6px;">
+                    ¿Qué grupo queda excluido? ¿Cómo lo mejorarías?
+                  </p>
+                  <div class="linea"></div>
+                </div>
+
+                <div style="background:white; border-radius:var(--r-sm);
+                  padding:14px; border:2px solid var(--s2-border);">
+                  <p style="font-size:0.85rem; font-weight:700; margin:0 0 8px;">
+                    🖼️ Caso 3: Una app educativa con imágenes solo de niños de ciudad.
+                  </p>
+                  <p style="font-size:0.8rem; color:var(--s2-dim); margin:0 0 6px;">
+                    ¿Qué grupo queda excluido? ¿Cómo lo mejorarías?
+                  </p>
+                  <div class="linea"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <p style="font-size:0.88rem; font-weight:700; margin-bottom:6px;">
+              💬 Escribe tu propio principio de
+              <strong>Contenido Digital Inclusivo</strong>
+              para Chichalá (una frase poderosa):
+            </p>
+            <div style="background:linear-gradient(135deg,#F5F3FF,#EFF6FF);
+              border:2px solid var(--s2-indigo); border-radius:var(--r-md);
+              padding:16px; margin-top:6px; text-align:center;">
+              <span style="font-size:1.4rem;">"</span>
+              <div class="linea" style="margin:6px 0;"></div>
+              <span style="font-size:1.4rem;">"</span>
+              <div style="font-size:0.72rem; color:var(--s2-dim); margin-top:4px;">
+                — Tu nombre, Grado 5° · Chichalá
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px;">
+              <button class="btn-completar"
+                onclick="completarMision('m3g5', 3)">
+                🌍 ¡Inclusión digital lograda!
+              </button>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div><!-- fin panel-5 -->
+
+  </div><!-- fin seccion-juego -->
+
+  <!-- ══════════════════════
+       SECCIÓN 5: DIVERSIDAD DIGITAL · CC 3.2
+  ══════════════════════ -->
+  <div class="seccion seccion-diversidad">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🌍</span>
+      <h3>Diversidad Digital · Convivencia
+        <small>Competencia Ciudadana · CC 3.2</small>
+      </h3>
+    </div>
+
+    <p>
+      En el mundo digital conviven personas de todas las edades, culturas,
+      idiomas, capacidades y regiones. Los contenidos digitales que producimos
+      y compartimos tienen el poder de <strong>incluir o excluir</strong>
+      a esos grupos. Un buen comunicador digital <strong>reconoce, respeta
+      y celebra esa diversidad</strong>. 🌈
+    </p>
+
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),
+      rgba(236,72,153,0.07)); border:2px solid var(--s2-ambar);
+      border-radius:var(--r-md); padding:18px; margin-top:14px;">
+      <p style="font-weight:700; color:#92400E; font-size:0.92rem;">
+        💬 <strong>Reflexiona y responde:</strong>
+        En tu vereda Chichalá hay personas mayores que no saben usar
+        el celular y niños que sí lo usan muy bien.
+        ¿Cómo podrías usar los mensajes digitales para
+        <strong>acercar a esos dos grupos</strong>,
+        en lugar de separarlos? Da un ejemplo concreto.
+      </p>
+      <div class="lineas" style="margin-top:10px;">
+        <div class="linea"></div>
+        <div class="linea"></div>
+        <div class="linea"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 6: COFRE DEL COMUNICADOR
+  ══════════════════════ -->
+  <div class="seccion" style="border-color:var(--s2-indigo);">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📦</span>
+      <h3>Cofre del Comunicador
+        <small>¡Ábrelo al terminar tus misiones! 🔓</small>
+      </h3>
+    </div>
+    <div class="cofre-wrap">
+      <button class="btn-cofre" onclick="abrirCofre()">
+        🔐 ¡Abrir Cofre del Comunicador!
+      </button>
+      <div class="cofre-secreto" id="cofre-secreto">
+        <div class="cofre-secreto-titulo">📡 ¡Los Secretos del Mundo Digital!</div>
+        <p>
+          Cada segundo se publican en internet más de
+          <strong>6.000 tuits, 1.000 fotos en Instagram y 500 horas de video en YouTube</strong>.
+          ¡El mundo digital nunca duerme! 🌍
+        </p>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">🖼️</span>
+          <span>Cada día se toman más de <strong>1.800 millones de fotos</strong>
+          en el mundo. La mayoría se comparte por WhatsApp, Instagram y Facebook.
+          ¡Una imagen dice más que mil palabras! 📸</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">🎬</span>
+          <span>YouTube tiene más de <strong>800 millones de videos</strong>.
+          Si los vieras uno por uno sin parar, tardarías más de
+          <strong>82.000 años</strong>. ¡El video es el rey del contenido digital! 👑</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">⚠️</span>
+          <span>El <strong>60% de las noticias falsas</strong> que circulan en
+          WhatsApp llegan por grupos familiares. Antes de compartir algo,
+          pregúntate: ¿tiene autor?, ¿tiene fecha?, ¿puedo verificarlo? 🚦</span>
+        </div>
+        <div class="cofre-dato">
+          <span class="cofre-dato-icon">🌿</span>
+          <span>Desde Chichalá puedes producir contenidos digitales que lleguen
+          a todo el mundo. Un video del trapiche, una foto del cultivo,
+          una nota de voz del guarapo... <strong>¡Tu cultura merece ser digital!</strong> 📡</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 7: AUTOEVALUACIÓN
+  ══════════════════════ -->
+  <div class="seccion seccion-eval">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📊</span>
+      <h3>Reporte de Señal
+        <small>¿Cómo quedó tu transmisión hoy? 📡</small>
+      </h3>
+    </div>
+
+    <div class="eval-box">
+      <h4>⭐ Autoevaluación · Marca con clic o con X</h4>
+      <table class="eval-tabla">
+        <tr>
+          <th>Criterio de la misión</th>
+          <th class="col-logre">¡Lo logré! 😄</th>
+          <th class="col-casi">Casi 🙂</th>
+          <th class="col-ayuda">Necesito ayuda 😕</th>
+        </tr>
+        <tr>
+          <td>Identifico los 5 tipos de contenido digital</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Clasifico mensajes según su tipo correctamente</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Reconozco fuentes confiables y no confiables</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Uso el semáforo digital para evaluar contenidos</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Diseño o describo un mensaje digital creativo</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Reconozco la diversidad de grupos en lo digital (CC 3.2)</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+        <tr>
+          <td>Participé con respeto y compartí mis ideas con el grupo</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+          <td class="check-cell" onclick="marcarEval(this)">☐</td>
+        </tr>
+      </table>
+    </div>
+
+    <p style="font-weight:800; font-size:0.88rem; margin-bottom:6px;">
+      📡 ¿Qué tipo de contenido digital te parece más útil para aprender?
+      ¿Por qué?
+    </p>
+    <div class="lineas">
+      <div class="linea"></div>
+      <div class="linea"></div>
+      <div class="linea"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 8: TAREA EN CASA
+  ══════════════════════ -->
+  <div class="seccion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🏡</span>
+      <h3>Tarea en Casa
+        <small>¡Sé un Detector de Contenidos en tu hogar! 🔍</small>
+      </h3>
+    </div>
+
+    <p style="font-size:0.9rem; margin-bottom:14px;">
+      Durante el día de hoy, observa
+      <strong>5 mensajes o contenidos digitales</strong>
+      que lleguen a tu celular, tablet o computador.
+      Para cada uno completa la tabla:
+    </p>
+
+    <table class="tabla-comparativa">
+      <tr>
+        <th class="col-fuente">Contenido digital</th>
+        <th class="col-indigo">Tipo</th>
+        <th class="col-rosa">Fuente</th>
+        <th class="col-fuente" style="background:var(--s2-esmeralda);">Semáforo</th>
+        <th class="col-fuente" style="background:var(--s2-violeta);">¿Compartirías? ¿Por qué?</th>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center;">🟢☐ 🟡☐ 🔴☐</td>
+        <td><div class="linea"></div></td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center;">🟢☐ 🟡☐ 🔴☐</td>
+        <td><div class="linea"></div></td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center;">🟢☐ 🟡☐ 🔴☐</td>
+        <td><div class="linea"></div></td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center;">🟢☐ 🟡☐ 🔴☐</td>
+        <td><div class="linea"></div></td>
+      </tr>
+      <tr>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td><div class="linea"></div></td>
+        <td style="text-align:center;">🟢☐ 🟡☐ 🔴☐</td>
+        <td><div class="linea"></div></td>
+      </tr>
+    </table>
+
+    <!-- Tarjetas recortables -->
+    <div class="tarjetas-recortables" style="margin-top:20px;">
+      <div style="font-family:'Fredoka',sans-serif; font-size:1rem;
+        font-weight:700; color:var(--s2-texto); margin-bottom:14px;
+        display:flex; align-items:center; gap:8px;">
+        ✂️ Recorta y guarda estas tarjetas de referencia:
+      </div>
+      <div class="tarjetas-grid">
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🖼️</span>
+          <div class="tarjeta-nombre">Imagen</div>
+          <div class="tarjeta-tipo">Foto · Meme · Captura</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🎬</span>
+          <div class="tarjeta-nombre">Video</div>
+          <div class="tarjeta-tipo">YouTube · Reels · Tutorial</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🎵</span>
+          <div class="tarjeta-nombre">Audio</div>
+          <div class="tarjeta-tipo">Canción · Podcast · Voz</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">📝</span>
+          <div class="tarjeta-nombre">Texto</div>
+          <div class="tarjeta-tipo">Chat · Correo · Noticia</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">📱</span>
+          <div class="tarjeta-nombre">Mixto</div>
+          <div class="tarjeta-tipo">Web · App · Presentación</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"
+          style="border-color:#22C55E;">
+          <span class="tarjeta-emoji">🟢</span>
+          <div class="tarjeta-nombre">Fuente Verde</div>
+          <div class="tarjeta-tipo">Autor · Fecha · Verificable</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"
+          style="border-color:#F59E0B;">
+          <span class="tarjeta-emoji">🟡</span>
+          <div class="tarjeta-nombre">Fuente Amarilla</div>
+          <div class="tarjeta-tipo">Redes · Grupos · Verificar</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')"
+          style="border-color:#EF4444;">
+          <span class="tarjeta-emoji">🔴</span>
+          <div class="tarjeta-nombre">Fuente Roja</div>
+          <div class="tarjeta-tipo">Sin autor · FAKE NEWS</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">📡</span>
+          <div class="tarjeta-nombre">Fuentes</div>
+          <div class="tarjeta-tipo">¿De dónde viene?</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🚦</span>
+          <div class="tarjeta-nombre">Semáforo</div>
+          <div class="tarjeta-tipo">Verde · Amarillo · Rojo</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🌍</span>
+          <div class="tarjeta-nombre">Diversidad</div>
+          <div class="tarjeta-tipo">CC 3.2 · Respeto digital</div>
+        </div>
+        <div class="tarjeta-frase" onclick="sonar('flip')">
+          <span class="tarjeta-emoji">🌿</span>
+          <div class="tarjeta-nombre">Chichalá Digital</div>
+          <div class="tarjeta-tipo">¡Tu cultura en la red!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       DIPLOMA
+  ══════════════════════ -->
+  <div class="diploma-wrap" id="diploma-wrap">
+    <div class="diploma-titulo">📡 IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="diploma-titulo" style="margin-top:6px;">
+      CERTIFICA QUE EL/LA COMUNICADOR/A DIGITAL:
+    </div>
+    <div class="diploma-nombre-display" id="diploma-nombre">¡Tu Nombre Aquí</div>
+    <span class="diploma-insignia">📡</span>
+    <div class="diploma-texto">
+      Ha completado con éxito la
+      <strong>Misión Digital: Mensajes y Contenidos Digitales</strong>,
+      demostrando que sabe identificar tipos de mensajes,
+      evaluar fuentes y producir contenidos digitales
+      con respeto por la diversidad.
+      <br/><br/>
+      <strong>¡Es un Certificado de Comunicador Digital!</strong> 🌍🚀
+    </div>
+    <div class="diploma-grado-badge" id="diploma-grado">
+      📡 Comunicador Digital · Chichalá
+    </div>
+    <div style="margin-top:18px; font-size:0.8rem; color:var(--s2-dim); font-style:italic;">
+      Profe Nelson · Tecnología · Período 3 · Semana 2
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       REFLEXIÓN FINAL
+  ══════════════════════ -->
+  <div class="reflexion-final">
+    <p>
+      📡 "En Chichalá, cada mensaje digital es una semilla.
+      Puede ser una semilla de conocimiento que crece en un niño,
+      una semilla de alegría que llega a un abuelo,
+      una semilla de cultura que se comparte con el mundo entero.<br/>
+      <strong>El mensaje que envías no es solo texto, imagen o sonido...
+      es un pedazo de tu corazón digital.</strong>"
+    </p>
+    <p style="font-size:0.82rem; margin-top:10px; color:var(--s2-dim); font-style:italic;">
+      🌿 Profe Nelson · Tecnología · IE Técnica Camacho Angarita · Sede Chichalá
+    </p>
+  </div>
+
+  <!-- ══════════════════════
+       FOOTER
+  ══════════════════════ -->
+  <div class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    <p>Corregimiento El Limón · Chaparral, Tolima</p>
+    <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+    <p style="margin-top:8px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+  </div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <a href="../../../../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+  </div>
+
+</div><!-- fin .container -->
+
+<script>
+/* ══════════════════════════════════════════════
+   MENSAJES Y CONTENIDOS DIGITALES · SEMANA 2
+   JavaScript · Profe Nelson
+   Tecnología · Grados 3°-4°-5° · Período 3
+   v1 — Sistema de clasificación 5 tipos + Semáforo + Constructor
+══════════════════════════════════════════════ */
+'use strict';
+
+// ─────────────────────────────────────────────
+// SONIDOS · Web Audio API (100% offline)
+// ─────────────────────────────────────────────
+const audioCtx = window.AudioContext
+  ? new AudioContext()
+  : window.webkitAudioContext
+    ? new webkitAudioContext()
+    : null;
+
+function sonar(tipo) {
+  if (!audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const configs = {
+    correcto:  { freq: [523, 659, 784],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+    error:     { freq: [200, 150],             dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+        flip:      { freq: [440, 554],             dur: 0.08, gain: 0.2,  type: 'sine'     },
+    nodo:      { freq: [660, 880],             dur: 0.1,  gain: 0.2,  type: 'sine'     },
+    eureka:    { freq: [523, 659, 784, 1047],  dur: 0.1,  gain: 0.25, type: 'sine'     },
+    completar: { freq: [784, 880, 1047],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+    cofre:     { freq: [392, 494, 587, 784],   dur: 0.14, gain: 0.28, type: 'sine'     },
+  };
+
+  const cfg = configs[tipo] || configs.flip;
+  cfg.freq.forEach((f, i) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type            = cfg.type;
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+    );
+    osc.start(audioCtx.currentTime + i * cfg.dur);
+    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+  });
+}
+
+// ─────────────────────────────────────────────
+// ESTADO GLOBAL
+// ─────────────────────────────────────────────
+const STORAGE_KEY = 'chicala_tec_p3s2_inv';
+
+let estado = JSON.parse(
+  localStorage.getItem(STORAGE_KEY) ||
+  JSON.stringify({ misionesCompletas: [], senalesObtenidas: 0 })
+);
+
+// ─────────────────────────────────────────────
+// BARRA DE SEÑAL (REEMPLAZA PROGRESO)
+// ─────────────────────────────────────────────
+const TOTAL_SENALES = 5;
+
+function actualizarBarra() {
+  const pct  = Math.round((estado.senalesObtenidas / TOTAL_SENALES) * 100);
+  const fill = document.getElementById('barra-fill');
+  if (fill) fill.style.width = pct + '%';
+  for (let i = 1; i <= TOTAL_SENALES; i++) {
+    const s = document.getElementById(`senal-${i}`);
+    if (s && i <= estado.senalesObtenidas) s.classList.add('obtenida');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CAMBIAR PANEL DE NIVEL
+// ─────────────────────────────────────────────
+function cambiarNivel(num, btn) {
+  sonar('flip');
+  document.querySelectorAll('.nivel-panel')
+    .forEach(p => p.classList.remove('activo'));
+  document.querySelectorAll('.nivel-tab')
+    .forEach(t => t.className = 'nivel-tab');
+  const panel = document.getElementById(`panel-${num}`);
+  if (panel) panel.classList.add('activo');
+  if (btn)   btn.classList.add(`activo-${num}`);
+}
+
+// ─────────────────────────────────────────────
+// ✅ FIX: DRAG & DROP 5 TIPOS · UNIFICADO
+// Sistema único. Se elimina dragElemento global
+// y manejarDrop(). Llamado en DOMContentLoaded.
+// ─────────────────────────────────────────────
+function iniciarDragDrop5() {
+
+  // ── DESKTOP ──────────────────────────────────
+  document.addEventListener('dragstart', e => {
+    const card = e.target.closest('.mensaje-card[draggable="true"]');
+    if (!card) return;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', card.id);
+    sonar('flip');
+  });
+
+  document.addEventListener('dragend', e => {
+    const card = e.target.closest('.mensaje-card');
+    if (card) card.classList.remove('dragging');
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+  });
+
+    document.addEventListener('dragover', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+    zona.classList.add('drag-over');
+  });
+
+  // ✅ FIX: dragleave solo limpia si el cursor
+  // sale realmente de la zona (no de un hijo)
+  document.addEventListener('dragleave', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    if (!zona.contains(e.relatedTarget)) {
+      zona.classList.remove('drag-over');
+    }
+  });
+
+  document.addEventListener('drop', e => {
+    const zona = e.target.closest('.zona-drop');
+    if (!zona) return;
+    e.preventDefault();
+    zona.classList.remove('drag-over');
+    const id   = e.dataTransfer.getData('text/plain');
+    const card = document.getElementById(id);
+    if (!card) return;
+    const tipoZona = zona.id.replace('zona-', '').replace('-3', '');
+    procesarClasificacion5(card, tipoZona);
+  });
+
+  // ── TOUCH ─────────────────────────────────────
+  let touchCard = null;
+  let clon      = null;
+  let cardW     = 0;
+  let cardH     = 0;
+
+  document.addEventListener('touchstart', e => {
+    const card = e.target.closest('.mensaje-card[draggable="true"]');
+    if (!card) return;
+    if (parseFloat(card.style.opacity) < 0.5) return;
+
+    touchCard = card;
+    cardW     = card.offsetWidth;
+    cardH     = card.offsetHeight;
+    const t   = e.touches[0];
+
+    clon = card.cloneNode(true);
+    clon.style.cssText = `
+      position       : fixed;
+      z-index        : 9999;
+      opacity        : 0.88;
+      pointer-events : none;
+      width          : ${cardW}px;
+      left           : ${t.clientX - cardW / 2}px;
+      top            : ${t.clientY - cardH / 2}px;
+      transform      : rotate(4deg) scale(1.08);
+            border-radius  : var(--r-md);
+      box-shadow     : 0 14px 36px rgba(0,0,0,0.22);
+      transition     : none;
+    `;
+    document.body.appendChild(clon);
+    card.style.opacity = '0.35';
+    sonar('flip');
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!clon || !touchCard) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    clon.style.left = `${t.clientX - cardW / 2}px`;
+    clon.style.top  = `${t.clientY - cardH / 2}px`;
+
+    // ✅ FIX: ocultar clon para detectar zona bajo el dedo
+    clon.style.display = 'none';
+    const elDebajo = document.elementFromPoint(t.clientX, t.clientY);
+    clon.style.display = '';
+
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+    const zona = elDebajo ? elDebajo.closest('.zona-drop') : null;
+    if (zona) zona.classList.add('drag-over');
+  }, { passive: false });
+
+  document.addEventListener('touchend', e => {
+    if (!touchCard) return;
+    if (clon) { clon.remove(); clon = null; }
+    touchCard.style.opacity = '1';
+    document.querySelectorAll('.zona-drop')
+      .forEach(z => z.classList.remove('drag-over'));
+
+    const t        = e.changedTouches[0];
+    const elDebajo = document.elementFromPoint(t.clientX, t.clientY);
+    const zona     = elDebajo ? elDebajo.closest('.zona-drop') : null;
+
+    if (zona) {
+      const tipoZona = zona.id.replace('zona-', '').replace('-3', '');
+      procesarClasificacion5(touchCard, tipoZona);
+    } else {
+      mostrarToast('👆 Suelta el mensaje dentro de una zona.', 'error');
+    }
+    touchCard = null;
+  });
+}
+
+// ─────────────────────────────────────────────
+// PROCESAR CLASIFICACIÓN 5 TIPOS
+// ─────────────────────────────────────────────
+function procesarClasificacion5(card, tipoZona) {
+  const tipoCard   = card.dataset.tipo;
+  const nombre     = card.dataset.nombre;
+  const emoji      = card.querySelector('.mensaje-emoji').textContent;
+  const esCorrecta = tipoCard === tipoZona;
+  const gradoNum   = 3;
+
+  const zonaItems = document.getElementById(
+    `zona-items-${tipoZona}-${gradoNum}`
+  );
+  if (!zonaItems) return;
+
+  // Limpiar placeholder
+  zonaItems.querySelectorAll('span').forEach(s => {
+    if (s.textContent.includes('Arrastra aquí')) s.remove();
+  });
+
+  // Evitar duplicado en la misma zona
+  if (zonaItems.querySelector(`[data-card-id="${card.id}"]`)) {
+    mostrarToast(`⚠️ "${nombre}" ya está en esta zona.`, 'error');
+    card.style.opacity       = '1';
+    card.style.pointerEvents = 'auto';
+    return;
+  }
+
+  // Quitar de cualquier otra zona si ya estaba clasificado
+  const tiposTodos = ['imagen', 'video', 'audio', 'texto', 'mixto'];
+  tiposTodos.forEach(t => {
+    if (t === tipoZona) return;
+    const otraItems = document.getElementById(
+      `zona-items-${t}-${gradoNum}`
+    );
+    if (otraItems) {
+      const chipAnterior = otraItems.querySelector(
+        `[data-card-id="${card.id}"]`
+      );
+      if (chipAnterior) chipAnterior.remove();
+    }
+  });
+
+  // Crear chip en la zona
+  const chip = document.createElement('div');
+  chip.className          = 'zona-chip';
+  chip.dataset.cardId     = card.id;
+  // ✅ FIX: guardar resultado como dataset
+  chip.dataset.esCorrecta = String(esCorrecta);
+  chip.title              = '↩️ Toca para devolver al banco';
+  chip.innerHTML = `
+    <span>${emoji}</span>
+    <span style="font-weight:700; font-size:0.75rem;">${nombre}</span>
+    <span style="font-size:0.9rem;">${esCorrecta ? '✅' : '❌'}</span>`;
+
+  // Devolver al banco al hacer clic en el chip
+  chip.addEventListener('click', () => {
+    chip.remove();
+    card.style.opacity       = '1';
+    card.style.pointerEvents = 'auto';
+    card.style.transform     = '';
+    sonar('flip');
+    mostrarToast(
+      `↩️ "${nombre}" devuelto al banco. ¡Inténtalo de nuevo!`,
+      'error'
+    );
+  });
+
+  zonaItems.appendChild(chip);
+
+  // Animación en la tarjeta del banco
+  card.classList.add(esCorrecta ? 'correcto' : 'incorrecto');
+  setTimeout(() =>
+    card.classList.remove('correcto', 'incorrecto'), 700
+  );
+
+  // Atenuar tarjeta clasificada en el banco
+  card.style.opacity       = '0.4';
+  card.style.pointerEvents = 'none';
+
+  // Etiquetas de tipo para el toast
+  const etiquetas = {
+    imagen: '🖼️ Imagen',
+    video:  '🎬 Video',
+    audio:  '🎵 Audio',
+    texto:  '📝 Texto',
+    mixto:  '📱 Mixto',
+  };
+
+  sonar(esCorrecta ? 'correcto' : 'error');
+  mostrarToast(
+    esCorrecta
+      ? `✅ ¡Correcto! "${nombre}" es ${etiquetas[tipoZona]}`
+      : `❌ ¡Oops! "${nombre}" no es ${etiquetas[tipoZona]}. Toca ❌ para corregirlo.`,
+    esCorrecta ? 'success' : 'error'
+  );
+}
+
+// ─────────────────────────────────────────────
+// VERIFICAR CLASIFICACIÓN 5 TIPOS
+// ─────────────────────────────────────────────
+function verificarClasificacion5(grado) {
+  const tiposTodos = ['imagen', 'video', 'audio', 'texto', 'mixto'];
+
+  let totalChips  = 0;
+  let correctos   = 0;
+
+  tiposTodos.forEach(tipo => {
+    const zonaItems = document.getElementById(
+      `zona-items-${tipo}-${grado}`
+    );
+    if (!zonaItems) return;
+    const chips = zonaItems.querySelectorAll('.zona-chip');
+    chips.forEach(chip => {
+      totalChips++;
+      if (chip.dataset.esCorrecta === 'true') correctos++;
+    });
+  });
+
+  if (totalChips < 5) {
+    sonar('error');
+    mostrarToast(
+      '⚠️ Clasifica al menos 5 mensajes antes de verificar.',
+      'error'
+    );
+    return;
+  }
+
+  if (correctos >= Math.ceil(totalChips * 0.75)) {
+    sonar('eureka');
+    mostrarToast(
+      `🎉 ¡Excelente Comunicador/a! ${correctos}/${totalChips} correctos. ¡Señal obtenida! 📡`,
+      'success'
+    );
+    completarMision(`clasificacion5-${grado}`, 0);
+
+    // Desbloquear señal 1 al completar Misión 1
+    if (!estado.misionesCompletas.includes('m1g3-senal')) {
+      estado.misionesCompletas.push('m1g3-senal');
+      if (estado.senalesObtenidas < 1) {
+        estado.senalesObtenidas = 1;
+        const senal = document.getElementById('senal-1');
+        if (senal) senal.classList.add('obtenida');
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+      actualizarBarra();
+    }
+  } else {
+    sonar('error');
+    mostrarToast(
+      `💪 ${correctos}/${totalChips} correctos. ¡Revisa los ❌ y sigue intentando!`,
+      'error'
+    );
+  }
+}
+
+// ─────────────────────────────────────────────
+// COMPLETAR MISIÓN → OBTENER SEÑAL
+// ─────────────────────────────────────────────
+function completarMision(idMision, indiceSenal) {
+  if (estado.misionesCompletas.includes(idMision)) {
+    mostrarToast('✅ ¡Esta misión ya la completaste!', 'success');
+    return;
+  }
+
+  estado.misionesCompletas.push(idMision);
+
+  if (indiceSenal > 0 && estado.senalesObtenidas < indiceSenal) {
+    estado.senalesObtenidas = indiceSenal;
+    const senal = document.getElementById(`senal-${indiceSenal}`);
+    if (senal) senal.classList.add('obtenida');
+    sonar('completar');
+    mostrarToast(
+      `📡 ¡Señal ${indiceSenal} obtenida! Tu antena digital crece. 🚀`,
+      'success'
+    );
+  }
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
+  actualizarBarra();
+
+  if (estado.senalesObtenidas >= TOTAL_SENALES) {
+    setTimeout(() => mostrarDiploma(), 800);
+  }
+}
+
+// ─────────────────────────────────────────────
+// ABRIR COFRE DEL COMUNICADOR
+// ─────────────────────────────────────────────
+function abrirCofre() {
+  const cofre    = document.getElementById('cofre-secreto');
+  const btnCofre = document.querySelector('.btn-cofre');
+  if (!cofre) return;
+
+  sonar('cofre');
+  lanzarConfeti();
+  cofre.classList.add('visible');
+
+  if (btnCofre) {
+    btnCofre.textContent = '🔓 ¡Cofre Abierto!';
+    btnCofre.disabled    = true;
+    btnCofre.style.background =
+      'linear-gradient(135deg, var(--s2-esmeralda), var(--s2-azul))';
+  }
+
+  completarMision('cofre-comunicador', 5);
+  mostrarToast('📦 ¡El Cofre del Comunicador ha sido abierto! 📡', 'success');
+}
+
+// ─────────────────────────────────────────────
+// MOSTRAR INFO FUENTE
+// ─────────────────────────────────────────────
+const INFO_FUENTES = {
+  'Enciclopedia digital': {
+    texto: '✅ Wikipedia, Britannica y similares tienen autores identificados, referencias y control editorial. Son buenas fuentes para comenzar, pero verifica siempre con una segunda fuente.',
+    color: '#22C55E',
+  },
+  'Portal educativo': {
+    texto: '✅ Sitios como Colombia Aprende, Khan Academy y el MEN son creados por expertos en educación. Son confiables para tareas y aprendizaje.',
+    color: '#22C55E',
+  },
+  'Periódico oficial': {
+    texto: '✅ Los periódicos reconocidos tienen periodistas, editores y políticas editoriales. Busca siempre el nombre del autor y la fecha de publicación.',
+    color: '#22C55E',
+  },
+  'Redes sociales': {
+    texto: '⚠️ En redes sociales cualquier persona puede publicar. Antes de creer o compartir, busca la misma información en una fuente verde (periódico, portal oficial).',
+    color: '#F59E0B',
+  },
+  'Grupos de WhatsApp': {
+    texto: '⚠️ Los mensajes de grupos familiares o de amigos pueden contener información incorrecta sin que nadie lo sepa. Siempre verifica antes de reenviar.',
+    color: '#F59E0B',
+  },
+  'Noticias falsas': {
+    texto: '🚫 Las FAKE NEWS tienen titulares exagerados, no tienen autor ni fecha, usan palabras como "URGENTE" o "¡COMPARTE YA!" y generan miedo o rabia. ¡No las compartas!',
+    color: '#EF4444',
+  },
+};
+
+function mostrarInfoFuente(card) {
+  sonar('nodo');
+
+  const nombre   = card.querySelector('.fuente-nombre').textContent.trim();
+  const info     = INFO_FUENTES[nombre];
+  if (!info) return;
+
+  const panel    = document.getElementById('fuente-info-panel');
+  const tituloEl = document.getElementById('fuente-info-titulo');
+  const textoEl  = document.getElementById('fuente-info-texto');
+  if (!panel || !tituloEl || !textoEl) return;
+
+  // Toggle: cerrar si ya estaba abierto con la misma fuente
+  if (panel.style.display === 'block' &&
+      tituloEl.textContent.includes(nombre)) {
+    panel.style.display = 'none';
+    document.querySelectorAll('.fuente-card')
+      .forEach(c => c.style.outline = '');
+    return;
+  }
+
+  // Resetear estilos de todas las fuentes
+  document.querySelectorAll('.fuente-card')
+    .forEach(c => c.style.outline = '');
+
+  // Resaltar fuente activa
+  card.style.outline = `3px solid ${info.color}`;
+
+  tituloEl.textContent    = nombre;
+  tituloEl.style.color    = info.color;
+  textoEl.textContent     = info.texto;
+  panel.style.display     = 'block';
+  panel.style.borderColor = info.color;
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  mostrarToast(`${nombre} — ¡Toca otra fuente para comparar!`, 'success');
+}
+
+// ─────────────────────────────────────────────
+// SEMÁFORO INTERACTIVO
+// ─────────────────────────────────────────────
+function activarSemaforo(nivel, color) {
+  sonar('flip');
+
+  // Quitar estado activo de todos
+  document.querySelectorAll('.semaforo-nivel').forEach(n => {
+    n.classList.remove(
+      'activo-verde', 'activo-amarilla', 'activo-roja'
+    );
+  });
+
+  // Activar el seleccionado
+  nivel.classList.add(`activo-${color}`);
+
+  const mensajes = {
+    verde:    '🟢 ¡Verde! Fuente confiable: tiene autor, fecha e institución. Puedes compartir.',
+    amarilla: '🟡 Amarillo: verifica en una fuente verde antes de compartir.',
+    roja:     '🔴 Rojo: FAKE NEWS. Sin autor, sin fecha, con miedo o exageración. ¡No compartas!',
+  };
+
+  mostrarToast(mensajes[color], 'success');
+}
+
+// ─────────────────────────────────────────────
+// CONSTRUCTOR DE MENSAJES DIGITALES
+// ─────────────────────────────────────────────
+const PREVIEWS_TIPO = {
+  imagen: {
+    emoji:      '🖼️',
+    color:      'var(--tipo-imagen)',
+    titulo:     '¡Vas a crear un mensaje de IMAGEN!',
+    descripcion:'Una foto, ilustración o captura de pantalla que comunica visualmente.',
+    ejemplos:   ['📸 Foto del trapiche', '🌿 Paisaje de Chichalá', '😂 Meme educativo', '📊 Infografía'],
+    consejo:    '💡 Tip: Una buena imagen habla sin palabras. ¡Asegúrate de que la imagen sea clara y respetuosa!',
+  },
+  video: {
+    emoji:      '🎬',
+    color:      'var(--tipo-video)',
+    titulo:     '¡Vas a crear un mensaje de VIDEO!',
+    descripcion:'Imágenes en movimiento con sonido que cuentan una historia o explican algo.',
+    ejemplos:   ['▶️ Tutorial de YouTube', '📱 Reel de TikTok', '🎥 Video del aula', '📺 Noticia digital'],
+    consejo:    '💡 Tip: Los videos cortos (menos de 2 minutos) son más efectivos para aprender.',
+  },
+  audio: {
+    emoji:      '🎵',
+    color:      'var(--tipo-audio)',
+    titulo:     '¡Vas a crear un mensaje de AUDIO!',
+    descripcion:'Solo se escucha: música, voz, sonidos ambientales o efectos.',
+    ejemplos:   ['🎙️ Nota de voz', '🎵 Canción original', '🎧 Podcast educativo', '📻 Radio online'],
+    consejo:    '💡 Tip: Habla claro y sin ruidos de fondo. ¡El silencio también comunica!',
+  },
+  texto: {
+    emoji:      '📝',
+    color:      'var(--tipo-texto)',
+    titulo:     '¡Vas a crear un mensaje de TEXTO!',
+    descripcion:'Palabras escritas que comunican ideas, noticias, emociones o instrucciones.',
+    ejemplos:   ['💬 Mensaje de chat', '📧 Correo electrónico', '📰 Noticia web', '📚 Tarea digital'],
+    consejo:    '💡 Tip: Escribe claro, sin faltas de ortografía y con respeto. ¡Las palabras tienen poder!',
+  },
+  mixto: {
+    emoji:      '📱',
+    color:      'var(--tipo-mixto)',
+    titulo:     '¡Vas a crear un mensaje MIXTO!',
+    descripcion:'Combina dos o más tipos: imagen + texto + audio + video en un solo contenido.',
+    ejemplos:   ['🌐 Página web', '📊 Presentación', '🎮 Videojuego edu', '📱 App educativa'],
+    consejo:    '💡 Tip: El contenido mixto es el más completo pero también el más difícil. ¡Planifícalo bien!',
+  },
+};
+
+function seleccionarTipo(btn, gradoId, tipo, etiqueta) {
+  sonar('flip');
+
+  // Quitar selección de todos los botones del mismo grado
+  const contenedor = document.getElementById(`selector-tipo-${gradoId}`);
+  if (contenedor) {
+    contenedor.querySelectorAll('.tipo-btn').forEach(b => {
+      b.className = 'tipo-btn';
+    });
+  }
+
+  // Activar botón seleccionado
+  btn.classList.add(`seleccionado-${tipo}`);
+
+  // Actualizar preview
+  const preview = document.getElementById(`preview-${gradoId}`);
+  if (!preview) return;
+
+  const data = PREVIEWS_TIPO[tipo];
+  if (!data) return;
+
+  preview.style.borderColor = data.color;
+  preview.classList.add('activo');
+
+  preview.innerHTML = `
+    <div style="margin-bottom:10px; font-size:2.8rem;">${data.emoji}</div>
+    <div style="font-family:'Fredoka',sans-serif; font-size:1rem;
+      font-weight:700; color:${data.color}; margin-bottom:8px;">
+      ${data.titulo}
+    </div>
+    <p style="font-size:0.82rem; color:var(--s2-dim);
+      margin-bottom:12px; line-height:1.6;">
+      ${data.descripcion}
+    </p>
+    <div style="display:flex; flex-wrap:wrap; gap:6px;
+      justify-content:center; margin-bottom:12px;">
+      ${data.ejemplos.map(ej => `
+        <span style="background:white; border:2px solid ${data.color};
+          border-radius:50px; padding:4px 12px; font-size:0.75rem;
+          font-weight:700; color:${data.color};">
+          ${ej}
+        </span>
+      `).join('')}
+    </div>
+    <div style="background:rgba(255,255,255,0.8); border-radius:var(--r-sm);
+      padding:10px 14px; font-size:0.8rem; font-weight:600;
+      color:var(--s2-texto); text-align:left;">
+      ${data.consejo}
+    </div>
+  `;
+
+  mostrarToast(`${etiqueta} seleccionado. ¡Ahora descríbelo! 🚀`, 'success');
+}
+
+// ─────────────────────────────────────────────
+// QUIZ INTERACTIVO GRADO 4
+// ─────────────────────────────────────────────
+const PREGUNTAS_QUIZ = [
+  {
+    texto:    '📸 María envió una foto del amanecer en Chichalá por WhatsApp. ¿Qué tipo de contenido es?',
+    opciones: ['🖼️ Imagen', '🎬 Video', '📝 Texto', '🎵 Audio'],
+    correcta: 0,
+    feedback: '¡Correcto! Una foto es contenido de tipo IMAGEN. Se comunica de forma visual y estática.',
+  },
+  {
+    texto:    '🎧 El Profe Nelson grabó una explicación en audio y la envió por el grupo del colegio. ¿Qué tipo es?',
+    opciones: ['📝 Texto', '🎵 Audio', '🎬 Video', '📱 Mixto'],
+    correcta: 1,
+    feedback: '¡Exacto! Una nota de voz o grabación es contenido de tipo AUDIO. Solo se escucha.',
+  },
+  {
+    texto:    '🌐 La guía digital del Profe Nelson tiene texto, imágenes, videos y botones interactivos. ¿Qué tipo es?',
+    opciones: ['📝 Texto', '🖼️ Imagen', '📱 Mixto', '🎬 Video'],
+    correcta: 2,
+    feedback: '¡Muy bien! Cuando un contenido combina varios tipos (texto + imagen + video) se llama MIXTO.',
+  },
+  {
+    texto:    '📺 Un tutorial de YouTube muestra cómo preparar guarapo paso a paso con voz e imágenes en movimiento. ¿Qué tipo es?',
+    opciones: ['🎵 Audio', '🖼️ Imagen', '📝 Texto', '🎬 Video'],
+    correcta: 3,
+    feedback: '¡Correcto! Un tutorial en YouTube es contenido de tipo VIDEO: imágenes en movimiento + sonido.',
+  },
+  {
+    texto:    '💬 Juan le mandó un mensaje a su mamá diciéndole que ya salió del colegio. ¿Qué tipo de contenido es?',
+    opciones: ['📝 Texto', '🎵 Audio', '🖼️ Imagen', '📱 Mixto'],
+    correcta: 0,
+    feedback: '¡Perfecto! Un mensaje escrito por chat es contenido de tipo TEXTO. ¡El más común en WhatsApp!',
+  },
+];
+
+let quizEstado = {
+  preguntaActual: 0,
+  puntaje:        0,
+  respondidas:    [],
+};
+
+function renderizarQuiz() {
+  const container = document.getElementById('quiz-container-4');
+  if (!container) return;
+
+  const idx = quizEstado.preguntaActual;
+  if (idx >= PREGUNTAS_QUIZ.length) {
+    mostrarResultadoQuiz();
+    return;
+  }
+
+  const pregunta = PREGUNTAS_QUIZ[idx];
+
+  // Actualizar contadores
+  const numEl   = document.getElementById('quiz-num-4');
+  const totalEl = document.getElementById('quiz-total-4');
+  const ptjEl   = document.getElementById('quiz-puntaje-4');
+  if (numEl)   numEl.textContent   = idx + 1;
+  if (totalEl) totalEl.textContent = PREGUNTAS_QUIZ.length;
+  if (ptjEl)   ptjEl.textContent   = quizEstado.puntaje;
+
+  container.innerHTML = `
+    <div class="quiz-pregunta">
+      <div class="quiz-pregunta-num">PREGUNTA ${idx + 1} DE ${PREGUNTAS_QUIZ.length}</div>
+      <div class="quiz-pregunta-texto">${pregunta.texto}</div>
+      <div class="quiz-opciones" id="opciones-${idx}">
+        ${pregunta.opciones.map((op, i) => `
+          <button class="quiz-opcion"
+            onclick="responderQuiz(${i}, ${idx})"
+            id="opcion-${idx}-${i}">
+            ${op}
+          </button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback" id="feedback-${idx}"></div>
+    </div>
+  `;
+}
+
+function responderQuiz(opcionElegida, preguntaIdx) {
+  const pregunta = PREGUNTAS_QUIZ[preguntaIdx];
+  const esCorrecta = opcionElegida === pregunta.correcta;
+
+  // Bloquear todas las opciones
+  document.querySelectorAll(`#opciones-${preguntaIdx} .quiz-opcion`)
+    .forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === pregunta.correcta) btn.classList.add('correcta');
+      if (i === opcionElegida && !esCorrecta) btn.classList.add('incorrecta');
+    });
+
+  // Mostrar feedback
+  const feedbackEl = document.getElementById(`feedback-${preguntaIdx}`);
+  if (feedbackEl) {
+    feedbackEl.textContent = esCorrecta
+      ? `✅ ${pregunta.feedback}`
+      : `❌ Era "${pregunta.opciones[pregunta.correcta]}". ${pregunta.feedback}`;
+    feedbackEl.className = `quiz-feedback visible ${esCorrecta ? 'correcto' : 'incorrecto'}`;
+  }
+
+  if (esCorrecta) {
+    quizEstado.puntaje++;
+    sonar('correcto');
+    mostrarToast('✅ ¡Respuesta correcta! +1 punto 🌟', 'success');
+  } else {
+    sonar('error');
+    mostrarToast('❌ ¡Casi! Lee el feedback y sigue adelante.', 'error');
+  }
+
+  quizEstado.respondidas.push({ preguntaIdx, opcionElegida, esCorrecta });
+
+  // Avanzar a la siguiente pregunta con delay
+  setTimeout(() => {
+    quizEstado.preguntaActual++;
+    const ptjEl = document.getElementById('quiz-puntaje-4');
+    if (ptjEl) ptjEl.textContent = quizEstado.puntaje;
+    renderizarQuiz();
+  }, 2200);
+}
+
+function mostrarResultadoQuiz() {
+  const container   = document.getElementById('quiz-container-4');
+  const resultadoEl = document.getElementById('quiz-resultado-4');
+  const mensajeEl   = document.getElementById('quiz-mensaje-4');
+  const trofeoEl    = document.getElementById('quiz-trofeo-4');
+  if (!container || !resultadoEl || !mensajeEl) return;
+
+  container.innerHTML = '';
+  resultadoEl.style.display = 'block';
+
+  const p = quizEstado.puntaje;
+  const t = PREGUNTAS_QUIZ.length;
+
+  let trofeo  = '';
+  let mensaje = '';
+
+  if (p === t) {
+    trofeo  = '🏆';
+    mensaje = `¡PUNTAJE PERFECTO! ${p}/${t}. ¡Eres un Clasificador Digital experto, Profe Nelson estaría orgulloso! 🌟`;
+    sonar('eureka');
+    lanzarConfeti();
+  } else if (p >= Math.ceil(t * 0.6)) {
+    trofeo  = '🥈';
+    mensaje = `¡Muy bien! ${p}/${t} correctas. Estás en camino a ser Comunicador Digital. ¡Sigue practicando! 💪`;
+    sonar('completar');
+  } else {
+    trofeo  = '📚';
+    mensaje = `${p}/${t} correctas. ¡Vuelve a repasar los conceptos y vuelve a intentarlo! Tú puedes. 🌿`;
+    sonar('flip');
+  }
+
+  if (trofeoEl)  trofeoEl.textContent  = trofeo;
+  mensajeEl.textContent = mensaje;
+
+  // Botón para reintentar
+  resultadoEl.innerHTML += `
+    <button class="btn-completar" style="margin-top:16px;"
+      onclick="reiniciarQuiz()">
+      🔄 Intentar de nuevo
+    </button>
+  `;
+}
+
+function reiniciarQuiz() {
+  quizEstado = { preguntaActual: 0, puntaje: 0, respondidas: [] };
+  const resultadoEl = document.getElementById('quiz-resultado-4');
+  if (resultadoEl) resultadoEl.style.display = 'none';
+  const ptjEl = document.getElementById('quiz-puntaje-4');
+  if (ptjEl) ptjEl.textContent = '0';
+  sonar('flip');
+  renderizarQuiz();
+}
+
+// ─────────────────────────────────────────────
+// AUTOEVALUACIÓN
+// ─────────────────────────────────────────────
+function marcarEval(celda) {
+  const fila     = celda.parentElement;
+  const celdas   = fila.querySelectorAll('.check-cell');
+  const yaEstaba = celda.classList.contains('marcado');
+
+  celdas.forEach(c => {
+    c.classList.remove('marcado');
+    c.textContent = '☐';
+  });
+
+  if (!yaEstaba) {
+    celda.classList.add('marcado');
+    celda.textContent = '☑';
+    sonar('flip');
+  }
+}
+
+// ─────────────────────────────────────────────
+// DIPLOMA
+// ─────────────────────────────────────────────
+function mostrarDiploma() {
+  const diploma = document.getElementById('diploma-wrap');
+  if (!diploma) return;
+  diploma.classList.add('visible');
+  diploma.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  sonar('eureka');
+  lanzarConfeti();
+  mostrarToast(
+    '📡 ¡Felicitaciones! ¡Eres un Comunicador Digital Certificado! 🌍🚀',
+    'success'
+  );
+}
+
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+let toastTimer = null;
+
+function mostrarToast(mensaje, tipo = 'default') {
+  let toast = document.getElementById('s2-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 's2-toast';
+    toast.style.cssText = `
+      position      : fixed;
+      bottom        : 28px;
+      left          : 50%;
+      transform     : translateX(-50%) translateY(120px);
+      background    : white;
+      border-radius : 50px;
+      padding       : 13px 30px;
+      font-family   : 'Fredoka', sans-serif;
+      font-size     : 0.95rem;
+      font-weight   : 600;
+      z-index       : 9999;
+      box-shadow    : 0 8px 32px rgba(0,0,0,0.15);
+      transition    : transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+      white-space   : nowrap;
+      max-width     : 92vw;
+      text-align    : center;
+      border        : 2px solid transparent;
+    `;
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent       = mensaje;
+  toast.style.borderColor =
+    tipo === 'success' ? '#A5B4FC' :
+    tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
+  toast.style.color =
+    tipo === 'success' ? '#3730A3' :
+    tipo === 'error'   ? '#991B1B' : '#92400E';
+
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(120px)';
+  }, 3200);
+}
+
+// ─────────────────────────────────────────────
+// CONFETI · Emojis de contenidos digitales
+// ─────────────────────────────────────────────
+function lanzarConfeti() {
+  const emojis = [
+    '🖼️','🎬','🎵','📝','📱','📡','⭐','🎉',
+    '🌟','💡','🌍','📸','▶️','🎙️','💬','🏆'
+  ];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position        : fixed;
+      top             : -40px;
+      left            : ${Math.random() * 100}vw;
+      font-size       : ${1 + Math.random() * 1.6}rem;
+      animation       : caerConfeti ${1.5 + Math.random() * 2.5}s ease-in forwards;
+      z-index         : 9998;
+      pointer-events  : none;
+      animation-delay : ${Math.random() * 0.8}s;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+}
+
+// ─────────────────────────────────────────────
+// DOMContentLoaded — PUNTO DE ENTRADA
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+  // 1. Sistema de drag & drop unificado (5 tipos)
+  iniciarDragDrop5();
+
+  // 2. Barra de señal con estado guardado
+  actualizarBarra();
+
+  // 3. Renderizar quiz de Grado 4
+  renderizarQuiz();
+
+  // 4. Diploma: nombre en tiempo real
+  const inputNombre = document.getElementById('input-nombre');
+  if (inputNombre) {
+    inputNombre.addEventListener('input', () => {
+      const dn = document.getElementById('diploma-nombre');
+      if (dn) dn.textContent = inputNombre.value || '¡Tu Nombre Aquí!';
+    });
+  }
+
+  // 5. Diploma: grado en tiempo real
+  const inputGrado = document.getElementById('input-grado');
+  if (inputGrado) {
+    inputGrado.addEventListener('input', () => {
+      const dg = document.getElementById('diploma-grado');
+      if (dg) dg.textContent =
+        `📡 Comunicador Digital · Grado ${inputGrado.value} · Chichalá`;
+    });
+  }
+
+  // 6. Validación visual de campos al perder foco
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('blur', () => {
+      input.style.borderBottomColor = input.value.trim() === ''
+        ? '#F59E0B'   // Ámbar: campo vacío
+        : '#10B981';  // Esmeralda: campo con contenido
+    });
+  });
+
+  // 7. Botón imprimir
+  const btnPrint = document.querySelector('.btn-print');
+  if (btnPrint) {
+    btnPrint.addEventListener('click', () => window.print());
+  }
+
+  // 8. Toast de bienvenida
+  setTimeout(() => {
+    mostrarToast(
+      '📡 ¡Bienvenido/a, Comunicador/a de Chichalá! '
+      + 'Elige tu nivel y empieza la transmisión. 🚀',
+      'success'
+    );
+  }, 700);
+});
+</script>
+</body>
+</html>
