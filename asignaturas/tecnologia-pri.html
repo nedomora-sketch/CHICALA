@@ -773,74 +773,133 @@
     // ══════════════════════════════════════════════
     // GENERAR ACORDEÓN CON MALLA OFICIAL
     // ══════════════════════════════════════════════
-    function generarAcordeon() {
-        const container = document.getElementById('accordion-container');
-        if (!container) return;
+    // ══════════════════════════════════════════════
+// RUTAS BASE DE GUÍAS · TECNOLOGÍA PRIMARIA
+// Estructura: periodos/periodo-X/semanas/semanaY.html
+// ══════════════════════════════════════════════
 
-        const periodos = [
-            { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C' },
-            { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB' },
-            { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED' },
-            { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
-        ];
+const GUIAS_BASE = {
+    grado3:  '../guias/tecnologia-pri/',
+    grado4:  '../guias/tecnologia-sec/',
+    grado5:  '../guias/tecnologia-sec/',
+};
 
-        periodos.forEach(periodo => {
-            const semanas = cfg.periodos[periodo.key];
-            let semanasHTML = '';
 
-            semanas.forEach(s => {
-                // Semana de evaluación (solo tiene 'actividad')
-                if (s.actividad) {
-                    semanasHTML += `
-                        <div class="week-container week-eval">
-                            <h3>⭐ Semana ${s.semana} · ${s.tema}</h3>
-                            <p>${s.actividad}</p>
-                        </div>
-                    `;
-                } else {
-                    semanasHTML += `
-                        <div class="week-container">
-                            <h3>📌 Semana ${s.semana} · ${s.tema}</h3>
-                            <div class="week-detail">
-                                <span class="week-tag tag-desempeno">🎯 Desempeño</span>
-                                <p>${s.desempeno}</p>
-                            </div>
-                            <div class="week-detail">
-                                <span class="week-tag tag-objeto">📚 Objeto de Aprendizaje</span>
-                                <p>${s.objeto}</p>
-                            </div>
-                            <div class="week-detail">
-                                <span class="week-tag tag-ciudadana">🤝 Competencia Ciudadana</span>
-                                <p>${s.ciudadana}</p>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-
-            const item = document.createElement('div');
-            item.className = 'accordion-item';
-            item.innerHTML = `
-                <button class="accordion-header" style="--periodo-color: ${periodo.color}">
-                    <span>${periodo.label}</span>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-content">
-                    ${semanasHTML}
-                </div>
-            `;
-            container.appendChild(item);
-        });
-
-        initAccordion();
+// ══════════════════════════════════════════════
+// VERIFICAR SI EXISTE UNA GUÍA (igual que matematicas.html)
+// ══════════════════════════════════════════════
+async function existeGuia(url) {
+    try {
+        const res = await fetch(url, { method: 'HEAD' });
+        return res.ok;
+    } catch {
+        return false;
     }
+}
+
+// ══════════════════════════════════════════════
+// GENERAR ACORDEÓN CON MALLA OFICIAL + BOTÓN VER GUÍA
+// ══════════════════════════════════════════════
+async function generarAcordeon() {
+    const container = document.getElementById('accordion-container');
+    if (!container) return;
+
+    const periodos = [
+        { key: 'periodo1', label: '📅 Período 1', color: '#3DBE8C', num: 1 },
+        { key: 'periodo2', label: '📅 Período 2', color: '#1A9BAB', num: 2 },
+        { key: 'periodo3', label: '📅 Período 3', color: '#7C3AED', num: 3 },
+        { key: 'periodo4', label: '📅 Período 4', color: '#F4872B', num: 4 },
+    ];
+
+    const base = GUIAS_BASE[grado] || '../periodos/';
+
+    for (const periodo of periodos) {
+        const semanas = cfg.periodos[periodo.key];
+        if (!semanas) continue;
+
+        let semanasHTML = '';
+
+        for (const s of semanas) {
+
+            // ── Construir ruta de la guía ──────────────────
+            const rutaGuia = `${base}periodo${periodo.num}/semana${s.semana}.html`;
+
+            // ── Verificar si existe ────────────────────────
+            const guiaDisponible = await existeGuia(rutaGuia);
+
+            // ── Botón dinámico (igual que matematicas.html) ─
+            const btnGuia = guiaDisponible
+                ? `<a href="${rutaGuia}" class="btn-ver-guia" target="_blank">
+                       📄 Ver Guía
+                   </a>`
+                : `<span class="btn-ver-guia btn-guia-disabled"
+                       title="Guía en construcción 🚧">
+                       🚧 Próximamente
+                   </span>`;
+
+            // ── Semana de evaluación ───────────────────────
+            if (s.actividad) {
+                semanasHTML += `
+                    <div class="week-container week-eval">
+                        <div class="week-header-row">
+                            <h3>⭐ Semana ${s.semana} · ${s.tema}</h3>
+                            ${btnGuia}
+                        </div>
+                        <p>${s.actividad}</p>
+                    </div>
+                `;
+            } else {
+                semanasHTML += `
+                    <div class="week-container">
+                        <div class="week-header-row">
+                            <h3>📌 Semana ${s.semana} · ${s.tema}</h3>
+                            ${btnGuia}
+                        </div>
+                        <div class="week-detail">
+                            <span class="week-tag tag-desempeno">🎯 Desempeño</span>
+                            <p>${s.desempeno}</p>
+                        </div>
+                        <div class="week-detail">
+                            <span class="week-tag tag-objeto">📚 Objeto de Aprendizaje</span>
+                            <p>${s.objeto}</p>
+                        </div>
+                        <div class="week-detail">
+                            <span class="week-tag tag-ciudadana">🤝 Competencia Ciudadana</span>
+                            <p>${s.ciudadana}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        const item = document.createElement('div');
+        item.className = 'accordion-item';
+        item.innerHTML = `
+            <button class="accordion-header"
+                style="--periodo-color: ${periodo.color}">
+                <span>${periodo.label}</span>
+                <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+                ${semanasHTML}
+            </div>
+        `;
+        container.appendChild(item);
+    }
+
+    initAccordion();
+}
 
     // ══════════════════════════════════════════════
     // INIT
     // ══════════════════════════════════════════════
     document.addEventListener('DOMContentLoaded', () => {
-        generarAcordeon();
-        initSequentialAnimations();
+        // generarAcordeon es async → devuelve Promise
+        // initSequentialAnimations se llama después de que
+        // el acordeón esté completamente construido
+        generarAcordeon().then(() => {
+            initSequentialAnimations();
+        });
     });
 
     </script>
@@ -935,6 +994,83 @@
             font-weight: 600;
             max-width: 520px;
         }
+        /* ══════════════════════════════════════
+    BOTÓN VER GUÍA · igual que matematicas.html
+    ══════════════════════════════════════ */
+
+    /* Fila que contiene el título y el botón */
+    .week-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 4px;
+    }
+
+    .week-header-row h3 {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Botón disponible */
+    .btn-ver-guia {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 18px;
+        border-radius: 50px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: all 0.25s ease;
+        background: linear-gradient(135deg, #7C3AED, #1A9BAB);
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(124,58,237,0.25);
+        flex-shrink: 0;
+    }
+
+    .btn-ver-guia:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 6px 18px rgba(124,58,237,0.4);
+    }
+
+    .btn-ver-guia:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    /* Botón deshabilitado — guía en construcción */
+    .btn-guia-disabled {
+        background: linear-gradient(135deg, #E5E7EB, #D1D5DB) !important;
+        color: #9CA3AF !important;
+        cursor: not-allowed !important;
+        box-shadow: none !important;
+        pointer-events: none;
+    }
+
+    .btn-guia-disabled:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Responsive: en móvil el botón baja */
+    @media (max-width: 560px) {
+        .week-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .btn-ver-guia {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            padding: 6px 14px;
+        }
+    }
     </style>
 
 </body>
