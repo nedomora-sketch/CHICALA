@@ -1,0 +1,480 @@
+/* css/guia-estilos.css */
+:root {
+    --verde: #3DBE8C;
+    --azul: #1A9BAB;
+    --morado: #7C3AED;
+    --naranja: #F4872B;
+    --amarillo: #F7C325;
+    --texto: #2D3748;
+    --fondo: #F7FAFC;
+    --borde: #CBD5E0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--texto);
+    background: var(--fondo);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Encabezado Institucional */
+.header {
+    text-align: center;
+    border-bottom: 3px solid var(--verde);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: var(--azul);
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 900;
+}
+
+.header h2 {
+    color: var(--naranja);
+    font-size: 1.2rem;
+    margin: 5px 0 0;
+    font-weight: 700;
+}
+
+/* Secciones Generales */
+.seccion {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border-left: 5px solid var(--azul);
+}
+
+.seccion h3 {
+    color: var(--azul);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Iconos de Sección */
+.seccion h3::before { content: "🌱"; }
+.seccion-geometria h3::before { content: "📐"; color: var(--morado); }
+.seccion-creativa h3::before { content: "🎨"; color: var(--naranja); }
+
+/* Tarjetas por Grado */
+.nivel-card {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.nivel-card.grado3 { border-color: var(--verde); }
+.nivel-card.grado4 { border-color: var(--azul); }
+.nivel-card.grado5 { border-color: var(--morado); }
+
+.nivel-badge {
+    position: absolute;
+    top: -12px;
+    right: 15px;
+    background: var(--texto);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.grado3 .nivel-badge { background: var(--verde); }
+.grado4 .nivel-badge { background: var(--azul); }
+.grado5 .nivel-badge { background: var(--morado); }
+
+/* Listas de Actividades */
+.actividad-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.actividad-lista li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.actividad-lista li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--verde);
+    font-weight: bold;
+}
+
+/* Cajas Especiales */
+.materiales-box {
+    background: #FFFBE6;
+    border: 2px dashed var(--amarillo);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.materiales-box strong { color: #B45309; }
+
+.eval-box {
+    background: #FFFBEB;
+    border-left: 5px solid var(--amarillo);
+    padding: 15px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 15px;
+}
+
+.eval-box h4 { color: #B45309; margin: 0 0 8px; }
+
+.reflexion-box {
+    background: linear-gradient(135deg, rgba(61,190,140,0.1), rgba(26,155,171,0.1));
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.reflexion-box p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 0;
+}
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.tag-desempeno { background: rgba(26,155,171,0.12); color: #1A9BAB; }
+.tag-objeto    { background: rgba(124,58,237,0.12);  color: #7C3AED; }
+.tag-ciudadana { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
+
+/* Botones */
+.btn-print {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, var(--verde), var(--azul));
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(61,190,140,0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-print:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(61,190,140,0.45);
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--azul);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.btn-volver:hover { text-decoration: underline; }
+
+/* Espacio de Escritura */
+.espacio-escritura {
+    border: 2px dashed #CBD5E0;
+    border-radius: 8px;
+    min-height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #FAFAFA;
+}
+
+.espacio-escritura::before {
+    content: "✏️  Escribe aquí tu respuesta:";
+    display: block;
+    font-size: 0.8rem;
+    color: #A0AEC0;
+    margin-bottom: 5px;
+}
+
+.lineas { margin-top: 10px; }
+.linea {
+    border-bottom: 1px solid #CBD5E0;
+    height: 28px;
+    margin-bottom: 5px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+/* ══════════════════════════════════════
+   SEMANA 5 · Yincana, Tangram y Torneo
+══════════════════════════════════════ */
+
+/* Encabezados de sección especiales */
+.seccion-yincana  { border-left-color: var(--naranja); }
+.seccion-yincana  h3::before { content: "🏃"; }
+.seccion-tangram  { border-left-color: var(--morado); }
+.seccion-tangram  h3::before { content: "🧩"; }
+.seccion-torneo   { border-left-color: var(--amarillo); }
+.seccion-torneo   h3::before { content: "🏆"; }
+
+/* Grid de Estaciones de la Yincana */
+.yincana-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.estacion {
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.estacion-roja     { background: rgba(239,68,68,0.07);  border-color: #EF4444; }
+.estacion-amarilla { background: rgba(247,195,37,0.1);  border-color: var(--amarillo); }
+.estacion-verde    { background: rgba(61,190,140,0.08); border-color: var(--verde); }
+.estacion-azul     { background: rgba(26,155,171,0.08); border-color: var(--azul); }
+
+.estacion-numero {
+    font-size: 1rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.estacion-nombre {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--texto);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.estacion-grado {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #718096;
+    display: block;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.estacion-puntaje {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #B45309;
+}
+
+/* Marcador de equipos */
+.torneo-marcador {
+    background: #FFFBEB;
+    border: 2px solid var(--amarillo);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.torneo-marcador h4 {
+    color: #B45309;
+    margin: 0 0 12px;
+    font-size: 1rem;
+}
+
+/* Instrucciones del Tangram */
+.tangram-instrucciones {
+    background: rgba(124,58,237,0.07);
+    border-left: 4px solid var(--morado);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 0.92rem;
+}
+
+/* Contenedor del Tangram imprimible */
+.tangram-container {
+    background: #FAFAFA;
+    border: 2px dashed #CBD5E0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tangram-titulo {
+    font-weight: 800;
+    color: var(--morado);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.tangram-board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grid de Siluetas del Tangram */
+.siluetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.silueta-card {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.silueta-card:hover { transform: translateY(-3px); }
+
+.silueta-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.silueta-nombre {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--texto);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.silueta-nivel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background: var(--morado);
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+}
+
+/* Tarjetas de Ronda del Torneo */
+.ronda-card {
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+}
+
+.ronda-1 { background: rgba(239,68,68,0.05);  border-color: #EF4444; }
+.ronda-2 { background: rgba(61,190,140,0.05); border-color: var(--verde); }
+.ronda-3 { background: rgba(247,195,37,0.08); border-color: var(--amarillo); }
+
+.ronda-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.ronda-numero {
+    background: var(--texto);
+    color: white;
+    font-weight: 900;
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+.ronda-1 .ronda-numero { background: #EF4444; }
+.ronda-2 .ronda-numero { background: var(--verde); }
+.ronda-3 .ronda-numero { background: #B45309; }
+
+.ronda-nombre {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--texto);
+    flex: 1;
+}
+
+.ronda-tiempo {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #718096;
+}
+
+/* Recuadros de reto */
+.reto-equipo, .reto-final {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Impresión: ajustes para las secciones nuevas */
+@media print {
+    .yincana-grid         { grid-template-columns: 1fr 1fr; }
+    .siluetas-grid        { grid-template-columns: 1fr 1fr 1fr; }
+    .estacion             { break-inside: avoid; }
+    .ronda-card           { break-inside: avoid; }
+    .silueta-card:hover   { transform: none; }
+    .tangram-container    { border: 2px solid #CBD5E0; }
+}
+
+/* ESTILOS DE IMPRESIÓN */
+@media print {
+    body { background: white; padding: 0; }
+    .container { box-shadow: none; padding: 20px; border-radius: 0; }
+    .btn-print, .btn-volver { display: none; }
+    .nivel-card { break-inside: avoid; }
+    .seccion { break-inside: avoid; }
+    .espacio-escritura { background: white; }
+    .espacio-escritura::before { display: none; }
+}

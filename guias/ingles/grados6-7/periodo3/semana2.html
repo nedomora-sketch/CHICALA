@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Week 2 · Daily Routines — Portal CHICALA</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Iconos para un toque más lúdico -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Fondo animado suave -->
+<div class="bg-shapes"></div>
+
+<!-- XP FLOTANTE (Estilo tarjeta) -->
+<div class="xp-card">
+  <span class="xp-icon">⚡</span>
+  <span class="xp-val" id="xp-display">0</span>
+  <span class="xp-label">XP</span>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="../../../index.html">🏠 Portal</a>
+    <span class="sep">›</span>
+    <a href="../../index.html">🌿 Básico Sec.</a>
+    <span class="sep">›</span>
+    <span class="actual">📅 P3 · Semana 2</span>
+  </nav>
+
+  <!-- Hero: Estilo "Tarjeta de Misión" -->
+  <header class="mision-hero">
+    <div class="mision-left">
+      <div class="mision-badges">
+        <span class="badge b-semana">📅 SEMANA 2</span>
+        <span class="badge b-tema">⏰ DAILY ROUTINES</span>
+        <span class="badge b-nivel">🌿 A2 · 6°-7°</span>
+      </div>
+      <h1 class="mision-titulo">My Day,<br/>Your Day</h1>
+      <p class="mision-desc">
+        ¡Descubre cómo empiezan el día los demás! 
+        Aprende a hablar de tus <strong>rutinas diarias</strong> usando 
+        <strong>Adverbs of Frequency</strong> y conectores de tiempo.
+      </p>
+      <div class="mision-objetivo">
+        <span class="icon">🎯</span>
+        <span><strong>Meta:</strong> Describe tu rutina perfecta en inglés.</span>
+      </div>
+    </div>
+    <div class="mision-right">
+      <div class="mision-progreso">
+        <div class="mision-titulo-prog">TU RUTA</div>
+        <div class="mision-steps" id="mision-steps"></div>
+        <div class="mision-bar-wrap">
+          <div class="mision-bar" id="mision-bar" style="width:0%"></div>
+        </div>
+        <div class="mision-pct" id="mision-pct">0 / 7 misiones</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 1 — WARM UP: FLASHCARDS
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-1" data-sec="1">
+    <div class="act-header">
+      <div class="act-num">01</div>
+      <div class="act-info">
+        <span class="act-tipo">🔥 WARM UP</span>
+        <h2 class="act-titulo">Routine Flashcards</h2>
+        <p class="act-desc">¡Gira las tarjetas! Aprende vocabulario de rutinas y adverbios.</p>
+      </div>
+      <div class="act-xp-badge">+20 XP</div>
+    </div>
+    <div class="flashcards-grid" id="flashcards-grid"></div>
+    <div class="act-footer">
+      <div class="fc-progreso"><span id="fc-aprendidas">0</span> / 8 palabras</div>
+      <button class="btn-completar" id="btn-sec1" onclick="completarSeccion(1)" disabled>✓ ¡Listo para continuar!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 2 — VOCABULARY: MATCHING
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-2" data-sec="2">
+    <div class="act-header">
+      <div class="act-num">02</div>
+      <div class="act-info">
+        <span class="act-tipo">🧩 VOCABULARY</span>
+        <h2 class="act-titulo">Match the Routine</h2>
+        <p class="act-desc">Une la actividad con su hora y adverbio de frecuencia.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="match-container" id="match-container">
+      <div class="match-words" id="match-words"></div>
+      <div class="match-targets" id="match-targets"></div>
+    </div>
+    <div class="act-footer">
+      <div class="match-score" id="match-score">0 / 6 parejas</div>
+      <button class="btn-completar" id="btn-sec2" onclick="completarSeccion(2)" disabled>✓ ¡Siguiente reto!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 3 — GRAMMAR: FREQUENCY
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-3" data-sec="3">
+    <div class="act-header">
+      <div class="act-num">03</div>
+      <div class="act-info">
+        <span class="act-tipo">📖 GRAMMAR</span>
+        <h2 class="act-titulo">Adverbs & Time Clauses</h2>
+        <p class="act-desc">Ordena la oración: ¿Dónde va el adverbio? ¿Cuándo ocurre?</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="grammar-box">
+      <div class="gram-col">
+        <div class="gram-tag freq">ADVERBS</div>
+        <p class="gram-uso">Always, Usually, Often, Sometimes, Never</p>
+        <div class="gram-formula">Subject + Adverb + Verb</div>
+      </div>
+      <div class="gram-vs">VS</div>
+      <div class="gram-col">
+        <div class="gram-tag time">TIME CLAUSES</div>
+        <p class="gram-uso">When, Before, After, While</p>
+        <div class="gram-formula">When + Subject + Verb...</div>
+      </div>
+    </div>
+    <div class="grammar-ejercicios" id="grammar-ejercicios"></div>
+    <div class="act-footer">
+      <div class="gram-score" id="gram-score">0 / 6 correctas</div>
+      <button class="btn-completar" id="btn-sec3" onclick="completarSeccion(3)" disabled>✓ ¡Siguiente nivel!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 4 — LISTENING
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-4" data-sec="4">
+    <div class="act-header">
+      <div class="act-num">04</div>
+      <div class="act-info">
+        <span class="act-tipo">🎧 LISTENING</span>
+        <h2 class="act-titulo">A Day in the Life</h2>
+        <p class="act-desc">Escucha la rutina de "Carlos" y responde.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="audio-player" id="audio-player">
+      <div class="audio-avatar">🎧</div>
+      <div class="audio-info">
+        <div class="audio-nombre">Hi! I'm Carlos...</div>
+        <div class="audio-subtitulo">My daily routine · A2 level</div>
+      </div>
+      <button class="audio-btn" id="audio-play-btn" onclick="reproducirAudio()">▶ ESCUCHAR</button>
+      <button class="audio-btn secondary" onclick="reproducirAudio(0.7)">🐢 LENTO</button>
+    </div>
+    <div class="audio-transcript" id="audio-transcript" style="display:none">
+      <span class="transcript-label">TRANSCRIPCIÓN</span>
+      <p id="transcript-text"></p>
+    </div>
+    <div class="listening-preguntas" id="listening-preguntas"></div>
+    <div class="act-footer">
+      <div class="listen-score" id="listen-score">0 / 4 correctas</div>
+      <button class="btn-completar" id="btn-sec4" onclick="completarSeccion(4)" disabled>✓ ¡Siguiente!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 5 — SPEAKING
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-5" data-sec="5">
+    <div class="act-header">
+      <div class="act-num">05</div>
+      <div class="act-info">
+        <span class="act-tipo">🎤 SPEAKING</span>
+        <h2 class="act-titulo">Say It Out Loud!</h2>
+        <p class="act-desc">Practica tu rutina usando: "First, I..., Then I..., After that..."</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="speaking-frases" id="speaking-frases"></div>
+    <div class="act-footer">
+      <div class="speak-progreso" id="speak-progreso">0 / 5 frases</div>
+      <button class="btn-completar" id="btn-sec5" onclick="completarSeccion(5)" disabled>✓ ¡Siguiente!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 6 — WRITING: MY SCHEDULE
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-6" data-sec="6">
+    <div class="act-header">
+      <div class="act-num">06</div>
+      <div class="act-info">
+        <span class="act-tipo">✍️ WRITING</span>
+        <h2 class="act-titulo">My Weekly Schedule</h2>
+        <p class="act-desc">Crea tu horario semanal en inglés.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="schedule-container">
+      <div class="schedule-card">
+        <div class="schedule-header">
+          <span class="schedule-icon">📅</span>
+          <div class="schedule-title">MY WEEKLY SCHEDULE</div>
+        </div>
+        <div class="schedule-campos" id="schedule-campos"></div>
+      </div>
+      <div class="schedule-preview" id="schedule-preview">
+        <!-- Vista previa -->
+      </div>
+    </div>
+    <div class="act-footer">
+      <div class="write-count" id="write-count">0 / 5 campos</div>
+      <button class="btn-completar" id="btn-sec6" onclick="completarSeccion(6)" disabled>✓ ¡Siguiente!</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SECCIÓN 7 — FINAL QUIZ
+  ════════════════════════════════════════ -->
+  <section class="actividad" id="sec-7" data-sec="7">
+    <div class="act-header">
+      <div class="act-num">07</div>
+      <div class="act-info">
+        <span class="act-tipo">🏆 FINAL QUIZ</span>
+        <h2 class="act-titulo">Show What You Know!</h2>
+        <p class="act-desc">10 preguntas para demostrar tu dominio de las rutinas.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="quiz-timer-wrap">
+      <div class="quiz-timer" id="quiz-timer">⏱ 05:00</div>
+      <div class="quiz-progreso-texto" id="quiz-q-num">Pregunta 1 / 10</div>
+    </div>
+    <div class="quiz-container" id="quiz-container"></div>
+    <div class="quiz-resultado" id="quiz-resultado" style="display:none">
+      <div class="qr-estrella" id="qr-estrellas">⭐⭐⭐</div>
+      <div class="qr-puntaje" id="qr-puntaje">10 / 10</div>
+      <div class="qr-mensaje" id="qr-mensaje">¡Excelente trabajo!</div>
+      <div class="qr-xp" id="qr-xp">+30 XP ganados</div>
+      <div class="qr-badge">
+        <span class="badge-insignia" id="badge-insignia">🌞</span>
+        <span class="badge-nombre">Routine Master</span>
+      </div>
+      <button class="btn-finalizar" onclick="finalizarSemana()">🚀 COMPLETAR SEMANA</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+/* ══════════════════════════════════════════════
+   guia-ingles.css
+   Estilos específicos para guías de Inglés
+   Extiende guia-estilos.css · No lo reemplaza
+   IE Técnica Camacho Angarita · Sede Chichalá
+══════════════════════════════════════════════ */
+
+/* ── Variables adicionales para Inglés ── */
+:root {
+    --ingles-grado6: #0EA5E9;
+    --ingles-grado7: #8B5CF6;
+    --chat-yo:       #DCF8C6;
+    --chat-ellos:    #FFFFFF;
+    --chat-fondo:    #ECE5DD;
+    --glitch:        #FEE2E2;
+    --glitch-border: #EF4444;
+}
+
+/* ── Tarjetas por grado (6° y 7°) ── */
+.nivel-card.grado6 { border-color: var(--ingles-grado6); }
+.nivel-card.grado7 { border-color: var(--ingles-grado7); }
+.grado6 .nivel-badge { background: var(--ingles-grado6); }
+.grado7 .nivel-badge { background: var(--ingles-grado7); }
+
+/* ── Badge de misión activa en el header ── */
+.header-mision-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #EF4444, #F4872B);
+    color: white;
+    font-weight: 900;
+    font-size: 0.8rem;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    animation: pulso 1.8s ease-in-out infinite;
+}
+
+@keyframes pulso {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+}
+
+/* ── Secciones especiales ── */
+.seccion-mision  { border-left-color: #EF4444; }
+.seccion-mision  h3::before { content: "📋"; }
+.seccion-chat    { border-left-color: var(--chat-fondo); }
+.seccion-chat    h3::before { content: "📱"; }
+.seccion-mapa    { border-left-color: var(--verde); }
+.seccion-mapa    h3::before { content: "🗺️"; }
+
+/* ── Intro de misión ── */
+.mision-intro {
+    background: linear-gradient(135deg,
+        rgba(239,68,68,0.05),
+        rgba(244,135,43,0.05));
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.mision-objetivos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.objetivo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: white;
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.92rem;
+}
+
+.objetivo-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ── Grid de frases clave ── */
+.frases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.frase-categoria {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.frase-cat-titulo {
+    color: white;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 8px 12px;
+}
+
+.frase-lista {
+    background: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.frase-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: #f8fafc;
+    border-left: 3px solid #e2e8f0;
+    transition: border-color 0.2s;
+}
+
+.frase-item:hover {
+    border-left-color: var(--azul);
+    background: rgba(26,155,171,0.04);
+}
+
+.frase-en {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--texto);
+}
+
+.frase-es {
+    font-size: 0.78rem;
+    color: #718096;
+    font-style: italic;
+}
+
+/* ── Diálogos ── */
+.dialogo-box {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.dialogo-linea {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    gap: 2px;
+}
+
+.dialogo-linea.izquierda { align-self: flex-start; }
+.dialogo-linea.derecha   { align-self: flex-end; text-align: right; }
+
+.dialogo-nombre {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #718096;
+}
+
+.dialogo-texto {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.dialogo-linea.derecha .dialogo-texto {
+    background: rgba(26,155,171,0.08);
+    border-color: rgba(26,155,171,0.2);
+}
+
+/* ── Glitch en diálogos (Grado 7°) ── */
+.dialogo-linea.glitch {
+    position: relative;
+}
+
+.dialogo-linea.glitch .dialogo-texto {
+    background: var(--glitch);
+    border-color: var(--glitch-border);
+    border-style: dashed;
+}
+
+.glitch-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--glitch-border);
+    margin-top: 2px;
+}
+
+/* ── Fill the Gap ── */
+.fill-box {
+    background: rgba(124,58,237,0.04);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px dashed var(--morado);
+}
+
+.fill-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.fill-opcion {
+    background: white;
+    border: 2px solid var(--morado);
+    color: var(--morado);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: default;
+}
+
+/* ── Simulador de Chat ── */
+.chat-container {
+    background: var(--chat-fondo);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #CBD5E0;
+}
+
+.chat-burbuja {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    position: relative;
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.chat-ellos {
+    background: var(--chat-ellos);
+    border: 1px solid #e2e8f0;
+    align-self: flex-start;
+    border-radius: 0 12px 12px 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.chat-nombre {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--azul);
+    margin-bottom: 3px;
+}
+
+.chat-hora {
+    font-size: 0.65rem;
+    color: #A0AEC0;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* Opciones de respuesta del chat */
+.chat-opciones {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 85%;
+}
+
+.chat-pregunta {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #718096;
+    margin: 0 0 4px;
+    text-align: right;
+}
+
+.chat-opcion {
+    background: white;
+    border: 2px solid #CBD5E0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.chat-opcion:hover {
+    border-color: var(--azul);
+    background: rgba(26,155,171,0.05);
+    transform: translateX(-3px);
+}
+
+.chat-opcion.seleccionada-correcta {
+    background: #DCF8C6;
+    border-color: var(--verde);
+    color: #276749;
+}
+
+.chat-opcion.seleccionada-incorrecta {
+    background: #FEE2E2;
+    border-color: #EF4444;
+    color: #9B1C1C;
+}
+
+/* Feedback del chat */
+.chat-feedback {
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 4px;
+    animation: fadeInUp 0.3s ease;
+}
+
+.chat-feedback.correcto {
+    background: #F0FFF4;
+    color: #276749;
+    border-left: 3px solid var(--verde);
+}
+
+.chat-feedback.incorrecto {
+    background: #FFF5F5;
+    color: #9B1C1C;
+    border-left: 3px solid #EF4444;
+}
+
+/* Elementos ocultos del chat */
+.chat-oculto {
+    display: none;
+}
+
+/* Badge de misión completada */
+.mision-completada {
+    text-align: center;
+    padding: 10px;
+}
+
+.mision-badge-final {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--amarillo), var(--naranja));
+    color: white;
+    font-weight: 900;
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(244,135,43,0.4);
+    animation: celebracion 0.5s ease;
+}
+
+@keyframes celebracion {
+    0%   { transform: scale(0.5); opacity: 0; }
+    70%  { transform: scale(1.1); }
+    100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Mapa de la Vereda ── */
+.mapa-container {
+    background: linear-gradient(135deg,
+        rgba(61,190,140,0.06),
+        rgba(26,155,171,0.06));
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(61,190,140,0.2);
+}
+
+.mapa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.mapa-punto {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    transition: transform 0.2s ease;
+}
+
+.mapa-punto:hover { transform: translateY(-3px); }
+
+.punto-escuela  { border-top: 4px solid var(--azul); }
+.punto-trapiche { border-top: 4px solid var(--naranja); }
+.punto-rio      { border-top: 4px solid #0EA5E9; }
+.punto-tienda   { border-top: 4px solid var(--verde); }
+.punto-finca    { border-top: 4px solid #78350F; }
+.punto-cancha   { border-top: 4px solid var(--morado); }
+
+.punto-icono  {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.punto-nombre {
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--texto);
+    margin-bottom: 6px;
+}
+
+.punto-frase {
+    font-size: 0.75rem;
+    color: #718096;
+    line-height: 1.5;
+}
+
+.punto-repair {
+    display: inline-block;
+    border-bottom: 1px dashed #CBD5E0;
+    min-width: 80px;
+}
+
+/* Banco de frases del mapa */
+.mapa-banco {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px dashed var(--verde);
+}
+
+.mapa-banco strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #276749;
+    font-size: 0.88rem;
+}
+
+.banco-frases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.banco-frase {
+    background: rgba(61,190,140,0.1);
+    color: #276749;
+    border: 1px solid rgba(61,190,140,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* ── Reflexión Ciudadana ── */
+.ciudadana-reflexion {
+    background: rgba(61,190,140,0.06);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    border-left: 4px solid var(--verde);
+}
+
+.reflexion-pregunta {
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* ── Tarjetas Recortables ── */
+.tarjetas-recortables {
+    margin-top: 25px;
+    border: 2px dashed #CBD5E0;
+    border-radius: 10px;
+    padding: 15px;
+    background: #FAFAFA;
+}
+
+.tarjetas-titulo {
+    font-weight: 800;
+    color: var(--morado);
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.tarjetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.tarjeta-frase {
+    background: white;
+    border: 2px solid var(--azul);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.tarjeta-frase:hover { transform: scale(1.03); }
+
+.tarjeta-en {
+    font-weight: 900;
+    font-size: 0.88rem;
+    color: var(--azul);
+    margin-bottom: 4px;
+}
+
+.tarjeta-es {
+    font-size: 0.75rem;
+    color: #718096;
+    font-style: italic;
+}
+
+/* ── Reflexión Final Inglés ── */
+.reflexion-ingles {
+    background: linear-gradient(135deg,
+        rgba(14,165,233,0.1),
+        rgba(139,92,246,0.1));
+}
+
+.reflexion-ingles p {
+    color: var(--ingles-grado6);
+}
+
+/* ══════════════════════════════════════
+   IMPRESIÓN
+══════════════════════════════════════ */
+@media print {
+    .chat-container    { max-height: none; overflow: visible; }
+    .chat-opcion       { border: 1px solid #CBD5E0; }
+    .mapa-punto:hover  { transform: none; }
+    .frases-grid       { grid-template-columns: 1fr 1fr; }
+    .mapa-grid         { grid-template-columns: 1fr 1fr 1fr; }
+    .tarjetas-grid     { grid-template-columns: 1fr 1fr 1fr; }
+    .header-mision-badge { animation: none; }
+    .mision-badge-final  { animation: none; }
+    .chat-oculto       { display: block !important; }
+    .chat-opciones     { display: none; }
+    .tarjeta-frase     {
+        border: 2px solid #CBD5E0;
+        break-inside: avoid;
+    }
+}
