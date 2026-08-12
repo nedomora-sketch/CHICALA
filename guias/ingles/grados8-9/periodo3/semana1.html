@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Inglés — Semana 1 — Grados 8° y 9°</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:        #1d4ed8;
+  --blue-dark:   #1e3a8a;
+  --blue-soft:   #dbeafe;
+  --purple:      #7c3aed;
+  --purple-soft: #ede9fe;
+  --green:       #059669;
+  --green-soft:  #d1fae5;
+  --amber:       #d97706;
+  --amber-soft:  #fef3c7;
+  --red:         #dc2626;
+  --red-soft:    #fee2e2;
+  --teal:        #0891b2;
+  --teal-soft:   #cffafe;
+  --gray:        #64748b;
+  --gray-soft:   #f1f5f9;
+  --border:      #e2e8f0;
+  --text:        #1e293b;
+  --white:       #ffffff;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   PAGE LAYOUT FOR PRINT
+   ============================================================ */
+.page {
+  width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.page-inner {
+  padding: 10mm 14mm 12mm;
+}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+.cover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 55%, #0f172a 100%);
+  padding: 28px 32px 22px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,.06);
+  border-radius: 50%;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: 60px;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,.04);
+  border-radius: 50%;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+
+.cover-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.cover-badge {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.cover-school {
+  font-size: 10.5px;
+  font-weight: 700;
+  opacity: .7;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 6px;
+}
+
+.cover-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  position: relative; z-index: 1;
+}
+
+.cover-title span { color: #fbbf24; }
+
+.cover-sub {
+  font-size: 13px;
+  opacity: .85;
+  font-weight: 600;
+  position: relative; z-index: 1;
+  margin-bottom: 18px;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  position: relative; z-index: 1;
+}
+
+.cover-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: .9;
+}
+
+.cover-meta-icon {
+  width: 24px; height: 24px;
+  background: rgba(255,255,255,.15);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+}
+
+/* ============================================================
+   STUDENT BAR
+   ============================================================ */
+.student-bar {
+  background: #f1f5f9;
+  border: 1.5px solid var(--border);
+  border-top: none;
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.sf-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gray);
+  margin-bottom: 3px;
+}
+
+.sf-line {
+  border-bottom: 1.5px solid #94a3b8;
+  min-height: 20px;
+}
+
+/* ============================================================
+   SECTION TITLE
+   ============================================================ */
+.sec {
+  margin: 22px 0 14px;
+}
+
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--blue);
+  margin-bottom: 14px;
+}
+
+.sec-icon {
+  width: 32px; height: 32px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.si-blue   { background: var(--blue-soft); }
+.si-purple { background: var(--purple-soft); }
+.si-green  { background: var(--green-soft); }
+.si-amber  { background: var(--amber-soft); }
+.si-red    { background: var(--red-soft); }
+.si-teal   { background: var(--teal-soft); }
+
+.sec-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--blue-dark);
+}
+
+.sec-tag {
+  margin-left: auto;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 11px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   INTRO BOX
+   ============================================================ */
+.intro-box {
+  background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+  border: 2px solid var(--blue);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.intro-emoji { font-size: 36px; flex-shrink: 0; line-height: 1; }
+
+.intro-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue-dark);
+  margin-bottom: 5px;
+}
+
+.intro-text { font-size: 12px; line-height: 1.7; }
+
+/* ============================================================
+   THEORY BLOCKS
+   ============================================================ */
+.theory-block {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.tb-head {
+  padding: 10px 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.tb-head--blue   { background: linear-gradient(135deg, #1d4ed8, #1e3a8a); }
+.tb-head--purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+.tb-head--teal   { background: linear-gradient(135deg, #0891b2, #0e7490); }
+.tb-head--green  { background: linear-gradient(135deg, #059669, #047857); }
+.tb-head--amber  { background: linear-gradient(135deg, #d97706, #b45309); }
+
+.tb-body { padding: 14px 16px; }
+
+/* ============================================================
+   ALPHABET TABLE
+   ============================================================ */
+.alpha-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.alpha-cell {
+  background: var(--blue-soft);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 5px 2px;
+  text-align: center;
+}
+
+.alpha-cell__letter {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue-dark);
+  display: block;
+}
+
+.alpha-cell__pron {
+  font-size: 9px;
+  color: var(--gray);
+  display: block;
+  margin-top: 1px;
+}
+
+/* ============================================================
+   VOCAB TABLE
+   ============================================================ */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.vocab-table th {
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 8px 12px;
+  border: 1px solid #bfdbfe;
+  text-align: left;
+}
+
+.vocab-table td {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.vocab-table tr:nth-child(even) td { background: var(--gray-soft); }
+
+.vocab-en {
+  font-weight: 800;
+  color: var(--blue);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.vocab-pron {
+  color: var(--purple);
+  font-style: italic;
+  font-size: 11px;
+}
+
+.vocab-es { color: var(--text); font-size: 12px; }
+
+.vocab-emoji { font-size: 16px; }
+
+/* ============================================================
+   STRUCTURE BOXES
+   ============================================================ */
+.struct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.struct-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+}
+
+.struct-card__head {
+  padding: 7px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+}
+
+.sc-blue   { background: var(--blue); }
+.sc-purple { background: var(--purple); }
+.sc-teal   { background: var(--teal); }
+
+.struct-card__body {
+  padding: 10px;
+  background: var(--white);
+  font-size: 11.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.struct-card__body .en {
+  font-weight: 800;
+  color: var(--blue-dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.struct-card__body .es {
+  color: var(--gray);
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* ============================================================
+   DIALOGUE
+   ============================================================ */
+.dialogue {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.bw { display: flex; align-items: flex-end; gap: 8px; }
+.bw--r { flex-direction: row-reverse; }
+
+.b-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  background: var(--gray-soft);
+}
+
+.bubble {
+  max-width: 72%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.bubble--l {
+  background: var(--blue-soft);
+  border-bottom-left-radius: 3px;
+  color: var(--blue-dark);
+}
+
+.bubble--r {
+  background: var(--purple-soft);
+  border-bottom-right-radius: 3px;
+  color: #3b0764;
+}
+
+.bubble-name {
+  font-size: 9.5px;
+  font-weight: 800;
+  opacity: .65;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 2px;
+}
+
+.bubble-tr {
+  font-size: 10.5px;
+  opacity: .65;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   PRACTICE ACTIVITIES
+   ============================================================ */
+.practice-block {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.pb-head {
+  padding: 10px 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pb-head--blue   { background: linear-gradient(135deg, #1d4ed8, #1e3a8a); }
+.pb-head--purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+.pb-head--teal   { background: linear-gradient(135deg, #0891b2, #0e7490); }
+.pb-head--green  { background: linear-gradient(135deg, #059669, #047857); }
+
+.pb-num {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,.22);
+  border: 1.5px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pb-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  flex: 1;
+}
+
+.pb-chip {
+  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 20px;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.pb-body { padding: 14px 16px; }
+
+.pb-instruction {
+  font-size: 12px;
+  color: var(--gray);
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: var(--gray-soft);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   MATCH ACTIVITY (une con flechas)
+   ============================================================ */
+.match-wrap {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.match-item {
+  background: var(--blue-soft);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  text-align: center;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.match-item--right {
+  background: var(--purple-soft);
+  border-color: #c4b5fd;
+  color: #3b0764;
+}
+
+.match-item--emoji {
+  font-size: 18px;
+  background: var(--amber-soft);
+  border-color: #fde68a;
+  color: var(--text);
+}
+
+.match-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+
+.match-line {
+  width: 32px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--gray);
+}
+
+/* ============================================================
+   FILL IN THE BLANK
+   ============================================================ */
+.fill-sentence {
+  font-size: 13px;
+  line-height: 2.4;
+  margin-bottom: 6px;
+}
+
+.blank {
+  display: inline-block;
+  border-bottom: 2px solid var(--blue);
+  min-width: 90px;
+  margin: 0 4px;
+  vertical-align: bottom;
+  height: 18px;
+}
+
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--amber-soft);
+  border: 1.5px solid #fde68a;
+  border-radius: 8px;
+}
+
+.word-bank__label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--amber);
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.word-pill {
+  background: var(--white);
+  border: 1.5px solid #fde68a;
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+
+/* ============================================================
+   WRITE ABOUT YOURSELF
+   ============================================================ */
+.write-template {
+  background: var(--gray-soft);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.write-prompt {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--blue-dark);
+  margin-bottom: 6px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.write-model {
+  font-size: 12px;
+  color: var(--gray);
+  font-style: italic;
+  margin-bottom: 8px;
+  padding-left: 10px;
+  border-left: 3px solid var(--blue);
+}
+
+.write-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.write-line {
+  border-bottom: 1.5px dashed #cbd5e1;
+  min-height: 26px;
+  width: 100%;
+}
+
+/* ============================================================
+   LISTENING SECTION
+   ============================================================ */
+.listening-card {
+  background: var(--teal-soft);
+  border: 1.5px solid #a5f3fc;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.listening-card__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #0e7490;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.listening-card__text {
+  font-style: italic;
+  font-size: 12px;
+  color: #164e63;
+  line-height: 1.7;
+  background: rgba(255,255,255,.6);
+  border-radius: 7px;
+  padding: 8px 12px;
+}
+
+/* ============================================================
+   EVALUATION SECTION
+   ============================================================ */
+.eval-cover {
+  background: linear-gradient(135deg, #059669, #047857);
+  border-radius: 12px;
+  padding: 18px 22px;
+  color: #fff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.eval-cover__emoji { font-size: 40px; flex-shrink: 0; }
+
+.eval-cover__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.eval-cover__sub { font-size: 12px; opacity: .85; font-weight: 600; }
+
+.eval-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.eval-table th {
+  background: var(--green-soft);
+  color: #065f46;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 9px 13px;
+  border: 1px solid #a7f3d0;
+  text-align: left;
+}
+
+.eval-table td {
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.eval-table tr:nth-child(even) td { background: var(--gray-soft); }
+
+.eval-table tr.total-row td {
+  background: var(--green-soft);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  color: #065f46;
+  font-size: 13px;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--green);
+  color: #fff;
+  border-radius: 7px;
+  padding: 3px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  min-width: 45px;
+}
+
+.score-badge--total { background: var(--blue); font-size: 13px; }
+
+.score-blank {
+  display: inline-block;
+  border-bottom: 2px solid var(--green);
+  min-width: 50px;
+  color: var(--gray);
+  font-weight: 700;
+}
+
+/* ============================================================
+   SELF EVALUATION
+   ============================================================ */
+.self-eval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.se-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--gray-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.se-box {
+  width: 15px; height: 15px;
+  border: 2px solid var(--amber);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  background: var(--white);
+}
+
+.reflection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.reflect-card {
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+}
+
+.reflect-card__head {
+  padding: 7px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+}
+
+.rh-blue   { background: var(--blue); }
+.rh-amber  { background: var(--amber); }
+.rh-green  { background: var(--green); }
+
+.reflect-card__body {
+  padding: 10px;
+  background: var(--white);
+}
+
+.reflect-line {
+  border-bottom: 1.5px dashed #cbd5e1;
+  min-height: 24px;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+.gloss-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.gloss-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,.06);
+}
+
+.gloss-card__emoji { font-size: 26px; margin-bottom: 4px; display: block; }
+
+.gloss-card__en {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--blue);
+}
+
+.gloss-card__pron {
+  font-size: 10px;
+  color: var(--purple);
+  font-style: italic;
+  display: block;
+  margin: 2px 0;
+}
+
+.gloss-card__es {
+  font-size: 11px;
+  color: var(--gray);
+}
+
+/* ============================================================
+   TEACHER NOTES
+   ============================================================ */
+.teacher-notes {
+  background: #fffbeb;
+  border: 1.5px dashed var(--amber);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.tn-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 9px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tn-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tn-list li {
+  font-size: 11.5px;
+  color: #78350f;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.tn-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+  color: var(--amber);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  border-radius: 10px;
+  padding: 14px 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.footer__brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  body { background: #fff; font-size: 11.5px; }
+  .page { width: 100%; box-shadow: none; }
+  .page-inner { padding: 6mm 10mm 10mm; }
+  .cover, .tb-head, .pb-head, .eval-cover,
+  .footer, .reflect-card__head, .struct-card__head {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .theory-block, .practice-block,
+  .eval-table, .gloss-grid { break-inside: avoid; }
+  .sec { page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================
+     COVER
+     ============================================================ -->
+<div class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="cover-title">🏫 I. E. Técnica Camacho Angarita</div>
+      <div class="cover-title">🌟 <span>Who I Am</span> &amp; What I Plan</div>
+      <div class="cover-sub">Guía Teórico-Práctica de Inglés · Semana 1 · Período 3</div>
+    </div>
+    <div class="cover-badges">
+      <span class="cover-badge">Grados 8° y 9°</span>
+      <span class="cover-badge">Semana 1 / 8</span>
+      <span class="cover-badge">DBA 3</span>
+      <span class="cover-badge">Nivel Básico</span>
+    </div>
+  </div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-icon">⏱️</span> 3 horas de clase
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-icon">🎯</span> Listening + Speaking
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-icon">📌</span> Estándares 1.3 · 1.8 · 1.9 (G8°) | 1.1 · 1.5 · 1.7 (G9°)
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-icon">🌿</span> Contexto Rural · Nivel Básico
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     STUDENT BAR
+     ============================================================ -->
+<div class="student-bar">
+  <div>
+    <div class="sf-label">👤 Nombre completo del estudiante</div>
+    <div class="sf-line"></div>
+  </div>
+  <div>
+    <div class="sf-label">🎓 Grado</div>
+    <div class="sf-line"></div>
+  </div>
+  <div>
+    <div class="sf-label">📅 Fecha</div>
+    <div class="sf-line"></div>
+  </div>
+  <div>
+    <div class="sf-label">⭐ Nota final</div>
+    <div class="sf-line"></div>
+  </div>
+</div>
+
+<div class="page-inner">
+
+<!-- ============================================================
+     INTRO CONTEXTUAL
+     ============================================================ -->
+<div class="intro-box">
+  <span class="intro-emoji">🌿</span>
+  <div>
+    <div class="intro-title">¡Bienvenido/a a tu primera guía de inglés!</div>
+    <div class="intro-text">
+      El inglés es el idioma más hablado en el mundo. Aprenderlo poco a poco te abrirá muchas puertas:
+      conseguir mejores empleos, comunicarte con personas de otros países y entender canciones, videos y
+      tecnología. En esta guía aprenderás las primeras palabras y frases para <strong>hablar de ti mismo</strong>
+      y de tus planes. <strong>No necesitas saber nada previo</strong> — ¡empezamos desde cero juntos! 💪
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 1 — TEORÍA
+     ============================================================ -->
+<div class="sec">
+  <div class="sec-title">
+    <div class="sec-icon si-blue">📖</div>
+    <span class="sec-label">SECCIÓN 1 — Contenido Teórico</span>
+    <span class="sec-tag">Teoría</span>
+  </div>
+
+  <!-- BLOQUE 1 — ALFABETO -->
+  <div class="theory-block">
+    <div class="tb-head tb-head--blue">
+      <span>🔤</span> 1.1 — El Alfabeto en Inglés (The Alphabet)
+    </div>
+    <div class="tb-body">
+      <p style="font-size:12px; margin-bottom:10px; color:#64748b">
+        El inglés usa las mismas 26 letras del español, pero se <strong>pronuncian diferente</strong>.
+        Observa la letra, su nombre en inglés y cómo suena en español:
+      </p>
+      <div class="alpha-grid">
+        <div class="alpha-cell"><span class="alpha-cell__letter">A</span><span class="alpha-cell__pron">ei</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">B</span><span class="alpha-cell__pron">bi</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">C</span><span class="alpha-cell__pron">si</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">D</span><span class="alpha-cell__pron">di</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">E</span><span class="alpha-cell__pron">i</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">F</span><span class="alpha-cell__pron">ef</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">G</span><span class="alpha-cell__pron">yi</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">H</span><span class="alpha-cell__pron">eich</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">I</span><span class="alpha-cell__pron">ai</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">J</span><span class="alpha-cell__pron">yei</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">K</span><span class="alpha-cell__pron">kei</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">L</span><span class="alpha-cell__pron">el</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">M</span><span class="alpha-cell__pron">em</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">N</span><span class="alpha-cell__pron">en</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">O</span><span class="alpha-cell__pron">ou</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">P</span><span class="alpha-cell__pron">pi</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">Q</span><span class="alpha-cell__pron">kiu</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">R</span><span class="alpha-cell__pron">ar</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">S</span><span class="alpha-cell__pron">es</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">T</span><span class="alpha-cell__pron">ti</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">U</span><span class="alpha-cell__pron">iu</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">V</span><span class="alpha-cell__pron">vi</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">W</span><span class="alpha-cell__pron">dabliu</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">X</span><span class="alpha-cell__pron">eks</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">Y</span><span class="alpha-cell__pron">uai</span></div>
+        <div class="alpha-cell"><span class="alpha-cell__letter">Z</span><span class="alpha-cell__pron">zi</span></div>
+      </div>
+      <div style="background:#fef3c7; border:1.5px solid #fde68a; border-radius:8px; padding:9px 12px; font-size:11.5px; margin-top:6px">
+        <strong>💡 Tip:</strong> Para practicar el alfabeto, deletrea tu nombre en inglés.
+        Por ejemplo: <strong>NELSON</strong> = <em>en - i - el - es - ou - en</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOQUE 2 — VOCABULARIO RURAL -->
+  <div class="theory-block">
+    <div class="tb-head tb-head--purple">
+      <span>🌾</span> 1.2 — Vocabulario Básico: Personas y Entorno Rural
+    </div>
+    <div class="tb-body">
+      <p style="font-size:12px; margin-bottom:10px; color:#64748b">
+        Estas son palabras en inglés relacionadas con <strong>las personas, la familia y el campo</strong>.
+        Aprende la palabra, cómo se pronuncia y qué significa:
+      </p>
+      <table class="vocab-table">
+        <thead>
+          <tr>
+            <th style="width:8%">🖼️</th>
+            <th style="width:25%">English (Inglés)</th>
+            <th style="width:30%">Pronunciation (Pronunciación)</th>
+            <th style="width:37%">Spanish (Español)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="vocab-emoji">👦</td>
+            <td class="vocab-en">I / My name is</td>
+            <td class="vocab-pron">ai / mai neim is</td>
+            <td class="vocab-es">Yo / Mi nombre es</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">🏘️</td>
+            <td class="vocab-en">I live in</td>
+            <td class="vocab-pron">ai liv in</td>
+            <td class="vocab-es">Yo vivo en</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">👨‍🌾</td>
+            <td class="vocab-en">farmer / peasant</td>
+            <td class="vocab-pron">fár-mer / pés-ant</td>
+            <td class="vocab-es">agricultor / campesino</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">🌄</td>
+            <td class="vocab-en">countryside / village</td>
+            <td class="vocab-pron">cáun-tri-said / víl-ach</td>
+            <td class="vocab-es">campo / aldea / vereda</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">👨‍👩‍👧</td>
+            <td class="vocab-en">family / parents</td>
+            <td class="vocab-pron">fám-i-li / pér-ents</td>
+            <td class="vocab-es">familia / padres</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">📚</td>
+            <td class="vocab-en">student / school</td>
+            <td class="vocab-pron">stiú-dent / skul</td>
+            <td class="vocab-es">estudiante / escuela</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">❤️</td>
+            <td class="vocab-en">I like / I love</td>
+            <td class="vocab-pron">ai laik / ai lav</td>
+            <td class="vocab-es">Me gusta / Me encanta</td>
+          </tr>
+          <tr>
+            <td class="vocab-emoji">🌱</td>
+            <td class="vocab-en">nature / animals</td>
+            <td class="vocab-pron">néi-chur / án-i-mals</td>
+            <td class="vocab-es">naturaleza / animales</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BLOQUE 3 — ESTRUCTURAS BÁSICAS -->
+  <div class="theory-block">
+    <div class="tb-head tb-head--teal">
+      <span>🔧</span> 1.3 — Estructuras Básicas para Hablar de Ti Mismo
+    </div>
+    <div class="tb-body">
+      <p style="font-size:12px; margin-bottom:12px; color:#64748b">
+        En inglés usamos estas 3 estructuras principales para presentarnos y hablar de nuestros planes:
+      </p>
+      <div class="struct-grid">
+        <div class="struct-card">
+          <div class="struct-card__head sc-blue">🙋 I AM — Soy / Estoy</div>
+          <div class="struct-card__body">
+            <div class="en">I am Nelson.</div>
+            <div class="es">Soy Nelson.</div>
+            <br>
+            <div class="en">I am 14 years old.</div>
+            <div class="es">Tengo 14 años.</div>
+            <br>
+            <div class="en">I am a student.</div>
+            <div class="es">Soy estudiante.</div>
+          </div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card__head sc-purple">🌾 I HAVE — Tengo</div>
+          <div class="struct-card__body">
+            <div class="en">I have a family.</div>
+            <div class="es">Tengo una familia.</div>
+            <br>
+            <div class="en">I have a dog.</div>
+            <div class="es">Tengo un perro.</div>
+            <br>
+            <div class="en">I have a dream.</div>
+            <div class="es">Tengo un sueño.</div>
+          </div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-card__head sc-teal">🔮 I PLAN TO — Planeo</div>
+                  <div class="struct-card">
+          <div class="struct-card__head sc-teal">🔮 I PLAN TO — Planeo</div>
+          <div class="struct-card__body">
+            <div class="en">I plan to study.</div>
+            <div class="es">Planeo estudiar.</div>
+            <br>
+            <div class="en">I want to travel.</div>
+            <div class="es">Quiero viajar.</div>
+            <br>
+            <div class="en">I would like to work.</div>
+            <div class="es">Me gustaría trabajar.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#d1fae5; border:1.5px solid #6ee7b7; border-radius:8px; padding:10px 14px; font-size:12px; margin-top:4px">
+        <strong>📌 Regla de oro:</strong> En inglés, el sujeto <strong>siempre va antes del verbo</strong>.
+        No se puede decir <em>"Am I student"</em> — siempre debe ser <em>"I am a student."</em>
+        El sujeto <strong>I</strong> (Yo) <strong>siempre se escribe en mayúscula</strong>.
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOQUE 4 — DIÁLOGO MODELO -->
+  <div class="theory-block">
+    <div class="tb-head tb-head--green">
+      <span>💬</span> 1.4 — Diálogo Modelo: Presentándose en Inglés
+    </div>
+    <div class="tb-body">
+      <p style="font-size:12px; margin-bottom:10px; color:#64748b">
+        Lee el siguiente diálogo entre dos estudiantes. Observa cómo usan las estructuras aprendidas.
+        La traducción al español está en <em>cursiva</em>:
+      </p>
+
+      <div class="dialogue">
+        <div class="bw">
+          <div class="b-avatar">👦</div>
+          <div class="bubble bubble--l">
+            <div class="bubble-name">Carlos</div>
+            Hi! My name is Carlos. What is your name?
+            <div class="bubble-tr">¡Hola! Mi nombre es Carlos. ¿Cuál es tu nombre?</div>
+          </div>
+        </div>
+        <div class="bw bw--r">
+          <div class="b-avatar">👧</div>
+          <div class="bubble bubble--r">
+            <div class="bubble-name">María</div>
+            Hello, Carlos! I am María. I am 14 years old.
+            <div class="bubble-tr">¡Hola, Carlos! Soy María. Tengo 14 años.</div>
+          </div>
+        </div>
+        <div class="bw">
+          <div class="b-avatar">👦</div>
+          <div class="bubble bubble--l">
+            <div class="bubble-name">Carlos</div>
+            Nice to meet you! Where do you live?
+            <div class="bubble-tr">¡Mucho gusto! ¿Dónde vives?</div>
+          </div>
+        </div>
+        <div class="bw bw--r">
+          <div class="b-avatar">👧</div>
+          <div class="bubble bubble--r">
+            <div class="bubble-name">María</div>
+            I live in a small village in the countryside. I love nature and animals!
+            <div class="bubble-tr">Vivo en una pequeña aldea en el campo. ¡Me encanta la naturaleza y los animales!</div>
+          </div>
+        </div>
+        <div class="bw">
+          <div class="b-avatar">👦</div>
+          <div class="bubble bubble--l">
+            <div class="bubble-name">Carlos</div>
+            That's amazing! What do you plan to do in the future?
+            <div class="bubble-tr">¡Qué increíble! ¿Qué planeas hacer en el futuro?</div>
+          </div>
+        </div>
+        <div class="bw bw--r">
+          <div class="b-avatar">👧</div>
+          <div class="bubble bubble--r">
+            <div class="bubble-name">María</div>
+            I plan to study veterinary medicine. I want to help the animals in my community!
+            <div class="bubble-tr">Planeo estudiar medicina veterinaria. ¡Quiero ayudar a los animales de mi comunidad!</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fef3c7; border:1.5px solid #fde68a; border-radius:8px; padding:10px 14px; font-size:11.5px; margin-top:8px">
+        <strong>💡 Expresiones útiles del diálogo:</strong><br>
+        <span style="color:#1d4ed8; font-weight:700">Nice to meet you!</span> = ¡Mucho gusto! &nbsp;|&nbsp;
+        <span style="color:#1d4ed8; font-weight:700">That's amazing!</span> = ¡Qué increíble! &nbsp;|&nbsp;
+        <span style="color:#1d4ed8; font-weight:700">Where do you live?</span> = ¿Dónde vives?
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 2 — ACTIVIDADES PRÁCTICAS
+     ============================================================ -->
+<div class="sec">
+  <div class="sec-title">
+    <div class="sec-icon si-purple">⚡</div>
+    <span class="sec-label">SECCIÓN 2 — Actividades Prácticas</span>
+    <span class="sec-tag" style="background:#7c3aed">Práctica</span>
+  </div>
+
+  <!-- ACTIVIDAD 1 — UNE CON FLECHAS -->
+  <div class="practice-block">
+    <div class="pb-head pb-head--blue">
+      <span class="pb-num">1</span>
+      <span class="pb-title">🔗 Une con flechas — Match the words</span>
+      <span class="pb-chip">⏱ 15 min</span>
+      <span class="pb-chip">👤 Individual</span>
+    </div>
+    <div class="pb-body">
+      <div class="pb-instruction">
+        📝 <strong>Instrucción:</strong> Dibuja una línea uniendo la palabra en inglés
+        con su significado en español y su emoji correspondiente.
+      </div>
+      <div class="match-wrap">
+        <div class="match-col">
+          <div class="match-item">I am a student</div>
+          <div class="match-item">I live in the countryside</div>
+          <div class="match-item">I have a family</div>
+          <div class="match-item">I plan to study</div>
+          <div class="match-item">I love nature</div>
+          <div class="match-item">Nice to meet you</div>
+        </div>
+        <div class="match-arrows">
+          <div class="match-line">—</div>
+          <div class="match-line">—</div>
+          <div class="match-line">—</div>
+          <div class="match-line">—</div>
+          <div class="match-line">—</div>
+          <div class="match-line">—</div>
+        </div>
+        <div class="match-col">
+          <div class="match-item match-item--right">Mucho gusto</div>
+          <div class="match-item match-item--right">Tengo una familia</div>
+          <div class="match-item match-item--right">Me encanta la naturaleza</div>
+          <div class="match-item match-item--right">Soy estudiante</div>
+          <div class="match-item match-item--right">Planeo estudiar</div>
+          <div class="match-item match-item--right">Vivo en el campo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD 2 — COMPLETA EL ESPACIO -->
+  <div class="practice-block">
+    <div class="pb-head pb-head--purple">
+      <span class="pb-num">2</span>
+      <span class="pb-title">✏️ Completa los espacios — Fill in the blanks</span>
+      <span class="pb-chip">⏱ 15 min</span>
+      <span class="pb-chip">👤 Individual</span>
+    </div>
+    <div class="pb-body">
+      <div class="pb-instruction">
+        📝 <strong>Instrucción:</strong> Usa las palabras del banco para completar
+        las oraciones. Escribe cada palabra en el espacio correcto.
+      </div>
+
+      <div style="margin-bottom:14px">
+        <div class="fill-sentence">1. ________ name is Carlos. I ________ 15 years old.</div>
+        <div class="fill-sentence">2. I live ________ a small village ________ the countryside.</div>
+        <div class="fill-sentence">3. I ________ a dog and two cats at home.</div>
+        <div class="fill-sentence">4. I plan ________ study medicine in the future.</div>
+        <div class="fill-sentence">5. I ________ nature and I ________ animals very much.</div>
+        <div class="fill-sentence">6. ________ to meet you! My name is María.</div>
+      </div>
+
+      <div class="word-bank">
+        <span class="word-bank__label">📦 Word Bank — Banco de palabras:</span>
+        <span class="word-pill">My</span>
+        <span class="word-pill">am</span>
+        <span class="word-pill">in</span>
+        <span class="word-pill">in</span>
+        <span class="word-pill">have</span>
+        <span class="word-pill">to</span>
+        <span class="word-pill">love</span>
+        <span class="word-pill">like</span>
+        <span class="word-pill">Nice</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD 3 — ESCRIBE SOBRE TI MISMO -->
+  <div class="practice-block">
+    <div class="pb-head pb-head--teal">
+      <span class="pb-num">3</span>
+      <span class="pb-title">📝 Escribe sobre ti — Write about yourself</span>
+      <span class="pb-chip">⏱ 20 min</span>
+      <span class="pb-chip">👤 Individual</span>
+    </div>
+    <div class="pb-body">
+      <div class="pb-instruction">
+        📝 <strong>Instrucción:</strong> Completa cada oración con información
+        <strong>real sobre ti</strong>. Usa el modelo entre paréntesis como guía.
+        Recuerda: <em>I</em> siempre en mayúscula.
+      </div>
+
+      <div class="write-template">
+        <div class="write-prompt">🙋 Presentación personal — My Presentation</div>
+        <div class="write-model">Modelo: My name is María. I am 14 years old...</div>
+        <div class="write-lines">
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">My name is <span style="color:#bfdbfe">___________________________</span>. I am <span style="color:#bfdbfe">___________</span> years old.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">I live in <span style="color:#bfdbfe">____________________________________________</span>.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">I am a student at <span style="color:#bfdbfe">_____________________________________</span>.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">I have <span style="color:#bfdbfe">__________________________________________________</span>.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">I love / I like <span style="color:#bfdbfe">__________________________________________</span>.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">I plan to <span style="color:#bfdbfe">___________________________________________</span>.</div>
+          <div style="font-size:12px; color:#64748b; margin:6px 0 2px">In the future, I want to <span style="color:#bfdbfe">__________________________________</span>.</div>
+        </div>
+      </div>
+
+      <div style="background:#ede9fe; border:1.5px solid #c4b5fd; border-radius:8px; padding:10px 14px; font-size:11.5px; margin-top:6px">
+        <strong style="color:#5b21b6">🌟 Reto extra (Grado 9°):</strong> Escribe una oración adicional
+        usando la palabra <em>"because"</em> (porque). Ejemplo:
+        <em>"I plan to study medicine <strong>because</strong> I want to help my community."</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD 4 — LISTENING -->
+  <div class="practice-block">
+    <div class="pb-head pb-head--green">
+      <span class="pb-num">4</span>
+      <span class="pb-title">🎧 Escucha y responde — Listen and answer</span>
+      <span class="pb-chip">⏱ 20 min</span>
+      <span class="pb-chip">👥 Grupo</span>
+    </div>
+    <div class="pb-body">
+      <div class="pb-instruction">
+        📝 <strong>Instrucción:</strong> Tu profesor/a va a leer tres presentaciones
+        en voz alta. Escucha con atención y completa la tabla con la información
+        que escuches. <strong>No es necesario entender todo</strong> — enfócate
+        en las palabras clave.
+      </div>
+
+      <div class="listening-card">
+    <div class="listening-card__title">🎙️ Audio 1 — Juan</div>
+
+    <!-- BOTÓN DE REPRODUCCIÓN -->
+    <div style="display:flex; gap:10px; align-items:center; margin:10px 0">
+      <button
+        onclick="speakText('audio1')"
+        style="background:linear-gradient(135deg,#0891b2,#0e7490);
+               color:#fff; border:none; border-radius:8px;
+               padding:9px 18px; font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer;
+               display:flex; align-items:center; gap:7px">
+        🔊 Escuchar Audio 1
+      </button>
+      <button
+        onclick="stopSpeech()"
+        style="background:#fee2e2; color:#dc2626; border:1.5px solid #fca5a5;
+               border-radius:8px; padding:9px 14px;
+               font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer">
+        ⏹ Detener
+      </button>
+    </div>
+
+    <!-- Transcripción oculta para el docente -->
+    <details>
+      <summary style="font-size:11px; color:#0e7490;
+                      font-weight:700; cursor:pointer; padding:4px 0">
+        👁️ Ver transcripción
+      </summary>
+      <div class="listening-card__text" style="margin-top:8px">
+        "Hello everyone! My name is Juan. I am thirteen years old.
+        I live in a small village near the mountains. I have three brothers
+        and a big dog named Toby. I love playing football and I like reading.
+        In the future, I plan to study engineering because I love technology.
+        Nice to meet you all!"
+      </div>
+    </details>
+  </div>
+
+  <!-- Audio 2 -->
+  <div class="listening-card" style="background:#ede9fe; border-color:#c4b5fd">
+    <div class="listening-card__title" style="color:#5b21b6">🎙️ Audio 2 — Valentina</div>
+    <div style="display:flex; gap:10px; align-items:center; margin:10px 0">
+      <button
+        onclick="speakText('audio2')"
+        style="background:linear-gradient(135deg,#7c3aed,#5b21b6);
+               color:#fff; border:none; border-radius:8px;
+               padding:9px 18px; font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer;
+               display:flex; align-items:center; gap:7px">
+        🔊 Escuchar Audio 2
+      </button>
+      <button
+        onclick="stopSpeech()"
+        style="background:#fee2e2; color:#dc2626; border:1.5px solid #fca5a5;
+               border-radius:8px; padding:9px 14px;
+               font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer">
+        ⏹ Detener
+      </button>
+    </div>
+    <details>
+      <summary style="font-size:11px; color:#5b21b6;
+                      font-weight:700; cursor:pointer; padding:4px 0">
+        👁️ Ver transcripción
+      </summary>
+      <div class="listening-card__text" style="margin-top:8px; color:#3b0764">
+        "Hi! My name is Valentina. I am fifteen years old and I live in the
+        countryside with my family. I have a horse and many chickens on our farm.
+        I like singing and I love dancing. My dream is to become a teacher
+        because I want to help children in rural communities learn English.
+        It is nice to meet you!"
+      </div>
+    </details>
+  </div>
+
+  <!-- Audio 3 -->
+  <div class="listening-card" style="background:#d1fae5; border-color:#6ee7b7">
+    <div class="listening-card__title" style="color:#065f46">🎙️ Audio 3 — Pedro</div>
+    <div style="display:flex; gap:10px; align-items:center; margin:10px 0">
+      <button
+        onclick="speakText('audio3')"
+        style="background:linear-gradient(135deg,#059669,#047857);
+               color:#fff; border:none; border-radius:8px;
+               padding:9px 18px; font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer;
+               display:flex; align-items:center; gap:7px">
+        🔊 Escuchar Audio 3
+      </button>
+      <button
+        onclick="stopSpeech()"
+        style="background:#fee2e2; color:#dc2626; border:1.5px solid #fca5a5;
+               border-radius:8px; padding:9px 14px;
+               font-family:'Poppins',sans-serif;
+               font-size:12px; font-weight:700; cursor:pointer">
+        ⏹ Detener
+      </button>
+    </div>
+    <details>
+      <summary style="font-size:11px; color:#065f46;
+                      font-weight:700; cursor:pointer; padding:4px 0">
+        👁️ Ver transcripción
+      </summary>
+      <div class="listening-card__text" style="margin-top:8px; color:#064e3b">
+        "Good morning! My name is Pedro. I am fourteen years old. I live in a
+        village called La Esperanza. I have two sisters and I love helping my
+        parents on the farm. I like football and I enjoy listening to music.
+        In the future, I plan to study agronomy because I want to improve
+        farming in my community."
+      </div>
+    </details>
+  </div>
+
+      <!-- LISTENING TABLE -->
+      <div style="margin-top:14px">
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.07em; color:#64748b; margin-bottom:8px">
+          📋 Completa la tabla con lo que escuchaste:
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:12px">
+          <thead>
+            <tr style="background:#dbeafe">
+              <th style="border:1.5px solid #bfdbfe; padding:8px 10px; text-align:left; color:#1e3a8a; font-family:'Poppins',sans-serif; font-size:10.5px">🎙️</th>
+              <th style="border:1.5px solid #bfdbfe; padding:8px 10px; text-align:left; color:#1e3a8a; font-family:'Poppins',sans-serif; font-size:10.5px">Name / Nombre</th>
+              <th style="border:1.5px solid #bfdbfe; padding:8px 10px; text-align:left; color:#1e3a8a; font-family:'Poppins',sans-serif; font-size:10.5px">Age / Edad</th>
+              <th style="border:1.5px solid #bfdbfe; padding:8px 10px; text-align:left; color:#1e3a8a; font-family:'Poppins',sans-serif; font-size:10.5px">Where lives / Dónde vive</th>
+              <th style="border:1.5px solid #bfdbfe; padding:8px 10px; text-align:left; color:#1e3a8a; font-family:'Poppins',sans-serif; font-size:10.5px">Future plan / Plan futuro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border:1px solid #e2e8f0; padding:10px; font-weight:800; color:#1d4ed8; text-align:center">1</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+            </tr>
+            <tr style="background:#f8fafc">
+              <td style="border:1px solid #e2e8f0; padding:10px; font-weight:800; color:#7c3aed; text-align:center">2</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0; padding:10px; font-weight:800; color:#059669; text-align:center">3</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+              <td style="border:1px solid #e2e8f0; padding:10px; color:#94a3b8">________________</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 3 — EVALUACIÓN FINAL
+     ============================================================ -->
+<div class="sec">
+  <div class="sec-title">
+    <div class="sec-icon si-green">📊</div>
+    <span class="sec-label">SECCIÓN 3 — Evaluación Final de la Semana</span>
+    <span class="sec-tag" style="background:#059669">Evaluación</span>
+  </div>
+
+  <div class="eval-cover">
+    <span class="eval-cover__emoji">🏆</span>
+    <div>
+      <div class="eval-cover__title">Evaluación Semana 1 — Who I Am &amp; What I Plan</div>
+      <div class="eval-cover__sub">
+        Esta evaluación tiene 3 partes: Escrita (60 pts) · Oral (30 pts) · Actitudinal (10 pts) · Total: 100 pts
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE A — ESCRITA -->
+  <div class="theory-block" style="margin-bottom:14px">
+    <div class="tb-head tb-head--blue">
+      <span>✍️</span> Parte A — Evaluación Escrita (60 puntos)
+    </div>
+    <div class="tb-body">
+
+      <!-- A1 — Vocabulario -->
+      <div style="margin-bottom:16px">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; color:#1e3a8a; margin-bottom:8px; padding:6px 10px; background:#dbeafe; border-radius:6px">
+          A.1 — Relaciona el vocabulario (20 puntos — 4 pts c/u)
+        </div>
+        <div style="font-size:12px; color:#64748b; margin-bottom:10px">
+          Escribe el número de la columna derecha al frente de cada palabra:
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
+          <div>
+            <div style="font-size:12px; line-height:2.6">
+              <span style="font-weight:700">___</span> I am a student &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span style="font-weight:700">___</span> I live in the countryside<br>
+              <span style="font-weight:700">___</span> I have a family &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span style="font-weight:700">___</span> I plan to study<br>
+              <span style="font-weight:700">___</span> I love nature
+            </div>
+          </div>
+          <div style="background:#f1f5f9; border-radius:8px; padding:10px 14px; font-size:12px; line-height:2.2">
+            <span style="font-weight:800; color:#1d4ed8">1.</span> Planeo estudiar<br>
+            <span style="font-weight:800; color:#1d4ed8">2.</span> Soy estudiante<br>
+            <span style="font-weight:800; color:#1d4ed8">3.</span> Me encanta la naturaleza<br>
+            <span style="font-weight:800; color:#1d4ed8">4.</span> Tengo una familia<br>
+            <span style="font-weight:800; color:#1d4ed8">5.</span> Vivo en el campo
+          </div>
+        </div>
+      </div>
+
+      <!-- A2 — Completa oraciones -->
+      <div style="margin-bottom:16px">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; color:#1e3a8a; margin-bottom:8px; padding:6px 10px; background:#dbeafe; border-radius:6px">
+          A.2 — Completa las oraciones (20 puntos — 4 pts c/u)
+        </div>
+        <div style="font-size:12px; color:#64748b; margin-bottom:8px">
+          Escoge la opción correcta entre paréntesis y enciérrala en un círculo:
+        </div>
+        <div style="font-size:12.5px; line-height:2.8">
+          1. <span style="font-weight:700">( My / I / Me )</span> name is Pedro.<br>
+          2. I <span style="font-weight:700">( is / am / are )</span> fourteen years old.<br>
+          3. I live <span style="font-weight:700">( on / at / in )</span> the countryside.<br>
+          4. I plan <span style="font-weight:700">( to / for / at )</span> study agronomy.<br>
+          5. I <span style="font-weight:700">( have / has / had )</span> two sisters and a dog.
+        </div>
+      </div>
+
+      <!-- A3 — Producción escrita -->
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:800; color:#1e3a8a; margin-bottom:8px; padding:6px 10px; background:#dbeafe; border-radius:6px">
+          A.3 — Escribe tu presentación (20 puntos)
+        </div>
+        <div style="font-size:12px; color:#64748b; margin-bottom:10px">
+          Escribe <strong>5 oraciones completas en inglés</strong> presentándote.
+          Incluye: nombre, edad, dónde vives, qué tienes, y qué planeas hacer.
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0">
+          <div style="border-bottom:1.5px dashed #cbd5e1; min-height:28px; margin-bottom:2px"></div>
+          <div style="border-bottom:1.5px dashed #cbd5e1; min-height:28px; margin-bottom:2px"></div>
+          <div style="border-bottom:1.5px dashed #cbd5e1; min-height:28px; margin-bottom:2px"></div>
+          <div style="border-bottom:1.5px dashed #cbd5e1; min-height:28px; margin-bottom:2px"></div>
+          <div style="border-bottom:1.5px dashed #cbd5e1; min-height:28px; margin-bottom:2px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE B — ORAL -->
+  <div class="theory-block" style="margin-bottom:14px">
+    <div class="tb-head tb-head--purple">
+      <span>🎤</span> Parte B — Evaluación Oral (30 puntos)
+    </div>
+    <div class="tb-body">
+      <div style="font-size:12px; color:#64748b; margin-bottom:12px">
+        El docente evaluará la presentación oral individual. El estudiante debe hablar
+        durante <strong>1 minuto mínimo</strong> usando las estructuras aprendidas.
+      </div>
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th style="width:35%">Criterio</th>
+            <th style="width:35%">Descripción</th>
+            <th style="width:15%">Puntos</th>
+            <th style="width:15%">Obtenido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pronunciación básica</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Se entiende lo que dice aunque tenga acento. Intenta pronunciar correctamente.</td>
+            <td><span class="score-badge">10</span></td>
+            <td><span class="score-blank">___ /10</span></td>
+          </tr>
+          <tr>
+            <td><strong>Uso de estructuras</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Usa al menos 3 de las estructuras: I am / I have / I plan to / I live in / I like.</td>
+            <td><span class="score-badge">10</span></td>
+            <td><span class="score-blank">___ /10</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fluidez y confianza</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Habla con seguridad, no necesita que el docente le dicte las palabras.</td>
+            <td><span class="score-badge">10</span></td>
+            <td><span class="score-blank">___ /10</span></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2" style="text-align:right; padding-right:16px">SUBTOTAL ORAL</td>
+            <td><span class="score-badge score-badge--total">30</span></td>
+            <td><span class="score-blank">___ /30</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <!-- PARTE C — ACTITUDINAL -->
+  <div class="theory-block" style="margin-bottom:16px">
+    <div class="tb-head tb-head--amber">
+      <span>🌟</span> Parte C — Valoración Actitudinal (10 puntos)
+    </div>
+    <div class="tb-body">
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th style="width:40%">Criterio</th>
+            <th style="width:35%">Descripción</th>
+            <th style="width:13%">Puntos</th>
+            <th style="width:12%">Obtenido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Participación activa</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Participó en todas las actividades de la semana sin negarse.</td>
+            <td><span class="score-badge" style="background:#d97706">4</span></td>
+            <td><span class="score-blank">___ /4</span></td>
+          </tr>
+          <tr>
+            <td><strong>Respeto y trabajo en equipo</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Escuchó a sus compañeros con respeto y colaboró en los momentos grupales.</td>
+            <td><span class="score-badge" style="background:#d97706">3</span></td>
+            <td><span class="score-blank">___ /3</span></td>
+          </tr>
+          <tr>
+            <td><strong>Esfuerzo y disposición</strong></td>
+            <td style="font-size:11.5px; color:#64748b">Intentó hablar y escribir en inglés aunque cometiera errores. El esfuerzo cuenta.</td>
+            <td><span class="score-badge" style="background:#d97706">3</span></td>
+            <td><span class="score-blank">___ /3</span></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2" style="text-align:right; padding-right:16px">SUBTOTAL ACTITUDINAL</td>
+            <td><span class="score-badge score-badge--total">10</span></td>
+            <td><span class="score-blank">___ /10</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RESUMEN DE EVALUACIÓN -->
+  <div style="background:#f0fdf4; border:2px solid #6ee7b7; border-radius:12px; padding:16px 20px; margin-bottom:20px">
+    <div style="font-family:'Poppins',sans-serif; font-size:13px; font-weight:800; color:#065f46; margin-bottom:12px; display:flex; align-items:center; gap:8px">
+      📊 Resumen de Calificación Final
+    </div>
+    <table style="width:100%; border-collapse:collapse; font-size:12.5px">
+      <thead>
+        <tr style="background:#d1fae5">
+          <th style="padding:8px 14px; text-align:left; border:1px solid #a7f3d0; color:#065f46; font-family:'Poppins',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em">Parte</th>
+          <th style="padding:8px 14px; text-align:left; border:1px solid #a7f3d0; color:#065f46; font-family:'Poppins',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em">Componente</th>
+          <th style="padding:8px 14px; text-align:center; border:1px solid #a7f3d0; color:#065f46; font-family:'Poppins',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em">Valor</th>
+          <th style="padding:8px 14px; text-align:center; border:1px solid #a7f3d0; color:#065f46; font-family:'Poppins',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.06em">Nota obtenida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; font-weight:700">A</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0">Evaluación Escrita</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-badge">60</span></td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-blank">___ /60</span></td>
+        </tr>
+        <tr style="background:#f8fafc">
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; font-weight:700">B</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0">Evaluación Oral</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-badge">30</span></td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-blank">___ /30</span></td>
+        </tr>
+        <tr>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; font-weight:700">C</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0">Valoración Actitudinal</td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-badge" style="background:#d97706">10</span></td>
+          <td style="padding:9px 14px; border:1px solid #e2e8f0; text-align:center"><span class="score-blank">___ /10</span></td>
+        </tr>
+        <tr style="background:#d1fae5">
+          <td colspan="2" style="padding:10px 14px; border:1px solid #a7f3d0; font-family:'Poppins',sans-serif; font-weight:800; font-size:13px; color:#065f46; text-align:right; padding-right:20px">
+            🏆 TOTAL FINAL
+          </td>
+          <td style="padding:10px 14px; border:1px solid #a7f3d0; text-align:center">
+            <span class="score-badge score-badge--total" style="font-size:14px; padding:4px 14px">100</span>
+          </td>
+          <td style="padding:10px 14px; border:1px solid #a7f3d0; text-align:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:14px; color:#065f46">
+            ___ /100
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 4 — AUTOEVALUACIÓN
+     ============================================================ -->
+<div class="sec">
+  <div class="sec-title">
+    <div class="sec-icon si-amber">🪞</div>
+    <span class="sec-label">SECCIÓN 4 — Autoevaluación del Estudiante</span>
+    <span class="sec-tag" style="background:#d97706">Reflexión</span>
+  </div>
+
+  <div style="background:#fffbeb; border:1.5px solid #fde68a; border-radius:12px; padding:16px 18px; margin-bottom:14px">
+    <div style="font-family:'Poppins',sans-serif; font-size:12.5px; font-weight:800; color:#92400e; margin-bottom:12px">
+      ✅ Student Self-Check — Marca con una ✓ lo que lograste esta semana:
+    </div>
+    <div class="self-eval-grid">
+      <div class="se-item"><div class="se-box"></div>Aprendí el alfabeto en inglés.</div>
+      <div class="se-item"><div class="se-box"></div>Reconozco al menos 8 palabras nuevas en inglés.</div>
+      <div class="se-item"><div class="se-box"></div>Puedo decir <em>"I am / I have / I plan to"</em>.</div>
+      <div class="se-item"><div class="se-box"></div>Completé la actividad de escucha correctamente.</div>
+      <div class="se-item"><div class="se-box"></div>Escribí 5 oraciones sobre mí mismo en inglés.</div>
+      <div class="se-item"><div class="se-box"></div>Participé con respeto y entusiasmo en clase.</div>
+      <div class="se-item"><div class="se-box"></div>Entendí el diálogo modelo del texto.</div>
+      <div class="se-item"><div class="se-box"></div>Me presenté oralmente ante mis compañeros.</div>
+    </div>
+  </div>
+
+  <div class="reflection-grid">
+    <div class="reflect-card">
+      <div class="reflect-card__head rh-blue">⭐ Lo que aprendí</div>
+      <div class="reflect-card__body">
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+      </div>
+    </div>
+    <div class="reflect-card">
+      <div class="reflect-card__head rh-amber">🔧 Lo que me costó</div>
+      <div class="reflect-card__body">
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+      </div>
+    </div>
+    <div class="reflect-card">
+      <div class="reflect-card__head rh-green">🚀 Lo que voy a mejorar</div>
+      <div class="reflect-card__body">
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+        <div class="reflect-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 5 — GLOSARIO ILUSTRADO
+     ============================================================ -->
+<div class="sec">
+  <div class="sec-title">
+    <div class="sec-icon si-teal">📚</div>
+    <span class="sec-label">SECCIÓN 5 — Glosario Ilustrado</span>
+    <span class="sec-tag" style="background:#0891b2">Referencia</span>
+  </div>
+
+  <div class="gloss-grid">
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">👦</span>
+      <div class="gloss-card__en">I am</div>
+      <span class="gloss-card__pron">ai am</span>
+      <div class="gloss-card__es">Soy / Estoy</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🏘️</span>
+      <div class="gloss-card__en">I live in</div>
+      <span class="gloss-card__pron">ai liv in</span>
+      <div class="gloss-card__es">Yo vivo en</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">👨‍👩‍👧</span>
+      <div class="gloss-card__en">I have</div>
+      <span class="gloss-card__pron">ai jav</span>
+      <div class="gloss-card__es">Yo tengo</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🔮</span>
+      <div class="gloss-card__en">I plan to</div>
+      <span class="gloss-card__pron">ai plan tu</span>
+      <div class="gloss-card__es">Planeo</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">❤️</span>
+      <div class="gloss-card__en">I love</div>
+      <span class="gloss-card__pron">ai lav</span>
+      <div class="gloss-card__es">Me encanta</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">😊</span>
+      <div class="gloss-card__en">I like</div>
+      <span class="gloss-card__pron">ai laik</span>
+      <div class="gloss-card__es">Me gusta</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🌄</span>
+      <div class="gloss-card__en">countryside</div>
+      <span class="gloss-card__pron">cáun-tri-said</span>
+      <div class="gloss-card__es">Campo / Zona rural</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">👨‍🌾</span>
+      <div class="gloss-card__en">farmer</div>
+      <span class="gloss-card__pron">fár-mer</span>
+      <div class="gloss-card__es">Agricultor</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🌱</span>
+      <div class="gloss-card__en">nature</div>
+      <span class="gloss-card__pron">néi-chur</span>
+      <div class="gloss-card__es">Naturaleza</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🐄</span>
+      <div class="gloss-card__en">animals</div>
+      <span class="gloss-card__pron">án-i-mals</span>
+      <div class="gloss-card__es">Animales</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🤝</span>
+      <div class="gloss-card__en">Nice to meet you</div>
+      <span class="gloss-card__pron">nais tu mit iu</span>
+      <div class="gloss-card__es">Mucho gusto</div>
+    </div>
+        <div class="gloss-card">
+      <span class="gloss-card__emoji">🎓</span>
+      <div class="gloss-card__en">student</div>
+      <span class="gloss-card__pron">stiú-dent</span>
+      <div class="gloss-card__es">Estudiante</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🏫</span>
+      <div class="gloss-card__en">school</div>
+      <span class="gloss-card__pron">skul</span>
+      <div class="gloss-card__es">Escuela / Colegio</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">🌍</span>
+      <div class="gloss-card__en">future</div>
+      <span class="gloss-card__pron">fiú-chur</span>
+      <div class="gloss-card__es">Futuro</div>
+    </div>
+    <div class="gloss-card">
+      <span class="gloss-card__emoji">💬</span>
+      <div class="gloss-card__en">I want to</div>
+      <span class="gloss-card__pron">ai wont tu</span>
+      <div class="gloss-card__es">Quiero / Deseo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     NOTAS PEDAGÓGICAS PARA EL DOCENTE
+     ============================================================ 
+<div class="teacher-notes">
+  <div class="tn-title">
+    <span>📋</span> Notas Pedagógicas — Solo para el Docente (No imprimir con los estudiantes)
+  </div>
+  <ul class="tn-list">
+    <li>
+      Esta guía está diseñada para estudiantes de <strong>nivel básico en contexto rural</strong>.
+      No asuma conocimiento previo del idioma. Cada actividad incluye andamiaje (scaffolding)
+      con modelos, banco de palabras y traducciones.
+    </li>
+    <li>
+      Para la actividad de <strong>Listening (Actividad 4)</strong>, lea los textos de forma clara
+      y pausada, dos veces por audio. Si dispone de un celular con parlante, puede grabarlos
+      previamente para mayor autenticidad.
+    </li>
+    <li>
+      <strong>Grado 8°</strong> debe alcanzar los estándares 1.3, 1.8 y 1.9 —
+      enfóquese en que identifiquen ideas generales e infieran información del audio.
+      <strong>Grado 9°</strong> adiciona los estándares 1.1, 1.5 y 1.7 —
+      exija justificación con <em>"because"</em> y parafraseo.
+    </li>
+    <li>
+      La evaluación oral puede realizarse en la misma semana o en la siguiente sesión.
+      Permita que el estudiante lleve sus notas escritas como apoyo durante la presentación oral —
+      lo importante es la <strong>producción de lenguaje</strong>, no la memorización.
+    </li>
+    <li>
+      Para estudiantes con dificultades extra, acepte respuestas mixtas
+      (español + inglés) siempre que la estructura en inglés sea reconocible.
+      Valide el esfuerzo antes de corregir.
+    </li>
+    <li>
+      <strong>Materiales necesarios:</strong> Post-its o tiras de papel de colores,
+      marcadores, cartulina para el mural, y esta guía impresa (1 por estudiante).
+      No se requiere tecnología especial.
+    </li>
+  </ul>
+</div> -->
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <span class="footer__brand">📚 Área de Inglés — Período 3</span>
+  <span>Semana 1 · Grados 8° y 9° · Institución Educativa Técnica Camacho Angarita</span>
+  <span>Sede Chicalá</span>
+</footer>
+
+</div>
+</div>
+
+<script>
+
+  const AUDIOS = {
+    audio1: `Hello everyone! My name is Juan.
+             I am thirteen years old.
+             I live in a small village near the mountains.
+             I have three brothers and a big dog named Toby.
+             I love playing football and I like reading.
+             In the future, I plan to study engineering
+             because I love technology.
+             Nice to meet you all!`,
+
+    audio2: `Hi! My name is Valentina.
+             I am fifteen years old
+             and I live in the countryside with my family.
+             I have a horse and many chickens on our farm.
+             I like singing and I love dancing.
+             My dream is to become a teacher
+             because I want to help children
+             in rural communities learn English.
+             It is nice to meet you!`,
+
+    audio3: `Good morning! My name is Pedro.
+             I am fourteen years old.
+             I live in a village called La Esperanza.
+             I have two sisters and I love helping
+             my parents on the farm.
+             I like football and I enjoy listening to music.
+             In the future, I plan to study agronomy
+             because I want to improve farming in my community.`
+  };
+
+  function speakText(audioKey) {
+    window.speechSynthesis.cancel();
+
+    const utterance     = new SpeechSynthesisUtterance(AUDIOS[audioKey]);
+    utterance.lang      = 'en-US';
+    utterance.rate      = 0.82;
+    utterance.pitch     = 1.05;
+    utterance.volume    = 1.0;
+
+    // Espera a que las voces carguen y elige la mejor disponible
+    function assignVoiceAndSpeak() {
+      const voices    = window.speechSynthesis.getVoices();
+      const preferred =
+        voices.find(v => v.name === 'Google US English') ||
+        voices.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('female')) ||
+        voices.find(v => v.lang === 'en-US') ||
+        voices[0];
+
+      if (preferred) utterance.voice = preferred;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Chrome necesita esperar el evento voiceschanged la primera vez
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.addEventListener('voiceschanged', assignVoiceAndSpeak, { once: true });
+    } else {
+      assignVoiceAndSpeak();
+    }
+  }
+
+  function stopSpeech() {
+    window.speechSynthesis.cancel();
+  }
+
+</script>
+
+</body>
+</html>
