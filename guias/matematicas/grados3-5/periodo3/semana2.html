@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: División por una cifra | Semana 2 - Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde: #3DBE8C;
+            --azul: #1A9BAB;
+            --morado: #7C3AED;
+            --naranja: #F4872B;
+            --amarillo: #F7C325;
+            --texto: #2D3748;
+            --fondo: #F7FAFC;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        }
+
+        /* ══ HEADER ══ */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid var(--verde);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--azul);
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--naranja);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        /* ══ SECCIONES ══ */
+        .seccion {
+            margin-bottom: 28px;
+            padding: 20px 22px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border-left: 5px solid var(--azul);
+        }
+
+        .seccion h3 {
+            color: var(--azul);
+            margin-top: 0;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .seccion h3::before { content: "🌱"; }
+        .seccion-division h3::before { content: "➗"; color: var(--naranja); }
+        .seccion-algoritmo h3::before { content: "🔢"; color: var(--morado); }
+
+        /* ══ NIVEL CARDS ══ */
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado3 { border-color: var(--verde); }
+        .nivel-card.grado4 { border-color: var(--azul); }
+        .nivel-card.grado5 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -13px;
+            right: 15px;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.82rem;
+        }
+
+        .grado3 .nivel-badge { background: var(--verde); }
+        .grado4 .nivel-badge { background: var(--azul); }
+        .grado5 .nivel-badge { background: var(--morado); }
+
+        /* ══ MATERIALES ══ */
+        .materiales-box {
+            background: #FFFBE6;
+            border: 2px dashed var(--amarillo);
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+        }
+
+        .materiales-box strong { color: #B45309; }
+
+        /* ══ ACTIVIDADES ══ */
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .actividad-lista li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+            font-weight: bold;
+        }
+
+        /* ══ JUEGO / INTERACTIVAS ══ */
+        .juego-box {
+            background: linear-gradient(135deg, rgba(61,190,140,0.10), rgba(26,155,171,0.10));
+            border: 2px solid var(--verde);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 14px 0;
+        }
+
+        .juego-box h4 {
+            margin: 0 0 10px;
+            color: var(--verde);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ══ SIMULADOR DE DIVISIÓN (Grado 3) ══ */
+        .division-paso {
+            background: linear-gradient(135deg, #EFF6FF, #F0FDF4);
+            border: 2px solid var(--azul);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .division-visual {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 10px;
+            align-items: center;
+            justify-items: center;
+            margin: 20px 0;
+            font-weight: 800;
+            font-size: 1.8rem;
+        }
+
+        .div-numero {
+            background: white;
+            border: 3px solid var(--azul);
+            border-radius: 10px;
+            padding: 15px 20px;
+            min-width: 70px;
+        }
+
+        .div-simbolo {
+            font-size: 2rem;
+            color: var(--naranja);
+        }
+
+        .div-resultado {
+            background: linear-gradient(135deg, var(--verde), var(--azul));
+            color: white;
+            border-radius: 10px;
+            padding: 15px 20px;
+            min-width: 70px;
+        }
+
+        /* ══ PASO A PASO (Grado 4) ══ */
+        .paso-contenedor {
+            background: white;
+            border-left: 5px solid var(--morado);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+            display: none;
+        }
+
+        .paso-contenedor.activo { display: block; animation: slideIn 0.4s ease; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .paso-numero {
+            display: inline-block;
+            background: var(--morado);
+            color: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            font-weight: 800;
+            margin-right: 10px;
+        }
+
+        .paso-titulo {
+            font-weight: 800;
+            color: var(--morado);
+            margin-bottom: 8px;
+        }
+
+                /* ══ CALCULADORA INTERACTIVA MEJORADA ══ */
+        .calculadora {
+            background: linear-gradient(135deg, #2D3748 0%, #1A202C 100%);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .calc-pantalla {
+            background: linear-gradient(135deg, #1A202C, #0F1419);
+            color: #F7C325;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-align: right;
+            margin-bottom: 12px;
+            min-height: 60px;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            border: 2px solid #F7C325;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Operación Completa */
+        .calc-operacion {
+            background: rgba(247, 195, 37, 0.1);
+            border: 2px solid #F7C325;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 700;
+            color: #F7C325;
+            font-size: 1.1rem;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        #calc-operacion-texto {
+            font-size: 0.95rem;
+            color: #CBD5E0;
+        }
+
+        /* Procedimiento Manual */
+        .calc-procedimiento {
+            background: linear-gradient(135deg, rgba(61,190,140,0.15), rgba(26,155,171,0.15));
+            border: 2px solid var(--verde);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .proc-titulo {
+            font-weight: 800;
+            color: var(--verde);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .proc-contenido {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+            color: #2D3748;
+            line-height: 1.6;
+            max-height: 110px;
+            overflow-y: auto;
+            border-left: 4px solid var(--azul);
+        }
+
+        /* Botones */
+        .calc-botones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .calc-btn {
+            background: var(--azul);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .calc-btn:hover {
+            background: var(--morado);
+            transform: scale(1.05);
+        }
+
+        .calc-btn.operador {
+            background: var(--naranja);
+        }
+
+        .calc-btn.igual {
+            background: var(--verde);
+            grid-column: span 2;
+        }
+
+        .calc-btn.limpiar {
+            background: #E53E3E;
+            grid-column: span 2;
+        }
+
+        @media (max-width: 600px) {
+            .calculadora { max-width: 100%; padding: 15px; }
+            .calc-pantalla { font-size: 1.8rem; }
+            .calc-botones { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ══ TABLA DE ITERACIONES ══ */
+        .tabla-iteraciones {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        }
+
+        .tabla-iteraciones th {
+            padding: 10px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            background: var(--morado);
+        }
+
+        .tabla-iteraciones td {
+            padding: 8px;
+            border: 1px solid #E2E8F0;
+            text-align: center;
+        }
+
+        .tabla-iteraciones tr:nth-child(even) td { background: #F8FAFC; }
+        .tabla-iteraciones tr:hover td { background: rgba(122, 58, 237, 0.06); }
+
+        /* ══ TARJETAS DE PROBLEMAS ══ */
+        .problema-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+            transition: all 0.2s;
+        }
+
+        .problema-card:hover {
+            border-color: var(--morado);
+            box-shadow: 0 5px 15px rgba(122, 58, 237, 0.1);
+        }
+
+        .problema-numero {
+            display: inline-block;
+            background: var(--morado);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .problema-texto {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* ══ EVALUACIÓN ══ */
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--amarillo);
+            padding: 14px 18px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 14px;
+        }
+
+        .eval-box h4 { color: #B45309; margin: 0 0 8px; }
+
+        /* ══ REFLEXIÓN ══ */
+        .reflexion-box {
+            background: linear-gradient(135deg, rgba(61,190,140,0.10), rgba(26,155,171,0.10));
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--azul);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ══ TAGS ══ */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(26,155,171,0.12); color: var(--azul); }
+        .tag-objeto { background: rgba(124,58,237,0.12); color: var(--morado); }
+        .tag-ciudadana { background: rgba(61,190,140,0.12); color: #2A9B6A; }
+
+        /* ══ ESPACIO DE ESCRITURA ══ */
+        .lineas { margin-top: 10px; }
+
+        .linea {
+            border-bottom: 1.5px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        .espacio-escritura {
+            border: 2px dashed #CBD5E0;
+            border-radius: 10px;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #FAFAFA;
+        }
+
+        /* ══ TOAST ══ */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: white;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+            transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            z-index: 9999;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        /* ══ BOTONES ══ */
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, var(--verde), var(--azul));
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(61,190,140,0.35);
+            transition: all 0.3s;
+        }
+
+        .btn-print:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(61,190,140,0.45); }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--azul);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        .btn-paso {
+            background: var(--morado);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .btn-paso:hover { background: var(--azul); transform: translateY(-2px); }
+
+        /* ══ FOOTER ══ */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid #E2E8F0;
+            color: #718096;
+            font-size: 0.82rem;
+        }
+
+        .footer p { margin: 3px 0; }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 600px) {
+            .container { padding: 22px 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .division-visual { grid-template-columns: 1fr 1fr; }
+            .calc-botones { grid-template-columns: repeat(3, 1fr); }
+            .tabla-iteraciones { font-size: 0.75rem; }
+        }
+
+        /* ══ IMPRESIÓN ══ */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; padding: 20px; }
+            .btn-print, .btn-volver, #toast, .calculadora { display: none !important; }
+            .nivel-card, .seccion { break-inside: avoid; }
+            .espacio-escritura { background: white; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="toast"></div>
+
+    <!-- ══ BOTÓN IMPRIMIR ══ -->
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>➗ División por una cifra: Algoritmos y Problemas</h1>
+        <h2>Matemáticas · Semana 2 · Período 3</h2>
+        <p>Grados 3°, 4° y 5° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>
+            <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+            <strong>Fecha:</strong> _______________________
+        </p>
+        <p><strong>Nombre:</strong> _____________________________________________ &nbsp;
+           <strong>Grado:</strong> ________</p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: BIENVENIDA ══ -->
+    <div class="seccion">
+        <h3>🌿 El Reto de Hoy</h3>
+        <p>
+            En Chichalá, cuando don Efraín divide sus cosechas entre sus hijos, o cuando la Profe reparte
+            los colores entre los grupos, están usando el <strong>algoritmo de la división</strong> sin darse cuenta.
+            Hoy aprenderemos a dividir <strong>paso a paso</strong>, entendiendo qué significa cada número y qué hacer
+            con el resto. 🔢
+        </p>
+        <p>
+            La división no es solo un cálculo: es <strong>repartir, agrupar, analizar y resolver problemas</strong>
+            de la vida real. ¡Vamos a descubrirlo juntos! 💪
+        </p>
+    </div>
+
+    <!-- ══ MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Necesitamos hoy:</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+            <li>📓 Cuaderno y lápiz</li>
+            <li>🧮 Semillas, fichas o tapas (para repartir)</li>
+            <li>🔢 Calculadora (para verificar)</li>
+            <li>📱 Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 2: ¿QUÉ VAMOS A APRENDER? ══ -->
+    <div class="seccion">
+        <h3>🎯 ¿Qué vamos a aprender?</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Comprendo el <strong>algoritmo de la división</strong> paso a paso.
+            Resuelvo divisiones sencillas usando material concreto y visualización.</p>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Domino la <strong>división por una cifra</strong> y analizo el <strong>resto</strong>.
+            Resuelvo problemas que requieren iteraciones y verificación.</p>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Resuelvo <strong>problemas complejos</strong> con divisiones iterativas.
+            Uso la calculadora para verificar y analizo el significado del resto en contexto.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 3: CONCEPTOS CLAVE ══ -->
+    <div class="seccion seccion-division">
+        <h3>Conceptos clave</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>Algoritmo de la división:</strong> proceso paso a paso para dividir.<br>
+                1️⃣ Tomo cifras del dividendo<br>
+                2️⃣ Divido entre el divisor<br>
+                3️⃣ Multiplico y resto<br>
+                4️⃣ Bajo la siguiente cifra<br>
+                5️⃣ Repito hasta terminar
+            </p>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>División exacta:</strong> resto = 0<br>
+                <strong>División inexacta:</strong> resto ≠ 0<br>
+                <strong>Prueba de la división:</strong> (cociente × divisor) + resto = dividendo<br>
+                <strong>El resto siempre es menor que el divisor.</strong>
+            </p>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
+            <p>
+                <strong>Iteración:</strong> repetir un proceso hasta alcanzar un objetivo.<br>
+                <strong>Significado del resto:</strong> depende del contexto (dinero, objetos, etc.).<br>
+                <strong>División como operación inversa de la multiplicación.</strong><br>
+                <strong>Verificación con calculadora.</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: ACTIVIDADES PASO A PASO ══ -->
+    <div class="seccion seccion-algoritmo">
+        <h3>Actividades paso a paso</h3>
+
+        <!-- ─── GRADO 3 ─── -->
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3° · Algoritmo Visual</span>
+            
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+                Observa cómo funciona la división paso a paso:
+            </p>
+
+            <div class="division-paso">
+                <p style="font-size:0.9rem; font-weight:700; margin:0 0 15px;">Ejemplo: 24 ÷ 3 = ?</p>
+                
+                <div class="division-visual">
+                    <div class="div-numero">24</div>
+                    <div class="div-simbolo">÷</div>
+                    <div class="div-numero">3</div>
+                    <div class="div-simbolo">=</div>
+                    <div class="div-resultado">8</div>
+                </div>
+
+                <p style="font-size:0.85rem; color:#718096; margin:10px 0;">
+                    💡 24 ÷ 3 significa: "¿Cuántos grupos de 3 caben en 24?"<br>
+                    Respuesta: 8 grupos de 3 = 24 (división exacta, resto = 0)
+                </p>
+            </div>
+
+            <div class="juego-box">
+                <h4>✏️ Ahora tú</h4>
+                <p style="font-size:0.88rem;">
+                    Toma 12 semillas o fichas. Repártelas en 4 grupos iguales.<br>
+                    ¿Cuántas semillas hay en cada grupo? <strong>12 ÷ 4 = ___</strong>
+                </p>
+                <div class="espacio-escritura">
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── GRADO 4 ─── -->
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4° · División con Resto</span>
+            
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+                Aprende el algoritmo completo con resto. Haz clic en los botones para ver cada paso:
+            </p>
+
+            <div style="text-align:center; margin:15px 0;">
+                <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1</button>
+                <button class="btn-paso" onclick="mostrarPaso(2)">Paso 2</button>
+                <button class="btn-paso" onclick="mostrarPaso(3)">Paso 3</button>
+                <button class="btn-paso" onclick="mostrarPaso(4)">Paso 4</button>
+            </div>
+
+            <div id="paso-1" class="paso-contenedor activo">
+                <span class="paso-numero">1</span>
+                <span class="paso-titulo">Tomar cifras</span>
+                <p>En 47 ÷ 5, tomo el 4. ¿5 cabe en 4? No. Entonces tomo 47.</p>
+            </div>
+
+            <div id="paso-2" class="paso-contenedor">
+                <span class="paso-numero">2</span>
+                <span class="paso-titulo">Dividir</span>
+                <p>47 ÷ 5 = 9 (porque 5 × 9 = 45, que es el número más cercano sin pasarse)</p>
+            </div>
+
+            <div id="paso-3" class="paso-contenedor">
+                <span class="paso-numero">3</span>
+                <span class="paso-titulo">Restar</span>
+                <p>47 - 45 = 2. Este es el RESTO.</p>
+            </div>
+
+            <div id="paso-4" class="paso-contenedor">
+                <span class="paso-numero">4</span>
+                <span class="paso-titulo">Resultado</span>
+                <p><strong>47 ÷ 5 = 9 y resto 2</strong><br>
+                Verificación: (9 × 5) + 2 = 45 + 2 = 47 ✅</p>
+            </div>
+
+            <div class="juego-box" style="margin-top:15px;">
+                <h4>🔍 Problema del campo</h4>
+                <p style="font-size:0.88rem;">
+                    La mamá de Juan tiene <strong>38 huevos</strong> 🥚 y los quiere empacar en bandejas de 6.
+                    ¿Cuántas bandejas llena? ¿Cuántos huevos sobran?
+                </p>
+                <p style="font-weight:700; margin:10px 0;">38 ÷ 6 = ___ y resto ___</p>
+                <p style="font-size:0.85rem; color:#718096;">
+                    Verificación: (___ × 6) + ___ = 38 ✅
+                </p>
+                <div class="espacio-escritura">
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── GRADO 5 ─── -->
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5° · Problemas Iterativos y Calculadora</span>
+            
+            <p style="font-size:0.88rem; margin-bottom:12px;">
+                Resuelve problemas que requieren <strong>varias divisiones</strong> y usa la calculadora para verificar:
+            </p>
+
+                                  <!-- Calculadora Mejorada con Procedimiento Manual -->
+            <div class="calculadora" id="calculadora">
+                <!-- Pantalla Principal -->
+                <div class="calc-pantalla" id="calc-pantalla">0</div>
+                
+                <!-- Operación Completa -->
+                <div class="calc-operacion" id="calc-operacion">
+                    <span id="calc-operacion-texto">Ingresa números para comenzar</span>
+                </div>
+
+                <!-- Procedimiento Manual -->
+                <div class="calc-procedimiento" id="calc-procedimiento">
+                    <div class="proc-titulo">📝 Cómo se hace:</div>
+                    <div class="proc-contenido" id="proc-contenido">
+                        Aquí verás el paso a paso del cálculo
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="calc-botones">
+                    <button class="calc-btn limpiar" onclick="calcLimpiar()">C</button>
+                    <button class="calc-btn operador" onclick="calcOperador('/')">÷</button>
+                    <button class="calc-btn operador" onclick="calcOperador('*')">×</button>
+                    <button class="calc-btn" onclick="calcNumero('7')">7</button>
+                    <button class="calc-btn" onclick="calcNumero('8')">8</button>
+                    <button class="calc-btn" onclick="calcNumero('9')">9</button>
+                    <button class="calc-btn operador" onclick="calcOperador('-')">−</button>
+                    <button class="calc-btn" onclick="calcNumero('4')">4</button>
+                    <button class="calc-btn" onclick="calcNumero('5')">5</button>
+                    <button class="calc-btn" onclick="calcNumero('6')">6</button>
+                    <button class="calc-btn operador" onclick="calcOperador('+')">+</button>
+                    <button class="calc-btn" onclick="calcNumero('1')">1</button>
+                    <button class="calc-btn" onclick="calcNumero('2')">2</button>
+                    <button class="calc-btn" onclick="calcNumero('3')">3</button>
+                    <button class="calc-btn igual" onclick="calcIgual()">=</button>
+                    <button class="calc-btn" onclick="calcNumero('0')" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn operador" onclick="calcNumero('.')">.</button>
+                </div>
+            </div>
+
+            <div class="juego-box" style="margin-top:15px;">
+                <h4>🎯 Problema Iterativo 1: Las cosechas</h4>
+                <p style="font-size:0.88rem;">
+                    Don Efraín cosechó <strong>156 sacos de café</strong> en 3 semanas.
+                    Si cada semana cosechó la misma cantidad, ¿cuántos sacos por semana?<br>
+                    Luego, si vende cada saco a $45.000, ¿cuánto dinero gana en total?
+                </p>
+                <table class="tabla-iteraciones">
+                    <tr>
+                        <th>Paso</th>
+                        <th>Operación</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>1. Sacos por semana</td>
+                        <td>156 ÷ 3</td>
+                        <td>_____ sacos</td>
+                    </tr>
+                    <tr>
+                        <td>2. Dinero total</td>
+                        <td>_____ × $45.000</td>
+                        <td>$_________</td>
+                    </tr>
+                </table>
+                <p style="font-size:0.85rem; color:#718096; margin-top:10px;">
+                    Usa la calculadora para verificar tus respuestas ✅
+                </p>
+            </div>
+
+            <div class="juego-box">
+                <h4>🎯 Problema Iterativo 2: Distribución de semillas</h4>
+                <p style="font-size:0.88rem;">
+                    La Profe tiene <strong>240 semillas de maíz</strong> para repartir entre <strong>8 macetas</strong>.
+                    Si en cada maceta caben 6 semillas, ¿cuántas macetas puede llenar completamente?
+                    ¿Cuántas semillas sobran?
+                </p>
+                <table class="tabla-iteraciones">
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Operación</th>
+                        <th>Respuesta</th>
+                    </tr>
+                    <tr>
+                        <td>Semillas por maceta</td>
+                        <td>240 ÷ 8</td>
+                        <td>_____ semillas</td>
+                    </tr>
+                    <tr>
+                        <td>¿Cuántas sobran?</td>
+                        <td>Resto de la división</td>
+                        <td>_____ semillas</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 5: EJERCICIOS DE PRÁCTICA ══ -->
+    <div class="seccion">
+        <h3>Practiquemos juntos</h3>
+
+        <div class="nivel-card grado3">
+            <span class="nivel-badge">Grado 3°</span>
+            <p>Resuelve estas divisiones exactas:</p>
+            <div class="problema-card">
+                <span class="problema-numero">1</span>
+                <span class="problema-texto">15 ÷ 3 = ____</span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">2</span>
+                <span class="problema-texto">20 ÷ 4 = ____</span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">3</span>
+                <span class="problema-texto">18 ÷ 2 = ____</span>
+            </div>
+        </div>
+
+        <div class="nivel-card grado4">
+            <span class="nivel-badge">Grado 4°</span>
+            <p>Resuelve y verifica (cociente × divisor) + resto = dividendo:</p>
+            <div class="problema-card">
+                <span class="problema-numero">1</span>
+                <span class="problema-texto">29 ÷ 4 = ___ y resto ___<br>
+                Verificación: (___ × 4) + ___ = 29</span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">2</span>
+                <span class="problema-texto">45 ÷ 6 = ___ y resto ___<br>
+                Verificación: (___ × 6) + ___ = 45</span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">3</span>
+                <span class="problema-texto">73 ÷ 8 = ___ y resto ___<br>
+                Verificación: (___ × 8) + ___ = 73</span>
+            </div>
+        </div>
+
+        <div class="nivel-card grado5">
+            <span class="nivel-badge">Grado 5°</span>
+            <p>Problemas con contexto rural y análisis del resto:</p>
+            <div class="problema-card">
+                <span class="problema-numero">1</span>
+                <span class="problema-texto">
+                    🌾 Un agricultor tiene 125 plantas de yuca para sembrar en filas de 7 plantas cada una.
+                    ¿Cuántas filas completas hace? ¿Cuántas plantas sobran?
+                </span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">2</span>
+                <span class="problema-texto">
+                    🐔 Don Javier tiene 156 huevos para empacar en cajas de 12. ¿Cuántas cajas llena?
+                    ¿Cuántos huevos quedan sin empacar?
+                </span>
+            </div>
+            <div class="problema-card">
+                <span class="problema-numero">3</span>
+                <span class="problema-texto">
+                    💰 Si 5 personas trabajan en la cosecha y ganan $2.500 diarios cada una,
+                    ¿cuánto ganan en total en 8 días? (Requiere multiplicación y suma iterativa)
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: COMPETENCIA CIUDADANA ══ -->
+    <div class="seccion">
+        <h3>🤝 Convivencia y Reparto Justo</h3>
+        <span class="tag tag-ciudadana">Competencia Ciudadana</span>
+        <p style="margin-top:10px;">
+            La división es un acto de <strong>justicia y equidad</strong>. Cuando repartimos algo en partes iguales,
+            estamos siendo justos. En Chichalá, esto es parte de la cultura: compartir la cosecha, 
+            repartir el trabajo, ayudarse mutuamente.
+        </p>
+        <ul class="actividad-lista">
+            <li>Cuando divides algo justamente, todos reciben lo mismo.</li>
+            <li>El resto es lo que queda cuando no se puede dividir exactamente.</li>
+            <li>En la vida real, el resto tiene significado: puede ser dinero, semillas, tiempo...</li>
+        </ul>
+        <p>
+            <strong>Reflexión:</strong> ¿Cómo puedes usar la división para ser más justo en tu aula y en tu comunidad?
+        </p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 7: EVALUACIÓN ══ -->
+    <div class="seccion">
+        <h3>¿Cómo te fue hoy?</h3>
+
+        <div class="eval-box">
+            <h4>⭐ Rúbrica de autoevaluación</h4>
+            <p>Marca con una X según tu desempeño de hoy:</p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:8px;">
+                <tr style="background:#FFFBE6;">
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">Lo logré 😄</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">En proceso 🙂</th>
+                    <th style="padding:8px; border:1px solid #FCD34D; text-align:center;">Me faltó 😕</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Entendí el algoritmo de la división</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Resuelvo divisiones con resto</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Verifico mis respuestas correctamente</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Resuelvo problemas con iteraciones</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <p><strong>¿Qué fue lo más difícil de hoy? ¿Cómo lo resolví?</strong></p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 8: TAREA EN CASA ══ -->
+    <div class="seccion">
+        <h3>🏡 Tarea en casa · Detective de Divisiones</h3>
+        <p>
+            En tu casa o finca, busca <strong>3 situaciones donde se use la división</strong>
+            y escríbelas como problemas matemáticos:
+        </p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
+            <tr style="background:rgba(61,190,140,0.1);">
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">#</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Situación encontrada</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">División</th>
+                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Resultado</th>
+            </tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">1</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">2</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+            <tr><td style="padding:10px; border:1px solid #CBD5E0;">3</td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td><td style="border:1px solid #CBD5E0;"></td></tr>
+        </table>
+    </div>
+
+    <!-- ══ SECCIÓN 9: REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>
+            ➗ "La división es más que un cálculo...<br>
+            es <strong>justicia, equidad y comprensión del mundo</strong>.<br>
+            Cada vez que divides, estás resolviendo un problema real.<br>
+            <strong>¡Eres un matemático de la vida!"</strong>
+        </p>
+        <p style="font-size:0.78rem; margin-top:10px; color:#718096; font-style:italic;">
+            Profe Nelson · Matemáticas · IE Técnica Camacho Angarita · Sede Chichalá
+        </p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:6px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+    </div>
+
+</div><!-- fin .container -->
+
+<script>
+/* ══════════════════════════════════════════════
+   DIVISIÓN POR UNA CIFRA · ALGORITMOS Y PROBLEMAS
+   JavaScript · Profe Nelson
+   Grados 3°-4°-5° · Período 3 · Semana 2
+══════════════════════════════════════════════ */
+'use strict';
+
+// ─────────────────────────────────────────────
+// SONIDOS · Web Audio API
+// ─────────────────────────────────────────────
+const audioCtx = window.AudioContext
+  ? new AudioContext()
+  : window.webkitAudioContext
+    ? new webkitAudioContext()
+    : null;
+
+function sonar(tipo) {
+  if (!audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const configs = {
+    correcto:  { freq: [523, 659, 784],      dur: 0.12, gain: 0.3,  type: 'sine'     },
+    error:     { freq: [200, 150],            dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+    flip:      { freq: [440, 554],            dur: 0.08, gain: 0.2,  type: 'sine'     },
+    eureka:    { freq: [523, 659, 784, 1047], dur: 0.1,  gain: 0.25, type: 'sine'     },
+  };
+
+  const cfg = configs[tipo] || configs.flip;
+  cfg.freq.forEach((f, i) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type            = cfg.type;
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+    );
+    osc.start(audioCtx.currentTime + i * cfg.dur);
+    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+  });
+}
+
+// ─────────────────────────────────────────────
+// TOAST · Notificaciones
+// ─────────────────────────────────────────────
+function mostrarToast(mensaje, tipo = 'default') {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+
+  toast.textContent = mensaje;
+  toast.style.borderColor =
+    tipo === 'success' ? '#6EE7B7' :
+    tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
+  toast.style.color =
+    tipo === 'success' ? '#065F46' :
+    tipo === 'error'   ? '#991B1B' : '#92400E';
+
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  
+  setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(120px)';
+  }, 3000);
+}
+
+// ─────────────────────────────────────────────
+// PASOS DEL ALGORITMO · Grado 4
+// ─────────────────────────────────────────────
+function mostrarPaso(numPaso) {
+  for (let i = 1; i <= 4; i++) {
+    const paso = document.getElementById('paso-' + i);
+    if (paso) paso.classList.remove('activo');
+  }
+  
+  const pasoActual = document.getElementById('paso-' + numPaso);
+  if (pasoActual) {
+    pasoActual.classList.add('activo');
+    sonar('flip');
+    mostrarToast('📍 Paso ' + numPaso + ' del algoritmo', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CALCULADORA MEJORADA CON PROCEDIMIENTO MANUAL
+// ─────────────────────────────────────────────
+let calcValorActual = '0';
+let calcValorAnterior = null;
+let calcOperacion = null;
+let calcEsperandoSegundoValor = false;
+
+function calcActualizarPantalla() {
+  const pantalla = document.getElementById('calc-pantalla');
+  if (pantalla) {
+    pantalla.textContent = calcValorActual;
+  }
+}
+
+function calcActualizarOperacion() {
+  const operacionTexto = document.getElementById('calc-operacion-texto');
+  if (!operacionTexto) return;
+
+  if (calcOperacion === null) {
+    operacionTexto.textContent = calcValorActual;
+  } else {
+    const simbolo = calcOperacion === '*' ? '×' : calcOperacion === '/' ? '÷' : calcOperacion;
+    operacionTexto.textContent = calcValorAnterior + ' ' + simbolo + ' ' + calcValorActual;
+  }
+}
+
+function generarProcedimiento(a, op, b, resultado) {
+  const procContenido = document.getElementById('proc-contenido');
+  if (!procContenido) return;
+
+  let procedimiento = '';
+  const numA = parseFloat(a);
+  const numB = parseFloat(b);
+
+  switch (op) {
+    case '+':
+      procedimiento = `${numA} + ${numB} = ${resultado}`;
+      break;
+    case '-':
+      procedimiento = `${numA} - ${numB} = ${resultado}`;
+      break;
+    case '*':
+      procedimiento = `${numA} × ${numB}<br>`;
+      procedimiento += `= ${numB} repetido ${numA} veces<br>`;
+      if (numA <= 5) {
+        let suma = '';
+        for (let i = 0; i < numA; i++) {
+          suma += numB + (i < numA - 1 ? ' + ' : '');
+        }
+        procedimiento += `= ${suma}<br>`;
+      }
+      procedimiento += `= ${resultado}`;
+      break;
+    case '/':
+      procedimiento = `${numA} ÷ ${numB}<br>`;
+      procedimiento += `¿Cuántas veces cabe ${numB} en ${numA}?<br>`;
+      const cociente = Math.floor(numA / numB);
+      const resto = numA % numB;
+      procedimiento += `Cociente: ${cociente}<br>`;
+      if (resto > 0) {
+        procedimiento += `Resto: ${resto}<br>`;
+        procedimiento += `Verificación: (${cociente} × ${numB}) + ${resto} = ${numA}`;
+      } else {
+        procedimiento += `Verificación: ${cociente} × ${numB} = ${numA}`;
+      }
+      break;
+  }
+
+  procContenido.innerHTML = procedimiento;
+}
+
+function calcNumero(num) {
+  if (calcEsperandoSegundoValor) {
+    calcValorActual = num;
+    calcEsperandoSegundoValor = false;
+  } else {
+    calcValorActual = (calcValorActual === '0') ? num : calcValorActual + num;
+  }
+  calcActualizarPantalla();
+  calcActualizarOperacion();
+  sonar('flip');
+}
+
+function calcOperador(op) {
+  const entrada = parseFloat(calcValorActual);
+  
+  if (calcValorAnterior === null) {
+    calcValorAnterior = entrada;
+  } else if (!calcEsperandoSegundoValor) {
+    calcCalcular();
+    calcValorAnterior = parseFloat(calcValorActual);
+  }
+  
+  calcOperacion = op;
+  calcEsperandoSegundoValor = true;
+  calcActualizarOperacion();
+  sonar('flip');
+}
+
+function calcCalcular() {
+  if (calcOperacion === null || calcValorAnterior === null) return;
+  
+  const entrada = parseFloat(calcValorActual);
+  let resultado = 0;
+  
+  switch (calcOperacion) {
+    case '+':
+      resultado = calcValorAnterior + entrada;
+      break;
+    case '-':
+      resultado = calcValorAnterior - entrada;
+      break;
+    case '*':
+      resultado = calcValorAnterior * entrada;
+      break;
+    case '/':
+      if (entrada === 0) {
+        mostrarToast('❌ No se puede dividir por cero', 'error');
+        return;
+      }
+      resultado = calcValorAnterior / entrada;
+      break;
+    default:
+      return;
+  }
+  
+  // Generar procedimiento ANTES de redondear
+  generarProcedimiento(calcValorAnterior, calcOperacion, entrada, resultado);
+  
+  // Formatear resultado
+  resultado = Math.round(resultado * 1000000) / 1000000;
+  calcValorActual = String(resultado);
+  calcValorAnterior = null;
+  calcOperacion = null;
+  calcEsperandoSegundoValor = true;
+  
+  calcActualizarPantalla();
+  calcActualizarOperacion();
+  sonar('correcto');
+  mostrarToast('✅ Resultado: ' + calcValorActual, 'success');
+}
+
+function calcIgual() {
+  calcCalcular();
+}
+
+function calcLimpiar() {
+  calcValorActual = '0';
+  calcValorAnterior = null;
+  calcOperacion = null;
+  calcEsperandoSegundoValor = false;
+  calcActualizarPantalla();
+  
+  const operacionTexto = document.getElementById('calc-operacion-texto');
+  if (operacionTexto) {
+    operacionTexto.textContent = 'Ingresa números para comenzar';
+  }
+  
+  const procContenido = document.getElementById('proc-contenido');
+  if (procContenido) {
+    procContenido.innerHTML = 'Aquí verás el paso a paso del cálculo';
+  }
+  
+  sonar('flip');
+  mostrarToast('🗑️ Limpiado', 'success');
+}
+// ─────────────────────────────────────────────
+// MARCAR EVALUACIÓN
+// ─────────────────────────────────────────────
+function marcarEval(celda) {
+  const fila = celda.closest('tr');
+  const celdas = fila.querySelectorAll('span[onclick]');
+  const yaEstaba = celda.textContent === '☑';
+
+  celdas.forEach(function(c) { c.textContent = '☐'; });
+
+  if (!yaEstaba) {
+    celda.textContent = '☑';
+    sonar('flip');
+    mostrarToast('✅ ¡Evaluación guardada!', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CONFETI
+// ─────────────────────────────────────────────
+function lanzarConfeti() {
+  const emojis = ['➗','🌿','🌱','⭐','🎉','🏆','✨','🫘','🔢','📊'];
+  for (let i = 0; i < 25; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position: fixed;
+      top: -40px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${1.5 + Math.random() * 1.5}rem;
+      animation: caerConfeti ${2 + Math.random() * 2}s ease-in forwards;
+      z-index: 9998;
+      pointer-events: none;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(function() { el.remove(); }, 4500);
+  }
+}
+
+// ─────────────────────────────────────────────
+// ESTILOS DINÁMICOS
+// ─────────────────────────────────────────────
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+  @keyframes caerConfeti {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+  }
+`;
+document.head.appendChild(styleSheet);
+
+// ─────────────────────────────────────────────
+// DOMContentLoaded · INICIALIZACIÓN
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    mostrarToast('➗ ¡Bienvenido! La calculadora está lista 🚀', 'success');
+    sonar('eureka');
+  }, 800);
+  
+  let confetiLanzado = false;
+  window.addEventListener('scroll', function() {
+    if (!confetiLanzado && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+      confetiLanzado = true;
+      setTimeout(function() {
+        lanzarConfeti();
+        mostrarToast('🏆 ¡Excelente trabajo!', 'success');
+        sonar('eureka');
+      }, 500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
