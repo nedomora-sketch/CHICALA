@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía: ¡A Repartir en Chichalá! | Semana 1 - Período 3</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        /* ══════════════════════════════════════════
+           VARIABLES GLOBALES DE COLOR Y TIPOGRAFÍA
+        ══════════════════════════════════════════ */
         :root {
-            --verde:   #3DBE8C;
-            --azul:    #1A9BAB;
-            --morado:  #7C3AED;
-            --naranja: #F4872B;
-            --amarillo:#F7C325;
-            --rosa:    #EC4899;
-            --texto:   #2D3748;
-            --fondo:   #F7FAFC;
+            --verde:    #3DBE8C;
+            --azul:     #1A9BAB;
+            --morado:   #7C3AED;
+            --naranja:  #F4872B;
+            --amarillo: #F7C325;
+            --rosa:     #EC4899;
+            --texto:    #2D3748;
+            --fondo:    #F7FAFC;
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
+        /* ══════════════════════════════════════════
+           RESET Y BASE
+        ══════════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Nunito', sans-serif;
@@ -28,16 +37,21 @@
             line-height: 1.6;
         }
 
+        /* ══════════════════════════════════════════
+           CONTENEDOR PRINCIPAL
+        ══════════════════════════════════════════ */
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: white;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
         }
 
-        /* ══ HEADER ══ */
+        /* ══════════════════════════════════════════
+           ENCABEZADO
+        ══════════════════════════════════════════ */
         .header {
             text-align: center;
             border-bottom: 4px solid var(--verde);
@@ -65,7 +79,9 @@
             margin: 5px 0;
         }
 
-        /* ══ SECCIONES ══ */
+        /* ══════════════════════════════════════════
+           SECCIONES GENERALES
+        ══════════════════════════════════════════ */
         .seccion {
             margin-bottom: 28px;
             padding: 20px 22px;
@@ -83,7 +99,9 @@
             gap: 8px;
         }
 
-        /* ══ NIVEL CARDS ══ */
+        /* ══════════════════════════════════════════
+           TARJETAS POR NIVEL / GRADO
+        ══════════════════════════════════════════ */
         .nivel-card {
             background: white;
             border: 2px solid #e2e8f0;
@@ -112,7 +130,9 @@
         .grado4 .nivel-badge { background: var(--azul);   }
         .grado5 .nivel-badge { background: var(--morado); }
 
-        /* ══ MATERIALES ══ */
+        /* ══════════════════════════════════════════
+           CAJA DE MATERIALES
+        ══════════════════════════════════════════ */
         .materiales-box {
             background: #FFFBE6;
             border: 2px dashed var(--amarillo);
@@ -121,9 +141,13 @@
             margin-bottom: 22px;
         }
 
-        .materiales-box strong { color: #B45309; }
+        .materiales-box strong {
+            color: #B45309;
+        }
 
-        /* ══ ACTIVIDADES ══ */
+        /* ══════════════════════════════════════════
+           LISTA DE ACTIVIDADES
+        ══════════════════════════════════════════ */
         .actividad-lista {
             list-style: none;
             padding: 0;
@@ -143,10 +167,11 @@
             left: 0;
         }
 
-        /* ══ JUEGO / TARJETAS LÚDICAS ══ */
+        /* ══════════════════════════════════════════
+           CAJA DE JUEGO / TARJETAS LÚDICAS
+        ══════════════════════════════════════════ */
         .juego-box {
-            background: linear-gradient(135deg,
-                rgba(61,190,140,0.10), rgba(26,155,171,0.10));
+            background: linear-gradient(135deg, rgba(61,190,140,0.10), rgba(26,155,171,0.10));
             border: 2px solid var(--verde);
             border-radius: 14px;
             padding: 18px 20px;
@@ -162,7 +187,9 @@
             gap: 6px;
         }
 
-        /* Tarjetas de reparto visual */
+        /* ══════════════════════════════════════════
+           VISUALIZACIÓN DE REPARTO
+        ══════════════════════════════════════════ */
         .reparto-visual {
             display: flex;
             flex-wrap: wrap;
@@ -192,7 +219,7 @@
             font-weight: 900;
         }
 
-        /* Grupo de reparto */
+        /* Grupos de reparto visual */
         .grupos-reparto {
             display: flex;
             gap: 12px;
@@ -219,7 +246,9 @@
             margin-top: 4px;
         }
 
-        /* ══ SÍMBOLO ÷ ANIMADO ══ */
+        /* ══════════════════════════════════════════
+           TÉRMINOS DE LA DIVISIÓN (ANIMADOS)
+        ══════════════════════════════════════════ */
         .simbolo-division {
             display: flex;
             align-items: center;
@@ -239,11 +268,7 @@
             min-width: 80px;
         }
 
-        .termino-box .valor {
-            font-size: 2rem;
-            font-weight: 900;
-        }
-
+        .termino-box .valor   { font-size: 2rem;   font-weight: 900; }
         .termino-box .etiqueta {
             font-size: 0.70rem;
             font-weight: 800;
@@ -251,15 +276,17 @@
             margin-top: 2px;
         }
 
-        .t-dividendo { background: rgba(26,155,171,0.12);  color: var(--azul);   }
-        .t-dividendo .etiqueta { color: var(--azul); }
-        .t-divisor   { background: rgba(244,135,43,0.12);  color: var(--naranja);}
-        .t-divisor .etiqueta { color: var(--naranja); }
-        .t-igual     { font-size: 2.2rem; font-weight: 900; color: var(--morado); }
-        .t-cociente  { background: rgba(61,190,140,0.12);  color: var(--verde);  }
-        .t-cociente .etiqueta { color: var(--verde); }
+        .t-dividendo            { background: rgba(26,155,171,0.12); color: var(--azul);    }
+        .t-dividendo .etiqueta  { color: var(--azul);    }
+        .t-divisor              { background: rgba(244,135,43,0.12); color: var(--naranja); }
+        .t-divisor   .etiqueta  { color: var(--naranja); }
+        .t-igual                { font-size: 2.2rem; font-weight: 900; color: var(--morado); }
+        .t-cociente             { background: rgba(61,190,140,0.12); color: var(--verde);   }
+        .t-cociente  .etiqueta  { color: var(--verde);   }
 
-        /* ══ QUIZ INTERACTIVO ══ */
+        /* ══════════════════════════════════════════
+           QUIZ INTERACTIVO
+        ══════════════════════════════════════════ */
         .quiz-wrap {
             background: linear-gradient(135deg, #FDF4FF, #F5F3FF);
             border: 2px solid var(--morado);
@@ -283,11 +310,14 @@
             display: none;
         }
 
-        .quiz-pregunta.activa { display: block; animation: aparecer 0.4s ease; }
+        .quiz-pregunta.activa {
+            display: block;
+            animation: aparecer 0.4s ease;
+        }
 
         @keyframes aparecer {
             from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0);   }
         }
 
         .quiz-enunciado {
@@ -322,9 +352,9 @@
             transform: translateY(-2px);
         }
 
-        .quiz-btn.correcta  { background: rgba(61,190,140,0.15); border-color: var(--verde);  color: #065F46; }
-        .quiz-btn.incorrecta{ background: rgba(239,68,68,0.10);  border-color: #EF4444;       color: #991B1B; }
-        .quiz-btn:disabled  { cursor: default; transform: none; }
+        .quiz-btn.correcta   { background: rgba(61,190,140,0.15); border-color: var(--verde); color: #065F46; }
+        .quiz-btn.incorrecta { background: rgba(239,68,68,0.10);  border-color: #EF4444;      color: #991B1B; }
+        .quiz-btn:disabled   { cursor: default; transform: none; }
 
         .quiz-feedback {
             margin-top: 10px;
@@ -335,8 +365,8 @@
             display: none;
         }
 
-        .quiz-feedback.correcto  { display: block; background: rgba(61,190,140,0.12); color: #065F46; }
-        .quiz-feedback.incorrecto{ display: block; background: rgba(239,68,68,0.08);  color: #991B1B; }
+        .quiz-feedback.correcto   { display: block; background: rgba(61,190,140,0.12); color: #065F46; }
+        .quiz-feedback.incorrecto { display: block; background: rgba(239,68,68,0.08);  color: #991B1B; }
 
         .quiz-puntaje {
             font-family: 'Nunito', sans-serif;
@@ -364,7 +394,9 @@
 
         .quiz-siguiente:hover { transform: translateY(-2px); }
 
-        /* ══ RULETA DE REPARTO (Grado 3) ══ */
+        /* ══════════════════════════════════════════
+           TARJETAS VOLTEABLES (GRADO 3)
+        ══════════════════════════════════════════ */
         .ruleta-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -399,7 +431,9 @@
         .ruleta-card.volteada .cara-frente { display: none; }
         .ruleta-card.volteada .cara-atras  { display: block; }
 
-        /* ══ TABLA MULTIPLICAR ↔ DIVIDIR ══ */
+        /* ══════════════════════════════════════════
+           TABLA MULTIPLICACIÓN ↔ DIVISIÓN (GRADO 4)
+        ══════════════════════════════════════════ */
         .tabla-rel {
             width: 100%;
             border-collapse: collapse;
@@ -407,7 +441,7 @@
             margin: 12px 0;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
         }
 
         .tabla-rel th {
@@ -417,9 +451,9 @@
             text-align: center;
         }
 
-        .tabla-rel th.col-mult { background: var(--azul);   }
-        .tabla-rel th.col-div  { background: var(--morado); }
-        .tabla-rel th.col-rel  { background: var(--naranja);}
+        .tabla-rel th.col-mult { background: var(--azul);    }
+        .tabla-rel th.col-div  { background: var(--morado);  }
+        .tabla-rel th.col-rel  { background: var(--naranja); }
 
         .tabla-rel td {
             padding: 9px 12px;
@@ -428,9 +462,11 @@
         }
 
         .tabla-rel tr:nth-child(even) td { background: #F8FAFC; }
-        .tabla-rel tr:hover td { background: rgba(26,155,171,0.06); }
+        .tabla-rel tr:hover td           { background: rgba(26,155,171,0.06); }
 
-        /* ══ EVALUACIÓN ══ */
+        /* ══════════════════════════════════════════
+           CAJA DE EVALUACIÓN Y REFLEXIÓN
+        ══════════════════════════════════════════ */
         .eval-box {
             background: #FFFBEB;
             border-left: 5px solid var(--amarillo);
@@ -441,10 +477,8 @@
 
         .eval-box h4 { color: #B45309; margin: 0 0 8px; }
 
-        /* ══ REFLEXIÓN ══ */
         .reflexion-box {
-            background: linear-gradient(135deg,
-                rgba(61,190,140,0.10), rgba(26,155,171,0.10));
+            background: linear-gradient(135deg, rgba(61,190,140,0.10), rgba(26,155,171,0.10));
             border-radius: 14px;
             padding: 20px;
             text-align: center;
@@ -458,7 +492,9 @@
             line-height: 1.7;
         }
 
-        /* ══ TAGS ══ */
+        /* ══════════════════════════════════════════
+           ETIQUETAS / TAGS
+        ══════════════════════════════════════════ */
         .tag {
             display: inline-block;
             padding: 3px 12px;
@@ -473,7 +509,9 @@
         .tag-objeto    { background: rgba(124,58,237,0.12); color: var(--morado); }
         .tag-ciudadana { background: rgba(61,190,140,0.12); color: #2A9B6A;       }
 
-        /* ══ ESPACIO DE ESCRITURA ══ */
+        /* ══════════════════════════════════════════
+           ESPACIOS DE ESCRITURA Y DIBUJO
+        ══════════════════════════════════════════ */
         .lineas { margin-top: 10px; }
 
         .linea {
@@ -496,7 +534,9 @@
             font-weight: 700;
         }
 
-        /* ══ BOTONES ══ */
+        /* ══════════════════════════════════════════
+           BOTONES
+        ══════════════════════════════════════════ */
         .btn-print {
             display: block;
             width: fit-content;
@@ -514,7 +554,10 @@
             transition: all 0.3s;
         }
 
-        .btn-print:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(61,190,140,0.45); }
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(61,190,140,0.45);
+        }
 
         .btn-volver {
             display: inline-block;
@@ -527,19 +570,9 @@
 
         .btn-volver:hover { text-decoration: underline; }
 
-        /* ══ FOOTER ══ */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 18px;
-            border-top: 1px solid #E2E8F0;
-            color: #718096;
-            font-size: 0.82rem;
-        }
-
-        .footer p { margin: 3px 0; }
-
-        /* ══ TOAST ══ */
+        /* ══════════════════════════════════════════
+           TOAST (NOTIFICACIÓN FLOTANTE)
+        ══════════════════════════════════════════ */
         #toast {
             position: fixed;
             bottom: 28px;
@@ -551,8 +584,8 @@
             font-family: 'Nunito', sans-serif;
             font-size: 0.92rem;
             font-weight: 700;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
-            transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 9999;
             border: 2px solid transparent;
             white-space: nowrap;
@@ -560,39 +593,62 @@
             text-align: center;
         }
 
-        /* ══ RESPONSIVE ══ */
-        @media (max-width: 600px) {
-            .container         { padding: 22px 16px; }
-            .header h1         { font-size: 1.5rem; }
-            .quiz-opciones     { grid-template-columns: 1fr; }
-            .simbolo-division  { gap: 8px; }
-            .termino-box .valor{ font-size: 1.5rem; }
-            .ruleta-grid       { grid-template-columns: repeat(2, 1fr); }
+        /* ══════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════ */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid #E2E8F0;
+            color: #718096;
+            font-size: 0.82rem;
         }
 
-        /* ══ IMPRESIÓN ══ */
+        .footer p { margin: 3px 0; }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE · MÓVIL
+        ══════════════════════════════════════════ */
+        @media (max-width: 600px) {
+            .container            { padding: 22px 16px; }
+            .header h1            { font-size: 1.5rem; }
+            .quiz-opciones        { grid-template-columns: 1fr; }
+            .simbolo-division     { gap: 8px; }
+            .termino-box .valor   { font-size: 1.5rem; }
+            .ruleta-grid          { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ══════════════════════════════════════════
+           IMPRESIÓN / EXPORTAR PDF
+        ══════════════════════════════════════════ */
         @media print {
-            body           { background: white; padding: 0; }
-            .container     { box-shadow: none; border-radius: 0; padding: 20px; }
+            body          { background: white; padding: 0; }
+            .container    { box-shadow: none; border-radius: 0; padding: 20px; }
             .btn-print,
             .btn-volver,
-            #toast         { display: none !important; }
+            #toast        { display: none !important; }
             .nivel-card,
-            .seccion       { break-inside: avoid; }
+            .seccion      { break-inside: avoid; }
             .quiz-wrap,
-            .juego-box     { break-inside: avoid; }
-            .espacio-dibujo{ background: white; }
+            .juego-box    { break-inside: avoid; }
+            .espacio-dibujo { background: white; }
         }
     </style>
 </head>
+
 <body>
 <div class="container">
+
+    <!-- TOAST DE NOTIFICACIONES -->
     <div id="toast"></div>
 
     <!-- ══ BOTÓN IMPRIMIR ══ -->
     <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
 
-    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
+    <!-- ══════════════════════════════════════════
+         ENCABEZADO INSTITUCIONAL
+    ══════════════════════════════════════════ -->
     <div class="header">
         <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
         <h1>➗ ¡A Repartir en Chichalá!</h1>
@@ -602,11 +658,15 @@
             <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
             <strong>Fecha:</strong> _______________________
         </p>
-        <p><strong>Nombre:</strong> _____________________________________________ &nbsp;
-           <strong>Grado:</strong> ________</p>
+        <p>
+            <strong>Nombre:</strong> _____________________________________________
+            &nbsp;<strong>Grado:</strong> ________
+        </p>
     </div>
 
-    <!-- ══ SECCIÓN 1: BIENVENIDA ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 1 · BIENVENIDA / RETO DEL DÍA
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🌿 El Reto de Hoy</h3>
         <p>
@@ -620,7 +680,9 @@
         </p>
     </div>
 
-    <!-- ══ MATERIALES ══ -->
+    <!-- ══════════════════════════════════════════
+         MATERIALES NECESARIOS
+    ══════════════════════════════════════════ -->
     <div class="materiales-box">
         <strong>🧺 Necesitamos hoy:</strong>
         <ul style="margin: 8px 0 0; padding-left: 20px;">
@@ -631,52 +693,62 @@
         </ul>
     </div>
 
-    <!-- ══ SECCIÓN 2: ¿QUÉ VAMOS A APRENDER? ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 2 · OBJETIVOS POR GRADO
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🎯 ¿Qué vamos a aprender?</h3>
 
         <div class="nivel-card grado3">
             <span class="nivel-badge">Grado 3°</span>
             <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Comprendo el <strong>signo ÷</strong> y sus términos (dividendo, divisor, cociente).
-            Resuelvo divisiones sencillas usando mis dedos, semillas o dibujitos. 🫘</p>
+            <p>
+                Comprendo el <strong>signo ÷</strong> y sus términos (dividendo, divisor, cociente).
+                Resuelvo divisiones sencillas usando mis dedos, semillas o dibujitos. 🫘
+            </p>
         </div>
 
         <div class="nivel-card grado4">
             <span class="nivel-badge">Grado 4°</span>
             <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Entiendo la <strong>relación entre división y multiplicación</strong>.
-            Resuelvo divisiones por una cifra usando las tablas del 2 al 9. 🔢</p>
+            <p>
+                Entiendo la <strong>relación entre división y multiplicación</strong>.
+                Resuelvo divisiones por una cifra usando las tablas del 2 al 9. 🔢
+            </p>
         </div>
 
         <div class="nivel-card grado5">
             <span class="nivel-badge">Grado 5°</span>
             <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Comprendo situaciones de <strong>reparto y agrupamiento</strong>.
-            Resuelvo divisiones exactas e inexactas y las verifico multiplicando. ✅</p>
+            <p>
+                Comprendo situaciones de <strong>reparto y agrupamiento</strong>.
+                Resuelvo divisiones exactas e inexactas y las verifico multiplicando. ✅
+            </p>
         </div>
     </div>
 
-    <!-- ══ SECCIÓN 3: EL SIGNO ÷ Y SUS TÉRMINOS ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 3 · EL SIGNO ÷ Y SUS TÉRMINOS
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>➗ El signo ÷ y sus partes</h3>
 
-        <p style="font-size:0.92rem;">
+        <p style="font-size: 0.92rem;">
             <strong>Ejemplo del campo:</strong> Don Efraín tiene
             <strong>12 mazorcas</strong> y quiere repartirlas entre
             <strong>4 hijos</strong>. ¿Cuántas le tocan a cada uno?
         </p>
 
-        <!-- Visual del reparto -->
+        <!-- Visualización del reparto con emojis -->
         <div class="reparto-visual">
-            <span style="font-size:1.8rem;">🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽</span>
+            <span style="font-size: 1.8rem;">🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽</span>
             <span class="flecha-div">➗</span>
-            <span style="font-size:1.8rem;">👦👦👦👦</span>
+            <span style="font-size: 1.8rem;">👦👦👦👦</span>
             <span class="flecha-div">=</span>
-            <span style="font-size:2rem; font-weight:900; color:var(--verde);">3 🌽</span>
+            <span style="font-size: 2rem; font-weight: 900; color: var(--verde);">3 🌽</span>
         </div>
 
-        <!-- Términos animados -->
+        <!-- Términos de la división -->
         <div class="simbolo-division">
             <div class="termino-box t-dividendo">
                 <div class="valor">12</div>
@@ -694,7 +766,7 @@
             </div>
         </div>
 
-        <!-- Grupos visuales -->
+        <!-- Grupos visuales del reparto -->
         <div class="grupos-reparto">
             <div class="grupo-card">🌽🌽🌽<span>Hijo 1</span></div>
             <div class="grupo-card">🌽🌽🌽<span>Hijo 2</span></div>
@@ -702,86 +774,87 @@
             <div class="grupo-card">🌽🌽🌽<span>Hijo 4</span></div>
         </div>
 
-        <p style="font-size:0.85rem; color:#718096; text-align:center; margin-top:6px;">
+        <p style="font-size: 0.85rem; color: #718096; text-align: center; margin-top: 6px;">
             💡 ¡Pruébalo tú! Toma 12 semillas o piedritas y repártelas entre 4 grupos.
         </p>
     </div>
 
-    <!-- ══ SECCIÓN 4: ACTIVIDADES POR GRADO ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 4 · ACTIVIDADES POR GRADO
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🎮 ¡Manos a la obra!</h3>
 
-        <!-- ─── GRADO 3 ─── -->
+        <!-- ─── GRADO 3 · Tarjetas Volteables ─── -->
         <div class="nivel-card grado3">
             <span class="nivel-badge">Grado 3° · ¡Voltea la tarjeta!</span>
 
-            <p style="font-size:0.88rem; margin-bottom:12px;">
+            <p style="font-size: 0.88rem; margin-bottom: 12px;">
                 Toca cada tarjeta para ver la división del campo. 🃏
             </p>
 
             <div class="ruleta-grid" id="ruleta-g3">
-                <!-- Tarjetas generadas por JS -->
+                <!-- Generado dinámicamente por JavaScript -->
             </div>
 
-            <div class="juego-box" style="margin-top:16px;">
+            <div class="juego-box" style="margin-top: 16px;">
                 <h4>✏️ Ahora escribe tú</h4>
-                <p style="font-size:0.88rem; margin-bottom:10px;">
+                <p style="font-size: 0.88rem; margin-bottom: 10px;">
                     Don Efraín tiene <strong>8 mangos</strong> 🥭 y los reparte entre
                     <strong>2 canastos</strong>. Escribe la división y dibuja el reparto:
                 </p>
-                <p style="font-weight:800; text-align:center; font-size:1.1rem;">
+                <p style="font-weight: 800; text-align: center; font-size: 1.1rem;">
                     ___ ÷ ___ = ___
                 </p>
                 <div class="espacio-dibujo">✏️ Dibuja los mangos en los canastos</div>
             </div>
         </div>
 
-        <!-- ─── GRADO 4 ─── -->
+        <!-- ─── GRADO 4 · División ↔ Multiplicación ─── -->
         <div class="nivel-card grado4">
             <span class="nivel-badge">Grado 4° · División ↔ Multiplicación</span>
 
-            <p style="font-size:0.88rem; margin-bottom:10px;">
+            <p style="font-size: 0.88rem; margin-bottom: 10px;">
                 <strong>¡La multiplicación y la división son amigas!</strong>
                 Si conoces una, conoces la otra 🤝
             </p>
 
-            <!-- Tabla relación -->
             <table class="tabla-rel">
                 <tr>
                     <th class="col-mult">✖️ Multiplicación</th>
-                    <th class="col-rel" style="font-size:1.2rem;">↔</th>
+                    <th class="col-rel" style="font-size: 1.2rem;">↔</th>
                     <th class="col-div">➗ División</th>
                 </tr>
                 <tr>
                     <td>3 × 4 = 12</td>
-                    <td style="font-weight:800; color:var(--naranja);">↔</td>
+                    <td style="font-weight: 800; color: var(--naranja);">↔</td>
                     <td>12 ÷ 4 = 3</td>
                 </tr>
                 <tr>
                     <td>5 × 6 = 30</td>
-                    <td style="font-weight:800; color:var(--naranja);">↔</td>
+                    <td style="font-weight: 800; color: var(--naranja);">↔</td>
                     <td>30 ÷ 6 = __</td>
                 </tr>
                 <tr>
                     <td>7 × 3 = __</td>
-                    <td style="font-weight:800; color:var(--naranja);">↔</td>
+                    <td style="font-weight: 800; color: var(--naranja);">↔</td>
                     <td>21 ÷ 3 = __</td>
                 </tr>
                 <tr>
                     <td>8 × 4 = __</td>
-                    <td style="font-weight:800; color:var(--naranja);">↔</td>
+                    <td style="font-weight: 800; color: var(--naranja);">↔</td>
                     <td>32 ÷ 4 = __</td>
                 </tr>
                 <tr>
                     <td>9 × 5 = __</td>
-                    <td style="font-weight:800; color:var(--naranja);">↔</td>
+                    <td style="font-weight: 800; color: var(--naranja);">↔</td>
                     <td>45 ÷ 5 = __</td>
                 </tr>
             </table>
 
             <div class="juego-box">
                 <h4>🌾 Problema del campo</h4>
-                <p style="font-size:0.88rem;">
+                <p style="font-size: 0.88rem;">
                     La mamá de Juan recogió <strong>36 limones</strong> 🍋 y los metió en
                     bolsas de <strong>9</strong>. ¿Cuántas bolsas llenó?
                     <strong>Escribe la división y verifica multiplicando:</strong>
@@ -793,33 +866,33 @@
             </div>
         </div>
 
-        <!-- ─── GRADO 5 ─── -->
+        <!-- ─── GRADO 5 · Reparto y Agrupamiento ─── -->
         <div class="nivel-card grado5">
             <span class="nivel-badge">Grado 5° · Reparto y Agrupamiento</span>
 
-            <p style="font-size:0.88rem; margin-bottom:10px;">
+            <p style="font-size: 0.88rem; margin-bottom: 10px;">
                 Hay <strong>dos formas</strong> de entender la división: 🔢
             </p>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
-                <div style="background:rgba(26,155,171,0.08); border:2px solid var(--azul);
-                    border-radius:12px; padding:14px; text-align:center;">
-                    <div style="font-size:1.6rem; margin-bottom:6px;">🫘🫘🫘🫘🫘🫘</div>
-                    <div style="font-weight:800; color:var(--azul); font-size:0.85rem;">
-                        REPARTO
-                    </div>
-                    <div style="font-size:0.78rem; margin-top:4px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+
+                <!-- Tipo: Reparto -->
+                <div style="background: rgba(26,155,171,0.08); border: 2px solid var(--azul);
+                     border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.6rem; margin-bottom: 6px;">🫘🫘🫘🫘🫘🫘</div>
+                    <div style="font-weight: 800; color: var(--azul); font-size: 0.85rem;">REPARTO</div>
+                    <div style="font-size: 0.78rem; margin-top: 4px;">
                         "6 frijoles entre 3 niños"<br/>
-                        <strong>6 ÷ 3 = 2 cada uno</strong>
+                        <strong>6 ÷ 3                         = 2 cada uno</strong>
                     </div>
                 </div>
-                <div style="background:rgba(124,58,237,0.08); border:2px solid var(--morado);
-                    border-radius:12px; padding:14px; text-align:center;">
-                    <div style="font-size:1.6rem; margin-bottom:6px;">🫘🫘 | 🫘🫘 | 🫘🫘</div>
-                    <div style="font-weight:800; color:var(--morado); font-size:0.85rem;">
-                        AGRUPAMIENTO
-                    </div>
-                    <div style="font-size:0.78rem; margin-top:4px;">
+
+                <!-- Tipo: Agrupamiento -->
+                <div style="background: rgba(124,58,237,0.08); border: 2px solid var(--morado);
+                     border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.6rem; margin-bottom: 6px;">🫘🫘 | 🫘🫘 | 🫘🫘</div>
+                    <div style="font-weight: 800; color: var(--morado); font-size: 0.85rem;">AGRUPAMIENTO</div>
+                    <div style="font-size: 0.78rem; margin-top: 4px;">
                         "6 frijoles, grupos de 2"<br/>
                         <strong>6 ÷ 2 = 3 grupos</strong>
                     </div>
@@ -828,7 +901,7 @@
 
             <div class="juego-box">
                 <h4>🌿 Desafío del campo</h4>
-                <ul class="actividad-lista" style="font-size:0.88rem;">
+                <ul class="actividad-lista" style="font-size: 0.88rem;">
                     <li>
                         La Profe tiene <strong>48 lápices</strong> ✏️ para repartir entre
                         <strong>6 mesas</strong>. ¿Cuántos tocan por mesa?
@@ -847,12 +920,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- fin sección 4 -->
 
-    <!-- ══ SECCIÓN 5: QUIZ RÁPIDO ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 5 · QUIZ RÁPIDO
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🧩 Quiz Rápido · ¿Cuánto aprendiste?</h3>
-        <p style="font-size:0.88rem; color:#718096;">
+        <p style="font-size: 0.88rem; color: #718096;">
             Responde las preguntas. ¡Solo tienes un intento por pregunta! 🏆
         </p>
 
@@ -862,15 +937,17 @@
                 &nbsp;·&nbsp; Pregunta <span id="quiz-num">1</span> de 5
             </div>
             <div id="quiz-container">
-                <!-- Renderizado por JS -->
+                <!-- Renderizado dinámicamente por JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- ══ SECCIÓN 6: COMPETENCIA CIUDADANA ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 6 · COMPETENCIA CIUDADANA
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🤝 Convivencia y Reparto Justo</h3>
-                <p style="font-size:0.9rem; margin-bottom:12px;">
+        <p style="font-size: 0.9rem; margin-bottom: 12px;">
             En el campo, no todos tienen lo mismo. Algunos tienen más semillas, otros más frutas.
             Pero en el aula, <strong>todos merecen un reparto justo</strong> de materiales,
             atención y amor. 🌿
@@ -878,7 +955,7 @@
 
         <div class="eval-box">
             <h4>💬 Reflexiona y responde:</h4>
-            <p style="font-size:0.88rem; margin-bottom:8px;">
+            <p style="font-size: 0.88rem; margin-bottom: 8px;">
                 ¿Cómo puedes repartir de forma justa los materiales del aula entre tus compañeros?
                 Escribe una acción concreta que puedas hacer hoy:
             </p>
@@ -890,94 +967,95 @@
         </div>
     </div>
 
-    <!-- ══ SECCIÓN 7: AUTOEVALUACIÓN ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 7 · AUTOEVALUACIÓN
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>📊 Mi Progreso</h3>
 
         <div class="eval-box">
             <h4>⭐ Autoevaluación</h4>
-            <table style="width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:8px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 8px;">
                 <tr>
-                    <th style="text-align:left; padding:6px 12px; font-weight:800; color:#718096;">Criterio</th>
-                    <th style="text-align:center; padding:6px 12px; font-weight:800; color:#718096;">✅ Lo logré</th>
-                    <th style="text-align:center; padding:6px 12px; font-weight:800; color:#718096;">🙂 Casi</th>
-                    <th style="text-align:center; padding:6px 12px; font-weight:800; color:#718096;">😕 Necesito ayuda</th>
+                    <th style="text-align: left;   padding: 6px 12px; font-weight: 800; color: #718096;">Criterio</th>
+                    <th style="text-align: center; padding: 6px 12px; font-weight: 800; color: #718096;">✅ Lo logré</th>
+                    <th style="text-align: center; padding: 6px 12px; font-weight: 800; color: #718096;">🙂 Casi</th>
+                    <th style="text-align: center; padding: 6px 12px; font-weight: 800; color: #718096;">😕 Necesito ayuda</th>
                 </tr>
+
+                <!-- Fila: término dividendo/divisor/cociente -->
                 <tr>
-                                        <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px;">Entiendo el signo ÷ y sus términos</td>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding:8px 12px;">Entiendo el signo ÷ y sus términos</td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
-                    </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
-                    </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
                 </tr>
+
+                <!-- Fila: divisiones con material concreto -->
                 <tr>
-                    <td style="padding:8px 12px;">Resuelvo divisiones usando semillas o dibujos</td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px;">Resuelvo divisiones usando semillas o dibujos</td>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                                                <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
                 </tr>
+
+                <!-- Fila: relación multiplicación ↔ división -->
                 <tr>
-                    <td style="padding:8px 12px;">Relaciono la división con la multiplicación</td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px;">Relaciono la división con la multiplicación</td>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
                 </tr>
+
+                <!-- Fila: problemas del campo -->
                 <tr>
-                    <td style="padding:8px 12px;">Resuelvo problemas de reparto del campo</td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px;">Resuelvo problemas de reparto del campo</td>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
                 </tr>
+
+                <!-- Fila: competencia ciudadana -->
                 <tr>
-                    <td style="padding:8px 12px;">Propongo un reparto justo en el aula</td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px;">Propongo un reparto justo en el aula</td>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
-                    <td style="padding:8px 12px; text-align:center;">
-                        <span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span>
+                    <td style="padding: 8px 12px; text-align: center;">
+                        <span onclick="marcarEval(this)" style="font-size: 1.2rem; cursor: pointer;">☐</span>
                     </td>
                 </tr>
             </table>
         </div>
 
-        <p style="font-weight:800; font-size:0.88rem; margin:14px 0 6px;">
+        <p style="font-weight: 800; font-size: 0.88rem; margin: 14px 0 6px;">
             💬 ¿Qué fue lo más difícil de hoy? ¿Cómo lo resolviste?
         </p>
         <div class="lineas">
@@ -986,17 +1064,19 @@
         </div>
     </div>
 
-    <!-- ══ SECCIÓN 8: TAREA EN CASA ══ -->
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 8 · TAREA EN CASA
+    ══════════════════════════════════════════ -->
     <div class="seccion">
         <h3>🏡 Tarea en Casa</h3>
-        <p style="font-size:0.9rem; margin-bottom:12px;">
+        <p style="font-size: 0.9rem; margin-bottom: 12px;">
             En tu casa o finca, <strong>busca un reparto real</strong> 🌿
             y escríbelo como una división:
         </p>
 
         <div class="juego-box">
             <h4>🔍 Detective de Divisiones</h4>
-            <ul class="actividad-lista" style="font-size:0.88rem;">
+            <ul class="actividad-lista" style="font-size: 0.88rem;">
                 <li>
                     Observa cómo se reparte algo en tu casa
                     (comida, leña, semillas, frutas...) y escríbelo:
@@ -1008,7 +1088,7 @@
                 <li>
                     Practica estas divisiones con tus tablas:
                     <br/>
-                    <span style="font-weight:800;">
+                    <span style="font-weight: 800;">
                         24 ÷ 4 = ___ &nbsp;·&nbsp;
                         35 ÷ 5 = ___ &nbsp;·&nbsp;
                         18 ÷ 3 = ___ &nbsp;·&nbsp;
@@ -1023,372 +1103,394 @@
         </div>
     </div>
 
-    <!-- ══ REFLEXIÓN FINAL ══ -->
+    <!-- ══════════════════════════════════════════
+         REFLEXIÓN FINAL
+    ══════════════════════════════════════════ -->
     <div class="reflexion-box">
         <p>
             🌿 "Dividir no es quitar ni separar...<br/>
             es <strong>compartir con justicia</strong>,<br/>
             como hacemos en Chichalá cada día." 🌱
         </p>
-        <p style="font-size:0.78rem; margin-top:10px;
-            color:#718096; font-style:italic;">
+        <p style="font-size: 0.78rem; margin-top: 10px; color: #718096; font-style: italic;">
             Profe Nelson · Matemáticas · IE Técnica Camacho Angarita · Sede Chichalá
         </p>
     </div>
 
-    <!-- ══ FOOTER ══ -->
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
     <div class="footer">
         <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
         <p>Corregimiento El Limón · Chaparral, Tolima</p>
         <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
-        <p style="margin-top:6px; font-style:italic;">
-            "Paz, Tolerancia y Convivencia"
-        </p>
+        <p style="margin-top: 6px; font-style: italic;">"Paz, Tolerancia y Convivencia"</p>
     </div>
 
-    <div style="text-align:center; margin-top:20px;">
+    <div style="text-align: center; margin-top: 20px;">
         <a href="../../index.html" class="btn-volver">⬅ Volver al Inicio</a>
     </div>
 
 </div><!-- fin .container -->
 
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+     ¡A Repartir en Chichalá! · Profe Nelson
+     Grados 3°-4°-5° · Período 3 · Semana 1
+══════════════════════════════════════════════ -->
 <script>
-/* ══════════════════════════════════════════════
-   ¡A REPARTIR EN CHICHALÁ! · MATEMÁTICAS
-   JavaScript · Profe Nelson
-   Grados 3°-4°-5° · Período 3 · Semana 1
-   División y sus términos
-══════════════════════════════════════════════ */
 'use strict';
 
-// ─────────────────────────────────────────────
-// SONIDOS · Web Audio API (100% offline)
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   1. SONIDOS · Web Audio API (100% offline)
+───────────────────────────────────────────── */
 const audioCtx = window.AudioContext
-  ? new AudioContext()
-  : window.webkitAudioContext
-    ? new webkitAudioContext()
-    : null;
+    ? new AudioContext()
+    : window.webkitAudioContext
+        ? new webkitAudioContext()
+        : null;
 
 function sonar(tipo) {
-  if (!audioCtx) return;
-  if (audioCtx.state === 'suspended') audioCtx.resume();
+    if (!audioCtx) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
 
-  const configs = {
-    correcto:  { freq: [523, 659, 784],      dur: 0.12, gain: 0.3,  type: 'sine'     },
-    error:     { freq: [200, 150],            dur: 0.18, gain: 0.3,  type: 'sawtooth' },
-    flip:      { freq: [440, 554],            dur: 0.08, gain: 0.2,  type: 'sine'     },
-    eureka:    { freq: [523, 659, 784, 1047], dur: 0.1,  gain: 0.25, type: 'sine'     },
-  };
+    const configs = {
+        correcto : { freq: [523, 659, 784],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+        error    : { freq: [200, 150],             dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+        flip     : { freq: [440, 554],             dur: 0.08, gain: 0.2,  type: 'sine'     },
+        eureka   : { freq: [523, 659, 784, 1047],  dur: 0.1,  gain: 0.25, type: 'sine'     },
+    };
 
-  const cfg = configs[tipo] || configs.flip;
-  cfg.freq.forEach((f, i) => {
-    const osc  = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.type            = cfg.type;
-    osc.frequency.value = f;
-    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
-    gain.gain.exponentialRampToValueAtTime(
-      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
-    );
-    osc.start(audioCtx.currentTime + i * cfg.dur);
-    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
-  });
+    const cfg = configs[tipo] || configs.flip;
+
+    cfg.freq.forEach((f, i) => {
+        const osc  = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.type            = cfg.type;
+        osc.frequency.value = f;
+
+        gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+        gain.gain.exponentialRampToValueAtTime(
+            0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+        );
+
+        osc.start(audioCtx.currentTime + i * cfg.dur);
+        osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+    });
 }
 
-// ─────────────────────────────────────────────
-// TOAST
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   2. TOAST · Notificación flotante
+───────────────────────────────────────────── */
 let toastTimer = null;
 
 function mostrarToast(mensaje, tipo = 'default') {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
+    const toast = document.getElementById('toast');
+    if (!toast) return;
 
-  toast.textContent       = mensaje;
-  toast.style.borderColor =
-    tipo === 'success' ? '#6EE7B7' :
-    tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
-  toast.style.color =
-    tipo === 'success' ? '#065F46' :
-    tipo === 'error'   ? '#991B1B' : '#92400E';
+    toast.textContent       = mensaje;
+    toast.style.borderColor =
+        tipo === 'success' ? '#6EE7B7' :
+        tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
+    toast.style.color =
+        tipo === 'success' ? '#065F46' :
+        tipo === 'error'   ? '#991B1B' : '#92400E';
 
-  toast.style.transform = 'translateX(-50%) translateY(0)';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.style.transform = 'translateX(-50%) translateY(120px)';
-  }, 3000);
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(120px)';
+    }, 3000);
 }
 
-// ─────────────────────────────────────────────
-// TARJETAS VOLTEABLES · GRADO 3
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   3. TARJETAS VOLTEABLES · Grado 3
+───────────────────────────────────────────── */
 const TARJETAS_G3 = [
-  { frente: '🌽🌽🌽🌽🌽🌽', atras: '6 ÷ 2 = 3\n6 mazorcas\nentre 2 canastos' },
-  { frente: '🍌🍌🍌🍌🍌🍌🍌🍌', atras: '8 ÷ 4 = 2\n8 bananos\nentre 4 niños' },
-  { frente: '🫘🫘🫘🫘🫘🫘🫘🫘🫘', atras: '9 ÷ 3 = 3\n9 frijoles\nentre 3 bolsas' },
-  { frente: '☕☕☕☕☕☕☕☕☕☕', atras: '10 ÷ 2 = 5\n10 granos de café\nentre 2 grupos' },
-  { frente: '🥭🥭🥭🥭🍊🍊🍊🍊', atras: '8 ÷ 4 = 2\n8 frutas\nentre 4 vecinos' },
-  { frente: '🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽', atras: '12 ÷ 3 = 4\n12 mazorcas\nentre 3 hijos' },
+    { frente: '🌽🌽🌽🌽🌽🌽',         atras: '6 ÷ 2 = 3\n6 mazorcas\nentre 2 canastos'     },
+    { frente: '🍌🍌🍌🍌🍌🍌🍌🍌',       atras: '8 ÷ 4 = 2\n8 bananos\nentre 4 niños'         },
+    { frente: '🫘🫘🫘🫘🫘🫘🫘🫘🫘',     atras: '9 ÷ 3 = 3\n9 frijoles\nentre 3 bolsas'       },
+    { frente: '☕☕☕☕☕☕☕☕☕☕',       atras: '10 ÷ 2 = 5\n10 granos de café\nentre 2 grupos'},
+    { frente: '🥭🥭🥭🥭🍊🍊🍊🍊',       atras: '8 ÷ 4 = 2\n8 frutas\nentre 4 vecinos'        },
+    { frente: '🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽🌽', atras: '12 ÷ 3 = 4\n12 mazorcas\nentre 3 hijos'    },
 ];
 
 function renderizarTarjetas() {
-  const grid = document.getElementById('ruleta-g3');
-  if (!grid) return;
+    const grid = document.getElementById('ruleta-g3');
+    if (!grid) return;
 
-  grid.innerHTML = TARJETAS_G3.map((t, i) => `
-    <div class="ruleta-card" id="tc-${i}"
-      onclick="voltearTarjeta(${i})"
-      title="¡Toca para ver la división!">
-      <span class="cara-frente">${t.frente}</span>
-      <span class="cara-atras" style="white-space:pre-line;">${t.atras}</span>
-    </div>
-  `).join('');
+    grid.innerHTML = TARJETAS_G3.map((t, i) => `
+        <div class="ruleta-card" id="tc-${i}"
+             onclick="voltearTarjeta(${i})"
+             title="¡Toca para ver la división!">
+            <span class="cara-frente">${t.frente}</span>
+            <span class="cara-atras" style="white-space: pre-line;">${t.atras}</span>
+        </div>
+    `).join('');
 }
 
 function voltearTarjeta(idx) {
-  const card = document.getElementById(`tc-${idx}`);
-  if (!card) return;
-  const yaVolteada = card.classList.contains('volteada');
-  card.classList.toggle('volteada');
-  sonar(yaVolteada ? 'flip' : 'correcto');
-  if (!yaVolteada) {
-    mostrarToast('🌽 ¡Encontraste la división! ¿Puedes comprobarlo con tus semillas?', 'success');
-  }
+    const card = document.getElementById(`tc-${idx}`);
+    if (!card) return;
+
+    const yaVolteada = card.classList.contains('volteada');
+    card.classList.toggle('volteada');
+    sonar(yaVolteada ? 'flip' : 'correcto');
+
+    if (!yaVolteada) {
+        mostrarToast('🌽 ¡Encontraste la división! ¿Puedes comprobarlo con tus semillas?', 'success');
+    }
 }
 
-// ─────────────────────────────────────────────
-// QUIZ RÁPIDO · 5 PREGUNTAS
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   4. QUIZ RÁPIDO · 5 preguntas
+───────────────────────────────────────────── */
 const PREGUNTAS = [
-  {
-    texto:    '🌽 Don Efraín tiene 12 mazorcas y las reparte entre 4 hijos. ¿Cuántas le tocan a cada uno?',
-    opciones: ['2 mazorcas', '3 mazorcas', '4 mazorcas', '6 mazorcas'],
-    correcta: 1,
-    feedback: '¡Correcto! 12 ÷ 4 = 3. A cada hijo le tocan 3 mazorcas. 🌽',
-  },
-  {
-    texto:    '➗ En la división 20 ÷ 5 = 4, ¿cuál es el DIVIDENDO?',
-    opciones: ['5', '4', '20', '25'],
-    correcta: 2,
-    feedback: '¡Exacto! El DIVIDENDO es lo que repartimos: 20. 🎯',
-  },
-  {
-    texto:    '🔢 Si 6 × 7 = 42, ¿cuánto es 42 ÷ 7?',
-    opciones: ['5', '6', '7', '8'],
-    correcta: 1,
-    feedback: '¡Perfecto! La multiplicación y la división son amigas: 42 ÷ 7 = 6. 🤝',
-  },
-  {
-    texto:    '🫘 Hay 15 frijoles y se meten en grupos de 3. ¿Cuántos grupos se forman?',
-    opciones: ['3 grupos', '4 grupos', '5 grupos', '6 grupos'],
-    correcta: 2,
-    feedback: '¡Muy bien! 15 ÷ 3 = 5 grupos. ¡Eso es agrupamiento! 🫘',
-  },
-  {
-    texto:    '🍋 La mamá de Juan tiene 36 limones en bolsas de 9. ¿Cuántas bolsas llenó?',
-    opciones: ['3 bolsas', '4 bolsas', '5 bolsas', '6 bolsas'],
-    correcta: 1,
-    feedback: '¡Excelente! 36 ÷ 9 = 4 bolsas. ¡Y puedes comprobar: 4 × 9 = 36! ✅',
-  },
+    {
+        texto    : '🌽 Don Efraín tiene 12 mazorcas y las reparte entre 4 hijos. ¿Cuántas le tocan a cada uno?',
+        opciones : ['2 mazorcas', '3 mazorcas', '4 mazorcas', '6 mazorcas'],
+        correcta : 1,
+        feedback : '¡Correcto! 12 ÷ 4 = 3. A cada hijo le tocan 3 mazorcas. 🌽',
+    },
+    {
+        texto    : '➗ En la división 20 ÷ 5 = 4, ¿cuál es el DIVIDENDO?',
+        opciones : ['5', '4', '20', '25'],
+        correcta : 2,
+        feedback : '¡Exacto! El DIVIDENDO es lo que repartimos: 20. 🎯',
+    },
+    {
+        texto    : '🔢 Si 6 × 7 = 42, ¿cuánto es 42 ÷ 7?',
+        opciones : ['5', '6', '7', '8'],
+        correcta : 1,
+        feedback : '¡Perfecto! La multiplicación y la división son amigas: 42 ÷ 7 = 6. 🤝',
+    },
+    {
+        texto    : '🫘 Hay 15 frijoles y se meten en grupos de 3. ¿Cuántos grupos se forman?',
+        opciones : ['3 grupos', '4 grupos', '5 grupos', '6 grupos'],
+        correcta : 2,
+        feedback : '¡Muy bien! 15 ÷ 3 = 5 grupos. ¡Eso es agrupamiento! 🫘',
+    },
+    {
+        texto    : '🍋 La mamá de Juan tiene 36 limones en bolsas de 9. ¿Cuántas bolsas llenó?',
+        opciones : ['3 bolsas', '4 bolsas', '5 bolsas', '6 bolsas'],
+        correcta : 1,
+        feedback : '¡Excelente! 36 ÷ 9 = 4 bolsas. ¡Y puedes comprobar: 4 × 9 = 36! ✅',
+    },
 ];
 
+// Estado del quiz
 let quizEstado = {
-  preguntaActual : 0,
-  puntaje        : 0,
+    preguntaActual : 0,
+    puntaje        : 0,
 };
 
 function renderizarQuiz() {
-  const container = document.getElementById('quiz-container');
-  if (!container) return;
+    const container = document.getElementById('quiz-container');
+    if (!container) return;
 
-  const idx = quizEstado.preguntaActual;
+    const idx = quizEstado.preguntaActual;
 
-  if (idx >= PREGUNTAS.length) {
-    mostrarResultadoQuiz();
-    return;
-  }
+    // Mostrar resultado final al terminar todas las preguntas
+    if (idx >= PREGUNTAS.length) {
+        mostrarResultadoQuiz();
+        return;
+    }
 
-  const p = PREGUNTAS[idx];
+    const p = PREGUNTAS[idx];
 
-  // Actualizar contadores
-  const numEl = document.getElementById('quiz-num');
-  const ptsEl = document.getElementById('quiz-pts');
-  if (numEl) numEl.textContent = idx + 1;
-  if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
+    // Actualizar contadores del encabezado
+    const numEl = document.getElementById('quiz-num');
+    const ptsEl = document.getElementById('quiz-pts');
+    if (numEl) numEl.textContent = idx + 1;
+    if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
 
-  container.innerHTML = `
-    <div class="quiz-pregunta activa">
-      <div class="quiz-enunciado">${p.texto}</div>
-      <div class="quiz-opciones" id="opciones-${idx}">
-        ${p.opciones.map((op, i) => `
-          <button class="quiz-btn"
-            onclick="responderQuiz(${i}, ${idx})">
-            ${op}
-          </button>
-        `).join('')}
-      </div>
-      <div class="quiz-feedback" id="feedback-${idx}"></div>
-      <button class="quiz-siguiente" id="btn-sig-${idx}"
-        onclick="siguienteQuiz()">
-        Siguiente ➡️
-      </button>
-    </div>
-  `;
+    container.innerHTML = `
+        <div class="quiz-pregunta activa">
+            <div class="quiz-enunciado">${p.texto}</div>
+            <div class="quiz-opciones" id="opciones-${idx}">
+                ${p.opciones.map((op, i) => `
+                    <button class="quiz-btn" onclick="responderQuiz(${i}, ${idx})">
+                        ${op}
+                    </button>
+                `).join('')}
+            </div>
+            <div class="quiz-feedback" id="feedback-${idx}"></div>
+            <button class="quiz-siguiente" id="btn-sig-${idx}" onclick="siguienteQuiz()">
+                Siguiente ➡️
+            </button>
+        </div>
+    `;
 }
 
 function responderQuiz(opcion, idx) {
-  const p          = PREGUNTAS[idx];
-  const esCorrecta = opcion === p.correcta;
+    const p          = PREGUNTAS[idx];
+    const esCorrecta = opcion === p.correcta;
 
-  // Bloquear opciones
-  document.querySelectorAll(`#opciones-${idx} .quiz-btn`)
-    .forEach((btn, i) => {
-      btn.disabled = true;
-      if (i === p.correcta) btn.classList.add('correcta');
-      if (i === opcion && !esCorrecta) btn.classList.add('incorrecta');
+    // Bloquear todas las opciones y marcar correcta/incorrecta
+    document.querySelectorAll(`#opciones-${idx} .quiz-btn`).forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === p.correcta)          btn.classList.add('correcta');
+        if (i === opcion && !esCorrecta) btn.classList.add('incorrecta');
     });
 
-  // Mostrar feedback
-  const fb = document.getElementById(`feedback-${idx}`);
-  if (fb) {
-    fb.textContent = esCorrecta
-      ? `✅ ${p.feedback}`
-      : `❌ La respuesta era: "${p.opciones[p.correcta]}". ${p.feedback}`;
-    fb.className = `quiz-feedback ${esCorrecta ? 'correcto' : 'incorrecto'}`;
-  }
+    // Mostrar feedback
+    const fb = document.getElementById(`feedback-${idx}`);
+    if (fb) {
+        fb.textContent = esCorrecta
+            ? `✅ ${p.feedback}`
+            : `❌ La respuesta era: "${p.opciones[p.correcta]}". ${p.feedback}`;
+        fb.className = `quiz-feedback ${esCorrecta ? 'correcto' : 'incorrecto'}`;
+    }
 
-  if (esCorrecta) {
-    quizEstado.puntaje++;
-    sonar('correcto');
-    mostrarToast('✅ ¡Correcto! +1 punto 🌟', 'success');
-  } else {
-    sonar('error');
-    mostrarToast('❌ ¡Casi! Sigue intentando 💪', 'error');
-  }
+    // Sonido y toast según resultado
+    if (esCorrecta) {
+        quizEstado.puntaje++;
+        sonar('correcto');
+        mostrarToast('✅ ¡Correcto! +1 punto 🌟', 'success');
+    } else {
+        sonar('error');
+        mostrarToast('❌ ¡Casi! Sigue intentando 💪', 'error');
+    }
 
-  // Mostrar botón siguiente
-  const btnSig = document.getElementById(`btn-sig-${idx}`);
-  if (btnSig) btnSig.style.display = 'inline-block';
+    // Revelar botón siguiente
+    const btnSig = document.getElementById(`btn-sig-${idx}`);
+    if (btnSig) btnSig.style.display = 'inline-block';
 }
 
 function siguienteQuiz() {
-  quizEstado.preguntaActual++;
-  renderizarQuiz();
+    quizEstado.preguntaActual++;
+    renderizarQuiz();
 }
 
 function mostrarResultadoQuiz() {
-  const container = document.getElementById('quiz-container');
-  const ptsEl     = document.getElementById('quiz-pts');
-  if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
+    const container = document.getElementById('quiz-container');
+    const ptsEl     = document.getElementById('quiz-pts');
+    if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
 
-  const p = quizEstado.puntaje;
-  const t = PREGUNTAS.length;
+    const p = quizEstado.puntaje;
+    const t = PREGUNTAS.length;
 
-  let trofeo  = '';
-  let mensaje = '';
-  let color   = '';
+    let trofeo, mensaje, color;
 
-  if (p === t) {
-    trofeo  = '🏆';
-    mensaje = `¡PERFECTO! ${p}/${t} · ¡Eres un Campeón de la División en Chichalá! 🌿`;
-    color   = '#065F46';
-    sonar('eureka');
-    lanzarConfeti();
-  } else if (p >= 3) {
-    trofeo  = '🥈';
-    mensaje = `¡Muy bien! ${p}/${t} · Estás aprendiendo a dividir. ¡Sigue practicando! 💪`;
-    color   = '#1A9BAB';
-    sonar('correcto');
-  } else {
-    trofeo  = '📚';
-    mensaje = `${p}/${t} · Repasa los términos y vuelve a intentarlo. ¡Tú puedes! 🌱`;
-    color   = '#F4872B';
-    sonar('flip');
-  }
+    if (p === t) {
+        trofeo  = '🏆';
+        mensaje = `¡PERFECTO! ${p}/${t} · ¡Eres un Campeón de la División en Chichalá! 🌿`;
+        color   = '#065F46';
+        sonar('eureka');
+        lanzarConfeti();
+    } else if (p >= 3) {
+        trofeo  = '🥈';
+        mensaje = `¡Muy bien! ${p}/${t} · Estás aprendiendo a dividir. ¡Sigue practicando! 💪`;
+        color   = '#1A9BAB';
+        sonar('correcto');
+    } else {
+        trofeo  = '📚';
+        mensaje = `${p}/${t} · Repasa los términos y vuelve a intentarlo. ¡Tú puedes! 🌱`;
+        color   = '#F4872B';
+        sonar('flip');
+    }
 
-  container.innerHTML = `
-    <div style="text-align:center; padding:24px 16px;
-      background:linear-gradient(135deg,#F0FDF4,#EFF6FF);
-      border-radius:14px; margin-top:10px;">
-      <div style="font-size:3.5rem; margin-bottom:12px;">${trofeo}</div>
-      <div style="font-family:'Nunito',sans-serif; font-size:1.05rem;
-        font-weight:800; color:${color}; margin-bottom:16px;">
-        ${mensaje}
-      </div>
-      <button class="quiz-siguiente" style="display:inline-block;"
-        onclick="reiniciarQuiz()">
-        🔄 Intentar de nuevo
-      </button>
-    </div>
-  `;
+    container.innerHTML = `
+        <div style="text-align: center; padding: 24px 16px;
+             background: linear-gradient(135deg, #F0FDF4, #EFF6FF);
+             border-radius: 14px; margin-top: 10px;">
+            <div style="font-size: 3.5rem; margin-bottom: 12px;">${trofeo}</div>
+            <div style="font-family: 'Nunito', sans-serif; font-size: 1.05rem;
+                 font-weight: 800; color: ${color}; margin-bottom: 16px;">
+                ${mensaje}
+            </div>
+            <button class="quiz-siguiente" style="display: inline-block;"
+                    onclick="reiniciarQuiz()">
+                🔄 Intentar de nuevo
+            </button>
+        </div>
+    `;
 }
 
 function reiniciarQuiz() {
-  quizEstado = { preguntaActual: 0, puntaje: 0 };
-  sonar('flip');
-  renderizarQuiz();
-}
-
-// ─────────────────────────────────────────────
-// AUTOEVALUACIÓN · marcar celdas
-// ─────────────────────────────────────────────
-function marcarEval(celda) {
-  const fila     = celda.closest('tr');
-  const celdas   = fila.querySelectorAll('span[onclick]');
-  const yaEstaba = celda.textContent === '☑';
-
-  celdas.forEach(c => { c.textContent = '☐'; });
-
-  if (!yaEstaba) {
-    celda.textContent = '☑';
+    quizEstado = { preguntaActual: 0, puntaje: 0 };
     sonar('flip');
-    mostrarToast('✅ ¡Marcado! Sigue evaluándote con honestidad. 🌿', 'success');
-  }
+    renderizarQuiz();
 }
 
-// ─────────────────────────────────────────────
-// CONFETI · Para celebrar puntaje perfecto
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   5. AUTOEVALUACIÓN · Marcar celdas por fila
+───────────────────────────────────────────── */
+function marcarEval(celda) {
+    const fila   = celda.closest('tr');
+    const celdas = fila.querySelectorAll('span[onclick]');
+    const yaEstaba = celda.textContent === '☑';
+
+    // Limpiar toda la fila primero
+    celdas.forEach(c => { c.textContent = '☐'; });
+
+    // Marcar solo si no estaba marcado (toggle)
+    if (!yaEstaba) {
+        celda.textContent = '☑';
+        sonar('flip');
+        mostrarToast('✅ ¡Marcado! Sigue evaluándote con honestidad. 🌿', 'success');
+    }
+}
+
+/* ─────────────────────────────────────────────
+   6. CONFETI · Celebración puntaje perfecto
+───────────────────────────────────────────── */
 function lanzarConfeti() {
-  const emojis = ['➗','🌽','🫘','⭐','🎉','🏆','✨','🌿','🌱','🥭','🍋','🍌'];
-  for (let i = 0; i < 20; i++) {
-    const el = document.createElement('div');
-    el.style.cssText = `
-      position        : fixed;
-      top             : -40px;
-      left            : ${Math.random() * 100}vw;
-      font-size       : ${1 + Math.random() * 1.5}rem;
-      animation       : caerConfeti ${1.5 + Math.random() * 2.5}s ease-in forwards;
-      z-index         : 9998;
-      pointer-events  : none;
-      animation-delay : ${Math.random() * 0.6}s;
-    `;
-    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 4500);
-  }
+    const emojis = ['➗','🌽','🫘','⭐','🎉','🏆','✨','🌿','🌱','🥭','🍋','🍌'];
+
+    for (let i = 0; i < 20; i++) {
+        const el = document.createElement('div');
+        el.style.cssText = `
+            position       : fixed;
+            top            : -40px;
+            left           : ${Math.random() * 100}vw;
+            font-size      : ${1 + Math.random() * 1.5}rem;
+            animation      : caerConfeti ${1.5 + Math.random() * 2.5}s ease-in forwards;
+            z-index        : 9998;
+            pointer-events : none;
+            animation-delay: ${Math.random() * 0.6}s;
+        `;
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 4500);
+    }
 }
 
-// ─────────────────────────────────────────────
-// DOMContentLoaded · PUNTO DE ENTRADA
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   7. ANIMACIÓN CONFETI · Keyframe dinámico
+───────────────────────────────────────────── */
+(function inyectarKeyframeConfeti() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes caerConfeti {
+            0%   { transform: translateY(0)    rotate(0deg);   opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+/* ─────────────────────────────────────────────
+   8. INICIALIZACIÓN · DOMContentLoaded
+───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Tarjetas volteables Grado 3
-  renderizarTarjetas();
+    // Tarjetas volteables Grado 3
+    renderizarTarjetas();
 
-  // 2. Quiz rápido
-  renderizarQuiz();
+    // Quiz interactivo
+    renderizarQuiz();
 
-  // 3. Toast de bienvenida
-  setTimeout(() => {
-    mostrarToast(
-      '🌿 ¡Bienvenido/a! Hoy aprenderemos a repartir en Chichalá. ¡Manos a la obra! ➗',
-      'success'
-    );
-  }, 700);
+    // Toast de bienvenida
+    setTimeout(() => {
+        mostrarToast(
+            '🌿 ¡Bienvenido/a! Hoy aprenderemos a repartir en Chichalá. ¡Manos a la obra! ➗',
+            'success'
+        );
+    }, 700);
 });
 </script>
 </body>

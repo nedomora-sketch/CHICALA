@@ -546,14 +546,25 @@
             background: var(--morado);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 700;
+            padding: 10px 20px; /* Un poco más de padding */
+            border-radius: 50px; /* Bordes más redondeados */
+            font-weight: 800; /* Más negrita */
             cursor: pointer;
             margin: 5px;
             font-family: 'Nunito', sans-serif;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave */
+            box-shadow: 0 4px 10px rgba(124, 58, 237, 0.3);
         }
+
+.btn-paso:hover {
+    background: var(--azul);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(26, 155, 171, 0.4);
+}
+
+.btn-paso:active {
+    transform: translateY(-1px);
+}
 
         .btn-paso:hover { background: var(--azul); transform: translateY(-2px); }
 
@@ -576,6 +587,14 @@
             .division-visual { grid-template-columns: 1fr 1fr; }
             .calc-botones { grid-template-columns: repeat(3, 1fr); }
             .tabla-iteraciones { font-size: 0.75rem; }
+        }
+
+        /* ══════════════════════════════════════════
+        ANIMACIÓN CONFETI (Faltante en el original)
+        ════════════════════════════════════════════ */
+        @keyframes caerConfeti {
+            0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
         }
 
         /* ══ IMPRESIÓN ══ */
@@ -1201,48 +1220,49 @@ function calcActualizarOperacion() {
 }
 
 function generarProcedimiento(a, op, b, resultado) {
-  const procContenido = document.getElementById('proc-contenido');
-  if (!procContenido) return;
+    const procContenido = document.getElementById('proc-contenido');
+    if (!procContenido) return;
 
-  let procedimiento = '';
-  const numA = parseFloat(a);
-  const numB = parseFloat(b);
+    // Redondear para visualización limpia
+    const numA = parseFloat(a);
+    const numB = parseFloat(b);
+    const resLimpio = Math.round(resultado * 1000000) / 1000000;
 
-  switch (op) {
-    case '+':
-      procedimiento = `${numA} + ${numB} = ${resultado}`;
-      break;
-    case '-':
-      procedimiento = `${numA} - ${numB} = ${resultado}`;
-      break;
-    case '*':
-      procedimiento = `${numA} × ${numB}<br>`;
-      procedimiento += `= ${numB} repetido ${numA} veces<br>`;
-      if (numA <= 5) {
-        let suma = '';
-        for (let i = 0; i < numA; i++) {
-          suma += numB + (i < numA - 1 ? ' + ' : '');
-        }
-        procedimiento += `= ${suma}<br>`;
-      }
-      procedimiento += `= ${resultado}`;
-      break;
-    case '/':
-      procedimiento = `${numA} ÷ ${numB}<br>`;
-      procedimiento += `¿Cuántas veces cabe ${numB} en ${numA}?<br>`;
-      const cociente = Math.floor(numA / numB);
-      const resto = numA % numB;
-      procedimiento += `Cociente: ${cociente}<br>`;
-      if (resto > 0) {
-        procedimiento += `Resto: ${resto}<br>`;
-        procedimiento += `Verificación: (${cociente} × ${numB}) + ${resto} = ${numA}`;
-      } else {
-        procedimiento += `Verificación: ${cociente} × ${numB} = ${numA}`;
-      }
-      break;
-  }
+    let procedimiento = '';
 
-  procContenido.innerHTML = procedimiento;
+    switch (op) {
+        case '+':
+            procedimiento = `${numA} + ${numB} = ${resLimpio}`;
+            break;
+        case '-':
+            procedimiento = `${numA} - ${numB} = ${resLimpio}`;
+            break;
+        case '*':
+            procedimiento = `${numA} × ${numB}<br>`;
+            procedimiento += `= ${numB} repetido ${numA} veces<br>`;
+            if (numA <= 5 && Number.isInteger(numA)) {
+                let suma = [];
+                for (let i = 0; i < numA; i++) suma.push(numB);
+                procedimiento += `= ${suma.join(' + ')}<br>`;
+            }
+            procedimiento += `= ${resLimpio}`;
+            break;
+        case '/':
+            procedimiento = `${numA} ÷ ${numB}<br>`;
+            procedimiento += `¿Cuántas veces cabe ${numB} en ${numA}?<br>`;
+            const cociente = Math.floor(numA / numB);
+            const resto = numA % numB;
+            procedimiento += `Cociente: ${cociente}<br>`;
+            if (resto > 0) {
+                procedimiento += `Resto: ${resto}<br>`;
+                procedimiento += `Verificación: (${cociente} × ${numB}) + ${resto} = ${numA}`;
+            } else {
+                procedimiento += `Verificación: ${cociente} × ${numB} = ${numA}`;
+            }
+            break;
+    }
+
+    procContenido.innerHTML = procedimiento;
 }
 
 function calcNumero(num) {
@@ -1344,17 +1364,19 @@ function calcLimpiar() {
 // MARCAR EVALUACIÓN
 // ─────────────────────────────────────────────
 function marcarEval(celda) {
-  const fila = celda.closest('tr');
-  const celdas = fila.querySelectorAll('span[onclick]');
-  const yaEstaba = celda.textContent === '☑';
+    const fila = celda.closest('tr');
+    const celdas = fila.querySelectorAll('span[onclick]');
+    const yaEstaba = celda.textContent === '☑';
 
-  celdas.forEach(function(c) { c.textContent = '☐'; });
+    // Limpiar toda la fila
+    celdas.forEach(c => { c.textContent = '☐'; });
 
-  if (!yaEstaba) {
-    celda.textContent = '☑';
-    sonar('flip');
-    mostrarToast('✅ ¡Evaluación guardada!', 'success');
-  }
+    // Marcar solo si no estaba marcado (toggle)
+    if (!yaEstaba) {
+        celda.textContent = '☑';
+        sonar('flip');
+        mostrarToast('✅ ¡Evaluación guardada!', 'success');
+    }
 }
 
 // ─────────────────────────────────────────────
