@@ -448,10 +448,37 @@
                 'linear-gradient(135deg, #F4872B, #F7C325)';
         }
 
+                // ══════════════════════════════════════════════
+        // RUTA BASE DE GUÍAS · DINÁMICA POR GRADO
         // ══════════════════════════════════════════════
-        // GENERAR ACORDEÓN
+        const GRADO_PATH = (function() {
+            // 1. Intentar leer desde parámetro URL: ?nivel=media
+            const params = new URLSearchParams(window.location.search);
+            const nivel  = params.get('nivel') || 'basica';
+            return nivel === 'media' ? 'grados8-9' : 'grados6-7';
+        })();
+
+        const GUIAS_BASE = `../guias/emprendimiento/${GRADO_PATH}`;
+
         // ══════════════════════════════════════════════
-        function generarAcordeon() {
+        // VERIFICAR SI EXISTE UNA GUÍA
+        // ══════════════════════════════════════════════
+        async function existeGuia(url) {
+            if (window.location.protocol === 'file:') {
+                return true;
+            }
+            try {
+                const res = await fetch(url, { method: 'HEAD' });
+                return res.ok;
+            } catch {
+                return false;
+            }
+        }
+
+        // ══════════════════════════════════════════════
+        // GENERAR ACORDEÓN · CON BOTÓN VER GUÍA
+        // ══════════════════════════════════════════════
+        async function generarAcordeon() {
             const container = document.getElementById('accordion-container');
             if (!container) return;
 
@@ -462,23 +489,44 @@
                 { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
             ];
 
-            periodos.forEach(periodo => {
-                const semanas = cfg.periodos[periodo.key];
+            for (let idx = 0; idx < periodos.length; idx++) {
+                const periodo  = periodos[idx];
+                const semanas  = cfg.periodos[periodo.key];
                 let semanasHTML = '';
 
-                semanas.forEach(s => {
+                for (let s of semanas) {
+                    // ── Construir ruta de la guía ──
+                    const numPeriodo = idx + 1;
+                    const rutaGuia   =
+                        `${GUIAS_BASE}/periodo${numPeriodo}/semana${s.semana}.html`;
+
+                    // ── Verificar si la guía existe ──
+                    const hayGuia = await existeGuia(rutaGuia);
+
+                    // ── Botón condicional ──
+                    const btnGuia = hayGuia ? `
+                        <a href="${rutaGuia}"
+                           class="btn-guia"
+                           title="Ver guía de trabajo">
+                            📄 Ver Guía
+                        </a>` : '';
+
                     semanasHTML += `
                         <div class="week-container">
-                            <h3>Semana ${s.semana} · ${s.tema}</h3>
+                            <div class="week-header-row">
+                                <h3>Semana ${s.semana} · ${s.tema}</h3>
+                                ${btnGuia}
+                            </div>
                             <p>${s.actividad}</p>
                         </div>
                     `;
-                });
+                }
 
                 const item = document.createElement('div');
                 item.className = 'accordion-item';
                 item.innerHTML = `
-                    <button class="accordion-header">
+                    <button class="accordion-header"
+                            style="--periodo-color: ${periodo.color}">
                         <span>${periodo.label}</span>
                         <span class="accordion-icon">+</span>
                     </button>
@@ -487,7 +535,7 @@
                     </div>
                 `;
                 container.appendChild(item);
-            });
+            }
 
             initAccordion();
         }
@@ -501,5 +549,63 @@
         });
 
     </script>
+        <!-- ══════════════════════════════════════════
+         ESTILOS DEL BOTÓN DE GUÍA · EMPRENDIMIENTO
+    ══════════════════════════════════════════ -->
+    <style>
+        /* Fila superior de cada semana */
+        .week-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .week-header-row h3 {
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Botón Ver Guía · colores de emprendimiento */
+        .btn-guia {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #8B4513, #D4880A);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(139,69,19,0.25);
+            white-space: nowrap;
+        }
+
+        .btn-guia:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 12px rgba(139,69,19,0.35);
+        }
+
+        .btn-guia:active {
+            transform: translateY(0);
+        }
+
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .week-header-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-guia {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
 </body>
 </html>

@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Cómo legalizar mi empresa rural? | Emprendimiento · Semana 1 · Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cafe:    #8B4513;
+            --miel:    #D4880A;
+            --campo:   #2D7A4F;
+            --fruta:   #E8621A;
+            --morado:  #6B35A3;
+            --azul:    #2563EB;
+            --tierra:  #A0522D;
+            --crema:   #FDF6EC;
+            --texto:   #2D3748;
+            --fondo:   #FAF7F2;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        }
+
+        /* ══ HEADER ══ */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid var(--miel);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--cafe);
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--fruta);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        /* ══ SECCIONES ══ */
+        .seccion {
+            margin-bottom: 28px;
+            padding: 20px 22px;
+            border-radius: 14px;
+            background: var(--crema);
+            border-left: 5px solid var(--miel);
+        }
+
+        .seccion h3 {
+            color: var(--cafe);
+            margin-top: 0;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ══ NIVEL CARDS ══ */
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado8 { border-color: var(--azul); }
+        .nivel-card.grado9 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -13px;
+            right: 15px;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.82rem;
+        }
+
+        .grado8 .nivel-badge { background: var(--azul); }
+        .grado9 .nivel-badge { background: var(--morado); }
+
+        /* ══ MATERIALES ══ */
+        .materiales-box {
+            background: #FFF8E7;
+            border: 2px dashed var(--miel);
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+        }
+
+        .materiales-box strong { color: var(--cafe); }
+
+        /* ══ ACTIVIDADES ══ */
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .actividad-lista li::before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+        }
+
+        /* ══ JUEGO BOX ══ */
+        .juego-box {
+            background: linear-gradient(135deg,
+                rgba(37,99,235,0.06), rgba(107,53,163,0.06));
+            border: 2px solid var(--azul);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 14px 0;
+        }
+
+        .juego-box h4 {
+            margin: 0 0 10px;
+            color: var(--azul);
+            font-size: 1rem;
+        }
+
+        /* ══ TABLA COMPARATIVA ══ */
+        .tabla-comparativa {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .tabla-comparativa th {
+            padding: 12px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .tabla-comparativa th:hover { opacity: 0.85; }
+        .tabla-comparativa th.col-sas  { background: var(--azul); }
+        .tabla-comparativa th.col-coop { background: var(--campo); }
+        .tabla-comparativa th.col-asoc { background: var(--miel); }
+        .tabla-comparativa th.col-esal { background: var(--morado); }
+        .tabla-comparativa th.col-crit { background: var(--cafe); }
+
+        .tabla-comparativa td {
+            padding: 10px 12px;
+            border: 1px solid #E2E8F0;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .tabla-comparativa tr:nth-child(even) td { background: #F8FAFC; }
+        .tabla-comparativa tr:hover td {
+            background: rgba(37,99,235,0.04);
+        }
+
+        .tabla-comparativa td:first-child {
+            font-weight: 800;
+            text-align: left;
+            color: var(--cafe);
+        }
+
+        /* ══ SIMULADOR ══ */
+        .simulador {
+            background: linear-gradient(135deg, #EFF6FF, #F5F3FF);
+            border: 2px solid var(--azul);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .simulador h4 {
+            color: var(--azul);
+            margin: 0 0 15px;
+        }
+
+        .sim-opciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sim-opcion {
+            background: white;
+            border: 2px solid #CBD5E0;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+
+        .sim-opcion:hover {
+            border-color: var(--azul);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(37,99,235,0.15);
+        }
+
+        .sim-opcion.seleccionada {
+            background: var(--azul);
+            color: white;
+            border-color: var(--azul);
+        }
+
+        .sim-opcion .sim-icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+
+        .sim-resultado {
+            background: white;
+            border-left: 5px solid var(--campo);
+            border-radius: 0 12px 12px 0;
+            padding: 16px;
+            display: none;
+            animation: aparecer 0.4s ease;
+        }
+
+        .sim-resultado.visible { display: block; }
+
+        .sim-resultado .sim-titulo {
+            font-weight: 900;
+            color: var(--campo);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .sim-resultado .sim-pasos {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        .sim-resultado .sim-pasos li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            font-size: 0.88rem;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+
+        .sim-resultado .sim-pasos li:last-child { border-bottom: none; }
+
+        .sim-resultado .sim-pasos li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        /* ══ CHECKLIST ══ */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: white;
+            border: 2px solid #E2E8F0;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist li:hover { border-color: var(--campo); }
+
+        .checklist li.marcado {
+            background: rgba(45,122,79,0.08);
+            border-color: var(--campo);
+            color: var(--campo);
+        }
+
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #CBD5E0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+            transition: all 0.2s;
+        }
+
+        .checklist li.marcado .check-box {
+            background: var(--campo);
+            border-color: var(--campo);
+            color: white;
+        }
+
+        .check-progreso {
+            background: #E2E8F0;
+            border-radius: 50px;
+            height: 10px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+
+        .check-barra {
+            height: 100%;
+            background: linear-gradient(135deg, var(--campo), var(--azul));
+            border-radius: 50px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .check-label {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--campo);
+            text-align: right;
+            margin-bottom: 4px;
+        }
+
+        /* ══ CALCULADORA DE COSTOS ══ */
+        .calc-costos {
+            background: white;
+            border: 2px solid var(--campo);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+
+        .calc-costos h4 {
+            color: var(--campo);
+            margin: 0 0 15px;
+        }
+
+        .costo-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #E2E8F0;
+            align-items: center;
+            font-size: 0.88rem;
+        }
+
+        .costo-row:last-of-type { border-bottom: none; }
+
+        .costo-label { font-weight: 700; color: var(--texto); }
+
+        .costo-input {
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 7px 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            width: 100%;
+            text-align: right;
+            transition: border-color 0.2s;
+        }
+
+        .costo-input:focus {
+            outline: none;
+            border-color: var(--campo);
+        }
+
+        .total-legal {
+            background: linear-gradient(135deg, var(--cafe), var(--tierra));
+            color: white;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .total-legal .total-label { font-size: 0.85rem; opacity: 0.9; }
+        .total-legal .total-valor { font-size: 1.8rem; font-weight: 900; margin-top: 4px; }
+
+        /* ══ MARCO DE IMAGEN ══ */
+        .marco-imagen {
+            border: 3px dashed var(--miel);
+            border-radius: 15px;
+            min-height: 180px;
+            background: linear-gradient(135deg, #FFF8E7, #FDF6EC);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marco-imagen:hover {
+            border-color: var(--fruta);
+            transform: scale(1.01);
+        }
+
+        .marco-imagen .marco-icon { font-size: 3rem; margin-bottom: 8px; }
+        .marco-imagen .marco-texto { font-size: 0.85rem; font-weight: 700; color: var(--tierra); text-align: center; }
+        .marco-imagen .marco-sub { font-size: 0.75rem; color: #A0AEC0; margin-top: 4px; }
+
+        .marco-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            border-radius: 12px;
+        }
+
+        /* ══ QUIZ ══ */
+        .quiz-wrap {
+            background: linear-gradient(135deg, #F5F3FF, #FAF7F2);
+            border: 2px solid var(--morado);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 14px 0;
+        }
+
+        .quiz-wrap h4 { color: var(--morado); margin: 0 0 12px; }
+
+        .quiz-pregunta {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 2px solid #E9D5FF;
+            display: none;
+        }
+
+        .quiz-pregunta.activa { display: block; animation: aparecer 0.4s ease; }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-enunciado { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; }
+
+        .quiz-opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .quiz-btn {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 2px solid #E9D5FF;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quiz-btn:hover:not(:disabled) {
+            background: rgba(107,53,163,0.06);
+            border-color: var(--morado);
+            transform: translateY(-2px);
+        }
+
+        .quiz-btn.correcta   { background: rgba(45,122,79,0.15);  border-color: var(--campo);  color: #065F46; }
+        .quiz-btn.incorrecta { background: rgba(239,68,68,0.10);   border-color: #EF4444;       color: #991B1B; }
+        .quiz-btn:disabled   { cursor: default; transform: none; }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: none;
+        }
+
+        .quiz-feedback.correcto   { display: block; background: rgba(45,122,79,0.12); color: #065F46; }
+        .quiz-feedback.incorrecto { display: block; background: rgba(239,68,68,0.08); color: #991B1B; }
+
+        .quiz-puntaje {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--morado);
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .quiz-siguiente {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 9px 22px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--morado), var(--cafe));
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+            display: none;
+            transition: all 0.2s;
+        }
+
+        .quiz-siguiente:hover { transform: translateY(-2px); }
+
+        /* ══ EVAL BOX ══ */
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--miel);
+            padding: 14px 18px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 14px;
+        }
+
+        .eval-box h4 { color: var(--cafe); margin: 0 0 8px; }
+
+        /* ══ REFLEXIÓN ══ */
+        .reflexion-box {
+            background: linear-gradient(135deg,
+                rgba(37,99,235,0.08), rgba(107,53,163,0.08));
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cafe);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ══ TAGS ══ */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(37,99,235,0.12);  color: var(--azul);   }
+        .tag-objeto    { background: rgba(107,53,163,0.12); color: var(--morado); }
+        .tag-ciudadana { background: rgba(45,122,79,0.12);  color: var(--campo);  }
+
+        /* ══ LÍNEAS ══ */
+        .lineas { margin-top: 10px; }
+
+        .linea {
+            border-bottom: 1.5px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        /* ══ TOAST ══ */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: white;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+            transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            z-index: 9999;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        /* ══ BOTONES ══ */
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, var(--azul), var(--morado));
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+            transition: all 0.3s;
+        }
+
+        .btn-print:hover { transform: translateY(-3px); }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--cafe);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        .btn-accion {
+            background: var(--azul);
+            color: white;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            margin: 5px 4px;
+        }
+
+        .btn-accion:hover { background: var(--morado); transform: translateY(-2px); }
+        .btn-accion.verde  { background: var(--campo); }
+        .btn-accion.naranja { background: var(--fruta); }
+
+        /* ══ FOOTER ══ */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid #E2E8F0;
+            color: #718096;
+            font-size: 0.82rem;
+        }
+
+        .footer p { margin: 3px 0; }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 600px) {
+            .container { padding: 22px 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .quiz-opciones { grid-template-columns: 1fr; }
+            .sim-opciones { grid-template-columns: 1fr 1fr; }
+            .tabla-comparativa { font-size: 0.75rem; }
+        }
+
+        /* ══ IMPRESIÓN ══ */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; padding: 20px; }
+            .btn-print, .btn-volver, #toast { display: none !important; }
+            .nivel-card, .seccion { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body data-grado="8-9">
+<div class="container">
+    <div id="toast"></div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+    <!-- ══ HEADER ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>⚖️ ¿Cómo legalizar mi empresa rural?</h1>
+        <h2>Emprendimiento · Semana 1 · Período 3</h2>
+        <p>Grados 8° y 9° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>
+            <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+            <strong>Fecha:</strong> _______________________
+        </p>
+        <p><strong>Nombre:</strong> _____________________________________________ &nbsp;
+           <strong>Grado:</strong> ________</p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: RETO ══ -->
+    <div class="seccion">
+        <h3>🌿 El Reto de Hoy</h3>
+        <p>
+            En Chichalá hay decenas de familias que producen café, panela y artesanías,
+            pero muchas trabajan <strong>en la informalidad</strong>: sin RUT, sin registro,
+            sin acceso a créditos ni programas del Estado. Hoy aprenderemos que
+            <strong>legalizar un negocio rural no es un trámite difícil</strong>,
+            sino el primer paso para crecer con respaldo y protección. ⚖️🌾
+        </p>
+    </div>
+
+    <!-- ══ MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Necesitamos hoy:</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+            <li>📱 Celular o computador con internet (si hay disponibilidad)</li>
+            <li>📓 Cuaderno y lápiz</li>
+            <li>🖼️ Foto de un negocio rural del entorno (opcional)</li>
+            <li>📄 Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 2: DESEMPEÑOS ══ -->
+    <div class="seccion">
+        <h3>🎯 ¿Qué vamos a aprender?</h3>
+
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Reconozco los <strong>tipos de organizaciones empresariales rurales</strong>
+            (SAS, cooperativa, asociación, ESAL) y comprendo cuál se adapta mejor
+            a cada actividad productiva de mi comunidad.</p>
+        </div>
+
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Diseño un <strong>plan básico de legalización</strong> para un emprendimiento
+            rural, identificando los pasos, costos y beneficios del proceso de constitución
+            de una SAS o cooperativa de productores de Chaparral.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 3: CONCEPTOS CLAVE ══ -->
+    <div class="seccion">
+        <h3>📚 Conceptos clave · Las 4 formas de organizarse</h3>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:12px; margin-top:12px;">
+            <div style="background:white; border-left:4px solid var(--azul); border-radius:10px; padding:14px;">
+                <strong style="color:var(--azul);">🏢 SAS</strong>
+                <p style="font-size:0.85rem; margin:6px 0 0;">Sociedad por Acciones Simplificada. Fácil de crear, flexible y protege el patrimonio personal del emprendedor.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--campo); border-radius:10px; padding:14px;">
+                <strong style="color:var(--campo);">🤝 Cooperativa</strong>
+                <p style="font-size:0.85rem; margin:6px 0 0;">Asociación de productores que trabajan juntos. Ideal para caficultores y paneleros que se unen para vender más.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--miel); border-radius:10px; padding:14px;">
+                <strong style="color:var(--miel);">🌾 Asociación Campesina</strong>
+                <p style="font-size:0.85rem; margin:6px 0 0;">Organización sin ánimo de lucro. Accede a subsidios del Estado, proyectos del SENA y apoyos de la Alcaldía.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--morado); border-radius:10px; padding:14px;">
+                <strong style="color:var(--morado);">💜 ESAL</strong>
+                <p style="font-size:0.85rem; margin:6px 0 0;">Entidad Sin Ánimo de Lucro. Para proyectos sociales, culturales o ambientales vinculados a la comunidad rural.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: TABLA COMPARATIVA ══ -->
+    <div class="seccion">
+        <h3>📊 Comparación de estructuras empresariales</h3>
+        <p style="font-size:0.85rem; color:#718096; margin-bottom:10px;">
+            Haz clic en el encabezado de cada columna para resaltar esa estructura 👇
+        </p>
+
+        <div style="overflow-x:auto;">
+            <table class="tabla-comparativa" id="tabla-comp">
+                <thead>
+                    <tr>
+                        <th class="col-crit" style="text-align:left;">Criterio</th>
+                        <th class="col-sas"  onclick="resaltarColumna(1)">🏢 SAS</th>
+                        <th class="col-coop" onclick="resaltarColumna(2)">🤝 Cooperativa</th>
+                        <th class="col-asoc" onclick="resaltarColumna(3)">🌾 Asociación</th>
+                        <th class="col-esal" onclick="resaltarColumna(4)">💜 ESAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>¿Cuántas personas?</td>
+                        <td>1 o más</td>
+                        <td>Mínimo 5</td>
+                        <td>Mínimo 2</td>
+                        <td>Mínimo 2</td>
+                    </tr>
+                    <tr>
+                        <td>¿Tiene ánimo de lucro?</td>
+                        <td>✅ Sí</td>
+                        <td>✅ Sí (excedentes)</td>
+                        <td>❌ No</td>
+                        <td>❌ No</td>
+                    </tr>
+                    <tr>
+                        <td>¿Dónde se registra?</td>
+                        <td>Cámara de Comercio Ibagué</td>
+                        <td>Supersolidaria</td>
+                        <td>Cámara de Comercio</td>
+                        <td>DIAN / Cámara</td>
+                    </tr>
+                    <tr>
+                        <td>Costo aproximado</td>
+                        <td>$300.000 - $500.000</td>
+                        <td>$200.000 - $400.000</td>
+                        <td>$100.000 - $200.000</td>
+                        <td>$0 - $150.000</td>
+                    </tr>
+                    <tr>
+                        <td>Acceso a crédito</td>
+                        <td>✅ Alto</td>
+                        <td>✅ Alto</td>
+                        <td>🟡 Medio</td>
+                        <td>🟡 Medio</td>
+                    </tr>
+                    <tr>
+                        <td>Ideal para...</td>
+                        <td>Negocio individual o familiar</td>
+                        <td>Grupo de caficultores</td>
+                        <td>Comunidad productora</td>
+                        <td>Proyecto social o cultural</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 5: ACTIVIDADES ══ -->
+    <div class="seccion">
+        <h3>🎨 Manos a la Obra</h3>
+
+        <!-- GRADO 8 -->
+        <div class="nivel-card grado8">
+            <span class="nivel-badge">Grado 8° · Elige tu estructura</span>
+
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+                Según tu actividad productiva, el simulador te recomienda
+                la <strong>estructura empresarial ideal</strong>. ¡Toca la opción que mejor te describe!
+            </p>
+
+            <div class="simulador">
+                <h4>🧭 Simulador · ¿Qué tipo de empresa necesito?</h4>
+                <div class="sim-opciones" id="sim-opciones">
+                    <div class="sim-opcion" onclick="simElegir('cafe')">
+                        <span class="sim-icon">☕</span>
+                        Producimos café
+                    </div>
+                    <div class="sim-opcion" onclick="simElegir('panela')">
+                        <span class="sim-icon">🟫</span>
+                        Producimos panela
+                    </div>
+                    <div class="sim-opcion" onclick="simElegir('artesanias')">
+                        <span class="sim-icon">🏺</span>
+                        Hacemos artesanías
+                    </div>
+                    <div class="sim-opcion" onclick="simElegir('turismo')">
+                        <span class="sim-icon">🏡</span>
+                        Turismo de finca
+                    </div>
+                </div>
+                <div class="sim-resultado" id="sim-resultado"></div>
+            </div>
+
+            <!-- Marco imagen G8 -->
+            <label for="img-g8">
+                <div class="marco-imagen" id="marco-g8" onclick="document.getElementById('img-g8').click()">
+                    <span class="marco-icon">📸</span>
+                    <span class="marco-texto">Foto de un negocio rural de Chichalá</span>
+                    <span class="marco-sub">Toca para agregar imagen</span>
+                </div>
+            </label>
+            <input type="file" id="img-g8" accept="image/*"
+                   onchange="cargarImagen('img-g8','marco-g8')" style="display:none;">
+
+            <div class="juego-box" style="margin-top:12px;">
+                <h4>✏️ Reflexiona</h4>
+                <p style="font-size:0.88rem;">
+                    ¿Qué tipo de empresa crees que necesita la familia de un caficultor de Chichalá?
+                    ¿Por qué?
+                </p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRADO 9 -->
+        <div class="nivel-card grado9">
+            <span class="nivel-badge">Grado 9° · Plan de Legalización</span>
+
+            <p style="font-size:0.88rem; margin-bottom:14px;">
+                Marca los pasos que ya conoces o que completarías para
+                <strong>constituir una SAS o cooperativa</strong> en Chaparral:
+            </p>
+
+                        <div class="check-label" id="check-label">0 de 7 pasos completados</div>
+            <div class="check-progreso">
+                <div class="check-barra" id="check-barra"></div>
+            </div>
+
+            <ul class="checklist" id="checklist-g9">
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>1. Elegir el tipo de empresa (SAS, Cooperativa, Asociación o ESAL)</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>2. Reunir mínimo 1 socio (SAS) o 5 asociados (Cooperativa)</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>3. Redactar los estatutos o acta de constitución</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>4. Registrar en la Cámara de Comercio de Ibagué o Supersolidaria</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>5. Obtener el NIT ante la DIAN</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>6. Abrir cuenta bancaria empresarial (Banco Agrario o Bancolombia)</span>
+                </li>
+                <li onclick="marcarCheck(this)">
+                    <div class="check-box">✓</div>
+                    <span>7. Inscribirse en programas de apoyo: SENA, Fondo Emprender, Finagro</span>
+                </li>
+            </ul>
+
+            <!-- Calculadora de costos legales -->
+            <div class="calc-costos">
+                <h4>💰 Calculadora de Costos de Legalización</h4>
+                <div class="costo-row">
+                    <span class="costo-label">📄 Registro Cámara de Comercio</span>
+                    <input type="number" class="costo-input" id="costo-1"
+                           value="350000" onchange="calcularCostoLegal()">
+                </div>
+                <div class="costo-row">
+                    <span class="costo-label">⚖️ Honorarios notariales</span>
+                    <input type="number" class="costo-input" id="costo-2"
+                           value="150000" onchange="calcularCostoLegal()">
+                </div>
+                <div class="costo-row">
+                    <span class="costo-label">🔖 Registro DIAN (RUT)</span>
+                    <input type="number" class="costo-input" id="costo-3"
+                           value="0" onchange="calcularCostoLegal()">
+                </div>
+                <div class="costo-row">
+                    <span class="costo-label">🚌 Transporte a Chaparral/Ibagué</span>
+                    <input type="number" class="costo-input" id="costo-4"
+                           value="80000" onchange="calcularCostoLegal()">
+                </div>
+                <div class="costo-row">
+                    <span class="costo-label">📦 Otros gastos</span>
+                    <input type="number" class="costo-input" id="costo-5"
+                           value="50000" onchange="calcularCostoLegal()">
+                </div>
+                <div class="total-legal" id="total-legal">
+                    <div class="total-label">💰 Costo estimado de legalización</div>
+                    <div class="total-valor" id="total-legal-valor">$630.000</div>
+                    <div style="font-size:0.8rem; opacity:0.85; margin-top:5px;">
+                        Puedes acceder a subsidios del SENA que cubren hasta el 100% 🎯
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marco imagen G9 -->
+            <label for="img-g9">
+                <div class="marco-imagen" id="marco-g9"
+                     onclick="document.getElementById('img-g9').click()">
+                    <span class="marco-icon">📄</span>
+                    <span class="marco-texto">Foto de un documento de constitución</span>
+                    <span class="marco-sub">Toca para agregar imagen</span>
+                </div>
+            </label>
+            <input type="file" id="img-g9" accept="image/*"
+                   onchange="cargarImagen('img-g9','marco-g9')" style="display:none;">
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: QUIZ ══ -->
+    <div class="seccion">
+        <h3>🧩 Quiz Rápido · ¿Cuánto aprendiste?</h3>
+        <div class="quiz-wrap">
+            <div class="quiz-puntaje">
+                ⭐ Puntaje: <span id="quiz-pts">0</span> /
+                <span id="quiz-tot">5</span> &nbsp;·&nbsp;
+                Pregunta <span id="quiz-num">1</span> de 5
+            </div>
+            <div id="quiz-container"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 7: COMPETENCIA CIUDADANA ══ -->
+    <div class="seccion">
+        <h3>🤝 El derecho de formalizarse</h3>
+        <span class="tag tag-ciudadana">Competencia Ciudadana</span>
+        <p style="margin-top:10px;">
+            La <strong>formalización empresarial</strong> es un derecho de todo ciudadano,
+            incluidos los campesinos de Chichalá. Un negocio legal protege a la familia,
+            genera empleo digno, paga impuestos justos y contribuye al desarrollo
+            del Corregimiento El Limón y Chaparral.
+        </p>
+        <ul class="actividad-lista">
+            <li>Un negocio formal puede acceder a créditos del Banco Agrario y Finagro.</li>
+            <li>Una cooperativa de caficultores puede exportar directamente y ganar más.</li>
+            <li>La legalidad protege a los trabajadores y garantiza sus derechos laborales.</li>
+        </ul>
+        <p><strong>Reflexión:</strong> ¿Qué cambiaría en tu familia si el negocio del campo
+        estuviera formalizado?</p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 8: AUTOEVALUACIÓN ══ -->
+    <div class="seccion">
+        <h3>📊 ¿Cómo me fue hoy?</h3>
+        <div class="eval-box">
+            <h4>⭐ Autoevaluación</h4>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:8px;">
+                <tr style="background:#FFF8E7;">
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Lo logré 😄</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">En proceso 🙂</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Me faltó 😕</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Reconozco los tipos de empresa rural</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Identifico los pasos para legalizar</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Comprendo los beneficios de la formalización</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+            </table>
+        </div>
+        <p><strong>¿Qué fue lo más interesante de hoy? ¿Qué me gustaría profundizar?</strong></p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>
+            ⚖️ "El campo de Chichalá tiene todo para crecer:<br>
+            café de altura, panela artesanal, manos sabias y tierra fértil.<br>
+            <strong>Solo falta el papel que diga: esto es una empresa.</strong><br>
+            Legalizar es el primer paso para que el trabajo campesino<br>
+            tenga el respeto y el valor que siempre mereció. 🌾"
+        </p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:6px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+    </div>
+
+</div><!-- fin .container -->
+
+<script>
+/* ══════════════════════════════════════════════
+   ¿CÓMO LEGALIZAR MI EMPRESA RURAL?
+   JavaScript · Profe Nelson
+   Grados 8°-9° · Período 3 · Semana 1
+   Emprendimiento Legal · Chichalá
+══════════════════════════════════════════════ */
+'use strict';
+
+// ─────────────────────────────────────────────
+// SONIDOS · Web Audio API
+// ─────────────────────────────────────────────
+const audioCtx = window.AudioContext
+  ? new AudioContext()
+  : window.webkitAudioContext
+    ? new webkitAudioContext()
+    : null;
+
+function sonar(tipo) {
+  if (!audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const configs = {
+    correcto: { freq: [523, 659, 784],       dur: 0.12, gain: 0.3,  type: 'sine'     },
+    error:    { freq: [200, 150],             dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+    flip:     { freq: [440, 554],             dur: 0.08, gain: 0.2,  type: 'sine'     },
+    eureka:   { freq: [523, 659, 784, 1047],  dur: 0.1,  gain: 0.25, type: 'sine'     },
+    legal:    { freq: [659, 784, 988, 1047],  dur: 0.12, gain: 0.25, type: 'sine'     },
+  };
+
+  const cfg = configs[tipo] || configs.flip;
+  cfg.freq.forEach((f, i) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type            = cfg.type;
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+    );
+    osc.start(audioCtx.currentTime + i * cfg.dur);
+    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+  });
+}
+
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+function mostrarToast(mensaje, tipo) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = mensaje;
+  toast.style.borderColor =
+    tipo === 'success' ? '#6EE7B7' :
+    tipo === 'error'   ? '#FCA5A5' : '#FCD34D';
+  toast.style.color =
+    tipo === 'success' ? '#065F46' :
+    tipo === 'error'   ? '#991B1B' : '#92400E';
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(120px)';
+  }, 3000);
+}
+
+// ─────────────────────────────────────────────
+// TABLA COMPARATIVA · Resaltar columna
+// ─────────────────────────────────────────────
+function resaltarColumna(col) {
+  const tabla = document.getElementById('tabla-comp');
+  if (!tabla) return;
+  const filas = tabla.querySelectorAll('tr');
+  filas.forEach(fila => {
+    const celdas = fila.querySelectorAll('td, th');
+    celdas.forEach((celda, idx) => {
+      celda.style.background = '';
+    });
+    if (celdas[col]) {
+      celdas[col].style.background = 'rgba(37,99,235,0.10)';
+      celdas[col].style.fontWeight = '800';
+    }
+  });
+  sonar('flip');
+  const nombres = ['', 'SAS', 'Cooperativa', 'Asociación Campesina', 'ESAL'];
+  mostrarToast(`🏢 Revisando: ${nombres[col]}`, 'success');
+}
+
+// ─────────────────────────────────────────────
+// SIMULADOR · Grado 8
+// ─────────────────────────────────────────────
+const SIM_DATA = {
+  cafe: {
+    titulo: '☕ Para caficultores de Chichalá: Cooperativa o SAS',
+    tipo: 'Cooperativa de Caficultores',
+    color: '#2D7A4F',
+    pasos: [
+      'Reunir mínimo 5 caficultores de la vereda',
+      'Redactar los estatutos de la cooperativa',
+      'Registrar ante la Superintendencia de Economía Solidaria',
+      'Obtener el NIT ante la DIAN',
+      'Afiliarse a la Federación Nacional de Cafeteros',
+      'Acceder a créditos de Finagro y el Banco Agrario',
+    ],
+    beneficio: 'Pueden vender directamente a tostadores y exportadores, ganando hasta 3 veces más.'
+  },
+  panela: {
+    titulo: '🟫 Para paneleros de Chaparral: Asociación Campesina',
+    tipo: 'Asociación de Paneleros',
+    color: '#D4880A',
+    pasos: [
+      'Convocar a productores de panela del corregimiento',
+      'Elaborar el acta de constitución y estatutos',
+      'Registrar en la Cámara de Comercio de Ibagué',
+      'Tramitar el RUT en la DIAN',
+      'Solicitar apoyo al SENA Tolima y la Alcaldía de Chaparral',
+      'Gestionar el sello de calidad para panela artesanal del Tolima',
+    ],
+    beneficio: 'Acceden a subsidios del Estado, mercados campesinos y programas de tecnificación.'
+  },
+  artesanias: {
+    titulo: '🏺 Para artesanos: ESAL o Asociación Cultural',
+    tipo: 'ESAL Artesanal',
+    color: '#6B35A3',
+    pasos: [
+      'Reunir al menos 2 artesanos de la vereda',
+      'Definir el objeto social (producción y venta de artesanías)',
+      'Constituir ante la Cámara de Comercio como ESAL',
+      'Registrarse en Artesanías de Colombia',
+      'Tramitar el RUT en la DIAN (gratuito)',
+      'Participar en ferias artesanales del Tolima con aval oficial',
+    ],
+    beneficio: 'Acceden a programas de Artesanías de Colombia, ferias nacionales y exportación.'
+  },
+  turismo: {
+    titulo: '🏡 Para turismo rural: SAS o Asociación de Turismo',
+    tipo: 'SAS de Turismo Rural',
+    color: '#E8621A',
+    pasos: [
+      'Constituir una SAS con 1 o más socios de la familia',
+      'Registrar en la Cámara de Comercio de Ibagué',
+      'Inscribir la finca ante el Registro Nacional de Turismo',
+      'Obtener el NIT y el RUT en la DIAN',
+      'Afiliarse a la Corporación de Turismo del Tolima',
+      'Diseñar paquetes de turismo de finca con productos de Chichalá',
+    ],
+    beneficio: 'Pueden ofrecer experiencias de turismo cafetero y panelero con respaldo legal.'
+  }
+};
+
+function simElegir(tipo) {
+  const opciones = document.querySelectorAll('.sim-opcion');
+  opciones.forEach(op => op.classList.remove('seleccionada'));
+
+  const opcionSeleccionada = event.currentTarget;
+  opcionSeleccionada.classList.add('seleccionada');
+
+  const data = SIM_DATA[tipo];
+  const resultado = document.getElementById('sim-resultado');
+
+  resultado.style.borderLeftColor = data.color;
+  resultado.innerHTML = `
+    <div class="sim-titulo" style="color:${data.color};">${data.titulo}</div>
+    <p style="font-size:0.88rem; color:#718096; margin:4px 0 10px;">
+      💡 ${data.beneficio}
+    </p>
+    <ul class="sim-pasos">
+      ${data.pasos.map(p => `<li>${p}</li>`).join('')}
+    </ul>
+  `;
+  resultado.classList.add('visible');
+  sonar('legal');
+  mostrarToast(`✅ Estructura recomendada: ${data.tipo}`, 'success');
+}
+
+// ─────────────────────────────────────────────
+// CHECKLIST · Grado 9
+// ─────────────────────────────────────────────
+function marcarCheck(li) {
+  li.classList.toggle('marcado');
+  actualizarProgreso();
+  sonar(li.classList.contains('marcado') ? 'correcto' : 'flip');
+  if (li.classList.contains('marcado')) {
+    mostrarToast('✅ ¡Paso completado! Un paso más hacia la legalización. 💪', 'success');
+  }
+}
+
+function actualizarProgreso() {
+  const items  = document.querySelectorAll('#checklist-g9 li');
+  const marcados = document.querySelectorAll('#checklist-g9 li.marcado');
+  const total  = items.length;
+  const hechos = marcados.length;
+  const pct    = total > 0 ? (hechos / total) * 100 : 0;
+
+  const barra  = document.getElementById('check-barra');
+  const label  = document.getElementById('check-label');
+
+  if (barra) barra.style.width = pct + '%';
+  if (label) label.textContent = `${hechos} de ${total} pasos completados`;
+
+  if (hechos === total) {
+    sonar('eureka');
+    mostrarToast('🏆 ¡Felicitaciones! Conoces todos los pasos para legalizar tu empresa. 🌾', 'success');
+    lanzarConfeti();
+  }
+}
+
+// ─────────────────────────────────────────────
+// CALCULADORA DE COSTOS LEGALES
+// ─────────────────────────────────────────────
+function calcularCostoLegal() {
+  let total = 0;
+  for (let i = 1; i <= 5; i++) {
+    const input = document.getElementById(`costo-${i}`);
+    if (input) total += parseFloat(input.value) || 0;
+  }
+  const valorEl = document.getElementById('total-legal-valor');
+  if (valorEl) {
+    valorEl.textContent = '$' + total.toLocaleString('es-CO');
+  }
+  sonar('flip');
+}
+
+// ─────────────────────────────────────────────
+// CARGAR IMAGEN · Marcos
+// ─────────────────────────────────────────────
+function cargarImagen(inputId, marcoId) {
+  const input = document.getElementById(inputId);
+  const marco = document.getElementById(marcoId);
+  if (!input || !marco) return;
+
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    marco.innerHTML = `<img src="${e.target.result}" alt="Imagen del negocio">`;
+    marco.style.padding = '0';
+    sonar('eureka');
+    mostrarToast('📸 ¡Imagen cargada! Excelente registro. 🌟', 'success');
+  };
+  reader.readAsDataURL(file);
+}
+
+// ─────────────────────────────────────────────
+// QUIZ · 5 PREGUNTAS
+// ─────────────────────────────────────────────
+const PREGUNTAS = [
+  {
+    texto: '🏢 ¿Cuál es la forma más fácil de crear una empresa en Colombia?',
+    opciones: ['Cooperativa', 'SAS', 'ESAL', 'Asociación'],
+    correcta: 1,
+    feedback: '¡Correcto! La SAS es la más flexible y fácil de constituir en Colombia.'
+  },
+  {
+    texto: '🤝 ¿Cuántas personas necesita mínimo una cooperativa?',
+    opciones: ['1 persona', '2 personas', '5 personas', '10 personas'],
+    correcta: 2,
+    feedback: '¡Exacto! Una cooperativa necesita mínimo 5 asociados para constituirse.'
+  },
+  {
+    texto: '📄 ¿Dónde se registra una SAS en el Tolima?',
+    opciones: ['DIAN Ibagué', 'Alcaldía de Chaparral', 'Cámara de Comercio de Ibagué', 'Supersolidaria'],
+    correcta: 2,
+    feedback: '¡Muy bien! Las SAS se registran en la Cámara de Comercio de la ciudad más cercana.'
+  },
+  {
+    texto: '💰 ¿Cuánto cuesta el RUT ante la DIAN?',
+    opciones: ['$500.000', '$200.000', '$100.000', 'Es gratuito'],
+    correcta: 3,
+    feedback: '¡Correcto! El RUT es completamente gratuito y se tramita en línea.'
+  },
+  {
+    texto: '🌾 ¿Qué programa del SENA apoya emprendimientos rurales?',
+    opciones: ['SENA Digital', 'SENA Emprende Rural', 'SENA Virtual', 'SENA Empresarial'],
+    correcta: 1,
+    feedback: '¡Excelente! El SENA Emprende Rural apoya con recursos y formación a emprendedores del campo.'
+  }
+];
+
+let quizEstado = { preguntaActual: 0, puntaje: 0 };
+
+function renderizarQuiz() {
+  const container = document.getElementById('quiz-container');
+  if (!container) return;
+
+  const idx = quizEstado.preguntaActual;
+  if (idx >= PREGUNTAS.length) {
+    mostrarResultadoQuiz();
+    return;
+  }
+
+  const p = PREGUNTAS[idx];
+  document.getElementById('quiz-num').textContent  = idx + 1;
+  document.getElementById('quiz-pts').textContent  = quizEstado.puntaje;
+  document.getElementById('quiz-tot').textContent  = PREGUNTAS.length;
+
+  container.innerHTML = `
+    <div class="quiz-pregunta activa">
+      <div class="quiz-enunciado">${p.texto}</div>
+      <div class="quiz-opciones">
+        ${p.opciones.map((op, i) => `
+          <button class="quiz-btn" onclick="responderQuiz(${i}, ${idx})">${op}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback" id="feedback-${idx}"></div>
+      <button class="quiz-siguiente" id="btn-sig-${idx}"
+              onclick="siguienteQuiz()">Siguiente ➡️</button>
+    </div>
+  `;
+}
+
+function responderQuiz(opcion, idx) {
+  const p = PREGUNTAS[idx];
+  const esCorrecta = opcion === p.correcta;
+
+  document.querySelectorAll('#quiz-container .quiz-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === p.correcta)  btn.classList.add('correcta');
+    if (i === opcion && !esCorrecta) btn.classList.add('incorrecta');
+  });
+
+  const fb = document.getElementById(`feedback-${idx}`);
+  if (fb) {
+    fb.textContent  = esCorrecta ? `✅ ${p.feedback}` : `❌ ${p.feedback}`;
+    fb.className    = `quiz-feedback ${esCorrecta ? 'correcto' : 'incorrecto'}`;
+  }
+
+  if (esCorrecta) {
+    quizEstado.puntaje++;
+    sonar('correcto');
+    mostrarToast('✅ ¡Correcto! +1 punto ⚖️', 'success');
+  } else {
+    sonar('error');
+    mostrarToast('❌ ¡Casi! Repasa el concepto y lo dominas 💪', 'error');
+  }
+
+  const btnSig = document.getElementById(`btn-sig-${idx}`);
+  if (btnSig) btnSig.style.display = 'inline-block';
+}
+
+function siguienteQuiz() {
+  quizEstado.preguntaActual++;
+  renderizarQuiz();
+}
+
+function mostrarResultadoQuiz() {
+  const container = document.getElementById('quiz-container');
+  const p = quizEstado.puntaje;
+  const t = PREGUNTAS.length;
+  let trofeo, mensaje;
+
+  if (p === t)  { trofeo = '🏆'; mensaje = '¡PERFECTO! Eres un experto en legalización rural. ⚖️🌾'; sonar('eureka'); }
+  else if (p >= 4) { trofeo = '🥈'; mensaje = '¡Muy bien! Estás listo para asesorar a tu comunidad. 💪'; sonar('correcto'); }
+  else             { trofeo = '📚'; mensaje = 'Repasa los conceptos, ¡pronto lo dominarás! 🌱'; sonar('flip'); }
+
+  document.getElementById('quiz-pts').textContent = p;
+
+  container.innerHTML = `
+    <div style="text-align:center; padding:24px;
+                background:linear-gradient(135deg,#EFF6FF,#FAF7F2);
+                border-radius:14px;">
+      <div style="font-size:3.5rem; margin-bottom:12px;">${trofeo}</div>
+      <div style="font-size:1.1rem; font-weight:800; color:var(--cafe); margin-bottom:16px;">${mensaje}</div>
+      <div style="font-size:1.5rem; color:var(--azul); font-weight:900;">${p}/${t} puntos</div>
+      <button class="quiz-siguiente" style="display:inline-block; margin-top:15px;"
+              onclick="reiniciarQuiz()">🔄 Intentar de nuevo</button>
+    </div>
+  `;
+
+  if (p === t) lanzarConfeti();
+}
+
+function reiniciarQuiz() {
+  quizEstado = { preguntaActual: 0, puntaje: 0 };
+  sonar('flip');
+  renderizarQuiz();
+}
+
+// ─────────────────────────────────────────────
+// MARCAR EVALUACIÓN
+// ─────────────────────────────────────────────
+function marcarEval(celda) {
+  const fila   = celda.closest('tr');
+  const celdas = fila.querySelectorAll('span[onclick]');
+  const yaEstaba = celda.textContent === '☑';
+  celdas.forEach(function(c) { c.textContent = '☐'; });
+  if (!yaEstaba) {
+    celda.textContent = '☑';
+    sonar('flip');
+    mostrarToast('✅ ¡Autoevaluación guardada!', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CONFETI
+// ─────────────────────────────────────────────
+function lanzarConfeti() {
+  const emojis = ['⚖️','🌾','☕','🟫','🏺','💰','⭐','🎉','🏆','✨','🤝','📄'];
+  for (let i = 0; i < 28; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position: fixed;
+      top: -40px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${1.2 + Math.random() * 1.5}rem;
+      animation: caerConfeti ${2 + Math.random() * 2}s ease-in forwards;
+      z-index: 9998;
+      pointer-events: none;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(function() { el.remove(); }, 4500);
+  }
+}
+
+// ─────────────────────────────────────────────
+// ESTILOS DINÁMICOS
+// ─────────────────────────────────────────────
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+  @keyframes caerConfeti {
+    0%   { opacity: 1; transform: translateY(0)    rotate(0deg);   }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+  }
+`;
+document.head.appendChild(styleSheet);
+
+// ─────────────────────────────────────────────
+// DOMContentLoaded · INICIALIZACIÓN
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Inicializar Quiz
+  renderizarQuiz();
+
+  // 2. Calcular costo legal inicial
+  calcularCostoLegal();
+
+  // 3. Bienvenida con delay
+  setTimeout(function() {
+    mostrarToast(
+      '⚖️ ¡Bienvenido! Hoy aprenderás a darle legalidad a tu emprendimiento. 🌾🚀',
+      'success'
+    );
+    sonar('eureka');
+  }, 800);
+
+  // 4. Confeti al llegar al final
+  let confetiLanzado = false;
+  window.addEventListener('scroll', function() {
+    if (!confetiLanzado &&
+        (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+      confetiLanzado = true;
+      setTimeout(function() {
+        lanzarConfeti();
+        mostrarToast(
+          '🏆 ¡Excelente trabajo! Ya sabes cómo legalizar tu empresa rural. ⚖️🌾',
+          'success'
+        );
+        sonar('eureka');
+      }, 500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

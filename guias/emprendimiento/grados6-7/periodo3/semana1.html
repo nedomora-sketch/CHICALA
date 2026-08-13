@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De la Finca al Producto | Emprendimiento · Semana 1 · Período 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cafe:    #8B4513;
+            --miel:    #D4880A;
+            --campo:   #2D7A4F;
+            --fruta:   #E8621A;
+            --morado:  #6B35A3;
+            --tierra:  #A0522D;
+            --crema:   #FDF6EC;
+            --texto:   #2D3748;
+            --fondo:   #FAF7F2;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+        }
+
+        /* ══ HEADER ══ */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid var(--miel);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--cafe);
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .header h2 {
+            color: var(--fruta);
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: #718096;
+            margin: 5px 0;
+        }
+
+        /* ══ SECCIONES ══ */
+        .seccion {
+            margin-bottom: 28px;
+            padding: 20px 22px;
+            border-radius: 14px;
+            background: var(--crema);
+            border-left: 5px solid var(--miel);
+        }
+
+        .seccion h3 {
+            color: var(--cafe);
+            margin-top: 0;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ══ NIVEL CARDS ══ */
+        .nivel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nivel-card.grado6 { border-color: var(--campo); }
+        .nivel-card.grado7 { border-color: var(--morado); }
+
+        .nivel-badge {
+            position: absolute;
+            top: -13px;
+            right: 15px;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.82rem;
+        }
+
+        .grado6 .nivel-badge { background: var(--campo); }
+        .grado7 .nivel-badge { background: var(--morado); }
+
+        /* ══ MATERIALES ══ */
+        .materiales-box {
+            background: #FFF8E7;
+            border: 2px dashed var(--miel);
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+        }
+
+        .materiales-box strong { color: var(--cafe); }
+
+        /* ══ ACTIVIDADES ══ */
+        .actividad-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .actividad-lista li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .actividad-lista li::before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+        }
+
+        /* ══ JUEGO BOX ══ */
+        .juego-box {
+            background: linear-gradient(135deg,
+                rgba(45,122,79,0.08), rgba(212,136,10,0.08));
+            border: 2px solid var(--campo);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 14px 0;
+        }
+
+        .juego-box h4 {
+            margin: 0 0 10px;
+            color: var(--campo);
+            font-size: 1rem;
+        }
+
+        /* ══ MARCO DE IMAGEN ══ */
+        .marco-imagen {
+            border: 3px dashed var(--miel);
+            border-radius: 15px;
+            min-height: 180px;
+            background: linear-gradient(135deg, #FFF8E7, #FDF6EC);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marco-imagen:hover {
+            border-color: var(--fruta);
+            background: linear-gradient(135deg, #FFF3E0, #FFF8E7);
+            transform: scale(1.01);
+        }
+
+        .marco-imagen .marco-icon { font-size: 3rem; margin-bottom: 8px; }
+
+        .marco-imagen .marco-texto {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--tierra);
+            text-align: center;
+        }
+
+        .marco-imagen .marco-sub {
+            font-size: 0.75rem;
+            color: #A0AEC0;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        .marco-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            border-radius: 12px;
+        }
+
+        .marco-imagen input[type="file"] {
+            display: none;
+        }
+
+        /* ══ TARJETAS TÉCNICAS ══ */
+        .tecnicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .tecnica-card {
+            background: white;
+            border: 3px solid var(--miel);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            user-select: none;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tecnica-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(212,136,10,0.25);
+        }
+
+        .tecnica-card.volteada {
+            background: linear-gradient(135deg, var(--cafe), var(--tierra));
+            color: white;
+            border-color: var(--cafe);
+        }
+
+        .tecnica-card .cara-frente { font-size: 2.2rem; display: block; }
+        .tecnica-card .cara-atras  { font-size: 0.8rem; font-weight: 800; display: none; line-height: 1.5; }
+        .tecnica-card.volteada .cara-frente { display: none; }
+        .tecnica-card.volteada .cara-atras  { display: block; }
+
+        /* ══ CALCULADORA DE COSTOS ══ */
+        .calc-costos {
+            background: white;
+            border: 2px solid var(--campo);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+
+        .calc-costos h4 {
+            color: var(--campo);
+            margin: 0 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insumo-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .insumo-input {
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            width: 100%;
+            transition: border-color 0.2s;
+        }
+
+        .insumo-input:focus {
+            outline: none;
+            border-color: var(--campo);
+        }
+
+        .insumo-total {
+            background: rgba(45,122,79,0.08);
+            border: 2px solid var(--campo);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-weight: 800;
+            color: var(--campo);
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        .btn-insumo {
+            background: var(--fruta);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: 800;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-insumo:hover { background: var(--cafe); transform: scale(1.1); }
+
+        .total-box {
+            background: linear-gradient(135deg, var(--campo), #1A5C37);
+            color: white;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .total-box .total-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .total-box .total-valor {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-top: 4px;
+        }
+
+        /* ══ QUIZ ══ */
+        .quiz-wrap {
+            background: linear-gradient(135deg, #F5F3FF, #FAF7F2);
+            border: 2px solid var(--morado);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin: 14px 0;
+        }
+
+        .quiz-wrap h4 {
+            color: var(--morado);
+            margin: 0 0 12px;
+            font-size: 1rem;
+        }
+
+        .quiz-pregunta {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 2px solid #E9D5FF;
+            display: none;
+        }
+
+        .quiz-pregunta.activa { display: block; animation: aparecer 0.4s ease; }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-enunciado {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .quiz-opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .quiz-btn {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 2px solid #E9D5FF;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quiz-btn:hover:not(:disabled) {
+            background: rgba(107,53,163,0.06);
+            border-color: var(--morado);
+            transform: translateY(-2px);
+        }
+
+        .quiz-btn.correcta   { background: rgba(45,122,79,0.15);  border-color: var(--campo);  color: #065F46; }
+        .quiz-btn.incorrecta { background: rgba(239,68,68,0.10);   border-color: #EF4444;       color: #991B1B; }
+        .quiz-btn:disabled   { cursor: default; transform: none; }
+
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: none;
+        }
+
+        .quiz-feedback.correcto   { display: block; background: rgba(45,122,79,0.12);  color: #065F46; }
+        .quiz-feedback.incorrecto { display: block; background: rgba(239,68,68,0.08);  color: #991B1B; }
+
+        .quiz-puntaje {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--morado);
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .quiz-siguiente {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 9px 22px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, var(--morado), var(--cafe));
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+            display: none;
+            transition: all 0.2s;
+        }
+
+        .quiz-siguiente:hover { transform: translateY(-2px); }
+
+        /* ══ EVAL BOX ══ */
+        .eval-box {
+            background: #FFFBEB;
+            border-left: 5px solid var(--miel);
+            padding: 14px 18px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 14px;
+        }
+
+        .eval-box h4 { color: var(--cafe); margin: 0 0 8px; }
+
+        /* ══ REFLEXIÓN ══ */
+        .reflexion-box {
+            background: linear-gradient(135deg,
+                rgba(45,122,79,0.10), rgba(212,136,10,0.10));
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .reflexion-box p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cafe);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ══ TAGS ══ */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .tag-desempeno { background: rgba(45,122,79,0.12);   color: var(--campo);  }
+        .tag-objeto    { background: rgba(107,53,163,0.12);  color: var(--morado); }
+        .tag-ciudadana { background: rgba(212,136,10,0.12);  color: var(--miel);   }
+
+        /* ══ LÍNEAS ══ */
+        .lineas { margin-top: 10px; }
+
+        .linea {
+            border-bottom: 1.5px solid #CBD5E0;
+            height: 28px;
+            margin-bottom: 5px;
+        }
+
+        /* ══ TOAST ══ */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: white;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+            transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            z-index: 9999;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            max-width: 90vw;
+            text-align: center;
+        }
+
+        /* ══ BOTONES ══ */
+        .btn-print {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, var(--campo), var(--cafe));
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(45,122,79,0.35);
+            transition: all 0.3s;
+        }
+
+        .btn-print:hover { transform: translateY(-3px); }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--cafe);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .btn-volver:hover { text-decoration: underline; }
+
+        .btn-accion {
+            background: var(--campo);
+            color: white;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            margin: 5px 4px;
+        }
+
+        .btn-accion:hover { background: var(--cafe); transform: translateY(-2px); }
+        .btn-accion.naranja { background: var(--fruta); }
+        .btn-accion.morado  { background: var(--morado); }
+
+        /* ══ FOOTER ══ */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid #E2E8F0;
+            color: #718096;
+            font-size: 0.82rem;
+        }
+
+        .footer p { margin: 3px 0; }
+
+        /* ══ RESPONSIVE ══ */
+        @media (max-width: 600px) {
+            .container { padding: 22px 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .quiz-opciones { grid-template-columns: 1fr; }
+            .tecnicas-grid { grid-template-columns: repeat(2, 1fr); }
+            .insumo-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ══ IMPRESIÓN ══ */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; padding: 20px; }
+            .btn-print, .btn-volver, #toast { display: none !important; }
+            .nivel-card, .seccion { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body data-grado="6-7">
+<div class="container">
+    <div id="toast"></div>
+
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+    <!-- ══ HEADER ══ -->
+    <div class="header">
+        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
+        <h1>🌾 De la Finca al Producto</h1>
+        <h2>Emprendimiento · Semana 1 · Período 3</h2>
+        <p>data-grado · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>
+            <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
+            <strong>Fecha:</strong> _______________________
+        </p>
+        <p><strong>Nombre:</strong> _____________________________________________ &nbsp;
+           <strong>Grado:</strong> ________</p>
+    </div>
+
+    <!-- ══ SECCIÓN 1: RETO ══ -->
+    <div class="seccion">
+        <h3>🌿 El Reto de Hoy</h3>
+        <p>
+            En Chichalá, el campo produce café, panela, frutas y artesanías.
+            Pero, <strong>¿cómo convertimos eso en un producto que se pueda vender?</strong>
+            Hoy aprenderemos a crear un <strong>prototipo</strong>, que es la primera versión
+            real de un producto, usando materiales de nuestro entorno. 💡
+        </p>
+    </div>
+
+    <!-- ══ MATERIALES ══ -->
+    <div class="materiales-box">
+        <strong>🧺 Necesitamos hoy:</strong>
+        <ul style="margin: 8px 0 0; padding-left: 20px;">
+            <li>☕ Producto del campo: café, panela, fruta o material artesanal</li>
+            <li>📦 Envase o recipiente reciclado</li>
+            <li>✂️ Tijeras, colores y marcadores</li>
+            <li>📄 Papel, cartón o tela</li>
+            <li>📱 Esta guía impresa o en pantalla</li>
+        </ul>
+    </div>
+
+    <!-- ══ SECCIÓN 2: DESEMPEÑOS ══ -->
+    <div class="seccion">
+        <h3>🎯 ¿Qué vamos a aprender?</h3>
+
+        <div class="nivel-card grado6">
+            <span class="nivel-badge">Grado 6°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Identifico productos del entorno rural que pueden transformarse en
+            <strong>productos comercializables</strong> y elaboro un prototipo básico
+            con materiales disponibles en mi comunidad.</p>
+        </div>
+
+        <div class="nivel-card grado7">
+            <span class="nivel-badge">Grado 7°</span>
+            <span class="tag tag-desempeno">🎯 Desempeño</span>
+            <p>Diseño y elaboro un <strong>prototipo rural con criterios de calidad</strong>,
+            identificando materias primas, procesos de transformación y posibles compradores.</p>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 3: CONCEPTOS CLAVE ══ -->
+    <div class="seccion">
+        <h3>📚 Conceptos clave</h3>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:12px; margin-top:10px;">
+            <div style="background:white; border-left:4px solid var(--campo); border-radius:10px; padding:14px;">
+                <strong style="color:var(--campo);">🔬 Prototipo</strong>
+                <p style="font-size:0.88rem; margin:6px 0 0;">Primera versión real de un producto. No es perfecto, pero sirve para probar.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--miel); border-radius:10px; padding:14px;">
+                <strong style="color:var(--miel);">🌾 Materia Prima</strong>
+                <p style="font-size:0.88rem; margin:6px 0 0;">Lo que viene del campo: café, panela, frutas, fibras naturales.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--fruta); border-radius:10px; padding:14px;">
+                <strong style="color:var(--fruta);">⚙️ Transformación</strong>
+                <p style="font-size:0.88rem; margin:6px 0 0;">Proceso que convierte la materia prima en producto: tostar, pulverizar, cocinar.</p>
+            </div>
+            <div style="background:white; border-left:4px solid var(--morado); border-radius:10px; padding:14px;">
+                <strong style="color:var(--morado);">💰 Valor Agregado</strong>
+                <p style="font-size:0.88rem; margin:6px 0 0;">Lo que hace que el producto valga más: presentación, sabor, empaque.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 4: TÉCNICAS · TARJETAS VOLTEABLES ══ -->
+    <div class="seccion">
+        <h3>🃏 Técnicas de Prototipado · ¡Descúbrelas!</h3>
+        <p style="font-size:0.88rem; margin-bottom:12px;">
+            Toca cada tarjeta para descubrir una técnica de transformación rural 👇
+        </p>
+
+        <div class="tecnicas-grid" id="tecnicas-grid">
+            <!-- Generadas por JS -->
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 5: ACTIVIDADES ══ -->
+    <div class="seccion">
+        <h3>🎨 Manos a la Obra</h3>
+
+        <!-- GRADO 6 -->
+        <div class="nivel-card grado6">
+            <span class="nivel-badge">Grado 6° · Mi primer prototipo</span>
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Elige tu producto:</strong> ¿Qué hay en tu finca o casa que puedas transformar?
+                    (café, panela, fruta, arcilla, fibra...)
+                </li>
+                <li>
+                    <strong>Transfórmalo:</strong> Aplica una técnica sencilla: tuesta, pulveriza,
+                    cocina o moldea tu materia prima.
+                </li>
+                <li>
+                    <strong>Empácalo:</strong> Usa un envase reciclado y dale presentación.
+                    ¡El empaque es parte del producto!
+                </li>
+                <li>
+                    <strong>Fotografíalo:</strong> Registra tu prototipo en el marco de abajo.
+                </li>
+            </ul>
+
+            <!-- Marco de imagen G6 -->
+            <label for="img-g6">
+                <div class="marco-imagen" id="marco-g6" onclick="document.getElementById('img-g6').click()">
+                    <span class="marco-icon">📸</span>
+                    <span class="marco-texto">Foto de mi prototipo</span>
+                    <span class="marco-sub">Toca para agregar imagen</span>
+                </div>
+            </label>
+            <input type="file" id="img-g6" accept="image/*" onchange="cargarImagen('img-g6','marco-g6')">
+
+            <div class="juego-box" style="margin-top:10px;">
+                <h4>✏️ Describe tu prototipo</h4>
+                <p style="font-size:0.88rem;">¿Qué producto hiciste? ¿Cómo lo transformaste?</p>
+                <div class="lineas">
+                    <div class="linea"></div>
+                    <div class="linea"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRADO 7 -->
+        <div class="nivel-card grado7">
+            <span class="nivel-badge">Grado 7° · Prototipo con criterios</span>
+            <ul class="actividad-lista">
+                <li>
+                    <strong>Define tu producto:</strong> Nombre, materia prima, proceso
+                    y a quién va dirigido.
+                </li>
+                <li>
+                    <strong>Elabora el prototipo:</strong> Aplica la técnica de transformación
+                    y cuida la presentación y calidad.
+                </li>
+                <li>
+                    <strong>Calcula el costo:</strong> Usa la calculadora de costos de abajo.
+                </li>
+                <li>
+                    <strong>Fotografíalo:</strong> Registra tu prototipo en el marco.
+                </li>
+            </ul>
+
+            <!-- Marco de imagen G7 -->
+            <label for="img-g7">
+                <div class="marco-imagen" id="marco-g7" onclick="document.getElementById('img-g7').click()">
+                    <span class="marco-icon">📸</span>
+                    <span class="marco-texto">Foto de mi prototipo</span>
+                    <span class="marco-sub">Toca para agregar imagen</span>
+                </div>
+            </label>
+            <input type="file" id="img-g7" accept="image/*" onchange="cargarImagen('img-g7','marco-g7')">
+
+            <!-- Calculadora de Costos -->
+            <div class="calc-costos">
+                <h4>💰 Calculadora de Costos del Prototipo</h4>
+                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:8px; margin-bottom:8px;">
+                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">Insumo</span>
+                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">Cantidad</span>
+                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">$ Precio</span>
+                    <span></span>
+                </div>
+                <div id="insumos-lista">
+                    <!-- Filas generadas por JS -->
+                </div>
+                <div style="text-align:center; margin:10px 0;">
+                    <button class="btn-accion naranja" onclick="agregarInsumo()">+ Agregar insumo</button>
+                    <button class="btn-accion morado" onclick="calcularTotal()">💰 Calcular total</button>
+                </div>
+                <div class="total-box" id="total-box" style="display:none;">
+                    <div class="total-label">💰 Costo total del prototipo</div>
+                    <div class="total-valor" id="total-valor">$0</div>
+                    <div style="font-size:0.8rem; opacity:0.85; margin-top:5px;">
+                        Precio sugerido de venta (x2): <strong id="precio-venta">$0</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 6: QUIZ ══ -->
+    <div class="seccion">
+        <h3>🧩 Quiz Rápido · ¿Cuánto aprendiste?</h3>
+        <div class="quiz-wrap">
+            <div class="quiz-puntaje">
+                ⭐ Puntaje: <span id="quiz-pts">0</span> / <span id="quiz-tot">4</span>
+                &nbsp;·&nbsp; Pregunta <span id="quiz-num">1</span> de 4
+            </div>
+            <div id="quiz-container"></div>
+        </div>
+    </div>
+
+    <!-- ══ SECCIÓN 7: AUTOEVALUACIÓN ══ -->
+    <div class="seccion">
+        <h3>📊 ¿Cómo me fue hoy?</h3>
+        <div class="eval-box">
+            <h4>⭐ Autoevaluación</h4>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:8px;">
+                <tr style="background:#FFF8E7;">
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:left;">Criterio</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Lo logré 😄</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">En proceso 🙂</th>
+                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Me faltó 😕</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Entendí qué es un prototipo</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Elaboré un prototipo con materiales del entorno</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border:1px solid #E2E8F0;">Identifiqué la materia prima y la transformación</td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
+                </tr>
+            </table>
+        </div>
+        <p><strong>¿Qué fue lo más difícil? ¿Cómo lo resolví?</strong></p>
+        <div class="lineas">
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
+
+    <!-- ══ REFLEXIÓN FINAL ══ -->
+    <div class="reflexion-box">
+        <p>
+            🌾 "Todo gran producto empezó siendo un prototipo.<br>
+            El café de Chichalá, la panela artesanal,<br            toda la panela que endulza Colombia...<br>
+            <strong>Todo empezó con una idea y un primer intento.</strong><br>
+            Tu prototipo es solo el comienzo. 🚀"
+        </p>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+        <p>Corregimiento El Limón · Chaparral, Tolima</p>
+        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+        <p style="margin-top:6px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
+    </div>
+
+</div><!-- fin .container -->
+
+<script>
+/* ══════════════════════════════════════════════
+   DE LA FINCA AL PRODUCTO · EMPRENDIMIENTO
+   JavaScript · Profe Nelson
+   Grados 6°-7° · Período 3 · Semana 1
+   Prototipos Rurales
+══════════════════════════════════════════════ */
+'use strict';
+
+// ─────────────────────────────────────────────
+// SONIDOS · Web Audio API (100% offline)
+// ─────────────────────────────────────────────
+const audioCtx = window.AudioContext
+  ? new AudioContext()
+  : window.webkitAudioContext
+    ? new webkitAudioContext()
+    : null;
+
+function sonar(tipo) {
+  if (!audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const configs = {
+    correcto:  { freq: [523, 659, 784],      dur: 0.12, gain: 0.3,  type: 'sine'     },
+    error:     { freq: [200, 150],            dur: 0.18, gain: 0.3,  type: 'sawtooth' },
+    flip:      { freq: [440, 554],            dur: 0.08, gain: 0.2,  type: 'sine'     },
+    eureka:    { freq: [523, 659, 784, 1047], dur: 0.1,  gain: 0.25, type: 'sine'     },
+    dinero:    { freq: [659, 784, 1047, 1319], dur: 0.15, gain: 0.3,  type: 'sine'     },
+  };
+
+  const cfg = configs[tipo] || configs.flip;
+  cfg.freq.forEach((f, i) => {
+    const osc  = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type            = cfg.type;
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
+    );
+    osc.start(audioCtx.currentTime + i * cfg.dur);
+    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
+  });
+}
+
+// ─────────────────────────────────────────────
+// TOAST · Notificaciones flotantes
+// ─────────────────────────────────────────────
+function mostrarToast(mensaje, tipo) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+
+  toast.textContent = mensaje;
+  toast.style.borderColor = tipo === 'success' ? '#6EE7B7' : tipo === 'error' ? '#FCA5A5' : '#FCD34D';
+  toast.style.color = tipo === 'success' ? '#065F46' : tipo === 'error' ? '#991B1B' : '#92400E';
+
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120px)'; }, 3000);
+}
+
+// ─────────────────────────────────────────────
+// TARJETAS TÉCNICAS VOLTEABLES
+// ─────────────────────────────────────────────
+const TECNICAS = [
+  { frente: '☕', atras: 'Tostado\nCafé verde → calor → café tostado', tipo: 'cafe' },
+  { frente: '🟫', atras: 'Pulverizado\nPanela molida → polvo fino', tipo: 'panela' },
+  { frente: '🍯', atras: 'Concentrado\nFruta + azúcar → mermelada', tipo: 'mermelada' },
+  { frente: '🏺', atras: 'Modelado\nArcilla + agua → moldear → secar', tipo: 'artesania' },
+  { frente: '🧵', atras: 'Tejido\nFibras naturales → telar → tela', tipo: 'textil' },
+  { frente: '📦', atras: 'Empaque\nReciclaje creativo → presentación', tipo: 'empaque' },
+];
+
+function renderizarTecnicas() {
+  const grid = document.getElementById('tecnicas-grid');
+  if (!grid) return;
+
+  grid.innerHTML = TECNICAS.map((t, i) => `
+    <div class="tecnica-card" id="tec-${i}" onclick="voltearTecnica(${i})" title="¡Toca para descubrir!">
+      <span class="cara-frente">${t.frente}</span>
+      <span class="cara-atras" style="white-space:pre-line;">${t.atras}</span>
+    </div>
+  `).join('');
+}
+
+function voltearTecnica(idx) {
+  const card = document.getElementById(`tec-${idx}`);
+  if (!card) return;
+  const yaVolteada = card.classList.contains('volteada');
+  card.classList.toggle('volteada');
+  sonar(yaVolteada ? 'flip' : 'correcto');
+  if (!yaVolteada) {
+    mostrarToast('🌾 ¡Técnica descubierta! ¿La usarás en tu prototipo?', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CARGAR IMAGEN · Marcos de prototipo
+// ─────────────────────────────────────────────
+function cargarImagen(inputId, marcoId) {
+  const input = document.getElementById(inputId);
+  const marco = document.getElementById(marcoId);
+  if (!input || !marco) return;
+
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    marco.innerHTML = `<img src="${e.target.result}" alt="Mi prototipo">`;
+    marco.style.padding = '0';
+    sonar('eureka');
+    mostrarToast('📸 ¡Prototipo registrado! Qué buena pinta tiene 🌟', 'success');
+  };
+  reader.readAsDataURL(file);
+}
+
+// ─────────────────────────────────────────────
+// CALCULADORA DE COSTOS · Grado 7
+// ─────────────────────────────────────────────
+let contadorInsumos = 0;
+
+function agregarInsumo() {
+  const lista = document.getElementById('insumos-lista');
+  if (!lista) return;
+
+  const id = `insumo-${contadorInsumos++}`;
+  const fila = document.createElement('div');
+  fila.className = 'insumo-row';
+  fila.id = id;
+  fila.innerHTML = `
+    <input type="text" class="insumo-input" placeholder="Ej: Café verde" id="${id}-nombre">
+    <input type="number" class="insumo-input" placeholder="1" min="1" id="${id}-cant" value="1">
+    <input type="number" class="insumo-input" placeholder="$" min="0" id="${id}-precio" value="0">
+    <button class="btn-insumo" onclick="eliminarInsumo('${id}')">×</button>
+  `;
+  lista.appendChild(fila);
+  sonar('flip');
+}
+
+function eliminarInsumo(id) {
+  const fila = document.getElementById(id);
+  if (fila) fila.remove();
+  sonar('flip');
+}
+
+function calcularTotal() {
+  const filas = document.querySelectorAll('#insumos-lista .insumo-row');
+  let total = 0;
+
+  filas.forEach(fila => {
+    const cant = parseFloat(document.getElementById(fila.id + '-cant').value) || 0;
+    const precio = parseFloat(document.getElementById(fila.id + '-precio').value) || 0;
+    total += cant * precio;
+  });
+
+  const totalBox = document.getElementById('total-box');
+  const totalValor = document.getElementById('total-valor');
+  const precioVenta = document.getElementById('precio-venta');
+
+  if (totalBox && totalValor && precioVenta) {
+    totalBox.style.display = 'block';
+    totalValor.textContent = '$' + total.toLocaleString('es-CO');
+    precioVenta.textContent = '$' + (total * 2).toLocaleString('es-CO');
+    sonar('dinero');
+    mostrarToast('💰 ¡Costo calculado! Recuerda: el precio de venta suele ser el doble', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// QUIZ · 4 PREGUNTAS
+// ─────────────────────────────────────────────
+const PREGUNTAS = [
+  {
+    texto: '🌾 ¿Qué es un prototipo?',
+    opciones: ['El producto final perfecto', 'La primera versión real para probar', 'Un dibujo en papel', 'La idea en la mente'],
+    correcta: 1,
+    feedback: '¡Exacto! El prototipo es la primera versión real, no tiene que ser perfecto.'
+  },
+  {
+    texto: '☕ ¿Cuál es la materia prima del café tostado?',
+    opciones: ['Café molido', 'Café verde', 'Café instantáneo', 'Agua caliente'],
+    correcta: 1,
+    feedback: '¡Correcto! El café verde se transforma con calor en café tostado.'
+  },
+  {
+    texto: '💰 ¿Qué es el "valor agregado"?',
+    opciones: ['El precio de compra', 'Lo que hace que el producto valga más', 'El costo de transporte', 'La cantidad producida'],
+    correcta: 1,
+    feedback: '¡Muy bien! Es todo lo que hace que tu producto valga más: presentación, sabor, empaque...'
+  },
+  {
+    texto: '📦 ¿Por qué es importante el empaque?',
+    opciones: ['Solo para verse bonito', 'Protege, presenta y vende', 'Para hacerlo más pesado', 'No es importante'],
+    correcta: 1,
+    feedback: '¡Perfecto! El empaque protege, presenta y ayuda a vender el producto.'
+  }
+];
+
+let quizEstado = { preguntaActual: 0, puntaje: 0 };
+
+function renderizarQuiz() {
+  const container = document.getElementById('quiz-container');
+  if (!container) return;
+
+  const idx = quizEstado.preguntaActual;
+  if (idx >= PREGUNTAS.length) {
+    mostrarResultadoQuiz();
+    return;
+  }
+
+  const p = PREGUNTAS[idx];
+  document.getElementById('quiz-num').textContent = idx + 1;
+  document.getElementById('quiz-pts').textContent = quizEstado.puntaje;
+
+  container.innerHTML = `
+    <div class="quiz-pregunta activa">
+      <div class="quiz-enunciado">${p.texto}</div>
+      <div class="quiz-opciones">
+        ${p.opciones.map((op, i) => `
+          <button class="quiz-btn" onclick="responderQuiz(${i}, ${idx})">${op}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback" id="feedback-${idx}"></div>
+      <button class="quiz-siguiente" id="btn-sig-${idx}" onclick="siguienteQuiz()">Siguiente ➡️</button>
+    </div>
+  `;
+}
+
+function responderQuiz(opcion, idx) {
+  const p = PREGUNTAS[idx];
+  const esCorrecta = opcion === p.correcta;
+
+  document.querySelectorAll(`#quiz-container .quiz-btn`).forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === p.correcta) btn.classList.add('correcta');
+    if (i === opcion && !esCorrecta) btn.classList.add('incorrecta');
+  });
+
+  const fb = document.getElementById(`feedback-${idx}`);
+  if (fb) {
+    fb.textContent = esCorrecta ? `✅ ${p.feedback}` : `❌ ${p.feedback}`;
+    fb.className = `quiz-feedback ${esCorrecta ? 'correcto' : 'incorrecto'}`;
+  }
+
+  if (esCorrecta) {
+    quizEstado.puntaje++;
+    sonar('correcto');
+    mostrarToast('✅ ¡Correcto! +1 punto 🌟', 'success');
+  } else {
+    sonar('error');
+    mostrarToast('❌ ¡Casi! Aprendamos de esto 💪', 'error');
+  }
+
+  const btnSig = document.getElementById(`btn-sig-${idx}`);
+  if (btnSig) btnSig.style.display = 'inline-block';
+}
+
+function siguienteQuiz() {
+  quizEstado.preguntaActual++;
+  renderizarQuiz();
+}
+
+function mostrarResultadoQuiz() {
+  const container = document.getElementById('quiz-container');
+  const ptsEl = document.getElementById('quiz-pts');
+  if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
+
+  const p = quizEstado.puntaje;
+  const t = PREGUNTAS.length;
+  let trofeo, mensaje;
+
+  if (p === t) {
+    trofeo = '🏆';
+    mensaje = '¡PERFECTO! Eres un emprendedor nato de Chichalá 🌾';
+    sonar('eureka');
+  } else if (p >= 3) {
+    trofeo = '🥈';
+    mensaje = '¡Muy bien! Estás listo para emprender 💪';
+    sonar('correcto');
+  } else {
+    trofeo = '📚';
+    mensaje = 'Sigue aprendiendo, todo emprendedor comienza así 🌱';
+    sonar('flip');
+  }
+
+  container.innerHTML = `
+    <div style="text-align:center; padding:24px; background:linear-gradient(135deg,#F0FDF4,#FAF7F2); border-radius:14px;">
+      <div style="font-size:3.5rem; margin-bottom:12px;">${trofeo}</div>
+      <div style="font-size:1.1rem; font-weight:800; color:var(--cafe); margin-bottom:16px;">${mensaje}</div>
+      <div style="font-size:1.5rem; color:var(--campo); font-weight:900;">${p}/${t} puntos</div>
+      <button class="quiz-siguiente" style="display:inline-block; margin-top:15px;" onclick="reiniciarQuiz()">🔄 Intentar de nuevo</button>
+    </div>
+  `;
+}
+
+function reiniciarQuiz() {
+  quizEstado = { preguntaActual: 0, puntaje: 0 };
+  sonar('flip');
+  renderizarQuiz();
+}
+
+// ─────────────────────────────────────────────
+// MARCAR EVALUACIÓN
+// ─────────────────────────────────────────────
+function marcarEval(celda) {
+  const fila = celda.closest('tr');
+  const celdas = fila.querySelectorAll('span[onclick]');
+  const yaEstaba = celda.textContent === '☑';
+
+  celdas.forEach(function(c) { c.textContent = '☐'; });
+
+  if (!yaEstaba) {
+    celda.textContent = '☑';
+    sonar('flip');
+    mostrarToast('✅ ¡Evaluación guardada!', 'success');
+  }
+}
+
+// ─────────────────────────────────────────────
+// CONFETI
+// ─────────────────────────────────────────────
+function lanzarConfeti() {
+  const emojis = ['🌾','☕','🟫','🍯','🏺','💰','⭐','🎉','🏆','✨'];
+  for (let i = 0; i < 25; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position: fixed;
+      top: -40px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${1.5 + Math.random() * 1.5}rem;
+      animation: caerConfeti ${2 + Math.random() * 2}s ease-in forwards;
+      z-index: 9998;
+      pointer-events: none;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(function() { el.remove(); }, 4500);
+  }
+}
+
+/// ─────────────────────────────────────────────
+// ESTILOS DINÁMICOS
+// ─────────────────────────────────────────────
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+  @keyframes caerConfeti {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+  }
+`;
+document.head.appendChild(styleSheet);
+
+// ─────────────────────────────────────────────
+// DOMContentLoaded · INICIALIZACIÓN
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Renderizar tarjetas de técnicas
+  renderizarTecnicas();
+
+  // 2. Inicializar quiz
+  renderizarQuiz();
+
+  // 3. Bienvenida con delay
+  setTimeout(() => {
+    mostrarToast(
+      '🌾 ¡Bienvenido Emprendedor Rural! Hoy convertimos la finca en producto. ¡Vamos! 🚀',
+      'success'
+    );
+    sonar('eureka');
+  }, 800);
+
+  // 4. Confeti sorpresa al hacer scroll hasta el final
+  let confetiLanzado = false;
+  window.addEventListener('scroll', () => {
+    if (!confetiLanzado && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+      confetiLanzado = true;
+      setTimeout(() => {
+        lanzarConfeti();
+        mostrarToast('🏆 ¡Excelente trabajo! Has creado tu primer prototipo. ¡Eres un emprendedor! 🌟', 'success');
+        sonar('eureka');
+      }, 500);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
