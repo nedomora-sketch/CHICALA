@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Semana 1 — Tecnología (Guía interactiva)</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --azul:#1A9BAB;
+      --naranja:#F4872B;
+      --verde:#3DBE8C;
+      --amarillo:#F7C325;
+      --morado:#7C3AED;
+      --fondo:#f7fafc;
+      --card:#ffffff;
+      --text:#24303a;
+      --muted:#6b7b83;
+      --glass: rgba(255,255,255,0.6);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Nunito',sans-serif;background:linear-gradient(180deg,var(--fondo),#eef6f8);color:var(--text);margin:0;padding:24px}
+    .container{max-width:1100px;margin:0 auto}
+
+    header.app-header{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--azul),var(--morado));display:flex;align-items:center;justify-content:center;color:#fff;font-family:Orbitron;font-weight:700}
+    h1.title{font-family:Orbitron;margin:0;font-size:1.45rem}
+    p.lead{margin:4px 0 0;color:var(--muted)}
+
+    .progress-wrap{background:linear-gradient(90deg,rgba(26,155,171,0.12),rgba(124,58,237,0.06));padding:14px;border-radius:14px;margin:18px 0;display:flex;align-items:center;gap:12px}
+    .progress-stages{display:flex;gap:8px;align-items:center;flex:1}
+    .stage{padding:8px 12px;border-radius:999px;background:var(--card);box-shadow:0 2px 6px rgba(20,30,40,0.05);font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
+    .stage.active{background:linear-gradient(90deg,var(--azul),var(--morado));color:#fff;box-shadow:0 6px 18px rgba(26,155,171,0.14)}
+    .progress-meter{height:10px;background:#e6f3f5;border-radius:999px;overflow:hidden;flex-basis:220px}
+    .progress-meter > i{display:block;height:100%;background:linear-gradient(90deg,var(--naranja),var(--amarillo));width:0%}
+
+    /* Gamification */
+    .points-badge{display:flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--amarillo),#fdd24b);padding:8px 16px;border-radius:999px;font-weight:700;color:#333;box-shadow:0 4px 12px rgba(247,195,37,0.2)}
+    .badges-display{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+    .badge{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.2rem;box-shadow:0 4px 12px rgba(0,0,0,0.15);position:relative;cursor:pointer;transition:transform 0.2s}
+    .badge:hover{transform:scale(1.1)}
+    .badge.bronze{background:linear-gradient(135deg,#CD7F32,#9d6a25)}
+    .badge.silver{background:linear-gradient(135deg,#c0c0c0,#878787)}
+    .badge.gold{background:linear-gradient(135deg,#ffd700,#ffed4e)}
+    .badge.locked{opacity:0.4;filter:grayscale(100%)}
+    .badge-tooltip{position:absolute;bottom:-30px;background:#333;color:#fff;padding:4px 8px;border-radius:6px;font-size:0.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s}
+    .badge:hover .badge-tooltip{opacity:1}
+
+    /* Drag and Drop */
+    .drag-source{cursor:grab;padding:12px;border-radius:8px;background:#fff;border:2px dashed rgba(26,155,171,0.3);margin-bottom:8px;transition:all 0.2s}
+    .drag-source:active{cursor:grabbing;opacity:0.7}
+    .drag-source.dragging{opacity:0.5;border-color:var(--azul)}
+    .drop-zone{min-height:80px;padding:12px;border-radius:8px;border:2px dashed rgba(26,155,171,0.2);background:rgba(26,155,171,0.02);transition:all 0.2s;display:flex;flex-direction:column;gap:8px}
+    .drop-zone.drag-over{border-color:var(--verde);background:rgba(61,190,140,0.08)}
+    .drop-zone.drag-over::after{content:'✓ Suelta aquí';color:var(--verde);font-weight:700;text-align:center}
+    .dropped-item{padding:10px;background:linear-gradient(90deg,rgba(61,190,140,0.1),#fff);border-left:4px solid var(--verde);border-radius:6px;display:flex;justify-content:space-between;align-items:center}
+    .dropped-item button{background:transparent;color:var(--verde);border:none;cursor:pointer;font-weight:700;padding:4px;border-radius:4px}
+    .dropped-item button:hover{background:rgba(61,190,140,0.2)}
+
+    /* Export section */
+    .export-section{background:linear-gradient(90deg,rgba(26,155,171,0.05),rgba(124,58,237,0.05));padding:12px;border-radius:8px;margin-top:12px}
+    .btn.export{background:linear-gradient(90deg,var(--verde),#2db08f);font-weight:700}
+    .btn.export:hover{box-shadow:0 6px 18px rgba(61,190,140,0.3)}
+
+    /* Animations */
+    @keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes correctPulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+    @keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+    .slide-in{animation:slideIn 0.3s ease-out}
+    .correct-anim{animation:correctPulse 0.5s ease-out}
+    .wrong-anim{animation:wrongShake 0.4s ease-out}
+
+    main.card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 8px 30px rgba(20,30,40,0.06)}
+    .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .btn{background:var(--azul);color:#fff;padding:10px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.secondary{background:transparent;color:var(--azul);border:2px solid rgba(26,155,171,0.12)}
+
+    .content-section{display:none;padding:12px 6px;border-radius:8px}
+    .content-section.active{display:block}
+
+    .moment{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .panel{background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0.9));padding:14px;border-radius:12px}
+
+    /* Cards */
+    .theory .item{padding:12px;border-left:6px solid var(--azul);background:rgba(26,155,171,0.03);margin-bottom:10px;border-radius:8px}
+
+    /* Quiz */
+    .quiz .q{margin-bottom:14px}
+    .options{display:flex;flex-direction:column;gap:8px}
+    .option{padding:10px;border-radius:8px;border:1px solid #e6eef0;background:#fff;cursor:pointer}
+    .option.correct{border-color:var(--verde);background:linear-gradient(90deg,rgba(61,190,140,0.06),#fff)}
+    .option.incorrect{border-color:#f58b8b;background:linear-gradient(90deg,rgba(244,135,43,0.04),#fff)}
+
+    .feedback{padding:10px;border-radius:8px;margin-top:8px}
+    .feedback.correct{background:linear-gradient(90deg,rgba(61,190,140,0.08),#fff);border-left:6px solid var(--verde)}
+    .feedback.incorrect{background:linear-gradient(90deg,rgba(244,72,72,0.06),#fff);border-left:6px solid #f24b4b}
+
+    /* Matching */
+    .matching{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .match-list{display:flex;flex-direction:column;gap:8px}
+    .match-item{padding:10px;border-radius:8px;border:1px dashed rgba(36,48,58,0.08);background:#fff}
+
+    /* Chart area */
+    .chart-container{background:#fff;padding:12px;border-radius:10px}
+
+    footer.eval{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:18px}
+    .rubric{font-size:0.95rem;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){.moment{grid-template-columns:1fr;}.panel{order:2}}
+
+    /* small animations */
+    .pulse{animation:pulse 2.4s ease-in-out infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="logo">CH</div>
+      <div>
+        <h1 class="title">Semana 1 — Innovaciones en tecnología agroindustrial</h1>
+         <p class="lead">Guía interactiva con los 5 momentos pedagógicos: Exploración, Estructuración, Práctica, Transferencia y Valoración.</p>
+      </div>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-stages">
+        <div class="stage active" data-step="1">1. Exploración</div>
+        <div class="stage" data-step="2">2. Estructuración</div>
+        <div class="stage" data-step="3">3. Práctica</div>
+        <div class="stage" data-step="4">4. Transferencia</div>
+        <div class="stage" data-step="5">5. Valoración</div>
+      </div>
+      <div class="progress-meter" aria-hidden>
+        <i style="width:20%"></i>
+      </div>
+      <div style="min-width:260px;display:flex;align-items:center;gap:12px;justify-content:flex-end">
+        <div class="points-badge">🏆 <span id="pointsCount">0</span> pts</div>
+        <div style="text-align:right;color:var(--muted);font-weight:700">Progreso: <span id="progressPct">20%</span></div>
+      </div>
+    </div>
+    
+    <div style="margin-bottom:12px">
+      <div class="badges-display" id="badgesContainer"></div>
+    </div>
+
+    <main class="card">
+      <div class="controls">
+        <button class="btn" id="prevBtn" disabled>&larr; Anterior</button>
+        <button class="btn" id="nextBtn">Siguiente &rarr;</button>
+        <button class="btn secondary" id="resetBtn">Reiniciar</button>
+        <button class="btn export" id="exportBtn">📊 Exportar resultados</button>
+      </div>
+
+      <!-- Moment sections -->
+      <section id="step-1" class="content-section active">
+        <div class="moment">
+          <div class="panel">
+            <h2>🔍 Exploración: Descubrimiento de contexto</h2>
+            <p>Iniciemos un viaje de descubrimiento sobre cómo la tecnología está transformando la agricultura y la industria rural. En esta etapa, exploraremos el contexto, identificaremos nuestras ideas previas y estableceremos objetivos de aprendizaje.</p>
+            
+            <h3>Saberes previos: ¿Qué ya sabes?</h3>
+            <p>Responde sinceramente para personalizar tu experiencia:</p>
+            <div style="display:grid;gap:8px;margin:12px 0">
+              <label><input type="radio" name="know1"> He visto drones en mi región</label>
+              <label><input type="radio" name="know1"> Conozco sobre sistemas de riego automatizado</label>
+              <label><input type="radio" name="know1"> Soy nuevo en estas tecnologías</label>
+            </div>
+
+            <h3>🎯 Objetivos de aprendizaje</h3>
+            <ul>
+              <li>Identificar qué tecnologías están presentes en la agroindustria moderna.</li>
+              <li>Comprender cómo estas tecnologías impactan la productividad y sostenibilidad.</li>
+              <li>Analizar beneficios, retos y oportunidades locales.</li>
+              <li>Desarrollar pensamiento crítico sobre innovación y territorio.</li>
+            </ul>
+
+            <h3>🎮 Actividad lúdica: Adivinanza tecnológica</h3>
+            <p>Lee las pistas y selecciona la tecnología correcta. Gana puntos por respuestas correctas.</p>
+            <div id="explorationQuiz" style="display:flex;flex-direction:column;gap:12px"></div>
+            <div id="explorationFeedback" class="feedback" style="display:none;margin-top:12px"></div>
+          </div>
+
+          <aside class="panel">
+            <h3>📋 Guía de la semana</h3>
+            <p class="rubric"><strong>Tiempo estimado:</strong> 45-60 minutos</p>
+            <p class="rubric"><strong>Materiales:</strong> Cuaderno, lápiz, dispositivo (smartphone, tablet o computadora), conexión a internet (opcional para investigación).</p>
+            <p class="rubric"><strong>Duración por momento:</strong> 8-12 minutos cada etapa</p>
+            
+            <div style="margin-top:14px">
+              <strong>💡 Preguntas para reflexión</strong>
+              <ol style="font-size:0.95rem">
+                <li>¿Qué tecnologías ya se usan en tu comunidad agrícola?</li>
+                <li>¿Cuáles son los principales problemas que enfrentan los productores?</li>
+                <li>¿Cómo podrían las nuevas tecnologías ayudar?</li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="step-2" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2>🏗️ Estructuración: Construyendo conceptos</h2>
+            <p>Profundicemos en los conceptos fundamentales de la tecnología agroindustrial. Esta etapa te ayudará a organizar y estructurar el conocimiento de forma lógica y coherente.</p>
+
+            <h3>📚 Marco teórico: Conceptos fundamentales</h3>
+            <div class="item" style="border-left:6px solid var(--azul);padding:12px;background:rgba(26,155,171,0.03);margin-bottom:12px;border-radius:8px">
+              <h4>Internet de las Cosas (IoT) en Agroindustria</h4>
+              <p><strong>Definición:</strong> Red de sensores y dispositivos conectados que recopilan, procesan y comparten datos en tiempo real.</p>
+              <p><strong>Aplicaciones:</strong> Monitoreo de humedad, temperatura del suelo, humedad relativa del aire, estado de plagas.</p>
+              <p><strong>Beneficios:</strong> Toma de decisiones basada en datos, reducción de costos, optimización de recursos.</p>
+            </div>
+
+            <div class="item" style="border-left:6px solid var(--verde);padding:12px;background:rgba(61,190,140,0.03);margin-bottom:12px;border-radius:8px">
+              <h4>Sistemas de Riego Automatizado</h4>
+              <p><strong>Definición:</strong> Sistemas que regulan automáticamente la cantidad y timing del riego mediante sensores y controladores.</p>
+              <p><strong>Tipos:</strong> Riego por goteo, aspersión inteligente, riego subsuperficial.</p>
+              <p><strong>Ventajas:</strong> Ahorro de agua (30-60%), consistencia, menor esfuerzo manual.</p>
+            </div>
+
+            <div class="item" style="border-left:6px solid var(--naranja);padding:12px;background:rgba(244,135,43,0.03);margin-bottom:12px;border-radius:8px">
+              <h4>Trazabilidad Agrícola</h4>
+              <p><strong>Definición:</strong> Registro digital del ciclo de vida completo de un producto, desde siembra hasta consumidor.</p>
+              <p><strong>Tecnologías:</strong> Códigos QR, blockchain, bases de datos distribuidas.</p>
+              <p><strong>Impacto:</strong> Transparencia, seguridad alimentaria, acceso a mercados premium.</p>
+            </div>
+
+            <h3>🎯 Actividad: Arrastra y suelta conceptos</h3>
+            <p>Relaciona cada característica con el concepto correcto. Arrastra los elementos al área de destino.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+              <div>
+                <p style="font-weight:700;color:var(--azul);margin-bottom:8px">Características</p>
+                <div id="dragItems" style="display:flex;flex-direction:column;gap:8px"></div>
+              </div>
+              <div>
+                <p style="font-weight:700;color:var(--verde);margin-bottom:8px">Conceptos</p>
+                <div id="dropZones" style="display:flex;flex-direction:column;gap:8px"></div>
+              </div>
+            </div>
+            <div id="matchingFeedback" class="feedback" style="display:none;margin-top:12px"></div>
+          </div>
+
+          <aside class="panel">
+            <h3>📊 Visualización: Tecnologías por impacto</h3>
+            <canvas id="impactChart" width="300" height="200"></canvas>
+            <p style="font-size:0.9rem;color:var(--muted);margin-top:8px">Comparativa de impacto ambiental y productivo según estudios locales.</p>
+            
+            <div style="margin-top:16px">
+              <strong>🔗 Consulta propuesta</strong>
+              <p class="rubric">Entrevista a 2 productores locales y registra: ¿Qué tecnologías conocen? ¿Cuáles usan? ¿Cuáles les interesan?</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="step-3" class="content-section">
+        <div class="moment">
+          <div class="panel quiz">
+            <h2>🎓 Práctica: Aplicando lo aprendido</h2>
+            <p>Pon en práctica tu comprensión mediante cuestionarios interactivos con retroalimentación inmediata. Gana puntos por respuestas correctas.</p>
+
+            <h3>Quiz 1: Conceptos fundamentales</h3>
+            <div class="q" data-q="1">
+              <strong>1. ¿Cuál es la ventaja principal de un sistema de riego automatizado?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Reduce solo la mano de obra</div>
+                <div class="option" data-correct="true">Optimiza agua, reduce costos y mejora rendimiento</div>
+                <div class="option" data-correct="false">Aumenta la complejidad sin beneficios</div>
+              </div>
+              <div class="feedback" style="display:none"></div>
+            </div>
+
+            <div class="q" data-q="2">
+              <strong>2. ¿Qué tecnología permite monitorear grandes áreas desde el aire?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">Drones con sensores multiespectrales</div>
+                <div class="option" data-correct="false">Trazabilidad blockchain</div>
+                <div class="option" data-correct="false">Sistemas de contabilidad</div>
+              </div>
+              <div class="feedback" style="display:none"></div>
+            </div>
+
+            <div class="q" data-q="3">
+              <strong>3. ¿Cuál es el propósito principal de la trazabilidad en productos agrícolas?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">Garantizar transparencia y seguridad alimentaria</div>
+                <div class="option" data-correct="false">Aumentar la producción sin control</div>
+                <div class="option" data-correct="false">Reducir el precio final</div>
+              </div>
+              <div class="feedback" style="display:none"></div>
+            </div>
+
+            <h3>Quiz 2: Análisis de casos</h3>
+            <div class="q" data-q="4">
+              <strong>4. Un productor gasta $500 al mes en riego manual. Con IoT automatizado reduce 40% el consumo. ¿Cuál es el ahorro mensual en consumo pero considerando que el sistema cuesta $2,000? ¿En cuántos meses se recupera la inversión?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">Ahorro: $200/mes • Recuperación: 10 meses</div>
+                <div class="option" data-correct="false">Ahorro: $100/mes • Recuperación: 20 meses</div>
+                <div class="option" data-correct="false">No hay recuperación de inversión</div>
+              </div>
+              <div class="feedback" style="display:none"></div>
+            </div>
+
+            <div style="margin-top:12px">
+              <button class="btn" id="gradeBtn">Calificar práctica</button>
+              <div id="practiceResult" style="margin-left:12px;display:inline-block;color:var(--muted)"></div>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h3>⏱️ Reto con tiempo</h3>
+            <p>Resuelve este desafío en máximo 3 minutos:</p>
+            <p style="background:rgba(244,135,43,0.08);padding:12px;border-radius:8px;border-left:4px solid var(--naranja)">
+              <strong>Problema:</strong> Un invernadero tiene 1,000 plantas. Sin riego automatizado: 30% se pierden por estrés hídrico. Con IoT: solo 5%. ¿Cuántas plantas se salvan?
+            </p>
+            <input type="number" id="timedAnswer" placeholder="Tu respuesta" style="width:100%;padding:8px;border:1px solid #e6eef0;border-radius:6px;margin:8px 0">
+            <button class="btn" id="submitTimed">Enviar</button>
+            <div id="timedFeedback" style="margin-top:8px;color:var(--muted)"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="step-4" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2>🚀 Transferencia: Aplicando en el mundo real</h2>
+            <p>Resuelve escenarios reales donde debes tomar decisiones considerando tecnología, costo y sostenibilidad.</p>
+
+            <h3>Escenario 1: Diseñando un sistema de riego inteligente</h3>
+            <div style="background:rgba(26,155,171,0.05);padding:12px;border-radius:8px;border-left:4px solid var(--azul);margin-bottom:12px">
+              <p><strong>Situación:</strong> Tienes una parcela de 2 hectáreas con cultivo de tomate. El riego actual cuesta $800/mes. Se te proponen 3 opciones:</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+              <div class="scenario-option" data-scenario="1" data-points="15">
+                <strong>Opción A: Sistema por goteo básico</strong>
+                <p><strong>Costo:</strong> $1,500</p>
+                <p><strong>Ahorro:</strong> 25% en agua</p>
+                <p><strong>Ventajas:</strong> Simple, bajo costo inicial</p>
+                <p><strong>Desventajas:</strong> Requiere supervisión manual</p>
+                <button class="btn" onclick="handleScenarioChoice('1a')">Seleccionar</button>
+              </div>
+
+              <div class="scenario-option" data-scenario="1" data-points="20">
+                <strong>Opción B: IoT + Automatización inteligente</strong>
+                <p><strong>Costo:</strong> $5,000</p>
+                <p><strong>Ahorro:</strong> 50% en agua + 30% menos mano de obra</p>
+                <p><strong>Ventajas:</strong> Monitoreo remoto, datos en tiempo real</p>
+                <p><strong>Desventajas:</strong> Inversión mayor, requiere capacitación</p>
+                <button class="btn" onclick="handleScenarioChoice('1b')">Seleccionar</button>
+              </div>
+
+              <div class="scenario-option" data-scenario="1" data-points="18">
+                <strong>Opción C: Híbrida - Goteo + sensor básico</strong>
+                <p><strong>Costo:</strong> $2,800</p>
+                <p><strong>Ahorro:</strong> 35% en agua</p>
+                <p><strong>Ventajas:</strong> Balance costo-beneficio, mejora progresiva</p>
+                <p><strong>Desventajas:</strong> Funcionalidades limitadas</p>
+                <button class="btn" onclick="handleScenarioChoice('1c')">Seleccionar</button>
+              </div>
+            </div>
+
+            <div id="scenario1Feedback" class="feedback" style="display:none;padding:12px;margin-bottom:12px;border-radius:8px"></div>
+
+            <h3>Escenario 2: Implementando trazabilidad en tu producción</h3>
+            <div style="background:rgba(61,190,140,0.05);padding:12px;border-radius:8px;border-left:4px solid var(--verde);margin-bottom:12px">
+              <p><strong>Situación:</strong> Quieres acceder a un mercado premium que requiere trazabilidad. ¿Cuáles serían tus primeros pasos?</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <input type="checkbox" id="trace1"> 
+                <label for="trace1"><strong>Registrar fechas y cantidades de insumos aplicados</strong></label>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <input type="checkbox" id="trace2"> 
+                <label for="trace2"><strong>Implementar códigos QR en cada lote cosechado</strong></label>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <input type="checkbox" id="trace3"> 
+                <label for="trace3"><strong>Crear base de datos de clientes y sus compras</strong></label>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <input type="checkbox" id="trace4"> 
+                <label for="trace4"><strong>Contratar auditoría externa costosa inmediatamente</strong></label>
+              </div>
+            </div>
+            <button class="btn" onclick="checkTraceability()" style="margin-top:12px">Verificar respuestas</button>
+            <div id="traceabilityFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:8px"></div>
+          </div>
+
+          <aside class="panel">
+            <h3>🎯 Proyección financiera</h3>
+            <canvas id="roi_chart" width="280" height="200"></canvas>
+            <p style="font-size:0.9rem;color:var(--muted);margin-top:8px">Retorno sobre inversión (ROI) según opción elegida en Escenario 1.</p>
+
+            <h3 style="margin-top:16px">💡 Reflexión</h3>
+            <p class="rubric">Considera costos iniciales, ahorros a largo plazo, y beneficios ambientales. ¿Cuál sería tu decisión para tu familia?</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="step-5" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2>🏆 Valoración: Reflexión y evaluación integral</h2>
+            <p>Reflexiona sobre tu aprendizaje y realiza la evaluación final. Aquí podrás ver tu desempeño y exportar tu certificado de logros.</p>
+
+            <h3>📋 Quiz de Evaluación Final</h3>
+            <p style="color:var(--muted);font-size:0.95rem">Responde con cuidado. Estas preguntas reflejan tu comprensión integral.</p>
+
+            <div class="q" data-qf="1">
+              <strong>1. ¿Cuál es la definición más precisa de IoT en agroindustria?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Un tipo de fertilizante inteligente</div>
+                <div class="option" data-correct="true">Red interconectada de sensores y dispositivos que recopilan datos en tiempo real para optimizar procesos</div>
+                <div class="option" data-correct="false">Solo un software de contabilidad</div>
+                <div class="option" data-correct="false">Un dron sin control</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="2">
+              <strong>2. Un productor invierte $3,000 en un sistema de riego automatizado. Su consumo baja de 100 a 60 unidades, a $5/unidad. ¿En cuántos meses recupera la inversión?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">15 meses (ahorro: $200/mes)</div>
+                <div class="option" data-correct="false">5 meses</div>
+                <div class="option" data-correct="false">30 meses</div>
+                <div class="option" data-correct="false">No se recupera</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="3">
+              <strong>3. ¿Qué beneficio NO es directo de implementar trazabilidad?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">Aumentar el número de sembradíos</div>
+                <div class="option" data-correct="false">Acceso a mercados premium</div>
+                <div class="option" data-correct="false">Garantizar seguridad alimentaria</div>
+                <div class="option" data-correct="false">Documentar origen y proceso</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="4">
+              <strong>4. ¿Cuál es el impacto ambiental más significativo de automatizar sistemas agrícolas?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Requiere mucha más energía eléctrica</div>
+                <div class="option" data-correct="true">Reduce consumo de agua y químicos innecesarios</div>
+                <div class="option" data-correct="false">Aumenta la contaminación del suelo</div>
+                <div class="option" data-correct="false">No tiene impacto</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <button class="btn" id="finalGrade">Calificar evaluación</button>
+              <div id="finalResult" style="display:inline-block;margin-left:12px;color:var(--muted);font-weight:700"></div>
+            </div>
+
+            <div style="margin-top:16px">
+              <h4>📊 Rúbrica de Evaluación</h4>
+              <div class="rubric">
+                <div style="padding:8px;border-bottom:1px solid #e6eef0">
+                  <strong style="color:var(--verde)">90-100: Excelente</strong>
+                  <p style="font-size:0.9rem;margin:4px 0 0 0">Comprensión profunda de conceptos, aplicación correcta en escenarios, reflexión crítica.</p>
+                </div>
+                <div style="padding:8px;border-bottom:1px solid #e6eef0">
+                  <strong style="color:var(--azul)">70-89: Bueno</strong>
+                  <p style="font-size:0.9rem;margin:4px 0 0 0">Comprensión adecuada con algunos errores menores. Aplicación parcial en escenarios.</p>
+                </div>
+                <div style="padding:8px;border-bottom:1px solid #e6eef0">
+                  <strong style="color:var(--naranja)">50-69: Satisfactorio</strong>
+                  <p style="font-size:0.9rem;margin:4px 0 0 0">Comprensión básica. Necesita más práctica en aplicación real.</p>
+                </div>
+                <div style="padding:8px">
+                  <strong style="color:#d9534f">&lt;50: Insuficiente</strong>
+                  <p style="font-size:0.9rem;margin:4px 0 0 0">Concepto no asimilado. Se recomienda repetir actividades de Exploración y Estructuración.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top:16px">🤔 Autoevaluación y reflexión</h3>
+            <p style="color:var(--muted);font-size:0.95rem">Marca tu nivel de acuerdo (1=Nada, 5=Totalmente de acuerdo):</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <label style="display:flex;align-items:center;gap:8px">
+                  <input type="range" min="1" max="5" value="3" class="reflection-scale" id="ref1" style="flex:1">
+                  <span id="ref1Val" style="min-width:30px;text-align:center">3</span>
+                </label>
+                <small>Comprendo los conceptos de IoT y automatización</small>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <label style="display:flex;align-items:center;gap:8px">
+                  <input type="range" min="1" max="5" value="3" class="reflection-scale" id="ref2" style="flex:1">
+                  <span id="ref2Val" style="min-width:30px;text-align:center">3</span>
+                </label>
+                <small>Puedo aplicar estos conocimientos en mi comunidad</small>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <label style="display:flex;align-items:center;gap:8px">
+                  <input type="range" min="1" max="5" value="3" class="reflection-scale" id="ref3" style="flex:1">
+                  <span id="ref3Val" style="min-width:30px;text-align:center">3</span>
+                </label>
+                <small>Siento confianza para impulsar cambios tecnológicos</small>
+              </div>
+              <div style="background:#f8f9fa;padding:12px;border-radius:8px">
+                <label style="display:flex;align-items:center;gap:8px">
+                  <input type="range" min="1" max="5" value="3" class="reflection-scale" id="ref4" style="flex:1">
+                  <span id="ref4Val" style="min-width:30px;text-align:center">3</span>
+                </label>
+                <small>Este módulo me motivó a aprender más</small>
+              </div>
+            </div>
+
+            <div style="margin-top:16px;background:rgba(61,190,140,0.08);padding:12px;border-radius:8px;border-left:4px solid var(--verde)">
+              <label style="display:block;margin-bottom:12px"><strong>📝 Propuestas de acción para tu comunidad:</strong></label>
+              <textarea id="actionPlan" placeholder="¿Qué 2-3 acciones concretas podrías proponer en tu localidad?" style="width:100%;height:80px;padding:8px;border-radius:6px;border:1px solid #e6eef0;font-family:inherit"></textarea>
+            </div>
+
+            <div style="margin-top:16px;display:flex;gap:8px">
+              <button class="btn" id="exportBtn">📥 Exportar certificado</button>
+              <button class="btn secondary" id="printBtn">🖨️ Imprimir reporte</button>
+            </div>
+
+            <div id="exportFeedback" style="display:none;margin-top:12px;padding:12px;border-radius:8px;color:var(--muted)"></div>
+          </div>
+
+          <aside class="panel">
+            <h3>📈 Tu desempeño</h3>
+            <div style="text-align:center;padding:12px">
+              <div style="font-size:2.5rem;font-weight:700;color:var(--azul);margin:12px 0" id="finalScore">-</div>
+              <div style="color:var(--muted);margin-bottom:12px">Puntuación final</div>
+              <div style="background:#f0f7ff;padding:12px;border-radius:8px;margin-bottom:12px">
+                <div style="display:flex;justify-content:space-around;font-size:0.9rem">
+                  <div>
+                    <div style="font-weight:700;color:var(--verde)">🏆 <span id="totalPoints">0</span></div>
+                    <div style="color:var(--muted)">Puntos totales</div>
+                  </div>
+                  <div>
+                    <div style="font-weight:700;color:var(--naranja)">🎖️ <span id="badgeCount">0</span></div>
+                    <div style="color:var(--muted)">Insignias</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3>🎖️ Insignias ganadas</h3>
+            <div id="earnedBadgesDisplay" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center"></div>
+
+            <p style="font-size:0.85rem;color:var(--muted);margin-top:16px;text-align:center">
+              <strong>Próximos pasos:</strong> Revisa tu evaluación, practica más si es necesario, y comparte tu aprendizaje con compañeros.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="eval">
+        <div class="rubric">Estado guardado: <span id="saveState">No</span></div>
+        <div style="text-align:right;color:var(--muted)">Versión interactiva • CHICALA</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ========== SISTEMA DE GAMIFICACIÓN Y ESTADO GLOBAL ==========
+    let gameState = {
+      currentStep: 0,
+      points: 0,
+      badges: [],
+      answers: {},
+      reflectionScores: [3, 3, 3, 3],
+      actionPlan: '',
+      activities: {}
+    };
+
+    const steps = Array.from(document.querySelectorAll('.content-section'));
+    const stages = Array.from(document.querySelectorAll('.stage'));
+    const meter = document.querySelector('.progress-meter > i');
+    const progressPct = document.getElementById('progressPct');
+    const pointsDisplay = document.getElementById('pointsCount');
+    const badgesContainer = document.getElementById('badgesContainer');
+
+    const badgeDefs = {
+      'explorador': { name: 'Explorador', desc: 'Completó la fase de Exploración', icon: '🔍' },
+      'constructor': { name: 'Constructor', desc: 'Completó la fase de Estructuración', icon: '🏗️' },
+      'practicante': { name: 'Practicante', desc: 'Obtuvo 80%+ en Práctica', icon: '🎯' },
+      'innovador': { name: 'Innovador', desc: 'Completó la fase de Transferencia', icon: '🚀' },
+      'evaluador': { name: 'Evaluador', desc: 'Completó la evaluación final', icon: '🏆' },
+      'perfecto': { name: 'Perfeccionista', desc: 'Obtuvo 100% en todas las pruebas', icon: '⭐' }
+    };
+
+    // ========== UTILIDADES ==========
+    function addPoints(amount, message) {
+      gameState.points += amount;
+      pointsDisplay.textContent = gameState.points;
+      if (message) {
+        const popup = document.createElement('div');
+        popup.style.cssText = 'position:fixed;top:20%;left:50%;transform:translateX(-50%);background:var(--verde);color:white;padding:12px 20px;border-radius:8px;z-index:10000;animation:slideIn 0.3s ease';
+        popup.textContent = `+${amount} puntos • ${message}`;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 2000);
+      }
+      saveState();
+    }
+
+    function unlockBadge(badgeKey) {
+      if (!gameState.badges.includes(badgeKey)) {
+        gameState.badges.push(badgeKey);
+        renderBadges();
+        saveState();
+        showBadgeNotification(badgeDefs[badgeKey].name);
+      }
+    }
+
+    function showBadgeNotification(badgeName) {
+      const notif = document.createElement('div');
+      notif.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,var(--naranja),var(--amarillo));color:white;padding:24px 32px;border-radius:12px;z-index:10001;text-align:center;font-size:1.2rem;font-weight:700;animation:correctPulse 0.5s ease';
+      notif.textContent = `🎖️ ¡Insignia desbloqueada!\n${badgeName}`;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 3000);
+    }
+
+    function renderBadges() {
+      badgesContainer.innerHTML = '';
+      Object.keys(badgeDefs).forEach(key => {
+        const badge = badgeDefs[key];
+        const badgeEl = document.createElement('div');
+        badgeEl.style.cssText = 'text-align:center;padding:12px;border-radius:8px;background:' + (gameState.badges.includes(key) ? 'rgba(61,190,140,0.1)' : 'rgba(200,200,200,0.08)');
+        badgeEl.innerHTML = `<div style="font-size:2rem">${badge.icon}</div><div style="font-size:0.8rem;font-weight:700;margin-top:4px">${badge.name}</div>`;
+        badgeEl.title = badge.desc;
+        badgesContainer.appendChild(badgeEl);
+      });
+    }
+
+    // ========== NAVEGACIÓN ==========
+    function updateUI() {
+      steps.forEach((s, i) => s.classList.toggle('active', i === gameState.currentStep));
+      stages.forEach((st, i) => st.classList.toggle('active', i === gameState.currentStep));
+      const pct = Math.round(((gameState.currentStep + 1) / steps.length) * 100);
+      meter.style.width = pct + '%';
+      progressPct.textContent = pct + '%';
+      document.getElementById('prevBtn').disabled = gameState.currentStep === 0;
+      document.getElementById('nextBtn').disabled = gameState.currentStep === steps.length - 1;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (gameState.currentStep < steps.length - 1) {
+        gameState.currentStep++;
+        updateUI();
+        saveState();
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (gameState.currentStep > 0) {
+        gameState.currentStep--;
+        updateUI();
+        saveState();
+      }
+    });
+
+    document.querySelectorAll('.stage').forEach((el, i) => el.addEventListener('click', () => {
+      gameState.currentStep = i;
+      updateUI();
+      saveState();
+    }));
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (confirm('¿Reiniciar y borrar todo el progreso?')) {
+        localStorage.removeItem('semana1State');
+        location.reload();
+      }
+    });
+
+    // ========== SECCIÓN 1: EXPLORACIÓN - WORD PUZZLE ==========
+    (function() {
+      const container = document.getElementById('word-puzzle');
+      if (!container) return;
+      const letters = 'S E N S O R'.split(' ');
+      letters.sort(() => Math.random() - 0.5);
+      const selected = [];
+      letters.forEach(l => {
+        const b = document.createElement('button');
+        b.className = 'btn secondary';
+        b.textContent = l;
+        b.style.minWidth = '44px';
+        b.addEventListener('click', () => {
+          b.disabled = true;
+          selected.push(l);
+          renderSelected();
+        });
+        container.appendChild(b);
+      });
+      const selectedEl = document.createElement('div');
+      selectedEl.style.marginTop = '10px';
+      selectedEl.style.fontWeight = '700';
+      selectedEl.style.fontSize = '1.2rem';
+      container.appendChild(selectedEl);
+
+      function renderSelected() {
+        selectedEl.textContent = selected.join('');
+        if (selected.join('') === 'SENSOR') {
+          addPoints(15, '¡Puzzle completado!');
+          unlockBadge('explorador');
+          const fb = document.getElementById('puzzleFeedback');
+          fb.style.display = 'block';
+          fb.className = 'feedback correct';
+          fb.textContent = '✓ ¡Excelente! SENSOR es fundamental en agroindustria.';
+        }
+      }
+    })();
+
+    // ========== SECCIÓN 2: ESTRUCTURACIÓN - DRAG AND DROP ==========
+    (function() {
+      const dragItems = document.getElementById('dragItems');
+      const dropZones = document.getElementById('dropZones');
+      if (!dragItems || !dropZones) return;
+
+      const matches = [
+        { char: 'Monitoreo en tiempo real', concept: 'IoT' },
+        { char: 'Optimiza consumo de agua', concept: 'Riego automatizado' },
+        { char: 'Código QR del origen', concept: 'Trazabilidad' },
+        { char: 'Sensores conectados', concept: 'IoT' },
+        { char: 'Control automático', concept: 'Riego automatizado' },
+        { char: 'Transparencia del proceso', concept: 'Trazabilidad' }
+      ];
+
+      const concepts = ['IoT', 'Riego automatizado', 'Trazabilidad'];
+
+      dragItems.innerHTML = '';
+      matches.forEach((m, i) => {
+        const el = document.createElement('div');
+        el.draggable = true;
+        el.textContent = m.char;
+        el.id = 'drag-' + i;
+        el.style.cssText = 'padding:12px;background:rgba(26,155,171,0.1);border:2px solid var(--azul);border-radius:6px;cursor:grab;user-select:none;transition:all 0.2s';
+        el.dataset.concept = m.concept;
+        el.addEventListener('dragstart', (e) => {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', i);
+          el.style.opacity = '0.6';
+        });
+        el.addEventListener('dragend', () => {
+          el.style.opacity = '1';
+        });
+        dragItems.appendChild(el);
+      });
+
+      dropZones.innerHTML = '';
+      concepts.forEach(concept => {
+        const zone = document.createElement('div');
+        zone.id = 'zone-' + concept;
+        zone.style.cssText = 'min-height:120px;padding:12px;background:rgba(61,190,140,0.08);border:2px dashed var(--verde);border-radius:6px;transition:all 0.2s';
+        zone.dataset.concept = concept;
+        zone.innerHTML = `<div style="font-weight:700;margin-bottom:8px;color:var(--verde)">${concept}</div><div class="drop-content" style="display:flex;flex-direction:column;gap:8px"></div>`;
+
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.style.background = 'rgba(61,190,140,0.15)';
+          zone.style.borderColor = 'var(--verde)';
+          zone.style.boxShadow = '0 0 8px rgba(61,190,140,0.3)';
+        });
+        zone.addEventListener('dragleave', () => {
+          zone.style.background = 'rgba(61,190,140,0.08)';
+          zone.style.borderColor = 'var(--verde)';
+          zone.style.boxShadow = 'none';
+        });
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const idx = e.dataTransfer.getData('text/plain');
+          const dragEl = document.getElementById('drag-' + idx);
+          if (dragEl.dataset.concept === concept) {
+            const content = zone.querySelector('.drop-content');
+            const item = document.createElement('div');
+            item.style.cssText = 'padding:8px;background:rgba(61,190,140,0.2);border-radius:4px;border-left:4px solid var(--verde);font-size:0.9rem';
+            item.textContent = dragEl.textContent;
+            content.appendChild(item);
+            dragEl.style.display = 'none';
+            addPoints(10, 'Relación correcta');
+            zone.style.background = 'rgba(61,190,140,0.08)';
+            zone.style.borderColor = 'var(--verde)';
+            zone.style.boxShadow = 'none';
+          } else {
+            addPoints(-5, 'Intento incorrecto');
+          }
+        });
+
+        dropZones.appendChild(zone);
+      });
+    })();
+
+    // ========== SECCIÓN 3: PRÁCTICA - QUIZ ==========
+    document.querySelectorAll('.quiz .option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        const parentQ = this.closest('.q');
+        if (parentQ.dataset.answered) return;
+        parentQ.dataset.answered = 'true';
+
+        parentQ.querySelectorAll('.option').forEach(o => o.classList.remove('correct', 'incorrect'));
+        const isCorrect = this.dataset.correct === 'true';
+        this.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+        const feedback = parentQ.querySelector('.feedback');
+        feedback.style.display = 'block';
+        feedback.className = 'feedback ' + (isCorrect ? 'correct' : 'incorrect');
+        feedback.textContent = isCorrect ? '✓ ¡Correcto!' : '✗ Revisa el material teórico.';
+
+        if (isCorrect) addPoints(15, 'Respuesta correcta');
+      });
+    });
+
+    document.getElementById('gradeBtn').addEventListener('click', () => {
+      const qs = document.querySelectorAll('.quiz .q');
+      let total = qs.length, score = 0;
+      qs.forEach(q => {
+        const chosen = q.querySelector('.option.correct');
+        if (chosen) score++;
+      });
+      const pct = Math.round((score / total) * 100);
+      document.getElementById('practiceResult').textContent = `${pct}% (${score}/${total})`;
+      if (pct >= 80) unlockBadge('practicante');
+      saveState();
+    });
+
+    // Reto con tiempo
+    document.getElementById('submitTimed').addEventListener('click', () => {
+      const ans = parseInt(document.getElementById('timedAnswer').value);
+      const fb = document.getElementById('timedFeedback');
+      const correct = 950;
+      if (ans === correct) {
+        fb.textContent = '✓ ¡Excelente! 950 plantas se salvaron.';
+        fb.style.color = 'var(--verde)';
+        addPoints(25, 'Reto completado');
+      } else {
+        fb.textContent = '✗ Verifica tu cálculo. Intenta de nuevo.';
+        fb.style.color = '#d9534f';
+      }
+    });
+
+    // ========== SECCIÓN 4: TRANSFERENCIA - ESCENARIOS ==========
+    window.handleScenarioChoice = function(choice) {
+      const pointsMap = { '1a': 15, '1b': 20, '1c': 18 };
+      const points = pointsMap[choice];
+      const feedback = document.getElementById('scenario1Feedback');
+      const analyses = {
+        '1a': 'Opción práctica pero requiere mayor supervisión.',
+        '1b': 'Opción óptima: máximo ahorro y automatización.',
+        '1c': 'Balance inteligente para comenzar.'
+      };
+      feedback.style.display = 'block';
+      feedback.className = choice === '1b' ? 'correct' : 'incorrect';
+      feedback.textContent = `${analyses[choice]} +${points} puntos.`;
+      addPoints(points, 'Escenario completado');
+      gameState.answers.scenario1 = choice;
+      saveState();
+    };
+
+    window.checkTraceability = function() {
+      const correct = ['trace1', 'trace2', 'trace3'];
+      let score = 0;
+      correct.forEach(id => {
+        if (document.getElementById(id).checked) score++;
+      });
+      if (document.getElementById('trace4').checked) score--;
+
+      const fb = document.getElementById('traceabilityFeedback');
+      fb.style.display = 'block';
+      const pct = Math.round((score / correct.length) * 100);
+      fb.className = pct >= 66 ? 'correct' : 'incorrect';
+      fb.textContent = `Resultado: ${pct}%. ` + (pct >= 66 ? '✓ Estrategia correcta.' : '✗ Revisa y vuelve a intentar.');
+      addPoints(Math.max(0, pct), 'Trazabilidad analizada');
+      unlockBadge('innovador');
+      saveState();
+    };
+
+    // ========== SECCIÓN 5: VALORACIÓN - REFLEXIÓN Y EXPORTACIÓN ==========
+    document.querySelectorAll('.reflection-scale').forEach((range, i) => {
+      range.addEventListener('input', (e) => {
+        gameState.reflectionScores[i] = parseInt(e.target.value);
+        document.getElementById('ref' + (i + 1) + 'Val').textContent = e.target.value;
+      });
+    });
+
+    document.getElementById('finalGrade').addEventListener('click', () => {
+      const qs = document.querySelectorAll('[data-qf]');
+      let total = qs.length, score = 0;
+      qs.forEach(q => {
+        const chosen = q.querySelector('.option.correct');
+        if (chosen) score++;
+      });
+      const pct = Math.round((score / total) * 100);
+      document.getElementById('finalResult').textContent = `${pct}% (${score}/${total})`;
+      document.getElementById('finalScore').textContent = pct;
+      document.getElementById('totalPoints').textContent = gameState.points + (pct * 2);
+      document.getElementById('badgeCount').textContent = gameState.badges.length;
+
+      if (pct === 100) unlockBadge('perfecto');
+      unlockBadge('evaluador');
+
+      renderEarnedBadges();
+      saveState();
+    });
+
+    function renderEarnedBadges() {
+      const display = document.getElementById('earnedBadgesDisplay');
+      display.innerHTML = '';
+      gameState.badges.forEach(badgeKey => {
+        const badge = badgeDefs[badgeKey];
+        const badgeEl = document.createElement('div');
+        badgeEl.style.cssText = 'padding:12px;background:linear-gradient(135deg,rgba(26,155,171,0.1),rgba(61,190,140,0.1));border-radius:8px;text-align:center';
+        badgeEl.innerHTML = `<div style="font-size:2rem">${badge.icon}</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px">${badge.name}</div>`;
+        display.appendChild(badgeEl);
+      });
+    }
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      gameState.actionPlan = document.getElementById('actionPlan').value;
+      const data = {
+        fecha: new Date().toLocaleDateString('es-ES'),
+        puntosFinales: gameState.points,
+        insignias: gameState.badges.map(b => badgeDefs[b].name),
+        reflexion: gameState.reflectionScores,
+        propuestas: gameState.actionPlan
+      };
+      const csv = `CERTIFICADO DE LOGROS - SEMANA 1\nFecha: ${data.fecha}\nPuntos: ${data.puntosFinales}\nInsignias: ${data.insignias.join(', ')}\nReflexión: ${data.reflexion.join(',')}\nPropuestas: ${data.propuestas}`;
+      const blob = new Blob([csv], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'semana1_certificado.txt';
+      a.click();
+      document.getElementById('exportFeedback').style.display = 'block';
+      document.getElementById('exportFeedback').textContent = '✓ Certificado exportado.';
+    });
+
+    // ========== GRÁFICOS CHART.JS ==========
+    // Gráfico de impacto - Sección 2
+    const impactCtx = document.getElementById('impactChart');
+    if (impactCtx) {
+      new Chart(impactCtx, {
+        type: 'radar',
+        data: {
+          labels: ['Costo', 'Eficiencia', 'Impacto Ambiental', 'Facilidad de uso', 'Escalabilidad'],
+          datasets: [
+            {
+              label: 'IoT',
+              data: [65, 90, 85, 70, 95],
+              borderColor: 'var(--azul)',
+              backgroundColor: 'rgba(26,155,171,0.1)',
+              pointBackgroundColor: 'var(--azul)'
+            },
+            {
+              label: 'Riego automatizado',
+              data: [50, 75, 80, 85, 70],
+              borderColor: 'var(--verde)',
+              backgroundColor: 'rgba(61,190,140,0.1)',
+              pointBackgroundColor: 'var(--verde)'
+            },
+            {
+              label: 'Trazabilidad',
+              data: [70, 70, 75, 60, 80],
+              borderColor: 'var(--naranja)',
+              backgroundColor: 'rgba(244,135,43,0.1)',
+              pointBackgroundColor: 'var(--naranja)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'bottom' } },
+          scale: { beginAtZero: true, max: 100 }
+        }
+      });
+    }
+
+    // Gráfico ROI - Sección 4
+    const roiCtx = document.getElementById('roi_chart');
+    if (roiCtx) {
+      new Chart(roiCtx, {
+        type: 'line',
+        data: {
+          labels: ['0', '5', '10', '15', '20', '25', '30'],
+          datasets: [
+            {
+              label: 'Opción A',
+              data: [-1500, -1200, -900, -600, -300, 0, 300],
+              borderColor: 'var(--amarillo)',
+              backgroundColor: 'rgba(247,195,37,0.1)',
+              tension: 0.4,
+              fill: true
+            },
+            {
+              label: 'Opción B',
+              data: [-5000, -4000, -3000, -2000, -1000, 0, 1000],
+              borderColor: 'var(--azul)',
+              backgroundColor: 'rgba(26,155,171,0.1)',
+              tension: 0.4,
+              fill: true
+            },
+            {
+              label: 'Opción C',
+              data: [-2800, -2200, -1600, -1000, -400, 200, 800],
+              borderColor: 'var(--verde)',
+              backgroundColor: 'rgba(61,190,140,0.1)',
+              tension: 0.4,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Meses → Beneficio acumulado ($)' }
+          },
+          scales: {
+            y: { ticks: { callback: (v) => '$' + v } }
+          }
+        }
+      });
+    }
+
+    // ========== PERSISTENCIA DE ESTADO ==========
+    function saveState() {
+      try {
+        localStorage.setItem('semana1State', JSON.stringify(gameState));
+        document.getElementById('saveState').textContent = 'Sí';
+      } catch (e) {
+        console.warn('No se pudo guardar estado', e);
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem('semana1State');
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        Object.assign(gameState, saved);
+        gameState.currentStep = saved.currentStep || 0;
+        pointsDisplay.textContent = gameState.points;
+        renderBadges();
+      } catch (e) {
+        console.warn('Error cargando estado', e);
+      }
+    }
+
+    // ========== INICIALIZACIÓN ==========
+    updateUI();
+    loadState();
+    renderBadges();
+  </script>
+</body>
+</html>
