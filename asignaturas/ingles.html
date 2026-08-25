@@ -988,6 +988,15 @@
         media:  '../guias/ingles/grados8-9'
     };
 
+    const GUIAS_DISPONIBLES = {
+        basica: {
+            3: [1, 2, 3, 4, 5]
+        },
+        media: {
+            3: [1, 2, 3, 4]
+        }
+    };
+
     // ══════════════════════════════════════════════
     // CONFIGURACIÓN POR NIVEL
     // ══════════════════════════════════════════════
@@ -1031,22 +1040,6 @@
     }
 
     // ══════════════════════════════════════════════
-    // VERIFICAR SI EXISTE UNA GUÍA
-    // ══════════════════════════════════════════════
-    async function existeGuia(url) {
-    if (window.location.protocol === 'file:') {
-        // En modo local, asumimos que el archivo existe si la ruta es válida
-        // Esto es un hack para que funcione sin internet
-        return true;
-        }
-        try {
-            const res = await fetch(url, { method: 'HEAD' });
-            return res.ok;
-        } catch {
-            return false;
-        }
-    }
-    // ══════════════════════════════════════════════
     // SELECTOR DE GRADO
     // ══════════════════════════════════════════════
     let gradoActual = cfg.grados[0];
@@ -1083,7 +1076,7 @@
         { key: 'periodo4', label: '📅 Período 4', color: '#F4872B' }
     ];
 
-    async function generarAcordeon(grado) {
+    function generarAcordeon(grado) {
         const container = document.getElementById('accordion-container');
         if (!container) return;
         container.innerHTML = '';
@@ -1099,7 +1092,8 @@
                 const numPeriodo = idx + 1;
                 const rutaGuia   =
                     `${baseGuia}/periodo${numPeriodo}/semana${s.semana}.html`;
-                const hayGuia    = await existeGuia(rutaGuia);
+                const hayGuia = GUIAS_DISPONIBLES[nivel]?.[numPeriodo]
+                    ?.includes(s.semana);
 
                 const btnGuia = hayGuia ? `
                     <a href="${rutaGuia}"
