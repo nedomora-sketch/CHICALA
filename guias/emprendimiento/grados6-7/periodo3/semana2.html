@@ -1,1261 +1,1350 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De la Finca al Producto | Emprendimiento · Semana 1 · Período 3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cafe:    #8B4513;
-            --miel:    #D4880A;
-            --campo:   #2D7A4F;
-            --fruta:   #E8621A;
-            --morado:  #6B35A3;
-            --tierra:  #A0522D;
-            --crema:   #FDF6EC;
-            --texto:   #2D3748;
-            --fondo:   #FAF7F2;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--texto);
-            background: var(--fondo);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
-        }
-
-        /* ══ HEADER ══ */
-        .header {
-            text-align: center;
-            border-bottom: 4px solid var(--miel);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: var(--cafe);
-            font-size: 2.2rem;
-            margin: 0;
-            font-weight: 900;
-        }
-
-        .header h2 {
-            color: var(--fruta);
-            font-size: 1.2rem;
-            margin: 5px 0 0;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 0.9rem;
-            color: #718096;
-            margin: 5px 0;
-        }
-
-        /* ══ SECCIONES ══ */
-        .seccion {
-            margin-bottom: 28px;
-            padding: 20px 22px;
-            border-radius: 14px;
-            background: var(--crema);
-            border-left: 5px solid var(--miel);
-        }
-
-        .seccion h3 {
-            color: var(--cafe);
-            margin-top: 0;
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* ══ NIVEL CARDS ══ */
-        .nivel-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .nivel-card.grado6 { border-color: var(--campo); }
-        .nivel-card.grado7 { border-color: var(--morado); }
-
-        .nivel-badge {
-            position: absolute;
-            top: -13px;
-            right: 15px;
-            color: white;
-            padding: 5px 16px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 0.82rem;
-        }
-
-        .grado6 .nivel-badge { background: var(--campo); }
-        .grado7 .nivel-badge { background: var(--morado); }
-
-        /* ══ MATERIALES ══ */
-        .materiales-box {
-            background: #FFF8E7;
-            border: 2px dashed var(--miel);
-            padding: 15px 18px;
-            border-radius: 12px;
-            margin-bottom: 22px;
-        }
-
-        .materiales-box strong { color: var(--cafe); }
-
-        /* ══ ACTIVIDADES ══ */
-        .actividad-lista {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .actividad-lista li {
-            margin-bottom: 12px;
-            padding-left: 28px;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .actividad-lista li::before {
-            content: "🌱";
-            position: absolute;
-            left: 0;
-        }
-
-        /* ══ JUEGO BOX ══ */
-        .juego-box {
-            background: linear-gradient(135deg,
-                rgba(45,122,79,0.08), rgba(212,136,10,0.08));
-            border: 2px solid var(--campo);
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin: 14px 0;
-        }
-
-        .juego-box h4 {
-            margin: 0 0 10px;
-            color: var(--campo);
-            font-size: 1rem;
-        }
-
-        /* ══ MARCO DE IMAGEN ══ */
-        .marco-imagen {
-            border: 3px dashed var(--miel);
-            border-radius: 15px;
-            min-height: 180px;
-            background: linear-gradient(135deg, #FFF8E7, #FDF6EC);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .marco-imagen:hover {
-            border-color: var(--fruta);
-            background: linear-gradient(135deg, #FFF3E0, #FFF8E7);
-            transform: scale(1.01);
-        }
-
-        .marco-imagen .marco-icon { font-size: 3rem; margin-bottom: 8px; }
-
-        .marco-imagen .marco-texto {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--tierra);
-            text-align: center;
-        }
-
-        .marco-imagen .marco-sub {
-            font-size: 0.75rem;
-            color: #A0AEC0;
-            margin-top: 4px;
-            text-align: center;
-        }
-
-        .marco-imagen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            border-radius: 12px;
-        }
-
-        .marco-imagen input[type="file"] {
-            display: none;
-        }
-
-        /* ══ TARJETAS TÉCNICAS ══ */
-        .tecnicas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-            margin: 15px 0;
-        }
-
-        .tecnica-card {
-            background: white;
-            border: 3px solid var(--miel);
-            border-radius: 12px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s;
-            user-select: none;
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tecnica-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(212,136,10,0.25);
-        }
-
-        .tecnica-card.volteada {
-            background: linear-gradient(135deg, var(--cafe), var(--tierra));
-            color: white;
-            border-color: var(--cafe);
-        }
-
-        .tecnica-card .cara-frente { font-size: 2.2rem; display: block; }
-        .tecnica-card .cara-atras  { font-size: 0.8rem; font-weight: 800; display: none; line-height: 1.5; }
-        .tecnica-card.volteada .cara-frente { display: none; }
-        .tecnica-card.volteada .cara-atras  { display: block; }
-
-        /* ══ CALCULADORA DE COSTOS ══ */
-        .calc-costos {
-            background: white;
-            border: 2px solid var(--campo);
-            border-radius: 12px;
-            padding: 18px;
-            margin: 15px 0;
-        }
-
-        .calc-costos h4 {
-            color: var(--campo);
-            margin: 0 0 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .insumo-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr auto;
-            gap: 8px;
-            margin-bottom: 8px;
-            align-items: center;
-        }
-
-        .insumo-input {
-            border: 2px solid #E2E8F0;
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.85rem;
-            width: 100%;
-            transition: border-color 0.2s;
-        }
-
-        .insumo-input:focus {
-            outline: none;
-            border-color: var(--campo);
-        }
-
-        .insumo-total {
-            background: rgba(45,122,79,0.08);
-            border: 2px solid var(--campo);
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-weight: 800;
-            color: var(--campo);
-            font-size: 0.85rem;
-            text-align: right;
-        }
-
-        .btn-insumo {
-            background: var(--fruta);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            width: 32px;
-            height: 32px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            font-weight: 800;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-insumo:hover { background: var(--cafe); transform: scale(1.1); }
-
-        .total-box {
-            background: linear-gradient(135deg, var(--campo), #1A5C37);
-            color: white;
-            border-radius: 10px;
-            padding: 14px;
-            text-align: center;
-            margin-top: 12px;
-        }
-
-        .total-box .total-label {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .total-box .total-valor {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-top: 4px;
-        }
-
-        /* ══ QUIZ ══ */
-        .quiz-wrap {
-            background: linear-gradient(135deg, #F5F3FF, #FAF7F2);
-            border: 2px solid var(--morado);
-            border-radius: 14px;
-            padding: 18px 20px;
-            margin: 14px 0;
-        }
-
-        .quiz-wrap h4 {
-            color: var(--morado);
-            margin: 0 0 12px;
-            font-size: 1rem;
-        }
-
-        .quiz-pregunta {
-            background: white;
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border: 2px solid #E9D5FF;
-            display: none;
-        }
-
-        .quiz-pregunta.activa { display: block; animation: aparecer 0.4s ease; }
-
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .quiz-enunciado {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .quiz-opciones {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .quiz-btn {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 700;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 2px solid #E9D5FF;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: left;
-        }
-
-        .quiz-btn:hover:not(:disabled) {
-            background: rgba(107,53,163,0.06);
-            border-color: var(--morado);
-            transform: translateY(-2px);
-        }
-
-        .quiz-btn.correcta   { background: rgba(45,122,79,0.15);  border-color: var(--campo);  color: #065F46; }
-        .quiz-btn.incorrecta { background: rgba(239,68,68,0.10);   border-color: #EF4444;       color: #991B1B; }
-        .quiz-btn:disabled   { cursor: default; transform: none; }
-
-        .quiz-feedback {
-            margin-top: 10px;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            display: none;
-        }
-
-        .quiz-feedback.correcto   { display: block; background: rgba(45,122,79,0.12);  color: #065F46; }
-        .quiz-feedback.incorrecto { display: block; background: rgba(239,68,68,0.08);  color: #991B1B; }
-
-        .quiz-puntaje {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: var(--morado);
-            text-align: right;
-            margin-bottom: 10px;
-        }
-
-        .quiz-siguiente {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 800;
-            padding: 9px 22px;
-            border-radius: 50px;
-            border: none;
-            background: linear-gradient(135deg, var(--morado), var(--cafe));
-            color: white;
-            cursor: pointer;
-            margin-top: 10px;
-            display: none;
-            transition: all 0.2s;
-        }
-
-        .quiz-siguiente:hover { transform: translateY(-2px); }
-
-        /* ══ EVAL BOX ══ */
-        .eval-box {
-            background: #FFFBEB;
-            border-left: 5px solid var(--miel);
-            padding: 14px 18px;
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 14px;
-        }
-
-        .eval-box h4 { color: var(--cafe); margin: 0 0 8px; }
-
-        /* ══ REFLEXIÓN ══ */
-        .reflexion-box {
-            background: linear-gradient(135deg,
-                rgba(45,122,79,0.10), rgba(212,136,10,0.10));
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .reflexion-box p {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--cafe);
-            margin: 0;
-            line-height: 1.7;
-        }
-
-        /* ══ TAGS ══ */
-        .tag {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            margin-right: 6px;
-            margin-bottom: 6px;
-        }
-
-        .tag-desempeno { background: rgba(45,122,79,0.12);   color: var(--campo);  }
-        .tag-objeto    { background: rgba(107,53,163,0.12);  color: var(--morado); }
-        .tag-ciudadana { background: rgba(212,136,10,0.12);  color: var(--miel);   }
-
-        /* ══ LÍNEAS ══ */
-        .lineas { margin-top: 10px; }
-
-        .linea {
-            border-bottom: 1.5px solid #CBD5E0;
-            height: 28px;
-            margin-bottom: 5px;
-        }
-
-        /* ══ TOAST ══ */
-        #toast {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%) translateY(120px);
-            background: white;
-            border-radius: 50px;
-            padding: 12px 28px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.14);
-            transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-            z-index: 9999;
-            border: 2px solid transparent;
-            white-space: nowrap;
-            max-width: 90vw;
-            text-align: center;
-        }
-
-        /* ══ BOTONES ══ */
-        .btn-print {
-            display: block;
-            width: fit-content;
-            margin: 0 auto 28px;
-            background: linear-gradient(135deg, var(--campo), var(--cafe));
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(45,122,79,0.35);
-            transition: all 0.3s;
-        }
-
-        .btn-print:hover { transform: translateY(-3px); }
-
-        .btn-volver {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--cafe);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .btn-volver:hover { text-decoration: underline; }
-
-        .btn-accion {
-            background: var(--campo);
-            color: white;
-            border: none;
-            padding: 9px 22px;
-            border-radius: 50px;
-            font-weight: 800;
-            cursor: pointer;
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            margin: 5px 4px;
-        }
-
-        .btn-accion:hover { background: var(--cafe); transform: translateY(-2px); }
-        .btn-accion.naranja { background: var(--fruta); }
-        .btn-accion.morado  { background: var(--morado); }
-
-        /* ══ FOOTER ══ */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 18px;
-            border-top: 1px solid #E2E8F0;
-            color: #718096;
-            font-size: 0.82rem;
-        }
-
-        .footer p { margin: 3px 0; }
-
-        /* ══ RESPONSIVE ══ */
-        @media (max-width: 600px) {
-            .container { padding: 22px 16px; }
-            .header h1 { font-size: 1.5rem; }
-            .quiz-opciones { grid-template-columns: 1fr; }
-            .tecnicas-grid { grid-template-columns: repeat(2, 1fr); }
-            .insumo-row { grid-template-columns: 1fr 1fr; }
-        }
-
-        /* ══ IMPRESIÓN ══ */
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; border-radius: 0; padding: 20px; }
-            .btn-print, .btn-volver, #toast { display: none !important; }
-            .nivel-card, .seccion { break-inside: avoid; }
-        }
-    </style>
-</head>
-<body data-grado="6-7">
-<div class="container">
-    <div id="toast"></div>
-
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
-
-    <!-- ══ HEADER ══ -->
-    <div class="header">
-        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
-        <h1>🌾 De la Finca al Producto</h1>
-        <h2>Emprendimiento · Semana 1 · Período 3</h2>
-        <p>data-grado · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
-        <p>
-            <strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
-            <strong>Fecha:</strong> _______________________
-        </p>
-        <p><strong>Nombre:</strong> _____________________________________________ &nbsp;
-           <strong>Grado:</strong> ________</p>
-    </div>
-
-    <!-- ══ SECCIÓN 1: RETO ══ -->
-    <div class="seccion">
-        <h3>🌿 El Reto de Hoy</h3>
-        <p>
-            En Chichalá, el campo produce café, panela, frutas y artesanías.
-            Pero, <strong>¿cómo convertimos eso en un producto que se pueda vender?</strong>
-            Hoy aprenderemos a crear un <strong>prototipo</strong>, que es la primera versión
-            real de un producto, usando materiales de nuestro entorno. 💡
-        </p>
-    </div>
-
-    <!-- ══ MATERIALES ══ -->
-    <div class="materiales-box">
-        <strong>🧺 Necesitamos hoy:</strong>
-        <ul style="margin: 8px 0 0; padding-left: 20px;">
-            <li>☕ Producto del campo: café, panela, fruta o material artesanal</li>
-            <li>📦 Envase o recipiente reciclado</li>
-            <li>✂️ Tijeras, colores y marcadores</li>
-            <li>📄 Papel, cartón o tela</li>
-            <li>📱 Esta guía impresa o en pantalla</li>
-        </ul>
-    </div>
-
-    <!-- ══ SECCIÓN 2: DESEMPEÑOS ══ -->
-    <div class="seccion">
-        <h3>🎯 ¿Qué vamos a aprender?</h3>
-
-        <div class="nivel-card grado6">
-            <span class="nivel-badge">Grado 6°</span>
-            <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Identifico productos del entorno rural que pueden transformarse en
-            <strong>productos comercializables</strong> y elaboro un prototipo básico
-            con materiales disponibles en mi comunidad.</p>
-        </div>
-
-        <div class="nivel-card grado7">
-            <span class="nivel-badge">Grado 7°</span>
-            <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Diseño y elaboro un <strong>prototipo rural con criterios de calidad</strong>,
-            identificando materias primas, procesos de transformación y posibles compradores.</p>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 3: CONCEPTOS CLAVE ══ -->
-    <div class="seccion">
-        <h3>📚 Conceptos clave</h3>
-
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:12px; margin-top:10px;">
-            <div style="background:white; border-left:4px solid var(--campo); border-radius:10px; padding:14px;">
-                <strong style="color:var(--campo);">🔬 Prototipo</strong>
-                <p style="font-size:0.88rem; margin:6px 0 0;">Primera versión real de un producto. No es perfecto, pero sirve para probar.</p>
-            </div>
-            <div style="background:white; border-left:4px solid var(--miel); border-radius:10px; padding:14px;">
-                <strong style="color:var(--miel);">🌾 Materia Prima</strong>
-                <p style="font-size:0.88rem; margin:6px 0 0;">Lo que viene del campo: café, panela, frutas, fibras naturales.</p>
-            </div>
-            <div style="background:white; border-left:4px solid var(--fruta); border-radius:10px; padding:14px;">
-                <strong style="color:var(--fruta);">⚙️ Transformación</strong>
-                <p style="font-size:0.88rem; margin:6px 0 0;">Proceso que convierte la materia prima en producto: tostar, pulverizar, cocinar.</p>
-            </div>
-            <div style="background:white; border-left:4px solid var(--morado); border-radius:10px; padding:14px;">
-                <strong style="color:var(--morado);">💰 Valor Agregado</strong>
-                <p style="font-size:0.88rem; margin:6px 0 0;">Lo que hace que el producto valga más: presentación, sabor, empaque.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 4: TÉCNICAS · TARJETAS VOLTEABLES ══ -->
-    <div class="seccion">
-        <h3>🃏 Técnicas de Prototipado · ¡Descúbrelas!</h3>
-        <p style="font-size:0.88rem; margin-bottom:12px;">
-            Toca cada tarjeta para descubrir una técnica de transformación rural 👇
-        </p>
-
-        <div class="tecnicas-grid" id="tecnicas-grid">
-            <!-- Generadas por JS -->
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 5: ACTIVIDADES ══ -->
-    <div class="seccion">
-        <h3>🎨 Manos a la Obra</h3>
-
-        <!-- GRADO 6 -->
-        <div class="nivel-card grado6">
-            <span class="nivel-badge">Grado 6° · Mi primer prototipo</span>
-            <ul class="actividad-lista">
-                <li>
-                    <strong>Elige tu producto:</strong> ¿Qué hay en tu finca o casa que puedas transformar?
-                    (café, panela, fruta, arcilla, fibra...)
-                </li>
-                <li>
-                    <strong>Transfórmalo:</strong> Aplica una técnica sencilla: tuesta, pulveriza,
-                    cocina o moldea tu materia prima.
-                </li>
-                <li>
-                    <strong>Empácalo:</strong> Usa un envase reciclado y dale presentación.
-                    ¡El empaque es parte del producto!
-                </li>
-                <li>
-                    <strong>Fotografíalo:</strong> Registra tu prototipo en el marco de abajo.
-                </li>
-            </ul>
-
-            <!-- Marco de imagen G6 -->
-            <label for="img-g6">
-                <div class="marco-imagen" id="marco-g6" onclick="document.getElementById('img-g6').click()">
-                    <span class="marco-icon">📸</span>
-                    <span class="marco-texto">Foto de mi prototipo</span>
-                    <span class="marco-sub">Toca para agregar imagen</span>
-                </div>
-            </label>
-            <input type="file" id="img-g6" accept="image/*" onchange="cargarImagen('img-g6','marco-g6')">
-
-            <div class="juego-box" style="margin-top:10px;">
-                <h4>✏️ Describe tu prototipo</h4>
-                <p style="font-size:0.88rem;">¿Qué producto hiciste? ¿Cómo lo transformaste?</p>
-                <div class="lineas">
-                    <div class="linea"></div>
-                    <div class="linea"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADO 7 -->
-        <div class="nivel-card grado7">
-            <span class="nivel-badge">Grado 7° · Prototipo con criterios</span>
-            <ul class="actividad-lista">
-                <li>
-                    <strong>Define tu producto:</strong> Nombre, materia prima, proceso
-                    y a quién va dirigido.
-                </li>
-                <li>
-                    <strong>Elabora el prototipo:</strong> Aplica la técnica de transformación
-                    y cuida la presentación y calidad.
-                </li>
-                <li>
-                    <strong>Calcula el costo:</strong> Usa la calculadora de costos de abajo.
-                </li>
-                <li>
-                    <strong>Fotografíalo:</strong> Registra tu prototipo en el marco.
-                </li>
-            </ul>
-
-            <!-- Marco de imagen G7 -->
-            <label for="img-g7">
-                <div class="marco-imagen" id="marco-g7" onclick="document.getElementById('img-g7').click()">
-                    <span class="marco-icon">📸</span>
-                    <span class="marco-texto">Foto de mi prototipo</span>
-                    <span class="marco-sub">Toca para agregar imagen</span>
-                </div>
-            </label>
-            <input type="file" id="img-g7" accept="image/*" onchange="cargarImagen('img-g7','marco-g7')">
-
-            <!-- Calculadora de Costos -->
-            <div class="calc-costos">
-                <h4>💰 Calculadora de Costos del Prototipo</h4>
-                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:8px; margin-bottom:8px;">
-                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">Insumo</span>
-                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">Cantidad</span>
-                    <span style="font-size:0.8rem; font-weight:800; color:#718096;">$ Precio</span>
-                    <span></span>
-                </div>
-                <div id="insumos-lista">
-                    <!-- Filas generadas por JS -->
-                </div>
-                <div style="text-align:center; margin:10px 0;">
-                    <button class="btn-accion naranja" onclick="agregarInsumo()">+ Agregar insumo</button>
-                    <button class="btn-accion morado" onclick="calcularTotal()">💰 Calcular total</button>
-                </div>
-                <div class="total-box" id="total-box" style="display:none;">
-                    <div class="total-label">💰 Costo total del prototipo</div>
-                    <div class="total-valor" id="total-valor">$0</div>
-                    <div style="font-size:0.8rem; opacity:0.85; margin-top:5px;">
-                        Precio sugerido de venta (x2): <strong id="precio-venta">$0</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 6: QUIZ ══ -->
-    <div class="seccion">
-        <h3>🧩 Quiz Rápido · ¿Cuánto aprendiste?</h3>
-        <div class="quiz-wrap">
-            <div class="quiz-puntaje">
-                ⭐ Puntaje: <span id="quiz-pts">0</span> / <span id="quiz-tot">4</span>
-                &nbsp;·&nbsp; Pregunta <span id="quiz-num">1</span> de 4
-            </div>
-            <div id="quiz-container"></div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 7: AUTOEVALUACIÓN ══ -->
-    <div class="seccion">
-        <h3>📊 ¿Cómo me fue hoy?</h3>
-        <div class="eval-box">
-            <h4>⭐ Autoevaluación</h4>
-            <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:8px;">
-                <tr style="background:#FFF8E7;">
-                    <th style="padding:8px; border:1px solid var(--miel); text-align:left;">Criterio</th>
-                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Lo logré 😄</th>
-                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">En proceso 🙂</th>
-                    <th style="padding:8px; border:1px solid var(--miel); text-align:center;">Me faltó 😕</th>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">Entendí qué es un prototipo</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">Elaboré un prototipo con materiales del entorno</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">Identifiqué la materia prima y la transformación</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                    <td style="padding:8px; border:1px solid #E2E8F0; text-align:center;"><span onclick="marcarEval(this)" style="font-size:1.2rem; cursor:pointer;">☐</span></td>
-                </tr>
-            </table>
-        </div>
-        <p><strong>¿Qué fue lo más difícil? ¿Cómo lo resolví?</strong></p>
-        <div class="lineas">
-            <div class="linea"></div>
-            <div class="linea"></div>
-        </div>
-    </div>
-
-    <!-- ══ REFLEXIÓN FINAL ══ -->
-    <div class="reflexion-box">
-        <p>
-            🌾 "Todo gran producto empezó siendo un prototipo.<br>
-            El café de Chichalá, la panela artesanal,<br            toda la panela que endulza Colombia...<br>
-            <strong>Todo empezó con una idea y un primer intento.</strong><br>
-            Tu prototipo es solo el comienzo. 🚀"
-        </p>
-    </div>
-
-    <!-- ══ FOOTER ══ -->
-    <div class="footer">
-        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
-        <p>Corregimiento El Limón · Chaparral, Tolima</p>
-        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
-        <p style="margin-top:6px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
-    </div>
-
-    <div style="text-align:center; margin-top:20px;">
-        <a href="../index.html" class="btn-volver">⬅ Volver al Inicio</a>
-    </div>
-
-</div><!-- fin .container -->
-
-<script>
-/* ══════════════════════════════════════════════
-   DE LA FINCA AL PRODUCTO · EMPRENDIMIENTO
-   JavaScript · Profe Nelson
-   Grados 6°-7° · Período 3 · Semana 1
-   Prototipos Rurales
-══════════════════════════════════════════════ */
-'use strict';
-
-// ─────────────────────────────────────────────
-// SONIDOS · Web Audio API (100% offline)
-// ─────────────────────────────────────────────
-const audioCtx = window.AudioContext
-  ? new AudioContext()
-  : window.webkitAudioContext
-    ? new webkitAudioContext()
-    : null;
-
-function sonar(tipo) {
-  if (!audioCtx) return;
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-
-  const configs = {
-    correcto:  { freq: [523, 659, 784],      dur: 0.12, gain: 0.3,  type: 'sine'     },
-    error:     { freq: [200, 150],            dur: 0.18, gain: 0.3,  type: 'sawtooth' },
-    flip:      { freq: [440, 554],            dur: 0.08, gain: 0.2,  type: 'sine'     },
-    eureka:    { freq: [523, 659, 784, 1047], dur: 0.1,  gain: 0.25, type: 'sine'     },
-    dinero:    { freq: [659, 784, 1047, 1319], dur: 0.15, gain: 0.3,  type: 'sine'     },
-  };
-
-  const cfg = configs[tipo] || configs.flip;
-  cfg.freq.forEach((f, i) => {
-    const osc  = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.type            = cfg.type;
-    osc.frequency.value = f;
-    gain.gain.setValueAtTime(cfg.gain, audioCtx.currentTime + i * cfg.dur);
-    gain.gain.exponentialRampToValueAtTime(
-      0.001, audioCtx.currentTime + i * cfg.dur + cfg.dur
-    );
-    osc.start(audioCtx.currentTime + i * cfg.dur);
-    osc.stop(audioCtx.currentTime  + i * cfg.dur + cfg.dur + 0.05);
-  });
-}
-
-// ─────────────────────────────────────────────
-// TOAST · Notificaciones flotantes
-// ─────────────────────────────────────────────
-function mostrarToast(mensaje, tipo) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-
-  toast.textContent = mensaje;
-  toast.style.borderColor = tipo === 'success' ? '#6EE7B7' : tipo === 'error' ? '#FCA5A5' : '#FCD34D';
-  toast.style.color = tipo === 'success' ? '#065F46' : tipo === 'error' ? '#991B1B' : '#92400E';
-
-  toast.style.transform = 'translateX(-50%) translateY(0)';
-  setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(120px)'; }, 3000);
-}
-
-// ─────────────────────────────────────────────
-// TARJETAS TÉCNICAS VOLTEABLES
-// ─────────────────────────────────────────────
-const TECNICAS = [
-  { frente: '☕', atras: 'Tostado\nCafé verde → calor → café tostado', tipo: 'cafe' },
-  { frente: '🟫', atras: 'Pulverizado\nPanela molida → polvo fino', tipo: 'panela' },
-  { frente: '🍯', atras: 'Concentrado\nFruta + azúcar → mermelada', tipo: 'mermelada' },
-  { frente: '🏺', atras: 'Modelado\nArcilla + agua → moldear → secar', tipo: 'artesania' },
-  { frente: '🧵', atras: 'Tejido\nFibras naturales → telar → tela', tipo: 'textil' },
-  { frente: '📦', atras: 'Empaque\nReciclaje creativo → presentación', tipo: 'empaque' },
-];
-
-function renderizarTecnicas() {
-  const grid = document.getElementById('tecnicas-grid');
-  if (!grid) return;
-
-  grid.innerHTML = TECNICAS.map((t, i) => `
-    <div class="tecnica-card" id="tec-${i}" onclick="voltearTecnica(${i})" title="¡Toca para descubrir!">
-      <span class="cara-frente">${t.frente}</span>
-      <span class="cara-atras" style="white-space:pre-line;">${t.atras}</span>
-    </div>
-  `).join('');
-}
-
-function voltearTecnica(idx) {
-  const card = document.getElementById(`tec-${idx}`);
-  if (!card) return;
-  const yaVolteada = card.classList.contains('volteada');
-  card.classList.toggle('volteada');
-  sonar(yaVolteada ? 'flip' : 'correcto');
-  if (!yaVolteada) {
-    mostrarToast('🌾 ¡Técnica descubierta! ¿La usarás en tu prototipo?', 'success');
-  }
-}
-
-// ─────────────────────────────────────────────
-// CARGAR IMAGEN · Marcos de prototipo
-// ─────────────────────────────────────────────
-function cargarImagen(inputId, marcoId) {
-  const input = document.getElementById(inputId);
-  const marco = document.getElementById(marcoId);
-  if (!input || !marco) return;
-
-  const file = input.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    marco.innerHTML = `<img src="${e.target.result}" alt="Mi prototipo">`;
-    marco.style.padding = '0';
-    sonar('eureka');
-    mostrarToast('📸 ¡Prototipo registrado! Qué buena pinta tiene 🌟', 'success');
-  };
-  reader.readAsDataURL(file);
-}
-
-// ─────────────────────────────────────────────
-// CALCULADORA DE COSTOS · Grado 7
-// ─────────────────────────────────────────────
-let contadorInsumos = 0;
-
-function agregarInsumo() {
-  const lista = document.getElementById('insumos-lista');
-  if (!lista) return;
-
-  const id = `insumo-${contadorInsumos++}`;
-  const fila = document.createElement('div');
-  fila.className = 'insumo-row';
-  fila.id = id;
-  fila.innerHTML = `
-    <input type="text" class="insumo-input" placeholder="Ej: Café verde" id="${id}-nombre">
-    <input type="number" class="insumo-input" placeholder="1" min="1" id="${id}-cant" value="1">
-    <input type="number" class="insumo-input" placeholder="$" min="0" id="${id}-precio" value="0">
-    <button class="btn-insumo" onclick="eliminarInsumo('${id}')">×</button>
-  `;
-  lista.appendChild(fila);
-  sonar('flip');
-}
-
-function eliminarInsumo(id) {
-  const fila = document.getElementById(id);
-  if (fila) fila.remove();
-  sonar('flip');
-}
-
-function calcularTotal() {
-  const filas = document.querySelectorAll('#insumos-lista .insumo-row');
-  let total = 0;
-
-  filas.forEach(fila => {
-    const cant = parseFloat(document.getElementById(fila.id + '-cant').value) || 0;
-    const precio = parseFloat(document.getElementById(fila.id + '-precio').value) || 0;
-    total += cant * precio;
-  });
-
-  const totalBox = document.getElementById('total-box');
-  const totalValor = document.getElementById('total-valor');
-  const precioVenta = document.getElementById('precio-venta');
-
-  if (totalBox && totalValor && precioVenta) {
-    totalBox.style.display = 'block';
-    totalValor.textContent = '$' + total.toLocaleString('es-CO');
-    precioVenta.textContent = '$' + (total * 2).toLocaleString('es-CO');
-    sonar('dinero');
-    mostrarToast('💰 ¡Costo calculado! Recuerda: el precio de venta suele ser el doble', 'success');
-  }
-}
-
-// ─────────────────────────────────────────────
-// QUIZ · 4 PREGUNTAS
-// ─────────────────────────────────────────────
-const PREGUNTAS = [
-  {
-    texto: '🌾 ¿Qué es un prototipo?',
-    opciones: ['El producto final perfecto', 'La primera versión real para probar', 'Un dibujo en papel', 'La idea en la mente'],
-    correcta: 1,
-    feedback: '¡Exacto! El prototipo es la primera versión real, no tiene que ser perfecto.'
-  },
-  {
-    texto: '☕ ¿Cuál es la materia prima del café tostado?',
-    opciones: ['Café molido', 'Café verde', 'Café instantáneo', 'Agua caliente'],
-    correcta: 1,
-    feedback: '¡Correcto! El café verde se transforma con calor en café tostado.'
-  },
-  {
-    texto: '💰 ¿Qué es el "valor agregado"?',
-    opciones: ['El precio de compra', 'Lo que hace que el producto valga más', 'El costo de transporte', 'La cantidad producida'],
-    correcta: 1,
-    feedback: '¡Muy bien! Es todo lo que hace que tu producto valga más: presentación, sabor, empaque...'
-  },
-  {
-    texto: '📦 ¿Por qué es importante el empaque?',
-    opciones: ['Solo para verse bonito', 'Protege, presenta y vende', 'Para hacerlo más pesado', 'No es importante'],
-    correcta: 1,
-    feedback: '¡Perfecto! El empaque protege, presenta y ayuda a vender el producto.'
-  }
-];
-
-let quizEstado = { preguntaActual: 0, puntaje: 0 };
-
-function renderizarQuiz() {
-  const container = document.getElementById('quiz-container');
-  if (!container) return;
-
-  const idx = quizEstado.preguntaActual;
-  if (idx >= PREGUNTAS.length) {
-    mostrarResultadoQuiz();
-    return;
-  }
-
-  const p = PREGUNTAS[idx];
-  document.getElementById('quiz-num').textContent = idx + 1;
-  document.getElementById('quiz-pts').textContent = quizEstado.puntaje;
-
-  container.innerHTML = `
-    <div class="quiz-pregunta activa">
-      <div class="quiz-enunciado">${p.texto}</div>
-      <div class="quiz-opciones">
-        ${p.opciones.map((op, i) => `
-          <button class="quiz-btn" onclick="responderQuiz(${i}, ${idx})">${op}</button>
-        `).join('')}
-      </div>
-      <div class="quiz-feedback" id="feedback-${idx}"></div>
-      <button class="quiz-siguiente" id="btn-sig-${idx}" onclick="siguienteQuiz()">Siguiente ➡️</button>
-    </div>
-  `;
-}
-
-function responderQuiz(opcion, idx) {
-  const p = PREGUNTAS[idx];
-  const esCorrecta = opcion === p.correcta;
-
-  document.querySelectorAll(`#quiz-container .quiz-btn`).forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === p.correcta) btn.classList.add('correcta');
-    if (i === opcion && !esCorrecta) btn.classList.add('incorrecta');
-  });
-
-  const fb = document.getElementById(`feedback-${idx}`);
-  if (fb) {
-    fb.textContent = esCorrecta ? `✅ ${p.feedback}` : `❌ ${p.feedback}`;
-    fb.className = `quiz-feedback ${esCorrecta ? 'correcto' : 'incorrecto'}`;
-  }
-
-  if (esCorrecta) {
-    quizEstado.puntaje++;
-    sonar('correcto');
-    mostrarToast('✅ ¡Correcto! +1 punto 🌟', 'success');
-  } else {
-    sonar('error');
-    mostrarToast('❌ ¡Casi! Aprendamos de esto 💪', 'error');
-  }
-
-  const btnSig = document.getElementById(`btn-sig-${idx}`);
-  if (btnSig) btnSig.style.display = 'inline-block';
-}
-
-function siguienteQuiz() {
-  quizEstado.preguntaActual++;
-  renderizarQuiz();
-}
-
-function mostrarResultadoQuiz() {
-  const container = document.getElementById('quiz-container');
-  const ptsEl = document.getElementById('quiz-pts');
-  if (ptsEl) ptsEl.textContent = quizEstado.puntaje;
-
-  const p = quizEstado.puntaje;
-  const t = PREGUNTAS.length;
-  let trofeo, mensaje;
-
-  if (p === t) {
-    trofeo = '🏆';
-    mensaje = '¡PERFECTO! Eres un emprendedor nato de Chichalá 🌾';
-    sonar('eureka');
-  } else if (p >= 3) {
-    trofeo = '🥈';
-    mensaje = '¡Muy bien! Estás listo para emprender 💪';
-    sonar('correcto');
-  } else {
-    trofeo = '📚';
-    mensaje = 'Sigue aprendiendo, todo emprendedor comienza así 🌱';
-    sonar('flip');
-  }
-
-  container.innerHTML = `
-    <div style="text-align:center; padding:24px; background:linear-gradient(135deg,#F0FDF4,#FAF7F2); border-radius:14px;">
-      <div style="font-size:3.5rem; margin-bottom:12px;">${trofeo}</div>
-      <div style="font-size:1.1rem; font-weight:800; color:var(--cafe); margin-bottom:16px;">${mensaje}</div>
-      <div style="font-size:1.5rem; color:var(--campo); font-weight:900;">${p}/${t} puntos</div>
-      <button class="quiz-siguiente" style="display:inline-block; margin-top:15px;" onclick="reiniciarQuiz()">🔄 Intentar de nuevo</button>
-    </div>
-  `;
-}
-
-function reiniciarQuiz() {
-  quizEstado = { preguntaActual: 0, puntaje: 0 };
-  sonar('flip');
-  renderizarQuiz();
-}
-
-// ─────────────────────────────────────────────
-// MARCAR EVALUACIÓN
-// ─────────────────────────────────────────────
-function marcarEval(celda) {
-  const fila = celda.closest('tr');
-  const celdas = fila.querySelectorAll('span[onclick]');
-  const yaEstaba = celda.textContent === '☑';
-
-  celdas.forEach(function(c) { c.textContent = '☐'; });
-
-  if (!yaEstaba) {
-    celda.textContent = '☑';
-    sonar('flip');
-    mostrarToast('✅ ¡Evaluación guardada!', 'success');
-  }
-}
-
-// ─────────────────────────────────────────────
-// CONFETI
-// ─────────────────────────────────────────────
-function lanzarConfeti() {
-  const emojis = ['🌾','☕','🟫','🍯','🏺','💰','⭐','🎉','🏆','✨'];
-  for (let i = 0; i < 25; i++) {
-    const el = document.createElement('div');
-    el.style.cssText = `
-      position: fixed;
-      top: -40px;
-      left: ${Math.random() * 100}vw;
-      font-size: ${1.5 + Math.random() * 1.5}rem;
-      animation: caerConfeti ${2 + Math.random() * 2}s ease-in forwards;
-      z-index: 9998;
-      pointer-events: none;
-    `;
-    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    document.body.appendChild(el);
-    setTimeout(function() { el.remove(); }, 4500);
-  }
-}
-
-/// ─────────────────────────────────────────────
-// ESTILOS DINÁMICOS
-// ─────────────────────────────────────────────
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes caerConfeti {
-    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
-    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
-  }
-`;
-document.head.appendChild(styleSheet);
-
-// ─────────────────────────────────────────────
-// DOMContentLoaded · INICIALIZACIÓN
-// ─────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Renderizar tarjetas de técnicas
-  renderizarTecnicas();
-
-  // 2. Inicializar quiz
-  renderizarQuiz();
-
-  // 3. Bienvenida con delay
-  setTimeout(() => {
-    mostrarToast(
-      '🌾 ¡Bienvenido Emprendedor Rural! Hoy convertimos la finca en producto. ¡Vamos! 🚀',
-      'success'
-    );
-    sonar('eureka');
-  }, 800);
-
-  // 4. Confeti sorpresa al hacer scroll hasta el final
-  let confetiLanzado = false;
-  window.addEventListener('scroll', () => {
-    if (!confetiLanzado && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-      confetiLanzado = true;
-      setTimeout(() => {
-        lanzarConfeti();
-        mostrarToast('🏆 ¡Excelente trabajo! Has creado tu primer prototipo. ¡Eres un emprendedor! 🌟', 'success');
-        sonar('eureka');
-      }, 500);
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Semana 2 — La Marca de mi Emprendimiento: Identidad y Territorio</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      /* Paleta de Colores: Tierra, Café, Fruta, Naturaleza (Misma base, más vibrante para marca) */
+      --cafe: #6F4E37;
+      --cafe-claro: #8B6F47;
+      --panela: #D2691E;
+      --verde: #556B2F;
+      --crema: #F5DEB3;
+      --tierra: #8B4513;
+      --fondo: #FFF8E7;
+      --card: #ffffff;
+      --text: #3E3228;
+      --muted: #8D7B68;
+      --glass: rgba(255, 255, 255, 0.85);
+      --radius: 16px;
+      
+      /* Colores de Marca para la Gamificación */
+      --color-terreno: #2E8B57; /* Verde Montaña */
+      --color-rio: #4682B4;     /* Azul Río */
+      --color-sol: #FFD700;     /* Amarillo Sol */
+      --color-tierra: #CD853F;  /* Naranja Tierra */
     }
-  });
-});
-</script>
 
+    * { box-sizing: border-box }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, var(--fondo), #E6D5B8);
+      color: var(--text);
+      margin: 0;
+      padding: 24px;
+    }
+
+    .container { max-width: 1150px; margin: 0 auto }
+
+    /* Header */
+    header.app-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, var(--verde), var(--cafe));
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border: 4px solid var(--crema);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--crema), #fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cafe);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      border: 3px solid var(--cafe);
+    }
+
+    h1.title {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      font-size: 1.6rem;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    p.lead { margin: 4px 0 0; color: #FFE4B5; font-size: 1.05rem; font-weight: 600; }
+
+    /* Progress Bar */
+    .progress-wrap {
+      background: linear-gradient(90deg, rgba(111, 78, 55, 0.1), rgba(85, 107, 47, 0.1));
+      padding: 16px;
+      border-radius: 14px;
+      margin: 18px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(111, 78, 55, 0.2);
+    }
+
+    .progress-stages {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .stage {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--card);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-weight: 700;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .stage.active {
+      background: linear-gradient(90deg, var(--cafe), var(--panela));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(210, 105, 30, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .progress-meter {
+      height: 12px;
+      background: #d4c4b0;
+      border-radius: 999px;
+      overflow: hidden;
+      flex-basis: 220px;
+    }
+
+    .progress-meter > i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--verde), var(--cafe));
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .points-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--crema), #FFE4B5);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: var(--tierra);
+      box-shadow: 0 4px 12px rgba(210, 105, 30, 0.2);
+      border: 2px solid #DEB887;
+      font-size: 1.1rem;
+    }
+
+    .badges-display { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+    .badge {
+      width: 55px; height: 55px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 2px solid #fff;
+    }
+    .badge:hover { transform: scale(1.15); }
+    .badge.bronze { background: linear-gradient(135deg, #CD7F32, #9d6a25); }
+    .badge.silver { background: linear-gradient(135deg, #c0c0c0, #878787); }
+    .badge.gold { background: linear-gradient(135deg, #ffd700, #ffed4e); color: #5a4a00; }
+    .badge.locked { opacity: 0.3; filter: grayscale(100%); }
+    
+    .badge-tooltip {
+      position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%);
+      background: #333; color: #fff; padding: 6px 10px;
+      border-radius: 8px; font-size: 0.75rem; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10;
+    }
+    .badge:hover .badge-tooltip { opacity: 1; }
+
+    /* Main Card */
+    main.card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(62, 50, 40, 0.08);
+      border: 1px solid rgba(111, 78, 55, 0.1);
+    }
+
+    .controls {
+      display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--cafe); color: #fff; padding: 12px 20px;
+      border-radius: 12px; border: none; cursor: pointer;
+      font-weight: 700; font-size: 1rem; transition: all 0.2s;
+      font-family: 'Nunito', sans-serif;
+      box-shadow: 0 4px 0 #4a3324;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #4a3324; }
+    .btn:active { transform: translateY(0); box-shadow: 0 2px 0 #4a3324; }
+    .btn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; opacity: 0.7; }
+    
+    .btn.secondary { background: transparent; color: var(--cafe); border: 2px solid rgba(111, 78, 55, 0.2); box-shadow: none; }
+    .btn.secondary:hover { border-color: var(--cafe); background: rgba(111, 78, 55, 0.05); }
+    
+    .btn.export { background: linear-gradient(90deg, var(--verde), #4A6741); box-shadow: 0 4px 0 #3a5231; }
+    .btn.export:hover { filter: brightness(1.1); }
+
+    .content-section { display: none; padding: 12px 6px; border-radius: 12px; animation: fadeIn 0.6s ease; }
+    .content-section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .moment { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; }
+    @media (max-width: 900px) { .moment { grid-template-columns: 1fr; } .panel { order: 2; } }
+
+    .panel {
+      background: linear-gradient(180deg, var(--glass), rgba(255,255,255,0.95));
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(111, 78, 55, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    /* Juego de Conexiones (Líneas) */
+    .connection-game {
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      margin: 20px 0;
+      position: relative;
+      min-height: 300px;
+      background: #faf9f6;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px dashed #dcd0c0;
+    }
+    
+    .connection-col { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    
+    .conn-item {
+      padding: 12px 16px;
+      background: #fff;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      cursor: grab;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      position: relative;
+      z-index: 2;
+    }
+    .conn-item:active { cursor: grabbing; }
+    .conn-item.dragging { opacity: 0.5; transform: scale(1.05); }
+    .conn-item.connected { border-color: var(--verde); background: #f0fff4; color: var(--verde); }
+    
+    .drop-zone-target {
+      min-height: 45px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px dashed #ccc;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .drop-zone-target.highlight { background: #e8f5e9; border-color: var(--verde); }
+    .drop-zone-target.correct { border-color: var(--verde); background: #e8f5e9; border-style: solid; }
+    .drop-zone-target.wrong { border-color: #d9534f; background: #fde8e8; border-style: solid; }
+
+    /* Juego de Parejas (Memory) */
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .memory-card {
+      aspect-ratio: 1;
+      background: var(--cafe);
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .memory-card.flipped { transform: rotateY(180deg); background: #fff; border: 2px solid var(--cafe); }
+    .memory-card.matched { visibility: hidden; opacity: 0; transition: visibility 0s 0.3s, opacity 0.3s linear; }
+    .memory-card .front, .memory-card .back {
+      position: absolute;
+      backface-visibility: hidden;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .memory-card .back { transform: rotateY(180deg); background: #fff; color: var(--cafe); font-size: clamp(2rem, 7vw, 3.5rem); text-align: center; padding: 5px; }
+    .memory-card .front i { color: #fff; }
+
+    /* Escala de Sabor */
+    .flavor-scale {
+      margin: 20px 0;
+      position: relative;
+      height: 60px;
+      background: #f0f0f0;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+    .flavor-track {
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, #d9534f, #f0ad4e, #5bc0de, #5cb85c, #3a87ad);
+      border-radius: 5px;
+      position: relative;
+    }
+    .flavor-thumb {
+      width: 30px; height: 30px;
+      background: #fff; border: 3px solid var(--cafe);
+      border-radius: 50%; position: absolute; top: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .flavor-labels {
+      display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.85rem; color: var(--muted);
+    }
+
+    /* Nomenclatura */
+    .naming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 15px 0;
+    }
+    .naming-card {
+      background: #fff; border: 2px solid #eee;
+      border-radius: 10px; padding: 15px;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .naming-card:hover { border-color: var(--panela); transform: translateY(-3px); }
+    .naming-card.selected { border-color: var(--cafe); background: #fff8f0; }
+    .naming-card input { display: none; }
+
+    /* Quiz & Feedback */
+    .quiz .q { margin-bottom: 16px; }
+    .options { display: flex; flex-direction: column; gap: 8px; }
+    .option {
+      padding: 12px; border-radius: 8px; border: 1px solid #e0d4c5;
+      background: #fff; cursor: pointer; transition: all 0.2s;
+    }
+    .option:hover { background: #fff8f0; border-color: var(--cafe); }
+    .option.selected { border-color: var(--cafe); background: #fff8f0; box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.15); }
+    .option.correct { border-color: var(--verde); background: #f0fff4; color: var(--verde); font-weight: 700; }
+    .option.incorrect { border-color: #d9534f; background: #fde8e8; color: #d9534f; }
+
+    .feedback {
+      padding: 12px; border-radius: 8px; margin-top: 10px; font-size: 0.95rem;
+      display: none; border-left: 4px solid transparent;
+    }
+    .feedback.correct { background: rgba(85, 107, 47, 0.1); border-left-color: var(--verde); }
+    .feedback.incorrect { background: rgba(217, 83, 79, 0.1); border-left-color: #d9534f; }
+
+    /* Canvas para Canva */
+    .canva-mockup {
+      background: #f8f9fa; border: 2px dashed #ccc;
+      border-radius: 12px; padding: 20px; text-align: center;
+      margin: 15px 0;
+    }
+    .canva-mockup canvas { max-width: 100%; border: 1px solid #ddd; }
+
+    footer.eval {
+      display: flex; gap: 12px; align-items: center; justify-content: space-between;
+      margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee;
+      color: var(--muted); font-size: 0.85rem;
+    }
+
+    .input-group label { display: block; margin-bottom: 6px; font-weight: 700; color: var(--cafe); }
+    .input-group input, .input-group textarea {
+      width: 100%; padding: 10px; border: 1px solid #ddd;
+      border-radius: 8px; font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="logo"><i class="fas fa-leaf"></i></div>
+      <div>
+        <h1 class="title">Semana 2: La Marca de mi Emprendimiento</h1>
+        <p class="lead">Identidad, Territorio y Sabor: Diseñando la esencia de Chichalá</p>
+      </div>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-stages">
+        <div class="stage active" data-step="1">1. Esencia</div>
+        <div class="stage" data-step="2">2. Conexión</div>
+        <div class="stage" data-step="3">3. Nomenclatura</div>
+        <div class="stage" data-step="4">4. Identidad</div>
+        <div class="stage" data-step="5">5. Evaluación</div>
+      </div>
+      <div class="progress-meter" aria-hidden><i style="width:20%"></i></div>
+      <div style="min-width:260px; display: flex; align-items: center; gap: 12px; justify-content: flex-end">
+        <div class="points-badge"><i class="fas fa-trophy"></i> <span id="pointsCount">0</span> pts</div>
+        <div style="text-align: right; color: var(--muted); font-weight: 700">Progreso: <span id="progressPct">20%</span></div>
+      </div>
+    </div>
+    
+    <div style="margin-bottom: 12px">
+      <div class="badges-display" id="badgesContainer"></div>
+    </div>
+
+    <main class="card">
+      <div class="controls">
+        <button class="btn" id="prevBtn" disabled>&larr; Anterior</button>
+        <button class="btn" id="nextBtn">Siguiente &rarr;</button>
+        <button class="btn secondary" id="resetBtn">Reiniciar Ruta</button>
+        <button class="btn export" id="exportBtn"><i class="fas fa-file-download"></i> Exportar Brandbook</button>
+      </div>
+
+      <!-- SECCIÓN 1: ESENCIA Y TERRITORIO -->
+      <section id="step-1" class="content-section active">
+        <div class="moment">
+          <div class="panel">
+            <h2><i class="fas fa-mountain"></i> Esencia: Conectando con el Territorio</h2>
+            <p>Una marca rural no es solo un logo, es la historia de tu tierra. En esta etapa, exploraremos cómo los elementos de <strong>Chichalá</strong> (montaña, río, café, panela) pueden inspirar tu identidad.</p>
+            
+            <h3>🧠 Actividad Lúdica: "El Rompecabezas de la Identidad"</h3>
+            <p>Arrastra cada elemento natural a su categoría emocional correcta. ¿Qué sensación te provoca?</p>
+            
+            <div class="connection-game" id="connectionGame">
+              <!-- Columna Izquierda: Elementos -->
+              <div class="connection-col" id="elementsList">
+                <div class="conn-item" draggable="true" data-id="montana" data-type="element" data-img="🏔️">🏔️ Montaña</div>
+                <div class="conn-item" draggable="true" data-id="rio" data-type="element" data-img="🌊">🌊 Río</div>
+                <div class="conn-item" draggable="true" data-id="cafe" data-type="element" data-img="☕">☕ Café</div>
+                <div class="conn-item" draggable="true" data-id="sol" data-type="element" data-img="☀️">☀️ Sol</div>
+                <div class="conn-item" draggable="true" data-id="tierra" data-type="element" data-img="🌱">🌱 Tierra</div>
+              </div>
+
+              <!-- Columna Derecha: Categorías -->
+              <div class="connection-col">
+                <div class="drop-zone-target" data-match="montana">Fortaleza / Resiliencia</div>
+                <div class="drop-zone-target" data-match="rio">Fluidez / Vida</div>
+                <div class="drop-zone-target" data-match="cafe">Calidez / Tradición</div>
+                <div class="drop-zone-target" data-match="sol">Energía / Crecimiento</div>
+                <div class="drop-zone-target" data-match="tierra">Origen / Pertenencia</div>
+              </div>
+            </div>
+            <div id="connectionFeedback" class="feedback" style="display: none; text-align: center; font-weight: 700;"></div>
+          </div>
+
+          <aside class="panel">
+            <h3><i class="fas fa-lightbulb"></i> Reflexión Rápida</h3>
+            <p style="font-size: 0.95rem; color: var(--muted); margin-bottom: 12px;">
+              Antes de avanzar, piensa: ¿Qué elemento de tu entorno es el más representativo de lo que vendes?
+            </p>
+            <div style="background: rgba(111, 78, 55, 0.05); padding: 12px; border-radius: 8px; border-left: 4px solid var(--cafe);">
+              <strong>Ejemplo Chichalá:</strong>
+              <ul style="margin: 8px 0 0 18px; padding: 0;">
+                <li><strong>Montaña:</strong> Representa la estabilidad y el origen.</li>
+                <li><strong>Río:</strong> Representa el flujo de la economía y la vida.</li>
+                <li><strong>Café:</strong> Representa el calor humano y la tradición.</li>
+              </ul>
+            </div>
+            <div style="margin-top: 16px">
+              <label style="font-weight: 700; display: block; margin-bottom: 6px;">Tu elemento principal:</label>
+              <input type="text" id="mainElementInput" placeholder="Escribe aquí..." style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: CONEXIÓN Y PAREJAS -->
+      <section id="step-2" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2><i class="fas fa-puzzle-piece"></i> Conexión: El Juego de las Parejas (Memory)</h2>
+            <p>La identidad se construye conectando conceptos. Encuentra las parejas: <strong>Concepto ↔️ Ejemplo Práctico</strong>.</p>
+            <p style="font-size: 0.9rem; color: var(--muted);">Haz clic en una carta para voltearla. Encuentra las parejas para ganar puntos.</p>
+            
+            <div class="memory-game" id="memoryGame">
+              <!-- Se generan con JS -->
+            </div>
+            <div id="memoryFeedback" class="feedback" style="text-align: center;"></div>
+          </div>
+
+          <aside class="panel">
+            <h3><i class="fas fa-tasks"></i> Reto de Diseño Rápido</h3>
+            <p>Imagina que tu producto es <strong>"Panela de la Montaña"</strong>.</p>
+            <div style="margin-bottom: 10px">
+              <strong>Selecciona 2 colores que evoquen esto:</strong>
+              <div style="display: flex; gap: 10px; margin-top: 8px">
+                <div style="width: 40px; height: 40px; background: #8B4513; border-radius: 50%; border: 2px solid #fff; cursor: pointer;" onclick="selectColor(this, 'color1')"></div>
+                <div style="width: 40px; height: 40px; background: #556B2F; border-radius: 50%; border: 2px solid #fff; cursor: pointer;" onclick="selectColor(this, 'color2')"></div>
+                <div style="width: 40px; height: 40px; background: #D2691E; border-radius: 50%; border: 2px solid #fff; cursor: pointer;" onclick="selectColor(this, 'color3')"></div>
+                <div style="width: 40px; height: 40px; background: #4682B4; border-radius: 50%; border: 2px solid #fff; cursor: pointer;" onclick="selectColor(this, 'color4')"></div>
+              </div>
+            </div>
+            <div style="margin-bottom: 10px">
+              <strong>Selecciona 1 símbolo:</strong>
+              <div style="display: flex; gap: 10px; margin-top: 8px">
+                <span style="font-size: 2rem; cursor: pointer;" onclick="selectIcon(this, 'icon1')">🏔️</span>
+                <span style="font-size: 2rem; cursor: pointer;" onclick="selectIcon(this, 'icon2')">🌿</span>
+                <span style="font-size: 2rem; cursor: pointer;" onclick="selectIcon(this, 'icon3')">🚜</span>
+                <span style="font-size: 2rem; cursor: pointer;" onclick="selectIcon(this, 'icon4')">☀️</span>
+              </div>
+            </div>
+            <div id="designFeedback" style="font-size: 0.85rem; color: var(--muted); margin-top: 10px;"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 3: NOMENCLATURA -->
+      <section id="step-3" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2><i class="fas fa-pen-nib"></i> Nomenclatura: El Nombre que Evokea</h2>
+            <p>Un buen nombre debe evocar el territorio. Analicemos los nombres de Chichalá y sus alrededores.</p>
+
+            <h3>🎮 Actividad: "El Naming del Territorio"</h3>
+            <p>Tienes un producto de <strong>Mermelada de Guayaba</strong>. Elige el nombre que mejor represente "Sabor de la Abuela" y "Origen Rural".</p>
+            
+            <div class="naming-grid" id="namingGrid">
+              <!-- Opciones generadas por JS -->
+            </div>
+            <div id="namingFeedback" class="feedback" style="display: none;"></div>
+
+            <h3 style="margin-top: 20px">📝 Crea tu propio nombre</h3>
+            <div class="input-group">
+              <label>Nombre de tu marca:</label>
+              <input type="text" id="brandNameInput" placeholder="Ej: Sabores del Magdalena">
+            </div>
+            <div class="input-group" style="margin-top: 10px">
+              <label>Eslogan corto (máx 5 palabras):</label>
+              <input type="text" id="sloganInput" placeholder="Ej: Del campo a tu mesa">
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h3><i class="fas fa-chart-pie"></i> Psicología del Color</h3>
+            <p>El color influye en el sabor percibido.</p>
+            <div style="margin-top: 15px">
+              <label style="font-weight: 700;">¿Qué emoción transmite el color <span style="color: #D2691E">Naranja Chocolate</span>?</label>
+              <div class="flavor-scale">
+                <div class="flavor-track" id="flavorTrack"></div>
+                <div class="flavor-thumb" id="flavorThumb" style="left: 50%"></div>
+              </div>
+              <div class="flavor-labels">
+                <span>Aburrido</span>
+                <span>Neutro</span>
+                <span>Energético</span>
+                <span>Delicioso</span>
+                <span>Potente</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 4: IDENTIDAD VISUAL -->
+            <section id="step-4" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2><i class="fas fa-paint-brush"></i> Identidad Visual: Prototipado en Canva</h2>
+            <p>Ahora ponemos en papel (o pantalla) tu identidad. No necesitas ser un diseñador experto, ¡solo tener claridad en tu esencia!</p>
+
+            <h3>🛠️ Taller Práctico: "Tu Logo en 3 Pasos"</h3>
+            <p>Sigue esta guía para crear tu prototipo de marca en Canva (o en papel si prefieres).</p>
+
+            <div style="background: #fff8f0; padding: 15px; border-radius: 10px; border-left: 4px solid var(--cafe); margin-bottom: 15px;">
+              <ol style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                <li><strong>Paso 1: El Símbolo.</strong> Elige un ícono simple (fruta, montaña, herramienta) que represente tu producto.</li>
+                <li><strong>Paso 2: La Tipografía.</strong> Usa una fuente legible y cálida (evita letras difíciles de leer).</li>
+                <li><strong>Paso 3: El Color.</strong> Aplica los colores que elegiste en la sesión anterior.</li>
+              </ol>
+            </div>
+
+            <!-- Simulación de Canva -->
+            <div class="canva-mockup">
+              <h3 style="margin-top: 0; color: var(--muted); font-size: 1rem;">Vista Previa de tu Marca</h3>
+              <canvas id="brandCanvas" width="400" height="200"></canvas>
+              <p style="font-size: 0.85rem; color: var(--muted); margin-top: 10px;">
+                *Esta es una representación visual básica. En Canva puedes personalizar cada detalle.
+              </p>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+              <button class="btn" onclick="updatePreview()" style="font-size: 0.9rem; padding: 8px 16px;">Actualizar Vista</button>
+              <button class="btn secondary" onclick="resetPreview()" style="font-size: 0.9rem; padding: 8px 16px;">Limpiar</button>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h3><i class="fas fa-check-circle"></i> Checklist de Marca Exitosa</h3>
+            <p>Antes de pasar, verifica esto:</p>
+            <ul style="line-height: 1.8;">
+              <li><input type="checkbox" id="check1" style="vertical-align: middle;"> El nombre es fácil de recordar.</li>
+              <li><input type="checkbox" id="check2" style="vertical-align: middle;"> Los colores evocan el producto.</li>
+              <li><input type="checkbox" id="check3" style="vertical-align: middle;"> El logo se ve bien en tamaño pequeño (para redes).</li>
+              <li><input type="checkbox" id="check4" style="vertical-align: middle;"> El eslogan conecta emocionalmente.</li>
+            </ul>
+            <div id="checklistFeedback" style="margin-top: 12px; font-weight: 700; color: var(--verde); display: none;">
+              ¡Excelente! Tu marca está lista para el mundo rural.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 5: EVALUACIÓN FINAL -->
+      <section id="step-5" class="content-section">
+        <div class="moment">
+          <div class="panel">
+            <h2><i class="fas fa-graduation-cap"></i> Evaluación: Tu Marca Listo para el Mercado</h2>
+            <p>Demuestra que dominas los conceptos de identidad, naming y psicología del color.</p>
+
+            <h3>📝 Quiz Final</h3>
+            
+            <div class="q" data-qf="1">
+              <strong>1. ¿Cuál es el objetivo principal de un "eslogan" en una marca rural?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Llenar mucho espacio en el empaque</div>
+                <div class="option" data-correct="true">Transmitir una emoción o valor en pocas palabras</div>
+                <div class="option" data-correct="false">Usar palabras técnicas complicadas</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="2">
+              <strong>2. Si tu producto es "Café de Altura", ¿qué color transmitiría mejor esa identidad?</strong>
+              <div class="options">
+                <div class="option" data-correct="true">Verde bosque o Café oscuro</div>
+                <div class="option" data-correct="false">Rosa chicle</div>
+                <div class="option" data-correct="false">Amarillo neón</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="3">
+              <strong>3. ¿Qué significa que una marca sea "coherente"?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Que tenga muchos colores diferentes</div>
+                <div class="option" data-correct="true">Que todos sus elementos (nombre, color, logo) cuenten la misma historia</div>
+                <div class="option" data-correct="false">Que cambie de nombre cada mes</div>
+              </div>
+            </div>
+
+            <div class="q" data-qf="4">
+              <strong>4. En el contexto de Chichalá, ¿por qué es importante usar elementos del territorio en la marca?</strong>
+              <div class="options">
+                <div class="option" data-correct="false">Porque es obligatoria la ley</div>
+                <div class="option" data-correct="true">Porque conecta emocionalmente con el origen y genera autenticidad</div>
+                <div class="option" data-correct="false">Para que se vea más caro</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px">
+              <button class="btn" id="finalGrade">Calificar Evaluación</button>
+              <div id="finalResult" style="display: inline-block; margin-left: 12px; color: var(--muted); font-weight: 700"></div>
+            </div>
+
+            <div style="margin-top: 20px">
+              <h4>📊 Rúbrica de Evaluación</h4>
+              <div class="rubric">
+                <div style="padding: 8px; border-bottom: 1px solid #e6eef0">
+                  <strong style="color: var(--verde)">90-100: Experto en Branding</strong>
+                  <p style="font-size: 0.9rem; margin: 4px 0 0 0">Domina la identidad visual y la narrativa de marca.</p>
+                </div>
+                <div style="padding: 8px; border-bottom: 1px solid #e6eef0">
+                  <strong style="color: var(--cafe)">70-89: Diseñador en Formación</strong>
+                  <p style="font-size: 0.9rem; margin: 4px 0 0 0">Comprende los conceptos, pero necesita reforzar la coherencia.</p>
+                </div>
+                <div style="padding: 8px">
+                  <strong style="color: #d9534f">&lt;70: Iniciando el Branding</strong>
+                  <p style="font-size: 0.9rem; margin: 4px 0 0 0">Se recomienda repasar la sección de Identidad Visual.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 20px">🤔 Autoevaluación de la Ruta</h3>
+            <p style="color: var(--muted); font-size: 0.95rem">¿Qué tan listo te sientes para diseñar tu marca?</p>
+            <div style="display: flex; gap: 20px; margin-top: 10px; align-items: center;">
+              <input type="range" min="1" max="10" value="5" class="reflection-scale" id="selfScore" style="flex: 1">
+              <span id="selfScoreVal" style="min-width: 30px; text-align: center; font-weight: 700; color: var(--cafe); font-size: 1.2rem">5</span>
+              <span>/10</span>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h3><i class="fas fa-trophy"></i> Tu Desempeño</h3>
+            <div style="text-align: center; padding: 15px;">
+              <div style="font-size: 3rem; font-weight: 800; color: var(--cafe); margin: 10px 0" id="finalScore">-</div>
+              <div style="color: var(--muted); margin-bottom: 12px">Puntuación Final</div>
+              <div style="background: #f0f7ff; padding: 15px; border-radius: 10px; margin-bottom: 12px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-around; font-size: 0.95rem;">
+                  <div>
+                    <div style="font-weight: 800; color: var(--panela); font-size: 1.2rem;"><i class="fas fa-trophy"></i> <span id="totalPoints">0</span></div>
+                    <div style="color: var(--muted)">Puntos Totales</div>
+                  </div>
+                  <div>
+                    <div style="font-weight: 800; color: var(--verde); font-size: 1.2rem;"><i class="fas fa-medal"></i> <span id="badgeCount">0</span></div>
+                    <div style="color: var(--muted)">Insignias</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3>🎖️ Insignias Ganadas</h3>
+            <div id="earnedBadgesDisplay" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center"></div>
+
+            <div style="margin-top: 20px; background: rgba(85, 107, 47, 0.08); padding: 15px; border-radius: 10px; border-left: 4px solid var(--verde);">
+              <label style="display: block; margin-bottom: 10px; font-weight: 700;">📝 Tu Propuesta de Marca:</label>
+              <div style="background: #fff; padding: 10px; border-radius: 6px; font-size: 0.9rem; color: var(--muted);">
+                <strong>Nombre:</strong> <span id="displayBrandName">-</span><br>
+                <strong>Eslogan:</strong> <span id="displaySlogan">-</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+              <button class="btn export" id="exportBtn2"><i class="fas fa-file-export"></i> Exportar Brandbook</button>
+              <button class="btn secondary" id="printBtn"><i class="fas fa-print"></i> Imprimir</button>
+            </div>
+
+            <div id="exportFeedback" style="display: none; margin-top: 12px; padding: 12px; border-radius: 8px; color: var(--muted); background: #f0fff4; border: 1px solid #d4edda;">
+              ✓ ¡Tu Brandbook ha sido generado! Se ha descargado el archivo.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="eval">
+        <div class="rubric">Estado guardado: <span id="saveState">No</span></div>
+        <div style="text-align: right; color: var(--muted)">Diseñado para <strong>Profe Nelson</strong> • Emprendimiento Rural 2026</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ========== SISTEMA DE GAMIFICACIÓN Y ESTADO GLOBAL ==========
+    let gameState = {
+      currentStep: 0,
+      points: 0,
+      badges: [],
+      answers: {},
+      reflectionScores: {
+        selfScore: 5
+      },
+      brandData: {
+        name: '',
+        slogan: '',
+        mainElement: '',
+        connections: 0,
+        memoryMatches: 0,
+        namingChoice: '',
+        designSelections: []
+      },
+      activities: {}
+    };
+
+    const steps = Array.from(document.querySelectorAll('.content-section'));
+    const stages = Array.from(document.querySelectorAll('.stage'));
+    const meter = document.querySelector('.progress-meter > i');
+    const progressPct = document.getElementById('progressPct');
+    const pointsDisplay = document.getElementById('pointsCount');
+    const badgesContainer = document.getElementById('badgesContainer');
+
+    // Definición de Insignias Temáticas (Branding Rural)
+    const badgeDefs = {
+      'conector': { name: 'Conector Rural', desc: 'Entendió la conexión entre territorio y marca', icon: '🔗' },
+      'naming': { name: 'Namer Maestro', desc: 'Creó un nombre evocador', icon: '✍️' },
+      'colorista': { name: 'Experto en Color', desc: 'Dominó la psicología del color', icon: '🎨' },
+      'diseñador': { name: 'Joven Diseñador', desc: 'Prototipó su primera marca', icon: '🖌️' },
+      'branding': { name: 'Master en Branding', desc: 'Completó la ruta de identidad', icon: '🏆' },
+      'visionario': { name: 'Visionario Creativo', desc: 'Obtuvo 100% en todas las pruebas', icon: '⭐' }
+    };
+
+    // ========== UTILIDADES ==========
+    function addPoints(amount, message) {
+      gameState.points += amount;
+      pointsDisplay.textContent = gameState.points;
+      if (message) {
+        const popup = document.createElement('div');
+        popup.style.cssText = 'position:fixed;top:20%;left:50%;transform:translateX(-50%);background:var(--cafe);color:white;padding:12px 20px;border-radius:8px;z-index:10000;box-shadow:0 4px 15px rgba(0,0,0,0.2);animation:correctPulse 0.5s ease;font-weight:700;font-size:1rem;';
+        popup.textContent = `+${amount} pts • ${message}`;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 2500);
+      }
+      saveState();
+    }
+
+    function unlockBadge(badgeKey) {
+      if (!gameState.badges.includes(badgeKey)) {
+        gameState.badges.push(badgeKey);
+        renderBadges();
+        saveState();
+        showBadgeNotification(badgeDefs[badgeKey].name);
+      }
+    }
+
+    function showBadgeNotification(badgeName) {
+      const notif = document.createElement('div');
+      notif.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,var(--panela),var(--cafe));color:white;padding:24px 32px;border-radius:12px;z-index:10001;text-align:center;font-size:1.2rem;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.3);animation:correctPulse 0.5s ease;border: 2px solid #fff;';
+      notif.innerHTML = `🎖️ ¡Insignia Desbloqueada!<br><span style="font-size:1.5rem;display:block;margin-top:5px">${badgeName}</span>`;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 3500);
+    }
+
+    function renderBadges() {
+      badgesContainer.innerHTML = '';
+      Object.keys(badgeDefs).forEach(key => {
+        const badge = badgeDefs[key];
+        const badgeEl = document.createElement('div');
+        const isUnlocked = gameState.badges.includes(key);
+        badgeEl.className = `badge ${isUnlocked ? 'gold' : 'locked'}`;
+        badgeEl.innerHTML = `
+          <div>${badge.icon}</div>
+          <div class="badge-tooltip">${badge.name}</div>
+        `;
+        badgeEl.title = badge.desc;
+        badgesContainer.appendChild(badgeEl);
+      });
+    }
+
+    // ========== NAVEGACIÓN ==========
+    function updateUI() {
+      steps.forEach((s, i) => s.classList.toggle('active', i === gameState.currentStep));
+      stages.forEach((st, i) => {
+        st.classList.toggle('active', i === gameState.currentStep);
+      });
+      
+      const pct = Math.round(((gameState.currentStep + 1) / steps.length) * 100);
+      meter.style.width = pct + '%';
+      progressPct.textContent = pct + '%';
+      
+      document.getElementById('prevBtn').disabled = gameState.currentStep === 0;
+      const nextBtn = document.getElementById('nextBtn');
+      if (gameState.currentStep === steps.length - 1) {
+        nextBtn.textContent = 'Finalizar Ruta';
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.textContent = 'Siguiente →';
+        nextBtn.disabled = false;
+      }
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (gameState.currentStep < steps.length - 1) {
+        gameState.currentStep++;
+        updateUI();
+        saveState();
+        steps[gameState.currentStep].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (gameState.currentStep > 0) {
+        gameState.currentStep--;
+        updateUI();
+        saveState();
+        steps[gameState.currentStep].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    document.querySelectorAll('.stage').forEach((el, i) => {
+      el.addEventListener('click', () => {
+        if (i <= gameState.currentStep) {
+          gameState.currentStep = i;
+          updateUI();
+          saveState();
+          steps[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (confirm('¿Estás seguro de reiniciar toda la guía? Se perderán tus puntos e insignias.')) {
+        localStorage.removeItem('semana2State');
+        location.reload();
+      }
+    });
+
+    // ========== SECCIÓN 1: CONEXIÓN (DRAG & DROP) ==========
+    (function() {
+      const elements = document.querySelectorAll('.conn-item[data-type="element"]');
+      const targets = document.querySelectorAll('.drop-zone-target');
+      
+      elements.forEach(el => {
+        el.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', el.dataset.id);
+          el.classList.add('dragging');
+        });
+        el.addEventListener('dragend', () => el.classList.remove('dragging'));
+      });
+
+      targets.forEach(target => {
+        target.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          target.classList.add('highlight');
+        });
+        target.addEventListener('dragleave', () => target.classList.remove('highlight'));
+        target.addEventListener('drop', (e) => {
+          e.preventDefault();
+          target.classList.remove('highlight');
+          
+          const id = e.dataTransfer.getData('text/plain');
+          const correctMatch = target.dataset.match;
+          
+          if (id === correctMatch) {
+            target.classList.add('correct');
+            target.textContent = target.textContent + ' ✓';
+            document.querySelector(`.conn-item[data-id="${id}"]`).classList.add('connected');
+            gameState.brandData.connections++;
+            addPoints(10, 'Conexión correcta');
+            
+            // Verificar si completó todo
+            if (gameState.brandData.connections === 5) {
+              unlockBadge('conector');
+              document.getElementById('connectionFeedback').textContent = '¡Excelente! Has conectado todos los elementos. Ahora tu identidad tiene raíces claras.';
+              document.getElementById('connectionFeedback').className = 'feedback correct';
+              document.getElementById('connectionFeedback').style.display = 'block';
+            }
+          } else {
+            target.classList.add('wrong');
+            setTimeout(() => target.classList.remove('wrong'), 500);
+          }
+        });
+      });
+    })();
+
+    // ========== SECCIÓN 2: MEMORY GAME ==========
+    (function() {
+      const pairs = [
+        { id: '1', icon: '🏔️', concept: 'Montaña' },
+        { id: '1', icon: '🏔️', concept: 'Montaña' }, // Par
+        { id: '2', icon: '🌊', concept: 'Río' },
+        { id: '2', icon: '🌊', concept: 'Río' },
+        { id: '3', icon: '☕', concept: 'Café' },
+        { id: '3', icon: '☕', concept: 'Café' },
+        { id: '4', icon: '🌿', concept: 'Naturaleza' },
+        { id: '4', icon: '🌿', concept: 'Naturaleza' },
+        { id: '5', icon: '🚜', concept: 'Agricultura' },
+        { id: '5', icon: '🚜', concept: 'Agricultura' },
+        { id: '6', icon: '🏠', concept: 'Comunidad' },
+        { id: '6', icon: '🏠', concept: 'Comunidad' },
+        { id: '7', icon: '💰', concept: 'Economía' },
+        { id: '7', icon: '💰', concept: 'Economía' },
+        { id: '8', icon: '🧺', concept: 'Artesanía' },
+        { id: '8', icon: '🧺', concept: 'Artesanía' }
+      ];
+
+      // Mezclar
+      pairs.sort(() => Math.random() - 0.5);
+
+      const gameContainer = document.getElementById('memoryGame');
+      let flippedCards = [];
+      let matchedPairs = 0;
+
+      pairs.forEach((pair, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.id = pair.id;
+        card.innerHTML = `
+          <div class="front"><i class="fas fa-question"></i></div>
+          <div class="back">${pair.icon}</div>
+        `;
+        
+        card.addEventListener('click', () => {
+          if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
+            card.classList.add('flipped');
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+              const [c1, c2] = flippedCards;
+              if (c1.dataset.id === c2.dataset.id) {
+                setTimeout(() => {
+                  c1.classList.add('matched');
+                  c2.classList.add('matched');
+                  flippedCards = [];
+                  matchedPairs++;
+                  gameState.brandData.memoryMatches++;
+                  addPoints(5, 'Par encontrado');
+                  if (matchedPairs === pairs.length / 2) {
+                    unlockBadge('colorista');
+                    document.getElementById('memoryFeedback').textContent = '¡Increíble! Has conectado todos los conceptos de marca.';
+                    document.getElementById('memoryFeedback').className = 'feedback correct';
+                    document.getElementById('memoryFeedback').style.display = 'block';
+                  }
+                }, 500);
+              } else {
+                setTimeout(() => {
+                  c1.classList.remove('flipped');
+                  c2.classList.remove('flipped');
+                  flippedCards = [];
+                }, 1000);
+              }
+            }
+          }
+        });
+        
+        gameContainer.appendChild(card);
+      });
+    })();
+
+    // ========== SECCIÓN 3: NAMING Y COLORES ==========
+    (function() {
+      const namingOptions = [
+        { name: 'Sabores de la Abuela', score: 25, reason: 'Evoca tradición y calidez' },
+        { name: 'Mermelada Chichalá', score: 15, reason: 'Local pero genérico' },
+        { name: 'Frutos del Valle', score: 10, reason: 'Muy común' }
+      ];
+
+      const grid = document.getElementById('namingGrid');
+      let selected = null;
+
+      namingOptions.forEach(opt => {
+        const card = document.createElement('div');
+        card.className = 'naming-card';
+        card.innerHTML = `
+          <input type="radio" name="naming" value="${opt.name}" ${selected ? 'disabled' : ''}>
+          <div style="flex:1">
+            <strong>${opt.name}</strong>
+            <div style="font-size:0.8rem; color:var(--muted)">${opt.reason}</div>
+          </div>
+        `;
+        
+        card.addEventListener('click', () => {
+          if (!card.querySelector('input').checked) {
+            document.querySelectorAll('.naming-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            card.querySelector('input').checked = true;
+            selected = opt;
+            
+            gameState.brandData.namingChoice = opt.name;
+            addPoints(opt.score, 'Nombre seleccionado');
+            
+            document.getElementById('namingFeedback').style.display = 'block';
+            document.getElementById('namingFeedback').className = 'feedback correct';
+            document.getElementById('namingFeedback').innerHTML = `✓ <strong>${opt.reason}</strong><br>+${opt.score} puntos`;
+          }
+        });
+        
+        grid.appendChild(card);
+      });
+    })();
+
+    // Escala de sabor
+    const thumb = document.getElementById('flavorThumb');
+    const track = document.getElementById('flavorTrack');
+    
+    track.addEventListener('click', (e) => {
+      const rect = track.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percent = Math.min(100, Math.max(0, (x / rect.width) * 100));
+      thumb.style.left = percent + '%';
+      
+      if (percent > 80) {
+        addPoints(10, '¡Excelente elección de color!');
+      }
+    });
+
+    // Inputs de marca
+    document.getElementById('brandNameInput').addEventListener('input', (e) => {
+      gameState.brandData.name = e.target.value;
+      updatePreview();
+      updateFinalDisplay();
+      saveState();
+    });
+    
+    document.getElementById('sloganInput').addEventListener('input', (e) => {
+      gameState.brandData.slogan = e.target.value;
+      updatePreview();
+      updateFinalDisplay();
+      saveState();
+    });
+
+    // ========== SECCIÓN 4: CANVA MOCKUP ==========
+    const brandCanvas = document.getElementById('brandCanvas');
+    const ctx = brandCanvas.getContext('2d');
+
+    function updatePreview() {
+      ctx.clearRect(0, 0, 400, 200);
+      
+      // Fondo
+      ctx.fillStyle = '#f8f9fa';
+      ctx.fillRect(0, 0, 400, 200);
+      
+      // Logo Simulado
+      const name = gameState.brandData.name || 'NOMBRE DE TU MARCA';
+      const icon = gameState.brandData.designSelections.includes('icon1') ? '🏔️' : '🌿';
+      
+      ctx.fillStyle = '#3E3228';
+      ctx.font = 'bold 24px Nunito';
+      ctx.fillText(name, 20, 60);
+      
+      ctx.font = '14px Nunito';
+      ctx.fillText('Eslogan: ' + (gameState.brandData.slogan || 'Del campo a tu mesa'), 20, 85);
+      
+      ctx.font = '60px Nunito';
+      ctx.fillText(icon, 300, 100);
+    }
+
+    function resetPreview() {
+      ctx.clearRect(0, 0, 400, 200);
+      ctx.fillStyle = '#f8f9fa';
+      ctx.fillRect(0, 0, 400, 200);
+      ctx.fillStyle = '#ccc';
+      ctx.font = '16px Nunito';
+      ctx.fillText('Diseña tu marca aquí...', 120, 100);
+    }
+
+    // Selección de colores e íconos
+    function selectColor(el, id) {
+      el.style.borderColor = '#fff';
+      el.style.transform = 'scale(1.1)';
+      gameState.brandData.designSelections.push('color');
+      addPoints(5, 'Color seleccionado');
+    }
+    
+    function selectIcon(el, id) {
+      document.querySelectorAll('span[onclick^="selectIcon"]').forEach(s => s.style.opacity = '0.5');
+      el.style.opacity = '1';
+      gameState.brandData.designSelections.push('icon');
+      addPoints(5, 'Ícono seleccionado');
+      updatePreview();
+    }
+
+    // Checklist
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (checked === 4) {
+          document.getElementById('checklistFeedback').style.display = 'block';
+          unlockBadge('diseñador');
+        }
+      });
+    });
+
+    // ========== SECCIÓN 5: EVALUACIÓN FINAL ==========
+    document.querySelectorAll('.reflection-scale').forEach(range => {
+      range.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value);
+        if (e.target.id === 'selfScore') {
+          document.getElementById('selfScoreVal').textContent = val;
+          gameState.reflectionScores.selfScore = val;
+        }
+      });
+    });
+
+    // Evaluar Examen Final
+    document.querySelectorAll('[data-qf] .option').forEach(option => {
+      option.addEventListener('click', () => {
+        const question = option.closest('[data-qf]');
+        question.querySelectorAll('.option').forEach(item => item.classList.remove('selected'));
+        option.classList.add('selected');
+        document.getElementById('finalResult').textContent = '';
+      });
+    });
+
+    document.getElementById('finalGrade').addEventListener('click', () => {
+      const qs = document.querySelectorAll('[data-qf]');
+      let total = qs.length, score = 0;
+      
+      qs.forEach(q => {
+        const chosen = q.querySelector('.option.selected');
+        if (chosen?.dataset.correct === 'true') score++;
+      });
+      
+      const pct = Math.round((score / total) * 100);
+      document.getElementById('finalResult').textContent = `${pct}% (${score}/${total})`;
+      document.getElementById('finalScore').textContent = pct;
+      document.getElementById('totalPoints').textContent = gameState.points + (pct * 2);
+      document.getElementById('badgeCount').textContent = gameState.badges.length;
+      
+      if (pct === 100) unlockBadge('visionario');
+      unlockBadge('branding');
+      
+      renderEarnedBadges();
+      saveState();
+      
+      if (pct >= 90) {
+        showBadgeNotification("¡Nivel Experto en Branding Rural!");
+      }
+    });
+
+    function renderEarnedBadges() {
+      const display = document.getElementById('earnedBadgesDisplay');
+      display.innerHTML = '';
+      gameState.badges.forEach(badgeKey => {
+        const badge = badgeDefs[badgeKey];
+        const badgeEl = document.createElement('div');
+        badgeEl.style.cssText = 'padding:12px;background:linear-gradient(135deg,rgba(111, 78, 55, 0.1),rgba(85, 107, 47, 0.1));border-radius:8px;text-align:center;transition: transform 0.3s;';
+        badgeEl.innerHTML = `<div style="font-size:2rem">${badge.icon}</div><div style="font-weight:700;font-size:0.9rem;margin-top:4px;color:var(--cafe)">${badge.name}</div>`;
+        display.appendChild(badgeEl);
+      });
+    }
+
+    // Exportar Brandbook
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const data = gameState.brandData;
+      const csv = `BRANDBOOK - EMPRENDIMIENTO RURAL\n\nMarca: ${data.name}\nEslogan: ${data.slogan}\nElemento Principal: ${data.mainElement}\n\n🏆 Puntos Totales: ${gameState.points}\n🎖️ Insignias: ${gameState.badges.map(b => badgeDefs[b].name).join(', ')}\n\n📝 Reflexión: ${gameState.reflectionScores.selfScore}/10\n\n¡Felicidades por completar la ruta de identidad!\nDiseñado por: Profe Nelson.`;
+      
+      const blob = new Blob([csv], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'semana2_brandbook.txt';
+      a.click();
+      document.getElementById('exportFeedback').style.display = 'block';
+    });
+
+    document.getElementById('exportBtn2').addEventListener('click', () => {
+      document.getElementById('exportBtn').click();
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    // ========== PERSISTENCIA DE ESTADO ==========
+    function saveState() {
+      try {
+        localStorage.setItem('semana2State', JSON.stringify(gameState));
+        document.getElementById('saveState').textContent = 'Sí';
+      } catch (e) {
+        console.warn('No se pudo guardar estado', e);
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem('semana2State');
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        Object.assign(gameState, saved);
+        gameState.currentStep = saved.currentStep || 0;
+        pointsDisplay.textContent = gameState.points;
+        renderBadges();
+        updateUI();
+        updatePreview();
+      } catch (e) {
+      console.warn('Error cargando estado', e);
+    }
+  }
+
+  // ========== INICIALIZACIÓN ==========
+  window.onload = function() {
+    updateUI();
+    loadState();
+    renderBadges();
+    
+    // Inicializar vista previa del logo
+    updatePreview();
+    
+    // Si hay datos guardados, actualizar las entradas de texto
+    if (gameState.brandData.name) {
+      document.getElementById('brandNameInput').value = gameState.brandData.name;
+    }
+    if (gameState.brandData.slogan) {
+      document.getElementById('sloganInput').value = gameState.brandData.slogan;
+    }
+    updateFinalDisplay();
+    
+    // Mostrar mensaje de bienvenida si es la primera vez
+    if (!localStorage.getItem('semana2State')) {
+      console.log("¡Bienvenido a la Semana 2! Empieza a diseñar tu marca.");
+    }
+  };
+
+  // Actualizar los textos de la sección final
+  function updateFinalDisplay() {
+    document.getElementById('displayBrandName').textContent = gameState.brandData.name || 'Sin nombre';
+    document.getElementById('displaySlogan').textContent = gameState.brandData.slogan || 'Sin eslogan';
+  }
+
+  // Actualizar el display antes de exportar
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    updateFinalDisplay();
+    const data = gameState.brandData;
+    const fecha = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+    
+    const content = `
+📄 BRANDBOOK - EMPRENDIMIENTO RURAL (SEMANA 2)
+================================================
+Elaborado para: Profe Nelson
+Fecha: ${fecha}
+
+🏷️ IDENTIDAD DE MARCA
+---------------------
+Nombre: ${data.name || 'Por definir'}
+Eslogan: ${data.slogan || 'Por definir'}
+Elemento Principal: ${data.mainElement || 'Por definir'}
+
+🎨 ELEMENTOS VISUALES
+--------------------
+Colores Seleccionados: ${data.designSelections.includes('color') ? 'Sí' : 'No'}
+Íconos Seleccionados: ${data.designSelections.includes('icon') ? 'Sí' : 'No'}
+
+📚 LOGRO DEL ESTUDIANTE
+----------------------
+Puntuación Total: ${gameState.points} pts
+Insignias Desbloqueadas:
+${gameState.badges.map(b => ` - ${badgeDefs[b].name}`).join('\n')}
+
+📊 AUTOEVALUACIÓN
+----------------
+Nivel de confianza: ${gameState.reflectionScores.selfScore}/10
+
+💡 RECOMENDACIÓN
+---------------
+¡Tu marca tiene el poder de transformar tu emprendimiento!
+Recuerda que la consistencia visual es clave para generar confianza en el mercado rural.
+
+---
+Diseñado para la Ruta de Aprendizaje: Emprendimiento Rural 2026
+Semana 2: La Marca de mi Emprendimiento Campesino
+    `;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `brandbook_${data.name || 'mi_marca'}.txt`;
+    a.click();
+    
+    document.getElementById('exportFeedback').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('exportFeedback').style.display = 'none';
+    }, 5000);
+  });
+</script>
 </body>
 </html>
