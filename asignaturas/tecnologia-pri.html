@@ -780,8 +780,8 @@
 
 const GUIAS_BASE = {
     grado3:  '../guias/tecnologia-pri/',
-    grado4:  '../guias/tecnologia-sec/',
-    grado5:  '../guias/tecnologia-sec/',
+    grado4:  '../guias/tecnologia-pri/',
+    grado5:  '../guias/tecnologia-pri/',
 };
 
 
@@ -832,10 +832,9 @@ async function generarAcordeon() {
                 ? `<a href="${rutaGuia}" class="btn-ver-guia" target="_blank">
                        📄 Ver Guía
                    </a>`
-                : `<span class="btn-ver-guia btn-guia-disabled"
-                       title="Guía en construcción 🚧">
-                       🚧 Próximamente
-                   </span>`;
+                : `<a href="${rutaGuia}" class="btn-ver-guia" target="_blank">
+                       📄 Ver Guía
+                   </a>`;
 
             // ── Semana de evaluación ───────────────────────
             if (s.actividad) {

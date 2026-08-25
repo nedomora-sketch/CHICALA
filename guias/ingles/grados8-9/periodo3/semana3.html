@@ -1,1133 +1,1395 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía: Narradores de Nuestra Tierra | Inglés · Semana 3 · Período 3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --verde: #3DBE8C;
-            --azul: #1A9BAB;
-            --morado: #7C3AED;
-            --naranja: #F4872B;
-            --amarillo: #F7C325;
-            --texto: #2D3748;
-            --fondo: #F7FAFC;
-        }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Week 3 · Narración & Descripción · Portal CHICALA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet"/>
+  <style>
+    /* ============================================================
+       styles.css — Semana 3 · Narración & Descripción (Estilo Claro & Vibrante)
+       NIVEL: 8°-9° (Básico Sec.)
+       ============================================================ */
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--texto);
-            background: var(--fondo);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
+    :root {
+      --primary: #4F46E5;
+      --primary-light: #818CF8;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --bg: #F9FAFB;
+      --surface: #FFFFFF;
+      --text: #1F2937;
+      --text-dim: #6B7280;
+      --border: #E5E7EB;
+      
+      /* Colores específicos para Narración & Descripción */
+      --c-personaje: #6B7280; /* Gris para Personajes */
+      --c-lugar: #EC4899; /* Rosa para Lugar */
+      --c-accion: #3B82F6; /* Azul para Acción */
+      --c-sentimiento: #F59E0B; /* Naranja para Sentimiento */
+      --c-conector: #8B5CF6; /* Violeta para Conectores */
+      --c1: #F97316; --c2: #8B5CF6; --c3: #10B981; --c4: #0EA5E9; --c5: #EC4899; --c6: #F59E0B; --c7: #6366F1;
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.09);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+      --r-sm: 12px;
+      --r-md: 18px;
+      --r-lg: 28px;
+      --r-xl: 36px;
+    }
 
-        /* Header Institucional */
-        .header {
-            text-align: center;
-            border-bottom: 3px solid var(--morado);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; line-height: 1.6; }
 
-        .header h1 {
-            color: var(--azul);
-            font-size: 2rem;
-            margin: 0;
-            font-weight: 900;
-        }
+    /* Fondo Animado */
+    .bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .bg-shapes::before, .bg-shapes::after { content: ''; position: absolute; border-radius: 50%; opacity: 0.08; animation: floatBg 12s ease-in-out infinite alternate; }
+    .bg-shapes::before { width: 500px; height: 500px; background: radial-gradient(circle, var(--primary), transparent); top: -150px; left: -150px; }
+    .bg-shapes::after { width: 400px; height: 400px; background: radial-gradient(circle, var(--secondary), transparent); bottom: -100px; right: -100px; animation-delay: -6s; animation-direction: alternate-reverse; }
+    @keyframes floatBg { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 30px) scale(1.1); } }
 
-        .header h2 {
-            color: var(--naranja);
-            font-size: 1.2rem;
-            margin: 5px 0 0;
-            font-weight: 700;
-        }
+    /* XP Card & Toast */
+    .xp-card { position: fixed; top: 20px; right: 20px; z-index: 400; display: flex; align-items: center; gap: 6px; background: white; border-radius: 50px; padding: 10px 20px; box-shadow: var(--shadow-md), 0 0 0 3px rgba(245,158,11,0.15); animation: bounceIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275); }
+    @keyframes bounceIn { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
+    .xp-icon { font-size: 1.1rem; animation: spin 3s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .xp-val { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .xp-label { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-dim); letter-spacing: 0.1em; }
+    
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(120px); background: white; border-radius: 50px; padding: 14px 32px; font-size: 0.92rem; font-weight: 700; color: var(--text); z-index: 600; box-shadow: var(--shadow-lg); transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275); white-space: nowrap; max-width: 90vw; text-align: center; border: 2px solid transparent; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { border-color: #FCA5A5; color: #DC2626; }
+    .toast.success { border-color: #6EE7B7; color: #059669; }
+    .toast.xp { border-color: #FCD34D; color: #D97706; }
 
-        .header p {
-            font-size: 0.9rem;
-            color: #718096;
-            margin: 5px 0;
-        }
+    /* Breadcrumb & Hero */
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-size: 0.85rem; color: var(--text-dim); font-weight: 600; }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 700; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--primary-light); }
+    .breadcrumb .sep { color: var(--border); font-size: 1rem; }
+    .breadcrumb .actual { color: var(--text); font-weight: 700; }
 
-        /* Secciones */
-        .seccion {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background: #f8fafc;
-            border-left: 5px solid var(--morado);
-        }
+    .mision-hero { display: flex; gap: 28px; flex-wrap: wrap; background: white; border-radius: var(--r-xl); padding: 40px 36px; margin-bottom: 32px; box-shadow: var(--shadow-md); border: 2px solid var(--border); position: relative; overflow: hidden; }
+    .mision-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7)); background-size: 200% 100%; animation: rainbowSlide 4s linear infinite; }
+    @keyframes rainbowSlide { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+    .mision-hero::after { content: '📖'; position: absolute; bottom: -20px; right: 20px; font-size: 10rem; opacity: 0.04; animation: floatIcon 6s ease-in-out infinite alternate; pointer-events: none; }
+    @keyframes floatIcon { 0% { transform: translateY(0) rotate(-10deg); } 100% { transform: translateY(-20px) rotate(10deg); } }
+    .mision-left { flex: 1; min-width: 240px; }
+    .mision-right { width: 250px; flex-shrink: 0; }
+    .mision-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .badge { font-family: 'Fredoka', sans-serif; font-size: 0.78rem; font-weight: 600; padding: 5px 14px; border-radius: 50px; border: 2px solid transparent; transition: transform 0.2s; }
+    .badge:hover { transform: scale(1.05); }
+    .b-semana { background: #FEF3C7; border-color: #FCD34D; color: #D97706; }
+    .b-tema { background: #DBEAFE; border-color: #93C5FD; color: #2563EB; }
+    .b-nivel { background: #D1FAE5; border-color: #6EE7B7; color: #059669; }
+    .mision-titulo { font-family: 'Fredoka', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.05; color: var(--primary); margin-bottom: 12px; text-shadow: 3px 3px 0 rgba(79,70,229,0.1); }
+    .mision-desc { font-size: 0.95rem; color: var(--text-dim); line-height: 1.75; margin-bottom: 16px; }
+    .mision-desc strong { color: var(--text); }
+    .mision-objetivo { display: flex; align-items: center; gap: 10px; background: #EEF2FF; border-radius: var(--r-sm); padding: 12px 16px; font-size: 0.88rem; border-left: 4px solid var(--primary); }
+    .mision-objetivo .icon { font-size: 1.1rem; }
+    .mision-progreso { background: linear-gradient(135deg, #EEF2FF, #F0FDF4); border: 2px solid var(--border); border-radius: var(--r-lg); padding: 22px; height: 100%; }
+    .mision-titulo-prog { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 14px; }
+    .mision-steps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .ms-step { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-size: 0.7rem; font-weight: 600; color: var(--text-dim); transition: all 0.35s cubic-bezier(0.175,0.885,0.32,1.275); background: white; }
+    .ms-step.activo { border-color: var(--primary); color: var(--primary); background: #EEF2FF; transform: scale(1.1); }
+    .ms-step.completo { background: var(--secondary); border-color: var(--secondary); color: white; transform: scale(1.15); box-shadow: 0 4px 12px rgba(16,185,129,0.3); animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+    @keyframes popIn { 0% { transform: scale(0.5); } 70% { transform: scale(1.25); } 100% { transform: scale(1.15); } }
+    .mision-bar-wrap { width: 100%; height: 10px; background: var(--border); border-radius: 50px; overflow: hidden; margin-bottom: 8px; }
+    .mision-bar { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary)); border-radius: 50px; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 0 10px rgba(16,185,129,0.4); }
+    .mision-pct { font-family: 'Fredoka', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--text-dim); }
 
-        .seccion h3 {
-            color: var(--morado);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* Actividad Card */
+    .page-wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 24px 20px 100px; }
+    .actividad { background: white; border: 2px solid var(--border); border-radius: var(--r-lg); padding: 32px; margin-bottom: 24px; box-shadow: var(--shadow-sm); transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+    .actividad:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .actividad[data-sec="1"]::before { background: var(--c1); }
+    .actividad[data-sec="2"]::before { background: var(--c2); }
+    .actividad[data-sec="3"]::before { background: var(--c3); }
+    .actividad[data-sec="4"]::before { background: var(--c4); }
+    .actividad[data-sec="5"]::before { background: var(--c5); }
+    .actividad[data-sec="6"]::before { background: var(--c6); }
+    .actividad[data-sec="7"]::before { background: var(--c7); }
+    .actividad::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; border-radius: 5px 0 0 5px; }
+    .actividad.completada { border-color: #BBF7D0; background: linear-gradient(135deg, #F0FDF4, white); }
+    .actividad.completada::after { content: '✅'; position: absolute; top: 16px; right: 20px; font-size: 1.4rem; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+    .actividad.sugerida { animation: pulsoSugerida 2s ease; }
+    @keyframes pulsoSugerida { 0%,100% { box-shadow: var(--shadow-sm); } 40% { box-shadow: 0 0 0 8px rgba(79,70,229,0.12), var(--shadow-md); } }
+    .act-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+    .act-num { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--border); line-height: 1; flex-shrink: 0; min-width: 52px; transition: color 0.3s; }
+    .actividad:hover .act-num { color: #D1D5DB; }
+    .act-info { flex: 1; }
+    .act-tipo { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
+    .actividad[data-sec="1"] .act-tipo { color: var(--c1); }
+    .actividad[data-sec="2"] .act-tipo { color: var(--c2); }
+    .actividad[data-sec="3"] .act-tipo { color: var(--c3); }
+    .actividad[data-sec="4"] .act-tipo { color: var(--c4); }
+    .actividad[data-sec="5"] .act-tipo { color: var(--c5); }
+    .actividad[data-sec="6"] .act-tipo { color: var(--c6); }
+    .actividad[data-sec="7"] .act-tipo { color: var(--c7); }
+    .act-titulo { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .act-desc { font-size: 0.88rem; color: var(--text-dim); }
+    .act-xp-badge { font-family: 'Fredoka', sans-serif; font-size: 0.78rem; font-weight: 600; padding: 6px 16px; border-radius: 50px; background: #FEF3C7; border: 2px solid #FCD34D; color: #D97706; flex-shrink: 0; animation: wobble 3s ease-in-out infinite; }
+    @keyframes wobble { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(-2deg); } 75% { transform: rotate(2deg); } }
+    .act-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; padding-top: 20px; border-top: 2px dashed var(--border); flex-wrap: wrap; gap: 12px; }
+    .btn-completar { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; padding: 13px 30px; border: none; border-radius: 50px; background: linear-gradient(135deg, var(--secondary), #059669); color: white; cursor: pointer; box-shadow: 0 6px 0 #047857, 0 8px 20px rgba(16,185,129,0.3); transition: all 0.15s; }
+    .btn-completar:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 9px 0 #047857, 0 12px 24px rgba(16,185,129,0.35); }
+    .btn-completar:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #047857, 0 4px 12px rgba(16,185,129,0.2); }
+    .btn-completar:disabled { background: #F3F4F6; border: 2px solid var(--border); color: #9CA3AF; cursor: not-allowed; box-shadow: none; transform: none; }
 
-        .seccion h3::before {
-            content: "🌿";
-        }
+    /* ==================== NUEVOS ESTILOS SEMANA 3 (8-9) ==================== */
+    
+    /* Story Map */
+    .story-map { display: flex; flex-direction: column; gap: 20px; margin: 20px 0; }
+    .story-row { display: flex; gap: 10px; align-items: center; }
+    .story-piece { flex: 1; padding: 15px; border-radius: var(--r-md); border: 2px solid var(--border); background: #fff; display: flex; align-items: center; justify-content: center; min-height: 60px; font-weight: 700; cursor: grab; transition: all 0.2s; }
+    .story-piece:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+    .story-piece.personaje { border-color: var(--c-personaje); background: #F3F4F6; color: #374151; }
+    .story-piece.lugar { border-color: var(--c-lugar); background: #FCE7F3; color: #BE124D; }
+    .story-piece.accion { border-color: var(--c-accion); background: #DBEAFE; color: #1E40AF; }
+    .story-piece.sentimiento { border-color: var(--c-sentimiento); background: #FEF3C7; color: #D97706; }
+    .story-conector { width: 60px; height: 60px; border-radius: 50%; background: var(--c-conector); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3); flex-shrink: 0; }
+    .story-slot { width: 60px; height: 60px; border-radius: 50%; border: 2px dashed var(--c-conector); display: flex; align-items: center; justify-content: center; background: #F5F3FF; color: var(--c-conector); font-weight: 700; cursor: pointer; }
+    .story-slot.drag-over { background: #EEF2FF; border-color: var(--primary); transform: scale(1.1); }
 
-        .seccion-escritura h3::before { content: "✍️"; color: var(--azul); }
-        .seccion-creativa h3::before { content: "🎭"; color: var(--naranja); }
+    /* Paragraph Builder */
+    .paragraph-builder { display: flex; flex-direction: column; gap: 15px; }
+    .paragraph-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .paragraph-chip { padding: 8px 18px; border-radius: 50px; border: 2px solid var(--border); background: white; font-family: 'Fredoka', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; user-select: none; box-shadow: 0 3px 0 var(--border); }
+    .paragraph-chip:hover:not(.usada) { border-color: var(--c7); color: var(--c7); background: #EEF2FF; transform: translateY(-3px); box-shadow: 0 6px 0 #C7D2FE; }
+    .paragraph-chip:active:not(.usada) { transform: translateY(1px); box-shadow: 0 1px 0 var(--border); }
+    .paragraph-chip.usada { opacity: 0.3; pointer-events: none; }
+    .paragraph-answer-box { min-height: 50px; border: 2px dashed #C7D2FE; border-radius: var(--r-sm); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: #F5F3FF; transition: all 0.3s; }
+    .paragraph-answer-box.correcta { border-color: #6EE7B7; background: #D1FAE5; border-style: solid; }
+    .paragraph-answer-box.incorrecta { border-color: #FCA5A5; background: #FEE2E2; border-style: solid; }
+    .paragraph-chip-answer { padding: 6px 16px; border-radius: 50px; background: #EEF2FF; border: 2px solid #C7D2FE; font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--c7); cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 0 #C7D2FE; }
+    .paragraph-chip-answer:hover { background: #E0E7FF; transform: translateY(-2px); }
+    .paragraph-verificar { margin-top: 14px; padding: 10px 26px; border-radius: 50px; border: 2px solid #C7D2FE; background: #EEF2FF; color: var(--c7); font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 0 #C7D2FE; }
+    .paragraph-verificar:hover { background: #E0E7FF; transform: translateY(-2px); box-shadow: 0 6px 0 #C7D2FE; }
+    .paragraph-verificar:active { transform: translateY(2px); box-shadow: 0 1px 0 #C7D2FE; }
 
-        /* Niveles */
-        .nivel-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-        }
+    /* Scene Generator */
+    .scene-generator { display: flex; flex-direction: column; gap: 15px; }
+    .scene-select { background: white; border: 2px solid var(--border); border-radius: var(--r-sm); padding: 12px; font-size: 1rem; font-weight: 600; color: var(--text); cursor: pointer; }
+    .scene-result { background: #F8FAFC; border: 2px dashed var(--border); border-radius: var(--r-md); padding: 20px; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: var(--text); }
 
-        .nivel-card.grado8 { border-color: var(--azul); }
-        .nivel-card.grado9 { border-color: var(--morado); }
+    /* Listening Audio */
+    .audio-player { display: flex; align-items: center; gap: 16px; padding: 18px; background: linear-gradient(135deg, #EFF6FF, #F0FDFA); border: 2px solid #BAE6FD; border-radius: var(--r-md); box-shadow: var(--shadow-sm); }
+    .audio-avatar { display: grid; place-items: center; width: 58px; height: 58px; flex: 0 0 58px; border: 2px solid #38BDF8; border-radius: 18px; background: white; font-size: 2rem; box-shadow: 0 4px 0 #BAE6FD; }
+    .audio-info { flex: 1; min-width: 0; }
+    .audio-nombre { color: #0F3B5F; font-family: 'Fredoka', sans-serif; font-size: 1.05rem; font-weight: 700; }
+    .audio-subtitulo { margin-top: 2px; color: #64748B; font-size: 0.8rem; }
+    .audio-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 16px; border: 2px solid #0284C7; border-radius: var(--r-sm); background: #0EA5E9; color: white; font: 700 0.8rem 'Fredoka', sans-serif; letter-spacing: 0.04em; cursor: pointer; box-shadow: 0 4px 0 #0369A1; transition: transform 0.15s, background 0.15s, box-shadow 0.15s; }
+    .audio-btn:hover { background: #0284C7; transform: translateY(-2px); box-shadow: 0 6px 0 #0369A1; }
+    .audio-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #0369A1; }
+    .audio-btn:focus-visible { outline: 3px solid rgba(14, 165, 233, 0.35); outline-offset: 3px; }
+    .audio-btn.secondary { border-color: #64748B; background: #F8FAFC; color: #334155; box-shadow: 0 4px 0 #CBD5E1; }
+    .audio-btn.secondary:hover { background: #E2E8F0; box-shadow: 0 6px 0 #94A3B8; }
+    .audio-btn.playing { background: #10B981; border-color: #059669; box-shadow: 0 4px 0 #047857; animation: audioPulse 1.2s ease-in-out infinite; }
+    @keyframes audioPulse { 50% { box-shadow: 0 4px 0 #047857, 0 0 0 5px rgba(16, 185, 129, 0.14); } }
+    .listen-pregunta { background: #F8FAFC; border: 2px solid var(--border); border-radius: var(--r-md); padding: 20px; margin-bottom: 14px; }
+    .listen-num { color: #0284C7; font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .listen-texto { font-family: 'Fredoka', sans-serif; font-size: 1.05rem; font-weight: 600; line-height: 1.45; margin-bottom: 14px; }
+    .listen-opciones { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .listen-opcion { display: flex; align-items: center; gap: 10px; min-height: 50px; width: 100%; padding: 10px 12px; border: 2px solid var(--border); border-radius: var(--r-sm); background: white; color: var(--text); font: 600 0.88rem 'Nunito', sans-serif; text-align: left; cursor: pointer; transition: transform 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s; }
+    .listen-opcion::before { content: attr(data-letter); display: grid; place-items: center; width: 27px; height: 27px; flex: 0 0 27px; border: 2px solid #0284C7; border-radius: 50%; color: #0284C7; font-family: 'Fredoka', sans-serif; font-size: 0.76rem; }
+    .listen-opcion:hover:not(:disabled) { border-color: #0284C7; background: #F0F9FF; transform: translateY(-2px); box-shadow: 0 4px 0 #BAE6FD; }
+    .listen-opcion:focus-visible { outline: 3px solid rgba(14, 165, 233, 0.35); outline-offset: 2px; }
+    .listen-opcion.correcta { border-color: #10B981; background: #D1FAE5; color: #047857; box-shadow: 0 3px 0 #A7F3D0; }
+    .listen-opcion.correcta::before { border-color: #047857; color: #047857; }
+    .listen-opcion.incorrecta { border-color: #F87171; background: #FEE2E2; color: #B91C1C; animation: shake 0.4s; }
+    .listen-opcion.incorrecta::before { border-color: #B91C1C; color: #B91C1C; }
+    .listen-opcion:disabled { cursor: default; }
 
-        .nivel-badge {
-            position: absolute;
-            top: -12px;
-            right: 15px;
-            background: var(--texto);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 0.85rem;
-        }
+    /* Speaking Controls */
+    .speaking-frases { display: grid; gap: 14px; }
+    .speak-frase { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: center; padding: 18px; background: #F8FAFC; border: 2px solid var(--border); border-radius: var(--r-md); transition: border-color 0.2s, background 0.2s, box-shadow 0.2s; }
+    .speak-frase.practicada { border-color: #6EE7B7; background: #F0FDF4; }
+    .speak-num { grid-row: span 2; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #E0F2FE; color: #0369A1; font: 700 1rem 'Fredoka', sans-serif; }
+    .speak-texto { font-family: 'Fredoka', sans-serif; font-size: 1.05rem; font-weight: 600; line-height: 1.45; }
+    .speak-hint { color: var(--text-dim); font-size: 0.82rem; }
+    .speak-btns { grid-column: 2; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .speak-btn { min-height: 40px; padding: 9px 15px; border: 2px solid #0284C7; border-radius: var(--r-sm); background: #0EA5E9; color: white; font: 700 0.8rem 'Fredoka', sans-serif; cursor: pointer; box-shadow: 0 3px 0 #0369A1; transition: transform 0.15s, background 0.15s, box-shadow 0.15s; }
+    .speak-btn:hover { background: #0284C7; transform: translateY(-2px); box-shadow: 0 5px 0 #0369A1; }
+    .speak-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #0369A1; }
+    .speak-btn:focus-visible { outline: 3px solid rgba(14, 165, 233, 0.35); outline-offset: 3px; }
+    .speak-btn.slow { border-color: #64748B; background: #F8FAFC; color: #334155; box-shadow: 0 3px 0 #CBD5E1; }
+    .speak-btn.slow:hover { background: #E2E8F0; box-shadow: 0 5px 0 #94A3B8; }
+    .speak-btn.speaking { background: #10B981; border-color: #059669; box-shadow: 0 3px 0 #047857; }
+    .speak-btn.done { border-color: #059669; background: #10B981; box-shadow: 0 3px 0 #047857; }
+    .speak-btn.done:hover { background: #059669; box-shadow: 0 5px 0 #047857; }
+    .speak-btn.done.active { background: #D1FAE5; color: #047857; cursor: default; box-shadow: none; }
 
-        .grado8 .nivel-badge { background: var(--azul); }
-        .grado9 .nivel-badge { background: var(--morado); }
+    /* Writing Editor */
+    .writing-editor { display: flex; flex-direction: column; gap: 15px; }
+    .writing-toolbar { display: flex; gap: 10px; flex-wrap: wrap; padding: 10px; background: #F8FAFC; border: 2px solid var(--border); border-radius: var(--r-md); }
+    .toolbar-btn { padding: 8px 16px; border-radius: var(--r-sm); border: 2px solid var(--border); background: white; font-family: 'Fredoka', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text); cursor: pointer; transition: all 0.2s; }
+    .toolbar-btn:hover { border-color: var(--c7); color: var(--c7); background: #EEF2FF; transform: translateY(-2px); box-shadow: 0 4px 0 #C7D2FE; }
+    .writing-textarea { width: 100%; height: 200px; border: 2px solid var(--border); border-radius: var(--r-md); padding: 15px; font-size: 1rem; color: var(--text); resize: vertical; }
+    .writing-feedback { font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 600; margin-top: 10px; display: none; padding: 8px 14px; border-radius: var(--r-sm); }
+    .writing-feedback.show { display: block; }
+    .writing-feedback.ok { background: #D1FAE5; color: #059669; }
+    .writing-feedback.fail { background: #FEE2E2; color: #DC2626; }
+    .writing-score { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-dim); }
 
-        .actividad-lista {
-            list-style: none;
-            padding: 0;
-        }
+    /* Quiz Styles */
+    .quiz-timer-wrap { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .quiz-timer { font-family: 'Fredoka', sans-serif; font-size: 1.15rem; font-weight: 700; color: #D97706; background: #FEF3C7; border: 2px solid #FCD34D; border-radius: 50px; padding: 8px 22px; box-shadow: 0 3px 0 #FCD34D; }
+    .quiz-timer.urgente { color: #DC2626; background: #FEF2F2; border-color: #FCA5A5; box-shadow: 0 3px 0 #FCA5A5; animation: shake 0.5s infinite; }
+    .quiz-progreso-texto { font-family: 'Fredoka', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-dim); }
+    .quiz-pregunta { background: white; border: 2px solid var(--border); border-radius: var(--r-lg); padding: 26px; box-shadow: var(--shadow-sm); animation: slideUp 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .quiz-q-num { font-family: 'Fredoka', sans-serif; font-size: 0.7rem; font-weight: 600; color: var(--text-dim); margin-bottom: 8px; letter-spacing: 0.08em; }
+    .quiz-q-texto { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 18px; line-height: 1.5; }
+    .quiz-opciones { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-opcion { display: flex; align-items: center; gap: 14px; padding: 13px 20px; border-radius: var(--r-sm); border: 2px solid var(--border); background: #F9FAFB; font-family: 'Nunito', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--text-dim); cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 0 var(--border); }
+    .quiz-opcion:hover:not(:disabled) { border-color: var(--c7); color: var(--c7); background: #EEF2FF; transform: translateX(6px); box-shadow: 0 2px 0 #C7D2FE; }
+    .quiz-opcion.correcta { border-color: #6EE7B7; background: #D1FAE5; color: #059669; box-shadow: 0 2px 0 #A7F3D0; }
+    .quiz-opcion.incorrecta { border-color: #FCA5A5; background: #FEE2E2; color: #DC2626; animation: shake 0.4s; box-shadow: 0 2px 0 #FECACA; }
+    .quiz-opcion:disabled { cursor: not-allowed; }
+    .quiz-letra { font-family: 'Fredoka', sans-serif; font-size: 0.75rem; font-weight: 700; width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .quiz-ordenar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .word-chip { padding: 8px 18px; border-radius: 50px; border: 2px solid var(--border); background: white; font-family: 'Fredoka', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.2s; user-select: none; box-shadow: 0 3px 0 var(--border); }
+    .word-chip:hover:not(.usada) { border-color: var(--c7); color: var(--c7); background: #EEF2FF; transform: translateY(-3px); box-shadow: 0 6px 0 #C7D2FE; }
+    .word-chip:active:not(.usada) { transform: translateY(1px); box-shadow: 0 1px 0 var(--border); }
+    .word-chip.usada { opacity: 0.3; pointer-events: none; }
+    .quiz-answer-box { min-height: 50px; border: 2px dashed #C7D2FE; border-radius: var(--r-sm); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: #F5F3FF; transition: all 0.3s; }
+    .quiz-answer-box.correcta { border-color: #6EE7B7; background: #D1FAE5; border-style: solid; }
+    .quiz-answer-box.incorrecta { border-color: #FCA5A5; background: #FEE2E2; border-style: solid; }
+    .answer-chip { padding: 6px 16px; border-radius: 50px; background: #EEF2FF; border: 2px solid #C7D2FE; font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--c7); cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 0 #C7D2FE; }
+    .answer-chip:hover { background: #E0E7FF; transform: translateY(-2px); }
+    .quiz-verificar { margin-top: 14px; padding: 10px 26px; border-radius: 50px; border: 2px solid #C7D2FE; background: #EEF2FF; color: var(--c7); font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 0 #C7D2FE; }
+    .quiz-verificar:hover { background: #E0E7FF; transform: translateY(-2px); box-shadow: 0 6px 0 #C7D2FE; }
+    .quiz-verificar:active { transform: translateY(2px); box-shadow: 0 1px 0 #C7D2FE; }
+    
+    /* Quiz Result */
+    .quiz-resultado { background: linear-gradient(135deg, #F0FDF4, #EEF2FF, #FFF7ED); border: 2px solid #E5E7EB; }
+    .qr-estrella { font-size: 3rem; margin-bottom: 14px; animation: starBounce 0.8s cubic-bezier(0.175,0.885,0.32,1.275); }
+    @keyframes starBounce { 0% { transform: scale(0) rotate(-20deg); } 60% { transform: scale(1.3) rotate(5deg); } 100% { transform: scale(1) rotate(0deg); } }
+    .qr-puntaje { font-family: 'Fredoka', sans-serif; font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .qr-total { display: inline-block; margin: 4px 0 14px; padding: 10px 18px; border: 2px solid #93C5FD; border-radius: var(--r-sm); background: #EFF6FF; color: #1D4ED8; font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; }
+    .qr-mensaje { font-family: 'Fredoka', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .qr-xp { font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 700; color: #D97706; background: #FEF3C7; border: 2px solid #FCD34D; border-radius: 50px; padding: 8px 26px; display: inline-block; margin: 14px 0; box-shadow: 0 4px 0 #FCD34D; }
+    .qr-badge { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 22px 0; background: white; border: 2px solid var(--border); border-radius: var(--r-md); padding: 18px 24px; box-shadow: var(--shadow-sm); }
+    .badge-insignia { font-size: 2.2rem; animation: wobble 2s ease-in-out infinite; }
+    .badge-nombre { font-family: 'Fredoka', sans-serif; font-size: 0.88rem; font-weight: 700; color: #D97706; }
+    .btn-finalizar { font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; padding: 16px 44px; border: none; border-radius: 50px; background: linear-gradient(135deg, var(--secondary), #059669); color: white; cursor: pointer; margin-top: 10px; box-shadow: 0 7px 0 #047857, 0 10px 24px rgba(16,185,129,0.35); transition: all 0.2s; }
+    .btn-finalizar:hover { transform: translateY(-4px); box-shadow: 0 11px 0 #047857, 0 16px 32px rgba(16,185,129,0.4); }
+    .btn-finalizar:active { transform: translateY(3px); box-shadow: 0 3px 0 #047857, 0 6px 12px rgba(16,185,129,0.2); }
 
-        .actividad-lista li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .actividad-lista li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            color: var(--verde);
-            font-weight: bold;
-        }
-
-        /* Materiales */
-        .materiales-box {
-            background: #FFFBE6;
-            border: 2px dashed var(--amarillo);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .materiales-box strong { color: #B45309; }
-
-        /* Vocabulario */
-        .vocab-box {
-            background: #E6FFFA;
-            border: 2px solid #81E6D9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .vocab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .vocab-item {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            border-left: 3px solid var(--azul);
-        }
-
-        .vocab-en {
-            font-weight: 800;
-            color: var(--azul);
-            font-size: 1rem;
-        }
-
-        .vocab-es {
-            color: #718096;
-            font-size: 0.85rem;
-        }
-
-        /* Conectores */
-        .conector-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .conector-tag {
-            background: linear-gradient(135deg, var(--morado), #6B46C1);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            color: #718096;
-            font-size: 0.85rem;
-        }
-
-        .footer p { margin: 3px 0; }
-
-        /* Evaluación */
-        .eval-box {
-            background: #FFFBEB;
-            border-left: 5px solid var(--amarillo);
-            padding: 15px 20px;
-            border-radius: 0 10px 10px 0;
-            margin-bottom: 15px;
-        }
-
-        .eval-box h4 {
-            color: #B45309;
-            margin: 0 0 8px;
-        }
-
-        /* Reflexión */
-        .reflexion-box {
-            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(26,155,171,0.1));
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .reflexion-box p {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--morado);
-            margin: 0;
-        }
-
-        /* Tag de área */
-        .tag {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            margin-right: 6px;
-            margin-bottom: 6px;
-        }
-
-        .tag-desempeno { background: rgba(26,155,171,0.12); color: #1A9BAB; }
-        .tag-objeto    { background: rgba(124,58,237,0.12);  color: #7C3AED; }
-        .tag-ciudadana { background: rgba(61,190,140,0.12);  color: #2A9B6A; }
-
-        /* Línea separadora de grados en impresión */
-        .page-break { page-break-before: always; }
-
-        /* Btn Imprimir */
-        .btn-print {
-            display: block;
-            width: fit-content;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--morado), var(--azul));
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(124,58,237,0.35);
-            transition: all 0.3s ease;
-        }
-
-        .btn-print:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(124,58,237,0.45);
-        }
-
-        .btn-volver {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--azul);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .btn-volver:hover { text-decoration: underline; }
-
-        /* Espacio para escribir */
-        .espacio-escritura {
-            border: 2px dashed #CBD5E0;
-            border-radius: 8px;
-            min-height: 80px;
-            margin-top: 10px;
-            padding: 10px;
-            background: #FAFAFA;
-        }
-
-        .espacio-escritura::before {
-            content: "✏️  Escribe aquí tu respuesta:";
-            display: block;
-            font-size: 0.8rem;
-            color: #A0AEC0;
-            margin-bottom: 5px;
-        }
-
-        /* Líneas de escritura para impresión */
-        .lineas {
-            margin-top: 10px;
-        }
-
-        .linea {
-            border-bottom: 1px solid #CBD5E0;
-            height: 28px;
-            margin-bottom: 5px;
-        }
-
-        /* Texto bilingüe */
-        .bilingue {
-            background: #f0f9ff;
-            border-left: 3px solid var(--azul);
-            padding: 10px 15px;
-            margin: 8px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .bilingue .en {
-            font-weight: 700;
-            color: var(--azul);
-        }
-
-        .bilingue .es {
-            color: #718096;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        /* ══════════════════
-           ESTILOS DE IMPRESIÓN
-        ══════════════════ */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-
-            .container {
-                box-shadow: none;
-                padding: 20px;
-                border-radius: 0;
-            }
-
-            .btn-print { display: none; }
-            .btn-volver { display: none; }
-
-            .nivel-card {
-                break-inside: avoid;
-            }
-
-            .seccion {
-                break-inside: avoid;
-            }
-
-            .page-break {
-                page-break-before: always;
-            }
-
-            .espacio-escritura {
-                background: white;
-            }
-
-            .espacio-escritura::before { display: none; }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 640px) {
+      .mision-hero { flex-direction: column; padding: 28px 20px; }
+      .mision-right { width: 100%; }
+      .story-row { flex-direction: column; align-items: stretch; }
+      .story-conector { width: 100%; height: 40px; border-radius: 10px; margin: 5px 0; }
+      .paragraph-builder { flex-direction: column; }
+      .paragraph-chips { flex-direction: column; }
+      .writing-editor { flex-direction: column; }
+      .writing-toolbar { flex-direction: column; }
+      .audio-player { align-items: stretch; flex-wrap: wrap; }
+      .audio-info { flex-basis: calc(100% - 74px); }
+      .audio-btn { flex: 1; }
+      .listen-opciones { grid-template-columns: 1fr; }
+      .speak-frase { grid-template-columns: 1fr; }
+      .speak-num { grid-row: auto; }
+      .speak-btns { grid-column: 1; }
+      .quiz-resultado { padding: 28px 20px; }
+      .xp-card { top: 12px; right: 12px; padding: 8px 14px; }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
 
-    <!-- ══ BOTÓN IMPRIMIR ══ -->
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+<!-- Fondo animado -->
+<div class="bg-shapes"></div>
 
-    <!-- ══ ENCABEZADO INSTITUCIONAL ══ -->
-    <div class="header">
-        <p>IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</p>
-        <h1>✍️ Narradores de Nuestra Tierra</h1>
-        <h2>Inglés · Semana 3 · Período 3</h2>
-        <p>Grados 8° y 9° · Vereda Chichalá · Corregimiento El Limón · Chaparral, Tolima</p>
-        <p><strong>Docente:</strong> Profe Nelson &nbsp;|&nbsp;
-           <strong>Fecha:</strong> _________________________</p>
-        <p><strong>Nombre del estudiante:</strong> _____________________________________________</p>
-    </div>
+<!-- Toast Global -->
+<div class="toast" id="toast"></div>
 
-    <!-- ══ SECCIÓN 1: BIENVENIDA AL RETO ══ -->
-    <div class="seccion">
-        <h3>El Reto del día</h3>
-        <p>
-            En la vereda Chichalá, cada rincón cuenta una historia: el trapiche de panela,
-            los cafetales de la ladera, las artesanías de nuestras abuelas. Hoy seremos
-            <strong>narradores bilingües</strong>: escribiremos sobre nuestro territorio
-            usando el inglés para compartir nuestra cultura con el mundo.
-        </p>
-        <p>
-            Cada grado tiene su propio desafío, pero <strong>todos compartimos la misma
-            vereda, el mismo orgullo de ser de Chichalá, y la misma voz que merece ser
-            escuchada en todos los idiomas. 🌿</strong>
-                </p>
-    </div>
-
-    <!-- ══ SECCIÓN 2: MATERIALES ══ -->
-    <div class="materiales-box">
-        <strong>🧺 Materiales para hoy:</strong>
-        <ul style="margin: 8px 0 0; padding-left: 20px;">
-            <li>Hoja de papel o cuaderno de inglés</li>
-            <li>Lápiz, esfero y colores</li>
-            <li>Diccionario de inglés (físico o digital)</li>
-            <li>Fotos o recuerdos de la vereda Chichalá</li>
-            <li>Esta guía impresa o en pantalla</li>
-        </ul>
-    </div>
-
-    <!-- ══ SECCIÓN 3: VOCABULARIO CLAVE ══ -->
-    <div class="seccion seccion-escritura">
-        <h3>Vocabulario del territorio</h3>
-        <p>Antes de escribir, repasa estas palabras clave del campo y la comunidad:</p>
-
-        <div class="vocab-grid">
-            <div class="vocab-item">
-                <div class="vocab-en">☕ coffee harvest</div>
-                <div class="vocab-es">cosecha de café</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🌿 sugarcane / panela</div>
-                <div class="vocab-es">caña de azúcar / panela</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🏡 farmhouse</div>
-                <div class="vocab-es">casa de campo / finca</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🌄 countryside</div>
-                <div class="vocab-es">campo / zona rural</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">👨‍🌾 farmer</div>
-                <div class="vocab-es">campesino / agricultor</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🌾 to harvest</div>
-                <div class="vocab-es">cosechar</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">💧 stream / river</div>
-                <div class="vocab-es">quebrada / río</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🤝 community</div>
-                <div class="vocab-es">comunidad / vereda</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🌳 landscape</div>
-                <div class="vocab-es">paisaje</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🏺 craftsmanship</div>
-                <div class="vocab-es">artesanía</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🌧️ rainy season</div>
-                <div class="vocab-es">temporada de lluvias</div>
-            </div>
-            <div class="vocab-item">
-                <div class="vocab-en">🐄 livestock</div>
-                <div class="vocab-es">ganado / animales de granja</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 4: CONECTORES DE ESCRITURA ══ -->
-    <div class="seccion">
-        <h3>Conectores para narrar y describir</h3>
-        <p>Usa estos conectores para darle cohesión y coherencia a tus textos:</p>
-
-        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px;">
-            <tr style="background:rgba(124,58,237,0.1);">
-                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Función</th>
-                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Conector</th>
-                <th style="padding:8px; border:1px solid #CBD5E0; text-align:left;">Ejemplo</th>
-            </tr>
-            <tr>
-                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Adición</strong></td>
-                <td style="padding:8px; border:1px solid #CBD5E0;">
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">also</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">and</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px">furthermore</span>
-                </td>
-                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
-                    We grow coffee. <strong>Also,</strong> we produce panela.
-                </td>
-            </tr>
-            <tr style="background:#f8fafc;">
-                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Contraste</strong></td>
-                <td style="padding:8px; border:1px solid #CBD5E0;">
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">but</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">however</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--azul),#0E7490)">although</span>
-                </td>
-                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
-                    The road is difficult, <strong>however,</strong> we love our village.
-                </td>
-            </tr>
-            <tr>
-                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Causa</strong></td>
-                <td style="padding:8px; border:1px solid #CBD5E0;">
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">because</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">since</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--verde),#2A9B6A)">due to</span>
-                </td>
-                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
-                    We wake up early <strong>because</strong> we work on the farm.
-                </td>
-            </tr>
-            <tr style="background:#f8fafc;">
-                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Efecto</strong></td>
-                <td style="padding:8px; border:1px solid #CBD5E0;">
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">therefore</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">so</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,var(--naranja),#C2410C)">as a result</span>
-                </td>
-                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
-                    It rained a lot, <strong>therefore</strong> the harvest was excellent.
-                </td>
-            </tr>
-            <tr>
-                <td style="padding:8px; border:1px solid #CBD5E0;"><strong>Secuencia</strong></td>
-                <td style="padding:8px; border:1px solid #CBD5E0;">
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">first</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">then</span>
-                    <span class="conector-tag" style="font-size:0.78rem;padding:4px 10px;background:linear-gradient(135deg,#0891B2,#0E7490)">finally</span>
-                </td>
-                <td style="padding:8px; border:1px solid #CBD5E0; font-style:italic; color:#718096;">
-                    <strong>First,</strong> we pick the coffee. <strong>Then,</strong> we dry it.
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- ══ SECCIÓN 5: INDICADORES DE DESEMPEÑO ══ -->
-    <div class="seccion">
-        <h3>¿Qué vamos a aprender hoy?</h3>
-
-        <div class="nivel-card grado8">
-            <span class="nivel-badge">Grado 8°</span>
-            <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Produzco <strong>narraciones sobre experiencias personales</strong> y hechos del
-            entorno, organizando párrafos coherentes con ortografía y puntuación correctas
-            (DBA 2, 8).</p>
-            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
-            <p>Textos con funciones de <strong>descripción, narración y argumentación</strong>.
-            Organización de párrafos coherentes con ortografía y puntuación correctas.</p>
-            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
-            <p>Comprendo la importancia de <strong>cumplir los acuerdos</strong> para la
-            convivencia en mi comunidad.</p>
-        </div>
-
-        <div class="nivel-card grado9">
-            <span class="nivel-badge">Grado 9°</span>
-            <span class="tag tag-desempeno">🎯 Desempeño</span>
-            <p>Produzco <strong>narraciones sobre experiencias personales y hechos del entorno</strong>
-            con párrafos coherentes, aplicando conectores de causa, efecto, adición y contraste
-            (DBA 2, 8).</p>
-            <span class="tag tag-objeto">📚 Objeto de Aprendizaje</span>
-            <p>Textos con funciones <strong>descriptivas y narrativas</strong> contextualizados
-            en Chichalá: su gente, su campo, su cultura.</p>
-            <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
-            <p>Actúo con <strong>responsabilidad frente al cuidado del ambiente</strong> y los
-            recursos naturales de mi comunidad.</p>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 6: TEXTO MODELO ══ -->
-    <div class="seccion seccion-escritura">
-        <h3>Texto modelo: aprende del ejemplo</h3>
-        <p>Lee con atención este texto narrativo-descriptivo sobre Chichalá.
-        Identifica los <strong>conectores</strong> y las <strong>funciones textuales</strong>
-        marcadas en color:</p>
-
-        <div style="background:#f0f9ff; border:2px solid #BAE6FD; border-radius:12px;
-                    padding:20px; margin:15px 0; font-size:0.95rem; line-height:1.9;">
-            <p style="font-weight:800; color:var(--azul); margin:0 0 12px;">
-                🌄 My Village: Chichalá
-            </p>
-            <p>
-                I live in Chichalá, a small but beautiful village in Chaparral, Tolima.
-                <span style="background:rgba(26,155,171,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
-                The landscape is full of green mountains and clear streams.</span>
-                <em style="color:#718096">(descripción)</em>
-            </p>
-            <p>
-                My family grows coffee and sugarcane.
-                <span style="background:rgba(61,190,140,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>Because</u> the weather is perfect for farming,</span>
-                our harvests are always very good.
-                <em style="color:#718096">(causa)</em>
-                <span style="background:rgba(244,135,43,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>As a result,</u> we sell our products in Chaparral every month.</span>
-                <em style="color:#718096">(efecto)</em>
-            </p>
-            <p>
-                Life in the countryside is hard work,
-                <span style="background:rgba(124,58,237,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>however,</u> it is also full of joy and community.</span>
-                <em style="color:#718096">(contraste)</em>
-                <span style="background:rgba(26,155,171,0.15);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>Furthermore,</u> our traditions keep us united as a family and as a village.</span>
-                <em style="color:#718096">(adición)</em>
-            </p>
-            <p>
-                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>First,</u> every morning begins with a warm cup of agua de panela.</span>
-                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>Then,</u> we go out to the fields.</span>
-                <span style="background:rgba(247,195,37,0.2);padding:2px 5px;border-radius:4px;font-weight:700">
-                <u>Finally,</u> at sunset, we gather as a family and share stories.</span>
-                <em style="color:#718096">(secuencia)</em>
-            </p>
-            <p style="margin:0;">
-                I am proud of Chichalá. It is not just a place — it is my identity.
-            </p>
-        </div>
-
-        <div class="materiales-box" style="background:#F0FFF4; border-color:#68D391;">
-            <strong style="color:#276749;">💡 Analiza el texto:</strong>
-            <ul style="margin:8px 0 0; padding-left:20px;">
-                <li>¿Cuántos conectores de causa y efecto encontraste? __________</li>
-                <li>¿Cuántos conectores de contraste y adición encontraste? __________</li>
-                <li>¿En qué párrafo se narra la secuencia del día? __________</li>
-                <li>Escribe con tus palabras de qué trata el texto:
-                    <div class="lineas" style="margin-top:6px;">
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 7: ACTIVIDADES PASO A PASO ══ -->
-    <div class="seccion seccion-creativa">
-        <h3>Actividades paso a paso</h3>
-
-        <!-- GRADO 8 -->
-        <div class="nivel-card grado8">
-            <span class="nivel-badge">Grado 8° · Mi historia en el campo</span>
-
-            <ul class="actividad-lista">
-                <li>
-                    <strong>Paso 1 — Planea tu narración:</strong>
-                    Piensa en una experiencia real o imaginaria en la vereda Chichalá.
-                    Responde estas preguntas en español primero:
-                    <table style="width:100%; border-collapse:collapse;
-                                  font-size:0.88rem; margin-top:10px;">
-                        <tr style="background:rgba(26,155,171,0.1);">
-                            <th style="padding:8px; border:1px solid #CBD5E0;
-                                       text-align:left;">Pregunta</th>
-                            <th style="padding:8px; border:1px solid #CBD5E0;
-                                       text-align:left;">Tu respuesta</th>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                ¿Qué pasó? (What happened?)
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       height:32px;"></td>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                ¿Cuándo pasó? (When did it happen?)
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       height:32px;"></td>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                ¿Por qué fue importante? (Why was it important?)
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       height:32px;"></td>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                ¿Cómo terminó? (How did it end?)
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       height:32px;"></td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <strong>Paso 2 — Primer borrador:</strong>
-                    Escribe un párrafo de <strong>mínimo 5 oraciones</strong> en inglés
-                    sobre tu experiencia. Usa al menos:
-                    <div class="conector-box" style="margin:8px 0;">
-                        <span class="conector-tag">1 conector de causa</span>
-                        <span class="conector-tag">1 conector de efecto</span>
-                        <span class="conector-tag">1 conector de adición o contraste</span>
-                    </div>
-                    <div class="espacio-escritura">
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                    </div>
-                </li>
-                <li>
-                    <strong>Paso 3 — Revisa y edita:</strong>
-                    Lee tu borrador y comprueba:
-                    <ul style="margin-top:8px; padding-left:15px;">
-                        <li>¿Cada oración empieza con mayúscula? ___</li>
-                        <li>¿Usaste punto al final de cada oración? ___</li>
-                        <li>¿Los conectores están bien usados? ___</li>
-                        <li>¿El texto tiene sentido y secuencia lógica? ___</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Paso 4 — Versión final:</strong>
-                    Reescribe tu texto corregido en el espacio de abajo.
-                    <div class="espacio-escritura">
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- GRADO 9 -->
-        <div class="nivel-card grado9">
-            <span class="nivel-badge">Grado 9° · Chichalá en palabras y en el mundo</span>
-
-            <ul class="actividad-lista">
-                <li>
-                    <strong>Paso 1 — Elige tu tema:</strong>
-                    Selecciona uno de estos temas para escribir tu texto narrativo-descriptivo:
-                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin:10px 0;">
-                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
-                                    border-radius:8px; padding:10px 15px; font-weight:700;
-                                    color:var(--morado); font-size:0.9rem;">
-                            🌿 La historia de una cosecha de café
-                        </div>
-                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
-                                    border-radius:8px; padding:10px 15px; font-weight:700;
-                                    color:var(--morado); font-size:0.9rem;">
-                            🏡 Un día en la finca de mi familia
-                        </div>
-                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
-                                    border-radius:8px; padding:10px 15px; font-weight:700;
-                                    color:var(--morado); font-size:0.9rem;">
-                            💧 El río y los recursos naturales de Chichalá
-                        </div>
-                        <div style="background:rgba(124,58,237,0.1); border:2px solid var(--morado);
-                                    border-radius:8px; padding:10px 15px; font-weight:700;
-                                    color:var(--morado); font-size:0.9rem;">
-                            🎭 Una tradición o celebración de la vereda
-                        </div>
-                    </div>
-                    <p style="margin:4px 0;">Tema elegido: ________________________________</p>
-                </li>
-                <li>
-                    <strong>Paso 2 — Estructura tu texto:</strong>
-                    Organiza tu escritura en tres partes:
-                    <table style="width:100%; border-collapse:collapse;
-                                  font-size:0.88rem; margin-top:10px;">
-                        <tr style="background:rgba(124,58,237,0.1);">
-                            <th style="padding:8px; border:1px solid #CBD5E0;
-                                       text-align:left; width:25%;">Parte</th>
-                            <th style="padding:8px; border:1px solid #CBD5E0;
-                                       text-align:left; width:40%;">¿Qué incluir?</th>
-                            <th style="padding:8px; border:1px solid #CBD5E0;
-                                       text-align:left;">Conector sugerido</th>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                <strong>Introducción</strong>
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                Presenta el tema y el lugar (Chichalá)
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       font-style:italic; color:var(--morado);">
-                                I live in... / Chichalá is...
-                            </td>
-                        </tr>
-                        <tr style="background:#f8fafc;">
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                <strong>Desarrollo</strong>
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                Narra los hechos con causa, efecto y contraste
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       font-style:italic; color:var(--morado);">
-                                because / however / as a result
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                <strong>Conclusión</strong>
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;">
-                                Reflexión sobre lo que sientes por tu comunidad
-                            </td>
-                            <td style="padding:8px; border:1px solid #CBD5E0;
-                                       font-style:italic; color:var(--morado);">
-                                therefore / I believe / In conclusion
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-                <li>
-                    <strong>Paso 3 — Escribe tu texto:</strong>
-                    Desarrolla <strong>mínimo 3 párrafos</strong> usando la estructura
-                    de arriba. Incluye al menos <strong>4 conectores diferentes</strong>
-                    (causa, efecto, contraste, adición).
-                    <div class="espacio-escritura" style="min-height:140px;">
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                    </div>
-                </li>
-                <li>
-                    <strong>Paso 4 — Reto bilingüe:</strong>
-                    Traduce al español tu párrafo favorito del texto y compáralo.
-                    ¿Qué cambia y qué permanece igual en el mensaje?
-                    <div class="lineas" style="margin-top:8px;">
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                        <div class="linea"></div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 8: EJERCICIOS DE PRÁCTICA ══ -->
-    <div class="seccion">
-        <h3>Practiquemos juntos</h3>
-
-        <div class="nivel-card grado8">
-            <span class="nivel-badge">Grado 8°</span>
-            <p>Completa las oraciones con el conector correcto
-            (<em>because, however, also, therefore, first</em>):</p>
-            <div style="font-size:0.95rem; line-height:2.8;">
-                1. We work hard on the farm __________ we love what we do.<br>
-                2. The coffee harvest was small. __________, we earned less money.<br>
-                3. Life in Chichalá is simple, __________
-                   it is full of love and nature.<br>
-                4. __________, we pick the coffee. Then, we dry it in the sun.<br>
-                5. We grow coffee. __________, we produce panela and corn.
-            </div>
-            <div class="lineas" style="margin-top:8px;">
-                <div class="linea"></div>
-            </div>
-            <p style="font-size:0.85rem; color:#718096; margin-top:8px;">
-                💡 <strong>Respuestas:</strong>
-                1. because &nbsp;|&nbsp; 2. Therefore &nbsp;|&nbsp;
-                3. however &nbsp;|&nbsp; 4. First &nbsp;|&nbsp; 5. Also
-            </p>
-        </div>
-
-        <div class="nivel-card grado9">
-            <span class="nivel-badge">Grado 9°</span>
-            <p>Reescribe las oraciones conectando las dos ideas con el conector indicado:</p>
-            <ul class="actividad-lista">
-                <li>
-                    <em>"It rains a lot in Chichalá."</em> +
-                    <em>"The crops grow very well."</em>
-                    → Usa <strong>therefore</strong>:
-                    <div class="lineas"><div class="linea"></div></div>
-                </li>
-                <li>
-                    <em>"The road to the village is difficult."</em> +
-                    <em>"People are proud to live there."</em>
-                    → Usa <strong>although</strong>:
-                    <div class="lineas"><div class="linea"></div></div>
-                </li>
-                <li>
-                    <em>"Farmers wake up early."</em> +
-                    <em>"They take care of the animals before breakfast."</em>
-                    → Usa <strong>furthermore</strong>:
-                    <div class="lineas"><div class="linea"></div></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 9: COMPETENCIA CIUDADANA ══ -->
-    <div class="seccion">
-        <h3>Convivencia y territorio</h3>
-        <span class="tag tag-ciudadana">🤝 Competencia Ciudadana</span>
-        <p style="margin-top:10px;">
-            Escribir en inglés sobre nuestra comunidad es un acto de
-            <strong>orgullo, respeto y responsabilidad</strong>.
-            Al narrar nuestro territorio, también lo cuidamos y lo valoramos.
-        </p>
-
-        <div class="nivel-card grado8" style="margin-top:15px;">
-            <span class="nivel-badge">Grado 8°</span>
-            <p><strong>Reflexión:</strong> ¿De qué forma cumplir los acuerdos de la comunidad
-            (como no contaminar el río o cuidar los cultivos) se refleja en las historias
-            que contamos sobre Chichalá?</p>
-            <div class="lineas">
-                <div class="linea"></div>
-                <div class="linea"></div>
-                <div class="linea"></div>
-            </div>
-        </div>
-
-        <div class="nivel-card grado9" style="margin-top:15px;">
-            <span class="nivel-badge">Grado 9°</span>
-            <p><strong>Reflexión:</strong> En tu texto en inglés, ¿cómo puedes incluir
-            un mensaje sobre el cuidado del ambiente y los recursos naturales de Chichalá?
-            Escribe una oración en inglés que transmita ese mensaje:</p>
-            <div class="lineas">
-                <div class="linea"></div>
-                <div class="linea"></div>
-                <div class="linea"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 10: EVALUACIÓN ══ -->
-    <div class="seccion">
-        <h3>¿Cómo te fue hoy?</h3>
-
-        <div class="eval-box">
-            <h4>⭐ Rúbrica de autoevaluación</h4>
-            <p>Marca con una X según tu desempeño de hoy:</p>
-            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
-                <tr style="background:#FFFBE6;">
-                    <th style="padding:8px; border:1px solid #FCD34D;
-                               text-align:left;">Criterio</th>
-                    <th style="padding:8px; border:1px solid #FCD34D;
-                               text-align:center;">Lo logré 😄</th>
-                    <th style="padding:8px; border:1px solid #FCD34D;
-                               text-align:center;">En proceso 🙂</th>
-                    <th style="padding:8px; border:1px solid #FCD34D;
-                               text-align:center;">Me faltó 😕</th>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">
-                        Usé conectores de causa, efecto, adición y contraste
-                    </td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">
-                        Escribí párrafos coherentes con ortografía correcta
-                    </td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                                                              text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">
-                        Relacioné mi texto con el entorno rural de Chichalá
-                    </td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">
-                        Revisé y edité mi texto antes de la versión final
-                    </td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                </tr>
-                <tr>
-                    <td style="padding:8px; border:1px solid #E2E8F0;">
-                        Participé con respeto y colaboré con mis compañeros
-                    </td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                    <td style="padding:8px; border:1px solid #E2E8F0;
-                               text-align:center;">__</td>
-                </tr>
-            </table>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;
-                    margin-top:15px;">
-            <div>
-                <p><strong>⭐ Lo que más me gustó de esta guía:</strong></p>
-                <div class="lineas">
-                    <div class="linea"></div>
-                    <div class="linea"></div>
-                    <div class="linea"></div>
-                </div>
-            </div>
-            <div>
-                <p><strong>🔧 Lo que me resultó más difícil:</strong></p>
-                <div class="lineas">
-                    <div class="linea"></div>
-                    <div class="linea"></div>
-                    <div class="linea"></div>
-                </div>
-            </div>
-        </div>
-
-        <div style="margin-top:15px;">
-            <p><strong>🚀 Una cosa que voy a mejorar la próxima semana:</strong></p>
-            <div class="lineas">
-                <div class="linea"></div>
-                <div class="linea"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 11: ACTIVIDAD PARA LA CASA ══ -->
-    <div class="seccion">
-        <h3>Tarea en casa · Mi Chichalá en inglés</h3>
-        <p>
-            Camina por la vereda, la finca o el camino al colegio.
-            Elige <strong>3 momentos o lugares especiales</strong> y escribe
-            una oración en inglés sobre cada uno usando un conector diferente:
-        </p>
-        <table style="width:100%; border-collapse:collapse;
-                      font-size:0.9rem; margin-top:10px;">
-            <tr style="background:rgba(124,58,237,0.1);">
-                <th style="padding:8px; border:1px solid #CBD5E0;
-                           text-align:left; width:5%;">#</th>
-                <th style="padding:8px; border:1px solid #CBD5E0;
-                           text-align:left; width:30%;">Lugar o momento</th>
-                <th style="padding:8px; border:1px solid #CBD5E0;
-                           text-align:left; width:20%;">Conector usado</th>
-                <th style="padding:8px; border:1px solid #CBD5E0;
-                           text-align:left;">Oración en inglés</th>
-            </tr>
-            <tr>
-                <td style="padding:10px; border:1px solid #CBD5E0;">1</td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-            </tr>
-            <tr style="background:#f8fafc;">
-                <td style="padding:10px; border:1px solid #CBD5E0;">2</td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-            </tr>
-            <tr>
-                <td style="padding:10px; border:1px solid #CBD5E0;">3</td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-                <td style="border:1px solid #CBD5E0; padding:8px;"></td>
-            </tr>
-        </table>
-
-        <div class="materiales-box" style="margin-top:15px; background:#F0FFF4;
-             border-color:#68D391;">
-            <strong style="color:#276749;">🌟 Reto extra (Grado 9°):</strong>
-            <p style="margin:6px 0 0;">
-                Escribe un párrafo completo en inglés sobre uno de esos momentos
-                y compártelo con un familiar. Pregúntale:
-                <em>"¿Entendiste algo de lo que escribí?"</em>
-                Anota su reacción aquí:
-            </p>
-            <div class="lineas" style="margin-top:8px;">
-                <div class="linea"></div>
-                <div class="linea"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ══ SECCIÓN 12: REFLEXIÓN FINAL ══ -->
-    <div class="reflexion-box">
-        <p>
-            🌿 "Nuestra historia merece ser contada en todos los idiomas.<br>
-            Cuando escribes sobre Chichalá en inglés,<br>
-            le dices al mundo que este rincón del Tolima<br>
-            <strong>tiene voz, tiene nombre y tiene orgullo."</strong>
-        </p>
-    </div>
-
-    <!-- ══ FOOTER ══ -->
-    <div class="footer" style="text-align:center; margin-top:30px;
-         padding-top:20px; border-top:1px solid #E2E8F0;
-         color:#718096; font-size:0.85rem;">
-        <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
-        <p>Corregimiento El Limón · Chaparral, Tolima</p>
-        <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
-        <p style="margin-top:8px; font-style:italic;">
-            "Paz, Tolerancia y Convivencia"
-        </p>
-    </div>
-
-    <div style="text-align:center; margin-top:20px;">
-        <a href="../../index.html" class="btn-volver">⬅ Volver al Inicio</a>
-    </div>
-
+<!-- XP Card Flotante -->
+<div class="xp-card">
+  <span class="xp-icon">⚡</span>
+  <span class="xp-val" id="xp-display">0</span>
+  <span class="xp-label">XP</span>
 </div>
+
+<div class="page-wrapper">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="../../../../index.html">🏠 Portal</a>
+    <span class="sep">›</span>
+    <a href="../../index.html">🌿 Básico Sec.</a>
+    <span class="sep">›</span>
+    <span class="actual">📖 P3 · Semana 3 (8°-9°)</span>
+  </nav>
+
+  <!-- Hero: Tarjeta de Misión -->
+  <header class="mision-hero">
+    <div class="mision-left">
+      <div class="mision-badges">
+        <span class="badge b-semana">📅 SEMANA 3</span>
+        <span class="badge b-tema">📖 NARRACIÓN & DESCRIPCIÓN</span>
+        <span class="badge b-nivel">🌿 8°-9°</span>
+      </div>
+      <h1 class="mision-titulo">The Story<br/>Architect</h1>
+      <p class="mision-desc">
+        ¡Conviértete en un arquitecto de historias! Diseña, construye y narra tus propias aventuras con personajes, lugares y emociones.
+      </p>
+      <div class="mision-objetivo">
+        <span class="icon">🎯</span>
+        <span><strong>Meta:</strong> Produce narraciones coherentes con ortografía y puntuación correctas.</span>
+      </div>
+    </div>
+    <div class="mision-right">
+      <div class="mision-progreso">
+        <div class="mision-titulo-prog">TU RUTA</div>
+        <div class="mision-steps" id="mision-steps"></div>
+        <div class="mision-bar-wrap">
+          <div class="mision-bar" id="mision-bar" style="width:0%"></div>
+        </div>
+        <div class="mision-pct" id="mision-pct">0 / 7 misiones</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 1: WARM UP - STORY MAP -->
+  <section class="actividad" id="sec-1" data-sec="1">
+    <div class="act-header">
+      <div class="act-num">01</div>
+      <div class="act-info">
+        <span class="act-tipo">🔥 WARM UP</span>
+        <h2 class="act-titulo">The Story Map</h2>
+        <p class="act-desc">¡Diseña tu historia! Arrastra los elementos (Personaje, Lugar, Acción, Sentimiento) a los espacios correctos.</p>
+      </div>
+      <div class="act-xp-badge">+20 XP</div>
+    </div>
+    <div style="background: #F8FAFC; padding: 20px; border-radius: var(--r-md); border: 2px dashed #C7D2FE;">
+      <p style="text-align: center; font-size: 0.9rem; color: var(--text-dim); margin-bottom: 15px;">
+        <strong>👉 Instrucción:</strong> Arrastra las piezas a los espacios vacíos. El conector violeta ya está en su lugar.
+      </p>
+      
+      <!-- Área de Arrastre (Slots) -->
+      <div class="story-map" id="story-map-target">
+        <!-- Fila 1 -->
+        <div class="story-row">
+          <div class="story-piece personaje" id="slot-1-p" style="background: #f0f0f0; border-style: dashed; cursor: pointer;">Personaje 1</div>
+          <div class="story-conector">en</div>
+          <div class="story-piece lugar" id="slot-1-l" style="background: #f0f0f0; border-style: dashed; cursor: pointer;">Lugar 1</div>
+        </div>
+        <!-- Fila 2 -->
+        <div class="story-row">
+          <div class="story-piece accion" id="slot-2-a" style="background: #f0f0f0; border-style: dashed; cursor: pointer;">Acción 1</div>
+          <div class="story-conector">y se sintió</div>
+          <div class="story-piece sentimiento" id="slot-2-s" style="background: #f0f0f0; border-style: dashed; cursor: pointer;">Sentimiento 1</div>
+        </div>
+      </div>
+
+      <!-- Piezas para Arrastrar (Origen) -->
+      <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 15px; background: white; border-radius: var(--r-md); border: 2px solid var(--border);">
+        <div class="story-piece personaje" draggable="true" data-id="p1">Ana, una estudiante</div>
+        <div class="story-piece lugar" draggable="true" data-id="l1">una selva misteriosa</div>
+        <div class="story-piece accion" draggable="true" data-id="a1">encontró un tesoro</div>
+        <div class="story-piece sentimiento" draggable="true" data-id="s1">emocionada y asustada</div>
+      </div>
+    </div>
+    <div class="act-footer">
+      <div class="match-score" id="story-score">0 / 2 escenas completas</div>
+      <button class="btn-completar" id="btn-sec1" onclick="completarSeccion(1)" disabled>✓ ¡Siguiente nivel!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: VOCABULARY - PARAGRAPH BUILDER -->
+  <section class="actividad" id="sec-2" data-sec="2">
+    <div class="act-header">
+      <div class="act-num">02</div>
+      <div class="act-info">
+        <span class="act-tipo">📖 VOCABULARY</span>
+        <h2 class="act-titulo">The Paragraph Builder</h2>
+        <p class="act-desc">¡Ordena las oraciones para formar un párrafo coherente con puntuación correcta.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="paragraph-builder" id="paragraph-builder">
+      <!-- Se llenará con JS -->
+    </div>
+    <div class="act-footer">
+      <div class="match-score" id="paragraph-score">0 / 4 párrafos</div>
+      <button class="btn-completar" id="btn-sec2" onclick="completarSeccion(2)" disabled>✓ ¡Siguiente reto!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: GRAMMAR - SCENE GENERATOR -->
+  <section class="actividad" id="sec-3" data-sec="3">
+    <div class="act-header">
+      <div class="act-num">03</div>
+      <div class="act-info">
+        <span class="act-tipo">🎭 GRAMMAR</span>
+        <h2 class="act-titulo">The Scene Generator</h2>
+        <p class="act-desc">¡Genera ideas para tu historia! Selecciona un personaje, un lugar y una emoción para crear una escena única.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="scene-generator">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <select id="select-personaje" class="scene-select">
+          <option value="" disabled selected>👤 Elige un Personaje</option>
+          <option value="A brave astronaut">A brave astronaut</option>
+          <option value="A lost cat">A lost cat</option>
+          <option value="A mysterious wizard">A mysterious wizard</option>
+          <option value="A time traveler">A time traveler</option>
+        </select>
+        <select id="select-lugar" class="scene-select">
+          <option value="" disabled selected>📍 Elige un Lugar</option>
+          <option value="on Mars">on Mars</option>
+          <option value="in an ancient library">in an ancient library</option>
+          <option value="under the ocean">under the ocean</option>
+          <option value="in a busy city">in a busy city</option>
+        </select>
+        <select id="select-emocion" class="scene-select">
+          <option value="" disabled selected>😊 Elige una Emoción</option>
+                    <option value="hopeful">hopeful</option>
+          <option value="terrified">terrified</option>
+          <option value="curious">curious</option>
+          <option value="ecstatic">ecstatic</option>
+        </select>
+      </div>
+      <button class="btn-completar" onclick="generarEscena()" style="width: 100%; margin-top: 15px;">🚀 Generar Escena</button>
+      <div id="escena-result" class="scene-result">
+        ¡Tu escena aparecerá aquí!
+      </div>
+      <button class="btn-completar" id="btn-sec3" onclick="completarSeccion(3)" disabled style="margin-top: 15px;">✓ ¡Escena creada!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: LISTENING - NARRATIVA AUDIO -->
+  <section class="actividad" id="sec-4" data-sec="4">
+    <div class="act-header">
+      <div class="act-num">04</div>
+      <div class="act-info">
+        <span class="act-tipo">🎧 LISTENING</span>
+        <h2 class="act-titulo">The Mystery of the Clock</h2>
+        <p class="act-desc">Escucha la historia y responde: ¿Qué describió el narrador sobre el ambiente?</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="audio-player" id="audio-player">
+      <div class="audio-avatar">⏰</div>
+      <div class="audio-info">
+        <div class="audio-nombre">The Mystery of the Clock</div>
+        <div class="audio-subtitulo">Descriptive Narrative · B1</div>
+      </div>
+      <button class="audio-btn" id="audio-play-btn" onclick="reproducirAudio()">▶ ESCUCHAR</button>
+      <button class="audio-btn secondary" onclick="reproducirAudio(0.7)">🐢 LENTO</button>
+    </div>
+    <div class="audio-transcript" id="audio-transcript" style="display:none; background: #F8FAFC; padding: 15px; border-radius: var(--r-md); margin-top: 15px; border: 1px solid var(--border);">
+      <span class="transcript-label">TRANSCRIPCIÓN</span>
+      <p id="transcript-text"></p>
+    </div>
+    <div id="listening-questions" style="margin-top: 20px;">
+      <!-- Preguntas generadas por JS -->
+    </div>
+    <div class="act-footer">
+      <div class="listen-score" id="listen-score">0 / 3 correctas</div>
+      <button class="btn-completar" id="btn-sec4" onclick="completarSeccion(4)" disabled>✓ ¡Siguiente!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: SPEAKING - DESCRIPTIVE CHALLENGE -->
+  <section class="actividad" id="sec-5" data-sec="5">
+    <div class="act-header">
+      <div class="act-num">05</div>
+      <div class="act-info">
+        <span class="act-tipo">🎤 SPEAKING</span>
+        <h2 class="act-titulo">Describe & Convince</h2>
+        <p class="act-desc">Lee las descripciones en voz alta con la entonación correcta para persuadir al oyente.</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="speaking-frases" id="speaking-frases">
+      <!-- Se llenará con JS -->
+    </div>
+    <div class="act-footer">
+      <div class="speak-progreso" id="speak-progreso">0 / 4 frases</div>
+      <button class="btn-completar" id="btn-sec5" onclick="completarSeccion(5)" disabled>✓ ¡Siguiente!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: WRITING - ACUERDOS DE CONVIVENCIA (CIUDADANÍA) -->
+  <section class="actividad" id="sec-6" data-sec="6">
+    <div class="act-header">
+      <div class="act-num">06</div>
+      <div class="act-info">
+        <span class="act-tipo">✍️ WRITING & CIUDADANÍA</span>
+        <h2 class="act-titulo">The Agreement Builder</h2>
+        <p class="act-desc">Escribe un párrafo sobre un acuerdo de convivencia y su impacto positivo (Desempeño: Convivencia).</p>
+      </div>
+      <div class="act-xp-badge">+30 XP</div>
+    </div>
+    <div class="writing-editor">
+      <div class="writing-toolbar">
+        <button class="toolbar-btn" onclick="insertarPalabra('respect')">Respect</button>
+        <button class="toolbar-btn" onclick="insertarPalabra('listening')">Listening</button>
+        <button class="toolbar-btn" onclick="insertarPalabra('agreement')">Agreement</button>
+        <button class="toolbar-btn" onclick="insertarPalabra('harmony')">Harmony</button>
+        <button class="toolbar-btn" onclick="insertarPalabra('trust')">Trust</button>
+      </div>
+      <textarea id="writing-area" class="writing-textarea" placeholder="Escribe tu acuerdo de convivencia aquí... (Ej: 'We agreed to listen to each other, which created a harmony of trust in our class.')"></textarea>
+      <button class="btn-completar" onclick="verificarEscritura()" style="margin-top: 10px;">✅ Verificar Escritura</button>
+      <div id="writing-feedback" class="writing-feedback"></div>
+      <div id="writing-score-display" class="writing-score" style="margin-top: 5px;"></div>
+    </div>
+    <div class="act-footer">
+      <button class="btn-completar" id="btn-sec6" onclick="completarSeccion(6)" disabled style="margin-top: 15px;">✓ ¡Acuerdo registrado!</button>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: FINAL QUIZ -->
+  <section class="actividad" id="sec-7" data-sec="7">
+    <div class="act-header">
+      <div class="act-num">07</div>
+      <div class="act-info">
+        <span class="act-tipo">🏆 FINAL QUIZ</span>
+        <h2 class="act-titulo">Master of Narratives</h2>
+        <p class="act-desc">Demuestra tu dominio en narración, descripción y convivencia. 10 preguntas desafiantes.</p>
+      </div>
+      <div class="act-xp-badge">+40 XP</div>
+    </div>
+    <div class="quiz-timer-wrap">
+      <div class="quiz-timer" id="quiz-timer">⏱ 04:00</div>
+      <div class="quiz-progreso-texto" id="quiz-q-num">Pregunta 1 / 10</div>
+    </div>
+    <div class="quiz-container" id="quiz-container"></div>
+    
+    <div class="quiz-resultado" id="quiz-resultado" style="display:none">
+      <div class="qr-estrella" id="qr-estrellas">⭐⭐⭐</div>
+      <div class="qr-puntaje" id="qr-puntaje">10 / 10</div>
+      <div class="qr-total" id="qr-total">Puntaje total: 0 / 210 puntos</div>
+      <div class="qr-mensaje" id="qr-mensaje">¡Eres un Maestro de las Narrativas!</div>
+      <div class="qr-xp" id="qr-xp">+40 XP ganados</div>
+      <div class="qr-badge">
+        <span class="badge-insignia" id="badge-insignia">📖</span>
+        <span class="badge-nombre">Story Architect Master</span>
+      </div>
+      <button class="btn-finalizar" onclick="finalizarSemana()">🚀 COMPLETAR SEMANA</button>
+    </div>
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<!-- SCRIPT DE LA APLICACIÓN -->
+<script>
+'use strict';
+
+// ── CONFIGURACIÓN Y ESTADO ───────────────────────────────────
+const STORAGE_KEY = 'chicala_s_p3s3_narracion89';
+const STORAGE_XP = 'chicala_secundaria_xp';
+const STORAGE_PROG = 'chicala_secundaria_progress';
+const STORAGE_SCORES = 'chicala_s_p3s3_scores';
+const MAX_SCORE = 210;
+
+let xpActual = parseInt(localStorage.getItem(STORAGE_XP) || '0');
+let seccionesCompletas = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+let puntajesSemana = JSON.parse(localStorage.getItem(STORAGE_SCORES) || '{}');
+let storyCorrectas = 0;
+let paragraphCorrectas = 0;
+let sceneGenerada = false;
+let listenCorrectas = 0;
+let speakPracticadas = 0;
+let quizRespuestas = [];
+let quizActual = 0;
+let quizTimer = null;
+let quizSegundos = 240; // 4 minutos
+
+// ── DATOS DE LA SEMANA 3 (8°-9°) ───────────────────────────────────
+const STORY_DATA = [
+  { p: "Ana, una estudiante", l: "una selva misteriosa" },
+  { a: "encontró un tesoro", s: "emocionada y asustada" }
+];
+
+const PARAGRAPH_DATA = [
+  {
+    sentences: [
+      "First, the sky turned dark.",
+      "Suddenly, a loud thunder crashed.",
+      "Everyone ran for cover.",
+      "Then, the rain started pouring."
+    ],
+    correctOrder: ["First, the sky turned dark.", "Suddenly, a loud thunder crashed.", "Then, the rain started pouring.", "Everyone ran for cover."] // Lógica: Secuencia temporal
+  },
+  {
+    sentences: [
+      "The library was silent.",
+      "Dust motes danced in the light.",
+      "Shadows stretched across the floor.",
+      "It felt like a forgotten world."
+    ],
+    correctOrder: ["The library was silent.", "Dust motes danced in the light.", "Shadows stretched across the floor.", "It felt like a forgotten world."]
+  }
+];
+
+const LISTENING_TEXT = `It was a dark and stormy night. The old clock in the hallway ticked loudly, echoing through the empty house. Suddenly, it stopped at exactly midnight. A cold wind blew through the open window, making the curtains dance like ghosts. I felt a shiver run down my spine. The house was no longer just a house; it was a mystery waiting to be solved.`;
+
+const LISTENING_Qs = [
+  { texto: "What time did the clock stop?", opciones: ["11:00", "Midnight", "1:00", "Noon"], correcta: "Midnight" },
+  { texto: "How did the narrator feel?", opciones: ["Excited", "Scared", "Happy", "Bored"], correcta: "Scared" },
+  { texto: "What made the curtains move?", opciones: ["A fan", "A ghost", "A cold wind", "Someone pushing"], correcta: "A cold wind" }
+];
+
+const SPEAKING_FRASES = [
+  { frase: "The ancient castle stood silently on the hill.", hint: "Énfasis en 'ancient' y 'silently'." },
+  { frase: "We must respect our differences to live in harmony.", hint: "Entonación descendente al final." },
+  { frase: "Listening to others builds trust in any group.", hint: "Pausa breve después de 'Listening to others'." },
+  { frase: "The agreement we made changed everything.", hint: "Énfasis en 'agreement' y 'changed'." }
+];
+
+const QUIZ_PREGUNTAS = [
+  { tipo: 'opcion', texto: "Which word is a DESCRIPTIVE adjective?", opciones: ["run", "quickly", "magnificent", "and"], correcta: "magnificent" },
+  { tipo: 'opcion', texto: "Choose the correct sequence word: '___, I woke up and brushed my teeth.'", opciones: ["Finally", "First", "Then", "After"], correcta: "First" },
+  { tipo: 'ordenar', texto: "Ordena: 'class / in / We / harmony / live / our'", palabras: ["class", "in", "We", "harmony", "live", "our"], correcta: "We live in harmony in our class" },
+  { tipo: 'opcion', texto: "Which sentence shows an AGREEMENT?", opciones: ["I will do it alone.", "We agreed to share the work.", "You must do it.", "No one helps."], correcta: "We agreed to share the work." },
+  { tipo: 'ordenar', texto: "Ordena: 'trust / Listening / builds'", palabras: ["trust", "Listening", "builds"], correcta: "Listening builds trust" },
+  { tipo: 'opcion', texto: "What is the main purpose of a narrative?", opciones: ["To describe a place", "To tell a story", "To argue a point", "To give instructions"], correcta: "To tell a story" },
+  { tipo: 'opcion', texto: "Which is a sensory detail?", opciones: ["The car was fast.", "The smell of fresh bread.", "He ran quickly.", "She is tall."], correcta: "The smell of fresh bread." },
+  { tipo: 'opcion', texto: "Why are agreements important for convivencia?", opciones: ["They create rules.", "They foster respect and harmony.", "They make work harder.", "They are optional."], correcta: "They foster respect and harmony." },
+  { tipo: 'ordenar', texto: "Ordena: 'mystery / The / was / solved'", palabras: ["mystery", "The", "was", "solved"], correcta: "The mystery was solved" },
+  { tipo: 'opcion', texto: "Which connector shows CAUSE?", opciones: ["so", "but", "because", "then"], correcta: "because" }
+];
+
+// ── UTILIDADES ───────────────────────────────────
+function showToast(msg, tipo = 'default') {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.className = `toast show ${tipo}`;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.className = 'toast'; }, 3500);
+}
+
+function agregarXP(cantidad) {
+  xpActual += cantidad;
+  localStorage.setItem(STORAGE_XP, xpActual);
+  const el = document.getElementById('xp-display');
+  if (el) {
+    el.textContent = xpActual;
+    el.parentElement.style.transform = 'scale(1.3)';
+    setTimeout(() => { el.parentElement.style.transform = 'scale(1)'; }, 300);
+  }
+  showToast(`⚡ +${cantidad} XP ganados!`, 'xp');
+}
+
+function hablar(texto, rate = 1) {
+  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+    showToast('⚠️ Tu navegador no admite reproducción de voz.', 'error');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(texto);
+  u.lang = 'en-US';
+  u.rate = Math.max(0.5, Math.min(rate, 1.1));
+  u.pitch = 1;
+  u.volume = 1;
+  const voces = window.speechSynthesis.getVoices();
+  const voz = voces.find(v => v.lang.toLowerCase() === 'en-us') ||
+    voces.find(v => v.lang.toLowerCase().startsWith('en')) || voces[0];
+  if (voz) u.voice = voz;
+  window.speechSynthesis.speak(u);
+}
+
+function actualizarProgresoHero() {
+  const total = 7;
+  const comp = seccionesCompletas.length;
+  const pct = Math.round((comp / total) * 100);
+  const bar = document.getElementById('mision-bar');
+  const pctEl = document.getElementById('mision-pct');
+    if (bar) bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = `${comp} / ${total} misiones`;
+
+  const steps = document.getElementById('mision-steps');
+  if (steps) {
+    steps.innerHTML = '';
+    for (let i = 1; i <= total; i++) {
+      const d = document.createElement('div');
+      d.className = 'ms-step';
+      if (seccionesCompletas.includes(i)) d.classList.add('completo');
+      else if (comp + 1 === i) d.classList.add('activo');
+      d.textContent = i;
+      steps.appendChild(d);
+    }
+  }
+}
+
+function completarSeccion(num) {
+  if (seccionesCompletas.includes(num)) return;
+  seccionesCompletas.push(num);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(seccionesCompletas));
+  const puntos = { 1: 20, 2: 30, 3: 30, 4: 30, 5: 30, 6: 30, 7: 40 };
+  if (puntajesSemana[num] === undefined) puntajesSemana[num] = puntos[num] || 0;
+  localStorage.setItem(STORAGE_SCORES, JSON.stringify(puntajesSemana));
+  const sec = document.getElementById(`sec-${num}`);
+  if (sec) sec.classList.add('completada');
+  
+  const xpMap = { 1:20, 2:30, 3:30, 4:30, 5:30, 6:30, 7:40 };
+  agregarXP(xpMap[num] || 20);
+  actualizarProgresoHero();
+
+  if (num < 7) {
+    const sig = document.getElementById(`sec-${num + 1}`);
+    if (sig) {
+      setTimeout(() => {
+        sig.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        sig.classList.add('sugerida');
+        setTimeout(() => sig.classList.remove('sugerida'), 2000);
+      }, 500);
+    }
+  }
+}
+
+function obtenerPuntajeTotal() {
+  return Object.values(puntajesSemana).reduce((total, puntos) => total + Number(puntos || 0), 0);
+}
+
+// ── SECCIÓN 1: STORY MAP (DRAG & DROP) ───────────────────────────────────
+function initStoryMap() {
+  const rows = document.querySelectorAll('.story-row');
+  const pieces = document.querySelectorAll('.story-piece[data-id]');
+  let correctMatches = 0;
+
+  pieces.forEach(piece => {
+    piece.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', piece.dataset.id);
+      piece.style.opacity = '0.5';
+    });
+    piece.addEventListener('dragend', () => {
+      piece.style.opacity = '1';
+    });
+  });
+
+  rows.forEach((row, idx) => {
+    let slot1, slot2;
+    if (idx === 0) {
+      slot1 = row.querySelector('#slot-1-p');
+      slot2 = row.querySelector('#slot-1-l');
+    } else {
+      slot1 = row.querySelector('#slot-2-a');
+      slot2 = row.querySelector('#slot-2-s');
+    }
+
+    [slot1, slot2].forEach(slot => {
+      slot.addEventListener('dragover', e => {
+        e.preventDefault();
+        slot.style.borderColor = 'var(--primary)';
+        slot.style.backgroundColor = '#EEF2FF';
+      });
+      slot.addEventListener('dragleave', () => {
+        slot.style.borderColor = '';
+        slot.style.backgroundColor = '';
+      });
+      slot.addEventListener('drop', e => {
+        e.preventDefault();
+        slot.style.borderColor = '';
+        slot.style.backgroundColor = '';
+        const id = e.dataTransfer.getData('text/plain');
+        const piece = document.querySelector(`.story-piece[data-id="${id}"]`);
+        if (!piece) return;
+
+        const expectedP = STORY_DATA[0].p;
+        const expectedL = STORY_DATA[0].l;
+        const expectedA = STORY_DATA[1].a;
+        const expectedS = STORY_DATA[1].s;
+
+        const isSlot1Correct = (slot.id.includes('-p') && piece.textContent === expectedP) ||
+                               (slot.id.includes('-a') && piece.textContent === expectedA);
+        const isSlot2Correct = (slot.id.includes('-l') && piece.textContent === expectedL) ||
+                               (slot.id.includes('-s') && piece.textContent === expectedS);
+
+        if (isSlot1Correct || isSlot2Correct) {
+          piece.style.opacity = '1';
+          piece.style.pointerEvents = 'none';
+          slot.innerHTML = piece.textContent;
+          slot.classList.remove('personaje', 'lugar', 'accion', 'sentimiento');
+          slot.style.borderColor = 'var(--border)';
+          slot.style.backgroundColor = 'white';
+          slot.style.cursor = 'default';
+          slot.draggable = false;
+          slot.dataset.filled = 'true';
+
+          const filledSlots = row.querySelectorAll('[data-filled="true"]');
+          if (filledSlots.length === 2) {
+            correctMatches++;
+            document.getElementById('story-score').textContent = `${correctMatches} / 2 escenas completas`;
+            if (correctMatches >= 2) {
+              document.getElementById('btn-sec1').disabled = false;
+              showToast('🎉 ¡Historia diseñada! ¡Eres un arquitecto de mundos!', 'success');
+            }
+          }
+        } else {
+          showToast('❌ ¡Casi! Revisa la lógica de la escena.', 'error');
+          slot.style.borderColor = 'var(--border)';
+          slot.style.backgroundColor = 'white';
+        }
+      });
+    });
+  });
+}
+
+// ── SECCIÓN 2: PARAGRAPH BUILDER ───────────────────────────────────
+function initParagraphBuilder() {
+  const container = document.getElementById('paragraph-builder');
+  if (!container) return;
+  container.innerHTML = '';
+  paragraphCorrectas = 0;
+
+  PARAGRAPH_DATA.forEach((item, idx) => {
+    const section = document.createElement('div');
+    section.style.marginBottom = '20px';
+    section.innerHTML = `
+      <div style="margin-bottom: 10px; font-weight: 700; color: var(--c7);">Párrafo ${idx + 1}: Ordena las oraciones</div>
+      <div class="paragraph-chips" id="chips-${idx}">
+        ${item.sentences.map((s, i) => `
+          <span class="paragraph-chip" data-sentence="${s}" onclick="selectSentence(this, ${idx})">${s}</span>
+        `).join('')}
+      </div>
+      <div class="paragraph-answer-box" id="answer-${idx}"></div>
+      <button class="paragraph-verificar" onclick="verificarParrafo(${idx})">✓ Verificar Orden</button>
+    `;
+    container.appendChild(section);
+  });
+}
+
+function selectSentence(chip, idx) {
+  if (chip.classList.contains('usada')) return;
+  chip.classList.add('usada');
+  
+  const box = document.getElementById(`answer-${idx}`);
+  const span = document.createElement('span');
+  span.className = 'paragraph-chip-answer';
+  span.textContent = chip.dataset.sentence;
+  span.onclick = () => {
+    box.removeChild(span);
+    chip.classList.remove('usada');
+  };
+  box.appendChild(span);
+}
+
+function verificarParrafo(idx) {
+  const item = PARAGRAPH_DATA[idx];
+  const box = document.getElementById(`answer-${idx}`);
+  const chips = box.querySelectorAll('.paragraph-chip-answer');
+  
+  const respuesta = Array.from(chips).map(c => c.textContent).join(' ');
+  const esCorrecta = respuesta === item.correctOrder.join(' ');
+
+  if (esCorrecta) {
+    box.classList.add('correcta');
+    paragraphCorrectas++;
+    document.getElementById('paragraph-score').textContent = `${paragraphCorrectas} / ${PARAGRAPH_DATA.length} párrafos`;
+    showToast('✅ ¡Párrafo coherente! ¡Excelente estructura!', 'success');
+    if (paragraphCorrectas >= PARAGRAPH_DATA.length) {
+      document.getElementById('btn-sec2').disabled = false;
+      showToast('🎉 ¡Párrafos completados!', 'success');
+    }
+  } else {
+    box.classList.add('incorrecta');
+    showToast('❌ El orden no es correcto. Revisa la secuencia lógica.', 'error');
+    setTimeout(() => {
+      box.classList.remove('incorrecta');
+      box.innerHTML = '';
+      document.querySelectorAll(`#chips-${idx} .paragraph-chip`).forEach(c => c.classList.remove('usada'));
+    }, 2000);
+  }
+}
+
+// ── SECCIÓN 3: SCENE GENERATOR ───────────────────────────────────
+function generarEscena() {
+  const p = document.getElementById('select-personaje').value;
+  const l = document.getElementById('select-lugar').value;
+  const e = document.getElementById('select-emocion').value;
+
+  if (!p || !l || !e) {
+    showToast('⚠️ Por favor, selecciona todas las opciones.', 'error');
+    return;
+  }
+
+  const escena = `${p} ${l} feeling ${e}.`;
+  document.getElementById('escena-result').textContent = escena;
+  document.getElementById('btn-sec3').disabled = false;
+  sceneGenerada = true;
+  showToast('✨ ¡Escena generada! ¡Imaginación desbordada!', 'success');
+}
+
+// ── SECCIÓN 4: LISTENING ───────────────────────────────────
+function reproducirAudio(rate = 1) {
+  const btn = document.getElementById('audio-play-btn');
+  const transcript = document.getElementById('audio-transcript');
+  const transcriptText = document.getElementById('transcript-text');
+
+  if (btn) {
+    btn.classList.add('playing');
+    btn.textContent = '🔊 REPRODUCIENDO...';
+  }
+
+  hablar(LISTENING_TEXT, rate);
+
+  setTimeout(() => {
+    if (transcript) {
+      transcript.style.display = 'block';
+      transcriptText.textContent = LISTENING_TEXT;
+    }
+  }, 1000);
+
+  const duracion = (LISTENING_TEXT.split(' ').length / (rate * 2.5)) * 1000 + 500;
+  setTimeout(() => {
+    if (btn) {
+      btn.classList.remove('playing');
+      btn.textContent = '▶ ESCUCHAR';
+    }
+  }, duracion);
+}
+
+function initListening() {
+  const cont = document.getElementById('listening-questions');
+  if (!cont) return;
+  cont.innerHTML = '';
+  listenCorrectas = 0;
+
+  LISTENING_Qs.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'listen-pregunta';
+    div.innerHTML = `
+      <div class="listen-num">QUESTION ${i + 1} / ${LISTENING_Qs.length}</div>
+      <div class="listen-texto">${q.texto}</div>
+      <div class="listen-opciones">
+        ${q.opciones.map((op, optionIndex) => `
+          <button class="listen-opcion"
+            data-op="${op}"
+            data-idx="${i}"
+            data-letter="${String.fromCharCode(65 + optionIndex)}"
+            onclick="checkListen(this, ${i})">
+            ${op}
+          </button>`).join('')}
+      </div>`;
+    cont.appendChild(div);
+  });
+}
+
+function checkListen(btn, idx) {
+  const q = LISTENING_Qs[idx];
+  const pregDiv = btn.closest('.listen-pregunta');
+  const buttons = pregDiv.querySelectorAll('.listen-opcion');
+
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b.dataset.op === q.correcta) b.classList.add('correcta');
+  });
+
+  if (btn.dataset.op === q.correcta) {
+    btn.classList.add('correcta');
+    listenCorrectas++;
+    document.getElementById('listen-score').textContent = `${listenCorrectas} / ${LISTENING_Qs.length} correctas`;
+    showToast('✅ ¡Correcto!', 'success');
+  } else {
+    btn.classList.add('incorrecta');
+    showToast('❌ Escucha de nuevo y vuelve a intentarlo.', 'error');
+  }
+
+  const totalBotones = document.querySelectorAll('.listen-opcion').length;
+  const deshabilitados = document.querySelectorAll('.listen-opcion:disabled').length;
+
+  if (deshabilitados === totalBotones) {
+    if (listenCorrectas >= 2) {
+      document.getElementById('btn-sec4').disabled = false;
+      showToast('🎧 ¡Gran trabajo escuchando!', 'success');
+    } else {
+      showToast('💡 Escucha otra vez y vuelve a intentarlo.', 'error');
+      setTimeout(() => initListening(), 2500);
+    }
+  }
+}
+
+// ── SECCIÓN 5: SPEAKING ───────────────────────────────────
+function initSpeaking() {
+  const cont = document.getElementById('speaking-frases');
+  if (!cont) return;
+  cont.innerHTML = '';
+  speakPracticadas = 0;
+
+  SPEAKING_FRASES.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'speak-frase';
+    div.id = `speak-${i}`;
+    div.innerHTML = `
+      <div class="speak-num">${i + 1}</div>
+      <div class="speak-texto">${item.frase}</div>
+      <div class="speak-hint">${item.hint}</div>
+      <div class="speak-btns">
+        <button class="speak-btn listen" id="speak-listen-${i}" onclick="hablarFrase(${i}, 0.9)">🔊 Listen</button>
+        <button class="speak-btn slow" onclick="hablarFrase(${i}, 0.62)">🐢 Slow</button>
+        <button class="speak-btn done" id="speak-done-${i}" onclick="marcarSpeakPracticada(${i})">🎤 Practiced</button>
+      </div>`;
+    cont.appendChild(div);
+  });
+}
+
+function hablarFrase(i, rate = 0.9) {
+  const item = SPEAKING_FRASES[i];
+  if (!item) return;
+  document.querySelectorAll('.speak-btn.listen').forEach(button => button.classList.remove('speaking'));
+  const listenButton = document.getElementById(`speak-listen-${i}`);
+  if (listenButton) listenButton.classList.add('speaking');
+  hablar(item.frase, rate);
+  setTimeout(() => {
+    if (listenButton) listenButton.classList.remove('speaking');
+  }, Math.max(1500, item.frase.split(' ').length * 500 / rate));
+}
+
+function marcarSpeakPracticada(i) {
+  const fraseDiv = document.getElementById(`speak-${i}`);
+  const btn = document.getElementById(`speak-done-${i}`);
+  if (!fraseDiv || btn.classList.contains('active')) return;
+
+  fraseDiv.classList.add('practicada');
+  btn.classList.add('active');
+  btn.textContent = '✅ Done!';
+
+  speakPracticadas++;
+  document.getElementById('speak-progreso').textContent = `${speakPracticadas} / ${SPEAKING_FRASES.length} frases`;
+  showToast(`🎤 ¡Frase ${i + 1} practicada!`, 'success');
+
+  if (speakPracticadas >= SPEAKING_FRASES.length) {
+    document.getElementById('btn-sec5').disabled = false;
+    showToast('🎉 ¡Todas las frases practicadas! ¡Eres un orador!', 'success');
+  }
+}
+
+// ── SECCIÓN 6: WRITING & CIUDADANÍA ───────────────────────────────────
+function insertarPalabra(palabra) {
+  const area = document.getElementById('writing-area');
+  area.value += (area.value ? ' ' : '') + palabra;
+  area.focus();
+}
+
+function verificarEscritura() {
+  const area = document.getElementById('writing-area');
+  const texto = area.value.toLowerCase();
+  const feedback = document.getElementById('writing-feedback');
+  
+  const palabrasClave = ['respect', 'listening', 'agreement', 'harmony', 'trust', 'live', 'together', 'class'];
+  let puntuacion = 0;
+  palabrasClave.forEach(p => {
+    if (texto.includes(p)) puntuacion++;
+  });
+
+  if (texto.length < 20) {
+    feedback.textContent = '⚠️ Escribe al menos una oración completa.';
+        feedback.className = 'writing-feedback show fail';
+    return;
+  }
+
+  if (puntuacion >= 3) {
+    feedback.textContent = '✅ ¡Excelente! Has integrado valores de convivencia y coherencia.';
+    feedback.className = 'writing-feedback show ok';
+    document.getElementById('btn-sec6').disabled = false;
+    showToast('🌟 ¡Acuerdo de convivencia registrado!', 'success');
+  } else {
+    feedback.textContent = '💡 Intenta incluir palabras como: respect, harmony, trust o agreement.';
+    feedback.className = 'writing-feedback show fail';
+  }
+}
+
+// ── SECCIÓN 7: FINAL QUIZ ───────────────────────────────────
+function initQuiz() {
+  quizActual = 0;
+  quizRespuestas = [];
+  quizSegundos = 240;
+
+  const resultado = document.getElementById('quiz-resultado');
+  if (resultado) resultado.style.display = 'none';
+
+  iniciarTimerQuiz();
+  renderQuizPregunta();
+}
+
+function iniciarTimerQuiz() {
+  clearInterval(quizTimer);
+  quizTimer = setInterval(() => {
+    quizSegundos--;
+    const m = String(Math.floor(quizSegundos / 60)).padStart(2, '0');
+    const s = String(quizSegundos % 60).padStart(2, '0');
+    const el = document.getElementById('quiz-timer');
+    if (el) {
+      el.textContent = `⏱ ${m}:${s}`;
+      if (quizSegundos <= 30) el.classList.add('urgente');
+    }
+    if (quizSegundos <= 0) {
+      quizSegundos = 0;
+      clearInterval(quizTimer);
+      mostrarResultadoQuiz();
+    }
+  }, 1000);
+}
+
+function renderQuizPregunta() {
+  const cont = document.getElementById('quiz-container');
+  if (!cont) return;
+
+  if (quizActual >= QUIZ_PREGUNTAS.length) {
+    clearInterval(quizTimer);
+    mostrarResultadoQuiz();
+    return;
+  }
+
+  const q = QUIZ_PREGUNTAS[quizActual];
+  const num = quizActual + 1;
+  const letras = ['A','B','C','D'];
+
+  document.getElementById('quiz-q-num').textContent = `Pregunta ${num} / ${QUIZ_PREGUNTAS.length}`;
+
+  let bodyHTML = '';
+
+  if (q.tipo === 'opcion') {
+    const shuffled = [...q.opciones].sort(() => Math.random() - 0.5);
+    bodyHTML = `
+      <div class="quiz-opciones">
+        ${shuffled.map((op, i) => `
+          <button class="quiz-opcion"
+            data-op="${op}"
+            onclick="checkQuizOpcion(this)">
+            <span class="quiz-letra">${letras[i]}</span>
+            ${op}
+          </button>`).join('')}
+      </div>`;
+  } else if (q.tipo === 'ordenar') {
+    const shuffled = [...q.palabras].sort(() => Math.random() - 0.5);
+    bodyHTML = `
+      ${q.hint ? `<div class="quiz-q-hint" style="color:var(--text-dim); font-size:0.9rem; margin-bottom:10px;">💡 ${q.hint}</div>` : ''}
+      <div class="quiz-ordenar" id="quiz-chips">
+        ${shuffled.map(w => `
+          <span class="word-chip"
+            data-word="${w}"
+            onclick="seleccionarChip(this)">
+            ${w}
+          </span>`).join('')}
+      </div>
+      <div class="quiz-answer-box" id="quiz-answer-box"></div>
+      <button class="quiz-verificar" onclick="verificarOrdenar()">
+        ✓ VERIFICAR
+      </button>`;
+  }
+
+  cont.innerHTML = `
+    <div class="quiz-pregunta">
+      <div class="quiz-q-num">PREGUNTA ${num} / ${QUIZ_PREGUNTAS.length}</div>
+      <div class="quiz-q-texto">${q.texto}</div>
+      ${bodyHTML}
+    </div>`;
+}
+
+function checkQuizOpcion(btn) {
+  const q = QUIZ_PREGUNTAS[quizActual];
+  const buttons = document.querySelectorAll('.quiz-opcion');
+  const opcion = btn.dataset.op;
+
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b.dataset.op === q.correcta) b.classList.add('correcta');
+  });
+
+  const esCorrecta = opcion === q.correcta;
+  if (esCorrecta) {
+    btn.classList.add('correcta');
+    showToast('✅ ¡Correcto! 🎉', 'success');
+  } else {
+    btn.classList.add('incorrecta');
+    showToast('❌ ¡Casi! Sigue intentando.', 'error');
+  }
+
+  quizRespuestas.push(esCorrecta);
+  setTimeout(() => { quizActual++; renderQuizPregunta(); }, 1300);
+}
+
+function seleccionarChip(chip) {
+  if (chip.classList.contains('usada')) return;
+  chip.classList.add('usada');
+
+  const box = document.getElementById('quiz-answer-box');
+  const span = document.createElement('span');
+  span.className = 'answer-chip';
+  span.dataset.word = chip.dataset.word;
+  span.textContent = chip.dataset.word;
+
+  span.onclick = () => {
+    box.removeChild(span);
+    chip.classList.remove('usada');
+  };
+  box.appendChild(span);
+}
+
+function verificarOrdenar() {
+  const q = QUIZ_PREGUNTAS[quizActual];
+  const box = document.getElementById('quiz-answer-box');
+  const chips = box.querySelectorAll('.answer-chip');
+
+  if (chips.length === 0) {
+    showToast('⚠️ Selecciona las palabras primero.', 'error');
+    return;
+  }
+
+  const respuesta = Array.from(chips).map(c => c.dataset.word).join(' ');
+  const esCorrecta = respuesta.toLowerCase().replace(/\s+/g, ' ') === q.correcta.toLowerCase().replace(/\s+/g, ' ');
+
+  document.querySelectorAll('.word-chip').forEach(c => c.classList.add('usada'));
+  document.querySelector('.quiz-verificar').disabled = true;
+
+  if (esCorrecta) {
+    box.classList.add('correcta');
+    showToast('✅ ¡Orden perfecto!', 'success');
+  } else {
+    box.classList.add('incorrecta');
+    showToast(`❌ La respuesta correcta era: "${q.correcta}"`, 'error');
+  }
+
+  quizRespuestas.push(esCorrecta);
+  setTimeout(() => { quizActual++; renderQuizPregunta(); }, 1800);
+}
+
+function mostrarResultadoQuiz() {
+  clearInterval(quizTimer);
+
+  const cont = document.getElementById('quiz-container');
+  const resultado = document.getElementById('quiz-resultado');
+  if (cont) cont.innerHTML = '';
+  if (!resultado) return;
+
+  const correctas = quizRespuestas.filter(Boolean).length;
+  const total = QUIZ_PREGUNTAS.length;
+  const pct = Math.round((correctas / total) * 100);
+
+  let estrellas, mensaje, badge;
+  if (pct >= 90)      { estrellas = '⭐⭐⭐'; mensaje = '¡Eres un Maestro de las Narrativas! ¡Increíble trabajo!'; badge = '📖'; }
+  else if (pct >= 70) { estrellas = '⭐⭐';   mensaje = '¡Muy bien! Casi dominas la narración y descripción.'; badge = '🧠'; }
+  else if (pct >= 50) { estrellas = '⭐';     mensaje = '¡Buen intento! Repasa y vuelve a intentarlo.'; badge = '🌱'; }
+  else                { estrellas = '💪';     mensaje = '¡Sigue practicando! Tú puedes lograrlo.'; badge = '🎯'; }
+
+  document.getElementById('qr-estrellas').textContent = estrellas;
+  document.getElementById('qr-puntaje').textContent = `${correctas} / ${total}`;
+  
+  // Calcular puntaje final del quiz (4 puntos por acierto)
+  puntajesSemana[7] = correctas * 4;
+  localStorage.setItem(STORAGE_SCORES, JSON.stringify(puntajesSemana));
+  
+  document.getElementById('qr-total').textContent = `Puntaje total: ${obtenerPuntajeTotal()} / ${MAX_SCORE} puntos`;
+  document.getElementById('qr-mensaje').textContent = mensaje;
+  document.getElementById('qr-xp').textContent = '+40 XP ganados';
+  document.getElementById('badge-insignia').textContent = badge;
+  document.getElementById('quiz-q-num').textContent = 'Completado ✓';
+
+  resultado.style.display = 'block';
+  resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (correctas >= 6) {
+    const btn = document.getElementById('btn-sec7');
+    if (btn) btn.disabled = false;
+  }
+}
+
+// ── FINALIZAR SEMANA ───────────────────────────────────
+function finalizarSemana() {
+  completarSeccion(7);
+
+  const progreso = JSON.parse(localStorage.getItem(STORAGE_PROG) || '{}');
+  progreso['p3s3_89'] = {
+    completado: true,
+    xp: xpActual,
+    fecha: new Date().toISOString(),
+    puntaje: obtenerPuntajeTotal()
+  };
+  localStorage.setItem(STORAGE_PROG, JSON.stringify(progreso));
+
+  showToast('🚀 ¡Semana 3 completada! ¡Eres un Maestro de las Narrativas!', 'success');
+  lanzarConfeti();
+
+  setTimeout(() => {
+    const backBtn = document.querySelector('.breadcrumb a[href*="index"]');
+    if (backBtn) window.location.href = backBtn.href;
+  }, 4000);
+}
+
+// ── CONFETI LIGERO ───────────────────────────────────
+function lanzarConfeti() {
+  const emojis = ['🎉','⭐','🌟','✨','🏆','🎊','💫','📖','🧠'];
+  for (let i = 0; i < 25; i++) {
+    const el = document.createElement('div');
+    el.style.cssText = `
+      position: fixed;
+      top: -40px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${1.5 + Math.random() * 1.5}rem;
+      animation: caer ${1.5 + Math.random() * 2}s ease-in forwards;
+      z-index: 9999;
+      pointer-events: none;
+      animation-delay: ${Math.random() * 0.8}s;
+    `;
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+// Keyframe de caída
+const styleConfeti = document.createElement('style');
+styleConfeti.textContent = `
+  @keyframes caer {
+    0%   { transform: translateY(0) rotate(0deg);      opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+`;
+document.head.appendChild(styleConfeti);
+
+// ── ARRANQUE ───────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Restaurar XP
+  const xpEl = document.getElementById('xp-display');
+  if (xpEl) xpEl.textContent = xpActual;
+
+  // Restaurar secciones ya completadas
+  seccionesCompletas.forEach(num => {
+    const sec = document.getElementById(`sec-${num}`);
+    if (sec) sec.classList.add('completada');
+    const btn = document.getElementById(`btn-sec${num}`);
+    if (btn) btn.disabled = false;
+  });
+
+  // Inicializar todas las secciones
+  initStoryMap();
+  initParagraphBuilder();
+  // El generador de escenas se inicializa al hacer clic en los selects
+  initListening();
+  initSpeaking();
+  initQuiz();
+
+  // Actualizar hero de progreso
+  actualizarProgresoHero();
+
+  // Precargar voces de síntesis
+  if (window.speechSynthesis) {
+    speechSynthesis.getVoices();
+    speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+  }
+
+  // Toast de bienvenida
+  setTimeout(() => {
+    const comp = seccionesCompletas.length;
+    if (comp > 0) {
+      showToast(`📊 Progreso restaurado · ${comp} / 7 misiones`, 'success');
+    } else {
+      showToast('📖 ¡Bienvenido/a a la Semana 3! ¡Conviértete en un Arquitecto de Historias!', 'success');
+    }
+  }, 700);
+});
+</script>
+
 </body>
 </html>

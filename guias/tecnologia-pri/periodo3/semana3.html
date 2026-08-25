@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Interactiva: ¡Manos a la Obra en Chichalá! | Tecnología</title>
+  
+  <!-- Tipografías: Nunito para lectura, Orbitron para títulos tecnológicos -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js para gráficos de progreso -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════
+       VARIABLES GLOBALES (Estilo Tech-Agro 2.0)
+    ══════════════════════════════════════════ */
+    :root {
+      --verde:    #3DBE8C; /* Éxito / Naturaleza */
+      --azul:     #1A9BAB; /* Tecnología / Electricidad */
+      --morado:   #7C3AED; /* Innovación / Digital */
+      --naranja:  #F4872B; /* Tierra / Herramientas */
+      --amarillo: #F7C325; /* Energía / Logros */
+      --texto:    #2D3748;
+      --fondo:    #F7FAFC;
+      --card:     #ffffff;
+      --glass: rgba(255, 255, 255, 0.85);
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(26, 155, 171, 0.12);
+    }
+
+    /* ══════════════════════════════════════════
+       RESET Y BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #F0F9FF, #E6F4F1);
+      color: var(--texto);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ══════════════════════════════════════════
+       ENCABEZADO Y NAVEGACIÓN
+    ══════════════════════════════════════════ */
+    header.app-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--naranja), var(--azul));
+      padding: 20px;
+      border-radius: var(--radius);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--naranja);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .header-text h1 {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    .header-text p { margin: 5px 0 0; opacity: 0.9; font-size: 0.95rem; }
+
+    /* BARRA DE PROGRESO Y GAMIFICACIÓN */
+    .progress-wrap {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      padding: 16px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .progress-stages {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex: 2;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .stage {
+      padding: 8px 14px;
+      border-radius: 50px;
+      background: #E2E8F0;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #718096;
+      white-space: nowrap;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stage.active {
+      background: linear-gradient(90deg, var(--naranja), var(--morado));
+      color: white;
+      box-shadow: 0 4px 10px rgba(244, 135, 43, 0.3);
+      transform: scale(1.05);
+    }
+
+    .progress-meter {
+      flex: 1;
+      height: 12px;
+      background: #E2E8F0;
+      border-radius: 50px;
+      overflow: hidden;
+      min-width: 150px;
+    }
+
+    .progress-meter > i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--azul), var(--verde));
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .points-badge {
+      background: linear-gradient(135deg, var(--amarillo), #FDE68A);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 800;
+      color: #78350F;
+      box-shadow: 0 4px 12px rgba(247, 195, 37, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+    ══════════════════════════════════════════ */
+    main.card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-section {
+      display: none;
+      animation: slideIn 0.5s ease;
+    }
+
+    .content-section.active { display: block; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .moment-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .moment-layout { grid-template-columns: 1fr; }
+      .header-text h1 { font-size: 1.2rem; }
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .panel h2 {
+      color: var(--naranja);
+      margin-top: 0;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      border-bottom: 2px solid var(--azul);
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+
+    /* ══════════════════════════════════════════
+       COMPONENTES INTERACTIVOS
+    ══════════════════════════════════════════ */
+    
+    /* Botones */
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--naranja), #D97706);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 6px rgba(244, 135, 43, 0.2);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(244, 135, 43, 0.3); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    
+    .btn.secondary { background: white; color: var(--naranja); border: 2px solid var(--naranja); }
+    .btn.secondary:hover { background: #FFFBEB; }
+
+    .btn.success { background: linear-gradient(135deg, var(--verde), #2F9E72); }
+
+    /* Tarjetas de Nivel (Multigrado) */
+    .nivel-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .nivel-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 2px solid #E2E8F0;
+      background: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nivel-btn.active {
+      border-color: var(--morado);
+      background: rgba(124, 58, 237, 0.05);
+      color: var(--morado);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+    }
+
+    /* Actividades Visuales */
+    .visual-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      background: #F8FAFC;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px dashed var(--naranja);
+      margin: 15px 0;
+    }
+
+    .emoji-grande { font-size: 2.5rem; animation: parpadeo 2s infinite; }
+    @keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+    .objeto-card {
+      background: white;
+      border: 2px solid var(--azul);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      min-width: 80px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .objeto-card:hover { transform: scale(1.1); border-color: var(--morado); }
+
+    /* Quiz Interactivo */
+    .quiz-option {
+      background: white;
+      border: 2px solid #E2E8F0;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+    }
+
+    .quiz-option:hover { border-color: var(--azul); background: #F0F9FF; }
+    .quiz-option.correct { border-color: var(--verde); background: #ECFDF5; color: #065F46; }
+    .quiz-option.incorrect { border-color: #EF4444; background: #FEF2F2; color: #991B1B; }
+
+    /* Drag and Drop Simple */
+    .dnd-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .draggable-item {
+      background: white;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid var(--naranja);
+      cursor: grab;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .drop-zone {
+      min-height: 100px;
+      background: rgba(244, 135, 43, 0.05);
+      border: 2px dashed var(--naranja);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drop-zone.highlight { background: rgba(61, 190, 140, 0.1); border-color: var(--verde); }
+
+    /* Feedback y Toasts */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      font-weight: 700;
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-left: 5px solid var(--naranja);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #toast.show { transform: translateX(-50%) translateY(0); }
+    #toast.success { border-left-color: var(--verde); }
+    #toast.error { border-left-color: #EF4444; }
+
+    /* Insignias */
+    .badges-display {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .badge {
+      width: 60px;
+            height: 60px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      position: relative;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: all 0.4s;
+    }
+    .badge.unlocked {
+      background: linear-gradient(135deg, var(--amarillo), #FDE68A);
+      filter: none;
+      opacity: 1;
+      box-shadow: 0 0 15px rgba(247, 195, 37, 0.6);
+      transform: scale(1.1);
+    }
+    .badge-tooltip {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+    .badge:hover .badge-tooltip { opacity: 1; }
+
+    /* Utilidades */
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .tag-3 { background: rgba(61, 190, 140, 0.15); color: var(--verde); }
+    .tag-4 { background: rgba(26, 155, 171, 0.15); color: var(--azul); }
+    .tag-5 { background: rgba(244, 135, 43, 0.15); color: var(--naranja); }
+
+    .feedback-box {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      font-weight: 600;
+    }
+    .feedback-box.show { display: block; animation: slideIn 0.3s; }
+    .feedback-box.correct { background: rgba(61, 190, 140, 0.1); color: #065F46; border-left: 4px solid var(--verde); }
+    .feedback-box.incorrect { background: rgba(239, 68, 68, 0.1); color: #991B1B; border-left: 4px solid #EF4444; }
+
+    /* Impresión */
+    @media print {
+      body { background: white; padding: 0; }
+      .progress-wrap, .controls, .btn, #toast { display: none !important; }
+      main.card { box-shadow: none; border: none; padding: 0; }
+      .content-section { display: block !important; page-break-inside: avoid; }
+      .nivel-selector { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ENCABEZADO -->
+  <header class="app-header">
+    <div class="logo">⚡</div>
+    <div class="header-text">
+      <h1>¡Manos a la Obra en Chichalá!</h1>
+      <p>Tecnología e Informática · Semanas 1 · Grados 3°, 4° y 5°</p>
+    </div>
+  </header>
+
+  <!-- BARRA DE PROGRESO Y GAMIFICACIÓN -->
+  <div class="progress-wrap">
+    <div class="progress-stages">
+      <div class="stage active" data-step="0">🔍 1. Exploración</div>
+      <div class="stage" data-step="1">🏗️ 2. Estructuración</div>
+      <div class="stage" data-step="2">🎮 3. Práctica</div>
+      <div class="stage" data-step="3">🚀 4. Transferencia</div>
+      <div class="stage" data-step="4">🏆 5. Valoración</div>
+    </div>
+    <div class="progress-meter"><i id="progressBar"></i></div>
+    <div class="points-badge">⭐ <span id="pointsDisplay">0</span> Puntos</div>
+  </div>
+
+  <!-- INSIGNIAS -->
+  <div class="badges-display" id="badgesContainer" style="margin-bottom: 20px; justify-content: center;">
+    <!-- Se llenan con JS -->
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="card">
+    <!-- CONTROLES DE NAVEGACIÓN -->
+    <div class="controls">
+      <button class="btn secondary" id="prevBtn" disabled>⬅ Anterior</button>
+      <button class="btn" id="nextBtn">Siguiente ➡</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reiniciar</button>
+      <button class="btn success" id="exportBtn">📥 Exportar Reporte</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         MOMENTO 1: EXPLORACIÓN (Saberes Previos)
+    ══════════════════════════════════════════ -->
+    <section class="content-section active" data-step="0">
+      <div class="moment-layout">
+        <div class="panel">
+          <h2>🔍 Exploración: ¿Qué sabemos?</h2>
+          <p>Bienvenido/a a la aventura tecnológica en Chichalá. Hoy aprenderemos a diferenciar entre <strong>trabajo manual, eléctrico, analógico y digital</strong>.</p>
+          
+          <div style="background: #FFFBE6; padding: 15px; border-radius: 10px; border-left: 5px solid var(--amarillo); margin: 15px 0;">
+            <strong>🎯 Objetivo del día:</strong> Identificar artefactos de nuestro entorno y describir cómo funcionan.
+          </div>
+
+          <h3>🧠 Saberes Previos: El Taller de Don Efraín</h3>
+          <p>Don Efraín tiene una finca y usa diferentes herramientas: una <strong>sierra manual</strong> para cortar madera y una <strong>sierra eléctrica</strong> para trabajar más rápido.</p>
+          
+          <div class="visual-area" id="explorationVisual">
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--naranja);">🪚 Manual</div>
+            <div style="font-size: 2rem;">vs</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--azul);">⚡ Eléctrico</div>
+            <div style="font-size: 2rem;">=</div>
+            <div style="font-size: 2rem; font-weight: 900; color: var(--verde);">¿Cuál es mejor?</div>
+          </div>
+
+          <p><strong>Pregunta para todos:</strong> ¿Cuál de las dos herramientas depende de la fuerza humana y cuál de la electricidad?</p>
+          
+          <div id="expQuiz">
+            <div class="quiz-option" onclick="checkExploration(0, this)">Ambas son manuales</div>
+            <div class="quiz-option" onclick="checkExploration(1, this)">La sierra manual es humana, la eléctrica usa energía</div>
+            <div class="quiz-option" onclick="checkExploration(2, this)">Ambas son eléctricas</div>
+            <div class="quiz-option" onclick="checkExploration(3, this)">La eléctrica es más lenta</div>
+          </div>
+          <div id="expFeedback" class="feedback-box"></div>
+        </div>
+
+        <aside class="panel">
+          <h3>📋 Tu Misión</h3>
+          <ul style="font-size: 0.9rem; padding-left: 20px;">
+            <li>Selecciona tu grado al inicio de cada actividad.</li>
+            <li>Observa los objetos de tu casa y clasifícalos.</li>
+            <li>Gana puntos y desbloquea insignias.</li>
+          </ul>
+          <div style="margin-top: 20px; text-align: center;">
+            <div style="font-size: 3rem;">🛠️</div>
+            <p style="font-weight: bold; color: var(--naranja);">¡Manos a la obra!</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         MOMENTO 2: ESTRUCTURACIÓN (Conceptos)
+    ══════════════════════════════════════════ -->
+    <section class="content-section" data-step="1">
+      <div class="moment-layout">
+        <div class="panel">
+          <h2>🏗️ Estructuración: Analógico vs Digital</h2>
+          <p>Para dominar la tecnología, debemos conocer la diferencia entre lo que cambia suavemente (analógico) y lo que usa números (digital). Selecciona tu grado.</p>
+          
+          <div class="nivel-selector">
+            <button class="nivel-btn active" onclick="setNivel(3)">Grado 3°</button>
+            <button class="nivel-btn" onclick="setNivel(4)">Grado 4°</button>
+            <button class="nivel-btn" onclick="setNivel(5)">Grado 5°</button>
+          </div>
+
+          <div id="contenidoEstructura">
+            <div id="structureDescription"></div>
+            <div class="visual-area" id="termsVisual" style="margin-top: 20px;">
+              <!-- Se llena con JS -->
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <p><strong>Actividad:</strong> Clasifica los artefactos en Manuales, Eléctricos Analógicos o Eléctricos Digitales.</p>
+            <div class="dnd-area">
+              <div id="dragSource">
+                <div class="draggable-item" draggable="true" id="d1" data-match="manual">Reloj de Arena</div>
+                <div class="draggable-item" draggable="true" id="d2" data-match="analogico">Radio a Pilas (Aguja)</div>
+                <div class="draggable-item" draggable="true" id="d3" data-match="digital">Celular Inteligente</div>
+              </div>
+              <div id="dropTarget">
+                <div class="drop-zone" data-target="manual">Trabajo Manual (Fuerza Humana)</div>
+                <div class="drop-zone" data-target="analogico">Eléctrico Analógico (Señal Continua)</div>
+                <div class="drop-zone" data-target="digital">Eléctrico Digital (Códigos 0 y 1)</div>
+              </div>
+            </div>
+            <div id="structFeedback" class="feedback-box"></div>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <h3>💡 ¿Sabías que?</h3>
+          <p style="font-size: 0.9rem;">Un reloj de manecillas es analógico porque la hora se mueve suavemente. Un reloj digital salta de minuto en minuto.</p>
+          <canvas id="conceptChart" width="280" height="200"></canvas>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         MOMENTO 3: PRÁCTICA (Juegos Multigrado)
+    ══════════════════════════════════════════ -->
+    <section class="content-section" data-step="2">
+      <div class="moment-layout">
+        <div class="panel">
+          <h2>🎮 Práctica: El Laboratorio de Chichalá</h2>
+          <p>Selecciona tu grado y resuelve el reto. ¡Cuidado, los retos aumentan de dificultad!</p>
+          
+          <div class="nivel-selector">
+            <button class="nivel-btn active" onclick="setNivel(3)">Grado 3°</button>
+            <button class="nivel-btn" onclick="setNivel(4)">Grado 4°</button>
+            <button class="nivel-btn" onclick="setNivel(5)">Grado 5°</button>
+          </div>
+
+          <div id="practiceContainer">
+            <!-- Contenido dinámico -->
+          </div>
+          <div id="practiceFeedback" class="feedback-box"></div>
+        </div>
+
+        <aside class="panel">
+          <h3>🛠️ Material de Apoyo</h3>
+          <p>Si te atascas, piensa: ¿Usa electricidad? ¿Muestra números o aguja?</p>
+          <div style="background: #F0FDF4; padding: 10px; border-radius: 8px; border: 1px solid var(--verde);">
+            <strong>Regla de Oro:</strong><br>
+            Todo lo digital es eléctrico, pero no todo lo eléctrico es digital.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         MOMENTO 4: TRANSFERENCIA (Problemas Reales + Ciudadanía)
+    ══════════════════════════════════════════ -->
+    <section class="content-section" data-step="3">
+      <div class="moment-layout">
+        <div class="panel">
+          <h2>🚀 Transferencia: El Mercado y la Convivencia</h2>
+          <p>Aplica lo aprendido en situaciones reales y reflexiona sobre las normas del taller.</p>
+
+          <div style="background: linear-gradient(135deg, #FFF7ED, #FFFBEB); padding: 20px; border-radius: 12px; border-left: 5px solid var(--naranja); margin-bottom: 20px;">
+            <h3 style="margin-top:0; color: var(--naranja);">🍋 El Problema del Mercado</h3>
+            <p>La mamá de Juan tiene una báscula <strong>analógica</strong> (de aguja) y una <strong>digital</strong>. El cliente pide 1 kg de limones.</p>
+            <p><strong>Pregunta:</strong> ¿Cuál báscula es más precisa y por qué? ¿Cuál es más fácil de leer para un niño?</p>
+          </div>
+
+          <div id="transferQuiz">
+            <div class="quiz-option" onclick="checkTransfer(0, this)">La analógica es mejor porque es antigua</div>
+            <div class="quiz-option" onclick="checkTransfer(1, this)">La digital es más precisa y fácil de leer</div>
+            <div class="quiz-option" onclick="checkTransfer(2, this)">Ambas son iguales</div>
+            <div class="quiz-option" onclick="checkTransfer(3, this)">La analógica no usa pilas</div>
+          </div>
+          <div id="transferFeedback" class="feedback-box"></div>
+
+          <div style="margin-top: 25px; border-top: 1px solid #E2E8F0; padding-top: 15px;">
+            <h4>🤝 Competencia Ciudadana: El Contrato del Taller</h4>
+            <p>Si rompes una herramienta o no cumples una norma en el taller, ¿qué acción reparadora deberías hacer?</p>
+            <textarea id="actionPlan" style="width: 100%; height: 80px; font-family: 'Nunito', sans-serif; padding: 10px; border: 1px solid #CBD5E0; border-radius: 8px; resize: vertical;" placeholder="Ej: Pedir disculpas, ayudar a arreglarlo, cuidar mejor las herramientas..."></textarea>
+          </div>
+        </div>
+
+        <aside class="panel">
+                    <h3>🌍 Impacto en la Comunidad</h3>
+          <p>El respeto por las herramientas y las normas nos permite aprender en paz y seguridad.</p>
+          <div style="text-align: center; margin-top: 15px;">
+            <div style="font-size: 3rem;">🤝</div>
+            <p style="font-weight: bold; color: var(--verde);">Responsabilidad = Confianza</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         MOMENTO 5: VALORACIÓN (Evaluación Final)
+    ══════════════════════════════════════════ -->
+    <section class="content-section" data-step="4">
+      <div class="moment-layout">
+        <div class="panel">
+          <h2>🏆 Valoración: Tu Logro Tecnológico</h2>
+          <p>Demuestra todo lo que aprendiste hoy sobre tecnología y convivencia. ¡Tienes una sola oportunidad por pregunta!</p>
+
+          <div class="nivel-selector" style="margin-bottom: 25px;">
+            <button class="nivel-btn active" onclick="setNivelFinal(3)">Grado 3°</button>
+            <button class="nivel-btn" onclick="setNivelFinal(4)">Grado 4°</button>
+            <button class="nivel-btn" onclick="setNivelFinal(5)">Grado 5°</button>
+          </div>
+
+          <div id="finalQuizContainer">
+            <!-- Preguntas dinámicas -->
+          </div>
+
+          <div id="finalScoreBoard" style="display: none; text-align: center; margin-top: 25px;">
+            <div style="font-size: 4rem; margin-bottom: 10px;">🏅</div>
+            <h3 style="color: var(--azul);">¡Evaluación Completada!</h3>
+            <p style="font-size: 1.2rem; font-weight: bold;">Puntaje Final: <span id="finalScoreVal">0</span> / 100</p>
+            <div id="finalMessage" style="font-weight: 700; color: var(--verde); margin: 10px 0;"></div>
+            
+            <div style="background: #F0F9FF; padding: 15px; border-radius: 10px; margin-top: 15px; text-align: left;">
+              <h4>📊 Desglose:</h4>
+              <p>Puntos por actividades: <span id="scoreActivities">0</span></p>
+              <p>Puntos por examen: <span id="scoreExam">0</span></p>
+              <p>Insignias ganadas: <span id="scoreBadges">0</span></p>
+            </div>
+
+            <button class="btn success" onclick="exportResults()" style="margin-top: 20px;">📥 Descargar Certificado</button>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <h3>🎖️ Tu Panel de Logros</h3>
+          <div id="earnedBadgesList" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+            <!-- Insignias ganadas -->
+          </div>
+          <div style="margin-top: 20px; padding: 15px; background: rgba(124, 58, 237, 0.05); border-radius: 10px;">
+            <p style="font-size: 0.9rem; font-style: italic;">
+              "La tecnología no es solo máquinas, es la solución creativa a problemas humanos." <br>
+              <strong>— Profe Nelson</strong>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- TOAST DE NOTIFICACIÓN -->
+<div id="toast">
+  <span id="toastIcon">ℹ️</span>
+  <span id="toastMsg">Mensaje</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT: LÓGICA DE LA GUÍA
+══════════════════════════════════════════ -->
+<script>
+/**
+ * CONFIGURACIÓN Y ESTADO GLOBAL
+ * Profe Nelson - IE Técnica Camacho Angarita
+ */
+const gameState = {
+  currentStep: 0,
+  points: 0,
+  nivel: 3, // 3, 4 o 5
+  nivelFinal: 3,
+  badges: [],
+  answers: {
+    exploration: false,
+    structure: false,
+    practice: false,
+    transfer: false,
+    final: false
+  },
+  actionPlan: '',
+  examPoints: 0
+};
+
+const badgeDefs = {
+  explorador: { name: 'Explorador Tech', icon: '🔍', desc: 'Identificó herramientas básicas' },
+  maestro: { name: 'Ingeniero Analógico', icon: '🎓', desc: 'Dominó los conceptos' },
+  practicante: { name: 'Practicante Rápido', icon: '⚡', desc: 'Resolvió retos de taller' },
+  innovador: { name: 'Innovador Ciudadano', icon: '🤝', desc: 'Aplicó convivencia y tecnología' },
+  campeon: { name: 'Maestro de Chichalá', icon: '🏆', desc: 'Evaluación final exitosa' }
+};
+
+// Elementos del DOM
+const steps = document.querySelectorAll('.content-section');
+const stages = document.querySelectorAll('.stage');
+const progressBar = document.getElementById('progressBar');
+const pointsDisplay = document.getElementById('pointsDisplay');
+const badgesContainer = document.getElementById('badgesContainer');
+const toast = document.getElementById('toast');
+const toastMsg = document.getElementById('toastMsg');
+const toastIcon = document.getElementById('toastIcon');
+
+// ══════════════════════════════════════════
+// INICIALIZACIÓN
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  updateUI();
+  renderBadges();
+  initStructureContent();
+  initPracticeContent();
+  initFinalQuiz();
+  initDragAndDrop();
+  initChart();
+  
+  // Navegación
+  document.getElementById('nextBtn').addEventListener('click', nextStep);
+  document.getElementById('prevBtn').addEventListener('click', prevStep);
+  document.getElementById('resetBtn').addEventListener('click', resetGame);
+  document.getElementById('exportBtn').addEventListener('click', exportResults);
+});
+
+// ══════════════════════════════════════════
+// UTILIDADES
+// ══════════════════════════════════════════
+function addPoints(amount, msg) {
+  gameState.points += amount;
+  pointsDisplay.textContent = gameState.points;
+  showToast(`+${amount} pts: ${msg}`, 'success');
+  saveState();
+}
+
+function showToast(msg, type = 'info') {
+  toastMsg.textContent = msg;
+  toastIcon.textContent = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+  toast.className = type === 'success' ? 'show success' : type === 'error' ? 'show error' : 'show';
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function saveState() {
+  localStorage.setItem('chicala_tech_state', JSON.stringify(gameState));
+}
+
+function loadState() {
+  const saved = localStorage.getItem('chicala_tech_state');
+  if (!saved) return;
+
+  try {
+    const data = JSON.parse(saved);
+    Object.assign(gameState, data);
+    pointsDisplay.textContent = gameState.points;
+    renderBadges();
+  } catch (error) {
+    localStorage.removeItem('chicala_tech_state');
+  }
+}
+
+function resetGame() {
+  if (confirm('¿Estás seguro de reiniciar todo el progreso?')) {
+    localStorage.removeItem('chicala_tech_state');
+    location.reload();
+  }
+}
+
+// ══════════════════════════════════════════
+// NAVEGACIÓN
+// ══════════════════════════════════════════
+function updateUI() {
+  steps.forEach((s, i) => s.classList.toggle('active', i === gameState.currentStep));
+  stages.forEach((st, i) => {
+    st.classList.toggle('active', i === gameState.currentStep);
+    if (i < gameState.currentStep) st.style.opacity = '0.6';
+    else st.style.opacity = '1';
+  });
+  
+  const pct = ((gameState.currentStep + 1) / steps.length) * 100;
+  progressBar.style.width = `${pct}%`;
+  
+  document.getElementById('prevBtn').disabled = gameState.currentStep === 0;
+  document.getElementById('nextBtn').disabled = gameState.currentStep === steps.length - 1;
+}
+
+function nextStep() {
+  if (gameState.currentStep < steps.length - 1) {
+    gameState.currentStep++;
+    updateUI();
+    saveState();
+    // Auto-cargar contenido si es necesario
+    if (gameState.currentStep === 2) initPracticeContent();
+    if (gameState.currentStep === 4) initFinalQuiz();
+  }
+}
+
+function prevStep() {
+  if (gameState.currentStep > 0) {
+    gameState.currentStep--;
+    updateUI();
+    saveState();
+  }
+}
+
+// ══════════════════════════════════════════
+// GESTIÓN DE NIVELES (MULTIGRADO)
+// ══════════════════════════════════════════
+function setNivel(n) {
+  gameState.nivel = n;
+  document.querySelectorAll('.content-section[data-step="1"] .nivel-selector button, .content-section[data-step="2"] .nivel-selector button').forEach(b => {
+    const btnNivel = parseInt(b.textContent.match(/\d+/)[0]);
+    b.classList.toggle('active', btnNivel === n);
+  });
+  initStructureContent();
+  initPracticeContent();
+}
+
+function setNivelFinal(n) {
+  gameState.nivelFinal = n;
+  document.querySelectorAll('.content-section[data-step="4"] .nivel-selector button').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(n.toString()));
+  });
+  initFinalQuiz();
+}
+
+// ══════════════════════════════════════════
+// MOMENTO 1: EXPLORACIÓN
+// ══════════════════════════════════════════
+function checkExploration(idx, btn) {
+  if (gameState.answers.exploration) return;
+  
+  const correct = idx === 1; // La sierra manual es humana, la eléctrica usa energía
+  const feedback = document.getElementById('expFeedback');
+  
+  if (correct) {
+    btn.classList.add('correct');
+    feedback.textContent = '¡Exacto! El trabajo manual usa fuerza humana, el eléctrico usa energía.';
+    feedback.className = 'feedback-box show correct';
+    addPoints(20, '¡Buen inicio!');
+    gameState.answers.exploration = true;
+    unlockBadge('explorador');
+  } else {
+    btn.classList.add('incorrect');
+    feedback.textContent = 'Inténtalo de nuevo. Piensa: ¿Qué mueve a cada herramienta?';
+    feedback.className = 'feedback-box show incorrect';
+  }
+}
+
+// ══════════════════════════════════════════
+// MOMENTO 2: ESTRUCTURACIÓN
+// ══════════════════════════════════════════
+function initStructureContent() {
+  const n = gameState.nivel;
+  let html = '';
+  
+  if (n === 3) {
+    html = `
+      <div class="tag tag-3">Nivel 3°</div>
+      <h3>🌱 Manual vs. Eléctrico</h3>
+      <p><strong>Manual:</strong> Usa la fuerza de las personas (ej: martillo, sierra de mano).</p>
+      <p><strong>Eléctrico:</strong> Usa energía eléctrica para funcionar (ej: taladro, licuadora).</p>
+      <p>¡Ambos son útiles dependiendo del trabajo!</p>
+    `;
+  } else if (n === 4) {
+    html = `
+      <div class="tag tag-4">Nivel 4°</div>
+      <h3>🔄 Analógico vs. Digital</h3>
+      <p><strong>Analógico:</strong> Muestra información continua (agujas, escalas graduadas).</p>
+      <p><strong>Digital:</strong> Muestra información en números o códigos discretos (pantallas, botones).</p>
+      <p>El mundo digital es más preciso y fácil de leer.</p>
+    `;
+  } else {
+    html = `
+      <div class="tag tag-5">Nivel 5°</div>
+      <h3>⚖️ Evolución Tecnológica</h3>
+      <p>Los artefactos han evolucionado de <strong>manuales</strong> a <strong>eléctricos analógicos</strong> y luego a <strong>digitales</strong>.</p>
+      <p>La tecnología digital permite mayor precisión, almacenamiento de datos y automatización.</p>
+      <p>Ejemplo: Reloj de arena → Reloj de manecillas → Reloj digital inteligente.</p>
+    `;
+  }
+  
+  document.getElementById('structureDescription').innerHTML = html;
+  
+  // Visualización dinámica
+  const visual = document.getElementById('termsVisual');
+  visual.innerHTML = `
+    <div class="objeto-card" style="border-color: var(--naranja);">🪚<br><small>Manual</small></div>
+    <div style="font-size:1.5rem">➡</div>
+    <div class="objeto-card" style="border-color: var(--azul);">📻<br><small>Analógico</small></div>
+    <div style="font-size:1.5rem">➡</div>
+    <div class="objeto-card" style="border-color: var(--morado);">📱<br><small>Digital</small></div>
+  `;
+}
+
+function initDragAndDrop() {
+  const draggables = document.querySelectorAll('.draggable-item');
+  const dropZones = document.querySelectorAll('.drop-zone');
+  let correctCount = 0;
+
+  draggables.forEach(d => {
+    d.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('elementId', d.id);
+      e.dataTransfer.setData('match', d.dataset.match);
+    });
+  });
+
+  dropZones.forEach(z => {
+    z.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      z.classList.add('highlight');
+    });
+    z.addEventListener('dragleave', () => z.classList.remove('highlight'));
+    
+    z.addEventListener('drop', (e) => {
+      e.preventDefault();
+      z.classList.remove('highlight');
+      
+      const item = document.getElementById(e.dataTransfer.getData('elementId'));
+      const match = e.dataTransfer.getData('match');
+      const target = z.dataset.target;
+      
+      if (item && match === target) {
+        z.innerHTML = '';
+        item.draggable = false;
+        item.style.background = '#ECFDF5';
+        item.style.borderColor = 'var(--verde)';
+        z.appendChild(item);
+        correctCount++;
+        addPoints(10, '¡Clasificación correcta!');
+        
+        if (correctCount === 3) {
+          const fb = document.getElementById('structFeedback');
+          fb.textContent = '¡Excelente! Has dominado los conceptos tecnológicos.';
+          fb.className = 'feedback-box show correct';
+          gameState.answers.structure = true;
+          unlockBadge('maestro');
+        }
+      } else {
+        showToast('¡Ups! Ese no es el tipo correcto.', 'error');
+      }
+    });
+  });
+}
+
+// ══════════════════════════════════════════
+// MOMENTO 3: PRÁCTICA
+// ══════════════════════════════════════════
+function initPracticeContent() {
+  const n = gameState.nivel;
+  const container = document.getElementById('practiceContainer');
+  let html = '';
+
+  if (n === 3) {
+    html = `
+      <div class="tag tag-3">Reto 3°</div>
+      <h3>🔨 Clasifica las Herramientas</h3>
+      <p>Don Efraín tiene estas herramientas en su taller:</p>
+      <div class="visual-area">
+        <div class="objeto-card">🪚 Sierra de mano</div>
+        <div class="objeto-card">⚡ Taladro</div>
+        <div class="objeto-card">🔨 Martillo</div>
+        <div class="objeto-card">💡 Lámpara</div>
+      </div>
+      <p>¿Cuáles son manuales y cuáles eléctricas?</p>
+            <div id="practica3-input" style="text-align:center; margin-top:15px;">
+        <p><strong>Manuales:</strong> <input type="text" id="p3-manual" placeholder="Ej: martillo, sierra" style="width:100px; padding:5px;"></p>
+        <p><strong>Eléctricos:</strong> <input type="text" id="p3-electrico" placeholder="Ej: taladro, lámpara" style="width:100px; padding:5px;"></p>
+        <button class="btn" onclick="checkPractice3()" style="margin-top:10px;">Verificar</button>
+      </div>
+    `;
+  } else if (n === 4) {
+    html = `
+      <div class="tag tag-4">Reto 4°</div>
+      <h3>📻 Analógico o Digital</h3>
+      <p>Clasifica los siguientes artefactos que encontró en el mercado:</p>
+      <div class="visual-area">
+        <div class="objeto-card">📻 Radio antigua (Agujas)</div>
+        <div class="objeto-card">📱 Celular Smart</div>
+        <div class="objeto-card">⌚ Reloj de pulsera (Agujas)</div>
+        <div class="objeto-card">🖥️ Computador</div>
+      </div>
+      <div id="practica4-input" style="text-align:center; margin-top:15px;">
+        <p><strong>Analógicos:</strong> <input type="text" id="p4-analog" placeholder="Ej: radio, reloj" style="width:100px; padding:5px;"></p>
+        <p><strong>Digitales:</strong> <input type="text" id="p4-digital" placeholder="Ej: celular, PC" style="width:100px; padding:5px;"></p>
+        <button class="btn" onclick="checkPractice4()" style="margin-top:10px;">Verificar</button>
+      </div>
+    `;
+  } else {
+    html = `
+      <div class="tag tag-5">Reto 5°</div>
+      <h3>🚀 Evolución Tecnológica</h3>
+      <p>Explica brevemente cómo ha evolucionado el "reloj" desde lo manual hasta lo digital inteligente.</p>
+      <div id="practica5-input" style="text-align:center; margin-top:15px;">
+        <textarea id="p5-desc" style="width:100%; height:80px; padding:8px; border-radius:6px; border:1px solid #CBD5E0;" placeholder="Escribe tu explicación..."></textarea>
+        <button class="btn" onclick="checkPractice5()" style="margin-top:10px;">Enviar Respuesta</button>
+      </div>
+      <p style="font-size:0.85rem; color:#718096; margin-top:8px;"><em>Nota: El profesor evaluará la creatividad y precisión.</em></p>
+    `;
+  }
+
+  container.innerHTML = html;
+  document.getElementById('practiceFeedback').style.display = 'none';
+}
+
+function checkPractice3() {
+  const manual = document.getElementById('p3-manual').value.toLowerCase();
+  const electrico = document.getElementById('p3-electrico').value.toLowerCase();
+  const fb = document.getElementById('practiceFeedback');
+  
+  // Validación simple: debe mencionar al menos uno de cada grupo
+  const manualCorrect = manual.includes('martillo') || manual.includes('sierra');
+  const electricoCorrect = electrico.includes('taladro') || electrico.includes('lampara');
+
+  if (manualCorrect && electricoCorrect) {
+    fb.textContent = '¡Correcto! Has clasificado bien las herramientas.';
+    fb.className = 'feedback-box show correct';
+    if (!gameState.answers.practice) {
+      addPoints(25, '¡Clasificación perfecta!');
+      gameState.answers.practice = true;
+      unlockBadge('practicante');
+    }
+  } else {
+    fb.textContent = 'Revisa: ¿Cuáles usan fuerza humana y cuáles necesitan enchufe o pilas?';
+    fb.className = 'feedback-box show incorrect';
+  }
+}
+
+function checkPractice4() {
+  const analog = document.getElementById('p4-analog').value.toLowerCase();
+  const digital = document.getElementById('p4-digital').value.toLowerCase();
+  const fb = document.getElementById('practiceFeedback');
+  
+  const analogCorrect = analog.includes('radio') || analog.includes('reloj');
+  const digitalCorrect = digital.includes('celular') || digital.includes('computador') || digital.includes('pc');
+
+  if (analogCorrect && digitalCorrect) {
+    fb.textContent = '¡Excelente! Diferenciaste bien entre señal continua y números.';
+    fb.className = 'feedback-box show correct';
+    if (!gameState.answers.practice) {
+      addPoints(25, '¡Análisis preciso!');
+      gameState.answers.practice = true;
+      unlockBadge('practicante');
+    }
+  } else {
+    fb.textContent = 'Piensa: ¿Muestra agujas o números? ¿Es continuo o discreto?';
+    fb.className = 'feedback-box show incorrect';
+  }
+}
+
+function checkPractice5() {
+  const desc = document.getElementById('p5-desc').value.toLowerCase();
+  const fb = document.getElementById('practiceFeedback');
+  
+  // Validación de palabras clave
+  const tieneManual = desc.includes('manual') || desc.includes('arena') || desc.includes('sol');
+  const tieneAnalog = desc.includes('analogico') || desc.includes('aguja') || desc.includes('manecilla');
+  const tieneDigital = desc.includes('digital') || desc.includes('numero') || desc.includes('electronico');
+
+  if (tieneManual && tieneAnalog && tieneDigital) {
+    fb.textContent = '¡Impresionante! Has descrito la evolución tecnológica con claridad.';
+    fb.className = 'feedback-box show correct';
+    if (!gameState.answers.practice) {
+      addPoints(30, '¡Explicación maestra!');
+      gameState.answers.practice = true;
+      unlockBadge('practicante');
+    }
+  } else {
+    fb.textContent = 'Intenta mencionar las tres etapas: Manual, Analógico y Digital.';
+    fb.className = 'feedback-box show incorrect';
+  }
+}
+
+// ══════════════════════════════════════════
+// MOMENTO 4: TRANSFERENCIA
+// ══════════════════════════════════════════
+function checkTransfer(idx, btn) {
+  if (gameState.answers.transfer) return;
+  
+  const correct = idx === 1; // La digital es más precisa y fácil de leer
+  const fb = document.getElementById('transferFeedback');
+  
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = '¡Correcto! La tecnología digital ofrece mayor precisión y facilidad de lectura.';
+    fb.className = 'feedback-box show correct';
+    addPoints(25, '¡Solución inteligente!');
+    gameState.answers.transfer = true;
+    unlockBadge('innovador');
+    
+    // Guardar propuesta de acción (ciudadanía)
+    gameState.actionPlan = document.getElementById('actionPlan').value;
+    saveState();
+  } else {
+    btn.classList.add('incorrect');
+    fb.textContent = 'Piensa: ¿Cuál te da un número exacto y cuál requiere estimar con una aguja?';
+    fb.className = 'feedback-box show incorrect';
+  }
+}
+
+// ══════════════════════════════════════════
+// MOMENTO 5: VALORACIÓN (EXAMEN FINAL)
+// ══════════════════════════════════════════
+function initFinalQuiz() {
+  const n = gameState.nivelFinal;
+  const container = document.getElementById('finalQuizContainer');
+  let html = '<div style="display:grid; gap:15px;">';
+
+  gameState.examPoints = 0;
+  gameState.examAnswered = 0;
+
+  // Preguntas base
+  const q1 = {
+    q: '¿Qué tipo de artefacto depende exclusivamente de la fuerza humana?',
+    opts: ['Eléctrico', 'Digital', 'Manual', 'Analógico'],
+    ans: 2
+  };
+  
+  let q2, q3;
+
+  if (n === 3) {
+    q2 = {
+      q: 'Un reloj de manecillas es un ejemplo de tecnología:',
+      opts: ['Digital', 'Analógica', 'Eléctrica', 'Automática'],
+      ans: 1
+    };
+    q3 = {
+      q: 'Si rompes una herramienta en el taller, la acción reparadora correcta es:',
+      opts: ['Esconderla', 'Pedir disculpas y ayudar a repararla', 'Culpar a otro', 'Ignorar el hecho'],
+      ans: 1
+    };
+  } else if (n === 4) {
+    q2 = {
+      q: 'La principal ventaja de un dispositivo digital sobre uno analógico es:',
+      opts: ['Es más barato', 'Es más preciso y fácil de leer', 'No usa pilas', 'Es más antiguo'],
+      ans: 1
+    };
+    q3 = {
+      q: '¿Cuál de estos NO es un artefacto eléctrico?',
+      opts: ['Licuadora', 'Taladro', 'Martillo', 'Lámpara'],
+      ans: 2
+    };
+  } else {
+    q2 = {
+      q: 'La evolución tecnológica busca principalmente:',
+      opts: ['Hacer las cosas más difíciles', 'Mejorar la calidad de vida y eficiencia', 'Usar más pilas', 'Eliminar el trabajo humano'],
+      ans: 1
+    };
+    q3 = {
+      q: 'En el contexto de la convivencia, "acción reparadora" significa:',
+      opts: ['Castigar al culpable', 'Reparar el daño causado y restaurar la relación', 'Ignorar el problema', 'Pedir dinero'],
+      ans: 1
+    };
+  }
+
+  const questions = [q1, q2, q3];
+
+  questions.forEach((q, i) => {
+    html += `<div style="background:white; padding:15px; border-radius:8px; border:1px solid #E2E8F0;">
+      <p style="font-weight:700; margin-bottom:10px;">${i+1}. ${q.q}</p>
+      <div class="quiz-options-${i}">
+        ${q.opts.map((opt, idx) => 
+          `<div class="quiz-option" onclick="checkFinal(${i}, ${idx}, ${q.ans}, this)">${opt}</div>`
+        ).join('')}
+      </div>
+      <div class="feedback-box final-feedback-${i}"></div>
+    </div>`;
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+  document.getElementById('finalScoreBoard').style.display = 'none';
+}
+
+function checkFinal(qIdx, optIdx, correctIdx, btn) {
+  const options = btn.parentElement.querySelectorAll('.quiz-option');
+  const fb = btn.parentElement.parentElement.querySelector(`.final-feedback-${qIdx}`);
+  
+  // Bloquear opciones
+  options.forEach(o => o.style.pointerEvents = 'none');
+  
+  if (optIdx === correctIdx) {
+    btn.classList.add('correct');
+    fb.textContent = '¡Correcto!';
+    fb.className = 'feedback-box show correct';
+    gameState.examPoints += 10;
+    addPoints(10, 'Pregunta correcta');
+  } else {
+    btn.classList.add('incorrect');
+    options[correctIdx].classList.add('correct');
+    fb.textContent = 'Incorrecto. La respuesta era la marcada.';
+    fb.className = 'feedback-box show incorrect';
+  }
+  
+  gameState.examAnswered++;
+  
+  // Verificar si todas respondidas
+  if (gameState.examAnswered >= 3 && !gameState.answers.final) {
+    gameState.answers.final = true;
+    showFinalResults();
+  }
+}
+
+function showFinalResults() {
+  const board = document.getElementById('finalScoreBoard');
+  const totalScore = gameState.points;
+  const examScore = gameState.examPoints;
+  const activitiesScore = totalScore - examScore;
+  
+  document.getElementById('finalScoreVal').textContent = totalScore;
+  document.getElementById('scoreActivities').textContent = activitiesScore;
+  document.getElementById('scoreExam').textContent = examScore;
+  
+  let msg = '';
+  if (totalScore >= 80) {
+    msg = '¡Felicidades! Eres un Maestro Tecnológico de Chichalá.';
+    unlockBadge('campeon');
+  } else if (totalScore >= 60) {
+    msg = '¡Muy bien! Sigue practicando para ser un experto.';
+  } else {
+    msg = 'Buen intento. Repasa los conceptos y vuelve a intentarlo.';
+  }
+  
+  document.getElementById('finalMessage').textContent = msg;
+  document.getElementById('scoreBadges').textContent = gameState.badges.length;
+  board.style.display = 'block';
+  renderEarnedBadges();
+}
+
+function unlockBadge(key) {
+  if (!gameState.badges.includes(key)) {
+    gameState.badges.push(key);
+    renderBadges();
+    showToast(`🎖️ ¡Insignia desbloqueada: ${badgeDefs[key].name}!`, 'success');
+    saveState();
+  }
+}
+
+function renderBadges() {
+  badgesContainer.innerHTML = '';
+  Object.keys(badgeDefs).forEach(key => {
+    const badge = badgeDefs[key];
+    const el = document.createElement('div');
+    el.className = `badge ${gameState.badges.includes(key) ? 'unlocked' : ''}`;
+    el.innerHTML = `${badge.icon}<div class="badge-tooltip">${badge.name}</div>`;
+    el.title = badge.desc;
+    badgesContainer.appendChild(el);
+  });
+}
+
+function renderEarnedBadges() {
+  const list = document.getElementById('earnedBadgesList');
+  list.innerHTML = '';
+  gameState.badges.forEach(key => {
+    const b = badgeDefs[key];
+    const el = document.createElement('div');
+    el.style.cssText = 'background:linear-gradient(135deg,#FDE68A,#F7C325); padding:10px; border-radius:8px; text-align:center; min-width:80px;';
+    el.innerHTML = `<div style="font-size:1.5rem">${b.icon}</div><div style="font-size:0.7rem; font-weight:bold">${b.name}</div>`;
+    list.appendChild(el);
+  });
+}
+
+// ══════════════════════════════════════════
+// EXPORTAR RESULTADOS
+// ══════════════════════════════════════════
+function exportResults() {
+  const fecha = new Date().toLocaleDateString('es-ES');
+  const nombre = prompt('Ingresa tu nombre para el certificado:');
+  if (!nombre) return;
+
+  const contenido = `
+    =========================================
+    CERTIFICADO DE LOGROS - TECNOLOGÍA
+    IE TÉCNICA CAMACHO ANGARITA - SEDE CHICHALÁ
+    =========================================
+    Estudiante: ${nombre}
+    Fecha: ${fecha}
+    Grado: ${gameState.nivelFinal}°
+    
+    PUNTUAJE TOTAL: ${gameState.points} / 100
+    
+    INSIGNIAS GANADAS:
+    ${gameState.badges.map(b => `- ${badgeDefs[b].name}`).join('\n')}
+    
+    COMPROMISO CIUDADANO:
+    ${gameState.actionPlan || 'No registrado'}
+    
+    "La tecnología no es solo máquinas, es la solución creativa a problemas humanos."
+    =========================================
+  `;
+
+  const blob = new Blob([contenido], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Certificado_Tecnologia_${nombre.replace(/\s+/g, '_')}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  showToast('✅ Certificado descargado', 'success');
+}
+
+// ══════════════════════════════════════════
+// GRÁFICO DE CONCEPTOS (Chart.js)
+// ══════════════════════════════════════════
+function initChart() {
+  const ctx = document.getElementById('conceptChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Manual', 'Analógico', 'Digital'],
+      datasets: [{
+        data: [30, 35, 35],
+        backgroundColor: ['#F4872B', '#1A9BAB', '#7C3AED'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        title: { display: true, text: 'Evolución Tecnológica' }
+      }
+    }
+  });
+}
+</script>
+
+<footer class="footer">
+    <div style="text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid #E2E8F0; color:#718096; font-size:0.85rem;">
+    <p>IE Técnica Camacho Angarita · Sede Chichalá</p>
+    <p>Corregimiento El Limón · Chaparral, Tolima</p>
+    <p>📧 chaparral.ietcamachoangarita@sedtolima.edu.co</p>
+    <p style="margin-top:8px; font-style:italic;">"Paz, Tolerancia y Convivencia"</p>
+  </div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <a href="../../../asignaturas/tecnologia-pri.html" class="btn" style="background:var(--naranja); color:white; padding:10px 20px; border-radius:50px; text-decoration:none; font-weight:700;">⬅ Volver al Inicio</a>
+  </div>
+</div>
+
+<style>
+  /* Estilos adicionales para el footer y botón volver */
+  .btn-volver {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--naranja), #D97706);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 6px rgba(244, 135, 43, 0.2);
+    transition: all 0.2s;
+  }
+  .btn-volver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(244, 135, 43, 0.3);
+  }
+</style>
+
+</body>
+</html>
