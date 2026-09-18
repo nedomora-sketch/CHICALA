@@ -2104,7 +2104,7 @@ function renderQuizPregunta() {
         ${shuffled.map((op, i) => `
           <button class="quiz-opcion"
             data-op="${op}"
-            onclick="checkQuizOpcion(this, ${JSON.stringify(op)})">
+            onclick="checkQuizOpcion(this, this.dataset.op)">
             <span class="quiz-letra">${letras[i]}</span>
             ${op}
           </button>`).join('')}

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Matemáticas Pensamiento Numérico · Grados 3°-4°-5° · Semana 1 · Período 4 · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🧮 Matemáticas Aventura · Semana 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   MATEMÁTICAS AVENTURA · SEMANA 1 · PERÍODO 4
+   Basado en la plantilla "Inventores de Chichalá"
+   Grados 3°-4°-5° · IE Técnica Camacho Angarita
+   v1 — Mallas + Guías visuales + Tarjetas interactivas
+══════════════════════════════════════════════ */
+:root{
+  --inv-naranja:#FF6B35; --inv-azul:#1A9BAB; --inv-verde:#3DBE8C;
+  --inv-morado:#7C3AED;  --inv-amarillo:#FFD23F; --inv-rosa:#FF6B9D;
+  --inv-rojo:#EF4444;    --inv-celeste:#38BDF8;
+  --inv-bg:#F0F9FF;      --inv-card:#FFFFFF;
+  --inv-texto:#1E293B;   --inv-dim:#64748B; --inv-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--inv-bg);color:var(--inv-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(255,107,53,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* BARRA DE PROGRESO */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--inv-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--inv-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--inv-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--inv-verde),var(--inv-azul));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(61,190,140,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* HERO */
+.hero-header{background:linear-gradient(135deg,#1A9BAB 0%,#3DBE8C 45%,#7C3AED 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'➗';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'📐';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--inv-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-mapa::before{background:linear-gradient(180deg,var(--inv-azul),var(--inv-celeste))}
+.seccion-guia::before{background:linear-gradient(180deg,var(--inv-naranja),var(--inv-amarillo))}
+.seccion-juego::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-azul))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--inv-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--inv-dim);font-weight:600;margin-top:2px}
+
+/* TABS DE GRADO */
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .25s;color:var(--inv-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-3{background:var(--inv-verde);border-color:var(--inv-verde);color:white;box-shadow:0 4px 12px rgba(61,190,140,.35)}
+.nivel-tab.activo-4{background:var(--inv-azul);border-color:var(--inv-azul);color:white;box-shadow:0 4px 12px rgba(26,155,171,.35)}
+.nivel-tab.activo-5{background:var(--inv-morado);border-color:var(--inv-morado);color:white;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--inv-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado3{border-color:var(--inv-verde)}
+.nivel-card.grado4{border-color:var(--inv-azul)}
+.nivel-card.grado5{border-color:var(--inv-morado)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
+.grado3 .nivel-badge{background:var(--inv-verde)}
+.grado4 .nivel-badge{background:var(--inv-azul)}
+.grado5 .nivel-badge{background:var(--inv-morado)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(26,155,171,.1);color:var(--inv-azul);border:1px solid rgba(26,155,171,.25)}
+
+/* ══ VISOR DE IMÁGENES (MALLA + GUÍA) ══ */
+.visor-bloque{margin-bottom:22px}
+.visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.visor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.95rem;flex-shrink:0}
+.visor-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:0;color:var(--inv-texto)}
+.visor-cabecera .paso-tag{font-size:.7rem;font-weight:800;padding:3px 12px;border-radius:50px;background:rgba(56,189,248,.12);color:#0369A1;border:1px solid rgba(56,189,248,.3);letter-spacing:.05em}
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--inv-border);background:linear-gradient(135deg,#F8FAFC,#EFF6FF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s, max-height .3s ease;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.marco-img.expanded{max-height:none;box-shadow:var(--sombra-lg);border-width:4px}
+.marco-img.expanded img{transform:scale(1.04)}
+.marco-img.malla-3{border-color:var(--inv-verde)}
+.marco-img.malla-4{border-color:var(--inv-azul)}
+.marco-img.malla-5{border-color:var(--inv-morado)}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--inv-azul);box-shadow:var(--sombra-sm);pointer-events:none;display:flex;align-items:center;gap:6px}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--inv-dim);font-size:.85rem}
+.marco-img.sin-img .img-fallback{display:block}
+.marco-img.sin-img img{display:none}
+.ruta-code{font-family:'Courier New',monospace;background:#EEF2FF;color:#4338CA;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeSlide .3s ease}
+.lightbox.visible{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;border-radius:var(--r-md);box-shadow:0 24px 80px rgba(0,0,0,.5);object-fit:contain}
+.lightbox-cerrar{position:absolute;top:18px;right:22px;background:white;border:none;width:44px;height:44px;border-radius:50%;font-size:1.3rem;font-weight:900;color:var(--inv-texto);cursor:pointer;box-shadow:var(--sombra-md);transition:transform .2s}
+.lightbox-cerrar:hover{transform:scale(1.1) rotate(90deg)}
+.lightbox-pie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);border-radius:50px;padding:8px 24px;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--inv-texto);white-space:nowrap}
+.flecha-lb{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;font-weight:900;color:var(--inv-azul);cursor:pointer;box-shadow:var(--sombra-md);transition:all .2s}
+.flecha-lb:hover{transform:translateY(-50%) scale(1.15);background:white}
+.flecha-prev{left:16px}.flecha-next{right:16px}
+
+/* TARJETAS CONCEPTO CLAVE (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(255,107,53,.07);border-color:var(--inv-naranja)}
+.concepto-card.geo{background:rgba(26,155,171,.07);border-color:var(--inv-azul)}
+.concepto-card.met{background:rgba(61,190,140,.07);border-color:var(--inv-verde)}
+.concepto-card.ale{background:rgba(255,107,157,.07);border-color:var(--inv-rosa)}
+.concepto-card.var{background:rgba(124,58,237,.07);border-color:var(--inv-morado)}
+.concepto-card.frac{background:rgba(255,210,63,.1);border-color:var(--inv-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--inv-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--inv-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--inv-naranja)}
+.concepto-card.geo .concepto-flip{background:var(--inv-azul)}
+.concepto-card.met .concepto-flip{background:var(--inv-verde)}
+.concepto-card.ale .concepto-flip{background:var(--inv-rosa)}
+.concepto-card.var .concepto-flip{background:var(--inv-morado)}
+.concepto-card.frac .concepto-flip{background:var(--inv-amarillo);color:var(--inv-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+/* RETO RÁPIDO */
+.reto-box{background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:2px dashed var(--inv-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#B45309;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.reto-linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px}
+
+/* BOTÓN COMPLETAR */
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 24px rgba(26,155,171,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+/* CIUDADANÍA */
+.lineas{margin-top:10px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--inv-azul)}
+.cc-caja{background:rgba(61,190,140,.07);border:2px solid var(--inv-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-amarillo),var(--inv-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #B45309,0 8px 20px rgba(255,107,53,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #B45309,0 14px 28px rgba(255,107,53,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #B45309,0 4px 10px rgba(255,107,53,.2)}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border:3px solid var(--inv-celeste);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--inv-azul);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--inv-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--inv-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--inv-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(255,210,63,.12),rgba(61,190,140,.1),rgba(26,155,171,.08));border:4px solid var(--inv-amarillo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--inv-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--inv-azul);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--inv-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));box-shadow:0 4px 0 rgba(26,155,171,.4)}
+
+/* FOOTER RESUMIDO */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--inv-border);color:var(--inv-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--inv-azul);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--inv-azul);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--inv-azul);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 28px rgba(26,155,171,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .visor-cabecera h4{font-size:.95rem}
+  .img-lupa{font-size:.68rem;padding:5px 10px}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.lightbox{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🧮 MISIÓN</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré la Malla">🗺️</span>
+      <span class="pieza" id="pieza-2" title="Leí mi Guía">📘</span>
+      <span class="pieza" id="pieza-3" title="Descubrí los 5 pensamientos">💡</span>
+      <span class="pieza" id="pieza-4" title="Retos resueltos">⚡</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER (se conserva igual que tu modelo) -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🧮 MISIÓN NUMÉRICA ACTIVA</div>
+    <h1 class="hero-titulo">🧮 Matemáticas Aventura<br/>¡Piensa, Resuelve y Avanza!</h1>
+    <p class="hero-subtitulo">Matemáticas · Semana 1 · Período 4 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+            <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 4°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 17 septiembre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 1: VISOR DE MALLAS Y GUÍAS (INTERACTIVO)
+  ══════════════════════ -->
+  <div class="seccion seccion-mapa">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗺️</span>
+      <h3>Exploración Visual · Malla Curricular + Guía Didáctica</h3>
+      <small>👆 ¡Pasa el mouse para ver detalles o haz clic para ampliar!</small>
+    </div>
+
+    <!-- Tabs de grado -->
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">🟢 Grado 3° · Explorador</button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">🔵 Grado 4° · Estratega</button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">🟣 Grado 5° · Maestro</button>
+    </div>
+
+    <!-- PANEL GRADO 3 -->
+    <div class="nivel-panel activo" id="panel-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Explorador de Números</span>
+          <span class="nivel-dba">DBA: Reconoce fracciones, potencias y divisiones básicas</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-verde)">1</div>
+            <h4>Malla Curricular · Pensamiento Numérico</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-3" data-index="0" ondblclick="abrirLightbox(0)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_3.png" alt="Malla Curricular Grado 3°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_3.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-amarillo)">2</div>
+            <h4>Guía Didáctica · Fracciones y Divisibilidad</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-3" data-index="1" ondblclick="abrirLightbox(1)" onclick="toggleZoom(this)">
+            <img src="Guia_1_Grado_3.png" alt="Guía Didáctica Grado 3°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Guia_1_Grado_3.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-3 -->
+
+    <!-- PANEL GRADO 4 -->
+    <div class="nivel-panel" id="panel-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Estratega Numérico</span>
+          <span class="nivel-dba">DBA: Operaciones con fracciones, porcentajes y probabilidad básica</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-azul)">1</div>
+            <h4>Malla Curricular · Pensamiento Numérico y Aleatorio</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-4" data-index="2" ondblclick="abrirLightbox(2)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_4.png" alt="Malla Curricular Grado 4°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_4.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-rosa)">2</div>
+            <h4>Guía Didáctica · Fracciones, Porcentajes y Retos</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-4" data-index="3" ondblclick="abrirLightbox(3)" onclick="toggleZoom(this)">
+            <img src="Guia_1_Grado_4.png" alt="Guía Didáctica Grado 4°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Guia_1_Grado_4.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-4 -->
+
+    <!-- PANEL GRADO 5 -->
+    <div class="nivel-panel" id="panel-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟣 Grado 5° · Maestro de Números</span>
+          <span class="nivel-dba">DBA: Potenciación, radicación, decimales y proporcionalidad</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-morado)">1</div>
+            <h4>Malla Curricular · Pensamiento Numérico y Geométrico</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-5" data-index="4" ondblclick="abrirLightbox(4)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_5.png" alt="Malla Curricular Grado 5°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_5.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-morado)">2</div>
+            <h4>Guía Didáctica · Potencias, Raíces y Planos</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-5" data-index="5" ondblclick="abrirLightbox(5)" onclick="toggleZoom(this)">
+            <img src="Guia_1_Grado_5.png" alt="Guía Didáctica Grado 5°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Guia_1_Grado_5.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-morado)">3</div>
+            <h4>Actividad adicional</h4>
+            <span class="paso-tag">PASO 3: EXTRAS</span>
+          </div>
+          <div class="marco-img malla-5" data-index="6" ondblclick="abrirLightbox(6)" onclick="toggleZoom(this)">
+            <img src="Guia_1_Grado_5A.png" alt="Actividad adicional Grado 5°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Guia_1_Grado_5A.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-5 -->
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre del Saber</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ ¡Secretos Matemáticos Desvelados!</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🍕</span>
+      <div><strong>La pizza favorita de los matemáticos?</strong> Es la de "infinitas rebanadas" (¡porque cada vez que la cortas, obtienes más trozos!).</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🏛️</span>
+      <div><strong>El símbolo "π" (pi) no es solo para círculos:</strong> ¡Se usa en astronomía, ingeniería y hasta en música!</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá, las matemáticas están en todo:</strong> En el trapiche (fracciones), en la finca (medidas), en el mercado (porcentajes).</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p>Ha completado exitosamente la <strong>Semana 1 · Matemáticas Aventura</strong> con dedicación y creatividad.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">3°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌿 Matemáticas con corazón · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con amor por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+  <!-- LIGHTBOX (VISOR DE IMÁGENES) -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Vista ampliada"/>
+    <div class="lightbox-pie" id="lightbox-pie">Vista ampliada</div>
+    <button class="flecha-lb flecha-prev" onclick="cambiarImg(-1)">❮</button>
+    <button class="flecha-lb flecha-next" onclick="cambiarImg(1)">❯</button>
+  </div>
+
+</div><!-- fin container -->
+
+<!-- JAVASCRIPT -->
+<script>
+// Variables globales
+let indiceImgActual = 0;
+const imagenes = [
+  'Malla_1_Grado_3.png', 'Guia_1_Grado_3.png',
+  'Malla_1_Grado_4.png', 'Guia_1_Grado_4.png',
+  'Malla_1_Grado_5.png', 'Guia_1_Grado_5.png', 'Guia_1_Grado_5A.png'
+];
+
+// Cambiar nivel (grado)
+function cambiarNivel(grado, btn){
+  document.querySelectorAll('.nivel-panel').forEach(p => p.classList.remove('activo'));
+  document.getElementById('panel-'+grado).classList.add('activo');
+  document.querySelectorAll('.nivel-tab').forEach(t => t.classList.remove('activo-3','activo-4','activo-5'));
+  btn.classList.add('activo-'+grado);
+
+  document.querySelectorAll('.marco-img').forEach(img => {
+    img.classList.remove('expanded');
+    const badge = img.querySelector('.img-lupa');
+    if (badge) badge.textContent = '🔍 Ampliar';
+  });
+}
+
+// Alternar zoom dentro de la página
+function toggleZoom(element){
+  const isExpanded = element.classList.toggle('expanded');
+  const badge = element.querySelector('.img-lupa');
+  if (badge) {
+    badge.textContent = isExpanded ? '🔍 Reducir' : '🔍 Ampliar';
+  }
+}
+
+// Abrir lightbox
+function abrirLightbox(indice){
+  indiceImgActual = indice;
+  document.getElementById('lightbox-img').src = imagenes[indice];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indice+1} de ${imagenes.length}`;
+  document.getElementById('lightbox').classList.add('visible');
+}
+
+// Cerrar lightbox
+function cerrarLightbox(){
+  document.getElementById('lightbox').classList.remove('visible');
+}
+
+// Cambiar imagen en lightbox
+function cambiarImg(delta){
+  indiceImgActual += delta;
+  if(indiceImgActual < 0) indiceImgActual = imagenes.length - 1;
+  if(indiceImgActual >= imagenes.length) indiceImgActual = 0;
+  document.getElementById('lightbox-img').src = imagenes[indiceImgActual];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indiceImgActual+1} de ${imagenes.length}`;
+}
+
+// Cerrar lightbox con ESC
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') cerrarLightbox();
+});
+
+// Abrir cofre
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  // Animación de confeti simple (opcional)
+  crearConfeti();
+}
+
+// Completar misión (simulada)
+function completarMision(){
+  // Actualizar barra de progreso
+  const piezas = document.querySelectorAll('.pieza');
+  piezas.forEach(p => p.classList.add('obtenida'));
+  // Mostrar diploma
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '3°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+// Crear confeti (simple)
+function crearConfeti(){
+  const colores = ['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+// Inicializar guías
+function inicializarGuias(){
+  document.querySelectorAll('.marco-img').forEach(img => {
+    const badge = img.querySelector('.img-lupa');
+    if (badge) badge.textContent = '🔍 Ampliar';
+    img.classList.remove('expanded');
+    const image = img.querySelector('img');
+    if (image && image.complete && image.naturalWidth > 0) {
+      img.classList.remove('sin-img');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  inicializarGuias();
+  console.log('🧮 Matemáticas Aventura cargada con éxito. ¡A explorar!');
+});
+</script>
+
+</body>
+</html>

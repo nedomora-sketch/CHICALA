@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placa Interactiva | Laboratorio Chichalá</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --primary: #1A9BAB;
+            --secondary: #3DBE8C;
+            --accent: #F4872B;
+            --dark: #2D3748;
+            --light: #ffffff;
+            --board-bg: #1a202c;
+            --circuit: #4a5568;
+            --trace: #718096;
+            --pulse: #3DBE8C;
+            --cpu-core: #F4872B;
+            --ram-stick: #1A9BAB;
+            --ssd-box: #3DBE8C;
+            --gpu-fan: #7C3AED;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        header p { font-size: 1rem; opacity: 0.9; }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.05); }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        /* --- ISOMETRIC BOARD --- */
+        .board-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background: var(--board-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: perspective(1000px) rotateX(10deg) rotateY(-5deg);
+            transition: transform 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .board-container:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(0deg);
+        }
+
+        /* SVG Styles */
+        svg { width: 100%; height: 100%; }
+        .circuit-trace { stroke: var(--trace); stroke-width: 2; fill: none; stroke-opacity: 0.6; }
+        .component-base { fill: #2d3748; stroke: #4a5568; stroke-width: 2; }
+        
+        /* Interactive Components */
+        .interactive { cursor: pointer; transition: all 0.3s ease; }
+        .interactive:hover { filter: drop-shadow(0 0 10px var(--primary)); }
+        .interactive.active { filter: drop-shadow(0 0 20px var(--accent)); }
+
+        .cpu-area { fill: #2d3748; stroke: var(--cpu-core); stroke-width: 3; }
+        .cpu-socket { fill: #1a202c; stroke: var(--cpu-core); stroke-width: 2; }
+        .cpu-fan { fill: var(--cpu-core); opacity: 0.8; }
+        
+        .ram-slot { fill: #2d3748; stroke: var(--ram-stick); stroke-width: 3; }
+        .ram-stick { fill: var(--ram-stick); opacity: 0.9; }
+        
+        .ssd-area { fill: #2d3748; stroke: var(--ssd-box); stroke-width: 3; }
+        .ssd-drive { fill: var(--ssd-box); opacity: 0.9; }
+        
+        .gpu-slot { fill: #2d3748; stroke: var(--gpu-fan); stroke-width: 3; }
+        .gpu-card { fill: var(--gpu-fan); opacity: 0.9; }
+
+        /* Data Packets */
+        .data-packet {
+            fill: var(--accent);
+            filter: drop-shadow(0 0 5px var(--accent));
+            transition: all 0.5s ease;
+        }
+
+        /* --- INFO PANEL --- */
+        .info-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            position: relative;
+            border-top: 5px solid var(--primary);
+        }
+
+        .info-panel.visible { opacity: 1; transform: translateY(0); }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f4f8;
+            border-radius: 12px;
+        }
+
+        .info-title h2 { font-size: 1.5rem; color: var(--dark); }
+        .info-title span { font-size: 0.9rem; color: #718096; font-weight: 600; text-transform: uppercase; }
+
+        .info-content { margin-bottom: 20px; }
+        .info-content p { margin-bottom: 10px; line-height: 1.6; }
+        .info-content strong { color: var(--primary); }
+
+        .analogia-box {
+            background: #e6fffa;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .analogia-box::before {
+            content: '🌱 Analogía Chichalá';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .analogia-box p { font-size: 0.95rem; color: #2c5f5d; font-style: italic; margin: 0; }
+
+        .info-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-audio { background: var(--primary); color: white; }
+        .btn-audio:hover { background: #158496; transform: scale(1.02); }
+
+        .btn-reset { background: #e2e8f0; color: var(--dark); }
+        .btn-reset:hover { background: #cbd5e0; }
+
+        /* --- INSTRUCTIONS --- */
+        .instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .instructions strong { color: var(--primary); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .board-container {
+                width: 100%;
+                height: 500px;
+                transform: none;
+            }
+            .main-container { padding: 20px; }
+            header h1 { font-size: 1.4rem; }
+            .back-btn { position: static; transform: none; margin-bottom: 15px; }
+            header { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="window.location.href='arquitectura-digital-chichala.html'">
+            ⬅️ Volver a la Teoría
+        </button>
+        <h1>🔌 Placa Interactiva Chichalá</h1>
+        <p>Explora el corazón físico de tu computador</p>
+    </header>
+
+    <div class="main-container">
+        <div class="instructions">
+            Haz clic en los componentes para ver su función y <strong>escuchar</strong> cómo trabajan en equipo.
+        </div>
+
+        <!-- ISOMETRIC BOARD -->
+        <div class="board-container" id="board">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Circuits -->
+                <g id="circuits">
+                    <!-- CPU to RAM -->
+                    <path d="M 250 200 L 250 100 L 400 100" class="circuit-trace" />
+                    <!-- CPU to SSD -->
+                    <path d="M 250 250 L 250 350 L 550 350" class="circuit-trace" />
+                    <!-- CPU to GPU -->
+                    <path d="M 300 280 L 300 450 L 450 450" class="circuit-trace" />
+                    <!-- RAM to SSD -->
+                    <path d="M 420 120 L 550 120 L 550 350" class="circuit-trace" />
+                </g>
+
+                <!-- CPU Area -->
+                <g class="interactive cpu-area" id="cpu" onclick="selectComponent('cpu')">
+                    <rect x="150" y="150" width="200" height="200" rx="10" class="component-base" />
+                    <circle cx="250" cy="250" r="60" class="cpu-socket" />
+                    <circle cx="250" cy="250" r="40" class="cpu-fan interactive" />
+                    <text x="250" y="255" text-anchor="middle" fill="white" font-weight="bold" font-size="14">CPU</text>
+                </g>
+
+                <!-- RAM Slots -->
+                <g class="interactive ram-slot" id="ram" onclick="selectComponent('ram')">
+                    <rect x="400" y="50" width="30" height="150" rx="5" class="component-base" />
+                    <rect x="405" y="60" width="20" height="130" rx="3" class="ram-stick" />
+                    <text x="440" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="14" transform="rotate(90 440,125)">RAM</text>
+                </g>
+
+                <!-- SSD Area -->
+                <g class="interactive ssd-area" id="ssd" onclick="selectComponent('ssd')">
+                    <rect x="500" y="300" width="120" height="80" rx="10" class="component-base" />
+                    <rect x="510" y="310" width="100" height="60" rx="5" class="ssd-drive" />
+                    <text x="560" y="345" text-anchor="middle" fill="white" font-weight="bold" font-size="14">SSD</text>
+                </g>
+
+                <!-- GPU Slot -->
+                <g class="interactive gpu-slot" id="gpu" onclick="selectComponent('gpu')">
+                    <rect x="200" y="420" width="180" height="60" rx="10" class="component-base" />
+                    <rect x="210" y="430" width="160" height="40" rx="5" class="gpu-card" />
+                    <circle cx="260" cy="450" r="15" fill="#1a202c" />
+                    <circle cx="310" cy="450" r="15" fill="#1a202c" />
+                    <text x="290" y="455" text-anchor="middle" fill="white" font-weight="bold" font-size="14">GPU</text>
+                </g>
+
+                <!-- Data Packets (Hidden by default) -->
+                <g id="packets"></g>
+            </svg>
+        </div>
+
+        <!-- INFO PANEL -->
+        <div class="info-panel" id="info-panel">
+            <div class="info-header">
+                <div class="info-icon" id="panel-icon">🧠</div>
+                <div class="info-title">
+                    <h2 id="panel-title">CPU</h2>
+                    <span id="panel-subtitle">Unidad Central de Procesamiento</span>
+                </div>
+            </div>
+            <div class="info-content">
+                                <p id="panel-def">El 'cerebro' del computador. Procesa todas las instrucciones y cálculos.</p>
+                
+                <div class="analogia-box">
+                    <p id="panel-analogy">Es como el <strong>capataz del trapiche</strong> que recibe la caña (datos) y ordena a todos cómo procesarla para hacer panela (información útil).</p>
+                </div>
+                
+                <p id="panel-example" style="margin-top: 15px; color: #4a5568; font-size: 0.95rem;">
+                    <strong>Example:</strong> The <strong>CPU</strong> calculates the harvest yield in seconds.
+                </p>
+            </div>
+            <div class="info-actions">
+                <button class="btn btn-audio" onclick="speakCurrent()" title="Escuchar definición">
+                    🔊 Escuchar en Inglés
+                </button>
+                <button class="btn btn-reset" onclick="resetBoard()" title="Limpiar selección">
+                    🔄 Limpiar Vista
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // --- DATOS DE LOS COMPONENTES (Mismo contenido que la Fase 1) ---
+        const componentsData = {
+            cpu: {
+                icon: "🧠",
+                name: "CPU",
+                fullName: "Central Processing Unit",
+                spanish: "Unidad Central de Procesamiento",
+                definition: "The 'brain' of the computer. It processes all instructions and calculations.",
+                definitionEs: "El 'cerebro' del computador. Procesa todas las instrucciones y cálculos.",
+                analogy: "Es como el <strong>capataz del trapiche</strong> o el <strong>maestro de la finca</strong>. Él recibe la caña (datos), decide qué hacer con ella y ordena a los trabajadores (otras partes) cómo procesarla para hacer panela (información útil).",
+                example: "The <strong>CPU</strong> calculates the harvest yield in seconds.",
+                color: "var(--cpu-core)"
+            },
+            ram: {
+                icon: "🧠",
+                name: "RAM",
+                fullName: "Random Access Memory",
+                spanish: "Memoria de Acceso Aleatorio",
+                definition: "Temporary memory that stores data for active programs. Fast, but erases when power is off.",
+                definitionEs: "Memoria temporal que guarda datos de programas activos. Rápida, pero se borra al apagar.",
+                analogy: "Es como la <strong>mesa de trabajo</strong> en la cocina de tu casa. Mientras cocinas (trabajas), pones los ingredientes (datos) en la mesa para usarlos rápido. Si sales de la casa (apagas el computador), limpias la mesa y todo se va.",
+                example: "More <strong>RAM</strong> allows the computer to run many apps at once, like a big table for many tasks.",
+                color: "var(--ram-stick)"
+            },
+            ssd: {
+                icon: "💾",
+                name: "SSD / HDD",
+                fullName: "Storage",
+                spanish: "Almacenamiento",
+                definition: "Permanent storage for files, photos, and the operating system. Keeps data even without power.",
+                definitionEs: "Almacenamiento permanente para archivos, fotos y el sistema operativo. Guarda datos sin energía.",
+                analogy: "Es como el <strong>granero</strong> o el <strong>archivador de la escuela</strong>. Aquí guardas la cosecha de café o los cuadernos de los alumnos. Aunque no haya nadie en la finca (sin energía), el grano y los libros siguen ahí seguros.",
+                example: "Your photos and documents are safe in the <strong>SSD</strong>, like grain in a barn.",
+                color: "var(--ssd-box)"
+            },
+            gpu: {
+                icon: "🎨",
+                name: "GPU",
+                fullName: "Graphics Processing Unit",
+                spanish: "Unidad de Procesamiento Gráfico",
+                definition: "Specialized processor for images and video. It creates what you see on the screen.",
+                definitionEs: "Procesador especializado para imágenes y video. Crea lo que ves en la pantalla.",
+                analogy: "Es como el <strong>artista que pinta los murales</strong> en la escuela o el <strong>diseñador de empaques</strong> de nuestro café. Toma las ideas (datos) y las convierte en algo hermoso y visible para todos.",
+                example: "The <strong>GPU</strong> makes the game look colorful and realistic, like a painting.",
+                color: "var(--gpu-fan)"
+            }
+        };
+
+        // --- VARIABLES GLOBALES ---
+        let currentComponent = null;
+        let activePackets = [];
+        const board = document.getElementById('board');
+        const infoPanel = document.getElementById('info-panel');
+        const toastEl = document.getElementById('toast');
+
+        // --- SELECCIÓN DE COMPONENTE ---
+        function selectComponent(id) {
+            // Limpiar selección previa
+            document.querySelectorAll('.interactive').forEach(el => el.classList.remove('active'));
+            
+            // Marcar nuevo seleccionado
+            const selected = document.getElementById(id);
+            selected.classList.add('active');
+            currentComponent = id;
+
+            // Actualizar panel de información
+            const data = componentsData[id];
+            document.getElementById('panel-icon').textContent = data.icon;
+            document.getElementById('panel-title').textContent = data.name;
+            document.getElementById('panel-subtitle').textContent = `${data.fullName} (${data.spanish})`;
+            document.getElementById('panel-def').textContent = data.definitionEs;
+            document.getElementById('panel-analogy').innerHTML = data.analogy;
+            document.getElementById('panel-example').innerHTML = `<span style="color:var(--primary); font-weight:700;">Example:</span> ${data.example}`;
+            
+            // Cambiar color del borde del panel
+            infoPanel.style.borderTopColor = data.color;
+            
+            // Mostrar panel con animación
+            infoPanel.classList.add('visible');
+            
+            // Iniciar animación de datos
+            animateDataFlow(id);
+            
+            // Toast
+            showToast(`🔍 Explorando ${data.name}...`, "success");
+        }
+
+        function resetBoard() {
+            document.querySelectorAll('.interactive').forEach(el => el.classList.remove('active'));
+            infoPanel.classList.remove('visible');
+            currentComponent = null;
+            // Detener animaciones
+            document.getElementById('packets').innerHTML = '';
+            activePackets = [];
+            showToast("🏠 Vista limpia", "info");
+        }
+
+        // --- ANIMACIÓN DE FLUJO DE DATOS ---
+        function animateDataFlow(sourceId) {
+            // Limpiar paquetes anteriores
+            const packetsGroup = document.getElementById('packets');
+            packetsGroup.innerHTML = '';
+            activePackets = [];
+
+            // Definir rutas según el componente
+            let routes = [];
+            if (sourceId === 'cpu') {
+                routes = [
+                    { from: {x: 250, y: 250}, to: {x: 420, y: 125}, color: '#3DBE8C' }, // CPU -> RAM
+                    { from: {x: 250, y: 250}, to: {x: 560, y: 345}, color: '#F4872B' }, // CPU -> SSD
+                    { from: {x: 250, y: 250}, to: {x: 290, y: 450}, color: '#7C3AED' }  // CPU -> GPU
+                ];
+            } else if (sourceId === 'ram') {
+                routes = [
+                    { from: {x: 420, y: 125}, to: {x: 250, y: 250}, color: '#1A9BAB' }, // RAM -> CPU
+                    { from: {x: 420, y: 125}, to: {x: 560, y: 345}, color: '#F4872B' }  // RAM -> SSD
+                ];
+            } else if (sourceId === 'ssd') {
+                routes = [
+                    { from: {x: 560, y: 345}, to: {x: 250, y: 250}, color: '#3DBE8C' }, // SSD -> CPU
+                    { from: {x: 560, y: 345}, to: {x: 420, y: 125}, color: '#1A9BAB' }  // SSD -> RAM
+                ];
+            } else if (sourceId === 'gpu') {
+                routes = [
+                    { from: {x: 290, y: 450}, to: {x: 250, y: 250}, color: '#7C3AED' }  // GPU -> CPU
+                ];
+            }
+
+            // Crear paquetes de datos
+            routes.forEach((route, index) => {
+                const packet = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                packet.setAttribute("cx", route.from.x);
+                packet.setAttribute("cy", route.from.y);
+                packet.setAttribute("r", 6);
+                packet.setAttribute("fill", route.color);
+                packet.setAttribute("filter", `drop-shadow(0 0 5px ${route.color})`);
+                packetsGroup.appendChild(packet);
+
+                // Animar paquete
+                animatePacket(packet, route.from, route.to, route.color);
+            });
+        }
+
+        function animatePacket(packet, start, end, color) {
+            let progress = 0;
+            const duration = 2000; // 2 segundos
+            const startTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = currentTime - startTime;
+                progress = Math.min(elapsed / duration, 1);
+
+                // Interpolar posición
+                const x = start.x + (end.x - start.x) * progress;
+                const y = start.y + (end.y - start.y) * progress;
+                
+                packet.setAttribute("cx", x);
+                packet.setAttribute("cy", y);
+
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    // Cuando llega al destino, crear un efecto de "llegada"
+                    packet.remove();
+                    createImpactEffect(end.x, end.y, color);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        function createImpactEffect(x, y, color) {
+            const impact = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            impact.setAttribute("cx", x);
+            impact.setAttribute("cy", y);
+            impact.setAttribute("r", 0);
+            impact.setAttribute("fill", "none");
+            impact.setAttribute("stroke", color);
+            impact.setAttribute("stroke-width", 3);
+            impact.setAttribute("opacity", 0.8);
+            document.getElementById('packets').appendChild(impact);
+
+            // Animar expansión
+            let scale = 0;
+            const duration = 500;
+            const startTime = performance.now();
+
+            function step(currentTime) {
+                const elapsed = currentTime - startTime;
+                scale = Math.min(elapsed / duration, 1);
+                
+                const radius = scale * 30;
+                impact.setAttribute("r", radius);
+                impact.setAttribute("opacity", 0.8 - scale * 0.8);
+
+                if (scale < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    impact.remove();
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        // --- AUDIO ---
+        function speakCurrent() {
+            if (!currentComponent) {
+                showToast("⚠️ Selecciona un componente primero", "error");
+                return;
+            }
+            
+            const data = componentsData[currentComponent];
+            const text = `${data.fullName}. ${data.definition}`;
+            
+            if (!window.speechSynthesis) {
+                showToast("⚠️ Tu navegador no soporta audio", "error");
+                return;
+            }
+            
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+            
+            showToast("🔊 Reproduciendo pronunciación...", "success");
+        }
+
+        // --- NOTIFICACIONES ---
+        function showToast(message, type = "info") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            showToast("🚀 ¡Bienvenido a la Placa Interactiva, Profe Nelson!", "success");
+            
+            // Animación inicial de entrada
+            setTimeout(() => {
+                board.style.opacity = '0';
+                board.style.transform = 'perspective(1000px) rotateX(10deg) rotateY(-5deg) scale(0.9)';
+                setTimeout(() => {
+                    board.style.transition = 'all 0.8s ease';
+                    board.style.opacity = '1';
+                    board.style.transform = 'perspective(1000px) rotateX(10deg) rotateY(-5deg) scale(1)';
+                }, 100);
+            }, 500);
+        });
+
+        // Efecto de hover en componentes
+        document.querySelectorAll('.interactive').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.filter = 'drop-shadow(0 0 15px var(--primary))';
+                }
+            });
+            el.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.filter = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

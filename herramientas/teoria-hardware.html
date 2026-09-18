@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura Digital - Teoría Interactiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --primary: #1A9BAB;
+            --secondary: #3DBE8C;
+            --accent: #F4872B;
+            --dark: #2D3748;
+            --light: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+            --analogia-bg: #e6fffa;
+            --analogia-border: #38b2ac;
+            --success: #059669;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #718096;
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-analogy {
+            background: linear-gradient(135deg, #1A9BAB 0%, #3DBE8C 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(26, 155, 171, 0.3);
+            animation: slideUp 0.8s ease;
+        }
+
+        .intro-analogy h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .intro-analogy p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary);
+            animation: slideUp 0.6s ease backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; border-color: #1A9BAB; }
+        .card:nth-child(2) { animation-delay: 0.2s; border-color: #3DBE8C; }
+        .card:nth-child(3) { animation-delay: 0.3s; border-color: #F4872B; }
+        .card:nth-child(4) { animation-delay: 0.4s; border-color: #7C3AED; }
+        .card:nth-child(5) { animation-delay: 0.5s; border-color: #059669; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f4f8;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .card-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        .card-title h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .card-title span {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body {
+            margin-bottom: 20px;
+        }
+
+        .definition {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .definition strong {
+            color: var(--primary);
+        }
+
+        .analogia-box {
+            background: var(--analogia-bg);
+            border-left: 4px solid var(--analogia-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .analogia-box::before {
+            content: '🌱 Analogía Chichalá';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--analogia-border);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .analogia-box p {
+            font-size: 0.95rem;
+            color: #2c5f5d;
+            font-style: italic;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px dashed #cbd5e0;
+        }
+
+        .example-box strong {
+            color: var(--accent);
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-audio {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-audio:hover {
+            background: #158496;
+            transform: scale(1.02);
+        }
+
+        .btn-dict {
+            background: #f0f4f8;
+            color: var(--dark);
+            border: 1px solid #cbd5e0;
+        }
+
+        .btn-dict:hover {
+            background: #e2e8f0;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .cards-container { grid-template-columns: 1fr; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧠 Arquitectura Digital</h1>
+        <p>Entendiendo el corazón de tu computador con ejemplos de Chichalá</p>
+    </header>
+
+    <div class="intro-analogy">
+        <h2>💡 El Corazón Digital</h2>
+        <p>Imagina que tu computador es como una persona: tiene un <strong>cerebro</strong> que piensa, una <strong>memoria</strong> que recuerda, y un <strong>diario</strong> donde guarda sus recuerdos para siempre. ¡Vamos a conocer cada parte!</p>
+    </div>
+
+    <div class="cards-container" id="cards-container">
+        <!-- Las tarjetas se generan con JavaScript -->
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Datos de los componentes (Guion Teórico)
+        const components = [
+            {
+                id: 1,
+                icon: "🧠",
+                name: "CPU",
+                fullName: "Central Processing Unit",
+                spanish: "Unidad Central de Procesamiento",
+                definition: "The 'brain' of the computer. It processes all instructions and calculations.",
+                definitionEs: "El 'cerebro' del computador. Procesa todas las instrucciones y cálculos.",
+                analogy: "Es como el <strong>maestro de la finca</strong> o el <strong>capataz del trapiche</strong>. Él recibe la caña (datos), decide qué hacer con ella y ordena a los trabajadores (otras partes) cómo procesarla para hacer panela (información útil).",
+                example: "The <strong>CPU</strong> calculates the harvest yield in seconds.",
+                pronunciation: "/ˌsiː ˌpiː ˈjuː/"
+            },
+            {
+                id: 2,
+                icon: "🧠",
+                name: "RAM",
+                fullName: "Random Access Memory",
+                spanish: "Memoria de Acceso Aleatorio",
+                definition: "Temporary memory that stores data for active programs. Fast, but erases when power is off.",
+                definitionEs: "Memoria temporal que guarda datos de programas activos. Rápida, pero se borra al apagar.",
+                analogy: "Es como la <strong>mesa de trabajo</strong> en la cocina de tu casa. Mientras cocinas (trabajas), pones los ingredientes (datos) en la mesa para usarlos rápido. Si sales de la casa (apagas el computador), limpias la mesa y todo se va.",
+                example: "More <strong>RAM</strong> allows the computer to run many apps at once, like a big table for many tasks.",
+                pronunciation: "/ˌɑːr ˈeɪm/"
+            },
+            {
+                id: 3,
+                icon: "💾",
+                name: "SSD / HDD",
+                fullName: "Storage",
+                spanish: "Almacenamiento",
+                definition: "Permanent storage for files, photos, and the operating system. Keeps data even without power.",
+                definitionEs: "Almacenamiento permanente para archivos, fotos y el sistema operativo. Guarda datos sin energía.",
+                analogy: "Es como el <strong>granero</strong> o el <strong>archivador de la escuela</strong>. Aquí guardas la cosecha de café o los cuadernos de los alumnos. Aunque no haya nadie en la finca (sin energía), el grano y los libros siguen ahí seguros.",
+                example: "Your photos and documents are safe in the <strong>SSD</strong>, like grain in a barn.",
+                pronunciation: "/ˌɛs ˌɛs ˈdiː/"
+            },
+            {
+                id: 4,
+                icon: "🎨",
+                name: "GPU",
+                fullName: "Graphics Processing Unit",
+                spanish: "Unidad de Procesamiento Gráfico",
+                definition: "Specialized processor for images and video. It creates what you see on the screen.",
+                definitionEs: "Procesador especializado para imágenes y video. Crea lo que ves en la pantalla.",
+                analogy: "Es como el <strong>artista que pinta los murales</strong> en la escuela o el <strong>diseñador de empaques</strong> de nuestro café. Toma las ideas (datos) y las convierte en algo hermoso y visible para todos.",
+                example: "The <strong>GPU</strong> makes the game look colorful and realistic, like a painting.",
+                pronunciation: "/ˌdʒiː ˌpiː ˈjuː/"
+            },
+            {
+                id: 5,
+                icon: "🔌",
+                name: "Motherboard",
+                fullName: "Motherboard",
+                spanish: "Placa Madre",
+                definition: "The main circuit board that connects all parts. It allows them to communicate.",
+                definitionEs: "La placa base que conecta todas las partes. Permite que se comuniquen.",
+                analogy: "Es como la <strong>red de caminos</strong> o el <strong>río principal</strong> que conecta todas las veredas. Sin estos caminos, el maestro (CPU) no podría hablar con el granero (SSD) o con los estudiantes (RAM). Es la base que une a la comunidad.",
+                example: "The <strong>motherboard</strong> connects the CPU and RAM, just like roads connect our villages.",
+                pronunciation: "/ˈmʌðərˌbɔːrd/"
+            }
+        ];
+
+        const container = document.getElementById('cards-container');
+        const toastEl = document.getElementById('toast');
+
+        // Generar tarjetas
+        components.forEach((comp, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML =             `<div class="card-header">
+                <div class="card-icon">${comp.icon}</div>
+                <div class="card-title">
+                    <h3>${comp.name}</h3>
+                    <span>${comp.fullName} (${comp.spanish})</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="definition">
+                    <p><strong>🇬🇧 ${comp.definition}</strong></p>
+                    <p style="margin-top:8px; color:#718096;"><strong>🇨🇴 ${comp.definitionEs}</strong></p>
+                </div>
+
+                <div class="analogia-box">
+                    <p>${comp.analogy}</p>
+                </div>
+
+                <div class="example-box">
+                    <p style="margin:0; font-size:0.9rem; color:#4a5568;">
+                        <span style="color:var(--primary); font-weight:700;">Example:</span> ${comp.example}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-audio" onclick="speakText('${comp.definition}')" title="Escuchar definición">
+                    🔊 Escuchar
+                </button>
+                <button class="btn btn-dict" onclick="openDictionary('${comp.fullName}')" title="Ver en Diccionario">
+                    📖 Diccionario
+                </button>
+            </div>`;
+            
+            container.appendChild(card);
+        });
+
+        // --- Funcionalidad de Audio ---
+        function speakText(text) {
+            if (!window.speechSynthesis) {
+                showToast("⚠️ Tu navegador no soporta audio", "info");
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Un poco más lento para claridad pedagógica
+            utterance.pitch = 1.0;
+            
+            window.speechSynthesis.speak(utterance);
+            showToast("🔊 Reproduciendo pronunciación...", "success");
+        }
+
+        // --- Funcionalidad de Navegación al Diccionario ---
+        function openDictionary(term) {
+            // Aquí simulamos la navegación. En producción, esto podría redirigir a tu app existente
+            // o abrir un modal con la palabra específica.
+            const word = term.toLowerCase().replace(/[^a-z0-9]/g, '');
+            // Ejemplo de lógica: Buscar en tu array WORDS si existe
+            // Por ahora, mostramos un mensaje amigable
+            showToast(`🔍 Buscando "${term}" en el Diccionario de Chichalá...`, "info");
+            
+            // Si tuvieras la app instalada en otra ruta, descomentarías:
+            // window.location.href = `dictionary.html?search=${word}`;
+        }
+
+        // --- Sistema de Notificaciones (Toast) ---
+        function showToast(message, type = "info") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Efecto visual al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            showToast("🎓 ¡Bienvenido al Laboratorio Digital!", "success");
+        });
+
+    </script>
+</body>
+    <!-- ========================================== -->
+    <!-- SECCIÓN QUIZ INTERACTIVO (Agregado al final) -->
+    <!-- ========================================== -->
+    <div id="quiz-section" class="quiz-container" style="display:none;">
+        <div class="quiz-header">
+            <h2>🧩 Desafío del Ingeniero</h2>
+            <p>Demuestra que entiendes el corazón digital de Chichalá</p>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <span id="progress-text" class="progress-text">Pregunta 1 de 5</span>
+        </div>
+
+        <div id="quiz-content">
+            <!-- La pregunta se inyecta con JS -->
+            <div class="question-box">
+                <h3 id="question-text" class="question-text"></h3>
+                <div id="options-container" class="options-container"></div>
+            </div>
+        </div>
+
+        <div id="quiz-result" class="quiz-result" style="display:none;">
+            <div class="result-icon">🏆</div>
+            <h2 id="result-title">¡Desafío Completado!</h2>
+            <p id="result-message">Has demostrado un gran dominio de la arquitectura digital.</p>
+            <div class="score-display">
+                <span id="final-score">0</span> / 5
+            </div>
+            <button id="restart-quiz" class="btn btn-primary">🔄 Reiniciar Desafío</button>
+            <button id="next-phase-btn" class="btn btn-secondary" style="display:none;">🚀 Ir a la Placa Interactiva</button>
+        </div>
+    </div>
+
+    <!-- Estilos específicos para el Quiz -->
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: slideUp 0.8s ease;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin: 20px 0 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            font-weight: 700;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .question-box {
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--dark);
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.correct {
+            background: #f0fff4;
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .option-btn.wrong {
+            background: #fff5f5;
+            border-color: #e53e3e;
+            color: #e53e3e;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 600px) {
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            .quiz-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+
+    <!-- Lógica del Quiz -->
+    <script>
+        // Preguntas del Quiz (Contextualizadas con analogías)
+        const quizQuestions = [
+            {
+                question: "¿Qué componente es como el 'capataz del trapiche' que ordena a todos cómo procesar los datos?",
+                options: ["RAM", "CPU", "SSD", "Motherboard"],
+                correct: 1 // Índice de la respuesta correcta (CPU)
+            },
+            {
+                question: "Si apagas el computador y los datos desaparecen, ¿a qué componente se parece la 'mesa de trabajo'?",
+                options: ["Motherboard", "GPU", "RAM", "SSD"],
+                correct: 2 // RAM
+            },
+            {
+                question: "¿Qué componente guarda tus fotos y documentos como el 'granero' guarda el café?",
+                options: ["CPU", "RAM", "SSD/HDD", "GPU"],
+                correct: 2 // SSD
+            },
+            {
+                question: "¿Qué parte es como el 'artista que pinta los murales' creando lo que ves en la pantalla?",
+                options: ["Motherboard", "GPU", "CPU", "RAM"],
+                correct: 1 // GPU
+            },
+            {
+                question: "¿Qué conecta todas las partes como la 'red de caminos' conecta las veredas de Chichalá?",
+                options: ["RAM", "Motherboard", "SSD", "CPU"],
+                correct: 1 // Motherboard
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        const quizSection = document.getElementById('quiz-section');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const quizContent = document.getElementById('quiz-content');
+        const quizResult = document.getElementById('quiz-result');
+        const finalScore = document.getElementById('final-score');
+        const resultMessage = document.getElementById('result-message');
+        const restartBtn = document.getElementById('restart-quiz');
+        const nextPhaseBtn = document.getElementById('next-phase-btn');
+
+        // Iniciar Quiz
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            quizContent.style.display = 'block';
+            quizResult.style.display = 'none';
+            quizSection.style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            const q = quizQuestions[currentQuestion];
+            questionText.textContent = q.question;
+            optionsContainer.innerHTML = '';
+            
+            // Actualizar barra de progreso
+            const progress = ((currentQuestion) / quizQuestions.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `Pregunta ${currentQuestion + 1} de ${quizQuestions.length}`;
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const correctIndex = quizQuestions[currentQuestion].correct;
+            const allButtons = optionsContainer.querySelectorAll('.option-btn');
+
+            if (selectedIndex === correctIndex) {
+                score++;
+                btnElement.classList.add('correct');
+                showToast("✅ ¡Correcto! Muy bien hecho.", "success");
+                playSound('correct');
+            } else {
+                btnElement.classList.add('wrong');
+                allButtons[correctIndex].classList.add('correct');
+                showToast("⚠️ Incorrecto. Revisa la analogía e inténtalo de nuevo.", "error");
+                playSound('wrong');
+            }
+
+            // Esperar un poco y pasar a la siguiente
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < quizQuestions.length) {
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 2000);
+        }
+
+        function showResults() {
+            quizContent.style.display = 'none';
+            quizResult.style.display = 'block';
+            progressFill.style.width = '100%';
+            progressText.textContent = '¡Completado!';
+            
+            finalScore.textContent = score;
+            
+            if (score === 5) {
+                resultMessage.textContent = "¡Excelente, Profe Nelson! Eres un verdadero ingeniero digital. 🌟";
+                celebrate();
+            } else if (score >= 3) {
+                resultMessage.textContent = "¡Buen trabajo! Tienes una base sólida. Sigue repasando las analogías. 💪";
+            } else {
+                resultMessage.textContent = "No te desanimes. Repasa las tarjetas teóricas y vuelve a intentarlo. 📚";
+            }
+
+            // Mostrar botón para ir a la siguiente fase si aprobó
+            if (score >= 3) {
+                nextPhaseBtn.style.display = 'inline-block';
+            }
+        }
+
+        function playSound(type) {
+            if (!window.AudioContext) return;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, ctx.currentTime); // Do
+                osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.1); // Sol
+            } else {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, ctx.currentTime);
+                osc.frequency.linearRampToValueAtTime(150, ctx.currentTime + 0.2);
+            }
+
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.3);
+        }
+
+        function celebrate() {
+            // Pequeña celebración con partículas
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.inset = '0';
+            canvas.style.width = '100vw';
+            canvas.style.height = '100vh';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '9999';
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    size: Math.random() * 5 + 2
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.1; // Gravedad
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                if (particles.some(p => p.y < canvas.height)) {
+                    requestAnimationFrame(animate);
+                } else {
+                    document.body.removeChild(canvas);
+                }
+            }
+            animate();
+        }
+
+        restartBtn.onclick = startQuiz;
+        nextPhaseBtn.onclick = () => {
+            quizSection.style.display = 'none';
+            showToast("🚀 Preparando la Placa Interactiva...", "success");
+            // Aquí podrías redirigir a la siguiente página o mostrar la sección de placa
+            // window.location.href = 'placa-interactiva.html'; 
+        };
+
+        // Mostrar sección de quiz después de un tiempo o botón
+        // Por ahora, lo mostramos al final de las tarjetas
+        setTimeout(() => {
+            quizSection.style.display = 'block';
+            // Scroll suave hacia el quiz
+            quizSection.scrollIntoView({ behavior: 'smooth' });
+        }, 1000);
+
+        // Iniciar quiz
+        startQuiz();
+    </script>
+</html>

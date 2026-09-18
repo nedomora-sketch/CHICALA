@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Emprendimiento · Grados 6°-7° Unificados · Semana 1 · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🚀 Emprendimiento Aventura · Semana 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  EMPRENDIMIENTO AVENTURA · SEMANA 1 · GRADOS 6°-7°
+══════════════════════════════════════════════ */
+:root{
+  --inv-naranja:#FF6B35; --inv-azul:#1A9BAB; --inv-verde:#3DBE8C;
+  --inv-morado:#7C3AED;  --inv-amarillo:#FFD23F; --inv-rosa:#FF6B9D;
+  --inv-rojo:#EF4444;    --inv-celeste:#38BDF8;
+  --inv-bg:#F0F9FF;      --inv-card:#FFFFFF;
+  --inv-texto:#1E293B;   --inv-dim:#64748B; --inv-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--inv-bg);color:var(--inv-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(124,58,237,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--inv-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--inv-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--inv-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--inv-morado),var(--inv-celeste));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(124,58,237,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+
+.hero-header{background:linear-gradient(135deg,#FF6B35 0%,#7C3AED 55%,#FF6B9D 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'💡';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🚀';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+
+.seccion{background:white;border:2px solid var(--inv-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-recursos::before{background:linear-gradient(180deg,var(--inv-morado),var(--inv-rosa))}
+.seccion-vocab::before{background:linear-gradient(180deg,var(--inv-azul),var(--inv-celeste))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--inv-naranja),var(--inv-amarillo))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--inv-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--inv-dim);font-weight:600;margin-top:2px}
+
+
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .25s;color:var(--inv-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-6{background:var(--inv-azul);border-color:var(--inv-azul);color:white;box-shadow:0 4px 12px rgba(26,155,171,.35)}
+.nivel-tab.activo-7{background:var(--inv-morado);border-color:var(--inv-morado);color:white;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--inv-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado6{border-color:var(--inv-azul)}
+.nivel-card.grado7{border-color:var(--inv-morado)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
+.grado6 .nivel-badge{background:var(--inv-azul)}
+.grado7 .nivel-badge{background:var(--inv-morado)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(124,58,237,.1);color:var(--inv-morado);border:1px solid rgba(124,58,237,.25)}
+
+
+.visor-bloque{margin-bottom:22px}
+.visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.visor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.95rem;flex-shrink:0}
+.visor-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:0;color:var(--inv-texto)}
+.visor-cabecera .paso-tag{font-size:.7rem;font-weight:800;padding:3px 12px;border-radius:50px;background:rgba(56,189,248,.12);color:#0369A1;border:1px solid rgba(56,189,248,.3);letter-spacing:.05em}
+.tipo-tag{font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.04em}
+.tipo-pdf{background:rgba(239,68,68,.12);color:#B91C1C;border:1px solid rgba(239,68,68,.3)}
+.tipo-img{background:rgba(61,190,140,.12);color:#065F46;border:1px solid rgba(61,190,140,.3)}
+
+
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--inv-border);background:linear-gradient(135deg,#F8FAFC,#EFF6FF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s,max-height .3s ease;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.marco-img.expanded{max-height:none;box-shadow:var(--sombra-lg);border-width:4px}
+.marco-img.expanded img{transform:scale(1.04)}
+.marco-img.g6{border-color:var(--inv-azul)}
+.marco-img.g7{border-color:var(--inv-morado)}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--inv-azul);box-shadow:var(--sombra-sm);pointer-events:none;display:flex;align-items:center;gap:6px}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--inv-dim);font-size:.85rem}
+.marco-img.sin-img img{display:none}
+.ruta-code{font-family:'Courier New',monospace;background:#EEF2FF;color:#4338CA;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+
+/* ══ BLOQUE PDF (tarjeta de acceso) ══ */
+.bloque-pdf{position:relative;border-radius:var(--r-md);border:3px solid var(--inv-border);background:linear-gradient(135deg,#FFF5F5,#FEF2F2);padding:22px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bloque-pdf:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.bloque-pdf.g6{border-color:var(--inv-azul);background:linear-gradient(135deg,#F0FDFA,#EFF6FF)}
+.bloque-pdf.g7{border-color:var(--inv-morado);background:linear-gradient(135deg,#FAF5FF,#F5F3FF)}
+.pdf-icono{font-size:3rem;flex-shrink:0;animation:floatIcon 4s ease-in-out infinite alternate}
+.pdf-info{flex:1;min-width:200px}
+.pdf-info h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 4px;color:var(--inv-texto)}
+.pdf-info p{font-size:.8rem;color:var(--inv-dim);margin:0}
+.btn-pdf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:10px 22px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-rojo),var(--inv-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B,0 6px 16px rgba(239,68,68,.3);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pdf:hover{transform:translateY(-3px);box-shadow:0 7px 0 #991B1B,0 10px 20px rgba(239,68,68,.35)}
+.btn-pdf:active{transform:translateY(2px);box-shadow:0 1px 0 #991B1B}
+.btn-pdf.azul{background:linear-gradient(135deg,var(--inv-azul),var(--inv-celeste));box-shadow:0 4px 0 #0E7490,0 6px 16px rgba(26,155,171,.3)}
+.btn-pdf.azul:hover{box-shadow:0 7px 0 #0E7490,0 10px 20px rgba(26,155,171,.35)}
+.btn-pdf.morado{background:linear-gradient(135deg,var(--inv-morado),var(--inv-rosa));box-shadow:0 4px 0 #5B21B6,0 6px 16px rgba(124,58,237,.3)}
+.btn-pdf.morado:hover{box-shadow:0 7px 0 #5B21B6,0 10px 20px rgba(124,58,237,.35)}
+
+
+/* EVALUACIÓN INTERACTIVA */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--inv-azul);border-radius:var(--r-lg);background:linear-gradient(135deg,#F0FDFA,#EFF6FF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--inv-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--inv-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--inv-azul)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--inv-azul);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--inv-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(26,155,171,.2)}
+.evaluacion-progreso-barra span{display:block;width:10%;height:100%;background:linear-gradient(90deg,var(--inv-azul),var(--inv-verde));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(26,155,171,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--inv-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--inv-border);border-radius:var(--r-sm);background:white;color:var(--inv-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--inv-azul);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--inv-azul);flex-shrink:0}
+.quiz-option.correct{border-color:var(--inv-verde);background:rgba(61,190,140,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--inv-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--inv-azul),var(--inv-verde));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #0E7490;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--inv-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--inv-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--inv-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+
+@media (max-width:640px){
+  .evaluacion{padding:18px}
+  .evaluacion-cabecera{display:block}
+  .evaluacion-tiempo{display:inline-block;margin-top:12px}
+  .quiz-options{grid-template-columns:1fr}
+}
+
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeSlide .3s ease}
+.lightbox.visible{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;border-radius:var(--r-md);box-shadow:0 24px 80px rgba(0,0,0,.5);object-fit:contain}
+.lightbox-cerrar{position:absolute;top:18px;right:22px;background:white;border:none;width:44px;height:44px;border-radius:50%;font-size:1.3rem;font-weight:900;color:var(--inv-texto);cursor:pointer;box-shadow:var(--sombra-md);transition:transform .2s}
+.lightbox-cerrar:hover{transform:scale(1.1) rotate(90deg)}
+.lightbox-pie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);border-radius:50px;padding:8px 24px;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--inv-texto);white-space:nowrap}
+
+
+/* TARJETAS VOCABULARIO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(255,107,53,.07);border-color:var(--inv-naranja)}
+.concepto-card.geo{background:rgba(26,155,171,.07);border-color:var(--inv-azul)}
+.concepto-card.met{background:rgba(61,190,140,.07);border-color:var(--inv-verde)}
+.concepto-card.ale{background:rgba(255,107,157,.07);border-color:var(--inv-rosa)}
+.concepto-card.var{background:rgba(124,58,237,.07);border-color:var(--inv-morado)}
+.concepto-card.frac{background:rgba(255,210,63,.1);border-color:var(--inv-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--inv-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--inv-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--inv-naranja)}
+.concepto-card.geo .concepto-flip{background:var(--inv-azul)}
+.concepto-card.met .concepto-flip{background:var(--inv-verde)}
+.concepto-card.ale .concepto-flip{background:var(--inv-rosa)}
+.concepto-card.var .concepto-flip{background:var(--inv-morado)}
+.concepto-card.frac .concepto-flip{background:var(--inv-amarillo);color:var(--inv-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:2px dashed var(--inv-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#B45309;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--inv-azul)}
+.cc-caja{background:rgba(61,190,140,.07);border:2px solid var(--inv-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 24px rgba(26,155,171,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-amarillo),var(--inv-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #B45309,0 8px 20px rgba(255,107,53,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #B45309,0 14px 28px rgba(255,107,53,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #B45309}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border:3px solid var(--inv-celeste);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--inv-azul);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--inv-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--inv-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--inv-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(255,210,63,.12),rgba(124,58,237,.1),rgba(26,155,171,.08));border:4px solid var(--inv-amarillo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--inv-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--inv-morado);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--inv-morado),var(--inv-azul));box-shadow:0 4px 0 rgba(91,33,182,.4)}
+
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--inv-border);color:var(--inv-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--inv-morado);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--inv-morado);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--inv-morado);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--inv-morado),var(--inv-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #5B21B6,0 8px 20px rgba(124,58,237,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #5B21B6,0 12px 28px rgba(124,58,237,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #5B21B6}
+
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .visor-cabecera h4{font-size:.95rem}
+  .img-lupa{font-size:.68rem;padding:5px 10px}
+  .bloque-pdf{flex-direction:column;text-align:center}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.lightbox{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque,.bloque-pdf{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🚀 MISIÓN EMPRENDEDORA</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré los recursos">📚</span>
+      <span class="pieza" id="pieza-2" title="Aprendí conceptos clave">💡</span>
+      <span class="pieza" id="pieza-3" title="Hice el Reto Emprendedor">✍️</span>
+      <span class="pieza" id="pieza-4" title="Compartí mi idea">💬</span>
+      <span class="pieza" id="pieza-5" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🚀 MODO EMPRENDEDOR ACTIVO</div>
+    <h1 class="hero-titulo">🚀 Emprendimiento Aventura<br/>¡De la Idea a la Acción!</h1>
+    <p class="hero-subtitulo">Emprendimiento · Semana 1 · Grados 6° y 7° Unificados</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="6° o 7°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 17 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 1: RECURSOS (PDFs + Imagen) -->
+  <div class="seccion seccion-recursos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📚</span>
+      <h3>Recursos de Emprendimiento · Malla + Guía + Evaluación</h3>
+      <small>📌 Malla, guía y prueba compartidas para ambos grados</small>
+    </div>
+
+
+    <!-- EVALUACIÓN INTERACTIVA COMPARTIDA PARA GRADOS 6° Y 7° -->
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DIAGNÓSTICA · PERÍODO 4</span>
+          <h4>✍️ Prueba Diagnóstica de Emprendimiento · Grados 6° y 7°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 30 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 10</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+
+
+    <div class="visor-bloque">
+      <div class="visor-cabecera">
+        <div class="visor-num" style="background:var(--inv-azul)">🖼️</div>
+        <h4>📋 Malla Curricular · Emprendimiento 6° y 7°</h4>
+        <span class="tipo-tag tipo-img">IMAGEN</span>
+      </div>
+      <div class="marco-img g6" onclick="abrirLightboxImg(0)">
+        <img src="Malla_curricular.png" alt="Malla curricular de Emprendimiento grados 6 y 7" onerror="this.parentElement.classList.add('sin-img')">
+        <div class="img-lupa">🔍 Zoom</div>
+        <div class="img-fallback">
+          📂 <strong>No se encontró la imagen</strong><br/>
+          Ruta esperada: <span class="ruta-code">Malla_curricular.png</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- GUÍA ÚNICA PARA GRADOS 6° Y 7° -->
+    <div class="nivel-card grado6">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge">🚀 Emprendimiento · Grados 6° y 7°</span>
+        <span class="nivel-dba">Guía unificada del período 4</span>
+      </div>
+      <div class="bloque-pdf g6">
+        <div class="pdf-icono">📘</div>
+        <div class="pdf-info">
+          <h5>📖 Guía Didáctica · Semana 1</h5>
+          <p>Actividades y ejercicios de emprendimiento para ambos grados</p>
+        </div>
+        <a href="Guia_1.pdf" target="_blank" class="btn-pdf azul">📖 Ver PDF</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 2: CONCEPTOS CLAVE (flip) -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave · ¡Haz clic para voltear!</h3>
+      <small>👆 Toca las tarjetas para descubrir más</small>
+    </div>
+
+
+    <div class="conceptos-grid">
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">💡</span>
+        <div class="concepto-titulo">La Idea de Negocio</div>
+        <div class="concepto-desc">El punto de partida de todo emprendimiento</div>
+        <div class="concepto-flip">Una idea resuelve un <strong>problema real</strong>. Debe ser clara, útil y posible de realizar con los recursos del territorio.</div>
+      </div>
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🎯</span>
+        <div class="concepto-titulo">Necesidad y Oportunidad</div>
+        <div class="concepto-desc">Donde hay una necesidad, hay una oportunidad</div>
+        <div class="concepto-flip">Observa tu vereda: ¿qué falta? ¿qué se puede mejorar? Ahí nace la <strong>oportunidad de negocio</strong>.</div>
+      </div>
+      <div class="concepto-card met" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">👥</span>
+        <div class="concepto-titulo">Cliente Ideal</div>
+        <div class="concepto-desc">¿Para quién creamos valor?</div>
+        <div class="concepto-flip">Define quién comprará: edad, gustos, necesidades. En Chichalá pueden ser familias, campesinos o visitantes. 🌿</div>
+      </div>
+      <div class="concepto-card ale" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">💰</span>
+        <div class="concepto-titulo">Costos y Utilidad</div>
+        <div class="concepto-desc">Ganar no es magia, es matemática</div>
+        <div class="concepto-flip"><strong>Utilidad = Precio de venta − Costos.</strong> Si el precio no cubre costos, el negocio pierde dinero.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🌱</span>
+        <div class="concepto-titulo">Emprendimiento Sostenible</div>
+        <div class="concepto-desc">Cuidar el planeta mientras se emprende</div>
+        <div class="concepto-flip">Usar productos locales, reducir empaques y reutilizar materiales hace tu negocio más fuerte y responsable. ♻️</div>
+      </div>
+      <div class="concepto-card frac" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🗣️</span>
+        <div class="concepto-titulo">Pitch de 30 segundos</div>
+        <div class="concepto-desc">Presenta tu idea como un profesional</div>
+        <div class="concepto-flip">Problema → Solución → Para quién → Por qué tú. Practícalo frente al espejo. 🪞</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 3: RETO EMPRENDEDOR -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto Emprendedor · Mi primera idea de negocio</h3>
+      <small>✏️ Escribe tu propuesta usando lo aprendido</small>
+    </div>
+    <div class="reto-box">
+      <div class="reto-titulo">🏆 Misión: crea un negocio para Chichalá</div>
+      <div class="linea"><input type="text" placeholder="1. Problema que detecto en mi vereda..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="2. Mi solución o producto..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="3. Mi cliente ideal..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="4. Nombre creativo de mi negocio..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="cc-caja">
+        <p>💬 Comparte tu idea con un compañero y mejórenla juntos: toda gran empresa empezó con una conversación.</p>
+      </div>
+    </div>
+    <button class="btn-completar" onclick="completarMision()">🏁 Completar mi misión emprendedora</button>
+  </div>
+
+
+    <!-- COFRE DEL SABER -->
+  <div class="coffre-wrap cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre del Emprendedor</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos del Mundo Emprendedor</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🍪</span>
+      <div><strong>¡Las cookies salvaron una empresa!</strong> En 1997, Frito-Lay lanzó "Sun Chips" tras escuchar a sus clientes. Escuchar al cliente también es emprender. 🗣️</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">📱</span>
+      <div><strong>Uber nació de una molestia:</strong> Sus fundadores no encontraban taxi en París. Los mejores negocios nacen de problemas personales. 🚕</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá ya hay emprendimiento:</strong> El café, el panela, las artesanías y los cultivos son negocios reales. ¡Ustedes pueden darles un salto digital! 💻</div>
+    </div>
+  </div>
+
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p>Completó con éxito la <strong>Semana 1 · Emprendimiento Aventura</strong> con creatividad, visión y actitud.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">8°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🚀 Emprender es atreverse · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+
+  <!-- LIGHTBOX (IMAGENES) -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Vista ampliada"/>
+    <div class="lightbox-pie" id="lightbox-pie">Vista ampliada</div>
+  </div>
+
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+// Variables globales
+let indiceImgActual = 0;
+const imagenes = [
+  'Malla_curricular.png'
+];
+
+
+// Abrir lightbox
+function abrirLightboxImg(indice){
+  indiceImgActual = indice;
+  document.getElementById('lightbox-img').src = imagenes[indice];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indice+1} de ${imagenes.length}`;
+  document.getElementById('lightbox').classList.add('visible');
+}
+
+
+// Cerrar lightbox
+function cerrarLightbox(){
+  document.getElementById('lightbox').classList.remove('visible');
+}
+
+
+// Cerrar lightbox con ESC
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') cerrarLightbox();
+});
+
+
+// Abrir cofre
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+
+// Completar misión
+function completarMision(){
+  const piezas = document.querySelectorAll('.pieza');
+  piezas.forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '6° o 7°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+
+// Crear confeti
+function crearConfeti(){
+  const colores = ['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+
+// Evaluación diagnóstica interactiva
+const preguntasQuiz = [
+  {
+    seccion: 'Exploración · Oportunidades y contexto',
+    texto: 'Andrés observa que en su vereda nadie vende huevos frescos y que las familias deben viajar hasta Chaparral para conseguirlos. Desde el punto de vista del emprendimiento, esa situación se considera principalmente:',
+    opciones: ['Una amenaza legal para el municipio.', 'Una oportunidad de negocio identificada en el entorno.', 'Un gasto público obligatorio del colegio.', 'Un problema que solo resuelve el gobierno.'],
+    correcta: 1,
+    explicacion: 'Una necesidad no atendida en el entorno puede convertirse en una oportunidad de negocio.'
+  },
+  {
+    seccion: 'Exploración · Oportunidades y contexto',
+    texto: 'Antes de lanzar cualquier idea, un buen emprendedor se pregunta quién compraría el producto y por qué lo elegiría. Esta reflexión corresponde a identificar:',
+    opciones: ['El nombre comercial más bonito.', 'Los colores del logo.', 'La necesidad del cliente y la propuesta de valor.', 'El número de empleados necesarios.'],
+    correcta: 2,
+    explicacion: 'La propuesta de valor responde a la necesidad del cliente y explica por qué elegiría el producto.'
+  },
+  {
+    seccion: 'Estructuración · Pensamiento crítico y creativo',
+    texto: 'Un grupo propone vender empanadas de cultivo durante los recesos. Al planear, discuten precios, ingredientes y horarios. ¿Qué componente del proyecto están construyendo en ese momento?',
+    opciones: ['La historia personal de cada integrante.', 'La estructura operativa y comercial de la idea.', 'El reglamento disciplinario del curso.', 'La lista de tareas del hogar.'],
+    correcta: 1,
+    explicacion: 'Precios, ingredientes y horarios forman parte de la estructura operativa y comercial.'
+  },
+  {
+    seccion: 'Estructuración · Costos y utilidad',
+    texto: 'Para preparar 20 frascos de mermelada se necesitan $40.000 entre fruta, azúcar y frascos. ¿Cuál es el costo unitario de cada frasco?',
+    opciones: ['$40.000', '$3.500', '$2.000', '$2.500'],
+    correcta: 2,
+    explicacion: '$40.000 ÷ 20 frascos = $2.000 por frasco.'
+  },
+  {
+    seccion: 'Estructuración · Costos y utilidad',
+    texto: 'Si venden los 20 frascos de mermelada a $3.500 cada uno, la utilidad total del proyecto será de:',
+    opciones: ['$70.000', '$30.000', '$40.000', '$1.500'],
+    correcta: 1,
+    explicacion: 'Ingresos: 20 × $3.500 = $70.000. Utilidad: $70.000 − $40.000 = $30.000.'
+  },
+  {
+    seccion: 'Estructuración · Sostenibilidad',
+    texto: '¿Cuál decisión hace que el proyecto de mermelada sea realmente sostenible?',
+    opciones: ['Usar el doble de azúcar para que dure más.', 'Vender solo a quienes tengan más dinero.', 'Comprar el lulo a cultivadores locales y reutilizar los frascos de vidrio.', 'Publicar muchas fotos en redes sociales.'],
+    correcta: 2,
+    explicacion: 'Comprar localmente y reutilizar envases favorece a la comunidad y reduce el impacto ambiental.'
+  },
+  {
+    seccion: 'Transferencia · Impacto en la comunidad',
+    texto: 'Un estudiante afirma: "Mi proyecto es bueno si vende caro y no le importa el barrio". ¿Por qué esta afirmación contradice el enfoque del área?',
+    opciones: ['Porque los precios altos siempre son ilegales.', 'Porque un proyecto debe generar valor y responsabilidad con su entorno.', 'Porque vender caro evita pagar impuestos.', 'Porque el barrio no puede comprar nada.'],
+    correcta: 1,
+    explicacion: 'El emprendimiento debe generar valor y actuar con responsabilidad frente a la comunidad.'
+  },
+  {
+    seccion: 'Valoración · Socialización del aprendizaje',
+    texto: 'Al terminar el proyecto, el grupo presenta sus resultados ante la comunidad educativa y explica qué mejoraría. Este momento corresponde a:',
+    opciones: ['La exploración inicial de ideas.', 'La valoración y socialización del aprendizaje.', 'La compra de materiales.', 'La asignación de notas del profesor.'],
+    correcta: 1,
+    explicacion: 'Presentar resultados y proponer mejoras corresponde a valorar y socializar lo aprendido.'
+  },
+  {
+    seccion: 'Trabajo en equipo y competencias ciudadanas',
+    texto: 'Durante una reunión, dos compañeros proponen ideas distintas y discuten con respeto hasta llegar a una propuesta mejor. Esta actitud evidencia:',
+    opciones: ['Que uno de los dos perdió la discusión.', 'Que el grupo evitó tomar decisiones.', 'Argumentación, escucha activa y construcción colectiva.', 'Que el profesor debió resolver el conflicto.'],
+    correcta: 2,
+    explicacion: 'Escuchar, argumentar y construir una solución conjunta fortalece el trabajo en equipo.'
+  },
+  {
+    seccion: 'Trabajo en equipo y competencias ciudadanas',
+    texto: 'María no pudo asistir y nadie le explicó su parte del trabajo. ¿Qué debe hacer el grupo?',
+    opciones: ['Excluirla del proyecto para no perder tiempo.', 'Presentar sin avisar y continuar con otro compañero.', 'Comunicarse con ella, reorganizar tareas e incluirla de nuevo.', 'Esperar a que ella resuelva todo sola.'],
+    correcta: 2,
+    explicacion: 'La comunicación, la reorganización de tareas y la inclusión son responsabilidades compartidas.'
+  }
+];
+
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente mentalidad emprendedora!' : porcentaje >= 60 ? '¡Buen avance!' : '¡Sigue practicando!';
+
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 8) return 'Tienes bases sólidas para el período 4 de Emprendimiento.';
+  if(aciertos >= 6) return 'Repasa las preguntas falladas y sigue fortaleciendo tus conceptos.';
+  return 'Refuerza los conceptos básicos de negocio antes de continuar.';
+}
+
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '6° o 7°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA DIAGNÓSTICA DE EMPRENDIMIENTO - PERÍODO 4',
+    'Grados 6° y 7°',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-prueba-emprendimiento-${nombre.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+
+// Inicializar
+document.addEventListener('DOMContentLoaded',function(){
+  cargarPregunta();
+  console.log('🚀 Emprendimiento Aventura cargado correctamente. ¡A emprender!');
+});
+</script>
+
+
+</body>
+</html>

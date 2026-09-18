@@ -826,6 +826,823 @@ const WORDS = [
         translation: 'actualizar',
         example: 'Profe Nelson will <strong>update</strong> this dictionary with new words every semester.',
         exampleEs: 'Profe Nelson actualizará este diccionario con palabras nuevas cada semestre.'
+    },
+        // ── 👋 SALUDOS (greetings) ──
+    {
+        id: 101, cat: 'greetings', emoji: '👋',
+        word: 'hello',
+        phonetic: '/həˈloʊ/',
+        translation: 'hola',
+        example: '<strong>Hello</strong>, my name is Profe Nelson.',
+        exampleEs: 'Hola, mi nombre es Profe Nelson.'
+    },
+    {
+        id: 102, cat: 'greetings', emoji: '☀️',
+        word: 'good morning',
+        phonetic: '/ɡʊd ˈmɔːrnɪŋ/',
+        translation: 'buenos días',
+        example: '<strong>Good morning</strong>, students! Let\'s start the class.',
+        exampleEs: '¡Buenos días, estudiantes! Vamos a empezar la clase.'
+    },
+    {
+        id: 103, cat: 'greetings', emoji: '🌅',
+        word: 'good afternoon',
+        phonetic: '/ɡʊd ˌæftərˈnun/',
+        translation: 'buenas tardes',
+        example: '<strong>Good afternoon</strong>, welcome to our school.',
+        exampleEs: 'Buenas tardes, bienvenidos a nuestra escuela.'
+    },
+    {
+        id: 104, cat: 'greetings', emoji: '🌙',
+        word: 'good evening',
+        phonetic: '/ɡʊd ˈivnɪŋ/',
+        translation: 'buenas noches',
+        example: '<strong>Good evening</strong>, I hope you had a good day.',
+        exampleEs: 'Buenas noches, espero que tengas un buen día.'
+    },
+    {
+        id: 105, cat: 'greetings', emoji: '👋',
+        word: 'hi',
+        phonetic: '/haɪ/',
+        translation: 'hola (informal)',
+        example: '<strong>Hi</strong>, friend! How are you doing today?',
+        exampleEs: '¡Hola, amigo! ¿Cómo estás hoy?'
+    },
+    {
+        id: 106, cat: 'greetings', emoji: '🤝',
+        word: 'how do you do',
+        phonetic: '/haʊ duː juː duː/',
+        translation: '¿cómo está usted?',
+        example: '<strong>How do you do</strong>? It is a pleasure to meet you.',
+        exampleEs: '¿Cómo está usted? Es un placer conocerlo.'
+    },
+    {
+        id: 107, cat: 'greetings', emoji: '👋',
+        word: 'welcome',
+        phonetic: '/ˈwɛlkəm/',
+        translation: 'bienvenido/a',
+        example: '<strong>Welcome</strong> to Chichalá, our village is beautiful.',
+        exampleEs: 'Bienvenido a Chichalá, nuestro pueblo es hermoso.'
+    },
+    {
+        id: 108, cat: 'greetings', emoji: '😊',
+        word: 'long time no see',
+        phonetic: '/lɔŋ taɪm noʊ siː/',
+        translation: 'hace mucho que no te veo',
+        example: '<strong>Long time no see</strong>, how have you been?',
+        exampleEs: '¡Hace mucho que no te veo! ¿Cómo has estado?'
+    },
+    {
+        id: 109, cat: 'greetings', emoji: '🌺',
+        word: 'it is nice to meet you',
+        phonetic: '/ɪt ɪz naɪs tuː miːt juː/',
+        translation: 'es un placer conocerlo',
+        example: '<strong>It is nice to meet you</strong>, Profe Carlos.',
+        exampleEs: 'Es un placer conocerlo, Profe Carlos.'
+    },
+    {
+        id: 110, cat: 'greetings', emoji: '🌟',
+        word: 'nice to meet you too',
+        phonetic: '/naɪs tuː miːt juː tuː/',
+        translation: 'igualmente, mucho gusto',
+        example: '<strong>Nice to meet you too</strong>, let us work together.',
+        exampleEs: 'Igualmente, mucho gusto, trabajemos juntos.'
+    },
+
+
+    // ── 🗣️ FRASES DIARIAS (daily-phrases) ──
+    {
+        id: 111, cat: 'daily-phrases', emoji: '💬',
+        word: 'how are you',
+        phonetic: '/haʊ ɑːr juː/',
+        translation: '¿cómo estás?',
+        example: '<strong>How are you</strong> today, my friend?',
+        exampleEs: '¿Cómo estás hoy, mi amigo?'
+    },
+    {
+        id: 112, cat: 'daily-phrases', emoji: '💬',
+        word: 'I am fine',
+        phonetic: '/aɪ æm faɪn/',
+        translation: 'estoy bien',
+        example: '<strong>I am fine</strong>, thank you for asking.',
+        exampleEs: 'Estoy bien, gracias por preguntar.'
+    },
+    {
+        id: 113, cat: 'daily-phrases', emoji: '😄',
+        word: 'what is up',
+        phonetic: '/wʌt ɪz ʌp/',
+        translation: '¿qué pasa?',
+        example: '<strong>What is up</strong>? Any news from Chaparral?',
+        exampleEs: '¿Qué pasa? ¿Alguna noticia de Chaparral?'
+    },
+    {
+        id: 114, cat: 'daily-phrases', emoji: '👍',
+        word: 'not much',
+        phonetic: '/nɑːt mʌtʃ/',
+        translation: 'no mucho',
+        example: '<strong>Not much</strong>, just working on the farm.',
+        exampleEs: 'No mucho, solo trabajando en la finca.'
+    },
+    {
+        id: 115, cat: 'daily-phrases', emoji: '🏠',
+        word: 'see you later',
+        phonetic: '/siː juː ˈleɪtər/',
+        translation: 'hasta luego',
+        example: '<strong>See you later</strong>, I will see you tomorrow.',
+        exampleEs: 'Hasta luego, te veo mañana.'
+    },
+    {
+        id: 116, cat: 'daily-phrases', emoji: '👋',
+        word: 'take care',
+        phonetic: '/teɪk keər/',
+        translation: 'cuídate',
+        example: '<strong>Take care</strong> on your way home.',
+        exampleEs: 'Cuídate en tu camino a casa.'
+    },
+    {
+        id: 117, cat: 'daily-phrases', emoji: '☕',
+        word: 'have a nice day',
+        phonetic: '/hæv ə naɪs deɪ/',
+        translation: 'que tengas un buen día',
+        example: '<strong>Have a nice day</strong>, and thanks for your help.',
+        exampleEs: 'Que tengas un buen día, y gracias por tu ayuda.'
+    },
+    {
+        id: 118, cat: 'daily-phrases', emoji: '🌈',
+        word: 'everything is fine',
+        phonetic: '/ˈɛvriθɪŋ ɪz faɪn/',
+        translation: 'todo está bien',
+        example: '<strong>Everything is fine</strong> in Chichalá.',
+        exampleEs: 'Todo está bien en Chichalá.'
+    },
+    {
+        id: 119, cat: 'daily-phrases', emoji: '🤔',
+        word: 'what about you',
+        phonetic: '/wʌt əˈbaʊt juː/',
+        translation: '¿y tú?',
+        example: '<strong>What about you</strong>? How is your family?',
+        exampleEs: '¿Y tú? ¿Cómo está tu familia?'
+    },
+    {
+        id: 120, cat: 'daily-phrases', emoji: '😊',
+        word: 'I am good',
+        phonetic: '/aɪ æm ɡʊd/',
+        translation: 'estoy bien',
+        example: '<strong>I am good</strong>, thanks for asking.',
+        exampleEs: 'Estoy bien, gracias por preguntar.'
+    },
+
+
+    // ── 📝 FORMALISMOS (formal) ──
+    {
+        id: 121, cat: 'formal', emoji: '🤵',
+        word: 'please',
+        phonetic: '/pliːz/',
+        translation: 'por favor',
+        example: '<strong>Please</strong>, could you help me with this?',
+        exampleEs: 'Por favor, ¿podrías ayudarme con esto?'
+    },
+    {
+        id: 122, cat: 'formal', emoji: '🙏',
+        word: 'thank you',
+        phonetic: '/θæŋk juː/',
+        translation: 'gracias',
+        example: '<strong>Thank you</strong> for your kind assistance.',
+        exampleEs: 'Gracias por su amable ayuda.'
+    },
+    {
+        id: 123, cat: 'formal', emoji: '🙏',
+        word: 'you are welcome',
+        phonetic: '/juː ɑːr ˈwɛlkəm/',
+        translation: 'de nada',
+        example: '<strong>You are welcome</strong>, it was my pleasure.',
+        exampleEs: 'De nada, fue un placer.'
+    },
+    {
+        id: 124, cat: 'formal', emoji: '🙇',
+        word: 'excuse me',
+        phonetic: '/ɪkˈskjuːz miː/',
+        translation: 'disculpe',
+        example: '<strong>Excuse me</strong>, where is the classroom?',
+        exampleEs: 'Disculpe, ¿dónde está el aula?'
+    },
+    {
+        id: 125, cat: 'formal', emoji: '🙇',
+        word: 'I apologize',
+        phonetic: '/aɪ əˈpɒlədʒaɪz/',
+        translation: 'me disculpo',
+        example: '<strong>I apologize</strong> for being late.',
+        exampleEs: 'Me disculpo por llegar tarde.'
+    },
+    {
+        id: 126, cat: 'formal', emoji: '🤝',
+        word: 'may I help you',
+        phonetic: '/meɪ aɪ hɛlp juː/',
+        translation: '¿puedo ayudarle?',
+        example: '<strong>May I help you</strong> with your homework?',
+        exampleEs: '¿Puedo ayudarle con su tarea?'
+    },
+    {
+        id: 127, cat: 'formal', emoji: '📋',
+        word: 'could you please',
+        phonetic: '/kʊd juː pliːz/',
+        translation: '¿podría por favor?',
+        example: '<strong>Could you please</strong> explain this again?',
+        exampleEs: '¿Podría por favor explicarlo de nuevo?'
+    },
+    {
+        id: 128, cat: 'formal', emoji: '🙏',
+        word: 'I appreciate it',
+        phonetic: '/aɪ əˈpriːʃiˌeɪt ɪt/',
+        translation: 'lo aprecio mucho',
+        example: '<strong>I appreciate it</strong>, thank you very much.',
+        exampleEs: 'Lo aprecio mucho, muchas gracias.'
+    },
+    {
+        id: 129, cat: 'formal', emoji: '🤝',
+        word: 'if you don\'t mind',
+        phonetic: '/ɪf juː doʊnt maɪnd/',
+        translation: 'si no le importa',
+        example: '<strong>If you don\'t mind</strong>, may I ask a question?',
+        exampleEs: 'Si no le importa, ¿puedo hacer una pregunta?'
+    },
+    {
+        id: 130, cat: 'formal', emoji: '🙇',
+        word: 'sorry',
+        phonetic: '/ˈsɔːri/',
+        translation: 'lo siento',
+        example: '<strong>Sorry</strong>, I did not understand.',
+        exampleEs: 'Lo siento, no entendí.'
+    },
+
+
+    // ── 👋 ADIÓS (goodbyes) ──
+    {
+        id: 131, cat: 'goodbyes', emoji: '👋',
+        word: 'goodbye',
+        phonetic: '/ɡʊdˈbaɪ/',
+        translation: 'adiós',
+        example: '<strong>Goodbye</strong>, see you tomorrow!',
+        exampleEs: '¡Adiós, nos vemos mañana!'
+    },
+    {
+        id: 132, cat: 'goodbyes', emoji: '👋',
+        word: 'bye',
+        phonetic: '/baɪ/',
+        translation: 'chau',
+        example: '<strong>Bye</strong>, friend! Have a great day.',
+        exampleEs: '¡Chau, amigo! Que tengas un gran día.'
+    },
+    {
+        id: 133, cat: 'goodbyes', emoji: '🌟',
+        word: 'see you soon',
+        phonetic: '/siː juː suːn/',
+        translation: 'nos vemos pronto',
+        example: '<strong>See you soon</strong>, I hope to meet you again.',
+        exampleEs: 'Nos vemos pronto, espero volver a encontrarte.'
+    },
+    {
+        id: 134, cat: 'goodbyes', emoji: '🌙',
+        word: 'good night',
+        phonetic: '/ɡʊd naɪt/',
+        translation: 'buenas noches',
+        example: '<strong>Good night</strong>, sleep well.',
+        exampleEs: 'Buenas noches, duerme bien.'
+    },
+    {
+        id: 135, cat: 'goodbyes', emoji: '🏠',
+        word: 'see you tomorrow',
+        phonetic: '/siː juː təˈmɔːroʊ/',
+        translation: 'nos vemos mañana',
+        example: '<strong>See you tomorrow</strong>, we have a new lesson.',
+        exampleEs: 'Nos vemos mañana, tenemos una nueva lección.'
+    },
+    {
+        id: 136, cat: 'goodbyes', emoji: '🚶',
+        word: 'see you later',
+        phonetic: '/siː juː ˈleɪtər/',
+        translation: 'hasta luego',
+        example: '<strong>See you later</strong>, I have to go now.',
+        exampleEs: 'Hasta luego, tengo que irme ahora.'
+    },
+    {
+        id: 137, cat: 'goodbyes', emoji: '🌈',
+        word: 'take it easy',
+        phonetic: '/teɪk ɪt ˈiːzi/',
+        translation: 'tómalo con calma',
+        example: '<strong>Take it easy</strong>, don\'t worry too much.',
+        exampleEs: 'Tómalo con calma, no te preocupes tanto.'
+    },
+    {
+        id: 138, cat: 'goodbyes', emoji: '💪',
+        word: 'keep in touch',
+        phonetic: '/kiːp ɪn tʌtʃ/',
+        translation: 'mantente en contacto',
+        example: '<strong>Keep in touch</strong>, we are friends forever.',
+        exampleEs: 'Mantente en contacto, somos amigos para siempre.'
+    },
+    {
+        id: 139, cat: 'goodbyes', emoji: '🤗',
+        word: 'have a good one',
+        phonetic: '/hæv ə ɡʊd wʌn/',
+        translation: 'que tengas uno bueno',
+        example: '<strong>Have a good one</strong>, and thanks for everything.',
+        exampleEs: 'Que tengas uno bueno, y gracias por todo.'
+    },
+    {
+        id: 140, cat: 'goodbyes', emoji: '👋',
+        word: 'farewell',
+        phonetic: '/ˈfɛrwɛl/',
+        translation: 'despedida',
+        example: '<strong>Farewell</strong>, it was nice to work with you.',
+        exampleEs: 'Despedida, fue agradable trabajar contigo.'
+    },
+
+
+    // ── 💡 EXPRESIONES ÚTILES (expressions) ──
+    {
+        id: 141, cat: 'expressions', emoji: '❓',
+        word: 'I don\'t understand',
+        phonetic: '/aɪ doʊnt ˌʌndərˈstænd/',
+        translation: 'no entiendo',
+        example: '<strong>I don\'t understand</strong>, could you explain it again?',
+        exampleEs: 'No entiendo, ¿podrías explicarlo de nuevo?'
+    },
+    {
+        id: 142, cat: 'expressions', emoji: '🔄',
+        word: 'could you repeat that',
+        phonetic: '/kʊd juː rɪˈpiːt ðæt/',
+        translation: '¿podrías repetirlo?',
+        example: '<strong>Could you repeat that</strong>? I didn\'t hear you clearly.',
+        exampleEs: '¿Podrías repetirlo? No te escuché claramente.'
+    },
+    {
+        id: 143, cat: 'expressions', emoji: '👂',
+        word: 'I didn\'t hear you',
+        phonetic: '/aɪ ˈdɪdnt hɪər juː/',
+        translation: 'no te escuché',
+        example: '<strong>I didn\'t hear you</strong>, please speak louder.',
+        exampleEs: 'No te escuché, por favor habla más fuerte.'
+    },
+    {
+        id: 144, cat: 'expressions', emoji: '🙋',
+        word: 'can you help me',
+        phonetic: '/kæn juː hɛlp miː/',
+        translation: '¿puedes ayudarme?',
+        example: '<strong>Can you help me</strong> with this exercise?',
+        exampleEs: '¿Puedes ayudarme con este ejercicio?'
+    },
+    {
+        id: 145, cat: 'expressions', emoji: '💡',
+        word: 'I understand',
+        phonetic: '/aɪ ˌʌndərˈstænd/',
+        translation: 'entiendo',
+        example: '<strong>I understand</strong> now, thank you.',
+        exampleEs: 'Entiendo ahora, gracias.'
+    },
+    {
+        id: 146, cat: 'expressions', emoji: '🤔',
+        word: 'what does this mean',
+        phonetic: '/wʌt dʌz ðɪs miːn/',
+        translation: '¿qué significa esto?',
+        example: '<strong>What does this mean</strong>? I am confused.',
+        exampleEs: '¿Qué significa esto? Estoy confundido.'
+    },
+    {
+        id: 147, cat: 'expressions', emoji: '📝',
+        word: 'let me think',
+        phonetic: '/lɛt miː θɪŋk/',
+        translation: 'déjame pensar',
+        example: '<strong>Let me think</strong>, I will give you an answer.',
+        exampleEs: 'Déjame pensar, te daré una respuesta.'
+    },
+    {
+        id: 148, cat: 'expressions', emoji: '👍',
+        word: 'that makes sense',
+        phonetic: '/ðæt meɪks sɛns/',
+        translation: 'eso tiene sentido',
+        example: '<strong>That makes sense</strong>, now I understand the lesson.',
+        exampleEs: 'Eso tiene sentido, ahora entiendo la lección.'
+    },
+    {
+        id: 149, cat: 'expressions', emoji: '🤷',
+        word: 'I don\'t know',
+        phonetic: '/aɪ doʊnt noʊ/',
+        translation: 'no sé',
+        example: '<strong>I don\'t know</strong>, let us ask Profe Nelson.',
+        exampleEs: 'No sé, preguntémosle al Profe Nelson.'
+    },
+    {
+        id: 150, cat: 'expressions', emoji: '✅',
+        word: 'that is correct',
+        phonetic: '/ðæt ɪz kɒrɛkt/',
+        translation: 'eso es correcto',
+        example: '<strong>That is correct</strong>, well done!',
+        exampleEs: 'Eso es correcto, ¡muy bien!'
+    },
+
+
+    // ── ➕ PALABRAS ADICIONALES (mixed) ──
+    {
+        id: 151, cat: 'rural', emoji: '🌾',
+        word: 'harvest season',
+        phonetic: '/ˈhɑːrvɪst ˈsiːzn/',
+        translation: 'temporada de cosecha',
+        example: '<strong>Harvest season</strong> is the happiest time of the year.',
+        exampleEs: 'La temporada de cosecha es el momento más feliz del año.'
+    },
+    {
+        id: 152, cat: 'rural', emoji: '🐔',
+        word: 'chicken coop',
+        phonetic: '/ˈtʃɪkɪn kuːp/',
+        translation: 'galpón / corral de gallinas',
+        example: 'We feed the chickens in the <strong>chicken coop</strong> every morning.',
+        exampleEs: 'Alimentamos a las gallinas en el galpón cada mañana.'
+    },
+    {
+        id: 153, cat: 'rural', emoji: '🐄',
+        word: 'cattle',
+        phonetic: '/ˈkætl/',
+        translation: 'ganado vacuno',
+        example: 'Our <strong>cattle</strong> graze in the green pastures.',
+        exampleEs: 'Nuestro ganado vacuno pastorea en los verdes potreros.'
+    },
+    {
+        id: 154, cat: 'rural', emoji: '🌽',
+        word: 'maize',
+        phonetic: '/meɪz/',
+        translation: 'maíz',
+        example: 'We plant <strong>maize</strong> near our farmhouse.',
+        exampleEs: 'Plantamos maíz cerca de nuestra casa de campo.'
+    },
+    {
+        id: 155, cat: 'rural', emoji: '🥔',
+        word: 'potato',
+        phonetic: '/pəˈteɪtoʊ/',
+        translation: 'papa / patata',
+        example: 'The <strong>potato</strong> is a staple food in Chichalá.',
+        exampleEs: 'La papa es un alimento básico en Chichalá.'
+    },
+    {
+        id: 156, cat: 'school', emoji: '✏️',
+        word: 'pencil',
+        phonetic: '/ˈpɛnsəl/',
+        translation: 'lápiz',
+        example: 'I use a <strong>pencil</strong> to write my notes.',
+        exampleEs: 'Uso un lápiz para escribir mis notas.'
+    },
+    {
+        id: 157, cat: 'school', emoji: '📏',
+        word: 'ruler',
+        phonetic: '/ˈruːlər/',
+        translation: 'regla',
+        example: 'The teacher gave us a <strong>ruler</strong> for math class.',
+        exampleEs: 'El docente nos dio una regla para la clase de matemáticas.'
+    },
+    {
+        id: 158, cat: 'school', emoji: '🎒',
+        word: 'backpack',
+        phonetic: '/ˈbækpæk/',
+        translation: 'mochila',
+        example: 'My <strong>backpack</strong> is full of books and notebooks.',
+        exampleEs: 'Mi mochila está llena de libros y cuadernos.'
+    },
+    {
+        id: 159, cat: 'school', emoji: '📚',
+        word: 'library',
+        phonetic: '/ˈlaɪbrəri/',
+        translation: 'biblioteca',
+        example: 'We go to the <strong>library</strong> to read books.',
+        exampleEs: 'Vamos a la biblioteca a leer libros.'
+    },
+    {
+        id: 160, cat: 'school', emoji: '🏆',
+        word: 'competition',
+        phonetic: '/ˌkɒmpəˈtɪʃn/',
+        translation: 'competencia',
+        example: 'Our school has an annual <strong>competition</strong> in sports.',
+        exampleEs: 'Nuestra escuela tiene una competencia anual en deportes.'
+    },
+    {
+        id: 161, cat: 'family', emoji: '👶',
+        word: 'baby',
+        phonetic: '/ˈbeɪbi/',
+        translation: 'bebé',
+        example: 'My <strong>baby</strong> sister is very cute.',
+        exampleEs: 'Mi hermanita bebé es muy linda.'
+    },
+    {
+        id: 162, cat: 'family', emoji: '👶',
+        word: 'toddler',
+        phonetic: '/ˈtɒdlər/',
+        translation: 'niño que empieza a caminar',
+        example: 'The <strong>toddler</strong> is learning to walk.',
+        exampleEs: 'El niño que empieza a caminar está aprendiendo a andar.'
+    },
+    {
+        id: 163, cat: 'family', emoji: '👶',
+        word: 'newborn',
+        phonetic: '/ˈnuːbɔːrn/',
+        translation: 'recién nacido',
+        example: 'Our <strong>newborn</strong> nephew is the joy of the family.',
+        exampleEs: 'Nuestro sobrino recién nacido es la alegría de la familia.'
+    },
+    {
+        id: 164, cat: 'family', emoji: '👨‍👩‍👧‍👦',
+        word: 'cousin',
+        phonetic: '/ˈkʌzn/',
+        translation: 'primo / prima',
+        example: 'My <strong>cousin</strong> lives in Bogotá.',
+        exampleEs: 'Mi primo vive en Bogotá.'
+    },
+    {
+        id: 165, cat: 'family', emoji: '👵',
+        word: 'great-grandmother',
+        phonetic: '/ɡreɪt ˈɡrænmʌðər/',
+        translation: 'bisabuela',
+        example: 'My <strong>great-grandmother</strong> is 95 years old.',
+        exampleEs: 'Mi bisabuela tiene 95 años.'
+    },
+    {
+        id: 166, cat: 'connectors', emoji: '➕',
+        word: 'in addition',
+        phonetic: '/ɪn əˈdɪʃn/',
+        translation: 'además',
+        example: '<strong>In addition</strong> to coffee, we grow bananas.',
+        exampleEs: 'Además del café, cultivamos plátanos.'
+    },
+    {
+        id: 167, cat: 'connectors', emoji: '⚡',
+        word: 'meanwhile',
+        phonetic: '/ˈmiːnwaɪl/',
+        translation: 'mientras tanto',
+        example: '<strong>Meanwhile</strong>, I will prepare the coffee.',
+        exampleEs: 'Mientras tanto, yo prepararé el café.'
+    },
+    {
+        id: 168, cat: 'connectors', emoji: '↔️',
+        word: 'on the contrary',
+        phonetic: '/ɒn ðə ˈkɒntrəri/',
+        translation: 'por el contrario',
+        example: '<strong>On the contrary</strong>, the harvest was excellent.',
+        exampleEs: 'Por el contrario, la cosecha fue excelente.'
+    },
+    {
+        id: 169, cat: 'connectors', emoji: '🔁',
+        word: 'similarly',
+        phonetic: '/ˈsɪmələrli/',
+        translation: 'similarmente',
+        example: '<strong>Similarly</strong>, we plant corn after coffee.',
+        exampleEs: 'Similarmente, plantamos maíz después del café.'
+    },
+    {
+        id: 170, cat: 'connectors', emoji: '➡️',
+        word: 'as a result',
+        phonetic: '/æz ə rɪˈzʌlt/',
+        translation: 'como resultado',
+        example: '<strong>As a result</strong>, we have a lot of coffee.',
+        exampleEs: 'Como resultado, tenemos mucho café.'
+    },
+    {
+        id: 171, cat: 'environment', emoji: '🐦',
+        word: 'bird',
+        phonetic: '/bɜːrd/',
+        translation: 'pájaro',
+        example: 'The <strong>bird</strong> sings every morning in Chichalá.',
+        exampleEs: 'El pájaro canta cada mañana en Chichalá.'
+    },
+    {
+        id: 172, cat: 'environment', emoji: '🦋',
+        word: 'butterfly',
+        phonetic: '/ˈbʌtərflaɪ/',
+        translation: 'mariposa',
+        example: 'The <strong>butterfly</strong> flies among the flowers.',
+        exampleEs: 'La mariposa vuela entre las flores.'
+    },
+    {
+        id: 173, cat: 'environment', emoji: '🌧️',
+        word: 'storm',
+        phonetic: '/stɔːrm/',
+        translation: 'tormenta',
+        example: 'The <strong>storm</strong> brought heavy rain last night.',
+        exampleEs: 'La tormenta trajo lluvia fuerte anoche.'
+    },
+    {
+        id: 174, cat: 'environment', emoji: '🌬️',
+        word: 'wind',
+        phonetic: '/wɪnd/',
+        translation: 'viento',
+        example: 'The <strong>wind</strong> blows through the coffee plants.',
+        exampleEs: 'El viento sopla a través de las plantas de café.'
+    },
+    {
+        id: 175, cat: 'environment', emoji: '🌡️',
+        word: 'temperature',
+        phonetic: '/ˈtɛmprətʃər/',
+        translation: 'temperatura',
+        example: 'The <strong>temperature</strong> in Chichalá is warm.',
+        exampleEs: 'La temperatura en Chichalá es cálida.'
+    },
+    {
+        id: 176, cat: 'entrepreneurship', emoji: '📈',
+        word: 'growth',
+        phonetic: '/ɡroʊθ/',
+        translation: 'crecimiento',
+        example: 'Our coffee <strong>growth</strong> has increased this year.',
+        exampleEs: 'El crecimiento de nuestro café ha aumentado este año.'
+    },
+    {
+        id: 177, cat: 'entrepreneurship', emoji: '💰',
+        word: 'income',
+        phonetic: '/ˈɪnkʌm/',
+        translation: 'ingreso',
+        example: 'Our <strong>income</strong> comes from coffee and panela.',
+        exampleEs: 'Nuestros ingresos vienen del café y la panela.'
+    },
+    {
+        id: 178, cat: 'entrepreneurship', emoji: '📊',
+        word: 'sales',
+        phonetic: '/seɪlz/',
+        translation: 'ventas',
+        example: 'Our <strong>sales</strong> are better in the harvest season.',
+        exampleEs: 'Nuestras ventas son mejores en la temporada de cosecha.'
+    },
+    {
+        id: 179, cat: 'entrepreneurship', emoji: '🤝',
+        word: 'collaboration',
+        phonetic: '/kəˌlæbəˈreɪʃn/',
+        translation: 'colaboración',
+        example: 'Our <strong>collaboration</strong> with other farmers is helpful.',
+        exampleEs: 'Nuestra colaboración con otros agricultores es útil.'
+    },
+    {
+        id: 180, cat: 'entrepreneurship', emoji: '🚀',
+        word: 'opportunity',
+        phonetic: '/ˌɒpərˈtjuːnəti/',
+                translation: 'oportunidad',
+        example: 'This is a great <strong>opportunity</strong> to sell our products online.',
+        exampleEs: 'Esta es una gran oportunidad para vender nuestros productos en línea.'
+    },
+    {
+        id: 181, cat: 'entrepreneurship', emoji: '📢',
+        word: 'brand',
+        phonetic: '/brænd/',
+        translation: 'marca',
+        example: 'We are building a strong <strong>brand</strong> for our coffee from Chichalá.',
+        exampleEs: 'Estamos construyendo una marca fuerte para nuestro café de Chichalá.'
+    },
+    {
+        id: 182, cat: 'entrepreneurship', emoji: '📈',
+        word: 'customer service',
+        phonetic: '/ˈkʌstəmər ˌsɜːrvɪs/',
+        translation: 'servicio al cliente',
+        example: 'Good <strong>customer service</strong> keeps our clients happy.',
+        exampleEs: 'Un buen servicio al cliente mantiene felices a nuestros clientes.'
+    },
+    {
+        id: 183, cat: 'entrepreneurship', emoji: '🎯',
+        word: 'goal',
+        phonetic: '/ɡoʊl/',
+        translation: 'meta',
+        example: 'Our <strong>goal</strong> is to export coffee to other countries.',
+        exampleEs: 'Nuestra meta es exportar café a otros países.'
+    },
+    {
+        id: 184, cat: 'entrepreneurship', emoji: '📝',
+        word: 'contract',
+        phonetic: '/ˈkɒntrækt/',
+        translation: 'contrato',
+        example: 'We signed a <strong>contract</strong> with a new buyer.',
+        exampleEs: 'Firmamos un contrato con un nuevo comprador.'
+    },
+    {
+        id: 185, cat: 'technology', emoji: '📱',
+        word: 'smartphone',
+        phonetic: '/ˈsmɑːrtfoʊn/',
+        translation: 'teléfono inteligente',
+        example: 'I use my <strong>smartphone</strong> to take photos of the coffee plants.',
+        exampleEs: 'Uso mi teléfono inteligente para tomar fotos de las plantas de café.'
+    },
+    {
+        id: 186, cat: 'technology', emoji: '📶',
+        word: 'signal',
+        phonetic: '/ˈsɪɡnəl/',
+        translation: 'señal',
+        example: 'The internet <strong>signal</strong> is weak in some parts of Chichalá.',
+        exampleEs: 'La señal de internet es débil en algunas partes de Chichalá.'
+    },
+    {
+        id: 187, cat: 'technology', emoji: '💾',
+        word: 'storage',
+        phonetic: '/ˈstɔːrɪdʒ/',
+        translation: 'almacenamiento',
+        example: 'My tablet has enough <strong>storage</strong> for all my school files.',
+        exampleEs: 'Mi tableta tiene suficiente almacenamiento para todos mis archivos escolares.'
+    },
+    {
+        id: 188, cat: 'technology', emoji: '🔌',
+        word: 'charger',
+        phonetic: '/ˈtʃɑːrdʒər/',
+        translation: 'cargador',
+        example: 'Don\'t forget your phone <strong>charger</strong> when you go to school.',
+        exampleEs: 'No olvides el cargador de tu teléfono cuando vayas a la escuela.'
+    },
+    {
+        id: 189, cat: 'technology', emoji: '🖥️',
+        word: 'monitor',
+        phonetic: '/ˈmɒnɪtər/',
+        translation: 'monitor',
+        example: 'The teacher uses a large <strong>monitor</strong> to show the lessons.',
+        exampleEs: 'El docente usa un monitor grande para mostrar las lecciones.'
+    },
+    {
+        id: 190, cat: 'technology', emoji: '🎧',
+        word: 'headphones',
+        phonetic: '/ˈhɛdfoʊnz/',
+        translation: 'audífonos',
+        example: 'I listen to English lessons with my <strong>headphones</strong>.',
+        exampleEs: 'Escucho lecciones de inglés con mis audífonos.'
+    },
+    // ── 🎓 PALABRAS ADICIONALES (school & rural mix) ──
+    {
+        id: 191, cat: 'school', emoji: '📐',
+        word: 'calculator',
+        phonetic: '/ˈkælkjuleɪtər/',
+        translation: 'calculadora',
+        example: 'We use a <strong>calculator</strong> in math class.',
+        exampleEs: 'Usamos una calculadora en la clase de matemáticas.'
+    },
+    {
+        id: 192, cat: 'school', emoji: '🖍️',
+        word: 'crayon',
+        phonetic: '/ˈkreɪən/',
+        translation: 'cera / crayón',
+        example: 'The little kids use <strong>crayons</strong> to draw pictures.',
+        exampleEs: 'Los niños pequeños usan ceras para dibujar.'
+    },
+    {
+        id: 193, cat: 'school', emoji: '📌',
+        word: 'poster',
+        phonetic: '/ˈpoʊstər/',
+        translation: 'póster',
+        example: 'Our class made a <strong>poster</strong> about the school fair.',
+        exampleEs: 'Nuestra clase hizo un póster sobre la feria escolar.'
+    },
+    {
+        id: 194, cat: 'school', emoji: '🏅',
+        word: 'award',
+        phonetic: '/ɔːrd/',
+        translation: 'premio / distinción',
+        example: 'I received an <strong>award</strong> for my project.',
+        exampleEs: 'Recibí un premio por mi proyecto.'
+    },
+    {
+        id: 195, cat: 'school', emoji: '📋',
+        word: 'lesson',
+        phonetic: '/ˈlɛsn/',
+        translation: 'lección',
+        example: 'Today we have an English <strong>lesson</strong>.',
+        exampleEs: 'Hoy tenemos una lección de inglés.'
+    },
+    {
+        id: 196, cat: 'rural', emoji: '🐑',
+        word: 'sheep',
+        phonetic: '/ʃiːp/',
+        translation: 'oveja',
+        example: 'Our neighbor raises <strong>sheep</strong> for wool.',
+        exampleEs: 'Nuestro vecino cría ovejas para la lana.'
+    },
+    {
+        id: 197, cat: 'rural', emoji: '🐖',
+        word: 'pig',
+        phonetic: '/pɪɡ/',
+        translation: 'cerdo',
+        example: 'We raise <strong>pigs</strong> for meat.',
+        exampleEs: 'Criamos cerdos para la carne.'
+    },
+    {
+        id: 198, cat: 'rural', emoji: '🐎',
+        word: 'horse',
+        phonetic: '/hɔːrs/',
+        translation: 'caballo',
+        example: 'My uncle rides a <strong>horse</strong> to the farm.',
+        exampleEs: 'Mi tío monta un caballo a la finca.'
+    },
+    {
+        id: 199, cat: 'rural', emoji: '🐓',
+        word: 'rooster',
+        phonetic: '/ˈruːstər/',
+        translation: 'gallo',
+        example: 'The <strong>rooster</strong> crows early in the morning.',
+        exampleEs: 'El gallo canta temprano en la mañana.'
+    },
+    {
+        id: 200, cat: 'rural', emoji: '🌻',
+        word: 'sunflower',
+        phonetic: '/ˈsʌnflaʊər/',
+        translation: 'girasol',
+        example: 'The <strong>sunflower</strong> turns toward the sun.',
+        exampleEs: 'El girasol se dirige hacia el sol.'
     }
 ];
 
