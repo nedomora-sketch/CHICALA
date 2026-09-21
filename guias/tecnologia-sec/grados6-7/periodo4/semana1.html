@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Guía de Tecnología · Semáforo Digital · IE Técnica Camacho Angarita"/>
+<title>🚦 Semáforo Digital · Guía Interactiva</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   GUÍA DE TECNOLOGÍA · SEMÁFORO DIGITAL
+   Diseño Impactante · 100% Código · v1
+══════════════════════════════════════════════ */
+:root{
+  --tech-naranja:#FF6B35; --tech-azul:#1A9BAB; --tech-verde:#3DBE8C;
+  --tech-morado:#7C3AED;  --tech-amarillo:#FFD23F; --tech-rosa:#FF6B9D;
+  --tech-rojo:#EF4444;    --tech-celeste:#38BDF8;
+  --tech-bg:#F0F9FF;      --tech-card:#FFFFFF;
+  --tech-texto:#1E293B;   --tech-dim:#64748B; --tech-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tech-bg);color:var(--tech-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(124,58,237,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* BARRA DE MISIÓN */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tech-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tech-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tech-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tech-morado),var(--tech-celeste));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(124,58,237,.4)}
+.barra-nodos{display:flex;gap:6px;flex-wrap:wrap}
+.nodo{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.nodo.activado{filter:grayscale(0) opacity(1);animation:nodoPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes nodoPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* HERO HEADER */
+.hero-header{background:linear-gradient(135deg,var(--tech-azul) 0%,var(--tech-morado) 55%,var(--tech-rosa) 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🚦';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'💻';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--tech-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-teoria::before{background:linear-gradient(180deg,var(--tech-morado),var(--tech-rosa))}
+.seccion-practica::before{background:linear-gradient(180deg,var(--tech-azul),var(--tech-celeste))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--tech-naranja),var(--tech-amarillo))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tech-verde),var(--tech-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tech-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tech-dim);font-weight:600;margin-top:2px}
+
+/* TARJETAS DE TEORÍA */
+.tarjeta-teoria{background:linear-gradient(135deg,#F8FAFC,#EFF6FF);border:2px solid var(--tech-border);border-radius:var(--r-md);padding:22px;margin-bottom:16px;transition:transform .3s,box-shadow .3s}
+.tarjeta-teoria:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.tarjeta-titulo{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;color:var(--tech-morado);margin:0 0 8px}
+.tarjeta-contenido{font-size:.95rem;color:var(--tech-texto);line-height:1.7}
+
+/* SIMULADOR DE SEMÁFORO */
+.simulador-sem{background:var(--tech-card);border:3px solid var(--tech-azul);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sombra-sm);text-align:center}
+.sem-carretera{display:flex;justify-content:center;gap:20px;margin:20px 0}
+.sem-luz{width:60px;height:60px;border-radius:50%;background:#333;border:4px solid #555;transition:all .4s;opacity:.3;transform:scale(0.8)}
+.sem-luz.rojo{background:#EF4444;box-shadow:0 0 20px #EF4444}
+.sem-luz.amarillo{background:#FFD23F;box-shadow:0 0 20px #FFD23F}
+.sem-luz.verde{background:#3DBE8C;box-shadow:0 0 20px #3DBE8C}
+.sem-luz.encendida{opacity:1;transform:scale(1.1)}
+.btn-control{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.btn-sem{padding:10px 20px;border:none;border-radius:50px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-sem[disabled]{opacity:.4;cursor:not-allowed}
+.btn-rojo{background:var(--tech-rojo);color:white;box-shadow:0 4px 0 #991B1B}
+.btn-amarillo{background:var(--tech-amarillo);color:var(--tech-texto);box-shadow:0 4px 0 #B45309}
+.btn-verde{background:var(--tech-verde);color:white;box-shadow:0 4px 0 #065F46}
+
+/* EVALUACIÓN */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tech-azul);border-radius:var(--r-lg);background:linear-gradient(135deg,#F0FDFA,#EFF6FF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tech-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tech-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tech-azul)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--tech-azul);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tech-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(26,155,171,.2)}
+.evaluacion-progreso-barra span{display:block;width:10%;height:100%;background:linear-gradient(90deg,var(--tech-azul),var(--tech-verde));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(26,155,171,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tech-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tech-border);border-radius:var(--r-sm);background:white;color:var(--tech-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tech-azul);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tech-azul);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tech-verde);background:rgba(61,190,140,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tech-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tech-azul),var(--tech-verde));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #0E7490;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tech-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tech-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--tech-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:2px dashed var(--tech-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#B45309;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tech-azul)}
+.cc-caja{background:rgba(61,190,140,.07);border:2px solid var(--tech-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tech-amarillo),var(--tech-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #B45309,0 8px 20px rgba(255,107,53,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #B45309,0 14px 28px rgba(255,107,53,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #B45309}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border:3px solid var(--tech-celeste);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tech-azul);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tech-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tech-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tech-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(255,210,63,.12),rgba(124,58,237,.1),rgba(26,155,171,.08));border:4px solid var(--tech-amarillo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tech-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tech-morado);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tech-morado),var(--tech-azul));box-shadow:0 4px 0 rgba(91,33,182,.4)}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tech-border);color:var(--tech-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tech-morado);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tech-morado);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tech-morado);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--tech-morado),var(--tech-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #5B21B6,0 8px 20px rgba(124,58,237,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #5B21B6,0 12px 28px rgba(124,58,237,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #5B21B6}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .hero-titulo{font-size:1.6rem}
+  .sem-carretera{flex-direction:column;align-items:center}
+  .quiz-options{grid-template-columns:1fr}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.btn-cofre,.simulador-sem{display:none!important}
+  .seccion,.tarjeta-teoria,.evaluacion{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE MISIÓN -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🚦 MISIÓN SEMÁFORO DIGITAL</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-nodos" id="barra-nodos">
+      <span class="nodo" id="nodo-1" title="Líste la Teoría">📖</span>
+      <span class="nodo" id="nodo-2" title="Operó el Semáforo">🚦</span>
+      <span class="nodo" id="nodo-3" title="Superó el Diagnóstico">⚡</span>
+      <span class="nodo" id="nodo-4" title="Compartió Ideas">💬</span>
+      <span class="nodo" id="nodo-5" title="Misión Completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">💻 TECNOLOGÍA ACTIVA</div>
+    <h1 class="hero-titulo">🚦 Semáforo Digital<br/>Aprende, Juega y Controla</h1>
+    <p class="hero-subtitulo">Tecnología e Informática · Semana 1 · Grados 6° y 7° Unificados</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Tu Nombre</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre completo..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="6° o 7°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 21 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: TEORÍA -->
+  <div class="seccion seccion-teoria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📖</span>
+      <h3>Teoría: ¿Qué es un Sistema de Control?</h3>
+      <small>📌 Aprende cómo funcionan los semáforos y las redes digitales</small>
+    </div>
+
+    <div class="tarjeta-teoria">
+      <div class="tarjeta-titulo">1. El Semáforo como Sistema de Control</div>
+      <div class="tarjeta-contenido">
+        Un semáforo es un <strong>sistema de control automático</strong>. Usa luces de colores (rojo, amarillo, verde) para organizar el flujo de vehículos y peatones. En tecnología, esto se llama <em>automatización</em>: usar programas y sensores para tomar decisiones sin intervención humana constante.
+      </div>
+    </div>
+
+    <div class="tarjeta-teoria">
+      <div class="tarjeta-titulo">2. Redes y Comunicación</div>
+      <div class="tarjeta-contenido">
+        Los semáforos "inteligentes" se comunican entre sí. Si uno sabe que hay mucho tráfico en una calle, puede enviar una señal a otros semáforos cercanos para ajustar los tiempos. Esto es similar a cómo los <strong>computadores en una red</strong> intercambian información.
+      </div>
+    </div>
+
+    <div class="tarjeta-teoria">
+      <div class="tarjeta-titulo">3. Programación Básica</div>
+      <div class="tarjeta-contenido">
+        La lógica detrás de un semáforo es simple: <br/>
+        <em>Si pasa el tiempo rojo → encender amarillo → esperar → encender verde → esperar → volver a rojo.</em><br/>
+        Esto se llama <strong>algoritmo</strong>: una secuencia de pasos para resolver un problema.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: PRÁCTICA (SIMULADOR) -->
+  <div class="seccion seccion-practica">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🚦</span>
+      <h3>Práctica: Controla el Semáforo Digital</h3>
+      <small>👆 Usa los botones para cambiar las luces y entender el flujo</small>
+    </div>
+
+    <div class="simulador-sem">
+      <h4 style="font-family:'Fredoka';font-size:1.2rem;margin:0 0 10px;color:var(--tech-azul)">🚦 Semáforo Interactivo</h4>
+      <p style="font-size:.9rem;color:var(--tech-dim);margin-bottom:20px">Haz clic en los botones para encender las luces y ver cómo cambia el tráfico.</p>
+      
+      <div class="sem-carretera">
+        <div class="sem-luz rojo" id="luz-rojo"></div>
+        <div class="sem-luz amarillo" id="luz-amarillo"></div>
+        <div class="sem-luz verde" id="luz-verde"></div>
+      </div>
+
+      <div class="btn-control">
+        <button class="btn-sem btn-rojo" onclick="encenderLuz('rojo')" id="btn-rojo">🛑 ROJO</button>
+        <button class="btn-sem btn-amarillo" onclick="encenderLuz('amarillo')" id="btn-amarillo">⚠️ AMARILLO</button>
+        <button class="btn-sem btn-verde" onclick="encenderLuz('verde')" id="btn-verde">✅ VERDE</button>
+      </div>
+
+      <div style="margin-top:20px;padding:12px;background:#F0FDF4;border:1px dashed var(--tech-verde);border-radius:12px;font-weight:700;color:#065F46" id="mensaje-sem">
+        🚦 Estado: Sistema en espera
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: EVALUACIÓN DIAGNÓSTICA -->
+  <div class="seccion">
+    <div class="evaluacion" id="evaluacion">
+            <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">DIAGNÓSTICO · PERIODO 1</span>
+          <h4>⚡ Diagnóstico de Tecnología · Grados 6° y 7°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 30 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 10</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>Siguiente pregunta ➜</button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: RETO Y CIUDADANÍA DIGITAL -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto del Día · Escribe tu Algoritmo</h3>
+      <small>📌 Aplica lo aprendido en tu vida diaria</small>
+    </div>
+
+    <div class="reto-box">
+      <div class="reto-titulo">🧠 Reto: Diseña un algoritmo</div>
+      <p style="font-size:.85rem;color:var(--tech-dim);margin-bottom:10px">Escribe los pasos (algoritmo) para <strong>cruzar la calle de forma segura</strong>, como si fueras un semáforo que controla el paso.</p>
+      <div class="linea"><input type="text" style="width:100%;border:none;background:transparent;font-family:'Nunito';font-weight:600;outline:none" placeholder="Paso 1..." onfocus="activarNodo(4)" /></div>
+      <div class="linea"><input type="text" style="width:100%;border:none;background:transparent;font-family:'Nunito';font-weight:600;outline:none" placeholder="Paso 2..." /></div>
+      <div class="linea"><input type="text" style="width:100%;border:none;background:transparent;font-family:'Nunito';font-weight:600;outline:none" placeholder="Paso 3..." /></div>
+    </div>
+
+    <div class="cc-caja">
+      <p>💡 Reflexión Ciudadana: Así como un semáforo respeta las reglas para evitar accidentes, en internet debemos respetar a los demás. No compartas información falsa ni hagas daño con tus palabras. ¡Sé un ciudadano digital responsable!</p>
+    </div>
+
+    <button class="btn-completar" onclick="completarMision()">🚀 Completar Misión y Obtener Diploma</button>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre del Saber Tech</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos Tecnológicos Revelados</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🐛</span>
+      <div><strong>El primer "bicho" informático fue real:</strong> En 1947, una polilla quedó atrapada dentro de una computadora gigante. Desde entonces llamamos "bugs" a los errores.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">👩‍💻</span>
+      <div><strong>La primera programadora fue una mujer:</strong> Ada Lovelace creó el primer algoritmo en 1843, más de 100 años antes de que existiera la primera computadora moderna.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá la tecnología ya está presente:</strong> En la señal del celular, en la bomba de agua automatizada y hasta en el mensaje de WhatsApp de mamá. ¡Ustedes ya son parte del futuro!</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p>Ha completado exitosamente la <strong>Misión Semáforo Digital · Semana 1</strong> con dedicación, lógica y creatividad.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">6°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--tech-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>💻 Tecnología con corazón · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con cariño por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+let nodosActivados = new Set();
+
+// ── Barra de progreso / nodos ──
+function activarNodo(num){
+  if(nodosActivados.has(num)) return;
+  nodosActivados.add(num);
+  const nodo = document.getElementById('nodo-'+num);
+  if(nodo) nodo.classList.add('activado');
+  actualizarBarra();
+}
+function actualizarBarra(){
+  const total = 5;
+  const pct = (nodosActivados.size / total) * 100;
+  document.getElementById('barra-fill').style.width = pct + '%';
+}
+
+// ── Simulador de Semáforo ──
+function encenderLuz(color){
+  // Apagar todas
+  ['rojo','amarillo','verde'].forEach(c => {
+    document.getElementById('luz-'+c).classList.remove('encendida');
+  });
+  // Encender la seleccionada
+  document.getElementById('luz-'+color).classList.add('encendida');
+  
+  // Mensaje dinámico
+  const mensajes = {
+    'rojo': '🛑 Estado: ALTO - Los vehículos deben detenerse.',
+    'amarillo': '⚠️ Estado: PRECAUCIÓN - Prepárate para detenerte.',
+    'verde': '✅ Estado: AVANCE - Cruza con cuidado.'
+  };
+  document.getElementById('mensaje-sem').textContent = mensajes[color];
+  
+  activarNodo(2); // Activar nodo de práctica al usar el simulador
+}
+
+// ── Cofre ──
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+// ── Completar misión ──
+function completarMision(){
+  [1,2,3,4,5].forEach(n => activarNodo(n));
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '6°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  document.getElementById('diploma').scrollIntoView({behavior:'smooth', block:'center'});
+  crearConfeti();
+}
+
+// ── Confeti ──
+function crearConfeti(){
+  const colores = ['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  for(let i=0;i<50;i++){
+    const c = document.createElement('div');
+    c.style.position='fixed';
+    c.style.left=Math.random()*100+'vw';
+    c.style.top='-20px';
+    c.style.width=Math.random()*10+8+'px';
+    c.style.height=Math.random()*10+8+'px';
+    c.style.background=colores[Math.floor(Math.random()*colores.length)];
+    c.style.zIndex='9998';
+    c.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+// ── Quiz diagnóstico Tecnología (Todo en Español) ──
+const preguntasQuiz = [
+  { seccion:'Conceptos Básicos', texto:'¿Qué es un sistema de control automático?', opciones:['Un computador apagado','Un dispositivo que toma decisiones solo','Una hoja de cálculo','Un cable de red'], correcta:1, explicacion:'Es un sistema que funciona sin intervención humana constante, como el semáforo.' },
+  { seccion:'Conceptos Básicos', texto:'¿Cuál de estos es HARDWARE?', opciones:['Microsoft Word','Google Chrome','El teclado del computador','Windows 11'], correcta:2, explicacion:'Hardware es todo lo físico que puedes tocar.' },
+  { seccion:'Redes', texto:'¿Para qué sirve una RED de computadores?', opciones:['Para imprimir fotos','Para compartir información entre equipos','Para cargar la batería','Para limpiar la pantalla'], correcta:1, explicacion:'Las redes conectan dispositivos para intercambiar datos.' },
+  { seccion:'Seguridad Digital', texto:'Si un desconocido te pide tu dirección por internet, debes...', opciones:['Enviarla rápido','Nunca compartirla y avisar a un adulto','Decir que sí','Ignorarlo pero enviar una foto'], correcta:1, explicacion:'Protege siempre tus datos personales y avisa a un adulto de confianza.' },
+  { seccion:'Programación', texto:'¿Qué es un ALGORITMO?', opciones:['Un tipo de virus','Una secuencia de pasos para resolver algo','Un programa de chat','Una marca de computador'], correcta:1, explicacion:'Un algoritmo es una lista ordenada de instrucciones.' },
+  { seccion:'Periféricos', texto:'¿Cuál de estos es un dispositivo de ENTRADA?', opciones:['Monitor','Parlantes','Impresora','Teclado'], correcta:3, explicacion:'El teclado envía información hacia el computador.' },
+  { seccion:'Software', texto:'¿Qué hace un ANTIVIRUS?', opciones:['Hace más rápido el PC','Protege contra programas maliciosos','Limpia la pantalla','Conecta a internet'], correcta:1, explicacion:'Detecta y elimina amenazas digitales.' },
+  { seccion:'Historia', texto:'¿Quién fue la primera programadora de la historia?', opciones:['Marie Curie','Ada Lovelace','Albert Einstein','Bill Gates'], correcta:1, explicacion:'Ada Lovelace escribió el primer algoritmo en 1843.' },
+  { seccion:'Semáforos', texto:'¿Qué significa la luz AMARILLA en un semáforo?', opciones:['Avanza rápido','Precaución, prepárate para parar','Detente completamente','Gira a la derecha'], correcta:1, explicacion:'Indica precaución y transición.' },
+  { seccion:'Ciudadanía', texto:'¿Qué es ser un buen CIUDADANO DIGITAL?', opciones:['Publicar todo lo que piensas','Respetar a otros y no difundir mentiras','Compartir contraseñas','Jugar todo el día'], correcta:1, explicacion:'Implica ética, respeto y responsabilidad en línea.' }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent = `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1 ? 'Ver Resultado Final ✓' : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta ? `✅ ¡Correcto! ${pregunta.explicacion}` : `❌ Incorrecto. ${pregunta.explicacion}`;
+  
+  boton.disabled = false;
+  if(preguntaActual === preguntasQuiz.length - 1) activarNodo(3);
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) => total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente trabajo!' : porcentaje >= 60 ? '¡Buen esfuerzo!' : '¡Sigue practicando!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">💾 Descargar Resultado</button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 8) return 'Tus bases tecnológicas son sólidas. Estás listo para el Periodo 1.';
+  if(aciertos >= 6) return 'Revisa las preguntas falladas y sigue practicando.';
+  return 'Repasa los conceptos básicos de hardware, software y seguridad.';
+}
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || 'No especificado';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+    const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcto' : 'Incorrecto'}`
+  ).join('\n');
+  
+  const contenido = [
+    'GUÍA DE TECNOLOGÍA · SEMÁFORO DIGITAL',
+    'IE Técnica Camacho Angarita · Sede Chichalá',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-semaforo-${nombre.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+// Inicializar
+document.addEventListener('DOMContentLoaded', function(){
+  cargarPregunta();
+  console.log('🚦 Semáforo Digital cargado. ¡A aprender tecnología!');
+});
+</script>
+
+</body>
+</html>
