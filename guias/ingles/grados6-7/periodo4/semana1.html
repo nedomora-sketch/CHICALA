@@ -80,7 +80,9 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
 .grado6 .nivel-badge{background:var(--inv-azul)}
 .grado7 .nivel-badge{background:var(--inv-morado)}
-.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(124,58,237,.1);color:var(--inv-morado);border:1px solid rgba(124,58,237,.25)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:50px;background:rgba(124,58,237,.1);color:var(--inv-morado);border:1px solid rgba(124,58,237,.25);cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif}
+.nivel-dba:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-dba.activo{background:rgba(26,155,171,.12);color:var(--inv-azul);border-color:rgba(26,155,171,.3)}
 
 .visor-bloque{margin-bottom:22px}
 .visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
@@ -347,8 +349,8 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 
     <!-- Tabs de grado -->
     <div class="niveles-tabs">
-      <button class="nivel-tab activo-6" onclick="cambiarNivel(6, this)">🟦 Grade 6° · Explorer</button>
-      <button class="nivel-tab" onclick="cambiarNivel(7, this)">🟪 Grade 7° · Challenger</button>
+      <button id="tab-6" class="nivel-tab activo-6" onclick="cambiarNivel(6, this)">🟦 Grade 6° · Explorer</button>
+      <button id="tab-7" class="nivel-tab" onclick="cambiarNivel(7, this)">🟪 Grade 7° · Challenger</button>
     </div>
 
     <!-- PANEL GRADE 6 -->
@@ -356,7 +358,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       <div class="nivel-card grado6">
         <div class="nivel-badge-wrap">
           <span class="nivel-badge">🟦 Grade 6° · English Explorer</span>
-          <span class="nivel-dba">Focus: My Daily Routine & School Objects</span>
+          <button type="button" class="nivel-dba activo" data-grado="6" onclick="cambiarNivel(6, document.getElementById('tab-6'))">Focus: My Daily Routine & School Objects</button>
         </div>
 
         <!-- Guía específica de Grade 6 -->
@@ -377,7 +379,7 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       <div class="nivel-card grado7">
         <div class="nivel-badge-wrap">
           <span class="nivel-badge">🟪 Grade 7° · English Challenger</span>
-          <span class="nivel-dba">Focus: Daily Routines & School Life</span>
+          <button type="button" class="nivel-dba" data-grado="7" onclick="cambiarNivel(7, document.getElementById('tab-7'))">Focus: Daily Routines & School Life</button>
         </div>
 
         <!-- Guía específica de Grade 7 -->
@@ -464,6 +466,38 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
     <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
   </div>
 
+  <!-- MISSION TIME TRAVELERS: ACTIVIDAD DE INGLÉS -->
+  <div class="seccion seccion-reto" style="background:linear-gradient(135deg,#FFF7ED,#F0F9FF);">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">⏳</span>
+      <h3>🚀 Mission: Time Travelers</h3>
+      <small>📅 Year: 2026 | 🎯 Objective: Complete the routine &amp; find the hobbies!</small>
+    </div>
+    <div class="nivel-card" id="mision-card">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge" style="background:linear-gradient(135deg,#FF6B35,#FFD23F);">🌍 Challenge Active</span>
+        <span class="nivel-dba">Select the correct order or match the vocabulary!</span>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+        <button class="nivel-tab activo-6" data-mision="rutina" data-grado="6" onclick="englishMissionGame.cargarMision('rutina',6,this)">🟦 Grade 6: Morning Routine</button>
+        <button class="nivel-tab" data-mision="rutina" data-grado="7" onclick="englishMissionGame.cargarMision('rutina',7,this)">🟪 Grade 7: Daily Habits</button>
+        <button class="nivel-tab" data-mision="vocab" data-grado="6" onclick="englishMissionGame.cargarMision('vocab',6,this)">🟦 Grade 6: School Objects</button>
+        <button class="nivel-tab" data-mision="vocab" data-grado="7" onclick="englishMissionGame.cargarMision('vocab',7,this)">🟪 Grade 7: Free Time</button>
+      </div>
+      <div id="mision-activity" style="background:white;padding:24px;border-radius:var(--r-md);border:2px solid var(--inv-border);min-height:250px;">
+        <p style="text-align:center;color:var(--inv-dim);">Select a mission above to start!</p>
+      </div>
+      <div style="margin-top:20px;text-align:center;">
+        <div id="mision-feedback" style="font-weight:700;min-height:24px;margin-bottom:12px;"></div>
+        <button id="btn-verificar-mision" class="btn-completar" style="display:none;" onclick="englishMissionGame.verificarMision()">🔍 Verify Mission</button>
+      </div>
+      <div style="margin-top:20px;background:rgba(0,0,0,.05);padding:12px;border-radius:var(--r-md);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem;font-weight:700;"><span>Mission Progress</span><span id="mision-progress-text">0%</span></div>
+        <div style="height:12px;background:white;border-radius:50px;overflow:hidden;border:1px solid var(--inv-border);"><div id="mision-progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,var(--inv-morado),var(--inv-celeste));transition:width .5s ease;"></div></div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <div class="footer">
     <p>🌍 English with heart · Chichalá, Tolima</p>
@@ -496,6 +530,9 @@ function cambiarNivel(grado, btn){
   document.getElementById('panel-'+grado).classList.add('activo');
   document.querySelectorAll('.nivel-tab').forEach(t => t.classList.remove('activo-6','activo-7'));
   btn.classList.add('activo-'+grado);
+  document.querySelectorAll('.nivel-dba').forEach(focus => {
+    focus.classList.toggle('activo', Number(focus.dataset.grado) === grado);
+  });
 }
 
 // Abrir lightbox
@@ -759,6 +796,88 @@ document.addEventListener('DOMContentLoaded',function(){
   cargarPregunta();
   console.log('🌍 English Adventure loaded successfully. Let\'s learn!');
 });
+</script>
+
+<script>
+const englishMissions = {
+  rutina: {
+    6: {titulo:'Order the Morning Routine',desc:'Arrange the activities in the correct order.',tipo:'orden',items:[
+      {id:1,text:'Sarah wakes up at 6:00 AM',order:1},{id:2,text:'She eats breakfast',order:2},{id:3,text:'She goes to school',order:3},{id:4,text:'She does homework',order:4}]},
+    7: {titulo:'Daily Habits Challenge',desc:'Arrange the activities in a logical daily sequence.',tipo:'orden',items:[
+      {id:1,text:'He brushes his teeth',order:2},{id:2,text:'He wakes up at 7:00 AM',order:1},{id:3,text:'He goes to the gym',order:4},{id:4,text:'He arrives at school',order:3}]}
+  },
+  vocab: {
+    6: {titulo:'School Objects Match',desc:'Match each object with its English name.',tipo:'parear',pares:[{id:1,img:'🎒',word:'Backpack'},{id:2,img:'📚',word:'Book'},{id:3,img:'✏️',word:'Pencil'},{id:4,img:'🖍️',word:'Marker'}]},
+    7: {titulo:'Free Time Activities',desc:'Match each activity with the correct expression.',tipo:'parear',pares:[{id:1,img:'⚽',word:'Play football'},{id:2,img:'🎸',word:'Play guitar'},{id:3,img:'📖',word:'Read a book'},{id:4,img:'🎮',word:'Play video games'}]}
+  }
+};
+let englishMission = null;
+let englishPairSelection = null;
+
+function loadEnglishMission(type, grade, button){
+  const data = englishMissions[type]?.[grade];
+  if(!data) return;
+  englishMission = {type,grade,data};
+  englishPairSelection = null;
+  document.getElementById('mision-feedback').textContent = '';
+  document.getElementById('btn-verificar-mision').style.display = data.tipo === 'orden' ? 'inline-block' : 'none';
+  document.querySelectorAll('#mision-card .nivel-tab').forEach(tab => tab.classList.remove('activo-6','activo-7'));
+  button.classList.add(`activo-${grade}`);
+  document.getElementById('mision-progress-fill').style.width = '0%';
+  document.getElementById('mision-progress-text').textContent = '0%';
+  const activity = document.getElementById('mision-activity');
+  if(data.tipo === 'orden'){
+    activity.innerHTML = `<div style="text-align:center"><h4>${data.titulo}</h4><p>${data.desc}</p></div><div id="orden-destino" style="min-height:120px;border:2px dashed var(--inv-border);padding:12px;display:flex;flex-direction:column;gap:8px"></div><div id="orden-fuente" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px"></div>`;
+    data.items.slice().sort(() => Math.random() - .5).forEach(item => {
+      const block = document.createElement('button');
+      block.type = 'button'; block.className = 'nivel-card'; block.textContent = item.text; block.dataset.order = item.order;
+      block.onclick = () => { const target = document.getElementById('orden-destino'); const source = document.getElementById('orden-fuente'); (block.parentElement === target ? source : target).appendChild(block); };
+      document.getElementById('orden-fuente').appendChild(block);
+    });
+  } else {
+    activity.innerHTML = `<div style="text-align:center"><h4>${data.titulo}</h4><p>${data.desc}</p></div><div id="parear-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px"></div>`;
+    data.pares.flatMap(pair => [{id:pair.id,text:pair.img},{id:pair.id,text:pair.word}]).sort(() => Math.random() - .5).forEach(item => {
+      const card = document.createElement('button');
+      card.type = 'button'; card.className = 'nivel-card'; card.textContent = item.text; card.dataset.id = item.id;
+      card.onclick = () => selectEnglishPair(card);
+      document.getElementById('parear-grid').appendChild(card);
+    });
+  }
+}
+
+function selectEnglishPair(card){
+  if(card.classList.contains('pareado')) return;
+  if(!englishPairSelection){ englishPairSelection = card; card.style.background = 'var(--inv-celeste)'; return; }
+  if(englishPairSelection.dataset.id === card.dataset.id){
+    englishPairSelection.classList.add('pareado'); card.classList.add('pareado');
+    englishPairSelection.style.background = 'var(--inv-verde)'; card.style.background = 'var(--inv-verde)'; englishPairSelection = null;
+    const found = document.querySelectorAll('#parear-grid .pareado').length / 2;
+    const percentage = Math.round(found / englishMission.data.pares.length * 100);
+    document.getElementById('mision-progress-fill').style.width = `${percentage}%`;
+    document.getElementById('mision-progress-text').textContent = `${percentage}%`;
+    if(found === englishMission.data.pares.length) finishEnglishMission('Excellent! All matches found!');
+  } else {
+    englishPairSelection.style.background = 'var(--inv-rojo)'; card.style.background = 'var(--inv-rojo)';
+    const previous = englishPairSelection; setTimeout(() => { previous.style.background = ''; card.style.background = ''; englishPairSelection = null; }, 500);
+  }
+}
+
+function verifyEnglishMission(){
+  const target = document.getElementById('orden-destino');
+  const correct = target && target.children.length === englishMission.data.items.length && [...target.children].every((item,index) => Number(item.dataset.order) === index + 1);
+  if(correct) finishEnglishMission('Perfect! The routine is complete!');
+  else { const feedback = document.getElementById('mision-feedback'); feedback.textContent = 'Check the order again.'; feedback.style.color = 'var(--inv-rojo)'; }
+}
+
+function finishEnglishMission(message){
+  document.getElementById('mision-feedback').textContent = message;
+  document.getElementById('mision-feedback').style.color = 'var(--inv-verde)';
+  document.getElementById('btn-verificar-mision').style.display = 'none';
+  crearConfeti();
+}
+
+window.englishMissionGame = {cargarMision: loadEnglishMission, verificarMision: verifyEnglishMission};
+document.addEventListener('DOMContentLoaded', () => loadEnglishMission('rutina', 6, document.querySelector('[data-mision="rutina"][data-grado="6"]')));
 </script>
 
 </body>
