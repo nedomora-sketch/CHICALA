@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Matemáticas Pensamiento Geométrico · Grados 3°-4°-5° · Guía 2 · Período 4 · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>📐 Matemáticas Aventura · Guía 2: ¡Geometría en Movimiento!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   MATEMÁTICAS AVENTURA · GUÍA 2 · PERÍODO 4
+   Laboratorio de Práctica Geométrica
+   Grados 3°-4°-5° · IE Técnica Camacho Angarita
+   v2 — Sin Mallas, Enfoque 100% Práctico
+══════════════════════════════════════════ */
+:root{
+  --inv-naranja:#FF6B35; --inv-azul:#1A9BAB; --inv-verde:#3DBE8C;
+  --inv-morado:#7C3AED;  --inv-amarillo:#FFD23F; --inv-rosa:#FF6B9D;
+  --inv-rojo:#EF4444;    --inv-celeste:#38BDF8;
+  --inv-bg:#F0F9FF;      --inv-card:#FFFFFF;
+  --inv-texto:#1E293B;   --inv-dim:#64748B; --inv-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--inv-bg);color:var(--inv-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(26,155,171,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* BARRA DE PROGRESO */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--inv-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--inv-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--inv-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--inv-celeste),var(--inv-azul));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(26,155,171,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* HERO */
+.hero-header{background:linear-gradient(135deg,#1A9BAB 0%,#38BDF8 45%,#7C3AED 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'📐';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🧩';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--inv-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-laboratorio::before{background:linear-gradient(180deg,var(--inv-azul),var(--inv-morado))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--inv-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--inv-dim);font-weight:600;margin-top:2px}
+
+/* TABS DE GRADO */
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .25s;color:var(--inv-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-3{background:var(--inv-verde);border-color:var(--inv-verde);color:white;box-shadow:0 4px 12px rgba(61,190,140,.35)}
+.nivel-tab.activo-4{background:var(--inv-azul);border-color:var(--inv-azul);color:white;box-shadow:0 4px 12px rgba(26,155,171,.35)}
+.nivel-tab.activo-5{background:var(--inv-morado);border-color:var(--inv-morado);color:white;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--inv-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado3{border-color:var(--inv-verde)}
+.nivel-card.grado4{border-color:var(--inv-azul)}
+.nivel-card.grado5{border-color:var(--inv-morado)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
+.grado3 .nivel-badge{background:var(--inv-verde)}
+.grado4 .nivel-badge{background:var(--inv-azul)}
+.grado5 .nivel-badge{background:var(--inv-morado)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(26,155,171,.1);color:var(--inv-azul);border:1px solid rgba(26,155,171,.25)}
+
+/* ACTIVIDADES PRÁCTICAS (LABORATORIO) */
+.actividad-caja{background:linear-gradient(135deg,#F8FAFC,#EFF6FF);border:2px solid var(--inv-border);border-radius:var-md;padding:18px;margin-bottom:16px;position:relative;overflow:hidden}
+.actividad-caja::after{content:'';position:absolute;right:-30px;top:-30px;width:100px;height:100px;background:rgba(26,155,171,.04);border-radius:50%}
+.actividad-numero{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.9rem;margin-right:10px;flex-shrink:0}
+.grado3 .actividad-numero{background:var(--inv-verde)}
+.grado4 .actividad-numero{background:var(--inv-azul)}
+.grado5 .actividad-numero{background:var(--inv-morado)}
+.actividad-titulo{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--inv-texto);margin-bottom:10px;display:flex;align-items:center}
+.actividad-paso{display:flex;gap:10px;margin-bottom:10px;font-size:.9rem;line-height:1.7}
+.paso-icono{font-size:1.1rem;flex-shrink:0}
+.materiales{background:rgba(255,210,63,.12);border-left:4px solid var(--inv-amarillo);padding:10px 14px;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.85rem;font-weight:600;margin-bottom:12px}
+.linea-respuesta{border-bottom:2px dashed #CBD5E0;height:34px;margin-bottom:8px;border-radius:2px;transition:border-color .2s}
+.linea-respuesta:focus-within{border-color:var(--inv-azul)}
+.cuadro-dibujo{width:100%;height:180px;border:2px dashed var(--inv-celeste);border-radius:var(--r-md);background:repeating-linear-gradient(0deg,#fff,#fff 19px,#EFF6FF 20px),repeating-linear-gradient(90deg,#fff,#fff 19px,#EFF6FF 20px);display:flex;align-items:center;justify-content:center;color:var(--inv-dim);font-size:.85rem;font-weight:600;margin-top:10px}
+.cuadro-dibujo-interactivo{position:relative;padding:0;overflow:hidden;cursor:crosshair}
+.cuadro-dibujo-interactivo canvas{display:block;width:100%;height:100%;touch-action:none}
+.etiqueta-eje{position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:.7rem;color:var(--inv-dim);font-weight:800;pointer-events:none;background:rgba(255,255,255,.85);padding:2px 7px;border-radius:8px}
+.acciones-dibujo-espejo{justify-content:center}
+.actividad-digital{margin-top:14px;padding:14px;background:#fff;border:2px solid rgba(26,155,171,.2);border-radius:var(--r-md)}
+.actividad-digital h4{margin:0 0 10px;font-family:'Fredoka',sans-serif;color:var(--inv-azul)}
+.control-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.control-grid label{font-size:.78rem;font-weight:800;color:var(--inv-dim)}
+.control-grid input,.actividad-digital select{width:100%;padding:8px;border:2px solid var(--inv-border);border-radius:var(--r-sm);font:inherit}
+.feedback{min-height:24px;margin-top:10px;font-weight:800;color:var(--inv-azul)}
+.digital-canvas{display:block;width:100%;max-width:560px;height:220px;border:2px solid var(--inv-celeste);border-radius:var(--r-md);background:white;touch-action:none}
+.digital-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.digital-actions button{padding:8px 14px;border:0;border-radius:var(--r-sm);background:var(--inv-azul);color:#fff;font-weight:800;cursor:pointer}
+.digital-actions button.alt{background:var(--inv-dim)}
+.transform-stage{height:220px;display:grid;place-items:center;background:repeating-linear-gradient(0deg,#fff,#fff 24px,#EFF6FF 25px),repeating-linear-gradient(90deg,transparent,transparent 24px,#EFF6FF 25px);border:2px solid var(--inv-celeste);border-radius:var(--r-md);overflow:hidden}
+.transform-shape{width:70px;height:70px;background:var(--inv-naranja);clip-path:polygon(0 100%,50% 0,100% 100%);transition:transform .35s ease}
+.coordinate-grid{display:block;width:100%;max-width:760px;height:420px;border:2px solid var(--inv-celeste);border-radius:var(--r-md);background:#fff;cursor:crosshair;touch-action:none}
+.coordinate-zoom{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;flex-wrap:wrap}.coordinate-zoom button{padding:8px 14px;border:0;border-radius:var(--r-sm);background:var(--inv-azul);color:#fff;font-weight:800;cursor:pointer}.coordinate-zoom output{min-width:58px;text-align:center;font-weight:800;color:var(--inv-dim)}
+.coordinate-lesson{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0;font-size:.78rem}
+.coordinate-lesson div{padding:9px;border-radius:var(--r-sm);font-weight:700;text-align:center}
+.coordinate-lesson div:nth-child(1){background:#EFF6FF;color:#1D4ED8}.coordinate-lesson div:nth-child(2){background:#F0FDF4;color:#047857}.coordinate-lesson div:nth-child(3){background:#FFF7ED;color:#C2410C}.coordinate-lesson div:nth-child(4){background:#FAF5FF;color:#7E22CE}
+.coordinate-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.coordinate-step{padding:10px;border:2px dashed var(--inv-celeste);border-radius:var(--r-sm);font-size:.78rem;font-weight:700}.coordinate-step strong{display:block;color:var(--inv-azul);font-size:.9rem;margin-bottom:3px}
+.coordinate-targets{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.coordinate-target{padding:6px 12px;border-radius:50px;background:#FFF7ED;border:2px solid #FDBA74;color:#9A3412;font-weight:900}.coordinate-target.acierto{background:#DCFCE7;border-color:#86EFAC;color:#166534}
+.mini-plano{display:grid;grid-template-columns:1fr 190px;gap:14px;align-items:center;padding:14px;background:#F8FAFC;border:2px dashed var(--inv-celeste);border-radius:var(--r-md)}
+.mini-plano-board{position:relative;height:170px;border:2px solid var(--inv-azul);border-radius:var(--r-sm);background:linear-gradient(#E0F2FE 1px,transparent 1px),linear-gradient(90deg,#E0F2FE 1px,transparent 1px);background-size:20px 20px}
+.mini-plano-board::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:2px solid var(--inv-rojo)}.mini-plano-board::after{content:'';position:absolute;top:50%;left:0;right:0;border-top:2px solid var(--inv-rojo)}
+.mini-zona{position:absolute;z-index:1;display:grid;place-items:center;min-width:62px;min-height:28px;padding:4px 8px;border:2px dashed var(--inv-azul);border-radius:8px;background:rgba(255,255,255,.9);font-size:.75rem;font-weight:900;color:var(--inv-azul)}
+.mini-zona-x{right:6px;top:calc(50% - 16px)}.mini-zona-y{left:calc(50% - 31px);top:6px}.mini-zona-origen{left:calc(50% - 31px);top:calc(50% + 8px)}
+.mini-fichas{display:flex;flex-wrap:wrap;gap:8px;align-content:center}.mini-ficha{padding:9px 12px;border:2px solid var(--inv-morado);border-radius:50px;background:#FAF5FF;color:var(--inv-morado);font-weight:900;cursor:grab;user-select:none}.mini-ficha.seleccionada,.mini-zona.correcta{background:#DCFCE7;border-color:#16A34A;color:#166534}.mini-zona.incorrecta{background:#FEE2E2;border-color:#DC2626}
+.block-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-width:420px;padding:10px;background:#E0F2FE;border-radius:var(--r-md)}
+.block-cell{height:38px;border:2px solid #BAE6FD;border-radius:6px;background:#fff;cursor:pointer}
+.block-cell.active{background:var(--inv-morado);border-color:var(--inv-morado)}
+.cubo-laboratorio{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:18px;align-items:center}
+.cubo-escena{height:190px;display:grid;place-items:center;perspective:650px;background:#F0F9FF;border-radius:var(--r-md);overflow:hidden}
+.cubo-3d{position:relative;width:100px;height:100px;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-35deg);transition:transform .4s ease}
+.cubo-cara{position:absolute;width:100px;height:100px;border:2px solid rgba(30,41,59,.55);background:rgba(56,189,248,.82);display:grid;place-items:center;color:white;font-weight:900;font-size:1.3rem;backface-visibility:visible}
+.cubo-frente{transform:translateZ(50px)}.cubo-atras{transform:rotateY(180deg) translateZ(50px)}
+.cubo-derecha{transform:rotateY(90deg) translateZ(50px);background:rgba(61,190,140,.82)}.cubo-izquierda{transform:rotateY(-90deg) translateZ(50px);background:rgba(255,210,63,.86)}
+.cubo-arriba{transform:rotateX(90deg) translateZ(50px);background:rgba(124,58,237,.78)}.cubo-abajo{transform:rotateX(-90deg) translateZ(50px);background:rgba(255,107,53,.82)}
+.cubo-controles{display:flex;flex-wrap:wrap;gap:8px}.cubo-controles button{padding:9px 12px;border:0;border-radius:var(--r-sm);background:var(--inv-azul);color:white;font-weight:800;cursor:pointer}.cubo-controles button.activo{background:var(--inv-morado);box-shadow:0 0 0 3px rgba(124,58,237,.2)}
+.cubo-cara.marcada{background:var(--inv-naranja);box-shadow:inset 0 0 0 5px #fff}
+@media (max-width:640px){.cubo-laboratorio{grid-template-columns:1fr}.cubo-escena{height:170px}}
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 24px rgba(26,155,171,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+/* CIUDADANÍA */
+.cc-caja{background:rgba(61,190,140,.07);border:2px solid var(--inv-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+.cc-lista{list-style:none;padding:0;margin:10px 0 0}
+.cc-lista li{padding:8px 0;border-bottom:1px dashed rgba(61,190,140,.3);font-size:.9rem;display:flex;gap:10px;align-items:flex-start}
+.cc-lista li:last-child{border-bottom:none}
+
+/* COFRE DEL SABER */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-amarillo),var(--inv-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #B45309,0 8px 20px rgba(255,107,53,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #B45309,0 14px 28px rgba(255,107,53,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #B45309,0 4px 10px rgba(255,107,53,.2)}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border:3px solid var(--inv-celeste);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--inv-azul);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--inv-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--inv-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--inv-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(255,210,63,.12),rgba(61,190,140,.1),rgba(26,155,171,.08));border:4px solid var(--inv-amarillo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--inv-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--inv-azul);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--inv-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));box-shadow:0 4px 0 rgba(26,155,171,.4)}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--inv-border);color:var(--inv-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--inv-azul);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--inv-azul);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--inv-azul);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 28px rgba(26,155,171,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .hero-titulo{font-size:1.6rem}
+  .cuadro-dibujo{height:140px}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.actividad-caja{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">📐 MISIÓN GEOMÉTRICA</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Construí mi figura">🔷</span>
+      <span class="pieza" id="pieza-2" title="Encontré la simetría">🦋</span>
+      <span class="pieza" id="pieza-3" title="Moví una figura">🔄</span>
+      <span class="pieza" id="pieza-4" title="Resolví el reto final">⚡</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🧪 LABORATORIO ABIERTO</div>
+    <h1 class="hero-titulo">📐 Guía 2: Geometría<br/>¡Manos a la Obra!</h1>
+    <p class="hero-subtitulo">Pensamiento Geométrico · Período 4 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 4°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 24 septiembre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       LABORATORIO DE PRÁCTICA (REEMPLAZA LAS MALLAS)
+  ══════════════════════ -->
+  <div class="seccion seccion-laboratorio">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🧪</span>
+      <h3>Laboratorio de Práctica · Construye, Dobla y Descubre</h3>
+      <small>🛠️ Aquí no leemos teoría: ¡fabricamos geometría con nuestras manos!</small>
+    </div>
+
+    <!-- Tabs de grado -->
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">🟢 Grado 3° · Constructor</button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">🔵 Grado 4° · Estratega</button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">🟣 Grado 5° · Arquitecto</button>
+    </div>
+
+    <!-- ═══ PANEL GRADO 3 ═══ -->
+    <div class="nivel-panel activo" id="panel-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Constructor de Figuras</span>
+          <span class="nivel-dba">DBA: Construyo figuras planas y describo sus características</span>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">1</span> 📦 Mi Caja Sorpresa 3D</div>
+          <div class="materiales">🧰 Materiales: Una caja de leche o de zapatos vacía, tijeras, colores.</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Toma tu caja y cuéntame: ¿cuántas <strong>caras</strong> tiene? (Recuerda: las caras son las "paredes" planas del cubo? ¿Y las aristas? ¿Y los vértices?"</span>
+          </div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span>Dibuja en una hoja las 6 caras de tu caja. ¡Dales colores!</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span>Corta y arma. ¿Se convierte en un cubo o un rectángulo?</span></div>
+          <div class="linea-respuesta" style="height: 50px; margin-top: 10px;"></div>
+          <div class="actividad-digital">
+            <h4>🔢 Explora el cubo 3D</h4>
+            <p>Gira el cubo y selecciona qué elemento quieres contar. Cada cara, arista o vértice se puede explorar.</p>
+            <div class="cubo-laboratorio">
+              <div class="cubo-escena">
+                <div class="cubo-3d" id="cubo-3d" aria-label="Cubo interactivo">
+                  <div class="cubo-cara cubo-frente">1</div><div class="cubo-cara cubo-atras">2</div>
+                  <div class="cubo-cara cubo-derecha">3</div><div class="cubo-cara cubo-izquierda">4</div>
+                  <div class="cubo-cara cubo-arriba">5</div><div class="cubo-cara cubo-abajo">6</div>
+                </div>
+              </div>
+              <div>
+                <div class="cubo-controles">
+                  <button type="button" onclick="contarCubo('caras', this)">⬛ Caras</button>
+                  <button type="button" onclick="contarCubo('aristas', this)">〰 Aristas</button>
+                  <button type="button" onclick="contarCubo('vertices', this)">🔸 Vértices</button>
+                  <button type="button" onclick="girarCubo(-1)">↶ Girar</button>
+                  <button type="button" onclick="girarCubo(1)">↷ Girar</button>
+                </div>
+                <div class="feedback" id="feedback-cubo">Elige un elemento para comenzar.</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-1', this)">✅ ¡Ya lo construí!</button>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">2</span> 🦋 El Espejo Geométrico</div>
+          <div class="materiales">🧰 Materiales: Un espejo pequeño (o la pantalla de un celular apagada) y un papel con dibujos.</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Dibuja la mitad de una mariposa o una flor en un papel. Dobla el papel por la mitad.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span>Coloca el espejo sobre la línea doblada. ¿Qué ves en el espejo? ¡Completa la figura!</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span>Dibuja la parte que faltaba para tener la figura simétrica completa.</span></div>
+          <div class="cuadro-dibujo cuadro-dibujo-interactivo">
+            <canvas id="dibujo-espejo" width="720" height="180" aria-label="Área para dibujar la figura simétrica"></canvas>
+            <span class="etiqueta-eje">Eje de simetría</span>
+          </div>
+          <div class="digital-actions acciones-dibujo-espejo">
+            <button type="button" onclick="limpiarDibujoEspejo()">🧹 Borrar dibujo</button>
+            <button type="button" onclick="comprobarDibujoEspejo()">🔍 Revisar dibujo</button>
+          </div>
+          <div class="feedback" id="feedback-dibujo-espejo"></div>
+          <div class="actividad-digital">
+            <h4>🦋 Completa la simetría</h4>
+            <p>Observa la mitad izquierda y haz clic en los cuadros correspondientes de la derecha para completar la figura.</p>
+            <div class="feedback" id="simetria-nombre">Figura: Mariposa</div>
+            <canvas id="simetria-canvas" class="digital-canvas" width="560" height="220"></canvas>
+            <div class="digital-actions">
+              <button onclick="comprobarSimetria()">🔍 Comprobar simetría</button>
+              <button onclick="nuevaFiguraSimetria()">🎲 Nueva figura</button>
+              <button class="alt" onclick="limpiarSimetria()">Limpiar respuesta</button>
+            </div>
+            <div class="feedback" id="feedback-simetria"></div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-2', this)">✅ ¡La simetría está resuelta!</button>
+        </div>
+      </div>
+    </div><!-- fin panel-3 -->
+
+    <!-- ═══ PANEL GRADO 4 ═══ -->
+    <div class="nivel-panel" id="panel-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Estratega de Transformaciones</span>
+          <span class="nivel-dba">DBA: Transformo figuras en el plano (traslación, rotación, simetría)</span>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">1</span> 🔄 La Danza de los Polígonos</div>
+          <div class="materiales">🧰 Materiales: Cartulina, tijeras, un lápiz y una regla. (Opcional: un pasador de seguridad para hacer girar).</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Recorta un triángulo y un cuadrado de cartulina. En el centro de cada uno, haz un agujero.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span><strong>Traslación:</strong> Mueve el triángulo a la derecha sin girarlo. ¿Cambió su forma? ¿Cambió su orientación?</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span><strong>Rotación:</strong> Gira el cuadrado 90° (un cuarto de vuelta). Ahora la figura "se ve diferente" ¿verdad?</span></div>
+          <div class="linea-respuesta" style="height: 60px; margin-top: 10px;"></div>
+          <div class="actividad-digital">
+            <h4>🔄 Manipula la figura</h4>
+            <div class="transform-stage"><div id="transform-shape" class="transform-shape"></div></div>
+            <div class="digital-actions">
+              <button onclick="moverTransformacion(-1)">⬅ Trasladar</button>
+              <button onclick="moverTransformacion(1)">Trasladar ➡</button>
+              <button onclick="girarTransformacion()">↻ Girar 90°</button>
+              <button class="alt" onclick="resetTransformacion()">Restablecer</button>
+            </div>
+            <div class="feedback" id="feedback-transformacion"></div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-3', this)">✅ ¡Las transformaciones dominadas!</button>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">2</span> 🛡️ Escudo Simétrico</div>
+          <div class="materiales">🧰 Materiales: Papel o cartulina, colores.</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Imagina que eres un guerrero medieval. Dibuja la mitad de un escudo usando líneas rectas y curvas.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span>Usa la regla para trazar una línea vertical exacta en el centro.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span>Completa el escudo reflejando cada línea, color y detalle en el otro lado. ¡Que sea perfecto!</span></div>
+          <div class="actividad-digital">
+            <h4>🛡️ Diseña tu escudo</h4>
+            <p>Dibuja solo en la mitad izquierda. La otra mitad aparecerá reflejada automáticamente.</p>
+            <canvas id="escudo-canvas" class="digital-canvas" width="560" height="220"></canvas>
+            <div class="digital-actions">
+              <button onclick="limpiarEscudoSimetrico()">🧹 Limpiar</button>
+              <button onclick="comprobarEscudoSimetrico()">🔍 Revisar simetría</button>
+            </div>
+            <div class="feedback" id="feedback-escudo"></div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-4', this)">✅ ¡El escudo está listo!</button>
+        </div>
+      </div>
+    </div><!-- fin panel-4 -->
+
+    <!-- ═══ PANEL GRADO 5 ═══ -->
+    <div class="nivel-panel" id="panel-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟣 Grado 5° · Arquitecto de Coordenadas</span>
+          <span class="nivel-dba">DBA: Ubico objetos en el plano cartesiano y analizo transformaciones</span>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">1</span> 📍 Tesoro en el Plano Cartesiano</div>
+          <div class="materiales">🧰 Materiales: Hoja cuadriculada (o papel milimetrado), lápiz y regla.</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Dibuja un plano cartesiano (eje X horizontal, eje Y vertical). Numera del 0 al 10.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span>Escribe en un papel 3 coordenadas secretas: (2,3), (7,8), (4,2). Estas son las esquinas de tu tesoro.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span>Conecta los puntos. ¿Qué figura formaron? (Triángulo, cuadrilátero...). Ahora rota la figura 90° en tu mente y dibuja dónde quedaría.</span></div>
+          <div class="actividad-digital">
+            <h4>🧩 Arma el plano antes de usarlo</h4>
+            <p>Arrastra o selecciona cada ficha y colócala en su lugar: eje X, eje Y u origen.</p>
+            <div class="mini-plano">
+              <div class="mini-plano-board" id="mini-plano-board">
+                <div class="mini-zona mini-zona-x" data-lugar="x" data-rotulo="Eje X"></div>
+                <div class="mini-zona mini-zona-y" data-lugar="y" data-rotulo="Eje Y"></div>
+                <div class="mini-zona mini-zona-origen" data-lugar="origen" data-rotulo="Origen (0,0)"></div>
+              </div>
+              <div class="mini-fichas" id="mini-fichas">
+                <button type="button" class="mini-ficha" draggable="true" data-elemento="x">Eje X</button>
+                <button type="button" class="mini-ficha" draggable="true" data-elemento="y">Eje Y</button>
+                <button type="button" class="mini-ficha" draggable="true" data-elemento="origen">Origen (0,0)</button>
+              </div>
+            </div>
+            <div class="feedback" id="feedback-mini-plano">Coloca las tres fichas para continuar.</div>
+          </div>
+          <div class="actividad-digital">
+            <h4>📍 Aprende y usa el plano cartesiano</h4>
+            <p>El eje <strong>X</strong> es horizontal y el eje <strong>Y</strong> es vertical. Se cruzan en el origen <strong>(0,0)</strong>. Los números positivos van hacia arriba y hacia la derecha; los negativos, hacia abajo y hacia la izquierda.</p>
+            <div class="coordinate-lesson">
+              <div>↗ I<br>+X, +Y</div><div>↖ II<br>-X, +Y</div><div>↙ III<br>-X, -Y</div><div>↘ IV<br>+X, -Y</div>
+            </div>
+            <div class="coordinate-steps"><div class="coordinate-step"><strong>1. Lee X</strong>Muévete primero a izquierda o derecha.</div><div class="coordinate-step"><strong>2. Lee Y</strong>Después sube o baja.</div><div class="coordinate-step"><strong>3. Marca</strong>Haz clic donde se cruzan.</div></div>
+            <p><strong>Reto:</strong> el plano está en blanco. Marca las coordenadas de la misión; en cada carga cambian y pueden ser positivas o negativas.</p>
+            <div class="coordinate-targets" id="coordinate-targets" aria-label="Coordenadas del reto"></div>
+            <canvas id="coordenadas-canvas" class="coordinate-grid" width="760" height="420"></canvas>
+            <div class="coordinate-zoom" aria-label="Controles de zoom del plano cartesiano"><button type="button" onclick="cambiarZoomCoordenadas(-1)">− Alejar</button><output id="coordinate-zoom-value">100%</output><button type="button" onclick="cambiarZoomCoordenadas(1)">+ Acercar</button><button type="button" onclick="restablecerZoomCoordenadas()">Restablecer</button></div>
+            <div class="feedback" id="feedback-coordenadas"></div>
+            <div class="digital-actions"><button onclick="nuevoRetoCoordenadas()">🎲 Nuevo reto</button><button onclick="limpiarCoordenadas()">Limpiar puntos</button></div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-5', this)">✅ ¡El tesoro está marcado!</button>
+        </div>
+
+        <div class="actividad-caja">
+          <div class="actividad-titulo"><span class="actividad-numero">2</span> 🏗️ Edificios desde Arriba (Vista Superior)</div>
+          <div class="materiales">🧰 Materiales: Cubos de LEGO, bloques de madera o cajas pequeñas.</div>
+          <div class="actividad-paso"><span class="paso-icono">1️⃣</span><span>Arma un "rascacielos" de 3 niveles con tus bloques. Ponlos en una esquina de la mesa.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">2️⃣</span><span>Simetría: Arma otro edificio que sea el "espejo" del primero.</span></div>
+          <div class="actividad-paso"><span class="paso-icono">3️⃣</span><span>Describe las diferencias: ¿Tienen el mismo volumen? ¿La misma forma vista desde arriba?</span></div>
+          <div class="linea-respuesta" style="height: 50px; margin-top: 10px;"></div>
+          <div class="actividad-digital">
+            <h4>🏗️ Construye la vista superior</h4>
+            <p>Haz clic para construir una planta de bloques y vuelve a hacer clic para crear su reflejo.</p>
+            <div id="block-grid" class="block-grid" aria-label="Rejilla de bloques"></div>
+            <div class="feedback" id="feedback-bloques"></div>
+            <div class="digital-actions"><button onclick="limpiarBloques()">Limpiar construcción</button></div>
+          </div>
+          <button class="btn-completar" onclick="marcarPieza('pieza-5', this)">✅ ¡Edificio construido!</button>
+        </div>
+      </div>
+    </div><!-- fin panel-5 -->
+  </div>
+
+  <!-- CIUDADANÍA -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Competencias Ciudadanas · Construyendo en Equipo</h3>
+      <small>🌍 La geometría nos une: la simetría es la base de la equidad.</small>
+    </div>
+    <div class="cc-caja">
+      <p>🌟 Pregunta de reflexión:</p>
+      <p>Si todas las figuras fueran diferentes y desordenadas, ¿sería posible construir una casa estable como las que vemos en Chichalá? La geometría nos enseña a buscar el equilibrio y la justicia (igualdad a ambos lados).</p>
+      <div class="cc-lista">
+        <li><strong>💬 Diálogo:</strong> Comparte con un compañero qué figura le fue más fácil construir y por qué.</li>
+        <li><strong>🤝 Respeto:</strong> Si tu compañero tiene dificultades, ayúdale a encontrar la línea de simetría.</li>
+        <li><strong>✨ Inclusión:</strong> Reconoce que hay varias formas de armar una figura; no hay un único camino correcto.</li>
+      </div>
+    </div>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre del Saber</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ ¡Secretos Geométricos Desvelados!</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🏛️</span>
+      <div><strong>El Partenón:</strong> Este templo griego es famoso por su simetría perfecta. Los arquitectos antiguos sabían que la simetría transmite paz y estabilidad.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🦋</span>
+      <div><strong>La Naturaleza:</strong> Las mariposas, las flores y hasta nuestras caras son casi simétricas. ¡La simetría es signo de salud y belleza!</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🚀</span>
+      <div><strong>En Chichalá:</strong> Muchas casas tradicionales tienen fachadas simétricas porque eso hace que se equilibren mejor y sean más resistentes.</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p>Ha completado exitosamente la <strong>Guía 2 · Laboratorio Geométrico</strong> con dedicación y creatividad.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">3°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌿 Matemáticas con corazón · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con amor por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div><!-- fin container -->
+
+<!-- JAVASCRIPT -->
+<script>
+// --- Lógica de Navegación ---
+function cambiarNivel(grado, btn){
+  // Ocultar todos los paneles
+  document.querySelectorAll('.nivel-panel').forEach(p => p.classList.remove('activo'));
+  // Mostrar el seleccionado
+  document.getElementById('panel-'+grado).classList.add('activo');
+  
+  // Actualizar pestañas
+  document.querySelectorAll('.nivel-tab').forEach(t => t.classList.remove('activo-3','activo-4','activo-5'));
+  btn.classList.add('activo-'+grado);
+  
+  // Resetear barras de progreso visuales (opcional)
+  resetearPiezasVisuales();
+}
+
+// --- Sistema de Progreso ---
+function marcarPieza(idPieza, btn){
+  const pieza = document.getElementById(idPieza);
+  if(pieza && !pieza.classList.contains('obtenida')){
+    pieza.classList.add('obtenida');
+    actualizarBarra();
+    btn.textContent = "✅ ¡Completado!";
+    btn.disabled = true;
+    btn.style.background = "#95a5a6";
+    btn.style.boxShadow = "none";
+    
+    // Sonido de éxito opcional (si se desea agregar)
+    // const audio = new Audio('success.mp3'); audio.play();
+  }
+}
+
+function actualizarBarra(){
+  const piezas = document.querySelectorAll('.pieza.obtenida');
+  const porcentaje = (piezas.length / 5) * 100;
+  document.getElementById('barra-fill').style.width = porcentaje + '%';
+  
+  // Completar si hay 5
+  if(piezas.length === 5){
+    mostrarDiploma();
+  }
+}
+
+function resetearPiezasVisuales(){
+  document.querySelectorAll('.pieza').forEach(p => p.classList.remove('obtenida'));
+  document.getElementById('barra-fill').style.width = '0%';
+}
+
+// --- Cofre del Saber ---
+function abrirCofre(){
+  const cofre = document.getElementById('cofre-secreto');
+  if(cofre.classList.contains('visible')){
+    cofre.classList.remove('visible');
+  } else {
+    cofre.classList.add('visible');
+    crearConfeti();
+  }
+}
+
+// --- Diploma ---
+function mostrarDiploma(){
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '3°';
+  
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  
+  // Scroll suave hacia el diploma
+  document.getElementById('diploma').scrollIntoView({behavior: 'smooth'});
+}
+
+// --- Confeti ---
+function crearConfeti(){
+  const colores = ['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  const container = document.body;
+  
+  for(let i=0; i<50; i++){
+    const confeti = document.createElement('div');
+    confeti.style.position = 'fixed';
+    confeti.style.left = Math.random() * 100 + 'vw';
+    confeti.style.top = '-20px';
+    confeti.style.width = Math.random() * 10 + 10 + 'px';
+    confeti.style.height = Math.random() * 10 + 10 + 'px';
+    confeti.style.background = colores[Math.floor(Math.random() * colores.length)];
+    confeti.style.zIndex = '9999';
+    confeti.style.animation = `caerConfeti ${Math.random() * 3 + 2}s linear`;
+    
+    container.appendChild(confeti);
+    
+    // Eliminar después de la animación
+    setTimeout(() => confeti.remove(), 5000);
+  }
+}
+
+// --- Actividades digitales ---
+function comprobarCaja(btn){
+  const respuestas = [
+    Number(document.getElementById('caja-caras').value),
+    Number(document.getElementById('caja-aristas').value),
+    Number(document.getElementById('caja-vertices').value)
+  ];
+  const correcto = respuestas[0] === 6 && respuestas[1] === 12 && respuestas[2] === 8;
+  const feedback = document.getElementById('feedback-caja');
+  feedback.textContent = correcto ? '🎉 ¡Correcto! Un cubo tiene 6 caras, 12 aristas y 8 vértices.' : '💡 Revisa: cuenta las caras, las aristas y las esquinas del cubo.';
+  if(correcto) btn.disabled = true;
+}
+
+let giroCubo = { x: -20, y: -35 };
+function girarCubo(direccion){
+  giroCubo.y += direccion * 45;
+  document.getElementById('cubo-3d').style.transform = `rotateX(${giroCubo.x}deg) rotateY(${giroCubo.y}deg)`;
+}
+
+function contarCubo(elemento, boton){
+  document.querySelectorAll('.cubo-controles button').forEach(control => control.classList.remove('activo'));
+  boton.classList.add('activo');
+  const respuestas = {
+    caras: '🎉 El cubo tiene 6 caras planas.',
+    aristas: '🎉 El cubo tiene 12 aristas: son las líneas donde se encuentran dos caras.',
+    vertices: '🎉 El cubo tiene 8 vértices: son sus esquinas.'
+  };
+  document.getElementById('feedback-cubo').textContent = respuestas[elemento];
+}
+
+function activarCarasCubo(){
+  document.querySelectorAll('.cubo-cara').forEach(cara => {
+    cara.addEventListener('click', () => cara.classList.toggle('marcada'));
+  });
+}
+
+function prepararCanvas(canvas, dibujar){
+  const contexto = canvas.getContext('2d');
+  let dibujando = false;
+  const posicion = evento => {
+    const rect = canvas.getBoundingClientRect();
+    return [(evento.clientX - rect.left) * canvas.width / rect.width, (evento.clientY - rect.top) * canvas.height / rect.height];
+  };
+  const iniciar = evento => {
+    dibujando = true;
+    const [x, y] = posicion(evento);
+    contexto.beginPath(); contexto.moveTo(x, y);
+    evento.preventDefault();
+  };
+  const dibujarTrazo = evento => {
+    if(!dibujando) return;
+    const [x, y] = posicion(evento);
+    contexto.lineTo(x, y); contexto.stroke();
+    evento.preventDefault();
+  };
+  const terminar = () => { dibujando = false; contexto.closePath(); };
+  canvas.addEventListener('pointerdown', iniciar);
+  canvas.addEventListener('pointermove', dibujarTrazo);
+  canvas.addEventListener('pointerup', terminar);
+  canvas.addEventListener('pointerleave', terminar);
+  contexto.lineWidth = 4; contexto.lineCap = 'round'; contexto.strokeStyle = '#1A9BAB';
+  dibujar(contexto);
+}
+
+function prepararDibujoEspejo(){
+  const canvas = document.getElementById('dibujo-espejo');
+  if(!canvas) return;
+  prepararCanvas(canvas, contexto => {
+    contexto.strokeStyle = '#EF4444';
+    contexto.lineWidth = 2;
+    contexto.setLineDash([6, 5]);
+    contexto.beginPath();
+    contexto.moveTo(canvas.width / 2, 0);
+    contexto.lineTo(canvas.width / 2, canvas.height);
+    contexto.stroke();
+    contexto.setLineDash([]);
+    contexto.strokeStyle = '#1A9BAB';
+    contexto.lineWidth = 4;
+  });
+}
+
+function prepararEscudoSimetrico(){
+  const canvas = document.getElementById('escudo-canvas');
+  if(!canvas) return;
+  const contexto = canvas.getContext('2d');
+  const trazos = [];
+  let trazoActual = null;
+  const mitad = canvas.width / 2;
+  const posicion = evento => {
+    const rect = canvas.getBoundingClientRect();
+    return [Math.max(2, Math.min(mitad - 2, (evento.clientX - rect.left) * canvas.width / rect.width)), (evento.clientY - rect.top) * canvas.height / rect.height];
+  };
+  const pintar = () => {
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
+    contexto.strokeStyle = '#CBD5E0'; contexto.lineWidth = 2; contexto.setLineDash([7, 5]);
+    contexto.beginPath(); contexto.moveTo(mitad, 0); contexto.lineTo(mitad, canvas.height); contexto.stroke(); contexto.setLineDash([]);
+    contexto.strokeStyle = '#1A9BAB'; contexto.lineWidth = 4; contexto.lineCap = 'round'; contexto.lineJoin = 'round';
+    trazos.forEach(trazo => {
+      [1, -1].forEach(reflejo => {
+        contexto.beginPath();
+        trazo.forEach((punto, indice) => { const x = mitad + (punto[0] - mitad) * reflejo; indice ? contexto.lineTo(x, punto[1]) : contexto.moveTo(x, punto[1]); });
+        contexto.stroke();
+      });
+    });
+  };
+  canvas.addEventListener('pointerdown', evento => {
+    trazoActual = [posicion(evento)]; trazos.push(trazoActual); canvas.setPointerCapture(evento.pointerId); pintar(); evento.preventDefault();
+  });
+  canvas.addEventListener('pointermove', evento => {
+    if(!trazoActual) return;
+    trazoActual.push(posicion(evento)); pintar(); evento.preventDefault();
+  });
+  const terminar = () => { trazoActual = null; };
+  canvas.addEventListener('pointerup', terminar);
+  canvas.addEventListener('pointercancel', terminar);
+  window.limpiarEscudoSimetrico = () => { trazos.length = 0; pintar(); document.getElementById('feedback-escudo').textContent = ''; };
+  window.comprobarEscudoSimetrico = () => { document.getElementById('feedback-escudo').textContent = trazos.length ? '🎉 ¡Perfecto! Cada trazo aparece reflejado en el otro lado.' : '💡 Dibuja primero en la mitad izquierda.'; };
+  pintar();
+}
+
+function limpiarDibujoEspejo(){
+  const canvas = document.getElementById('dibujo-espejo');
+  if(!canvas) return;
+  const contexto = canvas.getContext('2d');
+  contexto.clearRect(0, 0, canvas.width, canvas.height);
+  contexto.strokeStyle = '#EF4444';
+  contexto.lineWidth = 2;
+  contexto.setLineDash([6, 5]);
+  contexto.beginPath();
+  contexto.moveTo(canvas.width / 2, 0);
+  contexto.lineTo(canvas.width / 2, canvas.height);
+  contexto.stroke();
+  contexto.setLineDash([]);
+  contexto.strokeStyle = '#1A9BAB';
+  contexto.lineWidth = 4;
+  document.getElementById('feedback-dibujo-espejo').textContent = '';
+}
+
+function comprobarDibujoEspejo(){
+  const canvas = document.getElementById('dibujo-espejo');
+  if(!canvas) return;
+  const pixeles = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+  let izquierda = false;
+  let derecha = false;
+  for(let y = 0; y < canvas.height; y += 4){
+    for(let x = 0; x < canvas.width; x += 4){
+      const alpha = pixeles[(y * canvas.width + x) * 4 + 3];
+      if(alpha > 0){
+        if(x < canvas.width / 2 - 8) izquierda = true;
+        if(x > canvas.width / 2 + 8) derecha = true;
+      }
+    }
+  }
+  document.getElementById('feedback-dibujo-espejo').textContent = izquierda && derecha
+    ? '🎉 ¡Muy bien! Dibujaste en los dos lados del eje.'
+    : '💡 Intenta completar también el otro lado del eje rojo.';
+}
+
+function limpiarCanvas(id, eje){
+  const canvas = document.getElementById(id);
+  const contexto = canvas.getContext('2d');
+  contexto.clearRect(0, 0, canvas.width, canvas.height);
+  if(eje){
+    contexto.strokeStyle = '#CBD5E0'; contexto.lineWidth = 2;
+    contexto.beginPath(); contexto.moveTo(canvas.width / 2, 0); contexto.lineTo(canvas.width / 2, canvas.height); contexto.stroke();
+    contexto.strokeStyle = '#1A9BAB'; contexto.lineWidth = 4;
+  }
+}
+
+const transformacion = { x: 0, grados: 0 };
+function moverTransformacion(direccion){
+  transformacion.x = Math.max(-90, Math.min(90, transformacion.x + direccion * 35));
+  document.getElementById('transform-shape').style.transform = `translateX(${transformacion.x}px) rotate(${transformacion.grados}deg)`;
+  document.getElementById('feedback-transformacion').textContent = 'La traslación mueve la figura, pero no cambia su forma.';
+}
+function girarTransformacion(){
+  transformacion.grados = (transformacion.grados + 90) % 360;
+  document.getElementById('transform-shape').style.transform = `translateX(${transformacion.x}px) rotate(${transformacion.grados}deg)`;
+  document.getElementById('feedback-transformacion').textContent = `Rotación actual: ${transformacion.grados}°.`;
+}
+function resetTransformacion(){
+  transformacion.x = 0; transformacion.grados = 0;
+  document.getElementById('transform-shape').style.transform = 'none';
+  document.getElementById('feedback-transformacion').textContent = '';
+}
+
+const figurasSimetria = [
+  { nombre: 'Mariposa', celdas: ['2,0','3,0','1,1','2,1','3,1','4,1','0,2','1,2','2,2','3,2','4,2','5,2','1,3','2,3','3,3','4,3','2,4','3,4'] },
+  { nombre: 'Flor', celdas: ['3,0','2,1','3,1','1,2','2,2','3,2','0,3','1,3','2,3','3,3','2,4','3,4'] },
+  { nombre: 'Casa', celdas: ['3,0','2,1','3,1','1,2','2,2','3,2','0,3','1,3','2,3','3,3','0,4','1,4','2,4','3,4'] },
+  { nombre: 'Pez', celdas: ['3,0','2,1','3,1','1,2','2,2','3,2','4,2','5,2','2,3','3,3','4,3','3,4'] },
+  { nombre: 'Cohete', celdas: ['3,0','2,1','3,1','1,2','2,2','3,2','0,3','1,3','2,3','3,3','2,4','3,4'] }
+];
+
+let estadoSimetria = null;
+function prepararSimetria(){
+  const canvas = document.getElementById('simetria-canvas');
+  if(!canvas) return;
+  const contexto = canvas.getContext('2d');
+  if(!contexto) return;
+  const columnas = 8, filas = 5, ancho = canvas.width / 2 / columnas, alto = canvas.height / filas;
+  estadoSimetria = { canvas, contexto, columnas, filas, ancho, alto, figura: null, respuesta: new Set() };
+  canvas.addEventListener('click', evento => {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((evento.clientX - rect.left) * canvas.width / rect.width / ancho);
+    const y = Math.floor((evento.clientY - rect.top) * canvas.height / rect.height / alto);
+    if(x >= columnas && x < columnas * 2 && y >= 0 && y < filas){
+      const clave = `${x - columnas},${y}`;
+      estadoSimetria.respuesta.has(clave) ? estadoSimetria.respuesta.delete(clave) : estadoSimetria.respuesta.add(clave);
+      pintarSimetria();
+    }
+  });
+  nuevaFiguraSimetria();
+}
+
+function pintarSimetria(){
+  const estado = estadoSimetria;
+  if(!estado) return;
+  const { contexto, columnas, filas, ancho, alto, figura, respuesta } = estado;
+  contexto.clearRect(0, 0, estado.canvas.width, estado.canvas.height);
+  contexto.fillStyle = '#EFF6FF'; contexto.fillRect(0, 0, estado.canvas.width, estado.canvas.height);
+  contexto.strokeStyle = '#CBD5E0'; contexto.lineWidth = 1;
+  for(let x = 0; x <= columnas * 2; x++){ contexto.beginPath(); contexto.moveTo(x * ancho, 0); contexto.lineTo(x * ancho, estado.canvas.height); contexto.stroke(); }
+  for(let y = 0; y <= filas; y++){ contexto.beginPath(); contexto.moveTo(0, y * alto); contexto.lineTo(estado.canvas.width, y * alto); contexto.stroke(); }
+  contexto.strokeStyle = '#EF4444'; contexto.lineWidth = 3; contexto.beginPath(); contexto.moveTo(estado.canvas.width / 2, 0); contexto.lineTo(estado.canvas.width / 2, estado.canvas.height); contexto.stroke();
+  figura.celdas.forEach(clave => { const [x, y] = clave.split(',').map(Number); contexto.fillStyle = '#1A9BAB'; contexto.fillRect(x * ancho + 3, y * alto + 3, ancho - 6, alto - 6); });
+  respuesta.forEach(clave => { const [x, y] = clave.split(',').map(Number); contexto.fillStyle = '#7C3AED'; contexto.fillRect((columnas + columnas - 1 - x) * ancho + 3, y * alto + 3, ancho - 6, alto - 6); });
+}
+
+function nuevaFiguraSimetria(){
+  if(!estadoSimetria) return;
+  const indice = Math.floor(Math.random() * figurasSimetria.length);
+  estadoSimetria.figura = figurasSimetria[indice];
+  estadoSimetria.respuesta.clear();
+  document.getElementById('simetria-nombre').textContent = `Figura: ${estadoSimetria.figura.nombre}`;
+  document.getElementById('feedback-simetria').textContent = 'Completa la mitad derecha.';
+  pintarSimetria();
+}
+
+function comprobarSimetria(){
+  if(!estadoSimetria) return;
+  const esperadas = new Set(estadoSimetria.figura.celdas);
+  const correctas = [...esperadas].every(celda => estadoSimetria.respuesta.has(celda)) && estadoSimetria.respuesta.size === esperadas.size;
+  document.getElementById('feedback-simetria').textContent = correctas ? '🎉 ¡Excelente! La figura es simétrica.' : '💡 Algunas celdas todavía no coinciden con el reflejo.';
+}
+
+function limpiarSimetria(){
+  if(!estadoSimetria) return;
+  estadoSimetria.respuesta.clear();
+  document.getElementById('feedback-simetria').textContent = 'Completa la mitad derecha.';
+  pintarSimetria();
+}
+
+function prepararCoordenadas(){
+  const canvas = document.getElementById('coordenadas-canvas');
+  if(!canvas) return;
+  const contexto = canvas.getContext('2d'); const margen = 38; const puntos = []; const estado = { escalaMaxima: 12, objetivo: [], zoom: 1 };
+  const pintar = () => {
+    const escalaBase = Math.min((canvas.width - margen * 2) / (estado.escalaMaxima * 2), (canvas.height - margen * 2) / (estado.escalaMaxima * 2)); const escala = escalaBase * estado.zoom; const origenX = canvas.width / 2; const origenY = canvas.height / 2;
+    contexto.clearRect(0, 0, canvas.width, canvas.height); contexto.strokeStyle = '#CBD5E0'; contexto.lineWidth = 1;
+    const rangoVisible = Math.ceil(estado.escalaMaxima / estado.zoom);
+    for(let valor = -rangoVisible; valor <= rangoVisible; valor++){ const px = origenX + valor * escala; const py = origenY - valor * escala; contexto.beginPath(); contexto.moveTo(px, margen); contexto.lineTo(px, canvas.height - margen); contexto.stroke(); contexto.beginPath(); contexto.moveTo(margen, py); contexto.lineTo(canvas.width - margen, py); contexto.stroke(); }
+    contexto.strokeStyle = '#1E293B'; contexto.lineWidth = 2; contexto.beginPath(); contexto.moveTo(margen, origenY); contexto.lineTo(canvas.width - margen, origenY); contexto.moveTo(origenX, canvas.height - margen); contexto.lineTo(origenX, margen); contexto.stroke();
+    contexto.fillStyle = '#1E293B'; contexto.font = 'bold 13px Nunito'; contexto.fillText('X', canvas.width - margen + 4, origenY - 8); contexto.fillText('Y', origenX + 8, margen - 5); contexto.fillText('(0,0)', origenX + 6, origenY + 16);
+    contexto.font = '12px Nunito'; for(let valor = -rangoVisible; valor <= rangoVisible; valor++){ if(valor === 0) continue; const px = origenX + valor * escala; const py = origenY - valor * escala; if(px > margen - 8 && px < canvas.width - margen + 8) contexto.fillText(String(valor), px - 7, origenY + 19); if(py > margen - 8 && py < canvas.height - margen + 8) contexto.fillText(String(valor), origenX + 9, py + 4); }
+    contexto.fillStyle = '#7C3AED'; puntos.forEach(([x, y]) => { const px = origenX + x * escala, py = origenY - y * escala; contexto.beginPath(); contexto.arc(px, py, 5, 0, Math.PI * 2); contexto.fill(); });
+  };
+  const actualizarMision = () => { const contenedor = document.getElementById('coordinate-targets'); contenedor.innerHTML = estado.objetivo.map(([x, y], indice) => `<span class="coordinate-target" data-target="${x},${y}">${indice + 1}. (${x}, ${y})</span>`).join(''); };
+  canvas.addEventListener('click', evento => { const rect = canvas.getBoundingClientRect(); const escalaBase = Math.min((canvas.width - margen * 2) / (estado.escalaMaxima * 2), (canvas.height - margen * 2) / (estado.escalaMaxima * 2)); const escala = escalaBase * estado.zoom; const origenX = canvas.width / 2; const origenY = canvas.height / 2; const x = Math.round((((evento.clientX - rect.left) * canvas.width / rect.width) - origenX) / escala); const y = Math.round((origenY - ((evento.clientY - rect.top) * canvas.height / rect.height)) / escala); if(x >= -estado.escalaMaxima && x <= estado.escalaMaxima && y >= -estado.escalaMaxima && y <= estado.escalaMaxima && puntos.length < estado.objetivo.length){ puntos.push([x, y]); pintar(); const aciertos = puntos.filter(punto => estado.objetivo.some(objetivo => objetivo[0] === punto[0] && objetivo[1] === punto[1])).length; estado.objetivo.forEach(([tx, ty]) => { if(puntos.some(([px, py]) => px === tx && py === ty)) document.querySelector(`[data-target="${tx},${ty}"]`)?.classList.add('acierto'); }); document.getElementById('feedback-coordenadas').textContent = puntos.length === estado.objetivo.length ? (aciertos === estado.objetivo.length ? '🎉 ¡Excelente! Ubicaste los 5 puntos.' : `💡 Ubicaste ${aciertos} de ${estado.objetivo.length}. Revisa los puntos marcados.`) : `Puntos marcados: ${puntos.length}/${estado.objetivo.length} · Aciertos: ${aciertos}`; } });
+  window.nuevoRetoCoordenadas = () => { estado.escalaMaxima = 10 + Math.floor(Math.random() * 6); const positivos = [[2,3],[4,7],[7,2],[5,8],[3,6]]; const negativos = [[-2,-3],[-4,5],[-7,-2],[-5,8],[-3,-6]]; const candidatos = [...positivos, ...negativos, [estado.escalaMaxima - 1, -estado.escalaMaxima + 1], [-estado.escalaMaxima + 1, estado.escalaMaxima - 1]]; estado.objetivo = candidatos.sort(() => Math.random() - 0.5).slice(0, 5); puntos.length = 0; actualizarMision(); document.getElementById('feedback-coordenadas').textContent = `Misión lista: ${estado.objetivo.length} puntos en una escala de -${estado.escalaMaxima} a ${estado.escalaMaxima}.`; pintar(); };
+  window.cambiarZoomCoordenadas = direccion => { estado.zoom = Math.max(.75, Math.min(2, estado.zoom + direccion * .25)); document.getElementById('coordinate-zoom-value').textContent = `${Math.round(estado.zoom * 100)}%`; pintar(); };
+  window.restablecerZoomCoordenadas = () => { estado.zoom = 1; document.getElementById('coordinate-zoom-value').textContent = '100%'; pintar(); };
+  window.limpiarCoordenadas = () => { puntos.length = 0; document.querySelectorAll('.coordinate-target').forEach(target => target.classList.remove('acierto')); document.getElementById('feedback-coordenadas').textContent = 'Plano limpio. Marca los puntos de la misión.'; pintar(); };
+  window.nuevoRetoCoordenadas();
+  pintar();
+}
+
+function prepararBloques(){
+  const grid = document.getElementById('block-grid'); if(!grid) return;
+  for(let i = 0; i < 24; i++){ const celda = document.createElement('button'); celda.className = 'block-cell'; celda.type = 'button'; celda.setAttribute('aria-label', `Bloque ${i + 1}`); celda.addEventListener('click', () => { celda.classList.toggle('active'); document.getElementById('feedback-bloques').textContent = `Bloques construidos: ${grid.querySelectorAll('.active').length}`; }); grid.appendChild(celda); }
+  window.limpiarBloques = () => { grid.querySelectorAll('.active').forEach(celda => celda.classList.remove('active')); document.getElementById('feedback-bloques').textContent = ''; };
+}
+
+function prepararMiniPlano(){
+  const fichas = document.querySelectorAll('.mini-ficha');
+  const zonas = document.querySelectorAll('.mini-zona');
+  if(!fichas.length || !zonas.length) return;
+  let seleccionada = null;
+  const colocar = (ficha, zona) => {
+    const correcto = ficha.dataset.elemento === zona.dataset.lugar;
+    zona.classList.toggle('correcta', correcto);
+    zona.classList.toggle('incorrecta', !correcto);
+    document.getElementById('feedback-mini-plano').textContent = correcto ? `✅ Correcto: ${ficha.textContent}.` : '💡 Intenta otra zona: observa la dirección del eje o el punto central.';
+    if(correcto){ ficha.classList.add('seleccionada'); zona.dataset.resuelta = 'true'; zona.textContent = zona.dataset.rotulo; }
+    if([...zonas].every(destino => destino.dataset.resuelta === 'true')) document.getElementById('feedback-mini-plano').textContent = '🎉 ¡Plano organizado! Ya puedes ubicar coordenadas.';
+  };
+  fichas.forEach(ficha => {
+    ficha.addEventListener('click', () => { fichas.forEach(item => item.classList.remove('seleccionada')); ficha.classList.add('seleccionada'); seleccionada = ficha; document.getElementById('feedback-mini-plano').textContent = `Seleccionaste ${ficha.textContent}. Elige su lugar.`; });
+    ficha.addEventListener('dragstart', evento => { evento.dataTransfer.setData('text/plain', ficha.dataset.elemento); seleccionada = ficha; });
+  });
+  zonas.forEach(zona => {
+    zona.addEventListener('dragover', evento => evento.preventDefault());
+    zona.addEventListener('drop', evento => { evento.preventDefault(); const elemento = evento.dataTransfer.getData('text/plain'); const ficha = [...fichas].find(item => item.dataset.elemento === elemento); if(ficha) colocar(ficha, zona); });
+    zona.addEventListener('click', () => { if(seleccionada) colocar(seleccionada, zona); });
+  });
+}
+
+function iniciarActividadesDigitales(){
+  prepararMiniPlano();
+  prepararSimetria();
+  prepararCoordenadas();
+  prepararBloques();
+  prepararDibujoEspejo();
+  prepararEscudoSimetrico();
+}
+
+// --- Inicialización ---
+document.addEventListener('DOMContentLoaded', function(){
+  activarCarasCubo();
+  iniciarActividadesDigitales();
+  console.log('🧪 Laboratorio Geométrico cargado. ¡A construir!');
+});
+</script>
+</body>
+</html>

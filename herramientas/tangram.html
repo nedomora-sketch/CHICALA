@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tangram English - Level 1: Silent Mode</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --board-bg: #ffffff;
+            --piece-border: #333;
+            --highlight: #4CAF50;
+            --error: #FF5252;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; color: #333; }
+        p { margin: 5px 0 0; color: #666; }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Target Area (Silhouette) */
+        .target-area {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            background-color: var(--board-bg);
+            border: 3px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .target-label {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #888;
+            position: absolute;
+            top: 10px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Silhouette SVG (Placeholder) */
+        .silhouette {
+            width: 280px;
+            height: 280px;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Pieces Area */
+        .pieces-area {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            min-height: 150px;
+            padding: 20px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Tangram Pieces */
+        .piece {
+            width: 50px;
+            height: 50px;
+            cursor: grab;
+            position: absolute; /* Will be managed by JS */
+            transition: transform 0.2s ease, left 0.08s ease, top 0.08s ease;
+            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1));
+            z-index: 10;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+            outline: none;
+        }
+
+        .piece:active {
+            cursor: grabbing;
+            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1)) scale(1.05);
+        }
+
+        .piece:focus-visible {
+            outline: none;
+        }
+
+        .piece.optional {
+            opacity: 0.45;
+        }
+
+        /* SVG Paths for Tangram Pieces */
+        svg { width: 100%; height: 100%; }
+        
+        /* Success Animation */
+        .success-msg {
+            position: fixed;
+            top: 20px;
+            background: var(--highlight);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-100px);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .success-msg.show {
+            transform: translateY(0);
+        }
+
+        /* Controls */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .rotation-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .rotation-control input {
+            width: 220px;
+            accent-color: var(--highlight);
+        }
+
+        .rotation-control output {
+            min-width: 42px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: #2980b9; }
+        button.secondary { background: #95a5a6; }
+        button.secondary:hover { background: #7f8c8d; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .target-area { width: 280px; height: 280px; }
+            .silhouette { width: 240px; height: 240px; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tangram English: Level 1</h1>
+        <p>Arrastra para mover · Selecciona una pieza · Usa el control para girar libremente · Clic derecho para voltear</p>
+    </header>
+
+    <div class="success-msg" id="successMsg">Perfect! Well done!</div>
+
+    <div class="game-container">
+        <div class="target-area" id="dropZone">
+            <span class="target-label" id="animalName">Whale</span>
+            <!-- Silhouette placeholder (will be drawn by JS) -->
+            <div id="silhouetteContainer" class="silhouette"></div>
+        </div>
+
+        <div class="pieces-area" id="piecesArea">
+            <!-- Todas las piezas se cargan aquí; las necesarias quedan resaltadas. -->
+        </div>
+
+        <label class="rotation-control" for="rotationControl">
+            Giro de la pieza seleccionada
+            <input id="rotationControl" type="range" min="0" max="359" value="0" step="1" disabled>
+            <output id="rotationValue" for="rotationControl">0°</output>
+        </label>
+
+        <div class="controls">
+            <button onclick="resetLevel()">↺ Reset Puzzle</button>
+            <button class="secondary" onclick="nextAnimal()">➡️ Next Animal</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. DATA: The 16 Animals from the Image ---
+        // Simplified SVG paths for demonstration. 
+        // In production, you'd map exact coordinates for each animal.
+        const animals = [
+            { id: 'whale', name: 'Whale', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'small-2', 'parallelogram'] },
+            { id: 'elephant', name: 'Elephant', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'small-2', 'square', 'parallelogram'] },
+            { id: 'dog', name: 'Dog', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'square', 'parallelogram'] },
+            { id: 'cat', name: 'Cat', pieces: ['big-1', 'medium', 'small-1', 'small-2', 'square'] },
+            { id: 'lion', name: 'Lion', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'square', 'parallelogram'] },
+            { id: 'seal', name: 'Seal', pieces: ['big-1', 'medium', 'small-1', 'small-2', 'parallelogram'] },
+            { id: 'camel', name: 'Camel', pieces: ['big-1', 'big-2', 'medium', 'small-2', 'square', 'parallelogram'] },
+            { id: 'panda', name: 'Panda', pieces: ['big-1', 'big-2', 'small-1', 'small-2', 'square', 'parallelogram'] },
+            { id: 'horse', name: 'Horse', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'square', 'parallelogram'] },
+            { id: 'crab', name: 'Crab', pieces: ['big-1', 'medium', 'small-1', 'small-2', 'square', 'parallelogram'] },
+            { id: 'bear', name: 'Bear', pieces: ['big-1', 'big-2', 'medium', 'small-2', 'square'] },
+            { id: 'kangaroo', name: 'Kangaroo', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'small-2', 'parallelogram'] },
+            { id: 'turtle', name: 'Turtle', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'square'] },
+            { id: 'cow', name: 'Cow', pieces: ['big-1', 'big-2', 'medium', 'small-1', 'small-2', 'square'] },
+            { id: 'fox', name: 'Fox', pieces: ['big-1', 'medium', 'small-1', 'small-2', 'parallelogram'] },
+            { id: 'frog', name: 'Frog', pieces: ['big-1', 'big-2', 'small-1', 'small-2', 'square', 'parallelogram'] }
+        ];
+
+        // Simplified Tangram Pieces Definitions (Basic Shapes)
+        const tangramPieces = [
+            // Escala común: los siete elementos pueden teselar un cuadrado.
+            { id: 'big-1', type: 'triangle', viewBox: '0 0 120 120', points: '0,0 120,0 0,120', width: 120, height: 120, color: '#FF6B6B' },
+            { id: 'big-2', type: 'triangle', viewBox: '0 0 120 120', points: '120,120 0,120 120,0', width: 120, height: 120, color: '#4ECDC4' },
+            { id: 'medium', type: 'triangle', viewBox: '0 0 85 85', points: '0,85 85,85 0,0', width: 85, height: 85, color: '#FFD93D' },
+            { id: 'small-1', type: 'triangle', viewBox: '0 0 60 60', points: '0,60 60,60 0,0', width: 60, height: 60, color: '#6C5CE7' },
+            { id: 'small-2', type: 'triangle', viewBox: '0 0 60 60', points: '60,0 0,0 60,60', width: 60, height: 60, color: '#FFEAA7' },
+            { id: 'square', type: 'square', viewBox: '0 0 60 60', width: 60, height: 60, color: '#A29BFE' },
+            { id: 'parallelogram', type: 'parallelogram', viewBox: '0 0 120 55', points: '25,0 120,0 95,55 0,55', width: 120, height: 55, color: '#FD79A8' }
+        ];
+
+        // --- 2. STATE ---
+        let currentAnimalIndex = 0;
+        let droppedPiecesCount = 0;
+        let totalPieces = 0;
+        let requiredPieceIds = new Set();
+        let selectedPiece = null;
+        
+        // --- 3. DOM ELEMENTS ---
+        const dropZone = document.getElementById('dropZone');
+        const piecesArea = document.getElementById('piecesArea');
+        const animalNameEl = document.getElementById('animalName');
+        const silhouetteContainer = document.getElementById('silhouetteContainer');
+        const successMsg = document.getElementById('successMsg');
+        const rotationControl = document.getElementById('rotationControl');
+        const rotationValue = document.getElementById('rotationValue');
+
+        // --- 4. INITIALIZATION ---
+        function initGame() {
+            loadAnimal(currentAnimalIndex);
+            setupDragAndDrop();
+            document.addEventListener('pointerdown', clearPieceSelectionOnOutsideClick);
+        }
+
+        function clearPieceSelectionOnOutsideClick(e) {
+            if (e.target.closest('.piece, .rotation-control')) return;
+            selectedPiece = null;
+            rotationControl.disabled = true;
+        }
+
+        function loadAnimal(index) {
+            const animal = animals[index];
+            animalNameEl.textContent = animal.name;
+            dropZone.style.borderColor = '#ccc';
+            droppedPiecesCount = 0;
+            totalPieces = animal.pieces.length;
+            requiredPieceIds = new Set(animal.pieces);
+            selectedPiece = null;
+            
+            // Clear previous pieces
+            piecesArea.innerHTML = '';
+            silhouetteContainer.innerHTML = '';
+            
+            // Draw Silhouette (Placeholder: Simple Rectangle for now)
+            // In real app, load SVG path for specific animal
+            silhouetteContainer.innerHTML = `<svg viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="none" stroke="#333" stroke-width="2"/></svg>`;
+            
+            tangramPieces.forEach((piece, i) => {
+                const pieceEl = createPieceElement(piece, i, requiredPieceIds.has(piece.id));
+                piecesArea.appendChild(pieceEl);
+            });
+
+            rotationControl.value = '0';
+            rotationControl.disabled = true;
+            rotationValue.value = '0°';
+            rotationValue.textContent = '0°';
+
+            // Reset Audio
+            window.speechSynthesis.cancel();
+        }
+
+        function createPieceElement(data, index, isRequired) {
+            const div = document.createElement('div');
+            div.className = `piece ${isRequired ? 'required' : 'optional'}`;
+            div.draggable = true;
+            div.tabIndex = 0;
+            div.title = isRequired ? 'Pieza necesaria · Selecciona para girar' : 'Pieza disponible · Selecciona para usar';
+            div.dataset.type = data.type;
+            div.dataset.pieceId = data.id;
+            div.dataset.index = index;
+            div.dataset.required = isRequired ? 'true' : 'false';
+            div.dataset.rotation = '0';
+            div.dataset.flip = '1';
+            
+            // Simple SVG shapes for tangram pieces
+            let svgContent = '';
+            if (data.type === 'triangle') {
+                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
+            } else if (data.type === 'square') {
+                svgContent = `<svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="${data.color}"/></svg>`;
+            } else if (data.type === 'parallelogram') {
+                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
+            }
+            
+            div.innerHTML = svgContent;
+            div.addEventListener('click', selectPiece);
+            div.addEventListener('contextmenu', flipPiece);
+            div.addEventListener('wheel', rotatePieceWithWheel, { passive: false });
+            div.addEventListener('keydown', movePieceWithKeys);
+            div.addEventListener('dragstart', dragStart);
+            div.addEventListener('dragend', dragEnd);
+            if (data.width) div.style.width = `${data.width}px`;
+            if (data.height) div.style.height = `${data.height}px`;
+            div.style.left = `${20 + (index % 4) * 135}px`;
+            div.style.top = `${20 + Math.floor(index / 4) * 85}px`;
+            return div;
+        }
+
+        function updatePieceTransform(piece) {
+            piece.style.setProperty('--rotation', `${piece.dataset.rotation}deg`);
+            piece.style.setProperty('--flip', piece.dataset.flip);
+        }
+
+        function selectPiece(e) {
+            const piece = e.currentTarget;
+            selectedPiece = piece;
+            rotationControl.disabled = false;
+            rotationControl.value = piece.dataset.rotation;
+            rotationValue.value = `${piece.dataset.rotation}°`;
+            rotationValue.textContent = `${piece.dataset.rotation}°`;
+        }
+
+        function setPieceRotation(piece, rotation) {
+            const normalizedRotation = (rotation + 360) % 360;
+            piece.dataset.rotation = String(normalizedRotation);
+            updatePieceTransform(piece);
+            rotationControl.value = String(normalizedRotation);
+            rotationValue.value = `${normalizedRotation}°`;
+            rotationValue.textContent = `${normalizedRotation}°`;
+        }
+
+        function rotatePieceWithWheel(e) {
+            e.preventDefault();
+            const piece = e.currentTarget;
+            selectPiece(e);
+            const step = e.shiftKey ? 1 : 5;
+            const direction = e.deltaY < 0 ? 1 : -1;
+            setPieceRotation(piece, Number(piece.dataset.rotation) + direction * step);
+        }
+
+        function flipPiece(e) {
+            e.preventDefault();
+            const piece = e.currentTarget;
+            piece.dataset.flip = piece.dataset.flip === '1' ? '-1' : '1';
+            updatePieceTransform(piece);
+            selectPiece(e);
+        }
+
+        rotationControl.addEventListener('input', () => {
+            if (selectedPiece) setPieceRotation(selectedPiece, Number(rotationControl.value));
+        });
+
+        function movePieceWithKeys(e) {
+            const movements = {
+                ArrowUp: [0, -1],
+                ArrowDown: [0, 1],
+                ArrowLeft: [-1, 0],
+                ArrowRight: [1, 0]
+            };
+            const movement = movements[e.key];
+            if (!movement) return;
+
+            e.preventDefault();
+            const step = e.shiftKey ? 10 : 2;
+            const currentLeft = parseFloat(piecePosition(e.currentTarget, 'left')) || 0;
+            const currentTop = parseFloat(piecePosition(e.currentTarget, 'top')) || 0;
+            e.currentTarget.style.left = `${currentLeft + movement[0] * step}px`;
+            e.currentTarget.style.top = `${currentTop + movement[1] * step}px`;
+        }
+
+        function piecePosition(piece, property) {
+            return piece.style[property] || getComputedStyle(piece)[property];
+        }
+
+        // --- 5. DRAG AND DROP LOGIC ---
+        function setupDragAndDrop() {
+            dropZone.addEventListener('dragover', dragOver);
+            dropZone.addEventListener('drop', drop);
+        }
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.index);
+            setTimeout(() => e.target.style.opacity = '0.5', 0);
+        }
+
+        function dragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+
+        function dragOver(e) {
+            e.preventDefault(); // Necessary to allow dropping
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            const index = e.dataTransfer.getData('text/plain');
+            const piece = document.querySelector(`.piece[data-index="${index}"]`);
+            
+            if (piece) {
+                // Get drop position relative to board
+                const rect = dropZone.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Snap to board
+                piece.style.position = 'absolute';
+                piece.style.left = (x - 25) + 'px'; // Center offset
+                piece.style.top = (y - 25) + 'px';
+                
+                // Remove from drag source area
+                piecesArea.removeChild(piece);
+                dropZone.appendChild(piece);
+
+                // Check success logic (simplified)
+                droppedPiecesCount = dropZone.querySelectorAll('.piece.required').length;
+                if (droppedPiecesCount === totalPieces) {
+                    checkSuccess();
+                }
+            }
+        }
+
+        // --- 6. SUCCESS & AUDIO ---
+        function checkSuccess() {
+            // In full version, validate exact coordinates
+            // For now, just check if all pieces are in dropZone
+            const requiredPiecesInZone = dropZone.querySelectorAll('.piece.required');
+            if (requiredPiecesInZone.length === totalPieces) {
+                showSuccess();
+            }
+        }
+
+        function showSuccess() {
+            successMsg.classList.add('show');
+            const animalName = animals[currentAnimalIndex].name;
+            
+            // Text-to-Speech
+            const utterance = new SpeechSynthesisUtterance(animalName);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+        }
+
+        function resetLevel() {
+            loadAnimal(currentAnimalIndex);
+        }
+
+        function nextAnimal() {
+            currentAnimalIndex = (currentAnimalIndex + 1) % animals.length;
+            loadAnimal(currentAnimalIndex);
+        }
+
+        // Start the app
+        initGame();
+
+    </script>
+</body>
+</html>

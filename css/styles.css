@@ -300,6 +300,8 @@ body {
 .herramienta-card--matematicas:hover { border-color: var(--naranja); }
 .herramienta-card--diccionario { background: #eff6ff; border-color: rgba(26,155,171,0.3); }
 .herramienta-card--diccionario:hover { border-color: var(--azul); }
+.herramienta-card--tangram { background: #fffbea; border-color: rgba(247,195,37,0.4); }
+.herramienta-card--tangram:hover { border-color: var(--amarillo); }
 
 .herramienta-card__icono {
     display: grid;
