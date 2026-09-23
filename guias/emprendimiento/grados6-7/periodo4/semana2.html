@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Emprendimiento · Grados 6°-7° Unificados · Semana 2 · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🔍 Emprendimiento Aventura · Semana 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  EMPRENDIMIENTO AVENTURA · SEMANA 2 · GRADOS 6°-7°
+  TEMA: "Mi entorno, una oportunidad"
+══════════════════════════════════════════════ */
+:root{
+  --inv-naranja:#FF6B35; --inv-azul:#1A9BAB; --inv-verde:#3DBE8C;
+  --inv-morado:#7C3AED;  --inv-amarillo:#FFD23F; --inv-rosa:#FF6B9D;
+  --inv-rojo:#EF4444;    --inv-celeste:#38BDF8;
+  --inv-bg:#F0F9FF;      --inv-card:#FFFFFF;
+  --inv-texto:#1E293B;   --inv-dim:#64748B; --inv-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--inv-bg);color:var(--inv-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(124,58,237,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* Barra de Misión */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--inv-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--inv-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--inv-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--inv-morado),var(--inv-celeste));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(124,58,237,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.4rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* Hero Header */
+.hero-header{background:linear-gradient(135deg,#FF6B35 0%,#7C3AED 55%,#FF6B9D 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🔍';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🚀';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* Secciones */
+.seccion{background:white;border:2px solid var(--inv-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-teoria::before{background:linear-gradient(180deg,var(--inv-azul),var(--inv-celeste))}
+.seccion-practica::before{background:linear-gradient(180deg,var(--inv-naranja),var(--inv-amarillo))}
+.seccion-evaluacion::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-amarillo))}
+.seccion-autonomo::before{background:linear-gradient(180deg,var(--inv-morado),var(--inv-rosa))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2.35rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--inv-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--inv-dim);font-weight:600;margin-top:2px}
+
+/* Competencias */
+.competencias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.competencia-card{background:linear-gradient(135deg,#F8FAFC,#EFF6FF);border:2px solid var(--inv-border);border-radius:var(--r-md);padding:16px;text-align:center;transition:transform .2s}
+.competencia-card:hover{transform:translateY(-3px);box-shadow:var(--sombra-sm)}
+.competencia-icon{font-size:2.35rem;display:block;margin-bottom:8px}
+.competencia-nombre{font-family:'Fredoka',sans-serif;font-weight:700;font-size:.9rem;color:var(--inv-texto);margin-bottom:4px}
+.competencia-desc{font-size:.75rem;color:var(--inv-dim)}
+
+/* Conceptos Teóricos */
+.teoria-bloque{margin-bottom:20px;padding:18px;background:#F8FAFC;border-radius:var(--r-md);border-left:4px solid var(--inv-azul)}
+.teoria-bloque h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--inv-azul);margin:0 0 10px}
+.teoria-bloque p{font-size:.9rem;margin:0 0 8px}
+.teoria-bloque ul{padding-left:20px;margin:0}
+.teoria-bloque li{font-size:.85rem;margin-bottom:4px}
+
+/* Matriz de Observación */
+.matriz-container{overflow-x:auto;margin:20px 0}
+.matriz-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.matriz-table th{background:var(--inv-azul);color:white;padding:12px;text-align:left;font-family:'Fredoka',sans-serif}
+.matriz-table td{border:1px solid var(--inv-border);padding:10px}
+.matriz-table tr:nth-child(even){background:#F8FAFC}
+.matriz-input{width:100%;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:.85rem;outline:none}
+
+/* Semáforo */
+.semaforo-container{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.semaforo-item{flex:1;min-width:150px;padding:16px;border-radius:var(--r-md);text-align:center;border:2px solid}
+.semaforo-urgente{background:rgba(239,68,68,.05);border-color:var(--inv-rojo)}
+.semaforo-importante{background:rgba(255,210,63,.1);border-color:var(--inv-amarillo)}
+.semaforo-deseable{background:rgba(61,190,140,.05);border-color:var(--inv-verde)}
+.semaforo-titulo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:8px}
+.semaforo-item textarea{width:100%;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:.8rem;resize:none;outline:none;height:60px}
+
+/* Evaluación Interactiva */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--inv-azul);border-radius:var(--r-lg);background:linear-gradient(135deg,#F0FDFA,#EFF6FF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--inv-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--inv-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--inv-azul)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--inv-azul);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--inv-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(26,155,171,.2)}
+.evaluacion-progreso-barra span{display:block;width:10%;height:100%;background:linear-gradient(90deg,var(--inv-azul),var(--inv-verde));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(26,155,171,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--inv-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--inv-border);border-radius:var(--r-sm);background:white;color:var(--inv-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--inv-azul);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--inv-azul);flex-shrink:0}
+.quiz-option.correct{border-color:var(--inv-verde);background:rgba(61,190,140,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--inv-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--inv-azul),var(--inv-verde));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #0E7490;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--inv-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--inv-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--inv-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+/* Autoevaluación */
+.autoevaluacion{margin-top:20px}
+.auto-criterio{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid var(--inv-border)}
+.auto-criterio:last-child{border-bottom:none}
+.auto-texto{flex:1;font-size:.85rem;font-weight:600}
+.auto-checks{display:flex;gap:8px}
+.auto-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--inv-border);display:flex;align-items:center;justify-content:center;font-size:.7rem;cursor:pointer;transition:all .2s}
+.auto-check:hover{border-color:var(--inv-azul)}
+.auto-check.activo{background:var(--inv-azul);border-color:var(--inv-azul);color:white}
+
+/* Reflexión */
+.reflexion-caja{background:linear-gradient(135deg,#FAF5FF,#F5F3FF);border:2px dashed var(--inv-morado);border-radius:var(--r-md);padding:20px;margin-top:20px}
+.reflexion-pregunta{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;color:var(--inv-morado);margin-bottom:10px}
+.reflexion-input{width:100%;border:none;background:rgba(255,255,255,.5);border-radius:var(--r-sm);padding:12px;font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;margin-bottom:10px}
+
+/* Trabajo Autónomo */
+.autonomo-lista{list-style:none;padding:0;margin:0}
+.autonomo-item{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#F8FAFC;border-radius:var(--r-sm);margin-bottom:10px;border:2px solid var(--inv-border);transition:all .2s}
+.autonomo-item:hover{border-color:var(--inv-morado);transform:translateX(4px)}
+.autonomo-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--inv-morado);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;margin-top:2px}
+.autonomo-check.activo{background:var(--inv-morado);color:white}
+.autonomo-texto{font-size:.9rem;font-weight:600;color:var(--inv-texto)}
+
+/* Diploma y pie de página */
+.diploma-wrap{display:none;max-width:780px;margin:34px auto 24px;padding:34px 28px;text-align:center;background:linear-gradient(135deg,#FFFBEB 0%,#FFFFFF 48%,#F0FDFA 100%);border:4px solid var(--inv-amarillo);border-radius:var(--r-xl);box-shadow:var(--sombra-md);position:relative;overflow:hidden}
+.diploma-wrap.visible{display:block;animation:fadeSlide .5s ease}
+.diploma-wrap::before,.diploma-wrap::after{content:'✦';position:absolute;color:var(--inv-amarillo);font-size:5rem;opacity:.18;line-height:1}
+.diploma-wrap::before{top:10px;left:18px}.diploma-wrap::after{right:18px;bottom:8px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.16em;color:var(--inv-dim);margin-bottom:10px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:700;color:var(--inv-morado);margin:8px 0 12px}
+.diploma-insignia{display:block;font-size:3.5rem;line-height:1;margin:12px auto 18px;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-wrap p{max-width:650px;margin:10px auto;color:var(--inv-texto);font-size:.92rem}
+.diploma-grado-badge{display:inline-block;margin-top:6px;padding:8px 28px;border-radius:50px;background:linear-gradient(135deg,var(--inv-morado),var(--inv-azul));color:white;font-family:'Fredoka',sans-serif;font-weight:700;box-shadow:0 4px 0 #5B21B6}
+.footer{text-align:center;margin:26px auto 0;padding:24px 12px 4px;border-top:2px solid var(--inv-border);color:var(--inv-dim);font-size:.84rem}
+.footer p{margin:5px 0}
+
+/* Botones */
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 24px rgba(26,155,171,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--inv-morado),var(--inv-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #5B21B6,0 8px 20px rgba(124,58,237,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #5B21B6,0 12px 28px rgba(124,58,237,.4)}
+.icono-pepa-cafe{display:inline-flex;width:48px;height:62px;align-items:center;justify-content:center;border-radius:58% 42% 52% 48%;background:linear-gradient(135deg,#8B4513 0%,#5D2E0C 70%,#3B1D08 100%);position:relative;transform:rotate(-32deg);box-shadow:inset 3px 3px 0 rgba(255,210,140,.35),0 3px 6px rgba(59,29,8,.25);font-size:1.5rem;color:#FFE0A3;font-family:'Fredoka',sans-serif;font-weight:700}
+.icono-pepa-cafe::before{content:'↑';position:relative;z-index:1;transform:rotate(32deg)}
+.icono-pepa-cafe::after{content:'';position:absolute;top:6px;left:21px;width:3px;height:46px;border-radius:50%;background:#D69A5B;transform:rotate(18deg);opacity:.85}
+.btn-volver{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;margin-top:16px;color:var(--inv-morado);text-decoration:none;font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:700;line-height:1.1;text-align:center;transition:transform .2s}
+.btn-volver:hover{transform:translateY(-3px)}
+
+.estructuracion-intro{display:flex;align-items:center;gap:14px;padding:16px 18px;margin-bottom:18px;border-radius:var(--r-md);background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border:2px solid rgba(26,155,171,.2);color:#155E75}
+.estructuracion-intro-icono{font-size:2.4rem;flex-shrink:0}
+.estructuracion-intro strong{font-family:'Fredoka',sans-serif;color:var(--inv-azul)}
+.acciones-grid,.niveles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 20px}
+.accion-card,.nivel-card-entorno{padding:16px;border-radius:var(--r-md);border:2px solid transparent;min-height:130px;transition:transform .2s,box-shadow .2s}
+.accion-card:hover,.nivel-card-entorno:hover{transform:translateY(-3px);box-shadow:var(--sombra-sm)}
+.accion-card h5,.nivel-card-entorno h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 7px}
+.accion-card p,.nivel-card-entorno p{font-size:.82rem;margin:0;color:var(--inv-dim)}
+.accion-observar{background:#FFF7ED;border-color:#FDBA74}.accion-observar h5{color:#C2410C}
+.accion-escuchar{background:#EFF6FF;border-color:#93C5FD}.accion-escuchar h5{color:#1D4ED8}
+.accion-registrar{background:#F0FDF4;border-color:#86EFAC}.accion-registrar h5{color:#15803D}
+.nivel-familiar{background:#FFF7ED;border-color:#FED7AA}.nivel-familiar h5{color:#C2410C}
+.nivel-escolar{background:#EFF6FF;border-color:#BFDBFE}.nivel-escolar h5{color:#1D4ED8}
+.nivel-comunitario{background:#F0FDF4;border-color:#BBF7D0}.nivel-comunitario h5{color:#15803D}
+@media (max-width:640px){.acciones-grid,.niveles-grid{grid-template-columns:1fr}.estructuracion-intro{align-items:flex-start}}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🚀 MISIÓN EMPRENDEDORA</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré los recursos">📚</span>
+      <span class="pieza" id="pieza-2" title="Aprendí conceptos clave">💡</span>
+      <span class="pieza" id="pieza-3" title="Hice el Reto Emprendedor">✍️</span>
+      <span class="pieza" id="pieza-4" title="Compartí mi idea">💬</span>
+      <span class="pieza" id="pieza-5" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🚀 MODO EMPRENDEDOR ACTIVO</div>
+    <h1 class="hero-titulo">🚀 Emprendimiento Aventura<br/>¡De la Idea a la Acción!</h1>
+    <p class="hero-subtitulo">Emprendimiento · Semana 2 · Grados 6° y 7° Unificados</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="6° o 7°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 24 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETENCIAS DEL MEN -->
+  <div class="seccion seccion-teoria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🏛️</span>
+      <h3>Competencias del MEN a desarrollar</h3>
+      <small>Habilidades que practicaremos durante la semana</small>
+    </div>
+    <div class="matriz-container">
+      <table class="matriz-table">
+        <thead><tr><th>Competencia</th><th>¿Cómo la trabajamos esta semana?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>🧠 Creatividad e innovación</strong></td><td>Detectar necesidades reales y proponer ideas originales</td></tr>
+          <tr><td><strong>👥 Trabajo en equipo</strong></td><td>Observación colaborativa del entorno cercano</td></tr>
+          <tr><td><strong>🔍 Pensamiento crítico</strong></td><td>Analizar causas y consecuencias de los problemas detectados</td></tr>
+          <tr><td><strong>🤝 Responsabilidad social</strong></td><td>Valorar el impacto positivo en la comunidad</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MOMENTO 1: EXPLORACIÓN -->
+  <div class="seccion seccion-teoria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📚</span>
+      <h3>Momento 1: Exploración <small>(Conectamos con lo que ya sabemos)</small></h3>
+      <small>⏱️ Duración: 15 minutos</small>
+    </div>
+    <div class="teoria-bloque">
+      <h4>🕵️ Actividad disparadora: “El detective del barrio”</h4>
+      <p>En parejas, respondan oralmente:</p>
+      <ul>
+        <li>¿Qué cosas de tu barrio, vereda o colegio te hacen decir “¡esto debería cambiar!”?</li>
+        <li>¿Alguna vez alguien resolvió un problema pequeño con una idea ingeniosa? ¿Cuál?</li>
+      </ul>
+      <p><strong>📝 Registro rápido:</strong> Dibuja en tu cuaderno 3 objetos o situaciones de tu entorno que creas que podrían mejorar.</p>
+    </div>
+  </div>
+
+  <!-- MOMENTO 2: ESTRUCTURACIÓN -->
+  <div class="seccion seccion-teoria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📖</span>
+      <h3>Momento 2: Estructuración <small>(Contenido teórico-práctico)</small></h3>
+      <small>⏱️ Duración: 30 minutos</small>
+    </div>
+    <div class="estructuracion-intro">
+      <span class="estructuracion-intro-icono">🔑</span>
+      <div><strong>Conceptos clave</strong><br/>Aprende a reconocer necesidades y convertirlas en oportunidades para tu comunidad.</div>
+    </div>
+    <div class="teoria-bloque">
+      <h4>1. ¿Qué es una necesidad?</h4>
+      <p>Es algo que las personas requieren y aún no está bien resuelto. Puede ser:</p>
+      <ul>
+        <li><strong>Básica:</strong> alimentación, transporte, salud o comunicación.</li>
+        <li><strong>Detectable:</strong> se nota cuando alguien se queja, hace filas, improvisa o evita algo.</li>
+      </ul>
+      <h4>2. Identificación de necesidades y problemas</h4>
+      <p>Se logra mediante tres acciones simples:</p>
+      <div class="acciones-grid">
+        <div class="accion-card accion-observar"><h5>👀 OBSERVAR</h5><p>Mirar con atención qué pasa a mi alrededor.</p></div>
+        <div class="accion-card accion-escuchar"><h5>👂 ESCUCHAR</h5><p>Preguntar a vecinos, familiares y compañeros.</p></div>
+        <div class="accion-card accion-registrar"><h5>📝 REGISTRAR</h5><p>Anotar todo lo que veo y escucho.</p></div>
+      </div>
+      <h4>3. Análisis del entorno</h4>
+      <div class="niveles-grid">
+        <div class="nivel-card-entorno nivel-familiar"><h5>🏠 Familiar</h5><p>Problemas de casa o del hogar.</p><strong>Se pierde agua, sobra comida.</strong></div>
+        <div class="nivel-card-entorno nivel-escolar"><h5>🏫 Escolar</h5><p>Situaciones del colegio.</p><strong>Basura o falta de puntos de lectura.</strong></div>
+        <div class="nivel-card-entorno nivel-comunitario"><h5>🌳 Comunitario</h5><p>Barrio, vereda o municipio.</p><strong>Vías en mal estado o falta de zonas verdes.</strong></div>
+      </div>
+      <div class="matriz-container">
+        <table class="matriz-table">
+          <thead><tr><th>Nivel</th><th>¿Qué observo?</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>🏠 Familiar</strong></td><td>Problemas de casa o del hogar</td><td>Se pierde agua, sobra comida</td></tr>
+            <tr><td><strong>🏫 Escolar</strong></td><td>Situaciones del colegio</td><td>Exceso de basura, falta de puntos de lectura</td></tr>
+            <tr><td><strong>🌳 Comunitario</strong></td><td>Barrio, vereda o municipio</td><td>Mal estado de vías, falta de zonas verdes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4>4. Oportunidades de negocio</h4>
+      <p>Una oportunidad nace cuando <strong>una necesidad + mis habilidades + recursos disponibles</strong> se encuentran.</p>
+      <p><strong>✅ No necesito inventar algo nuevo; puedo mejorar algo que ya existe.</strong></p>
+    </div>
+
+    <div class="teoria-bloque" style="border-left-color:var(--inv-morado);background:linear-gradient(135deg,#FAF5FF,#F5F3FF)">
+      <h4 style="color:var(--inv-morado)">✏️ Actividad práctica en clase: “Lupa al entorno”</h4>
+      <p>Elige o recorre estas tres situaciones rurales. En cada fila, escribe una necesidad que observes, dónde ocurre, a quién afecta y qué viste o escuchaste que la demuestra:</p>
+      <div class="matriz-container">
+        <table class="matriz-table">
+          <thead><tr><th>Necesidad detectada</th><th>¿Dónde la vi?</th><th>¿A quién afecta?</th><th>¿Cómo la sé? (lo que vi/escuché)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>🌱 Actividad 1: Cultivos</strong><br/><small>Observa una parcela, huerta o cultivo.</small></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>🐄 Actividad 2: Animales</strong><br/><small>Observa la crianza o cuidado de animales.</small></td><td></td><td></td><td></td></tr>
+            <tr><td><strong>🧺 Actividad 3: Productos del campo</strong><br/><small>Observa la cosecha, transformación o venta.</small></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOMENTO 3: PRÁCTICA -->
+  <div class="seccion seccion-practica">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🛠️</span>
+      <h3>Momento 3: Práctica <small>(Aplicamos lo aprendido)</small></h3>
+      <small>⏱️ Duración: 30 minutos</small>
+    </div>
+    <div class="teoria-bloque">
+      <h4>🔎 Actividad: “Observación de campo guiada”</h4>
+      <p><strong>Paso 1 – Salida de reconocimiento (15 min):</strong> Recorre con tu equipo un espacio asignado por el docente: patio, cafetería, entrada del colegio, alrededores, camino entre la casa y el colegio, vivienda o comunidad. También puedes observar cultivos, animales, vías, fuentes de agua o actividades productivas de tu entorno rural. Deben llevar libreta y lápiz.</p>
+      <p><strong>Paso 2 – Lluvia de hallazgos (10 min):</strong> En equipo, peguen en el tablero post-its o tarjetas con cada necesidad encontrada.</p>
+      <p><strong>Paso 3 – Semáforo de prioridades (5 min):</strong> Clasifiquen las ideas así:</p>
+      <div class="semaforo-container">
+        <div class="semaforo-item semaforo-urgente"><div class="semaforo-titulo">🔴 Urgente</div><p>Afecta a muchas personas</p></div>
+        <div class="semaforo-item semaforo-importante"><div class="semaforo-titulo">🟡 Importante</div><p>Afecta a algunas personas</p></div>
+        <div class="semaforo-item semaforo-deseable"><div class="semaforo-titulo">🟢 Deseable</div><p>Sería bueno mejorarla</p></div>
+      </div>
+    </div>
+
+
+    <div class="reflexion-caja" style="border-color:var(--inv-naranja);background:linear-gradient(135deg,#FFFBEB,#FFF7ED)">
+      <div class="reflexion-pregunta" style="color:#B45309">🎯 Producto de la sesión</div>
+      <p style="font-size:.9rem;margin-bottom:10px">Cada equipo elige <strong>UNA necesidad prioritaria</strong> y escribe una frase que la describa claramente.</p>
+      <input class="reflexion-input" type="text" placeholder="Nuestra necesidad prioritaria es..." id="necesidad-prioritaria"/>
+    </div>
+  </div>
+
+  <!-- MOMENTO 4: TRANSFERENCIA -->
+  <div class="seccion seccion-teoria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎤</span>
+      <h3>Momento 4: Transferencia · Entrevista Exprés</h3>
+      <small>⏱️ 15 minutos · Usamos lo aprendido en la vida real</small>
+    </div>
+
+    <div class="teoria-bloque">
+      <h4>🗣️ En casa, entrevista a un familiar o vecino</h4>
+      <ul>
+        <li>¿Qué problema tiene usted en su día a día que nadie ha resuelto bien?</li>
+        <li>¿Cuánto tiempo, dinero o esfuerzo le cuesta ese problema?</li>
+        <li>Si tuviera una varita mágica, ¿qué cambiaría primero?</li>
+      </ul>
+    </div>
+
+    <div class="teoria-bloque" style="border-left-color:var(--inv-celeste);background:linear-gradient(135deg,#F0F9FF,#EFF6FF)">
+      <h4 style="color:#0369A1">📋 Formato de entrega: ENTREVISTA EXPRESS - SEMANA 2</h4>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
+        <input class="reflexion-input" type="text" placeholder="Nombre del entrevistado:"/>
+        <input class="reflexion-input" type="text" placeholder="Parentesco / vínculo:"/>
+        <textarea class="reflexion-input" style="height:60px;resize:none" placeholder="Problema que me contó:"></textarea>
+        <input class="reflexion-input" type="text" placeholder="¿Cuánto le afecta? (tiempo/dinero/esfuerzo):"/>
+        <textarea class="reflexion-input" style="height:60px;resize:none" placeholder="Lo que más me sorprendió:"></textarea>
+      </div>
+      <p style="font-size:.8rem;color:var(--inv-dim);margin-top:12px">📌 Esta información será insumo directo para la Semana 3: "De la idea a la solución".</p>
+    </div>
+  </div>
+
+  <!-- EVALUACIÓN INTERACTIVA -->
+  <div class="seccion seccion-evaluacion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✅</span>
+      <h3>Evaluación · ¡Pon a prueba tu ojo emprendedor!</h3>
+      <small>📌 Retroalimentación inmediata tras cada respuesta</small>
+    </div>
+
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DE SEMANA 2 · MI ENTORNO, UNA OPORTUNIDAD</span>
+          <h4>✍️ Quiz del Detective Emprendedor · Grados 6° y 7°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 20 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 10</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+  </div>
+
+  <!-- MOMENTO 5: VALORACIÓN -->
+  <div class="seccion seccion-evaluacion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🪞</span>
+      <h3>Momento 5: Valoración · Reflexionamos y mejoramos</h3>
+      <small>⏱️ 10 minutos · Autoevaluación honesta</small>
+    </div>
+
+    <div class="autoevaluacion">
+      <div class="auto-criterio">
+        <span class="auto-texto">Observé con atención mi entorno y registré necesidades</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')" title="Sí">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')" title="En proceso">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')" title="Aún no">✗</div>
+        </div>
+      </div>
+      <div class="auto-criterio">
+        <span class="auto-texto">Participé activamente en el trabajo de mi equipo</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')">✗</div>
+        </div>
+      </div>
+      <div class="auto-criterio">
+        <span class="auto-texto">Escuché y respeté las ideas de mis compañeros</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')">✗</div>
+        </div>
+      </div>
+      <div class="auto-criterio">
+        <span class="auto-texto">Completé la matriz de observación</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')">✗</div>
+        </div>
+      </div>
+      <div class="auto-criterio">
+        <span class="auto-texto">Realicé la entrevista exprés con mi familia</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')">✗</div>
+        </div>
+      </div>
+      <div class="auto-criterio">
+        <span class="auto-texto">Puedo explicar con mis palabras qué es una oportunidad</span>
+        <div class="auto-checks">
+          <div class="auto-check" onclick="marcarCheck(this,'si')">✓</div>
+          <div class="auto-check" onclick="marcarCheck(this,'proceso')">~</div>
+          <div class="auto-check" onclick="marcarCheck(this,'no')">✗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflexion-caja">
+      <div class="reflexion-pregunta">📝 Reflexión final (también en tu cuaderno)</div>
+            <p style="font-size:.85rem;font-weight:700;color:var(--inv-morado);margin-bottom:6px">"Hoy descubrí que en mi entorno hay oportunidades porque..."</p>
+      <textarea class="reflexion-input" style="height:70px;resize:none" placeholder="Escribe tu reflexión aquí..."></textarea>
+      <p style="font-size:.85rem;font-weight:700;color:var(--inv-morado);margin-bottom:6px;margin-top:12px">"La próxima semana quiero investigar más sobre..."</p>
+      <textarea class="reflexion-input" style="height:70px;resize:none" placeholder="Escribe tu compromiso aquí..."></textarea>
+    </div>
+  </div>
+
+  <!-- TRABAJO AUTÓNOMO -->
+  <div class="seccion seccion-autonomo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🏡</span>
+      <h3>Trabajo Autónomo · En casa esta semana</h3>
+      <small>📌 Fecha de entrega: Próxima clase (Semana 3)</small>
+    </div>
+
+    <ul class="autonomo-lista">
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Realiza una lista de <strong>5 necesidades</strong> de tu entorno (casa, colegio o barrio).</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Propón una posible <strong>solución creativa</strong> para una de ellas (puede ser un producto o un servicio).</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto"><strong>Dibuja o diseña un boceto</strong> muy sencillo de esa idea.</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Trae la <strong>entrevista exprés diligenciada</strong> el próximo encuentro.</span>
+      </li>
+    </ul>
+
+    <!-- CRITERIOS DE EVALUACIÓN -->
+    <div class="teoria-bloque" style="border-left-color:var(--inv-verde);background:linear-gradient(135deg,#F0FDF4,#ECFDF5)">
+      <h4 style="color:#065F46">📊 Criterios de Evaluación · Semana 2</h4>
+      <div class="matriz-container">
+        <table class="matriz-table">
+          <thead>
+            <tr><th>Criterio</th><th>Peso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Listado de 5 necesidades claras y bien descritas</td><td><strong>20%</strong></td></tr>
+            <tr><td>Propuesta de solución creativa y viable</td><td><strong>25%</strong></td></tr>
+            <tr><td>Entrevista exprés completa y con reflexión personal</td><td><strong>20%</strong></td></tr>
+            <tr><td>Participación activa y colaborativa en clase</td><td><strong>20%</strong></td></tr>
+            <tr><td>Entrega puntual y presentación cuidada</td><td><strong>15%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem;color:var(--inv-dim);margin-top:12px">
+        <strong>Escala:</strong> Superior (4.6–5.0) · Alto (4.0–4.5) · Básico (3.0–3.9) · Bajo (1.0–2.9)
+      </p>
+    </div>
+
+    <!-- RECURSOS -->
+    <div class="teoria-bloque" style="border-left-color:var(--inv-celeste)">
+      <h4 style="color:#0369A1">🎒 Recursos necesarios</h4>
+      <p>Cuaderno de emprendimiento · Láminas o cartulinas · Marcadores · Post-its · Cinta · Dispositivo con internet (opcional para investigar)</p>
+    </div>
+  </div>
+
+  <!-- MENSAJE FINAL -->
+  <div class="hero-header" style="padding:28px;background:linear-gradient(135deg,#1A9BAB 0%,#3DBE8C 100%)">
+    <div style="font-size:2.5rem;margin-bottom:10px">🔍</div>
+    <h2 style="font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:10px">Mensaje final</h2>
+    <p style="font-size:1.05rem;font-style:italic;max-width:600px;margin:0 auto 12px">"Un emprendedor no ve problemas: ve proyectos esperando nacer."</p>
+    <p style="font-size:.9rem;opacity:.9">Esta semana tus ojos son la herramienta más valiosa. ¡Mira tu entorno como si fuera tu primera empresa!</p>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🔍🏆</span>
+    <p>Completó con éxito la <strong>Semana 2 · Mi Entorno, Una Oportunidad</strong> con capacidad de observación, análisis y actitud emprendedora.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">6° o 7°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🚀 Emprender es atreverse · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" title="Volver arriba" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><span class="icono-pepa-cafe" aria-hidden="true"></span> Volver arriba</a>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT PRINCIPAL -->
+<script type="text/plain">
+// ══════════════════════════════════════════════
+// QUIZ SEMANA 2 · MI ENTORNO, UNA OPORTUNIDAD
+// ══════════════════════════════════════════════
+const preguntasQuiz = [
+  {
+    seccion: 'Conceptos clave · ¿Qué es una necesidad?',
+    texto: 'En la cafetería del colegio siempre hay fila larga porque solo hay una ventana abierta y los estudiantes pierden recreo comprando. Según lo visto esta semana, esto es:',
+    opciones: ['Una necesidad detectable, porque alguien se queja, hace fila e improvisa.', 'Un problema que solo resuelve la rectoría comprando más ventanas.', 'Un gasto innecesario de los estudiantes.', 'Una oportunidad solo si se cobra más caro.'],
+    correcta: 0,
+    explicacion: 'Las señales de una necesidad son claras: quejas, filas, improvisaciones y conductas de evitación.'
+  },
+  {
+    seccion: 'Identificación · Tres acciones simples',
+    texto: 'Para identificar necesidades en la vereda, Laura pregunta a sus vecinos qué les cuesta más cada día. ¿Qué acción está aplicando?',
+    opciones: ['OBSERVAR, porque está mirando con atención.', 'REGISTRAR, porque está anotando todo.', 'ESCUCHAR, porque pregunta a vecinos, familiares y compañeros.', 'INVENTAR, porque está creando un problema.'],
+    correcta: 2,
+    explicacion: 'ESCUCHAR consiste en preguntar activamente a vecinos, familiares y compañeros.'
+  },
+  {
+    seccion: 'Análisis del entorno · Niveles',
+    texto: 'Los estudiantes notan que en su casa se pierde agua por un tubo dañado y sobra comida que se daña. Este hallazgo corresponde al nivel:',
+    opciones: ['Comunitario', 'Escolar', 'Familiar', 'Nacional'],
+    correcta: 2,
+    explicacion: 'El nivel familiar cubre los problemas de casa o del hogar, como pérdida de agua o desperdicio de comida.'
+  },
+  {
+    seccion: 'Análisis del entorno · Niveles',
+    texto: 'En la vía principal de la vereda hay huecos y falta iluminación en las noches. ¿A qué nivel del entorno pertenece?',
+    opciones: ['Familiar', 'Escolar', 'Comunitario', 'Personal'],
+    correcta: 2,
+    explicacion: 'El nivel comunitario incluye el barrio, la vereda o el municipio: vías, zonas verdes, servicios públicos.'
+  },
+  {
+    seccion: 'Oportunidades de negocio',
+    texto: '¿Cuándo nace realmente una oportunidad de negocio?',
+    opciones: ['Cuando alguien tiene mucho dinero para invertir.', 'Cuando se encuentra una necesidad + mis habilidades + recursos disponibles.', 'Cuando el gobierno anuncia un nuevo impuesto.', 'Cuando invento algo que nadie ha visto nunca.'],
+    correcta: 1,
+    explicacion: 'La oportunidad surge cuando coinciden necesidad, habilidades propias y recursos disponibles.'
+  },
+  {
+    seccion: 'Oportunidades de negocio',
+    texto: 'Un estudiante dice: "No puedo emprender porque no sé inventar nada nuevo". ¿Qué le responderías según la guía?',
+    opciones: ['Que es cierto, solo se puede emprender inventando algo totalmente nuevo.', 'Que debe esperar a tener dinero primero.', 'Que no necesita inventar algo nuevo: puede mejorar algo que ya existe.', 'Que emprender es solo para grado 11.'],
+    correcta: 2,
+    explicacion: 'Mejorar algo que ya existente también es emprender. La innovación puede ser incremental.'
+  },
+  {
+    seccion: 'Práctica · Semáforo de prioridades',
+    texto: 'El equipo clasificó una necesidad que afecta a TODOS los estudiantes del colegio. Según el semáforo, va en:',
+    opciones: ['🟢 Deseable: sería bueno mejorarla.', '🟡 Importante: afecta a algunas personas.', '🔴 Urgente: afecta a muchas personas.', 'No va en ninguna categoría.'],
+    correcta: 2,
+    explicacion: 'Rojo/URGENTE cuando afecta a muchas personas; amarillo/IMPORTANTE a algunas; verde/DESEABLE si solo sería bueno mejorarla.'
+  },
+  {
+    seccion: 'Transferencia · Entrevista exprés',
+    texto: '¿Cuál de estas NO es una pregunta de la entrevista exprés?',
+    opciones: ['¿Qué problema tiene usted en su día a día que nadie ha resuelto bien?', '¿Cuánto tiempo, dinero o esfuerzo le cuesta ese problema?', '¿Cuál es su color favorito y su comida preferida?', 'Si tuviera una varita mágica, ¿qué cambiaría primero?'],
+    correcta: 2,
+    explicacion: 'La entrevista busca detectar problemas reales y su costo en tiempo, dinero o esfuerzo, no datos personales.'
+  },
+  {
+    seccion: 'Competencias del MEN · Trabajo en equipo',
+    texto: 'Durante la salida de reconocimiento, dos compañeros discuten cuál necesidad anotar. ¿Cuál es la mejor manera de aplicar la competencia de trabajo en equipo?',
+    opciones: ['Que gane quien grite más fuerte.', 'Escuchar ambas ideas, registrarlas y decidir en equipo con criterios del semáforo.', 'Que el docente decida siempre.', 'Anotar solo lo que piensa uno y borrar lo demás.'],
+    correcta: 1,
+    explicacion: 'El trabajo en equipo implica escucha activa, registro colaborativo y decisión colectiva con criterios claros.'
+  },
+  {
+    seccion: 'Responsabilidad social',
+    texto: '¿Por qué la responsabilidad social es importante al detectar necesidades del entorno?',
+    opciones: ['Porque así el negocio será más grande.', 'Porque toda oportunidad debe valorar el impacto positivo en la comunidad.', 'Porque es obligatorio pagar impuestos.', 'Porque lo pide la ley de comercio.'],
+    correcta: 1,
+    explicacion: 'Emprender con responsabilidad social significa buscar impacto positivo real en la comunidad.'
+  }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Ojo de detective experto!' : porcentaje >= 60 ? '¡Buen avance, emprendedor!' : '¡Sigue afilando la mirada!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  desbloquearPieza(3);
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 8) return 'Detectas necesidades con claridad y sabes priorizar. Listo para la Semana 3: "De la idea a la solución".';
+  return 'Refuerza los conceptos de necesidad y oportunidad. ¡Tu entorno está lleno de oportunidades esperando que las descubras!';
+}
+/*
+        <p style="font-size:.85rem;font-weight:700;color:var(--inv-morado);margin-bottom:6px">"Hoy descubrí que en mi entorno hay oportunidades porque..."</p>
+      <textarea class="reflexion-input" style="height:70px;resize:none" placeholder="Escribe tu reflexión aquí..."></textarea>
+      <p style="font-size:.85rem;font-weight:700;color:var(--inv-morado);margin-bottom:6px;margin-top:12px">"La próxima semana quiero investigar más sobre..."</p>
+      <textarea class="reflexion-input" style="height:70px;resize:none" placeholder="Escribe tu compromiso aquí..."></textarea>
+    </div>
+  </div>
+
+  <!-- TRABAJO AUTÓNOMO -->
+  <div class="seccion seccion-autonomo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🏡</span>
+      <h3>Trabajo Autónomo · En casa esta semana</h3>
+      <small>📌 Fecha de entrega: Próxima clase (Semana 3)</small>
+    </div>
+
+    <ul class="autonomo-lista">
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Realiza una lista de <strong>5 necesidades</strong> de tu entorno (casa, colegio o barrio).</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Propón una posible <strong>solución creativa</strong> para una de ellas (puede ser un producto o un servicio).</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto"><strong>Dibuja o diseña un boceto</strong> muy sencillo de esa idea.</span>
+      </li>
+      <li class="autonomo-item">
+        <div class="autonomo-check" onclick="toggleCheck(this)">✓</div>
+        <span class="autonomo-texto">Trae la <strong>entrevista exprés diligenciada</strong> el próximo encuentro.</span>
+      </li>
+    </ul>
+
+    <!-- CRITERIOS DE EVALUACIÓN -->
+    <div class="teoria-bloque" style="border-left-color:var(--inv-verde);background:linear-gradient(135deg,#F0FDF4,#ECFDF5)">
+      <h4 style="color:#065F46">📊 Criterios de Evaluación · Semana 2</h4>
+      <div class="matriz-container">
+        <table class="matriz-table">
+          <thead>
+            <tr><th>Criterio</th><th>Peso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Listado de 5 necesidades claras y bien descritas</td><td><strong>20%</strong></td></tr>
+            <tr><td>Propuesta de solución creativa y viable</td><td><strong>25%</strong></td></tr>
+            <tr><td>Entrevista exprés completa y con reflexión personal</td><td><strong>20%</strong></td></tr>
+            <tr><td>Participación activa y colaborativa en clase</td><td><strong>20%</strong></td></tr>
+            <tr><td>Entrega puntual y presentación cuidada</td><td><strong>15%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.82rem;color:var(--inv-dim);margin-top:12px">
+        <strong>Escala:</strong> Superior (4.6–5.0) · Alto (4.0–4.5) · Básico (3.0–3.9) · Bajo (1.0–2.9)
+      </p>
+    </div>
+
+    <!-- RECURSOS -->
+    <div class="teoria-bloque" style="border-left-color:var(--inv-celeste)">
+      <h4 style="color:#0369A1">🎒 Recursos necesarios</h4>
+      <p>Cuaderno de emprendimiento · Láminas o cartulinas · Marcadores · Post-its · Cinta · Dispositivo con internet (opcional para investigar)</p>
+    </div>
+  </div>
+
+  <!-- MENSAJE FINAL -->
+  <div class="hero-header" style="padding:28px;background:linear-gradient(135deg,#1A9BAB 0%,#3DBE8C 100%)">
+    <div style="font-size:2.5rem;margin-bottom:10px">🔍</div>
+    <h2 style="font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:10px">Mensaje final</h2>
+    <p style="font-size:1.05rem;font-style:italic;max-width:600px;margin:0 auto 12px">"Un emprendedor no ve problemas: ve proyectos esperando nacer."</p>
+    <p style="font-size:.9rem;opacity:.9">Esta semana tus ojos son la herramienta más valiosa. ¡Mira tu entorno como si fuera tu primera empresa!</p>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🔍🏆</span>
+    <p>Completó con éxito la <strong>Semana 2 · Mi Entorno, Una Oportunidad</strong> con capacidad de observación, análisis y actitud emprendedora.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">6° o 7°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🚀 Emprender es atreverse · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" title="Volver arriba" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><span class="icono-pepa-cafe" aria-hidden="true"></span> Volver arriba</a>
+  </div>
+
+</div>
+
+*/
+</script>
+
+<!-- JAVASCRIPT -->
+<script>
+// ══════════════════════════════════════════════
+// QUIZ SEMANA 2 · MI ENTORNO, UNA OPORTUNIDAD
+// ══════════════════════════════════════════════
+const preguntasQuiz = [
+  {
+    seccion: 'Conceptos clave · ¿Qué es una necesidad?',
+    texto: 'En la cafetería del colegio siempre hay fila larga porque solo hay una ventana abierta y los estudiantes pierden recreo comprando. Según lo visto esta semana, esto es:',
+    opciones: ['Una necesidad detectable, porque alguien se queja, hace fila e improvisa.', 'Un problema que solo resuelve la rectoría comprando más ventanas.', 'Un gasto innecesario de los estudiantes.', 'Una oportunidad solo si se cobra más caro.'],
+    correcta: 0,
+    explicacion: 'Las señales de una necesidad son claras: quejas, filas, improvisaciones y conductas de evitación.'
+  },
+  {
+    seccion: 'Identificación · Tres acciones simples',
+    texto: 'Para identificar necesidades en la vereda, Laura pregunta a sus vecinos qué les cuesta más cada día. ¿Qué acción está aplicando?',
+    opciones: ['OBSERVAR, porque está mirando con atención.', 'REGISTRAR, porque está anotando todo.', 'ESCUCHAR, porque pregunta a vecinos, familiares y compañeros.', 'INVENTAR, porque está creando un problema.'],
+    correcta: 2,
+    explicacion: 'ESCUCHAR consiste en preguntar activamente a vecinos, familiares y compañeros.'
+  },
+  {
+    seccion: 'Análisis del entorno · Niveles',
+    texto: 'Los estudiantes notan que en su casa se pierde agua por un tubo dañado y sobra comida que se daña. Este hallazgo corresponde al nivel:',
+    opciones: ['Comunitario', 'Escolar', 'Familiar', 'Nacional'],
+    correcta: 2,
+    explicacion: 'El nivel familiar cubre los problemas de casa o del hogar, como pérdida de agua o desperdicio de comida.'
+  },
+  {
+    seccion: 'Análisis del entorno · Niveles',
+    texto: 'En la vía principal de la vereda hay huecos y falta iluminación en las noches. ¿A qué nivel del entorno pertenece?',
+    opciones: ['Familiar', 'Escolar', 'Comunitario', 'Personal'],
+    correcta: 2,
+    explicacion: 'El nivel comunitario incluye el barrio, la vereda o el municipio: vías, zonas verdes, servicios públicos.'
+  },
+  {
+    seccion: 'Oportunidades de negocio',
+    texto: '¿Cuándo nace realmente una oportunidad de negocio?',
+    opciones: ['Cuando alguien tiene mucho dinero para invertir.', 'Cuando se encuentra una necesidad + mis habilidades + recursos disponibles.', 'Cuando el gobierno anuncia un nuevo impuesto.', 'Cuando invento algo que nadie ha visto nunca.'],
+    correcta: 1,
+    explicacion: 'La oportunidad surge cuando coinciden necesidad, habilidades propias y recursos disponibles.'
+  },
+  {
+    seccion: 'Oportunidades de negocio',
+    texto: 'Un estudiante dice: "No puedo emprender porque no sé inventar nada nuevo". ¿Qué le responderías según la guía?',
+    opciones: ['Que es cierto, solo se puede emprender inventando algo totalmente nuevo.', 'Que debe esperar a tener dinero primero.', 'Que no necesita inventar algo nuevo: puede mejorar algo que ya existe.', 'Que emprender es solo para grado 11.'],
+    correcta: 2,
+    explicacion: 'Mejorar algo que ya existente también es emprender. La innovación puede ser incremental.'
+  },
+  {
+    seccion: 'Práctica · Semáforo de prioridades',
+    texto: 'El equipo clasificó una necesidad que afecta a TODOS los estudiantes del colegio. Según el semáforo, va en:',
+    opciones: ['🟢 Deseable: sería bueno mejorarla.', '🟡 Importante: afecta a algunas personas.', '🔴 Urgente: afecta a muchas personas.', 'No va en ninguna categoría.'],
+    correcta: 2,
+    explicacion: 'Rojo/URGENTE cuando afecta a muchas personas; amarillo/IMPORTANTE a algunas; verde/DESEABLE si solo sería bueno mejorarla.'
+  },
+  {
+    seccion: 'Transferencia · Entrevista exprés',
+    texto: '¿Cuál de estas NO es una pregunta de la entrevista exprés?',
+    opciones: ['¿Qué problema tiene usted en su día a día que nadie ha resuelto bien?', '¿Cuánto tiempo, dinero o esfuerzo le cuesta ese problema?', '¿Cuál es su color favorito y su comida preferida?', 'Si tuviera una varita mágica, ¿qué cambiaría primero?'],
+    correcta: 2,
+    explicacion: 'La entrevista busca detectar problemas reales y su costo en tiempo, dinero o esfuerzo, no datos personales.'
+  },
+  {
+    seccion: 'Competencias del MEN · Trabajo en equipo',
+    texto: 'Durante la salida de reconocimiento, dos compañeros discuten cuál necesidad anotar. ¿Cuál es la mejor manera de aplicar la competencia de trabajo en equipo?',
+    opciones: ['Que gane quien grite más fuerte.', 'Escuchar ambas ideas, registrarlas y decidir en equipo con criterios del semáforo.', 'Que el docente decida siempre.', 'Anotar solo lo que piensa uno y borrar lo demás.'],
+    correcta: 1,
+    explicacion: 'El trabajo en equipo implica escucha activa, registro colaborativo y decisión colectiva con criterios claros.'
+  },
+  {
+    seccion: 'Responsabilidad social',
+    texto: '¿Por qué la responsabilidad social es importante al detectar necesidades del entorno?',
+    opciones: ['Porque así el negocio será más grande.', 'Porque toda oportunidad debe valorar el impacto positivo en la comunidad.', 'Porque es obligatorio pagar impuestos.', 'Porque lo pide la ley de comercio.'],
+    correcta: 1,
+    explicacion: 'Emprender con responsabilidad social significa buscar impacto positivo real en la comunidad.'
+  }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Ojo de detective experto!' : porcentaje >= 60 ? '¡Buen avance, emprendedor!' : '¡Sigue afilando la mirada!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  desbloquearPieza(3);
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 8) return 'Detectas necesidades con claridad y sabes priorizar. Listo para la Semana 3: "De la idea a la solución".';
+  if(aciertos >= 6) return 'Buen trabajo. Repasa los niveles del entorno y las acciones de observar, escuchar y registrar.';
+  return 'Refuerza los conceptos de necesidad y oportunidad. ¡Tu entorno está lleno de oportunidades esperando que las descubras!';
+}
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '6° o 7°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA DIAGNÓSTICA DE EMPRENDIMIENTO - SEMANA 2',
+    'Mi Entorno, Una Oportunidad · Período 4',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-semana2-emprendimiento-${nombre.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+// ══════════════════════════════════════════════
+// FUNCIONES GENERALES
+// ══════════════════════════════════════════════
+
+// Desbloquear pieza de la barra de progreso
+function desbloquearPieza(num){
+  const pieza = document.getElementById(`pieza-${num}`);
+  if(pieza && !pieza.classList.contains('obtenida')){
+    pieza.classList.add('obtenida');
+    actualizarBarra();
+  }
+}
+
+// Actualizar barra de progreso
+function actualizarBarra(){
+  const piezas = document.querySelectorAll('.pieza');
+  const obtenidas = document.querySelectorAll('.pieza.obtenida');
+  const porcentaje = (obtenidas.length / piezas.length) * 100;
+  document.getElementById('barra-fill').style.width = porcentaje + '%';
+}
+
+// Marcar autoevaluación
+function marcarCheck(elemento, valor){
+  const parent = elemento.parentElement;
+  const checks = parent.querySelectorAll('.auto-check');
+  checks.forEach(c => c.classList.remove('activo'));
+  elemento.classList.add('activo');
+  if(valor === 'si') desbloquearPieza(1);
+}
+
+// Toggle check de trabajo autónomo
+function toggleCheck(elemento){
+  elemento.classList.toggle('activo');
+  if(elemento.classList.contains('activo')){
+    const items = document.querySelectorAll('.autonomo-item');
+    const checksActivos = document.querySelectorAll('.autonomo-check.activo');
+    if(checksActivos.length === items.length){
+      desbloquearPieza(4);
+      document.getElementById('barra-fill').style.width = '100%';
+      const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+      const grado = document.getElementById('input-grado').value || '6° o 7°';
+      document.getElementById('diploma-nombre').textContent = nombre;
+      document.getElementById('diploma-grado').textContent = grado;
+      document.getElementById('diploma').classList.add('visible');
+      crearConfeti();
+    }
+  }
+}
+
+// Crear confeti
+function crearConfeti(){
+  const colores = ['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+// Completar misión
+function completarMision(){
+  desbloquearPieza(1);
+  desbloquearPieza(2);
+  desbloquearPieza(3);
+  desbloquearPieza(4);
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '6° o 7°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+// Inicializar
+document.addEventListener('DOMContentLoaded',function(){
+  cargarPregunta();
+  console.log('🔍 Emprendimiento Aventura · Semana 2 cargado correctamente. ¡A descubrir oportunidades!');
+});
+</script>
+
+</body>
+</html>
