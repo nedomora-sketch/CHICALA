@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tecnología e Informática · Grados 8° y 9° · Semana 3 · Programación, automatización y bases de datos · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🤖 Tecnología Aventura · Semana 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  TECNOLOGÍA AVENTURA · SEMANA 3 · GRADOS 8°-9°
+  Programación, automatización y bases de datos
+══════════════════════════════════════════════ */
+:root{
+  --tec-verde:#10B981;   --tec-esmeralda:#059669; --tec-cyan:#06B6D4;
+  --tec-azul:#2563EB;    --tec-morado:#7C3AED;    --tec-amarillo:#FACC15;
+  --tec-naranja:#F97316; --tec-rosa:#EC4899;      --tec-rojo:#EF4444;
+  --tec-celeste:#38BDF8;
+  --tec-bg:#ECFDF5;      --tec-card:#FFFFFF;
+  --tec-texto:#0F172A;   --tec-dim:#64748B;       --tec-border:#D1FAE5;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tec-bg);color:var(--tec-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(16,185,129,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tec-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tec-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tec-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(16,185,129,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+.hero-header{background:linear-gradient(135deg,#059669 0%,#06B6D4 50%,#7C3AED 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🤖';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'💾';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+.seccion{background:white;border:2px solid var(--tec-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-recursos::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-cyan))}
+.seccion-vocab::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-celeste))}
+.seccion-algoritmo::before{background:linear-gradient(180deg,var(--tec-morado),var(--tec-rosa))}
+.seccion-sensor::before{background:linear-gradient(180deg,var(--tec-cyan),var(--tec-azul))}
+.seccion-datos::before{background:linear-gradient(180deg,var(--tec-naranja),var(--tec-amarillo))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--tec-rosa),var(--tec-morado))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tec-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tec-dim);font-weight:600;margin-top:2px}
+
+.nivel-card{background:white;border:3px solid var(--tec-verde);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white;background:var(--tec-verde)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(6,182,212,.1);color:#0E7490;border:1px solid rgba(6,182,212,.25)}
+
+.bloque-pdf{position:relative;border-radius:var(--r-md);border:3px solid var(--tec-verde);background:linear-gradient(135deg,#ECFDF5,#F0FDFA);padding:22px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bloque-pdf:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.pdf-icono{font-size:3rem;flex-shrink:0;animation:floatIcon 4s ease-in-out infinite alternate}
+.pdf-info{flex:1;min-width:200px}
+.pdf-info h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 4px;color:var(--tec-texto)}
+.pdf-info p{font-size:.8rem;color:var(--tec-dim);margin:0}
+.btn-pdf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:10px 22px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-rojo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B,0 6px 16px rgba(239,68,68,.3);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pdf:hover{transform:translateY(-3px);box-shadow:0 7px 0 #991B1B,0 10px 20px rgba(239,68,68,.35)}
+.btn-pdf:active{transform:translateY(2px);box-shadow:0 1px 0 #991B1B}
+.btn-pdf.info{cursor:default;box-shadow:0 4px 0 #047857}
+.btn-pdf.verde{background:linear-gradient(135deg,var(--tec-esmeralda),var(--tec-verde));box-shadow:0 4px 0 #047857,0 6px 16px rgba(16,185,129,.3)}
+.btn-pdf.verde:hover{box-shadow:0 7px 0 #047857,0 10px 20px rgba(16,185,129,.35)}
+
+/* EVALUACIÓN INTERACTIVA */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tec-verde);border-radius:var(--r-lg);background:linear-gradient(135deg,#ECFDF5,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tec-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tec-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tec-esmeralda)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--tec-esmeralda);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tec-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(16,185,129,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(16,185,129,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tec-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tec-border);border-radius:var(--r-sm);background:white;color:var(--tec-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tec-verde);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tec-esmeralda);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tec-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tec-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #047857;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tec-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tec-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--tec-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+
+/* LABORATORIO DE ALGORITMOS (Scratch simulado) */
+.algo-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.algo-titulo-block{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:#5B21B6;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.bloques-palette{display:flex;flex-direction:column;gap:8px;max-width:320px}
+.bloque-scratch{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--r-sm);font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:white;cursor:pointer;transition:transform .2s,box-shadow .2s;user-select:none}
+.bloque-scratch:hover{transform:translateY(-3px);box-shadow:var(--sombra-md)}
+.bloque-scratch:active{transform:translateY(2px)}
+.bloque-s.var{background:linear-gradient(135deg,#FF8C00,#FF6347);border-radius:12px}
+.bloque-s.input{background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:50px;color:#333}
+.bloque-s.calc{background:linear-gradient(135deg,#4169E1,#1E90FF);border-radius:12px}
+.bloque-s.if{background:linear-gradient(135deg,#8B008B,#9932CC);border-radius:12px}
+.bloque-s.if-hijo{background:linear-gradient(135deg,#9370DB,#BA55D3);border-radius:12px;margin-left:24px}
+.bloque-s.repeat{background:linear-gradient(135deg,#2E8B57,#3CB371);border-radius:12px}
+.bloque-s.end{background:linear-gradient(135deg,#708090,#778899);border-radius:12px;margin-left:24px}
+.bloque-s.show{background:linear-gradient(135deg,#DC143C,#FF4500);border-radius:12px}
+
+.algo-escenario{border:3px solid var(--tec-morado);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm);min-height:340px;display:flex;flex-direction:column}
+.algo-escenario-header{background:linear-gradient(135deg,#FAF5FF,#FDF2F8);padding:12px 16px;border-bottom:2px solid var(--tec-border);display:flex;justify-content:space-between;align-items:center}
+.algo-escenario-body{flex:1;padding:16px;display:flex;flex-direction:column}
+.algo-pasos{display:flex;flex-direction:column;gap:6px;flex:1}
+.algo-paso{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:var(--r-sm);font-size:.85rem;font-weight:600;color:var(--tec-texto);opacity:.5;transition:opacity .3s}
+.algo-paso.activo{opacity:1;background:rgba(124,58,237,.08);border-left:4px solid var(--tec-morado)}
+.algo-paso-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:.75rem;flex-shrink:0;background:var(--tec-morado)}
+.algo-salida{padding:14px;border-radius:var(--r-sm);background:linear-gradient(135deg,#ECFDF5,#ECFEFF);border:2px solid var(--tec-border);font-family:'Courier New',monospace;font-size:.95rem;font-weight:700;color:#047857;min-height:42px;display:flex;align-items:center;justify-content:center;margin-top:12px}
+.btn-algo{padding:10px 20px;border:none;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .15s}
+.btn-algo.ejecutar{background:linear-gradient(135deg,var(--tec-morado),var(--tec-rosa));color:white;box-shadow:0 4px 0 #5B21B6}
+.btn-algo.ejecutar:hover{transform:translateY(-2px)}
+.btn-algo.ejecutar:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+.btn-algo.reiniciar{background:var(--tec-border);color:var(--tec-dim)}
+
+
+/* SIMULADOR DE RIEGO AUTOMATIZADO */
+.riego-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.riego-panel-sensores{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.sensor-card{background:white;border:3px solid var(--tec-border);border-radius:var(--r-md);padding:16px;text-align:center;transition:all .3s}
+.sensor-card.bajo{border-color:var(--tec-rojo);background:rgba(239,68,68,.05)}
+.sensor-card.ok{border:3px solid var(--tec-verde);background:rgba(16,185,129,.05)}
+.sensor-icono{font-size:2.5rem;display:block;margin-bottom:8px}
+.sensor-nombre{font-size:.75rem;font-weight:800;color:var(--tec-dim);letter-spacing:.05em;margin-bottom:4px}
+.sensor-valor{font-family:'Courier New',monospace;font-size:1.3rem;font-weight:700;color:var(--tec-texto)}
+.sensor-umbral{font-size:.68rem;font-weight:700;color:var(--tec-esmeralda);margin-top:4px}
+
+.riego-panel-control{background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border:3px  solid var(--tec-cyan);border-radius:var(--r-md);padding:18px}
+.riego-slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.riego-slider-row label{font-size:.8rem;font-weight:800;color:#0E7490;min-width:150px}
+.riego-slider-row input[type=range]{flex:1;accent-color:var(--tec-cyan)}
+.riego-slider-val{font-family:'Courier New',monospace;font-weight:700;color:#0E7490;min-width:60px;text-align:right}
+
+.riego-escena{display:flex;align-items:center;justify-content:center;gap:20px;padding:20px;background:white;border:2px dashed var(--tec-border);border-radius:var(--r-md);margin-top:12px;flex-wrap:wrap}
+.planta{font-size:3.5rem;transition:transform .4s,filter .4s}
+.planta.seca{filter:grayscale(.7) saturate(.4);transform:rotate(-12deg) scale(.9)}
+.planta.feliz{filter:none;transform:scale(1.15)}
+.bomba{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:linear-gradient(135deg,#CBD5E0,#A0AEC0);transition:all .3s;border:4px solid #718096}
+.bomba.on{background:linear-gradient(135deg,var(--tec-cyan),var(--tec-azul));border-color:var(--tec-azul);box-shadow:0 0 20px rgba(6,182,212,.6);animation:girarBomba 1s linear infinite}
+@keyframes girarBomba{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.gota{font-size:1.6rem;opacity:0;transition:opacity .3s}
+.gota.lloviendo{opacity:1;animation:caerGota 1s ease-in infinite}
+@keyframes caerGota{0%{transform:translateY(-10px)}100%{transform:translateY(14px)}}
+
+.riego-log{margin-top:14px;background:#0F172A;border-radius:var(--r-sm);padding:14px;font-family:'Courier New',monospace;font-size:.8rem;color:#6EE7B7;max-height:150px;overflow-y:auto}
+.riego-log-linea{margin-bottom:4px}
+.riego-log-linea.alerta{color:#FCA5A5}
+.riego-log-linea.ok{color:#6EE7B7}
+
+
+/* BASE DE DATOS INTERACTIVA */
+.bd-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.bd-formulario{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border:2px solid var(--tec-amarillo);border-radius:var(--r-md);padding:16px}
+.bd-campo{display:flex;flex-direction:column;gap:4px}
+.bd-campo label{font-size:.7rem;font-weight:800;color:#A16207;letter-spacing:.05em}
+.bd-campo input,.bd-campo select{border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:8px 12px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;color:var(--tec-texto);outline:none;background:white}
+.bd-campo input:focus,.bd-campo select:focus{border-color:var(--tec-naranja)}
+
+.bd-tabla-marco{overflow-x:auto;border:3px solid var(--tec-naranja);border-radius:var(--r-md);box-shadow:var(--sombra-sm)}
+table.bd-tabla{width:100%;border-collapse:collapse;background:white;min-width:620px}
+.bd-tabla thead th{background:linear-gradient(135deg,var(--tec-naranja),var(--tec-amarillo));color:white;font-family:'Fredoka',sans-serif;font-size:.8rem;padding:12px 14px;text-align:left;white-space:nowrap}
+.bd-tabla tbody td{padding:10px 14px;font-size:.85rem;font-weight:600;border-bottom:1px solid var(--tec-border)}
+.bd-tabla tbody tr:hover{background:rgba(249,115,22,.06)}
+.bd-tabla tbody tr.clave-dup{background:rgba(239,68,68,.12)}
+.badge-id{font-family:'Courier New',monospace;font-weight:800;background:rgba(124,58,237,.12);color:#5B21B6;padding:3px 10px;border-radius:50px;font-size:.75rem}
+.badge-cat{font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:50px}
+.cat-alimentos{background:rgba(16,185,129,.15);color:#065F46}
+.cat-utiles{background:rgba(37,99,235,.15);color:#1E40AF}
+.cat-tech{background:rgba(124,58,237,.15);color:#5B21B6}
+.btn-borrar-fila{background:var(--tec-rojo);color:white;border:none;border-radius:50%;width:26px;height:26px;cursor:pointer;font-weight:900;line-height:1}
+
+.bd-busqueda{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bd-busqueda input{flex:1;min-width:200px;border:2px solid var(--tec-border);border-radius:50px;padding:10px 18px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;outline:none}
+.bd-busqueda input:focus{border-color:var(--tec-naranja)}
+.bd-estadisticas{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.bd-stat{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:10px 16px;font-size:.78rem;font-weight:800;color:var(--tec-dim)}
+.bd-stat span{color:var(--tec-naranja);font-size:1.1rem}
+
+
+/* AUTOEVALUACIÓN */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--tec-verde);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--tec-verde);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--tec-verde);background:rgba(16,185,129,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--tec-esmeralda);text-align:center;margin-top:14px}
+
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--tec-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tec-verde)}
+.cc-caja{background:rgba(16,185,129,.07);border:2px solid var(--tec-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 24px rgba(16,185,129,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--tec-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tec-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tec-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tec-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+
+/* VIP CODE */
+.vip-wrap{margin-top:20px;text-align:center}
+.vip-input-row{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+.vip-input-row input{border:3px dashed var(--tec-amarillo);border-radius:50px;padding:10px 18px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;text-align:center;width:200px;outline:none;color:var(--tec-texto);background:white}
+.vip-input-row input:focus{border-color:var(--tec-verde)}
+.vip-input-row input.correcto{border-color:var(--tec-verde);background:rgba(16,185,129,.08)}
+.vip-btn{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #A16207;transition:all .15s}
+.vip-btn:hover{transform:translateY(-2px)}
+.vip-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #A16207}
+.vip-mensaje{margin-top:12px;font-weight:700;font-size:.88rem;min-height:24px}
+.vip-mensaje.error{color:var(--tec-rojo)}
+.vip-mensaje.exito{color:var(--tec-esmeralda)}
+
+
+/* VIP SECRETO */
+.vip-secreto{display:none;background:linear-gradient(135deg,rgba(250,204,21,.12),rgba(249,115,22,.1));border:4px solid var(--tec-amarillo);border-radius:var(--r-xl);padding:32px;margin-top:20px;text-align:center;animation:fadeSlide .6s ease}
+.vip-secreto.visible{display:block}
+.vip-secreto h4{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:#A16207;margin-bottom:12px}
+.vip-secreto p{font-size:.92rem;font-weight:600;color:var(--tec-texto);margin-bottom:10px}
+
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.1),rgba(124,58,237,.08));border:4px solid var(--tec-verde);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tec-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tec-esmeralda);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));box-shadow:0 4px 0 rgba(4,120,87,.4)}
+
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tec-border);color:var(--tec-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tec-esmeralda);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tec-esmeralda);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tec-esmeralda);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 28px rgba(16,185,129,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .hero-titulo{font-size:1.6rem}
+  .quiz-options{grid-template-columns:1fr}
+  .conceptos-grid,.conceptos-grid-principal{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .bloque-pdf{flex-direction:column;text-align:center}
+  .bloques-palette{max-width:100%}
+  .riego-slider-row{flex-wrap:wrap}
+  .riego-slider-row label{min-width:auto;width:100%}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap{display:none!important}
+  .seccion,.nivel-card,.bloque-pdf,.algo-escenario,.bd-tabla-marco{break-inside:avoid}
+  .cofre-secreto,.diploma-wrap,.vip-secreto{display:block!important}
+}
+
+
+/* TARJETAS VOCABULARIO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(16,185,129,.07);border-color:var(--tec-verde)}
+.concepto-card.geo{background:rgba(6,182,212,.07);border-color:var(--tec-cyan)}
+.concepto-card.met{background:rgba(37,99,235,.07);border-color:var(--tec-azul)}
+.concepto-card.ale{background:rgba(124,58,237,.07);border-color:var(--tec-morado)}
+.concepto-card.var{background:rgba(236,72,153,.07);border-color:var(--tec-rosa)}
+.concepto-card.frac{background:rgba(250,204,21,.1);border-color:var(--tec-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--tec-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--tec-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--tec-verde)}
+.concepto-card.geo .concepto-flip{background:var(--tec-cyan)}
+.concepto-card.met .concepto-flip{background:var(--tec-azul)}
+.concepto-card.ale .concepto-flip{background:var(--tec-morado)}
+.concepto-card.var .concepto-flip{background:var(--tec-rosa)}
+.concepto-card.frac .concepto-flip{background:var(--tec-amarillo);color:var(--tec-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🤖 MISIÓN PROGRAMADOR</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré los recursos">📚</span>
+      <span class="pieza" id="pieza-2" title="Aprendí algoritmos">💡</span>
+      <span class="pieza" id="pieza-3" title="Ejecuté mi programa">⚙️</span>
+      <span class="pieza" id="pieza-4" title="Automaticé el riego">💧</span>
+      <span class="pieza" id="pieza-5" title="Creé mi base de datos">🗄️</span>
+      <span class="pieza" id="pieza-6" title="Hice el Reto Maker">✍️</span>
+      <span class="pieza" id="pieza-7" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">⚙️ MODO PROGRAMADOR ACTIVO</div>
+    <h1 class="hero-titulo">🤖 Tecnología Aventura<br/>¡Piensa como Programador!</h1>
+    <p class="hero-subtitulo">Programación, automatización y bases de datos · Semana 3 · Grados 8° y 9°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="8° o 9°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 1 de octubre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: RECURSOS + EVALUACIÓN -->
+  <div class="seccion seccion-recursos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📚</span>
+      <h3>Recursos · Guía + Evaluación</h3>
+      <small>📌 Tema: Programación, automatización y bases de datos (8° y 9°)</small>
+    </div>
+
+    <!-- EVALUACIÓN INTERACTIVA -->
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DE SEMANA 3</span>
+          <h4>✍️ Prueba de Programación y Automatización · Grados 8° y 9°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 35 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 12</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+
+    <div class="nivel-card">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge">🤖 Tecnología e Informática · Grados 8° y 9°</span>
+        <span class="nivel-dba">Guía unificada del período 4</span>
+      </div>
+      <div class="bloque-pdf">
+        <div class="pdf-icono">📘</div>
+        <div class="pdf-info">
+          <h5>📖 Guía Didáctica · Semana 3</h5>
+          <p>Programación en Scratch, automatización de procesos y bases de datos para ambos grados</p>
+        </div>
+        <span class="btn-pdf verde info" role="status">📖 Guía interactiva activa</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: CONCEPTOS CLAVE (flip) -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave · ¡Haz clic para voltear!</h3>
+      <small>👆 Toca las tarjetas para descubrir el mundo del código</small>
+    </div>
+
+    <div class="conceptos-grid">
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📋</span>
+        <div class="concepto-titulo">Algoritmo</div>
+        <div class="concepto-desc">Pasos ordenados para resolver algo</div>
+        <div class="concepto-flip">Es la receta de la programación: entrada → proceso → salida. Si cambias el orden, cambia el resultado.</div>
+      </div>
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🧱</span>
+        <div class="concepto-titulo">Scratch</div>
+        <div class="concepto-desc">Programar con bloques</div>
+        <div class="concepto-flip">Plataforma gratuita del MIT donde programas arrastrando bloques como piezas de rompecabezas. Ideal para empezar.</div>
+      </div>
+      <div class="concepto-card met" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🔁</span>
+        <div class="concepto-titulo">Ciclo o Bucle</div>
+        <div class="concepto-desc">Repetir sin repetir el código</div>
+        <div class="concepto-flip">"Repetir 10 veces" ejecuta el bloque 10 veces. Sin condición de salida, se vuelve un bucle infinito.</div>
+      </div>
+      <div class="concepto-card ale" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📦</span>
+        <div class="concepto-titulo">Variable</div>
+        <div class="concepto-desc">Una caja que guarda un valor</div>
+        <div class="concepto-flip">Guarda datos que pueden cambiar: puntuación, temperatura, humedad. Se puede crear, asignar y actualizar.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🚦</span>
+        <div class="concepto-titulo">Condición (SI...)</div>
+        <div class="concepto-desc">Tomar decisiones en el código</div>
+        <div class="concepto-flip">"SI humedad &lt; 30% ENTONCES encender bomba". El programa decide solo según los datos que recibe.</div>
+      </div>
+      <div class="concepto-card frac" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🗄️</span>
+        <div class="concepto-titulo">Base de Datos</div>
+        <div class="concepto-desc">Información organizada en tablas</div>
+        <div class="concepto-flip">Filas = registros, columnas = campos. Un campo clave (ID) nunca se repite ni queda vacío.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: LABORATORIO DE ALGORITMOS -->
+  <div class="seccion seccion-algoritmo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">⚙️</span>
+      <h3>Laboratorio de Algoritmos · Programa en bloques</h3>
+      <small>🖱️ Haz clic en "Ejecutar" y observa cómo piensa tu programa</small>
+    </div>
+
+    <div class="lab-pista">
+      🎯 <strong>Misión:</strong> este algoritmo calcula el precio total de la tienda escolar. Ejecútalo paso a paso y descubre qué hace cada bloque.
+    </div>
+
+    <div class="algo-wrap" style="margin-top:16px">
+      <div>
+        <div class="algo-titulo-block">🧱 Código (bloques tipo Scratch)</div>
+        <div class="bloques-palette">
+          <div class="bloque-s input">📥 Preguntar: ¿Cuántos productos?</div>
+          <div class="bloque-s var">📦 Fijar cantidad a respuesta</div>
+          <div class="bloque-s input">📥 Preguntar: Precio unitario</div>
+          <div class="bloque-s var">📦 Fijar precio a respuesta</div>
+          <div class="bloque-s calc">➗ Fijar total a (cantidad × precio)</div>
+          <div class="bloque-s if">🚦 SI total &gt; 20000 entonces...</div>
+          <div class="bloque-s if-hijo">💬 Decir: "Aplica descuento del 10%"</div>
+          <div class="bloque-s show">💬 Mostrar: "Total a pagar: " + total</div>
+        </div>
+      </div>
+
+      <div class="algo-escenario">
+        <div class="algo-escenario-header">
+          <span style="font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:#5B21B6">🎬 Escenario de ejecución</span>
+          <div style="display:flex;gap:8px">
+          <button class="btn-algo ejecutar" onclick="ejecutarAlgoritmo()">▶ Ejecutar</button>
+          <button class="btn-algo reiniciar" onclick="reiniciarAlgoritmo()">↺ Reiniciar</button>
+        </div>
+      </div>
+      <div class="algo-escenario-body">
+        <div class="algo-pasos" id="algo-pasos"></div>
+        <div class="algo-salida" id="algo-salida">Esperando ejecución...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: SIMULADOR DE RIEGO AUTOMATIZADO -->
+  <div class="seccion seccion-sensor">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💧</span>
+      <h3>Automatización · Sensor de riego inteligente</h3>
+      <small>🌱 Mueve la humedad del suelo y observa cómo decide el sistema</small>
+    </div>
+
+    <div class="lab-pista">
+      🎯 <strong>Misión:</strong> configura el umbral y cambia la humedad. El programa debe decidir solo cuándo encender la bomba, igual que en un cultivo real de Chichalá.
+    </div>
+
+    <div class="riego-wrap" style="margin-top:16px">
+      <div class="riego-panel-sensores">
+        <div class="sensor-card" id="sensor-humedad">
+          <span class="sensor-icono">🌡️</span>
+          <div class="sensor-nombre">HUMEDAD DEL SUELO</div>
+          <div class="sensor-valor" id="val-humedad">45%</div>
+          <div class="sensor-umbral" id="etq-humedad">Óptimo</div>
+        </div>
+        <div class="sensor-card" id="sensor-temp">
+          <span class="sensor-icono">☀️</span>
+          <div class="sensor-nombre">TEMPERATURA</div>
+          <div class="sensor-valor" id="val-temp">26°C</div>
+          <div class="sensor-umbral">&lt; 35°C normal</div>
+        </div>
+        <div class="sensor-card" id="sensor-bomba">
+          <span class="sensor-icono">⚙️</span>
+          <div class="sensor-nombre">BOMBA DE AGUA</div>
+          <div class="sensor-valor" id="val-bomba">OFF</div>
+          <div class="sensor-umbral">Decidida por el código</div>
+        </div>
+      </div>
+
+      <div class="riego-panel-control">
+        <div class="riego-slider-row">
+          <label>💧 Humedad del suelo:</label>
+          <input type="range" min="0" max="100" value="45" id="slider-humedad" oninput="actualizarRiego()"/>
+          <span class="riego-slider-val" id="txt-humedad">45%</span>
+        </div>
+        <div class="riego-slider-row">
+          <label>🎚️ Umbral de activación:</label>
+          <input type="range" min="10" max="70" value="30" id="slider-umbral" oninput="actualizarRiego()"/>
+          <span class="riego-slider-val" id="txt-umbral">30%</span>
+        </div>
+
+        <div class="riego-escena">
+          <div class="bomba" id="bomba-grafica">⚙️</div>
+          <div style="text-align:center">
+            <div class="gota" id="gota1">💧</div>
+            <div class="gota" id="gota2" style="animation-delay:.3s">💧</div>
+          </div>
+          <div class="planta feliz" id="planta">🌱</div>
+        </div>
+
+        <div class="riego-log" id="riego-log">
+          <div class="riego-log-linea ok">&gt; Sistema iniciado. Sensor conectado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: BASE DE DATOS INTERACTIVA -->
+  <div class="seccion seccion-datos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗄️</span>
+      <h3>Base de Datos · Tienda escolar de Chichalá</h3>
+      <small>➕ Agrega productos y descubre qué es un campo clave</small>
+    </div>
+
+    <div class="bd-wrap">
+      <div class="bd-formulario">
+        <div class="bd-campo">
+          <label>ID (clave única)</label>
+          <input type="text" id="bd-id" placeholder="Ej: P006"/>
+        </div>
+        <div class="bd-campo">
+          <label>Producto</label>
+          <input type="text" id="bd-producto" placeholder="Ej: Cuaderno"/>
+        </div>
+        <div class="bd-campo">
+          <label>Categoría</label>
+          <select id="bd-categoria">
+            <option value="alimentos">Alimentos</option>
+            <option value="utiles">Útiles</option>
+            <option value="tech">Tecnología</option>
+          </select>
+        </div>
+        <div class="bd-campo">
+          <label>Precio (COP)</label>
+          <input type="number" id="bd-precio" placeholder="Ej: 3500"/>
+        </div>
+        <div class="bd-campo">
+          <label>Stock</label>
+          <input type="number" id="bd-stock" placeholder="Ej: 20"/>
+        </div>
+        <div class="bd-campo" style="justify-content:flex-end">
+          <button class="btn-pdf verde" style="width:100%;justify-content:center" onclick="agregarRegistro()">➕ Agregar</button>
+        </div>
+      </div>
+
+      <div class="bd-tabla-marco">
+        <table class="bd-tabla">
+          <thead>
+            <tr><th>ID</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th></th></tr>
+          </thead>
+          <tbody id="bd-cuerpo"></tbody>
+        </table>
+      </div>
+
+      <div class="bd-busqueda">
+        <input type="text" id="bd-buscar" placeholder="🔍 Buscar producto o ID..." oninput="filtrarRegistros()"/>
+      </div>
+
+      <div class="bd-estadisticas" id="bd-stats"></div>
+      <div id="bd-mensaje" style="font-weight:800;font-size:.88rem;min-height:22px;margin-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: RETO MAKER -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto Maker · Automatiza un problema real</h3>
+      <small>✏️ Diseña tu algoritmo antes de programarlo</small>
+    </div>
+    <div class="reto-box">
+      <div class="reto-titulo">🏆 Misión: convierte una tarea repetitiva en un programa</div>
+      <div class="linea"><input type="text" placeholder="1. Tarea repetitiva de mi casa o finca..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="2. Dato de ENTRADA que leería el sistema..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="3. Condición SI...ENTONCES que usaría..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="4. SALIDA o acción que ejecutaría..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="cc-caja">
+        <p>💬 Explícale tu algoritmo a un compañero sin usar computador. Si él lo entiende y lo puede seguir paso a paso, ¡tu algoritmo está bien diseñado!</p>
+      </div>
+    </div>
+    <button class="btn-completar" onclick="completarMision()">🏁 Completar mi misión de programación</button>
+  </div>
+
+  <!-- AUTOEVALUACIÓN -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Autoevaluación · ¿Qué logré esta semana?</h3>
+      <small>✅ Marca lo que ya dominas y verás tu avance real</small>
+    </div>
+
+    <div class="auto-grid" id="auto-grid">
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Explico qué es un algoritmo con entrada, proceso y salida</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Identifico para qué sirve una variable</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Reconozco un ciclo y sé cuándo se vuelve infinito</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Escribo una condición SI...ENTONCES correcta</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Entendí cómo decide el sensor de riego automático</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Diferencio entre fila (registro) y columna (campo)</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Sé por qué un campo clave no puede repetirse</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Menciono un riesgo de automatizar sin control humano</label>
+    </div>
+    <div class="auto-total" id="auto-total">0 de 8 logros conseguidos</div>
+  </div>
+
+  <!-- COFRE + VIP -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre del Programador</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos del Mundo del Código</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">👩‍💻</span>
+      <div><strong>La primera programadora fue una mujer:</strong> Ada Lovelace escribió el primer algoritmo en 1843, más de 100 años antes de que existieran los computadores modernos. 💫</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🐛</span>
+      <div><strong>El "bug" viene de una polilla real:</strong> En 1947 una polilla quedó atrapada en el computador Harvard Mark II. Desde entonces los errores se llaman bugs y arreglarlos, debugging. 🦟</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🇨🇴</span>
+      <div><strong>Colombia programa desde el campo:</strong> Proyectos de agricultura de datos usan sensores de humedad como el que acabas de manejar, para regar café y arroz con menos agua. ☕</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🧒</span>
+      <div><strong>Scratch lo crearon para niños:</strong> Nació en el MIT en 2007 y hoy tiene más de 100 millones de proyectos compartidos. Tu primer programa ya está entre ellos. 🌎</div>
+    </div>
+
+    <div class="vip-wrap">
+      <div class="vip-input-row">
+        <input type="text" id="vip-input" placeholder="🔑 Código secreto..." maxlength="12"/>
+        <button class="vip-btn" onclick="validarVip()">Desbloquear</button>
+      </div>
+      <div class="vip-mensaje" id="vip-mensaje"></div>
+    </div>
+  </div>
+
+  <div class="vip-secreto" id="vip-secreto">
+    <h4>🏅 ¡Nivel HACKER desbloqueado!</h4>
+    <p>Descifraste el reto. Aquí va tu recompensa secreta:</p>
+    <p>💡 <strong>Truco de programador:</strong> cuando tu código falle, no lo borres todo. Divide el programa en partes pequeñas y prueba cada una por separado. Así trabajan los ingenieros profesionales.</p>
+    <p>🎮 <strong>Reto extra:</strong> abre Scratch y crea un juego donde un personaje esquive obstáculos usando "SI...ENTONCES". Súbelo a la clase del próximo viernes.</p>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🤖</span>
+    <p>Completó con éxito la <strong>Semana 3 · Piensa como Programador</strong> con lógica, creatividad y pensamiento crítico.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">8° o 9°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--tec-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🤖 Programar es pensar con precisión · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// ══════════════ FUNCIÓN GLOBAL ══════════════
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+function completarMision(){
+  document.querySelectorAll('.pieza').forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '8° o 9°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+function crearConfeti(){
+  const colores = ['#10B981','#06B6D4','#2563EB','#7C3AED','#FACC15'];
+  for(let i=0;i<50;i++){
+    const c = document.createElement('div');
+    c.style.position='fixed';
+    c.style.left=Math.random()*100+'vw';
+    c.style.top='-20px';
+    c.style.width=Math.random()*10+10+'px';
+       c.style.height=Math.random()*10+10+'px';
+    c.style.background=colores[Math.floor(Math.random()*colores.length)];
+    c.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+// ══════════════ ALGORITMO INTERACTIVO ══════════════
+const pasosAlgoritmo = [
+  { texto: '📥 ¿Cuántos productos desea comprar?', tipo: 'input' },
+  { texto: '📦 Cantidad = 3 (el usuario respondió)', tipo: 'var' },
+  { texto: '📥 ¿Precio unitario?', tipo: 'input' },
+  { texto: '📦 Precio = 15000', tipo: 'var' },
+  { texto: '🧮 Total = 3 × 15000 = 45000', tipo: 'calc' },
+  { texto: '🚦 SI 45000 > 20000 → VERDADERO', tipo: 'if' },
+  { texto: '💬 "Aplica descuento del 10%"', tipo: 'if' },
+  { texto: '💬 "Total a pagar: $40500"', tipo: 'show' }
+];
+
+let pasoActual = -1;
+let ejecutando = false;
+
+function ejecutarAlgoritmo(){
+  if(ejecutando) return;
+  ejecutando = true;
+  pasoActual = 0;
+  document.getElementById('algo-pasos').innerHTML = '';
+  document.getElementById('algo-salida').textContent = '▶ Ejecutando...';
+
+  function siguientePaso(){
+    if(pasoActual >= pasosAlgoritmo.length){
+      document.getElementById('algo-salida').textContent = '✅ Programa finalizado. ¡Resultado: $40500!';
+      document.getElementById('algo-salida').style.color = '#047857';
+      ejecutando = false;
+      crearConfeti();
+      return;
+    }
+    const p = pasosAlgoritmo[pasoActual];
+    const div = document.createElement('div');
+    div.className = 'algo-paso';
+    div.innerHTML = `<div class="algo-paso-num">${pasoActual+1}</div><span>${p.texto}</span>`;
+    document.getElementById('algo-pasos').appendChild(div);
+    div.classList.add('activo');
+
+    if(p.tipo === 'input'){
+      document.getElementById('algo-salida').textContent = '⏳ Esperando respuesta del usuario...';
+      document.getElementById('algo-salida').style.color = '#A16207';
+      setTimeout(()=>{ pasoActual++; siguientePaso(); }, 1200);
+    } else {
+      document.getElementById('algo-salida').textContent = p.texto;
+      document.getElementById('algo-salida').style.color = p.tipo === 'if' ? '#5B21B6' : '#047857';
+      pasoActual++;
+      setTimeout(siguientePaso, 800);
+    }
+  }
+
+  siguientePaso();
+}
+
+function reiniciarAlgoritmo(){
+  ejecutando = false;
+  pasoActual = -1;
+  document.getElementById('algo-pasos').innerHTML = '';
+  document.getElementById('algo-salida').textContent = 'Esperando ejecución...';
+  document.getElementById('algo-salida').style.color = '#047857';
+}
+
+// ══════════════ SIMULADOR DE RIEGO ══════════════
+function actualizarRiego(){
+  const humedad = parseInt(document.getElementById('slider-humedad').value, 10);
+  const umbral = parseInt(document.getElementById('slider-umbral').value, 10);
+  const temp = 22 + Math.floor(Math.random() * 15);
+
+  document.getElementById('val-humedad').textContent = humedad + '%';
+  document.getElementById('txt-humedad').textContent = humedad + '%';
+  document.getElementById('val-temp').textContent = temp + '°C';
+  document.getElementById('txt-umbral').textContent = umbral + '%';
+
+  const sensorHum = document.getElementById('sensor-humedad');
+  const sensorTemp = document.getElementById('sensor-temp');
+  const sensorBomba = document.getElementById('sensor-bomba');
+
+  sensorHum.className = 'sensor-card' + (humedad < umbral ? ' bajo' : ' ok');
+  sensorHum.querySelector('.sensor-umbral').textContent =
+    humedad < umbral ? '⚠️ ¡Bajo! Riego inminente' : '✅ Óptimo';
+
+  sensorTemp.className = 'sensor-card' + (temp > 35 ? ' bajo' : ' ok');
+  sensorTemp.querySelector('.sensor-umbral').textContent =
+    temp > 35 ? '⚠️ ¡Alta! Cuidado con estrés hídrico' : '✓ Normal';
+
+  // Lógica del algoritmo de riego
+  const enciende = humedad < umbral;
+  document.getElementById('val-bomba').textContent = enciende ? 'ON' : 'OFF';
+  document.getElementById('val-bomba').style.color = enciende ? '#047857' : '#64748B';
+
+  const bombaEl = document.getElementById('bomba-grafica');
+  bombaEl.className = 'bomba' + (enciende ? ' on' : '');
+
+  const gotas = document.querySelectorAll('.gota');
+  gotas.forEach(g => g.className = enciende ? 'gota lloviendo' : 'gota');
+
+  const planta = document.getElementById('planta');
+  planta.className = 'planta' + (enciende ? ' feliz' : (humedad < umbral ? ' seca' : ' feliz'));
+
+  const log = document.getElementById('riego-log');
+  const linea = document.createElement('div');
+  linea.className = 'riego-log-linea ' + (enciende ? 'alerta' : 'ok');
+  linea.textContent = `> Humedad: ${humedad}% | Umbral: ${umbral}% | Temp: ${temp}°C → ${enciende ? 'BOMBA ON' : 'ESPERA'}`;
+  log.appendChild(linea);
+  log.scrollTop = log.scrollHeight;
+}
+
+// ══════════════ BASE DE DATOS INTERACTIVA ══════════════
+let registros = [
+  { id: 'P001', producto: 'Lápiz de grafito', categoria: 'utiles', precio: 1500, stock: 50 },
+  { id: 'P002', producto: 'Galletas de arroz', categoria: 'alimentos', precio: 3000, stock: 25 },
+  { id: 'P003', producto: 'Cable USB-C', categoria: 'tech', precio: 12000, stock: 10 },
+  { id: 'P004', producto: 'Cuaderno 100 hojas', categoria: 'utiles', precio: 5500, stock: 30 },
+  { id: 'P005', producto: 'Jugo de frutas', categoria: 'alimentos', precio: 3500, stock: 15 }
+];
+
+function renderTabla(){
+    const cuerpo = document.getElementById('bd-cuerpo');
+  const filtro = (document.getElementById('bd-buscar').value || '').toLowerCase().trim();
+  const visibles = registros.filter(r =>
+    !filtro || r.producto.toLowerCase().includes(filtro) || r.id.toLowerCase().includes(filtro)
+  );
+
+  cuerpo.innerHTML = visibles.map((r, i) => `
+    <tr>
+      <td><span class="badge-id">${r.id}</span></td>
+      <td>${r.producto}</td>
+      <td><span class="badge-cat cat-${r.categoria}">${r.categoria.toUpperCase()}</span></td>
+      <td>$${r.precio.toLocaleString('es-CO')}</td>
+      <td>${r.stock}</td>
+      <td><button class="btn-borrar-fila" title="Eliminar registro" onclick="eliminarRegistro('${r.id}')">✕</button></td>
+    </tr>
+  `).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--tec-dim);padding:20px">Sin resultados para esa búsqueda 🔍</td></tr>';
+
+  actualizarStats();
+}
+
+function actualizarStats(){
+  const total = registros.length;
+  const unidades = registros.reduce((s, r) => s + Number(r.stock), 0);
+  const inventarioValor = registros.reduce((s, r) => s + Number(r.precio) * Number(r.stock), 0);
+  document.getElementById('bd-stats').innerHTML = `
+    <div class="bd-stat">Registros: <span>${total}</span></div>
+    <div class="bd-stat">Unidades en stock: <span>${unidades}</span></div>
+    <div class="bd-stat">Valor del inventario: <span>$${inventarioValor.toLocaleString('es-CO')}</span></div>
+  `;
+}
+
+function agregarRegistro(){
+  const id = document.getElementById('bd-id').value.trim().toUpperCase();
+  const producto = document.getElementById('bd-producto').value.trim();
+  const categoria = document.getElementById('bd-categoria').value;
+  const precio = parseInt(document.getElementById('bd-precio').value, 10);
+  const stock = parseInt(document.getElementById('bd-stock').value, 10);
+  const mensaje = document.getElementById('bd-mensaje');
+
+  if(!id || !producto || isNaN(precio) || isNaN(stock)){
+    mensaje.textContent = '⚠️ Completa todos los campos antes de guardar.';
+    mensaje.style.color = '#B45309';
+    return;
+  }
+
+  // Regla fundamental: el campo clave debe ser único y no vacío
+  if(registros.some(r => r.id === id)){
+    mensaje.textContent = '🚫 ERROR DE INTEGRIDAD: el ID "' + id + '" ya existe. Un campo clave nunca se repite.';
+    mensaje.style.color = '#B91C1C';
+    crearConfeti();
+    return;
+  }
+
+  registros.push({ id, producto, categoria, precio, stock });
+  mensaje.textContent = '✅ Registro agregado correctamente a la tabla "productos".';
+  mensaje.style.color = '#047857';
+  ['bd-id','bd-producto','bd-precio','bd-stock'].forEach(x => document.getElementById(x).value = '');
+  renderTabla();
+}
+
+function eliminarRegistro(id){
+  registros = registros.filter(r => r.id !== id);
+  document.getElementById('bd-mensaje').textContent = '🗑️ Registro eliminado de la base de datos.';
+  document.getElementById('bd-mensaje').style.color = '#64748B';
+  renderTabla();
+}
+
+function filtrarRegistros(){
+  renderTabla();
+}
+
+// ══════════════ AUTOEVALUACIÓN ══════════════
+function actualizarAuto(checkbox){
+  checkbox.closest('.auto-item').classList.toggle('marcado', checkbox.checked);
+  const total = document.querySelectorAll('#auto-grid input:checked').length;
+  const texto = document.getElementById('auto-total');
+  texto.textContent = `${total} de 8 logros conseguidos`;
+  if(total === 8){
+    texto.textContent = '🏆 ¡Los 8 logros conseguidos! Ya piensas como programador.';
+    crearConfeti();
+  }
+}
+
+// ══════════════ CÓDIGO VIP ══════════════
+function validarVip(){
+  const valor = document.getElementById('vip-input').value.trim().toUpperCase();
+  const mensaje = document.getElementById('vip-mensaje');
+  if(valor === 'HOLA MUNDO' || valor === 'HELLO WORLD'){
+    mensaje.textContent = '🎉 ¡Clave correcta! El clásico saludo de todo programador.';
+    mensaje.className = 'vip-mensaje exito';
+    document.getElementById('vip-input').classList.add('correcto');
+    document.getElementById('vip-secreto').classList.add('visible');
+    crearConfeti();
+  } else {
+    mensaje.textContent = '❌ Clave incorrecta. Pista: es lo primero que imprime cualquier programa nuevo.';
+    mensaje.className = 'vip-mensaje error';
+  }
+}
+
+// ══════════════ EVALUACIÓN DIAGNÓSTICA ══════════════
+const preguntasQuiz = [
+  {
+    seccion: 'Algoritmos',
+    texto: '¿Qué es un algoritmo?',
+    opciones: ['Un lenguaje de programación', 'Una secuencia ordenada de pasos para resolver un problema', 'Un tipo de computador', 'Un virus informático'],
+    correcta: 1,
+    explicacion: 'Un algoritmo es una receta: tiene entrada, proceso y salida, y sus pasos deben estar bien ordenados.'
+  },
+  {
+    seccion: 'Algoritmos',
+    texto: 'Si un algoritmo para preparar café pone "servir" antes de "calentar el agua", ¿qué falla?',
+    opciones: ['La salida', 'El orden lógico de los pasos', 'El nombre del programa', 'El color de la interfaz'],
+    correcta: 1,
+    explicacion: 'En un algoritmo el orden importa: alterar los pasos cambia o invalida el resultado.'
+  },
+  {
+    seccion: 'Scratch',
+    texto: '¿Cuál es la principal ventaja de programar en Scratch?',
+    opciones: ['Solo funciona sin computador', 'Permite programar arrastrando bloques visuales', 'No permite usar variables', 'Es exclusivo para adultos'],
+    correcta: 1,
+    explicacion: 'Scratch usa bloques tipo rompecabezas, así el estudiante se concentra en la lógica y no en escribir sintaxis.'
+  },
+  {
+    seccion: 'Variables',
+    texto: 'Una variable en programación es:',
+    opciones: ['Un espacio que guarda un valor que puede cambiar', 'Un error del sistema', 'Un archivo de imagen', 'Un cable de red'],
+    correcta: 0,
+    explicacion: 'Como una caja con nombre: le asignas un valor hoy y puedes actualizarlo mañana.'
+  },
+  {
+    seccion: 'Ciclos',
+    texto: 'Un bloque "repetir 10 veces" ejecuta su contenido:',
+    opciones: ['Una sola vez', 'Diez veces', 'Cien veces', 'Ninguna vez'],
+    correcta: 1,
+    explicacion: 'El ciclo repite exactamente las vueltas indicadas: en este caso, 10.'
+  },
+  {
+    seccion: 'Ciclos',
+    texto: '¿Qué ocurre si usas "por siempre" sin ninguna condición de salida?',
+    opciones: ['El programa termina más rápido', 'Se produce un bucle infinito', 'Se borra el proyecto', 'Aparece un error de colores'],
+    correcta: 1,
+    explicacion: 'Sin condición de salida el ciclo nunca termina: ese es uno de los errores más comunes al programar.'
+  },
+  {
+    seccion: 'Contadores',
+    texto: 'Una variable contador inicia en 0 y se aumenta en 1 en cada vuelta de un ciclo de 7 vueltas. ¿Cuál es su valor final?',
+    opciones: ['1', '6', '7', '70'],
+    correcta: 2,
+    explicacion: '0 + 1 siete veces da 7. Así funcionan puntajes, niveles e inventarios.'
+  },
+  {
+    seccion: 'Condicionales',
+    texto: 'En el simulador de riego, si la humedad es 28% y el umbral es 30%, el sistema debe:',
+    opciones: ['Apagar la bomba', 'Encender la bomba', 'Ignorar el dato', 'Reiniciar el computador'],
+    correcta: 1,
+    explicacion: '28 < 30 cumple la condición SI...ENTONCES, por lo que la bomba se enciende.'
+  },
+  {
+    seccion: 'Automatización',
+    texto: 'La automatización de procesos consiste principalmente en:',
+    opciones: ['Hacer que las máquinas reemplacen totalmente a las personas', 'Que tareas repetitivas se ejecuten solas siguiendo reglas definidas por una persona', 'Evitar siempre el uso de tecnología', 'Programar solo para juegos'],
+    correcta: 1,
+    explicacion: 'Automatizar es delegar lo repetitivo al sistema, pero las reglas y el control siguen siendo humanos.'
+  },
+  {
+    seccion: 'Riesgos',
+    texto: 'Un riesgo real de automatizar sin supervisión es:',
+    opciones: ['Que el programa haga algo equivocado a gran escala sin que nadie lo note', 'Que el computador se ponga triste', 'Que aumente la cantidad de teclados', 'Que los colores cambien solos'],
+    correcta: 0,
+    explicacion: 'Por eso todo sistema automático necesita monitoreo humano y criterios éticos claros.'
+  },
+  {
+    seccion: 'Bases de Datos',
+    texto: 'En una base de datos, las columnas de una tabla se llaman:',
+    opciones: ['Registros', 'Campos', 'Archivos', 'Ventanas'],
+    correcta: 1,
+    explicacion: 'Columnas = campos (tipo de dato) y filas = registros (cada elemento guardado).'
+  },
+  {
+    seccion: 'Bases de Datos',
+    texto: 'Una tabla con 5 campos y 8 registros tiene cuántas celdas de información:',
+    opciones: ['13', '26', '40', '45'],
+    correcta: 2,
+    explicacion: '5 campos × 8 registros = 40 celdas. Así se calcula el tamaño de una tabla.'
+  }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente lógica de programador!'
+    : porcentaje >= 60 ? '¡Buen avance, futuro desarrollador!'
+    : '¡Sigue practicando y fortalece tu pensamiento lógico!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 10) return 'Dominas algoritmos, automatización y bases de datos: listo para tu propio proyecto maker.';
+  if(aciertos >= 7) return 'Repasa condicionales y campos clave; son la base de todo sistema automático confiable.';
+  return 'Refuerza qué es un algoritmo y cómo funciona un ciclo antes de continuar con la semana 4.';
+}
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '8° o 9°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA DE PROGRAMACIÓN, AUTOMATIZACIÓN Y BASES DE DATOS - SEMANA 3',
+    'Tecnología e Informática · Grados 8° y 9°',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-semana3-programacion-${nombre.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+// ══════════════ INICIALIZACIÓN ══════════════
+document.addEventListener('DOMContentLoaded', function(){
+  renderTabla();
+  actualizarRiego();
+  cargarPregunta();
+  console.log('🤖 Tecnología Aventura · Semana 3 cargado correctamente. ¡Hola Mundo!');
+});
+</script>
+
+</body>
+</html>

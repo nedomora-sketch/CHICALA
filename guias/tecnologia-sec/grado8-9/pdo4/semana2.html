@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tecnología e Informática · Grados 8° y 9° · Semana 2 · Diseño y representación de ideas (Dibujo 3D → GeoGebra / Corel Draw) · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🎨 Tecnología Aventura · Semana 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  TECNOLOGÍA AVENTURA · SEMANA 2 · GRADOS 8°-9°
+  Diseño y representación de ideas
+══════════════════════════════════════════════ */
+:root{
+  --tec-verde:#10B981;   --tec-esmeralda:#059669; --tec-cyan:#06B6D4;
+  --tec-azul:#2563EB;    --tec-morado:#7C3AED;    --tec-amarillo:#FACC15;
+  --tec-naranja:#F97316; --tec-rosa:#EC4899;      --tec-rojo:#EF4444;
+  --tec-celeste:#38BDF8;
+  --tec-bg:#ECFDF5;      --tec-card:#FFFFFF;
+  --tec-texto:#0F172A;   --tec-dim:#64748B;       --tec-border:#D1FAE5;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tec-bg);color:var(--tec-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(16,185,129,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tec-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tec-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tec-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(16,185,129,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+
+.hero-header{background:linear-gradient(135deg,#059669 0%,#06B6D4 50%,#7C3AED 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🎨';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'📐';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+
+.seccion{background:white;border:2px solid var(--tec-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-recursos::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-cyan))}
+.seccion-vocab::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-celeste))}
+.seccion-laboratorio::before{background:linear-gradient(180deg,var(--tec-morado),var(--tec-rosa))}
+.seccion-geo::before{background:linear-gradient(180deg,var(--tec-cyan),var(--tec-azul))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--tec-naranja),var(--tec-amarillo))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tec-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tec-dim);font-weight:600;margin-top:2px}
+
+
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--tec-border);background:white;cursor:pointer;transition:all .25s;color:var(--tec-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-6{background:var(--tec-verde);border-color:var(--tec-verde);color:white;box-shadow:0 4px 12px rgba(16,185,129,.35)}
+.nivel-tab.activo-7{background:var(--tec-azul);border-color:var(--tec-azul);color:white;box-shadow:0 4px 12px rgba(37,99,235,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--tec-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado-unificado{border-color:var(--tec-verde)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white;background:var(--tec-verde)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(6,182,212,.1);color:#0E7490;border:1px solid rgba(6,182,212,.25)}
+
+
+.visor-bloque{margin-bottom:22px}
+.visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.visor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.95rem;flex-shrink:0}
+.visor-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:0;color:var(--tec-texto)}
+.tipo-tag{font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.04em}
+.tipo-img{background:rgba(16,185,129,.12);color:#065F46;border:1px solid rgba(16,185,129,.3)}
+
+
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--tec-border);background:linear-gradient(135deg,#F0FDF4,#ECFEFF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s,max-height .3s ease;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--tec-esmeralda);box-shadow:var(--sombra-sm);pointer-events:none;display:flex;align-items:center;gap:6px}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--tec-dim);font-size:.85rem}
+.marco-img.sin-img img{display:none}
+.marco-img.sin-img .img-lupa{display:none}
+.marco-img.sin-img .img-fallback{display:block}
+.ruta-code{font-family:'Courier New',monospace;background:#ECFEFF;color:#0E7490;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+
+.bloque-pdf{position:relative;border-radius:var(--r-md);border:3px solid var(--tec-verde);background:linear-gradient(135deg,#ECFDF5,#F0FDFA);padding:22px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bloque-pdf:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.pdf-icono{font-size:3rem;flex-shrink:0;animation:floatIcon 4s ease-in-out infinite alternate}
+.pdf-info{flex:1;min-width:200px}
+.pdf-info h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 4px;color:var(--tec-texto)}
+.pdf-info p{font-size:.8rem;color:var(--tec-dim);margin:0}
+.btn-pdf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:10px 22px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-rojo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B,0 6px 16px rgba(239,68,68,.3);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pdf:hover{transform:translateY(-3px);box-shadow:0 7px 0 #991B1B,0 10px 20px rgba(239,68,68,.35)}
+.btn-pdf:active{transform:translateY(2px);box-shadow:0 1px 0 #991B1B}
+.btn-pdf.info{cursor:default;box-shadow:0 4px 0 #047857}
+.btn-pdf.verde{background:linear-gradient(135deg,var(--tec-esmeralda),var(--tec-verde));box-shadow:0 4px 0 #047857,0 6px 16px rgba(16,185,129,.3)}
+.btn-pdf.verde:hover{box-shadow:0 7px 0 #047857,0 10px 20px rgba(16,185,129,.35)}
+
+
+/* EVALUACIÓN INTERACTIVA */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tec-verde);border-radius:var(--r-lg);background:linear-gradient(135deg,#ECFDF5,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tec-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tec-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tec-esmeralda)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--tec-esmeralda);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tec-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(16,185,129,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(16,185,129,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tec-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tec-border);border-radius:var(--r-sm);background:white;color:var(--tec-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tec-verde);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tec-esmeralda);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tec-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tec-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #047857;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tec-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tec-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--tec-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+
+/* LABORATORIO DE DIBUJO (canvas) */
+.lab-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.lab-lienzo-marco{border:3px solid var(--tec-morado);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm);position:relative}
+#lienzo{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:20px 20px}
+.lab-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#FAF5FF,#FDF2F8);border:2px solid var(--tec-border);border-radius:var(--r-md);padding:14px 16px}
+.lab-grupo{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;color:var(--tec-dim)}
+.swatch{width:30px;height:30px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s}
+.swatch:hover{transform:scale(1.15)}
+.swatch.sel{outline:3px solid var(--tec-morado);outline-offset:2px;transform:scale(1.12)}
+.lab-btn{font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:8px 16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-morado),var(--tec-rosa));color:white;cursor:pointer;box-shadow:0 3px 0 #5B21B6;transition:all .15s}
+.lab-btn:hover{transform:translateY(-2px)}
+.lab-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+.lab-slider{accent-color:var(--tec-morado);cursor:pointer}
+.lab-pista{background:rgba(124,58,237,.07);border-left:5px solid var(--tec-morado);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#5B21B6}
+
+
+/* MINI GEOGEBRA (plano cartesiano interactivo) */
+.geo-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.plano-marco{border:3px solid var(--tec-cyan);border-radius:var(--r-md);overflow:hidden;background:#F0FDFA;box-shadow:var(--sombra-sm)}
+#plano{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair}
+.geo-panel{background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border:2px solid var(--tec-border);border-radius:var(--r-md);padding:16px}
+.geo-coord{font-family:'Courier New',monospace;font-size:1.15rem;font-weight:700;color:#0E7490;background:white;border:2px dashed var(--tec-cyan);border-radius:var(--r-sm);padding:10px 16px;text-align:center;margin-bottom:12px}
+.geo-lista{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;min-height:34px}
+.geo-chip{font-family:'Courier New',monospace;font-size:.78rem;font-weight:700;background:var(--tec-cyan);color:white;border-radius:50px;padding:5px 12px}
+.geo-consigna{font-size:.85rem;font-weight:700;color:var(--tec-texto);margin-bottom:10px}
+
+
+/* COMPARADOR VECTOR vs MAPA DE BITS */
+.comparador-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}
+.comp-card{border-radius:var(--r-md);padding:20px;border:3px solid var(--tec-border);text-align:center;transition:transform .25s,box-shadow .25s}
+.comp-card:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.comp-vector{background:linear-gradient(135deg,#F5F3FF,#ECFEFF);border-color:var(--tec-morado)}
+.comp-bitmap{background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border-color:var(--tec-naranja)}
+.comp-card h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;margin:0 0 4px}
+.comp-card .comp-sub{font-size:.75rem;font-weight:800;color:var(--tec-dim);letter-spacing:.05em;margin-bottom:12px}
+.comp-svg{width:100%;height:120px;display:block;background:white;border-radius:var(--r-sm);border:2px solid var(--tec-border);margin-bottom:12px}
+.comp-card ul{text-align:left;font-size:.8rem;font-weight:600;color:var(--tec-texto);list-style:none;padding:0;margin:0}
+.comp-card li{margin-bottom:6px;padding-left:22px;position:relative}
+.comp-vector li::before{content:'✔';position:absolute;left:0;color:var(--tec-morado);font-weight:900}
+.comp-bitmap li::before{content:'📷';position:absolute;left:0}
+.zoom-lupa{display:flex;align-items:center;gap:10px;margin-top:12px;background:white;border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--tec-dim)}
+.zoom-lupa input{flex:1;accent-color:var(--tec-morado)}
+
+
+/* AUTOEVALUACIÓN */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--tec-verde);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--tec-verde);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--tec-verde);background:rgba(16,185,129,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--tec-esmeralda);text-align:center;margin-top:14px}
+
+
+@media (max-width:640px){
+  .evaluacion{padding:18px}
+  .evaluacion-cabecera{display:block}
+  .evaluacion-tiempo{display:inline-block;margin-top:12px}
+  .quiz-options{grid-template-columns:1fr}
+}
+
+
+/* TARJETAS VOCABULARIO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.conceptos-grid-principal{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.conceptos-grid-principal .concepto-card{padding:14px 12px}
+.conceptos-grid-principal .concepto-emoji{font-size:2.2rem;margin-bottom:6px}
+.conceptos-grid-principal .concepto-titulo{font-size:.92rem;margin-bottom:5px}
+.conceptos-grid-principal .concepto-desc{font-size:.72rem}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(16,185,129,.07);border-color:var(--tec-verde)}
+.concepto-card.geo{background:rgba(6,182,212,.07);border-color:var(--tec-cyan)}
+.concepto-card.met{background:rgba(37,99,235,.07);border-color:var(--tec-azul)}
+.concepto-card.ale{background:rgba(124,58,237,.07);border-color:var(--tec-morado)}
+.concepto-card.var{background:rgba(236,72,153,.07);border-color:var(--tec-rosa)}
+.concepto-card.frac{background:rgba(250,204,21,.1);border-color:var(--tec-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--tec-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--tec-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--tec-verde)}
+.concepto-card.geo .concepto-flip{background:var(--tec-cyan)}
+.concepto-card.met .concepto-flip{background:var(--tec-azul)}
+.concepto-card.ale .concepto-flip{background:var(--tec-morado)}
+.concepto-card.var .concepto-flip{background:var(--tec-rosa)}
+.concepto-card.frac .concepto-flip{background:var(--tec-amarillo);color:var(--tec-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--tec-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tec-verde)}
+.cc-caja{background:rgba(16,185,129,.07);border:2px solid var(--tec-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 24px rgba(16,185,129,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--tec-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tec-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tec-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tec-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.1),rgba(37,99,235,.08));border:4px solid var(--tec-verde);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tec-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tec-esmeralda);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));box-shadow:0 4px 0 rgba(4,120,87,.4)}
+
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tec-border);color:var(--tec-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tec-esmeralda);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tec-esmeralda);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tec-esmeralda);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 28px rgba(16,185,129,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .conceptos-grid-principal{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hero-titulo{font-size:1.6rem}
+  .visor-cabecera h4{font-size:.95rem}
+  .img-lupa{font-size:.68rem;padding:5px 10px}
+  .bloque-pdf{flex-direction:column;text-align:center}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque,.bloque-pdf{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🎨 MISIÓN DISEÑADOR</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré los recursos">📚</span>
+      <span class="pieza" id="pieza-2" title="Aprendí conceptos de diseño">💡</span>
+      <span class="pieza" id="pieza-3" title="Dibujé en el laboratorio">🖌️</span>
+      <span class="pieza" id="pieza-4" title="Ubiqué puntos en el plano">📐</span>
+      <span class="pieza" id="pieza-5" title="Hice el Reto de Diseño">✍️</span>
+      <span class="pieza" id="pieza-6" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🎨 MODO DISEÑADOR ACTIVO</div>
+    <h1 class="hero-titulo">🎨 Tecnología Aventura<br/>¡De la Idea al Diseño!</h1>
+    <p class="hero-subtitulo">Tecnología e Informática · Semana 2 · Grados 8° y 9°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="8° o 9°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 24 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 1: RECURSOS -->
+  <div class="seccion seccion-recursos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📚</span>
+      <h3>Recursos de Diseño · Guía + Evaluación</h3>
+      <small>📌 Tema: Diseño y representación de ideas · Dibujo 3D → GeoGebra / Corel Draw</small>
+    </div>
+
+
+    <!-- EVALUACIÓN INTERACTIVA -->
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DIAGNÓSTICA · SEMANA 2</span>
+          <h4>✍️ Prueba de Diseño y Representación de Ideas · Grados 8° y 9°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 35 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 12</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+
+    <!-- GUÍA ÚNICA PARA GRADOS 8° Y 9° -->
+    <div class="nivel-card grado-unificado">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge">🎨 Tecnología e Informática · Grados 8° y 9°</span>
+        <span class="nivel-dba">Guía unificada del período 4</span>
+      </div>
+      <div class="bloque-pdf">
+        <div class="pdf-icono">📘</div>
+        <div class="pdf-info">
+          <h5>📖 Guía Didáctica · Semana 2</h5>
+          <p>Diseño y representación de ideas · Dibujo 3D, GeoGebra y Corel Draw para ambos grados</p>
+        </div>
+        <span class="btn-pdf verde info" role="status">📖 Guía interactiva activa</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 2: CONCEPTOS CLAVE (flip) -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave de Diseño · ¡Haz clic para voltear!</h3>
+      <small>👆 Toca las tarjetas para descubrir el mundo del diseño técnico</small>
+    </div>
+
+
+    <div class="conceptos-grid conceptos-grid-principal">
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">✏️</span>
+        <div class="concepto-titulo">Boceto o Sketch</div>
+        <div class="concepto-desc">El primer dibujo a mano alzada</div>
+        <div class="concepto-flip">Es la idea en papel, rápida y sin perfección. Sirve para pensar antes de diseñar en el computador.</div>
+      </div>
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🧊</span>
+        <div class="concepto-titulo">Dibujo 3D</div>
+        <div class="concepto-desc">Dar volumen a una idea plana</div>
+        <div class="concepto-flip">Isométrico, perspectiva o axonométrico: tres formas de mostrar ancho, alto y profundidad en una hoja.</div>
+      </div>
+      <div class="concepto-card met" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📐</span>
+        <div class="concepto-titulo">GeoGebra</div>
+        <div class="concepto-desc">Geometría dinámica gratuita</div>
+        <div class="concepto-flip">Software que une geometría, álgebra y cálculo. Con GeoGebra 3D creas sólidos con comandos como Cubo[(0,0,0),(1,0,0)].</div>
+      </div>
+      <div class="concepto-card ale" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🖌️</span>
+        <div class="concepto-titulo">CorelDRAW</div>
+        <div class="concepto-desc">Diseño gráfico vectorial</div>
+        <div class="concepto-flip">Programa profesional para logos, afiches y rótulos. Trabaja con curvas y nodos que puedes mover libremente.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🔷</span>
+        <div class="concepto-titulo">Vector vs. Mapa de Bits</div>
+        <div class="concepto-desc">La gran diferencia del diseño digital</div>
+        <div class="concepto-flip">El <strong>vector</strong> usa fórmulas matemáticas y escala sin perder calidad; el <strong>mapa de bits</strong> usa píxeles y se dentan al ampliarlo.</div>
+      </div>
+      <div class="concepto-card frac" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🎨</span>
+        <div class="concepto-titulo">Teoría del Color</div>
+        <div class="concepto-desc">Comunicar con color</div>
+        <div class="concepto-flip">Colores primarios, secundarios y complementarios. Un buen logo usa máximo 3 colores que se vean bien juntos.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 3: LABORATORIO DE DIBUJO -->
+  <div class="seccion seccion-laboratorio">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🖌️</span>
+      <h3>Laboratorio de Bocetaje · Diseña en pantalla</h3>
+      <small>🖱️ Practica trazos vectoriales antes de pasar a CorelDRAW</small>
+    </div>
+
+
+    <div class="lab-pista">
+      🎯 <strong>Misión:</strong> dibuja el logotipo de tu proyecto tech usando máximo 3 colores. Guarda tu obra cuando termines.
+    </div>
+
+
+    <div class="lab-wrap" style="margin-top:16px">
+      <div class="lab-lienzo-marco">
+        <canvas id="lienzo" width="880" height="420"></canvas>
+      </div>
+      <div class="lab-controles">
+        <div class="lab-grupo">
+          <span>Color:</span>
+          <span class="swatch sel" style="background:#7C3AED" data-color="#7C3AED" onclick="elegirColor(this)"></span>
+          <span class="swatch" style="background:#10B981" data-color="#10B981" onclick="elegirColor(this)"></span>
+          <span class="swatch" style="background:#06B6D4" data-color="#06B6D4" onclick="elegirColor(this)"></span>
+          <span class="swatch" style="background:#FACC15" data-color="#FACC15" onclick="elegirColor(this)"></span>
+          <span class="swatch" style="background:#EF4444" data-color="#EF4444" onclick="elegirColor(this)"></span>
+          <span class="swatch" style="background:#0F172A" data-color="#0F172A" onclick="elegirColor(this)"></span>
+        </div>
+        <div class="lab-grupo">
+          <span>Grosor:</span>
+          <input type="range" min="2" max="26" value="6" class="lab-slider" id="grosor"/>
+          <span id="grosor-val">6</span>
+        </div>
+        <button class="lab-btn" onclick="cambiarHerramienta('lapiz')" id="btn-lapiz">✏️ Lápiz</button>
+        <button class="lab-btn" onclick="cambiarHerramienta('linea')" id="btn-linea">📏 Línea recta</button>
+        <button class="lab-btn" onclick="limpiarLienzo()">🗑️ Limpiar</button>
+        <button class="lab-btn" onclick="guardarLienzo()">💾 Guardar PNG</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 4: MINI GEOGEBRA -->
+  <div class="seccion seccion-geo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📐</span>
+      <h3>Plano Interactivo · Como en GeoGebra</h3>
+      <small>🎯 Haz clic en el plano para ubicar puntos con coordenadas (x, y)</small>
+    </div>
+
+
+    <div class="geo-consigna">
+      🧩 <strong>Reto de precisión:</strong> ubica los puntos A(4,3), B(-4,3), C(-4,-3) y D(4,-3). Si lo haces bien, formarás un rectángulo perfecto.
+    </div>
+
+
+    <div class="geo-wrap">
+      <div class="plano-marco">
+        <canvas id="plano" width="880" height="460"></canvas>
+      </div>
+      <div class="geo-panel">
+        <div class="geo-coord" id="coord-actual">Punto: ( — , — )</div>
+        <div class="geo-lista" id="lista-puntos"></div>
+        <div class="lab-controles" style="padding:12px">
+          <button class="lab-btn" onclick="comprobarRectangulo()" style="background:linear-gradient(135deg,var(--tec-cyan),var(--tec-azul));box-shadow:0 3px 0 #1D4ED8">✅ Comprobar mi rectángulo</button>
+          <button class="lab-btn" onclick="borrarPuntos()" style="background:linear-gradient(135deg,var(--tec-rojo),var(--tec-naranja));box-shadow:0 3px 0 #991B1B">🗑️ Borrar puntos</button>
+        </div>
+        <div id="geo-mensaje" style="margin-top:12px;font-weight:800;font-size:.9rem;min-height:24px"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 5: COMPARADOR VECTOR vs MAPA DE BITS -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🔍</span>
+      <h3>Vectores vs. Mapa de Bits · Descubre la diferencia</h3>
+      <small>🔎 Mueve la lupa y observa qué pasa con cada tipo de imagen</small>
+    </div>
+
+
+    <div class="comparador-grid">
+      <div class="comp-card comp-vector">
+        <h4>🔷 Vector (CorelDRAW)</h4>
+        <div class="comp-sub">HECHO DE FÓRMULAS MATEMÁTICAS</div>
+        <svg class="comp-svg" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet">
+          <g id="svg-vector">
+            <circle cx="60" cy="60" r="30" fill="#7C3AED"/>
+            <rect x="110" y="35" width="50" height="50" rx="6" fill="#10B981"/>
+            <path d="M20 105 Q 100 85 180 105" stroke="#06B6D4" stroke-width="5" fill="none"/>
+          </g>
+        </svg>
+        <div class="zoom-lupa">
+          🔍 Zoom <input type="range" min="100" max="400" value="100" id="zoom-vector" oninput="aplicarZoomVector()"/> <span id="zoom-vector-val">100%</span>
+        </div>
+        <ul style="margin-top:12px">
+          <li>Escala a cualquier tamaño sin pixelarse</li>
+          <li>Ideal para logos, rótulos e íconos</li>
+          <li>Pesa poco y es fácil de editar</li>
+        </ul>
+      </div>
+
+
+      <div class="comp-card comp-bitmap">
+        <h4>📷 Mapa de bits (foto)</h4>
+        <div class="comp-sub">HECHO DE CUADRITOS LLAMADOS PÍXELES</div>
+        <svg class="comp-svg" viewBox="0 0 200 120" preserveAspectRatio="none">
+          <g id="svg-bitmap" shape-rendering="crispEdges">
+            <rect x="30" y="30" width="20" height="20" fill="#7C3AED"/><rect x="50" y="30" width="20" height="20" fill="#8B5CF6"/><rect x="70" y="30" width="20" height="20" fill="#7C3AED"/>
+            <rect x="30" y="50" width="20" height="20" fill="#8B5CF6"/><rect x="50" y="50" width="20" height="20" fill="#7C3AED"/><rect x="70" y="50" width="20" height="20" fill="#8B5CF6"/>
+            <rect x="110" y="50" width="20" height="20" fill="#10B981"/><rect x="130" y="50" width="20" height="20" fill="#34D399"/><rect x="150" y="50" width="20" height="20" fill="#10B981"/>
+            <rect x="110" y="70" width="20" height="20" fill="#34D399"/><rect x="130" y="70" width="20" height="20" fill="#10B981"/><rect x="150" y="70" width="20" height="20" fill="#34D399"/>
+          </g>
+        </svg>
+        <div class="zoom-lupa">
+          🔍 Zoom <input type="range" min="100" max="400" value="100" id="zoom-bitmap" oninput="aplicarZoomBitmap()"/> <span id="zoom-bitmap-val">100%</span>
+        </div>
+        <ul style="margin-top:12px">
+          <li>Reproduce muy bien las fotografías</li>
+          <li>Al ampliar se notan los cuadritos</li>
+          <li>Ocupa más espacio de almacenamiento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECCIÓN 6: RETO DE DISEÑO -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto de Diseño · Mi identidad visual</h3>
+      <small>✏️ Planifica tu diseño antes de abrir el computador</small>
+    </div>
+    <div class="reto-box">
+      <div class="reto-titulo">🏆 Misión: diseña la marca de tu proyecto tecnológico</div>
+      <div class="linea"><input type="text" placeholder="1. Nombre de mi proyecto o marca..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="2. Qué representa mi logo (forma principal)..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="3. Los 3 colores que usaré y por qué..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="4. ¿Usaré vectores o mapa de bits? ¿Por qué?..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="cc-caja">
+        <p>💬 Intercambia tu boceto con un compañero y evalúen: ¿se entiende el mensaje? ¿los colores combinan? El buen diseño se mejora en equipo.</p>
+      </div>
+    </div>
+    <button class="btn-completar" onclick="completarMision()">🏁 Completar mi misión de diseño</button>
+  </div>
+
+
+  <!-- AUTOEVALUACIÓN -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Autoevaluación · ¿Qué logré esta semana?</h3>
+      <small>✅ Marca lo que ya dominas y verás tu avance real</small>
+    </div>
+
+
+    <div class="auto-grid" id="auto-grid">
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Diferencio entre imagen vectorial y mapa de bits</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Reconozco para qué sirve el boceto o sketch</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Identifico los tres tipos de dibujo 3D (isométrico, perspectiva, axonométrico)</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Ubico puntos en el plano cartesiano con coordenadas (x, y)</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Sé qué hace GeoGebra y qué hace CorelDRAW</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Elijo máximo 3 colores coherentes para mi logo</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Explico por qué un logo debe ser vectorial</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Guardé mi boceto en el laboratorio de dibujo</label>
+    </div>
+    <div class="auto-total" id="auto-total">0 de 8 logros conseguidos</div>
+  </div>
+
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre del Diseñador</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos del Mundo del Diseño</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🍎</span>
+      <div><strong>El logo más famoso se hizo con una manzana mordida:</strong> Rob Janoff diseñó el logo de Apple en 1977. Hoy es reconocible sin leer ni una sola letra: eso es poder del diseño. 🍏</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🇪🇸</span>
+      <div><strong>GeoGebra nació en España:</strong> Lo creó Markus Hohenwarter en 2001 como proyecto universitario. Hoy lo usan millones de estudiantes en más de 100 idiomas, gratis. 🌍</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🐝</span>
+      <div><strong>CorelDRAW es canadiense:</strong> Salió al mercado en 1989 y se usó para diseñar desde rótulos de tiendas hasta empaques. En Chichalá muchos letreros de tienda podrían rediseñarse aquí. 🏪</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">📏</span>
+      <div><strong>Tu celular tiene millones de píxeles:</strong> Una foto de 12 megapíxeles guarda unos 12.000.000 de cuadritos de color. Por eso una foto pesa mucho más que un logo vectorial. 📱</div>
+    </div>
+  </div>
+
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🎨</span>
+    <p>Completó con éxito la <strong>Semana 2 · De la Idea al Diseño</strong> con creatividad, precisión y criterio visual.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">8° o 9°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--tec-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🎨 Diseñar es pensar con las manos · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+// Abrir cofre
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+
+// Completar misión
+function completarMision(){
+  const piezas = document.querySelectorAll('.pieza');
+  piezas.forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '8° o 9°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+
+// Crear confeti
+function crearConfeti(){
+  const colores = ['#10B981','#06B6D4','#2563EB','#7C3AED','#FACC15'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+
+// ══════════════ LABORATORIO DE DIBUJO ══════════════
+const lienzo = document.getElementById('lienzo');
+const ctxL = lienzo.getContext('2d');
+let dibujando = false;
+let herramienta = 'lapiz';
+let colorActual = '#7C3AED';
+let puntoInicio = null;
+let snapshot = null;
+
+
+function grosorActual(){ return parseInt(document.getElementById('grosor').value, 10); }
+
+
+document.getElementById('grosor').addEventListener('input', function(){
+  document.getElementById('grosor-val').textContent = this.value;
+});
+
+
+function elegirColor(el){
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('sel'));
+  el.classList.add('sel');
+  colorActual = el.dataset.color;
+}
+
+
+function cambiarHerramienta(nueva){
+  herramienta = nueva;
+  document.getElementById('btn-lapiz').style.opacity = nueva === 'lapiz' ? '1' : '.55';
+  document.getElementById('btn-linea').style.opacity = nueva === 'linea' ? '1' : '.55';
+}
+
+
+function posicionCanvas(evento){
+  const rect = lienzo.getBoundingClientRect();
+  const clienteX = evento.touches ? evento.touches[0].clientX : evento.clientX;
+  const clienteY = evento.touches ? evento.touches[0].clientY : evento.clientY;
+  return {
+    x: (clienteX - rect.left) * (lienzo.width / rect.width),
+    y: (clienteY - rect.top) * (lienzo.height / rect.height)
+  };
+}
+
+
+function iniciarTrazo(evento){
+  evento.preventDefault();
+  dibujando = true;
+  const p = posicionCanvas(evento);
+  puntoInicio = p;
+  if(herramienta === 'lapiz'){
+    ctxL.beginPath();
+    ctxL.moveTo(p.x, p.y);
+  } else {
+    snapshot = ctxL.getImageData(0, 0, lienzo.width, lienzo.height);
+  }
+}
+
+
+function trazar(evento){
+  if(!dibujando) return;
+  evento.preventDefault();
+  const p = posicionCanvas(evento);
+  ctxL.strokeStyle = colorActual;
+  ctxL.lineWidth = grosorActual();
+  ctxL.lineCap = 'round';
+  ctxL.lineJoin = 'round';
+  if(herramienta === 'lapiz'){
+    ctxL.lineTo(p.x, p.y);
+    ctxL.stroke();
+  } else {
+    ctxL.putImageData(snapshot, 0, 0);
+    ctxL.beginPath();
+    ctxL.moveTo(puntoInicio.x, puntoInicio.y);
+    ctxL.lineTo(p.x, p.y);
+    ctxL.stroke();
+  }
+}
+
+
+function terminarTrazo(){ dibujando = false; }
+
+
+lienzo.addEventListener('mousedown', iniciarTrazo);
+lienzo.addEventListener('mousemove', trazar);
+window.addEventListener('mouseup', terminarTrazo);
+lienzo.addEventListener('touchstart', iniciarTrazo, {passive:false});
+lienzo.addEventListener('touchmove', trazar, {passive:false});
+lienzo.addEventListener('touchend', terminarTrazo);
+
+
+function limpiarLienzo(){
+  ctxL.clearRect(0, 0, lienzo.width, lienzo.height);
+}
+
+
+function guardarLienzo(){
+  const enlace = document.createElement('a');
+  const nombre = document.getElementById('input-nombre').value.trim() || 'boceto';
+  enlace.download = `boceto-${nombre.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.png`;
+  enlace.href = lienzo.toDataURL('image/png');
+  enlace.click();
+  crearConfeti();
+}
+
+
+// ══════════════ PLANO CARTESIANO INTERACTIVO ══════════════
+const plano = document.getElementById('plano');
+const ctxP = plano.getContext('2d');
+const ESCALA = 40;            // píxeles por unidad
+const ORIGIN_X = plano.width / 2;
+const ORIGIN_Y = plano.height / 2;
+let puntos = [];
+
+
+function aPantalla(x, y){ return { px: ORIGIN_X + x*ESCALA, py: ORIGIN_Y - y*ESCALA }; }
+function aUnidad(px, py){ return { x: Math.round((px - ORIGIN_X)/ESCALA), y: Math.round((ORIGIN_Y - py)/ESCALA) }; }
+
+
+function dibujarPlano(){
+  ctxP.clearRect(0, 0, plano.width, plano.height);
+  ctxP.fillStyle = '#F0FDFA';
+  ctxP.fillRect(0, 0, plano.width, plano.height);
+
+
+  // Cuadrícula
+  ctxP.strokeStyle = 'rgba(6,182,212,.22)';
+  ctxP.lineWidth = 1;
+  for(let u = -11; u <= 11; u++){
+    const v = aPantalla(u, 0);
+    ctxP.beginPath(); ctxP.moveTo(v.px, 0); ctxP.lineTo(v.px, plano.height); ctxP.stroke();
+    const h = aPantalla(0, u);
+    ctxP.beginPath(); ctxP.moveTo(0, h.py); ctxP.lineTo(plano.width, h.py); ctxP.stroke();
+  }
+
+
+  // Ejes
+  ctxP.strokeStyle = '#0E7490';
+  ctxP.lineWidth = 2;
+  ctxP.beginPath(); ctxP.moveTo(0, ORIGIN_Y); ctxP.lineTo(plano.width, ORIGIN_Y); ctxP.stroke();
+  ctxP.beginPath(); ctxP.moveTo(ORIGIN_X, 0); ctxP.lineTo(ORIGIN_X, plano.height); ctxP.stroke();
+
+
+  // Etiquetas de escala
+  ctxP.fillStyle = '#0E7490';
+  ctxP.font = 'bold 13px Nunito, sans-serif';
+  for(let u = -10; u <= 10; u += 2){
+    if(u === 0) continue;
+    const vx = aPantalla(u, 0);
+    ctxP.fillText(String(u), vx.px - 6, ORIGIN_Y + 16);
+    const vy = aPantalla(0, u);
+    ctxP.fillText(String(u), ORIGIN_X + 8, vy.py + 4);
+  }
+  ctxP.font = 'bold 15px Fredoka, sans-serif';
+  ctxP.fillText('X', plano.width - 20, ORIGIN_Y - 10);
+  ctxP.fillText('Y', ORIGIN_X + 10, 18);
+
+
+  // Polígono formado por los puntos
+  if(puntos.length > 2){
+    ctxP.strokeStyle = 'rgba(124,58,237,.75)';
+    ctxP.lineWidth = 3;
+    ctxP.beginPath();
+    puntos.forEach((p, i) => {
+      const q = aPantalla(p.x, p.y);
+      if(i === 0) ctxP.moveTo(q.px, q.py); else ctxP.lineTo(q.px, q.py);
+    });
+    ctxP.closePath();
+    ctxP.stroke();
+  }
+
+
+  // Puntos
+  puntos.forEach((p, i) => {
+    const q = aPantalla(p.x, p.y);
+    ctxP.fillStyle = '#7C3AED';
+    ctxP.beginPath();
+    ctxP.arc(q.px, q.py, 7, 0, Math.PI*2);
+    ctxP.fill();
+    ctxP.fillStyle = '#FFFFFF';
+    ctxP.font = 'bold 11px Nunito, sans-serif';
+    ctxP.fillText(String.fromCharCode(65 + i), q.px - 4, q.py - 12);
+  });
+}
+
+
+function registrarPunto(evento){
+  evento.preventDefault();
+  const rect = plano.getBoundingClientRect();
+  const clienteX = evento.touches ? evento.changedTouches[0].clientX : evento.clientX;
+  const clienteY = evento.touches ? evento.changedTouches[0].clientY : evento.clientY;
+  const px = (clienteX - rect.left) * (plano.width / rect.width);
+  const py = (clienteY - rect.top) * (plano.height / rect.height);
+  const u = aUnidad(px, py);
+  if(Math.abs(u.x) > 10 || Math.abs(u.y) > 10) return;
+  puntos.push({x: u.x, y: u.y});
+  document.getElementById('coord-actual').textContent = `Punto ${String.fromCharCode(65 + puntos.length - 1)}: ( ${u.x} , ${u.y} )`;
+  refrescarLista();
+  dibujarPlano();
+}
+
+
+function refrescarLista(){
+  document.getElementById('lista-puntos').innerHTML = puntos.map((p, i) =>
+    `<span class="geo-chip">${String.fromCharCode(65+i)}(${p.x},${p.y})</span>`).join('');
+}
+
+
+plano.addEventListener('pointerdown', registrarPunto);
+
+
+function borrarPuntos(){
+  puntos = [];
+  refrescarLista();
+  document.getElementById('coord-actual').textContent = 'Punto: ( — , — )';
+  document.getElementById('geo-mensaje').textContent = '';
+  document.getElementById('geo-mensaje').style.color = '';
+  dibujarPlano();
+}
+
+
+function comprobarRectangulo(){
+  const mensaje = document.getElementById('geo-mensaje');
+  const objetivo = [{x:4,y:3},{x:-4,y:3},{x:-4,y:-3},{x:4,y:-3}];
+  if(puntos.length < 4){
+    mensaje.textContent = '⚠️ Te faltan puntos: necesitas los cuatro vértices A, B, C y D.';
+    mensaje.style.color = '#B45309';
+    return;
+  }
+  const aciertos = objetivo.filter(o => puntos.some(p => p.x === o.x && p.y === o.y)).length;
+  if(aciertos === 4){
+    mensaje.textContent = '🎉 ¡Perfecto! Los cuatro puntos forman un rectángulo de 8 × 6 unidades. Así se diseña con precisión en GeoGebra.';
+    mensaje.style.color = '#047857';
+    crearConfeti();
+  } else {
+    mensaje.textContent = `🔎 Llevas ${aciertos} de 4 vértices correctos. Revisa las coordenadas: recuerda que la izquierda es negativa y abajo también.`;
+    mensaje.style.color = '#B91C1C';
+  }
+}
+
+
+// ══════════════ COMPARADOR VECTOR vs MAPA DE BITS ══════════════
+function aplicarZoomVector(){
+  const z = parseInt(document.getElementById('zoom-vector').value, 10);
+  document.getElementById('zoom-vector-val').textContent = z + '%';
+  const g = document.getElementById('svg-vector');
+  g.setAttribute('transform', `translate(${100 - z}, ${60 - z*0.6}) scale(${z/100})`);
+}
+
+
+function aplicarZoomBitmap(){
+  const z = parseInt(document.getElementById('zoom-bitmap').value, 10);
+  document.getElementById('zoom-bitmap-val').textContent = z + '%';
+  const g = document.getElementById('svg-bitmap');
+  g.setAttribute('transform', `translate(${100 - z}, ${60 - z*0.6}) scale(${z/100})`);
+}
+
+
+// ══════════════ AUTOEVALUACIÓN ══════════════
+function actualizarAuto(checkbox){
+  checkbox.closest('.auto-item').classList.toggle('marcado', checkbox.checked);
+  const total = document.querySelectorAll('#auto-grid input:checked').length;
+  const texto = document.getElementById('auto-total');
+  texto.textContent = `${total} de 8 logros conseguidos`;
+  if(total === 8){
+    texto.textContent = '🏆 ¡Los 8 logros conseguidos! Eres un diseñador completo.';
+    crearConfeti();
+  }
+}
+
+
+// ══════════════ EVALUACIÓN DIAGNÓSTICA ══════════════
+const preguntasQuiz = [
+  {
+    seccion: 'Fundamentos del Diseño',
+    texto: '¿Qué es un boceto o sketch?',
+    opciones: ['Un dibujo final listo para imprimir', 'Un dibujo rápido a mano alzada para pensar una idea', 'Un archivo de CorelDRAW guardado', 'Una fotografía editada'],
+    correcta: 1,
+    explicacion: 'El boceto es el primer registro visual de una idea: rápido, imperfecto y pensado para mejorar después.'
+  },
+  {
+    seccion: 'Dibujo 3D',
+    texto: '¿Cuál NO es un tipo de dibujo 3D?',
+    opciones: ['Isométrico', 'En perspectiva', 'Axonométrico', 'Topográfico plano'],
+    correcta: 3,
+    explicacion: 'Isométrico, perspectiva y axonométrico representan volumen; el plano topográfico describe superficies en 2D.'
+  },
+  {
+    seccion: 'Vectores y Píxeles',
+    texto: 'La principal ventaja de una imagen vectorial es que:',
+    opciones: ['Ocupa siempre más espacio que una foto', 'Se puede ampliar a cualquier tamaño sin perder calidad', 'Solo se puede abrir en Photoshop', 'No admite colores'],
+    correcta: 1,
+    explicacion: 'El vector se define con fórmulas matemáticas, por eso escala sin pixelarse: ideal para logos y rótulos.'
+  },
+  {
+    seccion: 'Vectores y Píxeles',
+    texto: 'Si amplías mucho una fotografía digital verás cuadritos. Eso ocurre porque:',
+    opciones: ['Es una imagen vectorial', 'Está compuesta por píxeles de número fijo', 'Tiene demasiados colores', 'Fue hecha en GeoGebra'],
+    correcta: 1,
+    explicacion: 'El mapa de bits tiene resolución fija: al agrandarlo, cada píxel se hace visible y la imagen se dentada.'
+  },
+  {
+    seccion: 'Herramientas Digitales',
+    texto: '¿Para qué se usa principalmente CorelDRAW?',
+    opciones: ['Para calcular hojas de vida', 'Para diseño gráfico vectorial: logos, afiches y rótulos', 'Para regar cultivos', 'Para editar videos musicales'],
+    correcta: 1,
+    explicacion: 'CorelDRAW trabaja con curvas y nodos, perfecto para identidad visual y material gráfico.'
+  },
+  {
+    seccion: 'Herramientas Digitales',
+    texto: 'GeoGebra es un software que combina:',
+    opciones: ['Geometría, álgebra y cálculo de forma dinámica', 'Solo juegos de acción', 'Únicamente procesador de texto', 'Edición de sonido profesional'],
+    correcta: 0,
+    explicacion: 'GeoGebra permite construir figuras que cambian en tiempo real y relacionarlas con ecuaciones.'
+  },
+  {
+    seccion: 'Plano Cartesiano',
+    texto: '¿En qué cuadrante está el punto (-4, 3)?',
+    opciones: ['I cuadrante', 'II cuadrante', 'III cuadrante', 'IV cuadrante'],
+    correcta: 1,
+    explicacion: 'X negativa y Y positiva ubican el punto en el segundo cuadrante (arriba a la izquierda).'
+  },
+  {
+    seccion: 'Plano Cartesiano',
+    texto: 'Los puntos A(4,3), B(-4,3), C(-4,-3) y D(4,-3) forman:',
+    opciones: ['Un triángulo', 'Un rectángulo de 8 × 6 unidades', 'Una circunferencia', 'Una línea recta'],
+    correcta: 1,
+    explicacion: 'Las bases miden 8 unidades y la altura 6: es un rectángulo centrado en el origen.'
+  },
+  {
+    seccion: 'Teoría del Color',
+    texto: 'Al diseñar un logo se recomienda:',
+    opciones: ['Usar todos los colores disponibles', 'Usar máximo 3 colores que combinen entre sí', 'Usar solo gris', 'Evitar siempre el contraste'],
+    correcta: 1,
+    explicacion: 'Pocos colores bien elegidos hacen el logo memorable y legible en cualquier tamaño.'
+  },
+  {
+    seccion: 'Lectura de Caso',
+    texto: 'Lee: "Doña Marta necesita un rótulo para su tienda que se vea igual de nítido en un volante pequeño y en un letrero grande." ¿Qué formato conviene?',
+    opciones: ['Una foto en JPG', 'Un diseño vectorial', 'Un documento de texto', 'Un audio grabado'],
+    correcta: 1,
+    explicacion: 'Solo el vector mantiene nitidez en ambos tamaños sin perder calidad.'
+  },
+  {
+    seccion: 'Lectura de Caso',
+    texto: 'Lee: "Quieres mostrar cómo queda tu proyecto visto desde tres caras a la vez." ¿Qué técnica usas?',
+    opciones: ['Dibujo isométrico', 'Una lista de precios', 'Un mapa de bits ampliado', 'Un correo electrónico'],
+    correcta: 0,
+    explicacion: 'El isométrico muestra ancho, alto y profundidad en un solo dibujo, muy usado en prototipos.'
+  },
+  {
+    seccion: 'Actitud de Diseñador',
+    texto: 'Tu compañero critica tu logo. La mejor reacción es:',
+    opciones: ['Ignorarla y no cambiar nada', 'Escuchar, analizar y ajustar lo que mejore el diseño', 'Borrar todo y rendirse', 'Cambiar de proyecto cada día'],
+    correcta: 1,
+    explicacion: 'El diseño se construye con retroalimentación: escuchar y iterar es parte del proceso profesional.'
+  }
+];
+
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente ojo de diseñador!' : porcentaje >= 60 ? '¡Buen avance, futuro diseñador técnico!' : '¡Sigue explorando y fortaleciendo tus conceptos!';
+
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 10) return 'Dominas el diseño y la representación de ideas: listo para trabajar en GeoGebra y CorelDRAW.';
+  if(aciertos >= 7) return 'Repasa vectores frente a mapa de bits y el plano cartesiano para afinar tu criterio de diseño.';
+  return 'Refuerza los conceptos de boceto, dibujo 3D y tipos de imagen antes de continuar con la semana 3.';
+}
+
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '8° o 9°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA DE DISEÑO Y REPRESENTACIÓN DE IDEAS - SEMANA 2',
+    'Tecnología e Informática · Grados 8° y 9°',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace =     document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-semana2-diseño-${nombre.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+
+// ══════════════ INICIALIZACIÓN ══════════════
+document.addEventListener('DOMContentLoaded', function(){
+  dibujarPlano();
+  cargarPregunta();
+  cambiarHerramienta('lapiz');
+  console.log('🎨 Tecnología Aventura · Semana 2 cargado correctamente. ¡A diseñar!');
+});
+</script>
+
+
+</body>
+</html>

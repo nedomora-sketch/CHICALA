@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tangram English - Level 1: Silent Mode</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --board-bg: #ffffff;
+            --piece-border: #333;
+            --highlight: #4CAF50;
+            --error: #FF5252;
+            --text-color: #2c3e50;
+        }
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+
+        h1 { margin: 0; font-size: 1.8rem; color: #333; }
+        p { margin: 5px 0 0; color: #666; }
+
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+
+        /* Target Area (Silhouette) */
+        .target-area {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            background-color: var(--board-bg);
+            border: 3px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+
+        .target-label {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #888;
+            position: absolute;
+            bottom: 10px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+
+        /* Silhouette SVG */
+        .silhouette {
+            width: 280px;
+            height: 280px;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .silhouette svg {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* Pieces Area */
+        .pieces-area {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            min-height: 150px;
+            padding: 20px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+
+        /* Tangram Pieces */
+        .piece {
+            width: 50px;
+            height: 50px;
+            cursor: grab;
+            position: absolute; /* Will be managed by JS */
+            transition: transform 0.2s ease, left 0.08s ease, top 0.08s ease;
+            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1));
+            z-index: 10;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+            outline: none;
+        }
+
+
+        .piece:active {
+            cursor: grabbing;
+            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1)) scale(1.05);
+        }
+
+
+        .piece:focus-visible {
+            outline: none;
+        }
+
+
+        .piece.optional {
+            opacity: 0.45;
+        }
+
+
+        /* SVG Paths for Tangram Pieces */
+        svg { width: 100%; height: 100%; }
+        
+        /* Success Animation */
+        .success-msg {
+            position: fixed;
+            top: 20px;
+            background: var(--highlight);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-100px);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+
+        .success-msg.show {
+            transform: translateY(0);
+        }
+
+
+        /* Controls */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+
+        .rotation-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+
+        .rotation-control input {
+            width: 220px;
+            accent-color: var(--highlight);
+        }
+
+
+        .rotation-control output {
+            min-width: 42px;
+            font-weight: bold;
+        }
+
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            transition: background 0.2s;
+        }
+
+
+        button:hover { background: #2980b9; }
+        button.secondary { background: #95a5a6; }
+        button.secondary:hover { background: #7f8c8d; }
+
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .target-area { width: 280px; height: 280px; }
+            .silhouette { width: 240px; height: 240px; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <h1>Tangram English: Level 1</h1>
+        <p>Arrastra para mover · Selecciona una pieza · Usa el control para girar libremente · Clic derecho para voltear</p>
+    </header>
+
+
+    <div class="success-msg" id="successMsg">Perfect! Well done!</div>
+
+
+    <div class="game-container">
+        <div class="target-area" id="dropZone">
+            <!-- Silhouette placeholder (will be drawn by JS) -->
+            <div id="silhouetteContainer" class="silhouette"></div>
+            <span class="target-label" id="animalName">Whale</span>
+        </div>
+
+
+        <div class="pieces-area" id="piecesArea">
+            <!-- Todas las piezas se cargan aquí; las necesarias quedan resaltadas. -->
+        </div>
+
+
+        <label class="rotation-control" for="rotationControl">
+            Giro de la pieza seleccionada
+            <input id="rotationControl" type="range" min="0" max="359" value="0" step="1" disabled>
+            <output id="rotationValue" for="rotationControl">0°</output>
+        </label>
+
+
+        <div class="controls">
+            <button onclick="resetLevel()">↺ Reset Puzzle</button>
+            <button class="secondary" onclick="toggleGuide()">👁️ Guía</button>
+            <button class="secondary" onclick="nextAnimal()">➡️ Next Animal</button>
+        </div>
+    </div>
+
+
+    <script>
+        // ══════════════════════════════════════════════════════════
+        //  1. FIGURAS — construidas SIEMPRE con las 7 piezas reales
+        //  del tangram (ver sección 3). No son dibujos libres: son
+        //  ensamblajes verificados geométricamente (sin huecos ni
+        //  superposiciones) que usan las medidas reales de cada pieza.
+        // ══════════════════════════════════════════════════════════
+        const animals = [
+            { id: 'house',  name: 'House',  pieces: ['square','small-1'] },
+            { id: 'boat',   name: 'Boat',   pieces: ['parallelogram','small-1'] },
+            { id: 'fish',   name: 'Fish',   pieces: ['medium','small-1','small-2'] },
+            { id: 'rocket', name: 'Rocket', pieces: ['square','small-1','small-2'] },
+            { id: 'plane',  name: 'Plane',  pieces: ['big-1','small-1'] },
+            { id: 'bird',   name: 'Bird',   pieces: ['small-1','small-2'] }
+        ];
+
+
+        // ══════════════════════════════════════════════════════════
+        //  2. ★ SOLUCIÓN GEOMÉTRICA ★
+        //  Para cada figura se indica dónde va cada pieza (x, y =
+        //  esquina del ángulo recto de la pieza; rotate = grados;
+        //  flip = espejo, solo aplica al paralelogramo). La silueta
+        //  que ve el alumno es literalmente el resultado de dibujar
+        //  estas piezas juntas (ver renderAnimalSilhouette), por lo
+        //  que siempre es una figura que SÍ se puede armar con las
+        //  7 piezas del tangram.
+        // ══════════════════════════════════════════════════════════
+        const tangramTargetGuide = {
+            house:  [
+                { id: 'square', x: 140, y: 160, rotate: 0 },
+                { id: 'small-1', x: 160, y: 131.72, rotate: 45 }
+            ],
+            boat: [
+                { id: 'parallelogram', x: 130, y: 230, rotate: 315 },
+                { id: 'small-1', x: 186.57, y: 173.44, rotate: 45 }
+            ],
+            fish: [
+                { id: 'medium', x: 200, y: 200, rotate: 135 },
+                { id: 'small-1', x: 160, y: 160, rotate: 180 },
+                { id: 'small-2', x: 160, y: 240, rotate: 90 }
+            ],
+            rocket: [
+                { id: 'square', x: 140, y: 140, rotate: 0 },
+                { id: 'small-1', x: 160, y: 111.72, rotate: 45 },
+                { id: 'small-2', x: 160, y: 208.28, rotate: 225 }
+            ],
+            plane: [
+                { id: 'big-1', x: 160, y: 143.43, rotate: 45 },
+                { id: 'small-1', x: 160, y: 200, rotate: 225 }
+            ],
+            bird: [
+                { id: 'small-1', x: 131.72, y: 171.72, rotate: 45 },
+                { id: 'small-2', x: 188.28, y: 171.72, rotate: 45 }
+            ]
+        };
+
+
+        // ══════════════════════════════════════════════════════════
+        //  4. PIEZAS (invariante, mismo archivo original)
+        // ══════════════════════════════════════════════════════════
+        const tangramPieces = [
+            { id: 'big-1', type: 'triangle', viewBox: '0 0 120 120', points: '0,0 120,0 0,120', width: 120, height: 120, color: '#FF6B6B' },
+            { id: 'big-2', type: 'triangle', viewBox: '0 0 120 120', points: '120,120 0,120 120,0', width: 120, height: 120, color: '#4ECDC4' },
+            { id: 'medium', type: 'triangle', viewBox: '0 0 84.85 84.85', points: '0,84.85 84.85,84.85 0,0', width: 84.85, height: 84.85, color: '#FFD93D' },
+            { id: 'small-1', type: 'triangle', viewBox: '0 0 60 60', points: '0,60 60,60 0,0', width: 60, height: 60, color: '#6C5CE7' },
+            { id: 'small-2', type: 'triangle', viewBox: '0 0 60 60', points: '60,0 0,0 60,60', width: 60, height: 60, color: '#FFEAA7' },
+            { id: 'square', type: 'square', viewBox: '0 0 62 62', width: 62, height: 62, color: '#A29BFE' },
+            { id: 'parallelogram', type: 'parallelogram', viewBox: '0 0 120 60', points: '0,0 60,0 120,60 60,60', width: 120, height: 60, color: '#FD79A8' }
+        ];
+
+
+        // ══════════════════════════════════════════════════════════
+        //  5. ESTADO
+        // ══════════════════════════════════════════════════════════
+        let currentAnimalIndex = 0;
+        let droppedPiecesCount = 0;
+        let totalPieces = 0;
+        let requiredPieceIds = new Set();
+        let selectedPiece = null;
+        let showGuide = false;
+
+
+        // ══════════════════════════════════════════════════════════
+        //  6. DOM
+        // ══════════════════════════════════════════════════════════
+        const dropZone = document.getElementById('dropZone');
+        const piecesArea = document.getElementById('piecesArea');
+        const animalNameEl = document.getElementById('animalName');
+        const silhouetteContainer = document.getElementById('silhouetteContainer');
+        const successMsg = document.getElementById('successMsg');
+        const rotationControl = document.getElementById('rotationControl');
+        const rotationValue = document.getElementById('rotationValue');
+
+
+        // ══════════════════════════════════════════════════════════
+        //  7. ACTUALIZACIÓN DE TRANSFORM DE PIEZA
+        // ══════════════════════════════════════════════════════════
+        function updatePieceTransform(piece) {
+            piece.style.setProperty('--rotation', `${piece.dataset.rotation}deg`);
+            piece.style.setProperty('--flip', piece.dataset.flip);
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  8. SELECCIÓN DE PIEZA
+        // ══════════════════════════════════════════════════════════
+        function selectPiece(e) {
+            const piece = e.currentTarget;
+            selectedPiece = piece;
+            rotationControl.disabled = false;
+            rotationControl.value = piece.dataset.rotation;
+            rotationValue.textContent = `${piece.dataset.rotation}°`;
+        }
+
+
+        function setPieceRotation(piece, rotation) {
+            const normalizedRotation = ((rotation % 360) + 360) % 360;
+            piece.dataset.rotation = String(normalizedRotation);
+            updatePieceTransform(piece);
+            rotationControl.value = String(normalizedRotation);
+            rotationValue.textContent = `${normalizedRotation}°`;
+        }
+
+
+        function rotatePieceWithWheel(e) {
+            e.preventDefault();
+            const piece = e.currentTarget;
+            selectPiece(e);
+            const step = e.shiftKey ? 1 : 5;
+            const direction = e.deltaY < 0 ? 1 : -1;
+            setPieceRotation(piece, Number(piece.dataset.rotation) + direction * step);
+        }
+
+
+        function flipPiece(e) {
+            e.preventDefault();
+            const piece = e.currentTarget;
+            piece.dataset.flip = piece.dataset.flip === '1' ? '-1' : '1';
+            updatePieceTransform(piece);
+            selectPiece(e);
+        }
+
+
+        rotationControl.addEventListener('input', () => {
+            if (selectedPiece) setPieceRotation(selectedPiece, Number(rotationControl.value));
+        });
+
+
+        function movePieceWithKeys(e) {
+            const piece = e.currentTarget;
+            const movements = {
+                ArrowUp: [0, -1],
+                ArrowDown: [0, 1],
+                ArrowLeft: [-1, 0],
+                ArrowRight: [1, 0]
+            };
+            const movement = movements[e.key];
+            if (!movement) return;
+
+            e.preventDefault();
+            const step = e.shiftKey ? 10 : 2;
+            const currentLeft = parseFloat(piece.style.left) || 0;
+            const currentTop = parseFloat(piece.style.top) || 0;
+            piece.style.left = `${currentLeft + movement[0] * step}px`;
+            piece.style.top = `${currentTop + movement[1] * step}px`;
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  9. RENDER DE SILUETA ★ GEOMÉTRICAMENTE EXACTA ★
+        //  La silueta blanca/sólida que debe armar el alumno se dibuja
+        //  con las mismas 7 piezas reales del tangram (ver
+        //  tangramTargetGuide), así que SIEMPRE es una figura que se
+        //  puede completar con las piezas. La "Guía" opcional dibuja
+        //  las mismas piezas con color y líneas punteadas encima.
+        // ══════════════════════════════════════════════════════════
+        function renderAnimalSilhouette(animal) {
+            const guide = tangramTargetGuide[animal.id] || [];
+
+            // Capa de respuesta: piezas unidas con relleno sólido y sin
+            // trazo, de modo que las uniones entre piezas no se noten y
+            // el resultado se vea como una sola silueta compacta.
+            const answerMarkup = guide
+                .map(entry => createGhostSVGForPiece(entry.id, entry.x, entry.y, entry.rotate || 0, entry.flip || false, true))
+                .join('');
+
+            // Capa de guía (piezas de colores, solo si el usuario activa "Guía")
+            const ghostMarkup = showGuide
+                ? guide.map(entry => createGhostSVGForPiece(entry.id, entry.x, entry.y, entry.rotate || 0, entry.flip || false, false)).join('')
+                : '';
+
+            silhouetteContainer.innerHTML = `
+                <svg viewBox="0 0 320 320" aria-label="${animal.name} silhouette" role="img">
+                    <rect x="20" y="20" width="280" height="280" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(44,62,80,0.15)" stroke-width="2" stroke-dasharray="8 8"/>
+                    <g>${answerMarkup}</g>
+                    ${ghostMarkup}
+                </svg>
+            `;
+        }
+
+
+        function createGhostSVGForPiece(pieceId, x, y, rotate, flip, solid) {
+            const blueprint = tangramBlueprint[pieceId] || tangramBlueprint['big-1'];
+            // La capa "respuesta" (solid=true) ahora se dibuja como contorno
+            // punteado neutro (sin relleno), mostrando el borde de cada pieza
+            // dentro de la silueta -tal como en la imagen de referencia- en
+            // lugar de una mancha sólida sin divisiones.
+            const style = solid
+                ? { fill: 'rgba(44,62,80,0.05)', stroke: 'rgba(44,62,80,0.55)', strokeWidth: 2 }
+                : (pieceGhostStyles[blueprint.type] || pieceGhostStyles.triangle);
+            const dashAttr = 'stroke-dasharray="5 4"';
+            const flipTransform = flip ? ' scale(-1,1)' : '';
+            const commonTransform = `translate(${x} ${y}) rotate(${rotate})${flipTransform}`;
+
+            if (blueprint.type === 'square') {
+                return `<g transform="${commonTransform}"><rect ${blueprint.rect} fill="${style.fill}" stroke="${style.stroke}" stroke-width="${style.strokeWidth}" ${dashAttr} /></g>`;
+            }
+            return `<g transform="${commonTransform}"><polygon points="${blueprint.points}" fill="${style.fill}" stroke="${style.stroke}" stroke-width="${style.strokeWidth}" ${dashAttr} /></g>`;
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  10. CREAR ELEMENTO DE PIEZA
+        // ══════════════════════════════════════════════════════════
+        function createPieceElement(data, index, isRequired) {
+            const div = document.createElement('div');
+            div.className = `piece ${isRequired ? 'required' : 'optional'}`;
+            div.draggable = true;
+            div.tabIndex = 0;
+            div.title = isRequired ? 'Pieza necesaria · Selecciona para girar' : 'Pieza disponible · Selecciona para usar';
+            div.dataset.type = data.type;
+            div.dataset.pieceId = data.id;
+            div.dataset.index = index;
+            div.dataset.required = isRequired ? 'true' : 'false';
+            div.dataset.rotation = '0';
+            div.dataset.flip = '1';
+            
+            let svgContent = '';
+            if (data.type === 'triangle') {
+                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
+            } else if (data.type === 'square') {
+                svgContent = `<svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="${data.color}"/></svg>`;
+            } else if (data.type === 'parallelogram') {
+                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
+            }
+            
+            div.innerHTML = svgContent;
+            div.addEventListener('click', selectPiece);
+            div.addEventListener('contextmenu', flipPiece);
+            div.addEventListener('wheel', rotatePieceWithWheel, { passive: false });
+            div.addEventListener('keydown', movePieceWithKeys);
+            div.addEventListener('dragstart', dragStart);
+            div.addEventListener('dragend', dragEnd);
+            if (data.width) div.style.width = `${data.width}px`;
+            if (data.height) div.style.height = `${data.height}px`;
+            div.style.left = `${20 + (index % 4) * 135}px`;
+            div.style.top = `${20 + Math.floor(index / 4) * 85}px`;
+            return div;
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  11. CARGAR ANIMAL
+        // ══════════════════════════════════════════════════════════
+        function loadAnimal(index) {
+            const animal = animals[index];
+            animalNameEl.textContent = animal.name;
+            dropZone.style.borderColor = '#ccc';
+            droppedPiecesCount = 0;
+            totalPieces = animal.pieces.length;
+            requiredPieceIds = new Set(animal.pieces);
+            selectedPiece = null;
+            
+            piecesArea.innerHTML = '';
+            renderAnimalSilhouette(animal);
+            
+            tangramPieces.forEach((piece, i) => {
+                const pieceEl = createPieceElement(piece, i, requiredPieceIds.has(piece.id));
+                piecesArea.appendChild(pieceEl);
+            });
+
+            rotationControl.value = '0';
+            rotationControl.disabled = true;
+            rotationValue.textContent = '0°';
+            window.speechSynthesis.cancel();
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  12. DRAG AND DROP
+        // ══════════════════════════════════════════════════════════
+        function setupDragAndDrop() {
+            dropZone.addEventListener('dragover', dragOver);
+            dropZone.addEventListener('drop', drop);
+        }
+
+
+        function dragStart(e) {
+            const piece = e.currentTarget;
+            e.dataTransfer.setData('text/plain', piece.dataset.index);
+            setTimeout(() => piece.style.opacity = '0.5', 0);
+        }
+
+
+        function dragEnd(e) {
+            e.currentTarget.style.opacity = '1';
+        }
+
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+
+        function drop(e) {
+            e.preventDefault();
+            const index = e.dataTransfer.getData('text/plain');
+            const piece = document.querySelector(`.piece[data-index="${index}"]`);
+            
+            if (piece) {
+                const rect = dropZone.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                piece.style.position = 'absolute';
+                piece.style.left = `${x - 25}px`;
+                piece.style.top = `${y - 25}px`;
+                
+                piecesArea.removeChild(piece);
+                dropZone.appendChild(piece);
+
+                droppedPiecesCount = dropZone.querySelectorAll('.piece.required').length;
+                if (droppedPiecesCount === totalPieces) {
+                    checkSuccess();
+                }
+            }
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  13. ÉXITO Y AUDIO
+        // ══════════════════════════════════════════════════════════
+        function checkSuccess() {
+            const requiredPiecesInZone = dropZone.querySelectorAll('.piece.required');
+            if (requiredPiecesInZone.length === totalPieces) {
+                showSuccess();
+            }
+        }
+
+
+        function showSuccess() {
+            successMsg.classList.add('show');
+            const animalName = animals[currentAnimalIndex].name;
+            
+            const utterance = new SpeechSynthesisUtterance(animalName);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  14. CONTROLES
+        // ══════════════════════════════════════════════════════════
+        function resetLevel() {
+            loadAnimal(currentAnimalIndex);
+        }
+
+
+        function nextAnimal() {
+            currentAnimalIndex = (currentAnimalIndex + 1) % animals.length;
+            loadAnimal(currentAnimalIndex);
+        }
+
+
+        function toggleGuide() {
+            showGuide = !showGuide;
+            const animal = animals[currentAnimalIndex];
+            renderAnimalSilhouette(animal);
+        }
+
+
+        function clearPieceSelectionOnOutsideClick(e) {
+            if (e.target.closest('.piece, .rotation-control')) return;
+            selectedPiece = null;
+            rotationControl.disabled = true;
+        }
+
+
+        // ══════════════════════════════════════════════════════════
+        //  15. INICIALIZACIÓN
+        // ══════════════════════════════════════════════════════════
+        // Cada pieza se define como un polígono simple anclado en su
+        // vértice de ángulo recto (0,0), con catetos alineados a los
+        // ejes +x/+y. Así cualquier figura se arma solo con
+        // translate/rotate (y "flip" para el paralelogramo), respetando
+        // las proporciones reales del tangram (U = 40):
+        //   cateto pieza chica = U, cateto mediana = U·√2, cateto grande = 2U.
+        const tangramBlueprint = {
+            'big-1': { type: 'triangle', points: '0,0 80,0 0,80' },
+            'big-2': { type: 'triangle', points: '0,0 80,0 0,80' },
+            medium: { type: 'triangle', points: '0,0 56.57,0 0,56.57' },
+            'small-1': { type: 'triangle', points: '0,0 40,0 0,40' },
+            'small-2': { type: 'triangle', points: '0,0 40,0 0,40' },
+            square: { type: 'square', rect: 'x="0" y="0" width="40" height="40"' },
+            parallelogram: { type: 'parallelogram', points: '0,0 40,0 80,40 40,40' }
+        };
+
+
+        const pieceGhostStyles = {
+            triangle: { fill: 'rgba(52, 152, 219, 0.32)', stroke: '#2980b9', strokeWidth: 2 },
+            square: { fill: 'rgba(155, 89, 182, 0.32)', stroke: '#8e44ad', strokeWidth: 2 },
+            parallelogram: { fill: 'rgba(46, 204, 113, 0.35)', stroke: '#27ae60', strokeWidth: 2 }
+        };
+
+
+        function initGame() {
+            loadAnimal(currentAnimalIndex);
+            setupDragAndDrop();
+            document.addEventListener('pointerdown', clearPieceSelectionOnOutsideClick);
+        }
+
+
+        initGame();
+
+
+    </script>
+</body>
+</html>

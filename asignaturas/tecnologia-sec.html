@@ -553,7 +553,7 @@
     // ══════════════════════════════════════════════
     const GUIAS_BASE = {
         basica: '../guias/tecnologia-sec/grados6-7',
-        media:  '../guias/tecnologia-sec/grados8-9'
+        media:  '../guias/tecnologia-sec/grado8-9'
     };
 
     // ══════════════════════════════════════════════
@@ -615,8 +615,9 @@
 
             for (let s of semanas) {
                 const numPeriodo = idx + 1;
-                const rutaGuia   =
-                    `${baseGuia}/periodo${numPeriodo}/semana${s.semana}.html`;
+                const rutaGuia = nivel === 'media' && numPeriodo === 4
+                    ? `${baseGuia}/pdo4/semana${s.semana}.html`
+                    : `${baseGuia}/periodo${numPeriodo}/semana${s.semana}.html`;
                 const hayGuia    = await existeGuia(rutaGuia);
 
                 const btnGuia = hayGuia ? `

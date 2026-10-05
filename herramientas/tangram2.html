@@ -1,696 +1,521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tangram English - Level 1: Silent Mode</title>
-    <style>
-        :root {
-            --bg-color: #f0f4f8;
-            --board-bg: #ffffff;
-            --piece-border: #333;
-            --highlight: #4CAF50;
-            --error: #FF5252;
-            --text-color: #2c3e50;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tangram English - Level 1</title>
+<style>
+  :root{--highlight:#4CAF50;--text-color:#2c3e50}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4f8;color:var(--text-color);
+       margin:0;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+  header{text-align:center;padding:20px;background:#fff;width:100%;box-shadow:0 2px 5px rgba(0,0,0,.05)}
+  h1{margin:0;font-size:1.8rem;color:#333} p{margin:5px 0 0;color:#666}
+  .game-container{display:flex;flex-direction:column;align-items:center;gap:26px;padding:20px;max-width:1000px;width:100%}
+  .play-row{display:flex;gap:30px;align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%}
+  .col{position:relative}
+  .col-label{position:absolute;top:-24px;left:0;font-size:.85rem;color:#7f8c8d;font-weight:600}
+  .target-area{position:relative;width:320px;height:320px;background:#fff;border:3px dashed #ccc;
+               border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1);overflow:hidden;flex-shrink:0}
+  .target-label{font-size:2rem;font-weight:bold;color:#9aa5b1;position:absolute;top:8px;left:0;right:0;
+                text-align:center;z-index:2;pointer-events:none}
+  .silhouette{position:absolute;inset:0;pointer-events:none;z-index:1}
+  .silhouette svg{width:100%;height:100%}
+  .target-area.wide{width:610px;max-width:100%}
+  .ref-card{position:absolute;top:8px;left:8px;z-index:50;background:#fff;border:2px solid #dfe6ee;border-radius:10px;
+            padding:4px 6px 6px;box-shadow:0 2px 6px rgba(0,0,0,.12);text-align:center}
+  .ref-card[hidden]{display:none}
+  .ref-card span{display:block;font-size:.7rem;font-weight:600;color:#7f8c8d}
+  .ref-card img{width:130px;display:block}
+  .score-box{min-height:1.6em;font-size:1.1rem;font-weight:700;text-align:center}
+  .score-box.good{color:#2e9d4a}.score-box.mid{color:#e08a00}.score-box.low{color:#c0392b}
+  .pieces-area{position:relative;width:320px;height:320px;background:rgba(255,255,255,.85);
+               border:2px solid #dfe6ee;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.08);flex-shrink:0}
+  .piece{cursor:grab;position:absolute;z-index:10;filter:drop-shadow(2px 4px 6px rgba(0,0,0,.2));outline:none;
+         transform-origin:center center;transition:left .06s linear,top .06s linear}
+  .piece:active{cursor:grabbing}
+  .piece.selected{filter:drop-shadow(0 0 7px #4CAF50) drop-shadow(2px 4px 6px rgba(0,0,0,.2))}
+  .piece.optional{opacity:.85}
+  .piece svg{width:100%;height:100%;display:block;pointer-events:none}
+  .success-msg{position:fixed;top:20px;background:var(--highlight);color:#fff;padding:15px 30px;border-radius:50px;
+               font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,.2);transform:translateY(-140px);
+               transition:transform .3s ease;z-index:100}
+  .success-msg.show{transform:translateY(0)}
+  .controls{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+  .rotation-control{display:flex;align-items:center;gap:10px;font-size:.9rem}
+  .rotation-control input{width:220px;accent-color:var(--highlight)}
+  .rotation-control output{min-width:44px;font-weight:bold}
+  button{padding:10px 20px;font-size:1rem;border:none;border-radius:5px;cursor:pointer;background:#3498db;color:#fff}
+  button:hover{background:#2980b9} button.secondary{background:#95a5a6} button.secondary:hover{background:#7f8c8d}
+    @media(max-width:600px){.target-area,.pieces-area{width:280px;height:280px}h1{font-size:1.4rem}}
 
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-
-        header {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            width: 100%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-
-        h1 { margin: 0; font-size: 1.8rem; color: #333; }
-        p { margin: 5px 0 0; color: #666; }
-
-
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 20px;
-            max-width: 1000px;
-            width: 100%;
-        }
-
-
-        /* Target Area (Silhouette) */
-        .target-area {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            background-color: var(--board-bg);
-            border: 3px dashed #ccc;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-
-        .target-label {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #888;
-            position: absolute;
-            bottom: 10px;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-
-        /* Silhouette SVG */
-        .silhouette {
-            width: 280px;
-            height: 280px;
-            opacity: 0.25;
-            pointer-events: none;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-
-        .silhouette svg {
-            width: 100%;
-            height: 100%;
-        }
-
-
-        /* Pieces Area */
-        .pieces-area {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            min-height: 150px;
-            padding: 20px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            width: 100%;
-            max-width: 600px;
-        }
-
-
-        /* Tangram Pieces */
-        .piece {
-            width: 50px;
-            height: 50px;
-            cursor: grab;
-            position: absolute; /* Will be managed by JS */
-            transition: transform 0.2s ease, left 0.08s ease, top 0.08s ease;
-            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1));
-            z-index: 10;
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
-            outline: none;
-        }
-
-
-        .piece:active {
-            cursor: grabbing;
-            transform: rotate(var(--rotation, 0deg)) scaleX(var(--flip, 1)) scale(1.05);
-        }
-
-
-        .piece:focus-visible {
-            outline: none;
-        }
-
-
-        .piece.optional {
-            opacity: 0.45;
-        }
-
-
-        /* SVG Paths for Tangram Pieces */
-        svg { width: 100%; height: 100%; }
-        
-        /* Success Animation */
-        .success-msg {
-            position: fixed;
-            top: 20px;
-            background: var(--highlight);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transform: translateY(-100px);
-            transition: transform 0.3s ease;
-            z-index: 100;
-        }
-
-
-        .success-msg.show {
-            transform: translateY(0);
-        }
-
-
-        /* Controls */
-        .controls {
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
-        }
-
-
-        .rotation-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-
-
-        .rotation-control input {
-            width: 220px;
-            accent-color: var(--highlight);
-        }
-
-
-        .rotation-control output {
-            min-width: 42px;
-            font-weight: bold;
-        }
-
-
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #3498db;
-            color: white;
-            transition: background 0.2s;
-        }
-
-
-        button:hover { background: #2980b9; }
-        button.secondary { background: #95a5a6; }
-        button.secondary:hover { background: #7f8c8d; }
-
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .target-area { width: 280px; height: 280px; }
-            .silhouette { width: 240px; height: 240px; }
-            h1 { font-size: 1.4rem; }
-        }
-    </style>
+  /* ✅ NUEVO: anillo de acierto (modo híbrido C) */
+  .piece.snapped{animation:snapPulse .5s ease-out;cursor:default}
+  .piece.snapped::after{content:'';position:absolute;inset:-6px;border-radius:8px;
+    border:3px solid #2ecc71;box-shadow:0 0 12px rgba(46,204,113,.7);pointer-events:none}
+  @keyframes snapPulse{0%{transform-origin:center;filter:brightness(1.4)}100%{filter:brightness(1)}}
+</style>
 </head>
 <body>
+<header>
+  <h1>Tangram English: Level 1</h1>
+  <p>Arrastra al tablero · Clic para seleccionar · Rueda o control para girar · Clic derecho para voltear · Flechas para ajuste fino</p>
+</header>
 
+<div class="ref-card" id="refCard" hidden><span>Modelo</span><img id="refImg" alt="Silueta modelo"></div>
+<div class="success-msg" id="successMsg">Perfect! Well done!</div>
 
-    <header>
-        <h1>Tangram English: Level 1</h1>
-        <p>Arrastra para mover · Selecciona una pieza · Usa el control para girar libremente · Clic derecho para voltear</p>
-    </header>
-
-
-    <div class="success-msg" id="successMsg">Perfect! Well done!</div>
-
-
-    <div class="game-container">
-        <div class="target-area" id="dropZone">
-            <!-- Silhouette placeholder (will be drawn by JS) -->
-            <div id="silhouetteContainer" class="silhouette"></div>
-            <span class="target-label" id="animalName">Whale</span>
-        </div>
-
-
-        <div class="pieces-area" id="piecesArea">
-            <!-- Todas las piezas se cargan aquí; las necesarias quedan resaltadas. -->
-        </div>
-
-
-        <label class="rotation-control" for="rotationControl">
-            Giro de la pieza seleccionada
-            <input id="rotationControl" type="range" min="0" max="359" value="0" step="1" disabled>
-            <output id="rotationValue" for="rotationControl">0°</output>
-        </label>
-
-
-        <div class="controls">
-            <button onclick="resetLevel()">↺ Reset Puzzle</button>
-            <button class="secondary" onclick="toggleGuide()">👁️ Guía</button>
-            <button class="secondary" onclick="nextAnimal()">➡️ Next Animal</button>
-        </div>
+<div class="game-container">
+  <div class="play-row">
+    <div class="col">
+      <span class="col-label">Silueta a completar</span>
+      <div class="target-area" id="dropZone">
+        <span class="target-label" id="animalName">Whale</span>
+        <div id="silhouetteContainer" class="silhouette"></div>
+      </div>
     </div>
+    <div class="col">
+      <span class="col-label">Piezas (cuadrado clásico)</span>
+      <div class="pieces-area" id="piecesArea"></div>
+    </div>
+  </div>
 
+  <label class="rotation-control" for="rotationControl">
+    Giro de la pieza seleccionada
+    <input id="rotationControl" type="range" min="0" max="359" value="0" step="1" disabled>
+    <output id="rotationValue" for="rotationControl">0°</output>
+  </label>
 
-    <script>
-        // ══════════════════════════════════════════════════════════
-        //  1. FIGURAS — construidas SIEMPRE con las 7 piezas reales
-        //  del tangram (ver sección 3). No son dibujos libres: son
-        //  ensamblajes verificados geométricamente (sin huecos ni
-        //  superposiciones) que usan las medidas reales de cada pieza.
-        // ══════════════════════════════════════════════════════════
-        const animals = [
-            { id: 'house',  name: 'House',  pieces: ['square','small-1'] },
-            { id: 'boat',   name: 'Boat',   pieces: ['parallelogram','small-1'] },
-            { id: 'fish',   name: 'Fish',   pieces: ['medium','small-1','small-2'] },
-            { id: 'rocket', name: 'Rocket', pieces: ['square','small-1','small-2'] },
-            { id: 'plane',  name: 'Plane',  pieces: ['big-1','small-1'] },
-            { id: 'bird',   name: 'Bird',   pieces: ['small-1','small-2'] }
-        ];
+  <div class="score-box" id="scoreBox"></div>
 
+  <div class="controls">
+    <button onclick="resetLevel()">↺ Reset Puzzle</button>
+    <button onclick="verifyFigure()" style="background:#27ae60">✔ Verificar figura</button>
+    <button class="secondary" onclick="prevAnimal()">⬅️ Prev</button>
+    <button class="secondary" onclick="nextAnimal()">➡️ Next Animal</button>
+  </div>
+</div>
 
-        // ══════════════════════════════════════════════════════════
-        //  2. ★ SOLUCIÓN GEOMÉTRICA ★
-        //  Para cada figura se indica dónde va cada pieza (x, y =
-        //  esquina del ángulo recto de la pieza; rotate = grados;
-        //  flip = espejo, solo aplica al paralelogramo). La silueta
-        //  que ve el alumno es literalmente el resultado de dibujar
-        //  estas piezas juntas (ver renderAnimalSilhouette), por lo
-        //  que siempre es una figura que SÍ se puede armar con las
-        //  7 piezas del tangram.
-        // ══════════════════════════════════════════════════════════
-        const tangramTargetGuide = {
-            house:  [
-                { id: 'square', x: 140, y: 160, rotate: 0 },
-                { id: 'small-1', x: 160, y: 131.72, rotate: 45 }
-            ],
-            boat: [
-                { id: 'parallelogram', x: 130, y: 230, rotate: 315 },
-                { id: 'small-1', x: 186.57, y: 173.44, rotate: 45 }
-            ],
-            fish: [
-                { id: 'medium', x: 200, y: 200, rotate: 135 },
-                { id: 'small-1', x: 160, y: 160, rotate: 180 },
-                { id: 'small-2', x: 160, y: 240, rotate: 90 }
-            ],
-            rocket: [
-                { id: 'square', x: 140, y: 140, rotate: 0 },
-                { id: 'small-1', x: 160, y: 111.72, rotate: 45 },
-                { id: 'small-2', x: 160, y: 208.28, rotate: 225 }
-            ],
-            plane: [
-                { id: 'big-1', x: 160, y: 143.43, rotate: 45 },
-                { id: 'small-1', x: 160, y: 200, rotate: 225 }
-            ],
-            bird: [
-                { id: 'small-1', x: 131.72, y: 171.72, rotate: 45 },
-                { id: 'small-2', x: 188.28, y: 171.72, rotate: 45 }
-            ]
-        };
+<script src="siluetas/siluetas-data.js"></script>
+<script>
+/* GEOMETRÍA BASE */
+const S = 20;
+const GEO = {
+  'big-1':        {pts:[[-4,-4],[4,-4],[-4,4]], bb:8},
+  'big-2':        {pts:[[4,4],[-4,4],[4,-4]],   bb:8},
+  'medium':       {pts:[[-2.828,-2.828],[2.828,-2.828],[-2.828,2.828]], bb:5.657},
+  'small-1':      {pts:[[-2,-2],[2,-2],[-2,2]], bb:4},
+  'small-2':      {pts:[[-2,-2],[2,-2],[-2,2]], bb:4},
+  'square':       {pts:[[-2,-2],[2,-2],[2,2],[-2,2]], bb:4},
+  'parallelogram':{pts:[[-1.414,-1.414],[4.243,-1.414],[1.414,1.414],[-4.243,1.414]], bb:8.485}
+};
 
+/* ✅ PALETA SATURADA — tu cuadrado numerado exacto */
+const COLORS={
+  'big-1':'#FFD500',      // 1 Amarillo
+  'big-2':'#2ECC1E',      // 2 Verde
+  'parallelogram':'#E600AC', // 3 Magenta
+  'medium':'#FF8A00',     // 4 Naranja
+  'small-1':'#00C8E0',    // 5 Cian
+  'square':'#E01B24',     // 6 Rojo
+  'small-2':'#1F4FE0'     // 7 Azul
+};
 
-        // ══════════════════════════════════════════════════════════
-        //  4. PIEZAS (invariante, mismo archivo original)
-        // ══════════════════════════════════════════════════════════
-        const tangramPieces = [
-            { id: 'big-1', type: 'triangle', viewBox: '0 0 120 120', points: '0,0 120,0 0,120', width: 120, height: 120, color: '#FF6B6B' },
-            { id: 'big-2', type: 'triangle', viewBox: '0 0 120 120', points: '120,120 0,120 120,0', width: 120, height: 120, color: '#4ECDC4' },
-            { id: 'medium', type: 'triangle', viewBox: '0 0 84.85 84.85', points: '0,84.85 84.85,84.85 0,0', width: 84.85, height: 84.85, color: '#FFD93D' },
-            { id: 'small-1', type: 'triangle', viewBox: '0 0 60 60', points: '0,60 60,60 0,0', width: 60, height: 60, color: '#6C5CE7' },
-            { id: 'small-2', type: 'triangle', viewBox: '0 0 60 60', points: '60,0 0,0 60,60', width: 60, height: 60, color: '#FFEAA7' },
-            { id: 'square', type: 'square', viewBox: '0 0 62 62', width: 62, height: 62, color: '#A29BFE' },
-            { id: 'parallelogram', type: 'parallelogram', viewBox: '0 0 120 60', points: '0,0 60,0 120,60 60,60', width: 120, height: 60, color: '#FD79A8' }
-        ];
+const SQUARE_LAYOUT={
+  'big-1':{x:0,y:5.657,r:135},'big-2':{x:5.657,y:0,r:45},
+  'medium':{x:8.485,y:8.485,r:180},'small-1':{x:11.314,y:2.828,r:315},
+  'small-2':{x:5.657,y:8.485,r:45},'square':{x:8.485,y:5.657,r:45},
+  'parallelogram':{x:4.243,y:9.899,r:0}
+};
+const PIECE_NUMBERS={
+  'big-1':'1','big-2':'2','parallelogram':'3','medium':'4',
+  'small-1':'5','square':'6','small-2':'7'
+};
 
+/* ═══════════════════════════════════════════════════════════
+   2. TRANSFORMACIONES
+   ═══════════════════════════════════════════════════════════ */
+function rotatePoint(px,py,deg){
+  const r=deg*Math.PI/180,c=Math.cos(r),s=Math.sin(r);
+  return [px*c-py*s, px*s+py*c];
+}
+function transformPoints(pts,x,y,rot,flipX){
+  return pts.map(([px,py])=>{
+    const [rx,ry]=rotatePoint(px,py,rot);
+    return [(flipX?-rx:rx)*S + x*S, ry*S + y*S];
+  });
+}
+const ptsStr = p => p.map(([x,y])=>`${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
 
-        // ══════════════════════════════════════════════════════════
-        //  5. ESTADO
-        // ══════════════════════════════════════════════════════════
-        let currentAnimalIndex = 0;
-        let droppedPiecesCount = 0;
-        let totalPieces = 0;
-        let requiredPieceIds = new Set();
-        let selectedPiece = null;
-        let showGuide = false;
+/* Centroide de un polígono (para el snap) */
+function centroid(poly){
+  let cx=0,cy=0;
+  poly.forEach(([x,y])=>{cx+=x;cy+=y;});
+  return [cx/poly.length, cy/poly.length];
+}
 
+/* ═══════════════════════════════════════════════════════════
+   3. ANIMALES — salen de las imágenes de la carpeta siluetas
+   (siluetas/siluetas-data.js lo genera generar-siluetas.ps1)
+   ═══════════════════════════════════════════════════════════ */
+const PIECES_AREA_UNITS=128;   // área de las 7 piezas en u² (cuadrado de 8√2 × 8√2)
+const SILUETA_TARGET_PX=PIECES_AREA_UNITS*S*S;
 
-        // ══════════════════════════════════════════════════════════
-        //  6. DOM
-        // ══════════════════════════════════════════════════════════
-        const dropZone = document.getElementById('dropZone');
-        const piecesArea = document.getElementById('piecesArea');
-        const animalNameEl = document.getElementById('animalName');
-        const silhouetteContainer = document.getElementById('silhouetteContainer');
-        const successMsg = document.getElementById('successMsg');
-        const rotationControl = document.getElementById('rotationControl');
-        const rotationValue = document.getElementById('rotationValue');
+const animals=Object.keys(window.SILUETAS||{}).sort((a,b)=>a.localeCompare(b)).map(name=>({
+  id:name.toLowerCase(), name, silhouetteImg:true
+}));
 
+/* ═══════════════════════════════════════════════════════════
+   4. SILUETA — imagen modelo (tarjeta) y escala automática
+   ═══════════════════════════════════════════════════════════ */
+function silhouetteSrc(animal){
+  return window.SILUETAS[animal.name];
+}
 
-        // ══════════════════════════════════════════════════════════
-        //  7. ACTUALIZACIÓN DE TRANSFORM DE PIEZA
-        // ══════════════════════════════════════════════════════════
-        function updatePieceTransform(piece) {
-            piece.style.setProperty('--rotation', `${piece.dataset.rotation}deg`);
-            piece.style.setProperty('--flip', piece.dataset.flip);
+function renderSilhouette(animal){
+  const refCard=document.getElementById('refCard');
+  silhouetteContainer.innerHTML='';
+  dropZone.classList.add('wide');
+  document.getElementById('refImg').src=silhouetteSrc(animal);
+  refCard.hidden=false;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   6. PIEZAS REALES
+   ═══════════════════════════════════════════════════════════ */
+function createPieceSVG(id){
+  const g=GEO[id]; if(!g) return '';
+  const bb=g.bb*S;
+  const lp=g.pts.map(([x,y])=>[((x/g.bb)+.5)*bb,((y/g.bb)+.5)*bb]);
+  const local=lp.map(p=>p.join(',')).join(' ');
+  const [lx,ly]=centroid(lp);
+  return `<svg viewBox="0 0 ${bb} ${bb}"><polygon points="${local}" fill="${COLORS[id]}"
+            stroke="rgba(0,0,0,.35)" stroke-width="1.5"/>
+          <text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="central"
+            font-family="Arial,sans-serif" font-size="14" font-weight="700"
+            fill="#263238" stroke="rgba(255,255,255,.7)" stroke-width="1" paint-order="stroke">${PIECE_NUMBERS[id]}</text></svg>`;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   7. STATE + DOM
+   ═══════════════════════════════════════════════════════════ */
+let currentAnimalIndex=0,requiredPieceIds=new Set(),selectedPiece=null;
+const dropZone=document.getElementById('dropZone');
+const piecesArea=document.getElementById('piecesArea');
+const animalNameEl=document.getElementById('animalName');
+const silhouetteContainer=document.getElementById('silhouetteContainer');
+const successMsg=document.getElementById('successMsg');
+const rotationControl=document.getElementById('rotationControl');
+const rotationValue=document.getElementById('rotationValue');
+
+function initGame(){
+  if(!animals.length){
+    document.getElementById('animalName').textContent='';
+    document.getElementById('scoreBox').textContent=
+      'No hay siluetas cargadas. Agrega imágenes Silueta_<Nombre>.png en la carpeta siluetas, ejecuta generar-siluetas.ps1 y recarga.';
+    document.getElementById('scoreBox').className='score-box low';
+    return;
+  }
+  loadAnimal(currentAnimalIndex);
+  [dropZone,piecesArea].forEach(area=>{
+    area.addEventListener('dragover',e=>e.preventDefault());
+    area.addEventListener('drop',drop);
+  });
+  document.addEventListener('pointerdown',clearSelectionOutside);
+  document.addEventListener('keydown',removeSelectedPiece);
+}
+
+function clearSelectionOutside(e){
+  if(e.target.closest('.piece, .rotation-control')) return;
+  selectedPiece=null;
+  document.querySelectorAll('.piece.selected').forEach(p=>p.classList.remove('selected'));
+  rotationControl.disabled=true;
+}
+
+function loadAnimal(i){
+  const a=animals[i];
+  animalNameEl.textContent=a.name;
+  requiredPieceIds=new Set(Object.keys(GEO));
+  selectedPiece=null;
+  document.getElementById('scoreBox').textContent='';
+  piecesArea.innerHTML='';
+  dropZone.querySelectorAll('.piece').forEach(p=>p.remove());
+  renderSilhouette(a);
+
+  Object.keys(GEO).forEach(id=>{
+    const el=createPieceElement(id,true);
+    const L=SQUARE_LAYOUT[id];
+    const bb=GEO[id].bb*S;
+    el.style.left=(47+L.x*S-bb/2)+'px';
+    el.style.top=(47+L.y*S-bb/2)+'px';
+    el.dataset.rotation=String(L.r);
+    el.dataset.flip='1'; el.dataset.locked='false';
+    el.dataset.homeLeft=el.style.left;
+    el.dataset.homeTop=el.style.top;
+    el.dataset.homeRotation=el.dataset.rotation;
+    updatePieceTransform(el);
+    piecesArea.appendChild(el);
+  });
+
+  rotationControl.value='0'; rotationControl.disabled=true; rotationValue.textContent='0°';
+  window.speechSynthesis?.cancel();
+}
+
+function createPieceElement(id,isRequired){
+  const div=document.createElement('div');
+  div.className=`piece ${isRequired?'required':'optional'}`;
+  div.draggable=true; div.tabIndex=0;
+  div.title=isRequired?`${id} · necesaria`:`${id} · extra`;
+  div.dataset.pieceId=id; div.dataset.required=isRequired;
+  div.innerHTML=createPieceSVG(id);
+  const bb=GEO[id].bb*S;
+  div.style.width=bb+'px'; div.style.height=bb+'px';
+
+  div.addEventListener('click',()=>selectPiece(div));
+  div.addEventListener('contextmenu',e=>{e.preventDefault();flipPiece(div);});
+  div.addEventListener('wheel',e=>{
+    e.preventDefault(); selectPiece(div);
+    setPieceRotation(div,+div.dataset.rotation+(e.deltaY<0?1:-1)*(e.shiftKey?5:1));
+  },{passive:false});
+  div.addEventListener('keydown',e=>moveWithKeys(e,div));
+  div.addEventListener('dragstart',e=>{
+    e.dataTransfer.setData('text/plain',id);
+    const bounds=div.getBoundingClientRect();
+    div.dataset.dragOffsetX=String(e.clientX-bounds.left);
+    div.dataset.dragOffsetY=String(e.clientY-bounds.top);
+    div.classList.remove('snapped');
+    div.dataset.locked='false';
+    selectPiece(div);
+    setTimeout(()=>div.style.opacity='.5',0);
+  });
+  div.addEventListener('dragend',()=>div.style.opacity='');
+  return div;
+}
+
+function updatePieceTransform(p){
+  p.style.transform=`rotate(${p.dataset.rotation}deg) scaleX(${p.dataset.flip||1})`;
+}
+
+function selectPiece(p){
+  document.querySelectorAll('.piece.selected').forEach(x=>x.classList.remove('selected'));
+  selectedPiece=p; p.classList.add('selected');
+  rotationControl.disabled=false;
+  rotationControl.value=p.dataset.rotation;
+  rotationValue.textContent=`${p.dataset.rotation}°`;
+}
+
+function setPieceRotation(p,r){
+  const n=((r%360)+360)%360;
+  p.dataset.rotation=String(n);
+  updatePieceTransform(p);
+  rotationControl.value=String(n);
+  rotationValue.textContent=`${n}°`;
+}
+
+rotationControl.addEventListener('input',()=>{
+  if(selectedPiece){setPieceRotation(selectedPiece,+rotationControl.value);}
+});
+
+function flipPiece(p){
+  p.dataset.flip=p.dataset.flip==='1'?'-1':'1';
+  updatePieceTransform(p); selectPiece(p);
+}
+
+function moveWithKeys(e,p){
+  const m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
+  const v=m[e.key]; if(!v) return;
+  e.preventDefault();
+  const s=e.shiftKey?5:1;
+  p.style.left=((parseFloat(p.style.left)||0)+v[0]*s)+'px';
+  p.style.top=((parseFloat(p.style.top)||0)+v[1]*s)+'px';
+}
+
+function drop(e){
+  e.preventDefault();
+  const id=e.dataTransfer.getData('text/plain');
+  const p=document.querySelector(`.piece[data-piece-id="${id}"]`);
+  if(!p) return;
+  const area=e.currentTarget;
+  const r=area.getBoundingClientRect();
+  const offsetX=+(p.dataset.dragOffsetX||0);
+  const offsetY=+(p.dataset.dragOffsetY||0);
+  p.style.left=(e.clientX-r.left-offsetX)+'px';
+  p.style.top=(e.clientY-r.top-offsetY)+'px';
+  area.appendChild(p);
+}
+
+function removeSelectedPiece(e){
+  if(e.key!=='Delete'||!selectedPiece) return;
+  e.preventDefault();
+  const piece=selectedPiece;
+  piece.classList.remove('snapped','selected');
+  piece.dataset.locked='false';
+  piece.dataset.flip='1';
+  piece.dataset.rotation=piece.dataset.homeRotation;
+  piece.style.left=piece.dataset.homeLeft;
+  piece.style.top=piece.dataset.homeTop;
+  updatePieceTransform(piece);
+  piecesArea.appendChild(piece);
+  selectedPiece=null;
+  rotationControl.disabled=true;
+  rotationValue.textContent='0°';
+}
+
+function showSuccess(){
+  successMsg.classList.add('show');
+  const name=animals[currentAnimalIndex].name;
+  if(window.speechSynthesis){
+    const u=new SpeechSynthesisUtterance(name);
+    u.lang='en-US'; u.rate=.8;
+    window.speechSynthesis.speak(u);
+  }
+  setTimeout(()=>successMsg.classList.remove('show'),3500);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8. VERIFICACIÓN — parecido entre la figura armada y la silueta
+   ═══════════════════════════════════════════════════════════ */
+const MARGIN=300;
+const silhouetteCache={};
+
+/* Escala automática: la silueta se agranda hasta que su área sea la de las 7 piezas */
+function silhouetteMask(animal){
+  if(silhouetteCache[animal.name]) return Promise.resolve(silhouetteCache[animal.name]);
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      try{
+        const nw=img.naturalWidth, nh=img.naturalHeight;
+        const c0=document.createElement('canvas'); c0.width=nw; c0.height=nh;
+        const g0=c0.getContext('2d',{willReadFrequently:true});
+        g0.fillStyle='#fff'; g0.fillRect(0,0,nw,nh); g0.drawImage(img,0,0);
+        const d0=g0.getImageData(0,0,nw,nh).data;
+        let filled=0;
+        for(let i=0;i<d0.length;i+=4) if(d0[i]<235||d0[i+1]<235||d0[i+2]<235) filled++;
+        if(!filled){resolve(null);return;}
+        const k=Math.sqrt(SILUETA_TARGET_PX/filled);
+
+        const w=Math.round(nw*k), h=Math.round(nh*k);
+        const c=document.createElement('canvas'); c.width=w; c.height=h;
+        const g=c.getContext('2d',{willReadFrequently:true});
+        g.fillStyle='#fff'; g.fillRect(0,0,w,h); g.drawImage(img,0,0,w,h);
+        const d=g.getImageData(0,0,w,h).data, px=[];
+        for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+          const i=(y*w+x)*4;
+          if(d[i]<235||d[i+1]<235||d[i+2]<235) px.push(x,y);
         }
+        silhouetteCache[animal.name]=px;
+        resolve(px);
+      }catch(err){resolve(null);}
+    };
+    img.onerror=()=>resolve(null);
+    img.src=silhouetteSrc(animal);
+  });
+}
 
+function piecesMask(){
+  const zr=dropZone.getBoundingClientRect();
+  const W=Math.ceil(zr.width)+MARGIN*2, H=Math.ceil(zr.height)+MARGIN*2;
+  const c=document.createElement('canvas'); c.width=W; c.height=H;
+  const g=c.getContext('2d',{willReadFrequently:true});
+  g.fillStyle='#000';
+  const pieces=dropZone.querySelectorAll('.piece');
+  pieces.forEach(el=>{
+    const m=el.querySelector('svg').getScreenCTM();
+    g.beginPath();
+    [...el.querySelector('polygon').points].forEach((p,i)=>{
+      const q=new DOMPoint(p.x,p.y).matrixTransform(m);
+      const x=q.x-zr.left+MARGIN, y=q.y-zr.top+MARGIN;
+      i?g.lineTo(x,y):g.moveTo(x,y);
+    });
+    g.closePath(); g.fill();
+  });
+  const d=g.getImageData(0,0,W,H).data, mask=new Uint8Array(W*H);
+  let n=0,sx=0,sy=0;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    if(d[(y*W+x)*4+3]>127){mask[y*W+x]=1;n++;sx+=x;sy+=y;}
+  }
+  return {mask,W,H,n,cx:n?sx/n:0,cy:n?sy/n:0,count:pieces.length};
+}
 
-        // ══════════════════════════════════════════════════════════
-        //  8. SELECCIÓN DE PIEZA
-        // ══════════════════════════════════════════════════════════
-        function selectPiece(e) {
-            const piece = e.currentTarget;
-            selectedPiece = piece;
-            rotationControl.disabled = false;
-            rotationControl.value = piece.dataset.rotation;
-            rotationValue.textContent = `${piece.dataset.rotation}°`;
-        }
+/* Parecido tolerante: ambas formas se convierten en mapas de densidad
+   difuminados (celdas de 10 px), de modo que importa la forma general y no el
+   contorno exacto. Se prueban pequeños giros, el espejo y desplazamientos.
+   Ajustar SIM_FULL (más bajo = más permisivo) o BLUR_RADIUS (más alto = más permisivo). */
+const CELL=10, GRID=96, BLUR_RADIUS=3, SIM_FULL=0.6;
+const ROTATIONS=[-30,-15,0,15,30].map(d=>d*Math.PI/180);
 
+function blurGrid(g,r){
+  const t=new Float32Array(g.length), out=new Float32Array(g.length), k=2*r+1;
+  for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++){
+    let s=0; for(let d=-r;d<=r;d++){const xx=x+d; if(xx>=0&&xx<GRID) s+=g[y*GRID+xx];}
+    t[y*GRID+x]=s/k;
+  }
+  for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++){
+    let s=0; for(let d=-r;d<=r;d++){const yy=y+d; if(yy>=0&&yy<GRID) s+=t[yy*GRID+x];}
+    out[y*GRID+x]=s/k;
+  }
+  return out;
+}
 
-        function setPieceRotation(piece, rotation) {
-            const normalizedRotation = ((rotation % 360) + 360) % 360;
-            piece.dataset.rotation = String(normalizedRotation);
-            updatePieceTransform(piece);
-            rotationControl.value = String(normalizedRotation);
-            rotationValue.textContent = `${normalizedRotation}°`;
-        }
+function densityGrid(pts,rot,mirror){
+  const g=new Float32Array(GRID*GRID), c=Math.cos(rot), s=Math.sin(rot);
+  for(let i=0;i<pts.length;i+=2){
+    const x=mirror?-pts[i]:pts[i], y=pts[i+1];
+    const gx=Math.floor((x*c-y*s)/CELL)+GRID/2, gy=Math.floor((x*s+y*c)/CELL)+GRID/2;
+    if(gx>=0&&gy>=0&&gx<GRID&&gy<GRID) g[gy*GRID+gx]+=1/(CELL*CELL);
+  }
+  return blurGrid(g,BLUR_RADIUS);
+}
 
+function weightedJaccard(a,b,dx,dy){
+  let mn=0,mx=0;
+  for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++){
+    const va=a[y*GRID+x], bx=x+dx, by=y+dy;
+    const vb=(bx>=0&&by>=0&&bx<GRID&&by<GRID)?b[by*GRID+bx]:0;
+    mn+=Math.min(va,vb); mx+=Math.max(va,vb);
+  }
+  return mx?mn/mx:0;
+}
 
-        function rotatePieceWithWheel(e) {
-            e.preventDefault();
-            const piece = e.currentTarget;
-            selectPiece(e);
-            const step = e.shiftKey ? 1 : 5;
-            const direction = e.deltaY < 0 ? 1 : -1;
-            setPieceRotation(piece, Number(piece.dataset.rotation) + direction * step);
-        }
+function similarity(sil,pm){
+  let sx=0,sy=0; const A=sil.length/2;
+  for(let i=0;i<sil.length;i+=2){sx+=sil[i];sy+=sil[i+1];}
+  sx/=A; sy/=A;
+  const sp=new Float32Array(sil.length);
+  for(let i=0;i<sil.length;i+=2){sp[i]=sil[i]-sx; sp[i+1]=sil[i+1]-sy;}
 
+  const pp=[];
+  for(let y=0;y<pm.H;y++)for(let x=0;x<pm.W;x++) if(pm.mask[y*pm.W+x]) pp.push(x-pm.cx,y-pm.cy);
 
-        function flipPiece(e) {
-            e.preventDefault();
-            const piece = e.currentTarget;
-            piece.dataset.flip = piece.dataset.flip === '1' ? '-1' : '1';
-            updatePieceTransform(piece);
-            selectPiece(e);
-        }
+  const target=densityGrid(sp,0,false);
+  let best=0;
+  for(const mirror of [false,true])for(const rot of ROTATIONS){
+    const g=densityGrid(pp,rot,mirror);
+    for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)
+      best=Math.max(best,weightedJaccard(target,g,dx,dy));
+  }
+  return best;
+}
 
+async function verifyFigure(){
+  const box=document.getElementById('scoreBox');
+  const animal=animals[currentAnimalIndex];
+  const show=(text,cls)=>{box.textContent=text;box.className='score-box '+(cls||'');};
+  const pm=piecesMask();
+  if(!pm.count){show('Arrastra las piezas al tablero para formar la figura.');return;}
+  const sil=await silhouetteMask(animal);
+  if(!sil){show('No se pudo leer la silueta. Ejecuta generar-siluetas.ps1 y recarga la página.','low');return;}
+  const score=Math.min(100,Math.round(similarity(sil,pm)/SIM_FULL*100));
+  const msg=score>=85?'¡Excelente!':score>=60?'¡Vas muy bien!':'Sigue intentando';
+  show(`Parecido: ${score}% — ${msg}`,score>=85?'good':score>=60?'mid':'low');
+  if(score>=85) showSuccess();
+}
 
-        rotationControl.addEventListener('input', () => {
-            if (selectedPiece) setPieceRotation(selectedPiece, Number(rotationControl.value));
-        });
+function resetLevel(){loadAnimal(currentAnimalIndex);}
+function nextAnimal(){currentAnimalIndex=(currentAnimalIndex+1)%animals.length;loadAnimal(currentAnimalIndex);}
+function prevAnimal(){currentAnimalIndex=(currentAnimalIndex-1+animals.length)%animals.length;loadAnimal(currentAnimalIndex);}
 
-
-        function movePieceWithKeys(e) {
-            const piece = e.currentTarget;
-            const movements = {
-                ArrowUp: [0, -1],
-                ArrowDown: [0, 1],
-                ArrowLeft: [-1, 0],
-                ArrowRight: [1, 0]
-            };
-            const movement = movements[e.key];
-            if (!movement) return;
-
-            e.preventDefault();
-            const step = e.shiftKey ? 10 : 2;
-            const currentLeft = parseFloat(piece.style.left) || 0;
-            const currentTop = parseFloat(piece.style.top) || 0;
-            piece.style.left = `${currentLeft + movement[0] * step}px`;
-            piece.style.top = `${currentTop + movement[1] * step}px`;
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  9. RENDER DE SILUETA ★ GEOMÉTRICAMENTE EXACTA ★
-        //  La silueta blanca/sólida que debe armar el alumno se dibuja
-        //  con las mismas 7 piezas reales del tangram (ver
-        //  tangramTargetGuide), así que SIEMPRE es una figura que se
-        //  puede completar con las piezas. La "Guía" opcional dibuja
-        //  las mismas piezas con color y líneas punteadas encima.
-        // ══════════════════════════════════════════════════════════
-        function renderAnimalSilhouette(animal) {
-            const guide = tangramTargetGuide[animal.id] || [];
-
-            // Capa de respuesta: piezas unidas con relleno sólido y sin
-            // trazo, de modo que las uniones entre piezas no se noten y
-            // el resultado se vea como una sola silueta compacta.
-            const answerMarkup = guide
-                .map(entry => createGhostSVGForPiece(entry.id, entry.x, entry.y, entry.rotate || 0, entry.flip || false, true))
-                .join('');
-
-            // Capa de guía (piezas de colores, solo si el usuario activa "Guía")
-            const ghostMarkup = showGuide
-                ? guide.map(entry => createGhostSVGForPiece(entry.id, entry.x, entry.y, entry.rotate || 0, entry.flip || false, false)).join('')
-                : '';
-
-            silhouetteContainer.innerHTML = `
-                <svg viewBox="0 0 320 320" aria-label="${animal.name} silhouette" role="img">
-                    <rect x="20" y="20" width="280" height="280" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(44,62,80,0.15)" stroke-width="2" stroke-dasharray="8 8"/>
-                    <g>${answerMarkup}</g>
-                    ${ghostMarkup}
-                </svg>
-            `;
-        }
-
-
-        function createGhostSVGForPiece(pieceId, x, y, rotate, flip, solid) {
-            const blueprint = tangramBlueprint[pieceId] || tangramBlueprint['big-1'];
-            // La capa "respuesta" (solid=true) ahora se dibuja como contorno
-            // punteado neutro (sin relleno), mostrando el borde de cada pieza
-            // dentro de la silueta -tal como en la imagen de referencia- en
-            // lugar de una mancha sólida sin divisiones.
-            const style = solid
-                ? { fill: 'rgba(44,62,80,0.05)', stroke: 'rgba(44,62,80,0.55)', strokeWidth: 2 }
-                : (pieceGhostStyles[blueprint.type] || pieceGhostStyles.triangle);
-            const dashAttr = 'stroke-dasharray="5 4"';
-            const flipTransform = flip ? ' scale(-1,1)' : '';
-            const commonTransform = `translate(${x} ${y}) rotate(${rotate})${flipTransform}`;
-
-            if (blueprint.type === 'square') {
-                return `<g transform="${commonTransform}"><rect ${blueprint.rect} fill="${style.fill}" stroke="${style.stroke}" stroke-width="${style.strokeWidth}" ${dashAttr} /></g>`;
-            }
-            return `<g transform="${commonTransform}"><polygon points="${blueprint.points}" fill="${style.fill}" stroke="${style.stroke}" stroke-width="${style.strokeWidth}" ${dashAttr} /></g>`;
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  10. CREAR ELEMENTO DE PIEZA
-        // ══════════════════════════════════════════════════════════
-        function createPieceElement(data, index, isRequired) {
-            const div = document.createElement('div');
-            div.className = `piece ${isRequired ? 'required' : 'optional'}`;
-            div.draggable = true;
-            div.tabIndex = 0;
-            div.title = isRequired ? 'Pieza necesaria · Selecciona para girar' : 'Pieza disponible · Selecciona para usar';
-            div.dataset.type = data.type;
-            div.dataset.pieceId = data.id;
-            div.dataset.index = index;
-            div.dataset.required = isRequired ? 'true' : 'false';
-            div.dataset.rotation = '0';
-            div.dataset.flip = '1';
-            
-            let svgContent = '';
-            if (data.type === 'triangle') {
-                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
-            } else if (data.type === 'square') {
-                svgContent = `<svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="${data.color}"/></svg>`;
-            } else if (data.type === 'parallelogram') {
-                svgContent = `<svg viewBox="${data.viewBox}"><polygon points="${data.points}" fill="${data.color}"/></svg>`;
-            }
-            
-            div.innerHTML = svgContent;
-            div.addEventListener('click', selectPiece);
-            div.addEventListener('contextmenu', flipPiece);
-            div.addEventListener('wheel', rotatePieceWithWheel, { passive: false });
-            div.addEventListener('keydown', movePieceWithKeys);
-            div.addEventListener('dragstart', dragStart);
-            div.addEventListener('dragend', dragEnd);
-            if (data.width) div.style.width = `${data.width}px`;
-            if (data.height) div.style.height = `${data.height}px`;
-            div.style.left = `${20 + (index % 4) * 135}px`;
-            div.style.top = `${20 + Math.floor(index / 4) * 85}px`;
-            return div;
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  11. CARGAR ANIMAL
-        // ══════════════════════════════════════════════════════════
-        function loadAnimal(index) {
-            const animal = animals[index];
-            animalNameEl.textContent = animal.name;
-            dropZone.style.borderColor = '#ccc';
-            droppedPiecesCount = 0;
-            totalPieces = animal.pieces.length;
-            requiredPieceIds = new Set(animal.pieces);
-            selectedPiece = null;
-            
-            piecesArea.innerHTML = '';
-            renderAnimalSilhouette(animal);
-            
-            tangramPieces.forEach((piece, i) => {
-                const pieceEl = createPieceElement(piece, i, requiredPieceIds.has(piece.id));
-                piecesArea.appendChild(pieceEl);
-            });
-
-            rotationControl.value = '0';
-            rotationControl.disabled = true;
-            rotationValue.textContent = '0°';
-            window.speechSynthesis.cancel();
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  12. DRAG AND DROP
-        // ══════════════════════════════════════════════════════════
-        function setupDragAndDrop() {
-            dropZone.addEventListener('dragover', dragOver);
-            dropZone.addEventListener('drop', drop);
-        }
-
-
-        function dragStart(e) {
-            const piece = e.currentTarget;
-            e.dataTransfer.setData('text/plain', piece.dataset.index);
-            setTimeout(() => piece.style.opacity = '0.5', 0);
-        }
-
-
-        function dragEnd(e) {
-            e.currentTarget.style.opacity = '1';
-        }
-
-
-        function dragOver(e) {
-            e.preventDefault();
-        }
-
-
-        function drop(e) {
-            e.preventDefault();
-            const index = e.dataTransfer.getData('text/plain');
-            const piece = document.querySelector(`.piece[data-index="${index}"]`);
-            
-            if (piece) {
-                const rect = dropZone.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                piece.style.position = 'absolute';
-                piece.style.left = `${x - 25}px`;
-                piece.style.top = `${y - 25}px`;
-                
-                piecesArea.removeChild(piece);
-                dropZone.appendChild(piece);
-
-                droppedPiecesCount = dropZone.querySelectorAll('.piece.required').length;
-                if (droppedPiecesCount === totalPieces) {
-                    checkSuccess();
-                }
-            }
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  13. ÉXITO Y AUDIO
-        // ══════════════════════════════════════════════════════════
-        function checkSuccess() {
-            const requiredPiecesInZone = dropZone.querySelectorAll('.piece.required');
-            if (requiredPiecesInZone.length === totalPieces) {
-                showSuccess();
-            }
-        }
-
-
-        function showSuccess() {
-            successMsg.classList.add('show');
-            const animalName = animals[currentAnimalIndex].name;
-            
-            const utterance = new SpeechSynthesisUtterance(animalName);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.8;
-            window.speechSynthesis.speak(utterance);
-
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-            }, 3000);
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  14. CONTROLES
-        // ══════════════════════════════════════════════════════════
-        function resetLevel() {
-            loadAnimal(currentAnimalIndex);
-        }
-
-
-        function nextAnimal() {
-            currentAnimalIndex = (currentAnimalIndex + 1) % animals.length;
-            loadAnimal(currentAnimalIndex);
-        }
-
-
-        function toggleGuide() {
-            showGuide = !showGuide;
-            const animal = animals[currentAnimalIndex];
-            renderAnimalSilhouette(animal);
-        }
-
-
-        function clearPieceSelectionOnOutsideClick(e) {
-            if (e.target.closest('.piece, .rotation-control')) return;
-            selectedPiece = null;
-            rotationControl.disabled = true;
-        }
-
-
-        // ══════════════════════════════════════════════════════════
-        //  15. INICIALIZACIÓN
-        // ══════════════════════════════════════════════════════════
-        // Cada pieza se define como un polígono simple anclado en su
-        // vértice de ángulo recto (0,0), con catetos alineados a los
-        // ejes +x/+y. Así cualquier figura se arma solo con
-        // translate/rotate (y "flip" para el paralelogramo), respetando
-        // las proporciones reales del tangram (U = 40):
-        //   cateto pieza chica = U, cateto mediana = U·√2, cateto grande = 2U.
-        const tangramBlueprint = {
-            'big-1': { type: 'triangle', points: '0,0 80,0 0,80' },
-            'big-2': { type: 'triangle', points: '0,0 80,0 0,80' },
-            medium: { type: 'triangle', points: '0,0 56.57,0 0,56.57' },
-            'small-1': { type: 'triangle', points: '0,0 40,0 0,40' },
-            'small-2': { type: 'triangle', points: '0,0 40,0 0,40' },
-            square: { type: 'square', rect: 'x="0" y="0" width="40" height="40"' },
-            parallelogram: { type: 'parallelogram', points: '0,0 40,0 80,40 40,40' }
-        };
-
-
-        const pieceGhostStyles = {
-            triangle: { fill: 'rgba(52, 152, 219, 0.32)', stroke: '#2980b9', strokeWidth: 2 },
-            square: { fill: 'rgba(155, 89, 182, 0.32)', stroke: '#8e44ad', strokeWidth: 2 },
-            parallelogram: { fill: 'rgba(46, 204, 113, 0.35)', stroke: '#27ae60', strokeWidth: 2 }
-        };
-
-
-        function initGame() {
-            loadAnimal(currentAnimalIndex);
-            setupDragAndDrop();
-            document.addEventListener('pointerdown', clearPieceSelectionOnOutsideClick);
-        }
-
-
-        initGame();
-
-
-    </script>
+initGame();
+</script>
 </body>
 </html>

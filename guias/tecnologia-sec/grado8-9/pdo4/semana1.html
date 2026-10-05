@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tecnología e Informática · Grados 8° y 9° · Semana 1 · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🚀 Tecnología Aventura · Semana 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  TECNOLOGÍA AVENTURA · SEMANA 1 · GRADOS 8°-9°
+══════════════════════════════════════════════ */
+:root{
+  --tec-verde:#10B981;   --tec-esmeralda:#059669; --tec-cyan:#06B6D4;
+  --tec-azul:#2563EB;    --tec-morado:#7C3AED;    --tec-amarillo:#FACC15;
+  --tec-naranja:#F97316; --tec-rosa:#EC4899;      --tec-rojo:#EF4444;
+  --tec-celeste:#38BDF8;
+  --tec-bg:#ECFDF5;      --tec-card:#FFFFFF;
+  --tec-texto:#0F172A;   --tec-dim:#64748B;       --tec-border:#D1FAE5;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tec-bg);color:var(--tec-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(16,185,129,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tec-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tec-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tec-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(16,185,129,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+.hero-header{background:linear-gradient(135deg,#059669 0%,#06B6D4 50%,#2563EB 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'⚙️';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🤖';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+.seccion{background:white;border:2px solid var(--tec-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-recursos::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-cyan))}
+.seccion-vocab::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-celeste))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--tec-naranja),var(--tec-amarillo))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tec-morado),var(--tec-rosa))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tec-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tec-dim);font-weight:600;margin-top:2px}
+
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--tec-border);background:white;cursor:pointer;transition:all .25s;color:var(--tec-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-6{background:var(--tec-verde);border-color:var(--tec-verde);color:white;box-shadow:0 4px 12px rgba(16,185,129,.35)}
+.nivel-tab.activo-7{background:var(--tec-azul);border-color:var(--tec-azul);color:white;box-shadow:0 4px 12px rgba(37,99,235,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--tec-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado-unificado{border-color:var(--tec-verde)}
+.nivel-card.grado7{border-color:var(--tec-azul)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
+.grado-unificado .nivel-badge{background:var(--tec-verde)}
+.grado7 .nivel-badge{background:var(--tec-azul)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(6,182,212,.1);color:#0E7490;border:1px solid rgba(6,182,212,.25)}
+
+.visor-bloque{margin-bottom:22px}
+.visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.visor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.95rem;flex-shrink:0}
+.visor-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:0;color:var(--tec-texto)}
+.visor-cabecera .paso-tag{font-size:.7rem;font-weight:800;padding:3px 12px;border-radius:50px;background:rgba(56,189,248,.12);color:#0369A1;border:1px solid rgba(56,189,248,.3);letter-spacing:.05em}
+.tipo-tag{font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.04em}
+.tipo-pdf{background:rgba(239,68,68,.12);color:#B91C1C;border:1px solid rgba(239,68,68,.3)}
+.tipo-img{background:rgba(16,185,129,.12);color:#065F46;border:1px solid rgba(16,185,129,.3)}
+
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--tec-border);background:linear-gradient(135deg,#F0FDF4,#ECFEFF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s,max-height .3s ease;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.marco-img.expanded{max-height:none;box-shadow:var(--sombra-lg);border-width:4px}
+.marco-img.expanded img{transform:scale(1.04)}
+.marco-img.g6{border-color:var(--tec-verde)}
+.marco-img.g7{border-color:var(--tec-azul)}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--tec-esmeralda);box-shadow:var(--sombra-sm);pointer-events:none;display:flex;align-items:center;gap:6px}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--tec-dim);font-size:.85rem}
+.marco-img.sin-img img{display:none}
+.ruta-code{font-family:'Courier New',monospace;background:#ECFEFF;color:#0E7490;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+.bloque-pdf{position:relative;border-radius:var(--r-md);border:3px solid var(--tec-border);background:linear-gradient(135deg,#F0FDF4,#ECFEFF);padding:22px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bloque-pdf:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.bloque-pdf.g6{border-color:var(--tec-verde);background:linear-gradient(135deg,#ECFDF5,#F0FDFA)}
+.bloque-pdf.g7{border-color:var(--tec-azul);background:linear-gradient(135deg,#EFF6FF,#ECFEFF)}
+.pdf-icono{font-size:3rem;flex-shrink:0;animation:floatIcon 4s ease-in-out infinite alternate}
+.pdf-info{flex:1;min-width:200px}
+.pdf-info h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 4px;color:var(--tec-texto)}
+.pdf-info p{font-size:.8rem;color:var(--tec-dim);margin:0}
+.btn-pdf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:10px 22px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-rojo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B,0 6px 16px rgba(239,68,68,.3);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pdf:hover{transform:translateY(-3px);box-shadow:0 7px 0 #991B1B,0 10px 20px rgba(239,68,68,.35)}
+.btn-pdf:active{transform:translateY(2px);box-shadow:0 1px 0 #991B1B}
+.btn-pdf.verde{background:linear-gradient(135deg,var(--tec-esmeralda),var(--tec-verde));box-shadow:0 4px 0 #047857,0 6px 16px rgba(16,185,129,.3)}
+.btn-pdf.verde:hover{box-shadow:0 7px 0 #047857,0 10px 20px rgba(16,185,129,.35)}
+.btn-pdf.azul{background:linear-gradient(135deg,var(--tec-azul),var(--tec-cyan));box-shadow:0 4px 0 #1D4ED8,0 6px 16px rgba(37,99,235,.3)}
+.btn-pdf.azul:hover{box-shadow:0 7px 0 #1D4ED8,0 10px 20px rgba(37,99,235,.35)}
+.btn-pdf.morado{background:linear-gradient(135deg,var(--tec-morado),var(--tec-rosa));box-shadow:0 4px 0 #5B21B6,0 6px 16px rgba(124,58,237,.3)}
+.btn-pdf.morado:hover{box-shadow:0 7px 0 #5B21B6,0 10px 20px rgba(124,58,237,.35)}
+
+/* EVALUACIÓN INTERACTIVA */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tec-verde);border-radius:var(--r-lg);background:linear-gradient(135deg,#ECFDF5,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tec-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tec-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tec-esmeralda)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--tec-esmeralda);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tec-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(16,185,129,.2)}
+.evaluacion-progreso-barra span{display:block;width:10%;height:100%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(16,185,129,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tec-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tec-border);border-radius:var(--r-sm);background:white;color:var(--tec-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tec-verde);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tec-esmeralda);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tec-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tec-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #047857;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tec-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tec-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--tec-verde);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+@media (max-width:640px){
+  .evaluacion{padding:18px}
+  .evaluacion-cabecera{display:block}
+  .evaluacion-tiempo{display:inline-block;margin-top:12px}
+  .quiz-options{grid-template-columns:1fr}
+}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeSlide .3s ease}
+.lightbox.visible{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;border-radius:var(--r-md);box-shadow:0 24px 80px rgba(0,0,0,.5);object-fit:contain}
+.lightbox-cerrar{position:absolute;top:18px;right:22px;background:white;border:none;width:44px;height:44px;border-radius:50%;font-size:1.3rem;font-weight:900;color:var(--tec-texto);cursor:pointer;box-shadow:var(--sombra-md);transition:transform .2s}
+.lightbox-cerrar:hover{transform:scale(1.1) rotate(90deg)}
+.lightbox-pie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);border-radius:50px;padding:8px 24px;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--tec-texto);white-space:nowrap}
+
+/* TARJETAS VOCABULARIO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.conceptos-grid-principal{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.conceptos-grid-principal .concepto-card{padding:14px 12px}
+.conceptos-grid-principal .concepto-emoji{font-size:2.2rem;margin-bottom:6px}
+.conceptos-grid-principal .concepto-titulo{font-size:.92rem;margin-bottom:5px}
+.conceptos-grid-principal .concepto-desc{font-size:.72rem}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(16,185,129,.07);border-color:var(--tec-verde)}
+.concepto-card.geo{background:rgba(6,182,212,.07);border-color:var(--tec-cyan)}
+.concepto-card.met{background:rgba(37,99,235,.07);border-color:var(--tec-azul)}
+.concepto-card.ale{background:rgba(124,58,237,.07);border-color:var(--tec-morado)}
+.concepto-card.var{background:rgba(236,72,153,.07);border-color:var(--tec-rosa)}
+.concepto-card.frac{background:rgba(250,204,21,.1);border-color:var(--tec-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--tec-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--tec-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--tec-verde)}
+.concepto-card.geo .concepto-flip{background:var(--tec-cyan)}
+.concepto-card.met .concepto-flip{background:var(--tec-azul)}
+.concepto-card.ale .concepto-flip{background:var(--tec-morado)}
+.concepto-card.var .concepto-flip{background:var(--tec-rosa)}
+.concepto-card.frac .concepto-flip{background:var(--tec-amarillo);color:var(--tec-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--tec-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tec-verde)}
+.cc-caja{background:rgba(16,185,129,.07);border:2px solid var(--tec-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 24px rgba(16,185,129,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--tec-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tec-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tec-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tec-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.1),rgba(37,99,235,.08));border:4px solid var(--tec-verde);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tec-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tec-esmeralda);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));box-shadow:0 4px 0 rgba(4,120,87,.4)}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tec-border);color:var(--tec-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tec-esmeralda);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tec-esmeralda);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tec-esmeralda);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 28px rgba(16,185,129,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .conceptos-grid-principal{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hero-titulo{font-size:1.6rem}
+  .visor-cabecera h4{font-size:.95rem}
+  .img-lupa{font-size:.68rem;padding:5px 10px}
+  .bloque-pdf{flex-direction:column;text-align:center}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.lightbox{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque,.bloque-pdf{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🚀 MISIÓN TECNOLÓGICA</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré los recursos">📚</span>
+      <span class="pieza" id="pieza-2" title="Aprendí conceptos clave">💡</span>
+      <span class="pieza" id="pieza-3" title="Hice el Reto Tech">✍️</span>
+      <span class="pieza" id="pieza-4" title="Compartí mi idea">💬</span>
+      <span class="pieza" id="pieza-5" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">⚙️ MODO INNOVADOR ACTIVO</div>
+    <h1 class="hero-titulo">🚀 Tecnología Aventura<br/>¡Del Presente a la Cuarta Revolución!</h1>
+    <p class="hero-subtitulo">Tecnología e Informática · Semana 1 · Grados 8° y 9°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="8° o 9°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 17 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: RECURSOS (PDFs + Imagen) -->
+  <div class="seccion seccion-recursos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📚</span>
+      <h3>Recursos de Tecnología · Malla + Guía + Evaluación</h3>
+      <small>📌 Malla, guía y prueba compartidas para ambos grados</small>
+    </div>
+
+    <!-- EVALUACIÓN INTERACTIVA COMPARTIDA PARA GRADOS 8° Y 9° -->
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DIAGNÓSTICA · PERÍODO 4</span>
+          <h4>✍️ Prueba Diagnóstica de Tecnología e Informática · Grados 8° y 9°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+        <span class="evaluacion-tiempo">⏱️ 30 min</span>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 10</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+
+    <div class="visor-bloque">
+      <div class="visor-cabecera">
+        <div class="visor-num" style="background:var(--tec-verde)">🖼️</div>
+        <h4>📋 Malla Curricular · Tecnología e Informática Período 4</h4>
+        <span class="tipo-tag tipo-img">IMAGEN</span>
+      </div>
+      <div class="marco-img g6" onclick="abrirLightboxImg(0)">
+        <img src="Designer.png" alt="Malla curricular de Tecnología e Informática período 4" onerror="this.parentElement.classList.add('sin-img')">
+        <div class="img-lupa">🔍 Zoom</div>
+        <div class="img-fallback">
+          📂 <strong>No se encontró la imagen</strong><br/>
+          Ruta esperada: <span class="ruta-code">Designer.png</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUÍA ÚNICA PARA GRADOS 8° Y 9° -->
+    <div class="nivel-card grado-unificado">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge">⚙️ Tecnología e Informática · Grados 8° y 9°</span>
+        <span class="nivel-dba">Guía unificada del período 4</span>
+      </div>
+      <div class="bloque-pdf g6">
+        <div class="pdf-icono">📘</div>
+        <div class="pdf-info">
+          <h5>📖 Guía Didáctica · Semana 1</h5>
+          <p>Tecnología del presente y cuarta revolución industrial · Actividades para ambos grados</p>
+        </div>
+        <a href="Guia_1.pdf" target="_blank" class="btn-pdf verde">📖 Ver PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: CONCEPTOS CLAVE (flip) -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave · ¡Haz clic para voltear!</h3>
+      <small>👆 Toca las tarjetas para descubrir más</small>
+    </div>
+
+    <div class="conceptos-grid conceptos-grid-principal">
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🌾</span>
+        <div class="concepto-titulo">Las 4 Revoluciones</div>
+        <div class="concepto-desc">Del vapor a la inteligencia artificial</div>
+        <div class="concepto-flip">1️⃣ Vapor · 2️⃣ Electricidad · 3️⃣ Computadores · 4️⃣ IA y datos. Cada una cambió cómo vivimos y trabajamos.</div>
+      </div>
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🤖</span>
+        <div class="concepto-titulo">Cuarta Revolución Industrial</div>
+        <div class="concepto-desc">Fusiona lo físico, digital y biológico</div>
+        <div class="concepto-flip">Robots, sensores, drones e inteligencia artificial trabajan juntos. ¡Ya llega al campo colombiano! 🚜</div>
+      </div>
+      <div class="concepto-card met" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🌐</span>
+        <div class="concepto-titulo">Internet de las Cosas (IoT)</div>
+        <div class="concepto-desc">Objetos que "hablan" entre sí</div>
+        <div class="concepto-flip">Sensores en cultivos, tanques o estufas envían datos al celular. En Chichalá puede vigilar el riego del café. ☕</div>
+      </div>
+      <div class="concepto-card ale" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🧠</span>
+        <div class="concepto-titulo">Inteligencia Artificial</div>
+        <div class="concepto-desc">Máquinas que aprenden de datos</div>
+        <div class="concepto-flip">La IA reconoce imágenes, traduce y predice. No piensa sola: aprende de los <strong>datos</strong> que le damos.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🔒</span>
+        <div class="concepto-titulo">Huella Digital y Seguridad</div>
+        <div class="concepto-desc">Todo lo que dejas en la red</div>
+        <div class="concepto-flip">Contraseñas fuertes, no compartir datos personales y pensar antes de publicar. Tu identidad digital se cuida. 🛡️</div>
+      </div>
+      <div class="concepto-card frac" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">♻️</span>
+        <div class="concepto-titulo">Tecnología Sostenible</div>
+        <div class="concepto-desc">Innovar sin dañar el planeta</div>
+        <div class="concepto-flip">Reusar equipos, ahorrar energía y dar buen uso a la chatarra electrónica. Innovar también es cuidar el territorio. 🌱</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: RETO TECH -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto Tech · Mi solución tecnológica para Chichalá</h3>
+      <small>✏️ Escribe tu propuesta usando lo aprendido</small>
+    </div>
+    <div class="reto-box">
+      <div class="reto-titulo">🏆 Misión: diseña una solución tech para tu vereda</div>
+      <div class="linea"><input type="text" placeholder="1. Problema de mi vereda que quiero resolver..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="2. Tecnología que usaría (app, sensor, dron, IA)..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="3. ¿A quién ayudaría esta solución?..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="4. Nombre creativo de mi proyecto tech..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="cc-caja">
+        <p>💬 Comparte tu idea con un compañero y mejórenla juntos: toda gran innovación empezó con una conversación.</p>
+      </div>
+    </div>
+    <button class="btn-completar" onclick="completarMision()">🏁 Completar mi misión tecnológica</button>
+  </div>
+
+  <!-- CIUDADANÍA DIGITAL -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Ciudadanía Digital · Convivir bien en la red</h3>
+      <small>🌐 Ser bueno también es ser buen ciudadano digital</small>
+    </div>
+    <div class="conceptos-grid">
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🙋</span>
+        <div class="concepto-titulo">Participación</div>
+        <div class="concepto-desc">Opina con respeto</div>
+        <div class="concepto-flip">Compartir ideas útiles y escuchar otras opiniones hace mejor a la comunidad digital.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">⚖️</span>
+        <div class="concepto-titulo">No discriminación</div>
+        <div class="concepto-desc">Todos merecen acceso</div>
+        <div class="concepto-flip">La tecnología debe unir, no excluir. Respeta las diferencias dentro y fuera de la pantalla.</div>
+      </div>
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">✅</span>
+        <div class="concepto-titulo">Uso responsable</div>
+        <div class="concepto-desc">Verifica antes de creer</div>
+        <div class="concepto-flip">Desconfía de noticias falsas, cita tus fuentes y no compartas lo que no puedes comprobar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre Tecnológico</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos del Mundo Tecnológico</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">📟</span>
+      <div><strong>El primer computador era del tamaño de una casa:</strong> El ENIAC (1945) pesaba 27 toneladas. Hoy tu celular es millones de veces más potente. 📱</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🛰️</span>
+      <div><strong>Drones que salvan cosechas:</strong> En Colombia ya se usan drones para detectar plagas en el café y el arroz, ahorrando agua e insumos. 🌾</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá ya hay tecnología:</strong> Los celulares, la radio comunitaria y las apps de mercado conectan al campo con la ciudad. ¡Ustedes pueden llevarla más lejos! 💻</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p>Completó con éxito la <strong>Semana 1 · Tecnología Aventura</strong> con curiosidad, lógica e innovación.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">8° o 9°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--tec-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🚀 Innovar es atreverse · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+  <!-- LIGHTBOX (IMAGENES) -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Vista ampliada"/>
+    <div class="lightbox-pie" id="lightbox-pie">Vista ampliada</div>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// Variables globales
+let indiceImgActual = 0;
+const imagenes = [
+  'Designer.png'
+];
+
+// Abrir lightbox
+function abrirLightboxImg(indice){
+  indiceImgActual = indice;
+  document.getElementById('lightbox-img').src = imagenes[indice];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indice+1} de ${imagenes.length}`;
+  document.getElementById('lightbox').classList.add('visible');
+}
+
+// Cerrar lightbox
+function cerrarLightbox(){
+  document.getElementById('lightbox').classList.remove('visible');
+}
+
+// Cerrar lightbox con ESC
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') cerrarLightbox();
+});
+
+// Abrir cofre
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+// Completar misión
+function completarMision(){
+  const piezas = document.querySelectorAll('.pieza');
+  piezas.forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '8° o 9°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+// Crear confeti
+function crearConfeti(){
+  const colores = ['#10B981','#06B6D4','#2563EB','#7C3AED','#FACC15'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+// Evaluación diagnóstica interactiva
+const preguntasQuiz = [
+  {
+    seccion: 'Revoluciones Industriales',
+    texto: '¿Qué caracterizó a la primera revolución industrial?',
+    opciones: ['La invención del computador', 'La máquina de vapor y el carbón', 'La inteligencia artificial', 'El teléfono celular'],
+    correcta: 1,
+    explicacion: 'La primera revolución (siglo XVIII) trajo la máquina de vapor y mecanizó la producción.'
+  },
+  {
+    seccion: 'Cuarta Revolución Industrial',
+    texto: 'La cuarta revolución industrial se distingue porque:',
+    opciones: ['Usó solo carbón', 'Fusiona tecnología física, digital y biológica', 'Inventó la rueda', 'Eliminó los computadores'],
+    correcta: 1,
+    explicacion: 'Combina IA, robótica, sensores y biotecnología en un mismo mundo conectado.'
+  },
+  {
+    seccion: 'Internet de las Cosas',
+    texto: 'El Internet de las Cosas (IoT) significa que:',
+    opciones: ['Solo los computadores se conectan', 'Objetos cotidianos se conectan y comparten datos', 'No hay internet', 'Los celulares no sirven'],
+    correcta: 1,
+    explicacion: 'Sensores en objetos reales envían información útil, como humedad del suelo o nivel de agua.'
+  },
+  {
+    seccion: 'Inteligencia Artificial',
+    texto: 'La inteligencia artificial aprende principalmente de:',
+    opciones: ['De la magia', 'De grandes cantidades de datos', 'De los sueños', 'Del azar sin información'],
+    correcta: 1,
+    explicacion: 'Sin datos no hay aprendizaje automático: la IA reconoce patrones en la información.'
+  },
+  {
+    seccion: 'Ciudadanía Digital',
+    texto: 'Tu huella digital es:',
+    opciones: ['La marca de tu zapato', 'El rastro que dejas al usar internet', 'Un virus informático', 'El color de tu pantalla'],
+    correcta: 1,
+    explicacion: 'Publicaciones, comentarios y búsquedas dejan una huella que puede durar mucho tiempo.'
+  },
+  {
+    seccion: 'Seguridad Informática',
+    texto: '¿Cuál es una contraseña más segura?',
+    opciones: ['123456', 'mipassword', 'Ch@parral#2026!', 'AAAAAA'],
+    correcta: 2,
+    explicacion: 'Combina mayúsculas, minúsculas, números y símbolos, y evita datos obvios.'
+  },
+  {
+    seccion: 'Lectura de Caso',
+    texto: 'Lee: "En la finca se pierde agua por riego manual." ¿Qué solución tech tiene sentido?',
+    opciones: ['Regar más horas seguidas', 'Instalar sensores de humedad con riego automático', 'Sembrar menos siempre', 'Ignorar el problema'],
+    correcta: 1,
+    explicacion: 'Un sensor IoT mide la humedad y activa el riego solo cuando hace falta: ahorra agua y tiempo.'
+  },
+  {
+    seccion: 'Pensamiento Lógico',
+    texto: 'Un programa que repite una acción mientras se cumple una condición usa:',
+    opciones: ['Una lista de colores', 'Un ciclo o bucle', 'Una imagen', 'Un correo'],
+    correcta: 1,
+    explicacion: 'Los ciclos (por ejemplo "repetir mientras") son la base de la programación en Scratch.'
+  },
+  {
+    seccion: 'Tecnología Sostenible',
+    texto: 'Una práctica de tecnología responsable con el ambiente es:',
+    opciones: ['Botar equipos a la basura común', 'Reusar equipos y llevar la chatarra electrónica a puntos de acopio', 'Dejar todo encendido', 'Comprar lo más desechable'],
+    correcta: 1,
+    explicacion: 'Reutilizar y reciclar aparatos reduce contaminación y ahorro recursos del territorio.'
+  },
+  {
+    seccion: 'Actitud Innovadora',
+    texto: 'Tu prototipo falla en la prueba. La actitud innovadora correcta es:',
+    opciones: ['Rendirse de inmediato', 'Analizar qué falló, ajustar y volver a intentar', 'Copiar sin entender', 'Esperar que otro lo haga'],
+    correcta: 1,
+    explicacion: 'Probar, medir y mejorar es el corazón del pensamiento de diseño y la innovación.'
+  }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente mentalidad tecnológica!' : porcentaje >= 60 ? '¡Buen avance, futuro innovador!' : '¡Sigue explorando y fortaleciendo tus conceptos!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} respuestas correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 8) return 'Tienes bases sólidas para el período 4 de Tecnología e Informática.';
+  if(aciertos >= 6) return 'Repasa las preguntas falladas y sigue fortaleciendo tus conceptos de tecnología.';
+  return 'Refuerza los conceptos básicos de tecnología antes de continuar con el período.';
+}
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '8° o 9°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA DIAGNÓSTICA DE TECNOLOGÍA E INFORMÁTICA - PERÍODO 4',
+    'Grados 8° y 9°',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-prueba-tecnologia-${nombre.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+// Inicializar
+document.addEventListener('DOMContentLoaded',function(){
+  cargarPregunta();
+  console.log('⚙️ Tecnología Aventura cargado correctamente. ¡A innovar!');
+});
+</script>
+
+</body>
+</html>

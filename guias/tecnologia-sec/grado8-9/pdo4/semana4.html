@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tecnología e Informática · Grados 8° y 9° · Semana 4 · Guardianes de Chichalá: Scratch + MakeCode · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🛡️ Tecnología Aventura · Semana 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  TECNOLOGÍA AVENTURA · SEMANA 4 · GRADOS 8°-9°
+  Guardianes de Chichalá · Scratch + MakeCode
+══════════════════════════════════════════════ */
+:root{
+  --tec-verde:#10B981;   --tec-esmeralda:#059669; --tec-cyan:#06B6D4;
+  --tec-azul:#2563EB;    --tec-morado:#7C3AED;    --tec-amarillo:#FACC15;
+  --tec-naranja:#F97316; --tec-rosa:#EC4899;      --tec-rojo:#EF4444;
+  --tec-celeste:#38BDF8;
+  --tec-bg:#EFF6FF;      --tec-card:#FFFFFF;
+  --tec-texto:#0F172A;   --tec-dim:#64748B;       --tec-border:#DBEAFE;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tec-bg);color:var(--tec-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(37,99,235,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tec-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tec-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tec-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tec-azul),var(--tec-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(37,99,235,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+.hero-header{background:linear-gradient(135deg,#1D4ED8 0%,#06B6D4 50%,#10B981 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🛡️';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🎮';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-creditos{display:inline-block;background:rgba(255,255,255,.18);border:1px dashed rgba(255,255,255,.5);border-radius:50px;padding:5px 16px;font-size:.72rem;font-weight:700;margin-bottom:14px;letter-spacing:.03em}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+.seccion{background:white;border:2px solid var(--tec-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-mision::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-cyan))}
+.seccion-vocab::before{background:linear-gradient(180deg,var(--tec-cyan),var(--tec-celeste))}
+.seccion-rutas::before{background:linear-gradient(180deg,var(--tec-morado),var(--tec-rosa))}
+.seccion-lab::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-azul))}
+.seccion-makecode::before{background:linear-gradient(180deg,var(--tec-naranja),var(--tec-amarillo))}
+.seccion-debate::before{background:linear-gradient(180deg,var(--tec-rosa),var(--tec-rojo))}
+.seccion-reto::before{background:linear-gradient(180deg,var(--tec-rosa),var(--tec-morado))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-amarillo))}
+.seccion-eval::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-morado))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tec-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tec-dim);font-weight:600;margin-top:2px}
+
+.lab-pista{background:linear-gradient(135deg,#EFF6FF,#ECFEFF);border-left:5px solid var(--tec-azul);border-radius:var(--r-sm);padding:14px 18px;font-size:.9rem;font-weight:600;color:#1E40AF}
+
+.nivel-card{background:white;border:3px solid var(--tec-azul);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white;background:var(--tec-azul)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(6,182,212,.1);color:#0E7490;border:1px solid rgba(6,182,212,.25)}
+
+.bloque-pdf{position:relative;border-radius:var(--r-md);border:3px solid var(--tec-azul);background:linear-gradient(135deg,#EFF6FF,#ECFEFF);padding:22px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.bloque-pdf:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.pdf-icono{font-size:3rem;flex-shrink:0;animation:floatIcon 4s ease-in-out infinite alternate}
+.pdf-info{flex:1;min-width:200px}
+.pdf-info h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 4px;color:var(--tec-texto)}
+.pdf-info p{font-size:.8rem;color:var(--tec-dim);margin:0}
+.btn-pdf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:10px 22px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-rojo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B,0 6px 16px rgba(239,68,68,.3);transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pdf:hover{transform:translateY(-3px);box-shadow:0 7px 0 #991B1B,0 10px 20px rgba(239,68,68,.35)}
+.btn-pdf:active{transform:translateY(2px);box-shadow:0 1px 0 #991B1B}
+.btn-pdf.info{cursor:default;box-shadow:0 4px 0 #1E40AF}
+.btn-pdf.verde{background:linear-gradient(135deg,var(--tec-esmeralda),var(--tec-verde));box-shadow:0 4px 0 #047857,0 6px 16px rgba(16,185,129,.3)}
+.btn-pdf.verde:hover{box-shadow:0 7px 0 #047857,0 10px 20px rgba(16,185,129,.35)}
+
+/* TARJETAS VOCABULARIO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(16,185,129,.07);border-color:var(--tec-verde)}
+.concepto-card.geo{background:rgba(6,182,212,.07);border-color:var(--tec-cyan)}
+.concepto-card.met{background:rgba(37,99,235,.07);border-color:var(--tec-azul)}
+.concepto-card.ale{background:rgba(124,58,237,.07);border-color:var(--tec-morado)}
+.concepto-card.var{background:rgba(236,72,153,.07);border-color:var(--tec-rosa)}
+.concepto-card.frac{background:rgba(250,204,21,.1);border-color:var(--tec-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--tec-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--tec-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--tec-verde)}
+.concepto-card.geo .concepto-flip{background:var(--tec-cyan)}
+.concepto-card.met .concepto-flip{background:var(--tec-azul)}
+.concepto-card.ale .concepto-flip{background:var(--tec-morado)}
+.concepto-card.var .concepto-flip{background:var(--tec-rosa)}
+.concepto-card.frac .concepto-flip{background:var(--tec-amarillo);color:var(--tec-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+/* RUTAS DE PROYECTO */
+.rutas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
+.ruta-card{border:3px solid var(--tec-border);border-radius:var(--r-lg);padding:20px;cursor:pointer;transition:all .3s}
+.ruta-card:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.ruta-card.seleccionada{border-color:var(--tec-azul);background:rgba(37,99,235,.05)}
+.ruta-card h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.ruta-card p{font-size:.85rem;color:var(--tec-dim);margin:0 0 12px}
+.ruta-pasos{display:flex;flex-direction:column;gap:4px}
+.ruta-paso{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:50px;background:rgba(37,99,235,.06);color:#1E40AF}
+.ruta-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-weight:700;font-size:.85rem;color:var(--tec-azul)}
+.ruta-check input{width:20px;height:20px;accent-color:var(--tec-azul);cursor:pointer}
+
+/* SIMULADOR MAKECODE */
+.makecode-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.makecode-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.makecode-btn{padding:8px 16px;border:none;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:all .15s}
+.makecode-btn.led{background:var(--tec-rojo);color:white}
+.makecode-btn.temperatura{background:var(--tec-naranja);color:white}
+.makecode-btn.azul{background:var(--tec-azul);color:white}
+.makecode-btn.verde{background:var(--tec-verde);color:white}
+.makecode-btn.rosa{background:var(--tec-rosa);color:white}
+.makecode-btn.reset{background:var(--tec-border);color:var(--tec-dim)}
+.makecode-btn:hover{transform:translateY(-2px)}
+
+.makecode-display{background:#1A1A2E;border:3px solid #444;border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.makecode-pantalla{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:180px;height:180px}
+.makecode-led{width:100%;aspect-ratio:1;border-radius:4px;background:#2D2D3F;transition:all .3s}
+.makecode-led.on-rojo{background:#EF4444;box-shadow:0 0 10px rgba(239,68,68,.6)}
+.makecode-led.on-naranja{background:#F97316;box-shadow:0 0 10px rgba(249,115,22,.6)}
+.makecode-led.on-amarillo{background:#FACC15;box-shadow:0 0 10px rgba(250,204,21,.6)}
+.makecode-led.on-verde{background:#10B981;box-shadow:0 0 10px rgba(16,185,129,.6)}
+.makecode-led.on-celeste{background:#06B6D4;box-shadow:0 0 10px rgba(6,182,212,.6)}
+.makecode-led.on-azul{background:#2563EB;box-shadow:0 0 10px rgba(37,99,235,.6)}
+.makecode-led.on-blanco{background:#F8FAFC;box-shadow:0 0 10px rgba(248,250,252,.6)}
+.makecode-led.on-rosa{background:#EC4899;box-shadow:0 0 10px rgba(236,72,153,.6)}
+.makecode-led.on-purpura{background:#7C3AED;box-shadow:0 0 10px rgba(124,58,237,.6)}
+.makecode-led.on-oscuro{background:#0F0F1A}
+
+.makecode-botones{display:flex;gap:16px}
+.makecode-boton{width:48px;height:48px;border-radius:50%;border:3px solid #555;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;transition:all .15s;cursor:pointer}
+.makecode-boton.boton-a{background:#333;color:#10B981}
+.makecode-boton.boton-b{background:#333;color:#F97316}
+.makecode-boton.boton-a.presionado{background:#10B981;color:white;transform:scale(.9)}
+.makecode-boton.boton-b.presionado{background:#F97316;color:white;transform:scale(.9)}
+
+.makecode-temperatura{font-family:'Courier New',monospace;font-size:1.2rem;font-weight:700;color:#F97316;padding:8px 16px;background:#FFF7ED;border:2px solid var(--tec-amarillo);border-radius:var(--r-sm)}
+
+.makecode-log{background:#0F172A;border-radius:var(--r-sm);padding:14px;font-family:'Courier New',monospace;font-size:.8rem;color:#6EE7B7;max-height:120px;overflow-y:auto}
+.makecode-log-linea{margin-bottom:4px}
+.makecode-log-linea.info{color:#6EE7B7}
+.makecode-log-linea.alerta{color:#FCA5A5}
+.makecode-log-linea.accion{color:#93C5FD}
+
+/* EVALUACIÓN */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tec-azul);border-radius:var(--r-lg);background:linear-gradient(135deg,#EFF6FF,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tec-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tec-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tec-azul)}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tec-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(37,99,235,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--tec-azul),var(--tec-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(37,99,235,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tec-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tec-border);border-radius:var(--r-sm);background:white;color:var(--tec-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tec-azul);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tec-azul);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tec-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tec-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tec-azul),var(--tec-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #1E40AF;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tec-azul);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#1E40AF;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tec-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--tec-azul);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+/* DEBATE */
+.debate-box{border:2px dashed var(--tec-rosa);border-radius:var(--r-md);padding:18px;background:linear-gradient(135deg,#FFF1F2,#FDF2F8)}
+.debate-pregunta{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:#BE123C;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.debate-respuesta{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.debate-respuesta textarea{flex:1;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:10px 14px;font-family:'Nunito',sans-serif;font-size:.88rem;resize:vertical;outline:none;min-height:60px}
+.debate-respuesta textarea:focus{border-color:var(--tec-rosa)}
+.debate-avatar{font-size:1.5rem;flex-shrink:0}
+
+/* RETO */
+.reto-box{background:linear-gradient(135deg,#FFF7ED,#FEF2F8);border:2px dashed var(--tec-naranja);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tec-azul)}
+.cc-caja{background:rgba(37,99,235,.06);border:2px solid var(--tec-azul);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#1E40AF;font-size:.92rem}
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-azul),var(--tec-verde));color:white;cursor:pointer;box-shadow:0 5px 0 #1E40AF,0 8px 20px rgba(37,99,235,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #1E40AF,0 12px 24px rgba(37,99,235,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #1E40AF}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--tec-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tec-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tec-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tec-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* AUTOEVALUACIÓN */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--tec-azul);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--tec-azul);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--tec-azul);background:rgba(37,99,235,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--tec-azul);text-align:center;margin-top:14px}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(6,182,212,.1),rgba(16,185,129,.08));border:4px solid var(--tec-azul);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'🛡️';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tec-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tec-azul);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tec-azul),var(--tec-verde));box-shadow:0 4px 0 rgba(30,64,175,.4)}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tec-border);color:var(--tec-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tec-azul);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tec-azul);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tec-azul);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--tec-azul),var(--tec-verde));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #1E40AF,0 8px 20px rgba(37,99,235,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #1E40AF,0 12px 28px rgba(37,99,235,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #1E40AF}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .hero-titulo{font-size:1.6rem}
+  .quiz-options{grid-template-columns:1fr}
+  .conceptos-grid,.rutas-grid{grid-template-columns:1fr}
+  .makecode-pantalla{width:140px;height:140px}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap{display:none!important}
+  .seccion,.nivel-card,.bloque-pdf,.makecode-display{break-inside:avoid}
+  .cofre-secreto,.diploma-wrap{display:block!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🛡️ MISIÓN GUARDIÁN</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré Scratch">🐱</span>
+      <span class="pieza" id="pieza-2" title="Aprendí MakeCode">💡</span>
+      <span class="pieza" id="pieza-3" title="Programé bloques">⚙️</span>
+      <span class="pieza" id="pieza-4" title="Usé MakeCode">📱</span>
+      <span class="pieza" id="pieza-5" title="Elegí mi ruta">🗺️</span>
+      <span class="pieza" id="pieza-6" title="Socialicé mi proyecto">🎮</span>
+      <span class="pieza" id="pieza-7" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-creditos">💻 Equipos donados por el proyecto Obras por Impuestos · KIA</div>
+    <div class="hero-badge">🛡️ MODO GUARDIÁN ACTIVO</div>
+    <h1 class="hero-titulo">🛡️ Guardianes de Chichalá<br/>¡Programa, protege y transforma!</h1>
+    <p class="hero-subtitulo">Scratch + MakeCode · Programación creativa para mi vereda · Semana 4 · Grados 8° y 9°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="8° o 9°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 6 de octubre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: MISIÓN + EVALUACIÓN -->
+  <div class="seccion seccion-mision">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎯</span>
+      <h3>Tu misión de la semana</h3>
+      <small>👆 Lee con atención: cada paso te acerca a ser Guardián de Chichalá</small>
+    </div>
+
+    <div class="lab-pista">
+      🛡️ <strong>Misión:</strong> esta semana vas a aprender dos herramientas poderosas — Scratch y MakeCode — para crear un proyecto que impacte en tu vereda. Al final, socializarás tu prototipo ante tus compañeros. ¡Tus ideas pueden cambiar la vida de tu comunidad!
+    </div>
+
+    <!-- EVALUACIÓN -->
+    <div class="evaluacion" id="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <span class="evaluacion-etiqueta">PRUEBA DE SEMANA 4</span>
+          <h4>✍️ Prueba: Scratch + MakeCode · Grados 8° y 9°</h4>
+          <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+        </div>
+      </div>
+      <div class="evaluacion-progreso">
+        <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+        <span id="quiz-progress-text">Pregunta 1 de 10</span>
+      </div>
+      <div id="quiz-question" class="quiz-question"></div>
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+      <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+        Siguiente pregunta ➜
+      </button>
+      <div id="quiz-result" class="quiz-result" hidden></div>
+    </div>
+
+    <div class="nivel-card">
+      <div class="nivel-badge-wrap">
+        <span class="nivel-badge">🛡️ Tecnología e Informática · Grados 8° y 9°</span>
+        <span class="nivel-dba">DBA: Analizo el impacto de la automatización</span>
+      </div>
+      <div class="bloque-pdf">
+        <div class="pdf-icono">📘</div>
+        <div class="pdf-info">
+          <h5>📖 Guía interactiva · Semana 4</h5>
+          <p>Scratch + MakeCode: de la idea al prototipo que transforma tu vereda</p>
+        </div>
+        <span class="btn-pdf verde info" role="status">📖 Guía activa</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: CONCEPTOS CLAVE -->
+  <div class="seccion seccion-vocab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">💡</span>
+      <h3>Conceptos Clave · ¡Haz clic para voltear!</h3>
+      <small>👆 Toca las tarjetas para descubrir el mundo del código</small>
+    </div>
+
+    <div class="conceptos-grid">
+      <div class="concepto-card num" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🐱</span>
+        <div class="concepto-titulo">Scratch</div>
+        <div class="concepto-desc">Programar con bloques del MIT</div>
+        <div class="concepto-flip">Plataforma gratuita donde programas arrastrando bloques como piezas de rompecabezas. Ideal para crear historias, juegos y animaciones.</div>
+      </div>
+      <div class="concepto-card geo" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📱</span>
+        <div class="concepto-titulo">MakeCode</div>
+        <div class="concepto-desc">Editor de Microsoft para micro:bit</div>
+        <div class="concepto-flip">Herramienta de Microsoft con un simulador virtual. Puedes programar una micro:bit sin tener la tarjeta física: todo se ejecuta en tu navegador.</div>
+      </div>
+      <div class="concepto-card met" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🔁</span>
+        <div class="concepto-titulo">Bucle / Ciclo</div>
+        <div class="concepto-desc">Repetir acciones automáticamente</div>
+        <div class="concepto-flip">"Por siempre" repite el bloque sin parar. "Repetir X veces" lo hace X vueltas. Sin condición de salida, se convierte en un bucle infinito.</div>
+      </div>
+      <div class="concepto-card ale" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🚦</span>
+        <div class="concepto-titulo">Condicionales</div>
+        <div class="concepto-desc">SI...ENTONCES para decisiones</div>
+        <div class="concepto-flip">"SI temperatura &gt; 30° ENTONCES mostrar alerta". El programa elige su camino según los datos que recibe en tiempo real.</div>
+      </div>
+      <div class="concepto-card var" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">📦</span>
+        <div class="concepto-titulo">Variables</div>
+        <div class="concepto-desc">Cajas que guardan datos</div>
+        <div class="concepto-flip">Guardan valores que cambian: puntaje, temperatura, nivel de batería. Se crean, se leen y se actualizan con cada ejecución.</div>
+      </div>
+      <div class="concepto-card frac" onclick="this.classList.toggle('flipped')">
+        <span class="concepto-emoji">🌡️</span>
+        <div class="concepto-titulo">Sensores</div>
+        <div class="concepto-desc">El dispositivo "siente" el mundo</div>
+        <div class="concepto-flip">El micro:bit tiene termómetro, acelerómetro y brújula. Los sensores convierten el mundo real en datos que tu programa puede usar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: RUTAS DE PROYECTO -->
+  <div class="seccion seccion-rutas">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗺️</span>
+      <h3>Elige tu ruta de proyecto</h3>
+      <small>👆 Selecciona la misión que más te llame la atención</small>
+    </div>
+
+    <div class="rutas-grid">
+      <div class="ruta-card" onclick="seleccionarRuta(this, 'riego')">
+        <h4>💧 Ruta 1: Riego Inteligente</h4>
+        <p>Un sistema automatizado que decide cuándo regar los cultivos de Chichalá según datos de temperatura y humedad.</p>
+        <div class="ruta-pasos">
+          <span class="ruta-paso">1. Variable: temperatura</span>
+          <span class="ruta-paso">2. Condicional: SI temp &gt; 30°</span>
+          <span class="ruta-paso">3. Animación: goteo de agua</span>
+                    <span class="ruta-paso">4. Sonido: "agua cayendo"</span>
+        </div>
+        <label class="ruta-check"><input type="radio" name="ruta-proyecto" value="riego"/> Quiero esta ruta</label>
+      </div>
+
+      <div class="ruta-card" onclick="seleccionarRuta(this, 'reciclaje')">
+        <h4>🗑️ Ruta 2: Reciclaje Express</h4>
+        <p>Juego de clasificación de residuos en la tienda escolar: arrastra cada residuo a la caneca correcta y gana puntos.</p>
+        <div class="ruta-pasos">
+          <span class="ruta-paso">1. Sprites: botella, pila, cáscara</span>
+          <span class="ruta-paso">2. Contador: puntaje por acierto</span>
+          <span class="ruta-paso">3. Condicional: ¿caneca correcta?</span>
+          <span class="ruta-paso">4. Vidas: 3 errores = Game Over</span>
+        </div>
+        <label class="ruta-check"><input type="radio" name="ruta-proyecto" value="reciclaje"/> Quiero esta ruta</label>
+      </div>
+
+      <div class="ruta-card" onclick="seleccionarRuta(this, 'energia')">
+        <h4>⚡ Ruta 3: Energía para la Vereda</h4>
+        <p>Simulador que compara paneles solares vs. planta diésel: calcula costos, contaminación y autonomía de Chichalá.</p>
+        <div class="ruta-pasos">
+          <span class="ruta-paso">1. Variables: kWh, costo, CO₂</span>
+          <span class="ruta-paso">2. Ciclo: día/noche (24 vueltas)</span>
+          <span class="ruta-paso">3. Condicional: batería baja</span>
+          <span class="ruta-paso">4. Salida: gráfica comparativa</span>
+        </div>
+        <label class="ruta-check"><input type="radio" name="ruta-proyecto" value="energia"/> Quiero esta ruta</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: LABORATORIO SCRATCH -->
+  <div class="seccion seccion-lab">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🐱</span>
+      <h3>Laboratorio Scratch · Retos progresivos</h3>
+      <small>🖱️ Haz clic en "Ejecutar" y observa cómo piensa tu programa</small>
+    </div>
+
+    <div class="lab-pista">
+      🎯 <strong>Misión:</strong> estos son los 4 retos que resolverás en el Scratch instalado en tu computador KIA. Ejecuta la simulación aquí primero para entender la lógica, luego llévala a bloques reales.
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="algo-titulo-block">🧱 Código del Reto 3: "El juego piensa solo" (bloques tipo Scratch)</div>
+      <div class="bloques-palette">
+        <div class="bloque-s repeat">🔁 Por siempre...</div>
+        <div class="bloque-s if" style="margin-left:24px">🚦 SI temperatura &gt; 30 entonces...</div>
+        <div class="bloque-s show" style="margin-left:48px">💬 Decir: "¡Alerta! Riega temprano"</div>
+        <div class="bloque-s var" style="margin-left:48px">📦 Sumar 1 a alertas</div>
+        <div class="bloque-s if" style="margin-left:24px">🚦 SI tecla espacio presionada entonces...</div>
+        <div class="bloque-s calc" style="margin-left:48px">➕ Cambiar agua por 5</div>
+        <div class="bloque-s end" style="margin-left:24px">🏁 Fin del bucle</div>
+      </div>
+    </div>
+
+    <div class="algo-escenario" style="margin-top:16px">
+      <div class="algo-escenario-header">
+        <span style="font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:#1E40AF">🎬 Simulación del reto</span>
+        <div style="display:flex;gap:8px">
+          <button class="btn-algo ejecutar" onclick="ejecutarReto()">▶ Ejecutar</button>
+          <button class="btn-algo reiniciar" onclick="reiniciarReto()">↺ Reiniciar</button>
+        </div>
+      </div>
+      <div class="algo-escenario-body">
+        <div class="algo-pasos" id="reto-pasos"></div>
+        <div class="algo-salida" id="reto-salida">Esperando ejecución...</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;display:grid;gap:10px">
+      <div class="auto-item" style="cursor:default"><input type="checkbox" onchange="desbloquearPieza(1)"/> ✅ Abrí Scratch y creé un proyecto nuevo con mi nombre</div>
+      <div class="auto-item" style="cursor:default"><input type="checkbox" onchange="desbloquearPieza(3)"/> ✅ Terminé los Retos 1 y 2 (sprite vivo + puntaje)</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: SIMULADOR MAKECODE -->
+  <div class="seccion seccion-makecode">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">📱</span>
+      <h3>MakeCode · ¡Tu micro:bit virtual!</h3>
+      <small>🌡️ Presiona los botones y observa la matriz LED 5x5 como si tuvieras la placa en la mano</small>
+    </div>
+
+    <div class="lab-pista">
+      🎯 <strong>Misión:</strong> MakeCode trae un simulador integrado — no necesitas la tarjeta física. Practica aquí, luego replica tu código en MakeCode (instalado en tu equipo KIA) y descarga el archivo .hex para cuando lleguen las placas.
+    </div>
+
+    <div class="makecode-wrap" style="margin-top:16px">
+      <div class="makecode-toolbar">
+        <button class="makecode-btn led" onclick="dibujarIcono('corazon')">❤️ Corazón</button>
+        <button class="makecode-btn azul" onclick="dibujarIcono('cara')">🙂 Cara feliz</button>
+        <button class="makecode-btn verde" onclick="dibujarIcono('check')">✅ OK</button>
+        <button class="makecode-btn rosa" onclick="dibujarIcono('x')">❌ Alerta</button>
+        <button class="makecode-btn temperatura" onclick="leerTemperatura()">🌡️ Leer temperatura</button>
+        <button class="makecode-btn reset" onclick="apagarLed()">🔅 Apagar</button>
+      </div>
+
+      <div class="makecode-display">
+        <div class="makecode-pantalla" id="mc-matriz"></div>
+        <div class="makecode-botones">
+          <div class="makecode-boton boton-a" id="mc-boton-a" onclick="presionarBoton('A')">A</div>
+          <div class="makecode-boton boton-b" id="mc-boton-b" onclick="presionarBoton('B')">B</div>
+        </div>
+        <div class="makecode-temperatura" id="mc-temp">🌡️ -- °C</div>
+      </div>
+
+      <div class="makecode-log" id="mc-log">
+        <div class="makecode-log-linea info">&gt; makecode.microbit.org iniciado. Simulador listo.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;display:grid;gap:10px">
+      <div class="auto-item" style="cursor:default"><input type="checkbox" onchange="desbloquearPieza(2)"/> ✅ Exploré MakeCode y su simulador integrado</div>
+      <div class="auto-item" style="cursor:default"><input type="checkbox" onchange="desbloquearPieza(4)"/> ✅ Programé un icono y una condición en MakeCode</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: DEBATE -->
+  <div class="seccion seccion-debate">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗣️</span>
+      <h3>Debate · Tecnología, sociedad y medio ambiente</h3>
+      <small>✍️ Escribe tu postura: esto alimenta tu pieza comunicativa de la semana 4</small>
+    </div>
+
+    <div class="debate-box">
+      <div class="debate-pregunta">🤔 Pregunta 1: ¿Automatizar el riego de las fincas de Chichalá ayuda o amenaza a los campesinos? Defiende tu posición.</div>
+      <div class="debate-respuesta">
+        <span class="debate-avatar">🧑‍🌾</span>
+        <textarea placeholder="Escribe aquí tu argumento (mínimo 2 líneas)..."></textarea>
+      </div>
+
+      <div class="debate-pregunta" style="margin-top:16px">🌎 Pregunta 2: Si todo se automatiza, ¿qué pasa con los empleos del campo? Propón una solución justa.</div>
+      <div class="debate-respuesta">
+        <span class="debate-avatar">⚖️</span>
+        <textarea placeholder="Piensa en beneficios Y riesgos..."></textarea>
+      </div>
+
+      <div class="debate-pregunta" style="margin-top:16px">♻️ Pregunta 3: ¿Qué problema ambiental de tu vereda podría resolver un programa tuyo?</div>
+      <div class="debate-respuesta">
+        <span class="debate-avatar">🌿</span>
+        <textarea placeholder="Quemar basura, agua sucia, ruido... ¡propón!"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7: RETO MAKER -->
+  <div class="seccion seccion-reto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✍️</span>
+      <h3>Reto Maker · Diseña antes de programar</h3>
+      <small>📋 Completa la ficha: es el plano de tu prototipo del viernes</small>
+    </div>
+    <div class="reto-box">
+      <div class="reto-titulo">🏆 Ficha técnica de mi proyecto guardián</div>
+      <div class="linea"><input type="text" placeholder="1. Nombre creativo de mi proyecto..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="2. Problema real de Chichalá que resuelve..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="3. Herramienta: Scratch / MakeCode / ambas..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="4. Bloque clave que usaré (bucle, condicional, variable)..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="linea"><input type="text" placeholder="5. Impacto positivo en la comunidad..." style="width:100%;border:none;outline:none;background:transparent;font:600 .9rem 'Nunito',sans-serif"/></div>
+      <div class="cc-caja">
+        <p>💬 Regla de oro del viernes: tu proyecto debe poder EXPLICARSE sin computador. Si un visitante de la sede lo entiende en 1 minuto, está listo para la socialización.</p>
+      </div>
+    </div>
+    <button class="btn-completar" onclick="completarMision()">🏁 Completar mi misión de guardián</button>
+  </div>
+
+  <!-- AUTOEVALUACIÓN -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Autoevaluación · ¿Qué logré esta semana?</h3>
+      <small>✅ Marca lo que ya dominas y verás tu avance real</small>
+    </div>
+
+    <div class="auto-grid" id="auto-grid">
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Navego en Scratch y creo un proyecto con sprites y sonido</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Descubrí que MakeCode funciona sin la tarjeta micro:bit gracias al simulador</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Uso un bucle "por siempre" sin crear bucles infinitos dañinos</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Escribo condicionales SI...ENTONCES con datos de sensores</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Manejo variables para puntaje, temperatura o niveles</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Identifico un beneficio de la automatización para mi vereda</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Reconozco un riesgo ético o social de automatizar sin control</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Explico mi proyecto oralmente en menos de un minuto</label>
+    </div>
+    <div class="auto-total" id="auto-total">0 de 8 logros conseguidos</div>
+  </div>
+
+  <!-- COFRE -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre del Guardián</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos de los creadores de tecnología</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🇬🇧</span>
+      <div><strong>La micro:bit nació para estudiantes:</strong> La BBC la creó en 2015 y regaló un millón de placas a jóvenes de Reino Unido. Hoy se usa en más de 60 países. ¡Tú ya eres parte de esa historia! 🌍</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">☕</span>
+      <div><strong>Sensores en el café colombiano:</strong> Fincas del Eje Cafetero ya usan sensores de humedad para regar con un 30% menos de agua. Tu ruta del riego imita tecnología profesional. 💧</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">💻</span>
+      <div><strong>Tu computador tiene superpoderes:</strong> Los equipos del proyecto Obras por Impuestos con KIA tienen 8 GB de RAM y 8 núcleos: potencia de sobra para programar, editar video y diseñar. ¡Aprovecha esa oportunidad! 🚀</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🎮</span>
+      <div><strong>De estudiante a creador:</strong> El primer videojuego comercial de Colombia fue hecho por jóvenes que empezaron con herramientas como Scratch. Tu idea de hoy puede ser la app del mañana. 📲</div>
+       </div>
+
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🐱</span>
+      <div><strong>El gatito de Scratch tiene historia:</strong> Fue diseñado en 2003 por el MIT Media Lab como mascota de un proyecto que hoy tiene más de 100 millones de usuarios en el mundo. ¡Tu primer clic en Scratch es parte de una revolución educativa global! 🌎</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🛡️</span>
+    <p>Completó con éxito la <strong>Semana 4 · Guardianes de Chichalá</strong> con creatividad, pensamiento crítico y compromiso con su comunidad.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">8° o 9°</div>
+    <p style="font-size:0.72rem;margin-top:16px;color:var(--tec-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson · Equipos KIA · Obras por Impuestos</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🛡️ Programar es proteger lo que amamos · Chichalá, Tolima</p>
+    <p>💻 Gracias al proyecto Obras por Impuestos · KIA por estos equipos</p>
+    <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// ══════════════ COFRE + DIPLOMA ══════════════
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+function completarMision(){
+  document.querySelectorAll('.pieza').forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '8° o 9°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+function crearConfeti(){
+  const colores = ['#2563EB','#06B6D4','#10B981','#7C3AED','#FACC15','#EC4899'];
+  for(let i=0;i<60;i++){
+    const c = document.createElement('div');
+    c.style.position='fixed';
+    c.style.left=Math.random()*100+'vw';
+    c.style.top='-20px';
+    c.style.width=Math.random()*10+8+'px';
+    c.style.height=Math.random()*10+8+'px';
+    c.style.background=colores[Math.floor(Math.random()*colores.length)];
+    c.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+// ══════════════ PIEZAS DE MISIÓN ══════════════
+function desbloquearPieza(num){
+  const pieza = document.getElementById('pieza-'+num);
+  pieza.classList.add('obtenida');
+  const piezasObtenidas = document.querySelectorAll('.pieza.obtenida').length;
+  const pct = Math.round((piezasObtenidas / 7) * 100);
+  document.getElementById('barra-fill').style.width = pct + '%';
+}
+
+// ══════════════ SELECCIÓN DE RUTA ══════════════
+function seleccionarRuta(card, ruta){
+  document.querySelectorAll('.ruta-card').forEach(c => c.classList.remove('seleccionada'));
+  card.classList.add('seleccionada');
+  card.querySelector('input').checked = true;
+  desbloquearPieza(5);
+  crearConfeti();
+}
+
+// ══════════════ RETO SCRATCH SIMULADO ══════════════
+const pasosReto = [
+  { texto: '🔁 Por siempre... (inicio del bucle)', tipo: 'loop' },
+  { texto: '🌡️ Leer temperatura del sensor', tipo: 'input' },
+  { texto: '🚦 SI temperatura > 30° entonces...', tipo: 'if' },
+  { texto: '💬 "¡Alerta! Riega temprano"', tipo: 'show' },
+  { texto: '📦 Sumar 1 a alertas', tipo: 'var' },
+  { texto: '🚦 SI tecla espacio presionada...', tipo: 'if' },
+  { texto: '💧 Cambiar agua por 5', tipo: 'calc' },
+  { texto: '💬 "Agua actual: [valor] litros"', tipo: 'show' }
+];
+
+let pasoReto = -1;
+let ejecutandoReto = false;
+
+function ejecutarReto(){
+  if(ejecutandoReto) return;
+  ejecutandoReto = true;
+  pasoReto = 0;
+  document.getElementById('reto-pasos').innerHTML = '';
+  document.getElementById('reto-salida').textContent = '▶ Ejecutando reto...';
+
+  function siguientePaso(){
+    if(pasoReto >= pasosReto.length){
+      document.getElementById('reto-salida').textContent = '✅ ¡Reto completado! Tu juego piensa solo.';
+      document.getElementById('reto-salida').style.color = '#047857';
+      ejecutandoReto = false;
+      desbloquearPieza(3);
+      crearConfeti();
+      return;
+    }
+    const p = pasosReto[pasoReto];
+    const div = document.createElement('div');
+    div.className = 'algo-paso';
+    div.innerHTML = `<div class="algo-paso-num">${pasoReto+1}</div><span>${p.texto}</span>`;
+    document.getElementById('reto-pasos').appendChild(div);
+    div.classList.add('activo');
+
+    if(p.tipo === 'input'){
+      document.getElementById('reto-salida').textContent = '⏳ Esperando lectura del sensor...';
+      document.getElementById('reto-salida').style.color = '#A16207';
+      setTimeout(()=>{ pasoReto++; siguientePaso(); }, 1200);
+    } else {
+      document.getElementById('reto-salida').textContent = p.texto;
+      document.getElementById('reto-salida').style.color = p.tipo === 'if' ? '#5B21B6' : '#047857';
+      pasoReto++;
+      setTimeout(siguientePaso, 700);
+    }
+  }
+  siguientePaso();
+}
+
+function reiniciarReto(){
+  ejecutandoReto = false;
+  pasoReto = -1;
+  document.getElementById('reto-pasos').innerHTML = '';
+  document.getElementById('reto-salida').textContent = 'Esperando ejecución...';
+  document.getElementById('reto-salida').style.color = '#1E40AF';
+}
+
+// ══════════════ SIMULADOR MAKECODE ══════════════
+const mcMatriz = [];
+const colores = ['on-rojo','on-naranja','on-amarillo','on-verde','on-celeste','on-azul','on-blanco','on-rosa','on-purpura','on-oscuro'];
+
+function initMatriz(){
+  const contenedor = document.getElementById('mc-matriz');
+  contenedor.innerHTML = '';
+  mcMatriz.length = 0;
+  for(let i=0;i<25;i++){
+    const led = document.createElement('div');
+    led.className = 'makecode-led on-oscuro';
+    contenedor.appendChild(led);
+    mcMatriz.push(led);
+  }
+}
+
+function apagarLed(){
+  mcMatriz.forEach(l => { l.className = 'makecode-led on-oscuro'; });
+  agregarLog('🔅 Matriz apagada', 'info');
+}
+
+function dibujarIcono(icono){
+  apagarLed();
+  if(icono === 'corazon'){
+    const corazon = [1,2,6,7,8,11,12,13,14,19,20];
+    corazon.forEach(i => mcMatriz[i].className = 'makecode-led on-rojo');
+    agregarLog('❤️ Icono: Corazón dibujado', 'accion');
+  } else if(icono === 'cara'){
+    // Ojos
+    mcMatriz[4].className = 'makecode-led on-azul';
+    mcMatriz[6].className = 'makecode-led on-azul';
+    mcMatriz[18].className = 'makecode-led on-azul';
+    mcMatriz[20].className = 'makecode-led on-azul';
+    // Boca
+    mcMatriz[14].className = 'makecode-led on-azul';
+    mcMatriz[15].className = 'makecode-led on-azul';
+    mcMatriz[16].className = 'makecode-led on-azul';
+    agregarLog('🙂 Icono: Cara feliz', 'accion');
+  } else if(icono === 'check'){
+    mcMatriz[2].className = 'makecode-led on-verde';
+    mcMatriz[7].className = 'makecode-led on-verde';
+    mcMatriz[8].className = 'makecode-led on-verde';
+    mcMatriz[13].className = 'makecode-led on-verde';
+    mcMatriz[14].className = 'makecode-led on-verde';
+    mcMatriz[19].className = 'makecode-led on-verde';
+    mcMatriz[20].className = 'makecode-led on-verde';
+    agregarLog('✅ Icono: Check OK', 'accion');
+  } else if(icono === 'x'){
+    mcMatriz[0].className = 'makecode-led on-rosa';
+    mcMatriz[6].className = 'makecode-led on-rosa';
+    mcMatriz[10].className = 'makecode-led on-rosa';
+    mcMatriz[14].className = 'makecode-led on-rosa';
+    mcMatriz[18].className = 'makecode-led on-rosa';
+    mcMatriz[24].className = 'makecode-led on-rosa';
+    agregarLog('❌ Icono: Alerta X', 'accion');
+  }
+}
+
+function leerTemperatura(){
+  const temp = 22 + Math.floor(Math.random() * 18);
+  document.getElementById('mc-temp').textContent = '🌡️ ' + temp + ' °C';
+  if(temp > 30){
+    agregarLog('⚠️ Temperatura alta: ' + temp + '°C', 'alerta');
+    dibujarIcono('x');
+  } else {
+    agregarLog('✅ Temperatura normal: ' + temp + '°C', 'info');
+    dibujarIcono('check');
+  }
+}
+
+function presionarBoton(btn){
+  const btnEl = document.getElementById('mc-boton-' + btn.toLowerCase());
+  btnEl.classList.add('presionado');
+  setTimeout(()=> btnEl.classList.remove('presionado'), 200);
+  agregarLog('🔘 Botón ' + btn + ' presionado', 'accion');
+
+  if(btn === 'A'){
+    dibujarIcono('corazon');
+  } else if(btn === 'B'){
+    leerTemperatura();
+  }
+}
+
+function agregarLog(texto, tipo){
+  const log = document.getElementById('mc-log');
+  const linea = document.createElement('div');
+  linea.className = 'makecode-log-linea ' + tipo;
+  linea.textContent = '> ' + texto;
+  log.appendChild(linea);
+  log.scrollTop = log.scrollHeight;
+}
+
+// ══════════════ AUTOEVALUACIÓN ══════════════
+function actualizarAuto(checkbox){
+  checkbox.closest('.auto-item').classList.toggle('marcado', checkbox.checked);
+  const total = document.querySelectorAll('#auto-grid input:checked').length;
+  document.getElementById('auto-total').textContent = total + ' de 8 logros conseguidos';
+  if(total === 8){
+    document.getElementById('auto-total').textContent = '🏆 ¡Los 8 logros conseguidos! Ya eres Guardián de Chichalá.';
+    crearConfeti();
+  }
+}
+
+// ══════════════ EVALUACIÓN DIAGNÓSTICA ══════════════
+const preguntasQuiz = [
+  {
+    seccion: 'Scratch',
+    texto: '¿Qué es Scratch?',
+    opciones: ['Un videojuego de Nintendo', 'Un lenguaje de programación por bloques del MIT', 'Un antivirus', 'Un procesador de texto'],
+    correcta: 1,
+    explicacion: 'Scratch fue creado por el MIT en 2007: programas arrastrando bloques, sin escribir código.'
+  },
+  {
+    seccion: 'MakeCode',
+    texto: '¿Qué ventaja tiene el simulador de MakeCode?',
+    opciones: ['Es más rápido que Scratch', 'Permite programar una micro:bit sin tener la tarjeta física', 'No requiere internet pero tampoco funciona offline', 'Solo sirve para juegos de disparos'],
+    correcta: 1,
+    explicacion: 'MakeCode incluye un simulador virtual: ves tu código actuar en una micro:bit digital antes de descargar el .hex.'
+  },
+  {
+    seccion: 'Sensores',
+    texto: '¿Qué sensores tiene la micro:bit?',
+    opciones: ['Solo cámara', 'Temperatura, acelerómetro y brújula digital', 'GPS y wifi', 'Solo botones A y B'],
+    correcta: 1,
+    explicacion: 'La micro:bit mide temperatura, movimiento (acelerómetro) y orientación (brújula).'
+  },
+  {
+    seccion: 'Variables',
+    texto: 'Una variable "puntaje" inicia en 0. El jugador acierta 3 veces y falla 2. ¿Cuál es su valor?',
+    opciones: ['1', '3', '5', '0'],
+    correcta: 1,
+    explicacion: 'Las fallas no restan. Solo los aciertos suman: 0 + 3 = 3.'
+  },
+  {
+    seccion: 'Bucles',
+    texto: '"Por siempre" en Scratch significa:',
+    opciones: ['El programa se ejecuta una vez', 'El bloque se repite infinitamente hasta que se detiene manualmente', 'Se ejecuta 100 veces', 'El programa se cierra'],
+    correcta: 1,
+    explicacion: '"Por siempre" crea un ciclo infinito: el bloque se ejecuta una y otra vez hasta que el usuario detiene el programa.'
+  },
+  {
+    seccion: 'Condicionales',
+    texto: 'En el simulador MakeCode, si la temperatura es 35°C y pides "leer temperatura", ¿qué pasa?',
+    opciones: ['Muestra solo el número', 'Dibuja un icono de alerta (X) y registra temperatura alta', 'Apaga la pantalla', 'Reinicia el simulador'],
+    correcta: 1,
+    explicacion: 'El simulador detecta valores altos y reacciona visualmente con un ícono de alerta.'
+  },
+  {
+    seccion: 'Automatización',
+    texto: '¿Qué es automatizar un proceso?',
+    opciones: ['Reemplazar a todas las personas por máquinas', 'Que una tarea repetitiva se ejecute sola siguiendo reglas definidas', 'Programar sin computador', 'Hacer que todo sea manual'],
+    correcta: 1,
+    explicacion: 'Automatizar es delegar lo repetitivo al sistema, pero las reglas y decisiones siguen siendo humanas.'
+  },
+  {
+    seccion: 'Impacto social',
+    texto: 'Un riesgo ético de automatizar el riego del campo es:',
+    opciones: ['Que el agua se vuelve más cara', 'Que los campesinos pierdan empleo si no hay transición justa', 'Que las plantas crecen más rápido', 'Que el computador se calienta'],
+    correcta: 1,
+    explicacion: 'La tecnología debe acompañarse de planes de formación y transición para las comunidades afectadas.'
+  },
+  {
+    seccion: 'MakeCode',
+    texto: '¿Para qué sirve el archivo .hex en MakeCode?',
+    opciones: ['Para borrar el proyecto', 'Para descargar el programa y cargarlo en la micro:bit física', 'Para diseñar la interfaz', 'Para compartir en redes sociales'],
+    correcta: 1,
+    explicacion: 'El .hex es el firmware que se copia a la micro:bit como si fuera un pendrive.'
+  },
+  {
+    seccion: 'Proyecto guardián',
+    texto: 'El viernes socializarás tu proyecto. ¿Qué significa "socializar"?',
+    opciones: ['Publicarlo en Facebook', 'Presentarlo y explicarlo a tus compañeros para que lo prueben', 'Enviar un correo al director', 'Borrar todos los archivos'],
+    correcta: 1,
+    explicacion: 'Socializar = compartir tu prototipo, permitir que otros lo prueben y recibir retroalimentación.'
+  }
+];
+
+let preguntaActual = 0;
+let respuestasQuiz = [];
+
+function cargarPregunta(){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const contenedor = document.getElementById('quiz-question');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const porcentaje = ((preguntaActual + 1) / preguntasQuiz.length) * 100;
+
+  document.getElementById('quiz-progress-fill').style.width = porcentaje + '%';
+  document.getElementById('quiz-progress-text').textContent =
+    `Pregunta ${preguntaActual + 1} de ${preguntasQuiz.length}`;
+  contenedor.innerHTML = `
+    <span class="evaluacion-etiqueta">${pregunta.seccion}</span>
+    <h5>${preguntaActual + 1}. ${pregunta.texto}</h5>
+    <div class="quiz-options">
+      ${pregunta.opciones.map((opcion, indice) => `
+        <button class="quiz-option" type="button" onclick="responderPregunta(${indice})">
+          <strong>${String.fromCharCode(65 + indice)})</strong><span>${opcion}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  feedback.className = 'quiz-feedback';
+  feedback.textContent = '';
+  boton.disabled = true;
+  boton.textContent = preguntaActual === preguntasQuiz.length - 1
+    ? 'Ver resultado final ✓'
+    : 'Siguiente pregunta ➜';
+}
+
+function responderPregunta(indice){
+  const pregunta = preguntasQuiz[preguntaActual];
+  const opciones = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  const boton = document.getElementById('quiz-next');
+  const esCorrecta = indice === pregunta.correcta;
+
+  respuestasQuiz[preguntaActual] = indice;
+  opciones.forEach((opcion, posicion) => {
+    opcion.disabled = true;
+    if(posicion === pregunta.correcta) opcion.classList.add('correct');
+    if(posicion === indice && !esCorrecta) opcion.classList.add('incorrect');
+  });
+  feedback.className = `quiz-feedback ${esCorrecta ? 'correct' : 'incorrect'}`;
+  feedback.textContent = esCorrecta
+    ? `✅ ¡Correcto! ${pregunta.explicacion}`
+    : `❌ No exactamente. ${pregunta.explicacion}`;
+  boton.disabled = false;
+}
+
+function siguientePregunta(){
+  if(respuestasQuiz[preguntaActual] === undefined) return;
+  if(preguntaActual < preguntasQuiz.length - 1){
+    preguntaActual++;
+    cargarPregunta();
+  } else {
+    mostrarResultado();
+  }
+}
+
+function mostrarResultado(){
+  const aciertos = respuestasQuiz.reduce((total, respuesta, indice) =>
+    total + (respuesta === preguntasQuiz[indice].correcta ? 1 : 0), 0);
+  const porcentaje = Math.round((aciertos / preguntasQuiz.length) * 100);
+  const resultado = document.getElementById('quiz-result');
+  const nivel = porcentaje >= 80 ? '¡Excelente, Guardián experto!'
+    : porcentaje >= 60 ? '¡Buen avance, futuro creador!'
+    : '¡Sigue practicando, tu vereda te necesita!';
+
+  document.getElementById('quiz-question').hidden = true;
+  document.getElementById('quiz-feedback').hidden = true;
+  document.getElementById('quiz-next').hidden = true;
+  resultado.hidden = false;
+  resultado.innerHTML = `
+    <h5>${nivel}</h5>
+    <p><strong>${aciertos} / ${preguntasQuiz.length} correctas</strong> · ${porcentaje}%</p>
+    <p>${retroalimentacionResultado(aciertos)}</p>
+    <button class="btn-quiz-download" type="button" onclick="descargarResultado(${aciertos}, ${porcentaje})">
+      💾 Descargar resultado
+    </button>
+  `;
+  document.getElementById('quiz-progress-fill').style.width = '100%';
+  document.getElementById('quiz-progress-text').textContent = 'Prueba completada';
+  crearConfeti();
+}
+
+function retroalimentacionResultado(aciertos){
+  if(aciertos >= 9) return 'Dominas Scratch, MakeCode y el impacto social: tu proyecto del viernes será brillante.';
+  if(aciertos >= 7) return 'Repasa sensores y condicionales; son la base de tu simulador de riego.';
+  return 'Refuerza qué es una variable y un bucle antes de la socialización del viernes.';
+}
+
+function descargarResultado(aciertos, porcentaje){
+  const nombre = document.getElementById('input-nombre').value.trim() || 'Estudiante';
+  const grado = document.getElementById('input-grado').value.trim() || '8° o 9°';
+  const fecha = document.getElementById('input-fecha').value.trim() || new Date().toLocaleDateString('es-CO');
+  const detalle = respuestasQuiz.map((respuesta, indice) =>
+    `${indice + 1}. ${String.fromCharCode(65 + respuesta)} - ${respuesta === preguntasQuiz[indice].correcta ? 'Correcta' : 'Incorrecta'}`
+  ).join('\n');
+  const contenido = [
+    'PRUEBA SCRATCH + MAKECODE · SEMANA 4',
+    'Tecnología e Informática · Grados 8° y 9°',
+    `Estudiante: ${nombre}`,
+    `Grado: ${grado}`,
+    `Fecha: ${fecha}`,
+    `Puntaje: ${aciertos}/${preguntasQuiz.length} (${porcentaje}%)`,
+    '',
+    'Respuestas:',
+    detalle,
+    '',
+    retroalimentacionResultado(aciertos)
+  ].join('\n');
+  const archivo = new Blob([contenido], {type: 'text/plain;charset=utf-8'});
+  const enlace = document.createElement('a');
+  enlace.href = URL.createObjectURL(archivo);
+  enlace.download = `resultado-semana4-guardian-${nombre.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.txt`;
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+}
+
+// ══════════════ INICIALIZACIÓN ══════════════
+document.addEventListener('DOMContentLoaded', function(){
+  initMatriz();
+  cargarPregunta();
+  console.log('🛡️ Guardianes de Chichalá · Semana 4 cargado correctamente. ¡Vamos Chichalá!');
+});
+</script>
+
+</body>
+</html>
