@@ -1,0 +1,3059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Inglés · Grado 7° · Semana 2 · Hello! My First Day at School · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🌎 English Adventure · Semana 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   ENGLISH ADVENTURE · SEMANA 2 · GRADO 7°
+   Hello! · My First Day at School
+   ══════════════════════════════════════════════ */
+:root{
+  --eng-rosa:#EC4899;    --eng-fucsia:#DB2777;   --eng-morado:#7C3AED;
+  --eng-azul:#2563EB;    --eng-cyan:#06B6D4;     --eng-verde:#10B981;
+  --eng-amarillo:#FACC15;--eng-naranja:#F97316;  --eng-rojo:#EF4444;
+  --eng-celeste:#38BDF8;
+  --eng-bg:#FDF2F8;      --eng-card:#FFFFFF;
+  --eng-texto:#0F172A;   --eng-dim:#64748B;      --eng-border:#FBCFE8;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--eng-bg);color:var(--eng-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(236,72,153,.07) 1px,transparent 1px),radial-gradient(circle,rgba(124,58,237,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* ── BARRA DE PROGRESO / MISIÓN ── */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--eng-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--eng-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--eng-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--eng-rosa),var(--eng-morado));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(236,72,153,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* ── HERO HEADER ── */
+.hero-header{background:linear-gradient(135deg,#DB2777 0%,#7C3AED 50%,#2563EB 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🌎';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'💬';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* ── SECCIONES BASE ── */
+.seccion{background:white;border:2px solid var(--eng-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-listen::before{background:linear-gradient(180deg,var(--eng-rosa),var(--eng-fucsia))}
+.seccion-write::before{background:linear-gradient(180deg,var(--eng-morado),var(--eng-rosa))}
+.seccion-read::before{background:linear-gradient(180deg,var(--eng-azul),var(--eng-celeste))}
+.seccion-spell::before{background:linear-gradient(180deg,var(--eng-cyan),var(--eng-azul))}
+.seccion-speak::before{background:linear-gradient(180deg,var(--eng-naranja),var(--eng-amarillo))}
+.seccion-auto::before{background:linear-gradient(180deg,var(--eng-verde),var(--eng-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--eng-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--eng-dim);font-weight:600;margin-top:2px}
+.en-es{font-size:.82rem;color:var(--eng-dim);font-style:italic;display:block;margin-top:4px}
+
+/* ── PLACEHOLDER DE BLOQUE (a reemplazar) ── */
+.bloque-placeholder{border:3px dashed var(--eng-border);border-radius:var(--r-md);padding:26px;text-align:center;color:var(--eng-dim);background:linear-gradient(135deg,#FDF2F8,#F5F3FF)}
+.bloque-placeholder strong{font-family:'Fredoka',sans-serif;color:var(--eng-fucsia);display:block;margin-bottom:6px}
+
+/* ══════════════════════════════════════════════
+   BLOQUE 1: LISTEN · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.listen-contexto{background:linear-gradient(135deg,#FDF2F8,#F5F3FF);border:2px solid var(--eng-border);border-radius:var(--r-md);padding:20px;margin-bottom:20px}
+.listen-badge-local{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;color:var(--eng-fucsia);background:white;padding:4px 14px;border-radius:50px;display:inline-block;margin-bottom:10px;border:1px solid var(--eng-border)}
+.listen-narrativa{font-size:.92rem;color:var(--eng-texto);margin:0;line-height:1.7}
+.listen-narrativa strong{color:var(--eng-fucsia)}
+
+/* Audio Principal */
+.listen-audio-principal{margin-bottom:24px;text-align:center}
+.btn-audio-main{position:relative;overflow:hidden;width:100%;max-width:500px;display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,var(--eng-rosa),var(--eng-morado));color:white;border:none;padding:16px 24px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 0 #9D174D,0 8px 20px rgba(236,72,153,.35);transition:all .15s}
+.btn-audio-main:hover{transform:translateY(-3px);box-shadow:0 9px 0 #9D174D,0 12px 28px rgba(236,72,153,.4)}
+.btn-audio-main:active{transform:translateY(2px);box-shadow:0 2px 0 #9D174D}
+.btn-audio-main .audio-icon{font-size:1.3rem}
+.btn-audio-main.playing{background:linear-gradient(135deg,var(--eng-morado),var(--eng-azul));box-shadow:0 6px 0 #5B21B6}
+.audio-timeline{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.timeline-marker{font-size:.7rem;font-weight:700;color:var(--eng-dim);cursor:pointer;padding:4px 8px;border-radius:50px;background:white;border:1px solid var(--eng-border);transition:all .2s}
+.timeline-marker:hover{color:var(--eng-fucsia);border-color:var(--eng-rosa);transform:scale(1.05)}
+.audio-status{min-height:1.3em;margin:8px 0 0;color:#B45309;font-size:.8rem;font-weight:700;text-align:center}
+
+/* Diálogos Grid */
+.listen-dialogos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.dialogo-card{background:white;border:3px solid var(--eng-border);border-radius:var(--r-md);padding:18px;text-align:center;transition:transform .25s,box-shadow .25s,opacity .3s;cursor:default}
+.dialogo-card:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.dialogo-card.reproduciendo{border-color:var(--eng-rosa);box-shadow:0 0 20px rgba(236,72,153,.3);transform:scale(1.03)}
+.dialogo-avatar{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.avatar-icon{font-size:2.5rem}
+.avatar-badge{font-family:'Fredoka',sans-serif;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:50px;color:white}
+.grado-6{background:var(--eng-rosa)}
+.grado-7{background:var(--eng-morado)}
+.dialogo-info h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;margin:0 0 2px;color:var(--eng-texto)}
+.dialogo-edad{font-size:.78rem;color:var(--eng-dim);font-weight:600}
+.dialogo-audio-btn{display:inline-flex;align-items:center;gap:6px;margin:10px 0;padding:6px 14px;border:2px solid var(--eng-rosa);border-radius:50px;background:white;color:var(--eng-fucsia);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.dialogo-audio-btn:hover{background:var(--eng-rosa);color:white;transform:scale(1.05)}
+.dialogo-audio-btn .mini-play-icon{font-size:.9rem}
+.dialogo-texto{margin:10px 0;padding:10px;background:linear-gradient(135deg,#FDF2F8,#F5F3FF);border-radius:var(--r-sm)}
+.dialogo-texto .en{font-size:.85rem;font-weight:700;color:var(--eng-texto);margin:0 0 4px;font-style:italic}
+.dialogo-texto .es{font-size:.75rem;color:var(--eng-dim);margin:0}
+.dialogo-hobby{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;padding:8px;background:white;border:2px dashed var(--eng-border);border-radius:var(--r-sm)}
+.hobby-icon{font-size:1.3rem}
+.hobby-label{font-size:.78rem;font-weight:700;color:var(--eng-fucsia)}
+
+/* Tabla */
+.listen-tabla-wrap{margin-bottom:24px}
+.listen-tabla-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.tabla-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 12px}
+.listen-tabla{width:100%;border-collapse:separate;border-spacing:0;border:2px solid var(--eng-border);border-radius:var(--r-md);overflow:hidden}
+.listen-tabla th{background:linear-gradient(135deg,var(--eng-rosa),var(--eng-morado));color:white;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;padding:10px 12px;text-align:left}
+.listen-tabla td{padding:10px 12px;border-top:1px solid var(--eng-border);font-size:.85rem;vertical-align:middle}
+.listen-tabla tr:nth-child(even){background:linear-gradient(135deg,#FDF2F8,#F5F3FF)}
+.tabla-input{width:100%;border:none;border-bottom:2px solid var(--eng-border);background:transparent;font-size:.82rem;font-weight:600;padding:4px 0;outline:none;font-family:'Nunito',sans-serif;color:var(--eng-texto);transition:border-color .2s}
+.tabla-input:focus{border-bottom-color:var(--eng-rosa)}
+.tabla-input.correct{border-bottom-color:var(--eng-verde);color:#065F46}
+.tabla-feedback{min-height:28px;margin-top:10px;font-size:.85rem;font-weight:700;text-align:center}
+
+/* Mini-Juego */
+.juego-hobbies{margin-bottom:20px}
+.juego-hobbies h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.juego-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 12px}
+.btn-juego{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-azul),var(--eng-cyan));color:white;cursor:pointer;box-shadow:0 4px 0 #1D4ED8;transition:all .15s}
+.btn-juego:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1D4ED8}
+.juego-contenedor{background:white;border:3px solid var(--eng-azul);border-radius:var(--r-md);padding:20px;margin-top:14px}
+.juego-pregunta{text-align:center;margin-bottom:14px}
+.juego-frase-audio{font-size:.95rem;font-weight:700;color:var(--eng-texto);margin:0 0 10px}
+#juego-texto-frase{color:var(--eng-fucsia)}
+.btn-repetir-frase{font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:6px 16px;border:2px solid var(--eng-azul);border-radius:50px;background:white;color:var(--eng-azul);cursor:pointer;transition:all .2s}
+.btn-repetir-frase:hover{background:var(--eng-azul);color:white;transform:scale(1.05)}
+
+/* Juego Opciones Grid */
+.juego-opciones-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.juego-opcion{display:flex;align-items:center;gap:10px;padding:12px 16px;border:3px solid var(--eng-border);border-radius:var(--r-sm);background:white;cursor:pointer;transition:all .2s;font-size:.88rem;font-weight:700;color:var(--eng-texto)}
+.juego-opcion:hover{border-color:var(--eng-azul);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.juego-opcion.seleccionada{border-color:var(--eng-azul);background:rgba(37,99,235,.1)}
+.juego-opcion.correcta{border-color:var(--eng-verde);background:rgba(16,185,129,.12);color:#065F46}
+.juego-opcion.incorrecta{border-color:var(--eng-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.juego-opcion:disabled{cursor:default;transform:none}
+.juego-opcion .opcion-icon{font-size:1.5rem}
+.juego-result{min-height:32px;margin-top:12px;text-align:center;font-size:.9rem;font-weight:700}
+
+/* Study Tip */
+.listen-study-tip{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border:2px dashed var(--eng-amarillo);border-radius:var(--r-md);padding:16px;margin-top:20px}
+.study-tip-icon{font-size:2rem;flex-shrink:0;animation:floatIcon 3s ease-in-out infinite alternate}
+.study-tip-content strong{font-family:'Fredoka',sans-serif;font-size:.95rem;color:#A16207;display:block;margin-bottom:4px}
+.study-tip-content p{font-size:.85rem;color:var(--eng-texto);margin:0 0 4px;line-height:1.6}
+.en-es{font-size:.78rem;color:var(--eng-dim);font-style:italic}
+
+
+/* ══════════════════════════════════════════════
+   BLOQUE 3: READ · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.read-contexto{background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border:2px solid rgba(6,182,212,.2);border-radius:var(--r-md);padding:20px;margin-bottom:20px}
+.read-badge-escenario{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;color:var(--eng-azul);background:white;padding:4px 14px;border-radius:50px;display:inline-block;margin-bottom:10px;border:1px solid rgba(6,182,212,.2)}
+.read-narrativa{font-size:.92rem;color:var(--eng-texto);margin:0;line-height:1.7}
+.read-narrativa strong{color:var(--eng-azul)}
+
+/* Diálogo */
+.read-dialogo-wrap{margin-bottom:24px}
+.dialogo-personajes{display:flex;justify-content:center;gap:30px;margin-bottom:16px}
+.personaje-foto{text-align:center}
+.foto-icon{font-size:2.5rem;display:block;margin-bottom:4px}
+.foto-nombre{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--eng-texto)}
+.dialogo-lineas{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.linea-dialogo{display:flex;align-items:flex-start;gap:10px;cursor:pointer;transition:transform .2s}
+.linea-dialogo:hover{transform:translateX(4px)}
+.linea-dialogo:hover .linea-audio{color:var(--eng-azul)}
+.linea-dialogo.reproduciendo{opacity:1!important}
+.linea-dialogo.reproduciendo .burbuja-dialogo{box-shadow:0 0 15px rgba(6,182,212,.3)}
+.avatar-mini{font-size:1.8rem;flex-shrink:0}
+.burbuja-dialogo{padding:12px 16px;border-radius:18px;position:relative}
+.izquierda{background:linear-gradient(135deg,#FDF2F8,#FCE7F3);border-bottom-left-radius:4px;border:2px solid var(--eng-border)}
+.derecha{background:linear-gradient(135deg,#ECFEFF,#E0F2FE);border-bottom-right-radius:4px;border:2px solid rgba(6,182,212,.2);align-self:flex-end}
+.linea-en{font-size:.88rem;font-weight:700;color:var(--eng-texto);margin:0 0 4px;font-style:italic}
+.linea-es{font-size:.78rem;color:var(--eng-dim);margin:0}
+.linea-audio{font-size:.72rem;font-weight:700;color:var(--eng-dim);display:block;margin-top:6px;transition:color .2s}
+.btn-leer-todo{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-cyan),var(--eng-azul));color:white;cursor:pointer;box-shadow:0 4px 0 #1D4ED8;transition:all .15s}
+.btn-leer-todo:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1D4ED8}
+.btn-leer-todo:active{transform:translateY(2px);box-shadow:0 2px 0 #1D4ED8}
+
+/* Emparejar diálogo en inglés y español */
+.read-ejercicio-ordenar{margin-bottom:20px}
+.read-ejercicio-ordenar h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.ejercicio-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.emparejar-dialogo{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,8vw,100px);padding:8px 0}
+.emparejar-columna{display:flex;flex-direction:column;gap:12px;z-index:1}
+.emparejar-opcion{width:100%;min-height:64px;padding:12px 14px;border:2px solid var(--eng-border);border-radius:var(--r-sm);background:white;color:var(--eng-texto);font:600 .82rem 'Nunito',sans-serif;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.emparejar-opcion:hover,.emparejar-opcion.seleccionada{border-color:var(--eng-azul);background:#EFF6FF}
+.emparejar-opcion.seleccionada{transform:scale(1.02)}
+.emparejar-opcion.correcta{border-color:var(--eng-verde);background:#ECFDF5}
+.emparejar-opcion.incorrecta{border-color:var(--eng-rojo);background:#FEF2F2}
+.emparejar-opcion:disabled{cursor:default}
+.emparejar-lineas{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.emparejar-lineas line{stroke:var(--eng-verde);stroke-width:3;stroke-linecap:round}
+.emparejar-lineas line.incorrecta{stroke:var(--eng-rojo)}
+.orden-feedback{text-align:center;margin-top:10px;font-size:.9rem;font-weight:700;min-height:28px}
+.orden-feedback.ok{color:#047857}
+.orden-feedback.pendiente{color:#B45309}
+@media(max-width:600px){.emparejar-dialogo{gap:18px}.emparejar-opcion{font-size:.74rem;padding:10px;min-height:72px}}
+
+/* Vocabulario Flip Cards */
+.read-vocabulario{margin-bottom:20px}
+.read-vocabulario h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.vocab-card{position:relative;height:140px;cursor:pointer;perspective:1000px}
+.vocab-card-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.vocab-card.flipped .vocab-card-inner{transform:rotateY(180deg)}
+.vocab-front,.vocab-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--r-md);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;border:3px solid var(--eng-border)}
+.vocab-front{background:linear-gradient(135deg,#EFF6FF,#FDF2F8)}
+.vocab-back{background:linear-gradient(135deg,var(--eng-azul),var(--eng-cyan));color:white;transform:rotateY(180deg)}
+.vocab-icon{font-size:2rem;margin-bottom:6px}
+.vocab-term{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;color:var(--eng-texto);text-align:center}
+.vocab-def{font-size:.78rem;font-weight:600;color:white;text-align:center;line-height:1.4}
+.vocab-hint{font-size:.68rem;color:var(--eng-dim);margin-top:4px}
+
+/* Mini Quiz */
+.read-quiz{background:white;border:3px solid var(--eng-azul);border-radius:var(--r-md);padding:20px}
+.read-quiz h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--eng-texto);margin:0 0 10px}
+.quiz-pregunta{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--eng-border)}
+.quiz-pregunta:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.quiz-opciones{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.quiz-opcion{display:flex;align-items:center;gap:8px;padding:8px 12px;border:2px solid var(--eng-border);border-radius:var(--r-sm);cursor:pointer;transition:all .2s;font-size:.85rem;font-weight:600}
+.quiz-opcion:hover{border-color:var(--eng-azul)}
+.quiz-opcion.correcta{border-color:var(--eng-verde);background:rgba(16,185,129,.1)}
+.quiz-opcion.incorrecta{border-color:var(--eng-rojo);background:rgba(239,68,68,.1)}
+.quiz-opcion input{accent-color:var(--eng-azul)}
+
+/* Responsive */
+@media (max-width:640px){
+  .dialogo-personajes{gap:15px}
+  .vocab-grid{grid-template-columns:repeat(2,1fr)}
+  .frase-desordenada{max-width:100%}
+}
+
+
+
+
+/* Responsive */
+@media (max-width:640px){
+  .listen-dialogos-grid{grid-template-columns:1fr}
+  .juego-opciones-grid{grid-template-columns:1fr}
+  .btn-audio-main{font-size:.9rem;padding:14px 18px}
+  .audio-timeline{flex-wrap:wrap;gap:6px}
+  .timeline-marker{font-size:.65rem;padding:3px 7px}
+  .listen-tabla th,.listen-tabla td{padding:8px 6px;font-size:.75rem}
+  .dialogo-texto .en{font-size:.8rem}
+  .dialogo-texto .es{font-size:.72rem}
+}
+
+/* Animación de onda de sonido para el botón activo */
+@keyframes audioPulse{
+  0%,100%{box-shadow:0 6px 0 #9D174D,0 0 0 0 rgba(236,72,153,.5)}
+  50%{box-shadow:0 6px 0 #9D174D,0 0 0 12px rgba(236,72,153,0)}
+}
+.btn-audio-main.playing{
+  animation:audioPulse 1.8s ease-in-out infinite;
+}
+
+/* Indicador visual de escucha activa completada */
+.listen-tabla tr.completado td{background:rgba(16,185,129,.08)}
+.tabla-feedback.ok{color:#047857}
+.tabla-feedback.pendiente{color:#B45309}
+/* ── BOTONES GERALES ── */
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--eng-rosa),var(--eng-morado));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #9D174D,0 8px 20px rgba(236,72,153,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #9D174D,0 12px 28px rgba(236,72,153,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #9D174D}
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-rosa),var(--eng-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #9D174D,0 8px 20px rgba(236,72,153,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #9D174D,0 12px 24px rgba(236,72,153,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #9D174D}
+
+/* ── AUTOEVALUACIÓN ── */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--eng-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--eng-rosa);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--eng-rosa);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--eng-rosa);background:rgba(236,72,153,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--eng-fucsia);text-align:center;margin-top:14px}
+
+/* ══════════════════════════════════════════════
+   BLOQUE 2: WRITE · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.write-instrucciones{margin-bottom:20px}
+.write-tip-box{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border:2px dashed var(--eng-amarillo);border-radius:var(--r-md);padding:16px}
+.tip-icon{font-size:2rem;flex-shrink:0;animation:floatIcon 3s ease-in-out infinite alternate}
+.write-tip-box strong{font-family:'Fredoka',sans-serif;font-size:.95rem;color:#A16207;display:block;margin-bottom:4px}
+.write-tip-box p{font-size:.85rem;color:var(--eng-texto);margin:0 0 4px;line-height:1.6}
+
+/* Diagrama */
+.write-diagrama-wrap{margin-bottom:24px}
+.write-diagrama-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.diagrama-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.diagrama-espacios{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.diagrama-nodo{background:white;border:3px solid var(--eng-border);border-radius:var(--r-md);overflow:hidden;transition:box-shadow .3s}
+.diagrama-nodo:hover{box-shadow:var(--sombra-md)}
+.nodo-titulo{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;color:white;text-align:center;padding:10px}
+.nodo-espacios{padding:12px;display:flex;flex-direction:column;gap:8px}
+.espacio-vacio{min-height:48px;border:2px dashed var(--eng-border);border-radius:var(--r-sm);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;transition:all .3s;position:relative;background:rgba(253,242,248,.5)}
+.espacio-vacio.drag-over{border-color:var(--eng-rosa);background:rgba(236,72,153,.1);transform:scale(1.02)}
+.espacio-vacio.completado{border-style:solid;border-color:var(--eng-verde);background:rgba(16,185,129,.08)}
+.espacio-label{font-size:.82rem;font-weight:700;color:var(--eng-texto);margin-bottom:2px}
+.espacio-pista{font-size:.68rem;color:var(--eng-dim);font-weight:600}
+.write-tarjetas-wrap{margin:20px 0}
+.write-tarjetas-wrap h4,.write-practica-parejas h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--eng-texto);margin:0 0 12px}
+.tarjetas-contenedor{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.tarjeta-arrastrable{display:inline-flex;align-items:center;gap:8px;background:white;border:2px solid var(--eng-border);border-radius:var(--r-sm);padding:10px 14px;color:var(--eng-texto);font:700 .85rem 'Nunito',sans-serif;cursor:grab;touch-action:manipulation;transition:all .2s}
+.tarjeta-arrastrable:hover,.tarjeta-arrastrable.seleccionada{border-color:var(--eng-morado);background:#F5F3FF;transform:translateY(-2px)}
+.tarjeta-arrastrable:focus-visible,.espacio-vacio:focus-visible{outline:3px solid var(--eng-azul);outline-offset:2px}
+.tarjeta-arrastrable.usada{opacity:.45;cursor:default;text-decoration:line-through}
+.tarjeta-icono{font-size:1.15rem}
+.btn-verificar-diagrama,.btn-practica-audio{border:0;border-radius:50px;padding:10px 18px;background:linear-gradient(135deg,var(--eng-morado),var(--eng-azul));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;transition:transform .2s}
+.btn-verificar-diagrama:hover,.btn-practica-audio:hover{transform:translateY(-2px)}
+.diagrama-feedback{min-height:1.5em;margin-top:10px;text-align:center;font-weight:700}
+.diagrama-feedback.ok{color:#047857}
+.diagrama-feedback.pendiente{color:#B45309}
+.write-practica-parejas{margin-top:26px;padding:20px;background:linear-gradient(135deg,#FDF2F8,#F5F3FF);border-radius:var(--r-md)}
+.practica-instruccion{margin:0 0 14px;color:var(--eng-dim);font-size:.85rem}
+.chat-simulado{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.burbuja{max-width:82%;padding:12px 16px;border-radius:var(--r-md);font-size:.88rem;font-weight:700}
+.burbuja.estudiante-a{align-self:flex-start;background:white;border:2px solid var(--eng-border)}
+.burbuja.estudiante-b{align-self:flex-end;background:#EEF2FF;border:2px solid #C7D2FE}
+.es-traduccion{display:block;margin-top:4px;color:var(--eng-dim);font-size:.78rem;font-weight:600}
+.btn-practica-audio{margin:4px}
+
+
+@media(max-width:600px){.burbuja{max-width:100%}.tarjeta-arrastrable{flex:1 1 140px;justify-content:center}}
+
+/* ── COFRE DEL SABER ── */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-amarillo),var(--eng-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#FDF2F8,#F5F3FF);border:3px solid var(--eng-rosa);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--eng-fucsia);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--eng-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--eng-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--eng-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* ── DIPLOMA ── */
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.btn-completar,.btn-cofre{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque,.bloque-pdf{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+}
+
+/* ══════════════════════════════════════════════
+   BLOQUE 4: SPELL · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.spell-study-tip{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border:2px solid rgba(6,182,212,.2);border-radius:var(--r-md);padding:16px;margin-bottom:20px}
+.spell-study-tip .tip-icon{font-size:2rem;flex-shrink:0;animation:floatIcon 3s ease-in-out infinite alternate}
+.spell-study-tip .tip-content strong{font-family:'Fredoka',sans-serif;font-size:.95rem;color:#0E7490;display:block;margin-bottom:4px}
+.spell-study-tip .tip-content p{font-size:.85rem;color:var(--eng-texto);margin:0 0 4px;line-height:1.6}
+
+/* Abecedario */
+.spell-abecedario-wrap{margin-bottom:24px}
+.spell-abecedario-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 10px}
+.alphabet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}
+.letter-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:100%;aspect-ratio:1;border:2px solid var(--eng-border);border-radius:var(--r-sm);background:white;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;color:var(--eng-texto);cursor:pointer;transition:all .2s}
+.letter-pronunciation{font:600 .56rem 'Nunito',sans-serif;letter-spacing:0;color:var(--eng-dim)}
+.letter-btn:hover{background:var(--eng-cyan);color:white;border-color:var(--eng-cyan);transform:scale(1.1)}
+.letter-btn:hover .letter-pronunciation,.letter-btn.playing .letter-pronunciation{color:white}
+.letter-btn.playing{background:var(--eng-cyan);color:white;border-color:var(--eng-cyan);transform:scale(1.15);box-shadow:0 0 15px rgba(6,182,212,.4)}
+
+/* Nombres Colombianos */
+.spell-practica-nombres{margin-bottom:24px}
+.spell-practica-nombres h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.practica-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.nombres-card{background:white;border:3px solid var(--eng-border);border-radius:var(--r-md);padding:16px;margin-bottom:12px;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:16px}
+.nombres-card:hover{border-color:var(--eng-cyan);transform:translateX(4px);box-shadow:var(--sombra-sm)}
+.nombre-header{display:flex;align-items:center;gap:10px;min-width:120px}
+.nombre-icono{font-size:2rem}
+.nombre-texto{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;color:var(--eng-texto)}
+.nombre-deletreo{flex:1;display:flex;flex-direction:column;gap:2px}
+.deletreo-texto{font-family:'Courier New',monospace;font-size:1rem;font-weight:700;color:var(--eng-cyan);letter-spacing:2px}
+.deletreo-fonetic{font-size:.72rem;color:var(--eng-dim);font-style:italic}
+.btn-escuchar-deletreo{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:700;padding:6px 14px;border:2px solid var(--eng-cyan);border-radius:50px;background:white;color:var(--eng-cyan);cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-escuchar-deletreo:hover{background:var(--eng-cyan);color:white}
+
+/* Juego Spell */
+.spell-juego-wrap{margin-bottom:20px}
+.spell-juego-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.juego-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.juego-contenedor{background:white;border:3px solid var(--eng-cyan);border-radius:var(--r-md);padding:20px;text-align:center}
+.juego-nombre-oculto{margin-bottom:16px;padding:20px;background:linear-gradient(135deg,#ECFEFF,#EFF6FF);border-radius:var(--r-md)}
+.nombre-enigma{font-family:'Courier New',monospace;font-size:1.8rem;font-weight:700;color:var(--eng-cyan);letter-spacing:4px}
+.juego-instruccion-audio{font-size:.85rem;color:var(--eng-dim);margin:8px 0 0}
+.btn-escuchar-nombre{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-cyan),var(--eng-azul));color:white;cursor:pointer;box-shadow:0 4px 0 #1D4ED8;transition:all .15s;margin-bottom:14px}
+.btn-escuchar-nombre:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1D4ED8}
+.juego-input-wrap{margin-bottom:14px}
+.juego-input-wrap label{display:block;font-size:.85rem;font-weight:700;color:var(--eng-texto);margin-bottom:6px;text-align:left}
+.input-deletreo{width:100%;max-width:300px;border:2px solid var(--eng-border);border-radius:var(--r-sm);padding:10px 14px;font-size:1rem;font-weight:700;font-family:'Courier New',monospace;text-align:center;letter-spacing:2px;text-transform:uppercase;outline:none;transition:border-color .2s}
+.input-deletreo:focus{border-color:var(--eng-cyan)}
+.btn-verificar-deletreo,.btn-nuevo-nombre{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:8px 18px;border:none;border-radius:50px;cursor:pointer;transition:all .15s}
+.btn-verificar-deletreo{background:linear-gradient(135deg,var(--eng-verde),var(--eng-cyan));color:white;box-shadow:0 3px 0 #047857}
+.btn-verificar-deletreo:hover{transform:translateY(-2px)}
+.btn-nuevo-nombre{background:linear-gradient(135deg,var(--eng-azul),var(--eng-morado));color:white;box-shadow:0 3px 0 #5B21B6}
+.btn-nuevo-nombre:hover{transform:translateY(-2px)}
+.juego-result-spell{min-height:32px;margin-top:12px;font-size:.9rem;font-weight:700}
+
+/* Actividad Personalizada */
+.spell-personalizada{background:white;border:3px solid var(--eng-morado);border-radius:var(--r-md);padding:20px}
+.spell-personalizada h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--eng-texto);margin:0 0 6px}
+.personalizada-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.personalizada-wrap{display:flex;flex-direction:column;gap:10px;max-width:400px;margin:0 auto}
+.personalizada-wrap label{font-size:.85rem;font-weight:700;color:var(--eng-texto);text-align:left}
+.input-mi-nombre{border:2px solid var(--eng-border);border-radius:var(--r-sm);padding:10px 14px;font-size:.95rem;font-weight:600;outline:none;transition:border-color .2s}
+.input-mi-nombre:focus{border-color:var(--eng-morado)}
+.btn-practicar-mi-nombre{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-morado),var(--eng-rosa));color:white;cursor:pointer;box-shadow:0 4px 0 #7C3AED;transition:all .15s;align-self:center}
+.btn-practicar-mi-nombre:hover{transform:translateY(-2px)}
+.mi-deletreo-result{min-height:40px;padding:12px;background:linear-gradient(135deg,#F5F3FF,#FDF2F8);border-radius:var(--r-sm);text-align:center}
+.mi-deletreo-texto{font-family:'Courier New',monospace;font-size:1.2rem;font-weight:700;color:var(--eng-morado);letter-spacing:3px}
+
+/* Responsive */
+@media (max-width:640px){
+  .alphabet-grid{grid-template-columns:repeat(6,1fr)}
+  .nombres-card{flex-direction:column;text-align:center}
+  .nombre-header{justify-content:center}
+}
+
+/* ══════════════════════════════════════════════
+   BLOQUE 5: SPEAK · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.speak-contexto{background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border:2px solid rgba(249,115,22,.2);border-radius:var(--r-md);padding:20px;margin-bottom:20px}
+.speak-badge-escenario{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;color:var(--eng-naranja);background:white;padding:4px 14px;border-radius:50px;display:inline-block;margin-bottom:10px;border:1px solid rgba(249,115,22,.2)}
+.speak-narrativa{font-size:.92rem;color:var(--eng-texto);margin:0;line-height:1.7}
+.speak-narrativa strong{color:var(--eng-naranja)}
+
+/* Tarjetas de Personaje */
+.speak-tarjetas-wrap{margin-bottom:24px}
+.speak-tarjetas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.speak-tarjeta{background:white;border:3px solid var(--eng-border);border-radius:var(--r-md);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.speak-tarjeta:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.tarjeta-header{display:flex;align-items:center;gap:10px;padding:14px 16px;color:white}
+.tarjeta-avatar{font-size:2rem}
+.tarjeta-nombre{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700}
+.tarjeta-body{padding:16px}
+.tarjeta-info{margin-bottom:12px}
+.info-line{font-size:.85rem;color:var(--eng-texto);margin:4px 0}
+.info-line strong{color:var(--eng-naranja)}
+.tarjeta-dialogo{background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border-radius:var(--r-sm);padding:12px;margin-bottom:12px}
+.dialogo-en{font-size:.88rem;font-weight:700;color:var(--eng-texto);margin:0 0 4px;font-style:italic}
+.dialogo-es{font-size:.78rem;color:var(--eng-dim);margin:0}
+.btn-audio-tarjeta{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;padding:8px 16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-naranja),var(--eng-amarillo));color:white;cursor:pointer;box-shadow:0 3px 0 #A16207;transition:all .15s;width:100%}
+.btn-audio-tarjeta:hover{transform:translateY(-2px)}
+
+/* Generador de Diálogos */
+.speak-generador-wrap{margin-bottom:20px}
+.speak-generador-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.generador-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.btn-generar-dialogo{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 28px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-amarillo),var(--eng-naranja));color:white;cursor:pointer;box-shadow:0 5px 0 #A16207;transition:all .15s;display:block;margin:0 auto}
+.btn-generar-dialogo:hover{transform:translateY(-3px);box-shadow:0 7px 0 #A16207}
+.dialogo-generado{background:white;border:3px solid var(--eng-amarillo);border-radius:var(--r-md);padding:20px;margin-top:14px}
+.personaje-generado{margin-bottom:16px;padding:14px;background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border-radius:var(--r-sm)}
+.chat-practica{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.chat-burbuja{max-width:75%;padding:10px 16px;border-radius:18px;font-size:.88rem;font-weight:600;line-height:1.5}
+.chat-burbuja.a{align-self:flex-start;background:linear-gradient(135deg,var(--eng-rosa),var(--eng-fucsia));color:white;border-bottom-left-radius:4px}
+.chat-burbuja.b{align-self:flex-end;background:linear-gradient(135deg,var(--eng-azul),var(--eng-cyan));color:white;border-bottom-right-radius:4px}
+.chat-burbuja .nombre-parlante{font-size:.72rem;font-weight:700;opacity:.85;display:block;margin-bottom:4px}
+
+/* Práctica Guiada */
+.speak-practica-guiada{margin-bottom:20px}
+.speak-practica-guiada h4{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--eng-texto);margin:0 0 6px}
+.guiada-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.frases-clave{display:flex;flex-direction:column;gap:8px}
+.frase-clave-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:white;border:2px solid var(--eng-border);border-radius:var(--r-sm);cursor:pointer;transition:all .2s}
+.frase-clave-item:hover{border-color:var(--eng-naranja);transform:translateX(4px);box-shadow:var(--sombra-sm)}
+.frase-clave-item.reproduciendo{border-color:var(--eng-naranja);background:rgba(249,115,22,.08)}
+.frase-icono{font-size:1.2rem;flex-shrink:0}
+.frase-en{font-size:.88rem;font-weight:700;color:var(--eng-texto);flex:1;font-style:italic}
+.frase-es{font-size:.78rem;color:var(--eng-dim);margin-right:8px}
+.frase-audio{font-size:1.2rem}
+
+/* Grabación Simulada */
+.speak-grabacion-wrap{background:white;border:3px solid var(--eng-naranja);border-radius:var(--r-md);padding:20px}
+.speak-grabacion-wrap h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--eng-texto);margin:0 0 6px}
+.grabacion-instruccion{font-size:.82rem;color:var(--eng-dim);margin:0 0 14px}
+.grabacion-contenedor{text-align:center}
+.grabacion-visual{margin-bottom:16px;padding:24px;background:linear-gradient(135deg,#FFF7ED,#FEFCE8);border-radius:var(--r-md)}
+.grabacion-icono{font-size:3rem;display:block;margin-bottom:8px}
+.grabacion-estado{font-size:.9rem;font-weight:700;color:var(--eng-texto);margin:0}
+.grabacion-estado.grabando{color:var(--eng-rojo);animation:pulseBadge 1.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{opacity:1}50%{opacity:.6}}
+.grabacion-controles{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+.btn-grabar{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-rojo),var(--eng-naranja));color:white;cursor:pointer;box-shadow:0 4px 0 #991B1B;transition:all .15s}
+.btn-grabar:hover{transform:translateY(-2px)}
+.btn-detener{font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:700;padding:10px 24px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--eng-dim),var(--eng-texto));color:white;cursor:pointer;box-shadow:0 4px 0 #475569;transition:all .15s}
+.btn-detener:hover{transform:translateY(-2px)}
+.grabacion-feedback{min-height:40px;padding:12px;background:linear-gradient(135deg,#F0FDF4,#ECFEFF);border-radius:var(--r-sm);font-size:.88rem;font-weight:600;color:var(--eng-texto)}
+
+/* Responsive */
+@media (max-width:640px){
+  .speak-tarjetas-grid{grid-template-columns:1fr}
+  .chat-burbuja{max-width:88%}
+}
+
+/* ══════════════════════════════════════════════
+   EVALUACIÓN INTERACTIVA · ESTILOS ESPECÍFICOS
+   ══════════════════════════════════════════════ */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--eng-rosa);border-radius:var(--r-lg);background:linear-gradient(135deg,#FDF2F8,#F5F3FF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--eng-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--eng-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--eng-fucsia)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--eng-fucsia);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--eng-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(236,72,153,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--eng-rosa),var(--eng-morado));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(236,72,153,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--eng-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--eng-border);border-radius:var(--r-sm);background:white;color:var(--eng-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--eng-rosa);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--eng-fucsia);flex-shrink:0}
+.quiz-option.correct{border-color:var(--eng-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--eng-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}
+.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--eng-rosa),var(--eng-morado));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #9D174D;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--eng-rosa);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--eng-fucsia);margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--eng-texto);font-size:.9rem}
+.btn-quiz-download{display:inline-flex;margin-top:14px;padding:10px 18px;border:0;border-radius:50px;background:var(--eng-rosa);color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer}
+
+@media (max-width:640px){
+  .evaluacion{padding:18px}
+  .evaluacion-cabecera{display:block}
+  .evaluacion-tiempo{display:inline-block;margin-top:12px}
+  .quiz-options{grid-template-columns:1fr}
+}
+
+/* ══════════════════════════════════════════════
+   DIPLOMA · ESTILOS ADICIONALES
+   ══════════════════════════════════════════════ */
+.diploma-fecha{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600;color:var(--eng-dim);margin-top:14px}
+.diploma-firma{margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.firma-linea{width:220px;border-bottom:2px solid var(--eng-dim)}
+.firma-nombre{font-size:.78rem;font-weight:700;color:var(--eng-texto)}
+
+.diploma-wrap{display:none;position:relative;max-width:760px;margin:32px auto;padding:40px 32px 28px;text-align:center;background:linear-gradient(180deg,#fffdf7,#fff6e6);border:6px double var(--eng-fucsia);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.15);outline:2px solid #f5b942;outline-offset:-16px}
+.diploma-wrap.visible{display:block}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.3rem,4vw,2rem);font-weight:700;letter-spacing:.12em;color:var(--eng-fucsia);padding-bottom:10px;margin-bottom:14px;border-bottom:2px solid #f5b942}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;color:var(--eng-texto);margin:6px auto 4px;padding:0 12px 6px;max-width:90%;border-bottom:2px dashed var(--eng-dim);overflow-wrap:anywhere}
+.diploma-insignia{display:block;font-size:3rem;margin:10px 0}
+.diploma-grado-badge{display:inline-block;margin-top:16px;padding:6px 20px;border-radius:50px;background:var(--eng-fucsia);color:#fff;font:700 1rem 'Fredoka',sans-serif}
+.diploma-wrap>p:last-child{border-top:1px solid #e5d3b0;padding-top:12px;margin-top:20px!important}
+
+.footer{max-width:760px;margin:36px auto 10px;padding:22px 16px;text-align:center;border-top:3px solid var(--eng-fucsia);display:flex;flex-direction:column;align-items:center;gap:8px}
+.footer p{margin:0;font-size:.88rem;line-height:1.5;color:var(--eng-dim)}
+.btn-volver{display:inline-block;margin-top:10px;padding:10px 22px;border-radius:50px;background:var(--eng-fucsia);color:#fff;font:700 .9rem 'Fredoka',sans-serif;text-decoration:none}
+.btn-volver:hover{filter:brightness(1.1)}
+@media print{.diploma-wrap.visible{box-shadow:none;break-inside:avoid}}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🌎 MISIÓN: GLOBAL CONNECTOR</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Escuché y practiqué saludos">👂</span>
+      <span class="pieza" id="pieza-2" title="Completé el diagrama de vocabulario">📝</span>
+      <span class="pieza" id="pieza-3" title="Identifiqué a los nuevos estudiantes">🤝</span>
+      <span class="pieza" id="pieza-4" title="Deletreé mi nombre en inglés">🔤</span>
+      <span class="pieza" id="pieza-5" title="Realicé mi presentación oral">🗣️</span>
+      <span class="pieza" id="pieza-6" title="Misión completada">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🌎 MODO GLOBAL CONNECTOR ACTIVO</div>
+    <h1 class="hero-titulo">🌎 English Adventure<br/>My First Day at School!</h1>
+    <p class="hero-subtitulo">Inglés · Grado 7° · Semana 2 · Hello!</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 Nombre completo</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 Grado</label>
+        <input class="hero-campo-linea" type="text" placeholder="7°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 Fecha</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 24 de septiembre de 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+     BLOQUE 1: LISTEN → "My First Day in Chichalá"
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-listen" id="bloque-listen">
+  <div class="seccion-titulo">
+    <span class="seccion-titulo-icono">🎧</span>
+    <div>
+      <h3>1. Listen · My First Day in Chichalá</h3>
+      <small>📌 Escucha a los nuevos estudiantes de la IE Técnica Camacho Angarita. Completa la tabla mientras escuchas.</small>
+    </div>
+  </div>
+
+  <!-- Contexto Inmersivo -->
+  <div class="listen-contexto">
+    <div class="listen-badge-local">📍 Vereda Chichalá, Chaparral · Tolima</div>
+    <p class="listen-narrativa">
+      Es el <strong>primer día de clases</strong>. Los estudiantes de grado 6° y 7° llegan a la sede Chichalá y se presentan por primera vez. 
+      Escucha con atención: necesitas descubrir <strong>quién es quién</strong>.
+    </p>
+  </div>
+
+  <!-- Audio Principal -->
+  <div class="listen-audio-principal">
+    <button class="btn-audio-main" onclick="reproducirAudioPrincipal()">
+      <span class="audio-icon">▶️</span>
+      <span class="audio-text">Escuchar diálogos completos (3:45)</span>
+      <span class="audio-progress" id="audio-progress-main"></span>
+    </button>
+    <div class="audio-timeline" id="audio-timeline">
+      <div class="timeline-marker" style="--pos:12%" onclick="irAFragmento(0)" title="Saludos iniciales">0:00</div>
+      <div class="timeline-marker" style="--pos:35%" onclick="irAFragmento(1)" title="Saray se presenta">0:42</div>
+      <div class="timeline-marker" style="--pos:55%" onclick="irAFragmento(2)" title="Andrea y Leonardo">1:20</div>
+      <div class="timeline-marker" style="--pos:80%" onclick="irAFragmento(3)" title="Duván y cierre">2:05</div>
+    </div>
+    <div class="audio-status" id="audio-status" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- Diálogos Individuales -->
+  <div class="listen-dialogos-grid">
+    
+    <!-- SARAY -->
+    <div class="dialogo-card" id="dialogo-saray">
+      <div class="dialogo-avatar">
+        <span class="avatar-icon">👧</span>
+        <span class="avatar-badge grado-6">6°</span>
+      </div>
+      <div class="dialogo-info">
+        <h4>Saray</h4>
+        <span class="dialogo-edad">12 años</span>
+      </div>
+      <div class="dialogo-audio-btn" onclick="reproducirFrase('saray')">
+        <span class="mini-play-icon">▶️</span> Escuchar a Saray
+      </div>
+      <div class="dialogo-texto">
+        <p class="en"><em>"Hello! I'm Saray. I'm 12 years old. I like riding my bike in the countryside."</em></p>
+        <p class="es">"¡Hola! Soy Saray. Tengo 12 años. Me gusta montar mi bicicleta en el campo."</p>
+      </div>
+      <div class="dialogo-hobby">
+        <span class="hobby-icon">🚲</span>
+        <span class="hobby-label">Hobby: Riding my bike</span>
+      </div>
+    </div>
+
+    <!-- ANDREA -->
+    <div class="dialogo-card" id="dialogo-andrea">
+      <div class="dialogo-avatar">
+        <span class="avatar-icon">👧</span>
+        <span class="avatar-badge grado-6">6°</span>
+      </div>
+      <div class="dialogo-info">
+        <h4>Andrea</h4>
+        <span class="dialogo-edad">12 años</span>
+      </div>
+      <div class="dialogo-audio-btn" onclick="reproducirFrase('andrea')">
+        <span class="mini-play-icon">▶️</span> Escuchar a Andrea
+      </div>
+      <div class="dialogo-texto">
+        <p class="en"><em>"Good morning! I'm Andrea. I'm 12 years old. I like listening to music while doing homework."</em></p>
+        <p class="es">"¡Buenos días! Soy Andrea. Tengo 12 años. Me gusta escuchar música mientras hago la tarea."</p>
+      </div>
+      <div class="dialogo-hobby">
+        <span class="hobby-icon">🎧</span>
+        <span class="hobby-label">Hobby: Listening to music</span>
+      </div>
+    </div>
+
+    <!-- LEONARDO -->
+    <div class="dialogo-card" id="dialogo-leonardo">
+      <div class="dialogo-avatar">
+        <span class="avatar-icon">👦</span>
+        <span class="avatar-badge grado-7">7°</span>
+      </div>
+      <div class="dialogo-info">
+        <h4>Leonardo</h4>
+        <span class="dialogo-edad">13 años</span>
+      </div>
+      <div class="dialogo-audio-btn" onclick="reproducirFrase('leonardo')">
+        <span class="mini-play-icon">▶️</span> Escuchar a Leonardo
+      </div>
+            <div class="dialogo-texto">
+        <p class="en"><em>"Hi! My name's Leonardo. I'm 13 years old. I like playing football with my friends after school."</em></p>
+        <p class="es">"¡Hola! Mi nombre es Leonardo. Tengo 13 años. Me gusta jugar fútbol con mis amigos después del colegio."</p>
+      </div>
+      <div class="dialogo-hobby">
+        <span class="hobby-icon">⚽</span>
+        <span class="hobby-label">Hobby: Playing football</span>
+      </div>
+    </div>
+
+    <!-- DUVÁN -->
+    <div class="dialogo-card" id="dialogo-duvan">
+      <div class="dialogo-avatar">
+        <span class="avatar-icon">👦</span>
+        <span class="avatar-badge grado-7">7°</span>
+      </div>
+      <div class="dialogo-info">
+        <h4>Duván</h4>
+        <span class="dialogo-edad">13 años</span>
+      </div>
+      <div class="dialogo-audio-btn" onclick="reproducirFrase('duvan')">
+        <span class="mini-play-icon">▶️</span> Escuchar a Duván
+      </div>
+      <div class="dialogo-texto">
+        <p class="en"><em>"Hello! I'm Duván. I'm 13 years old. I like helping on the farm with my family."</em></p>
+        <p class="es">"¡Hola! Soy Duván. Tengo 13 años. Me gusta ayudar en la finca con mi familia."</p>
+      </div>
+      <div class="dialogo-hobby">
+        <span class="hobby-icon">🌱</span>
+        <span class="hobby-label">Hobby: Helping on the farm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA DE ESCUCHA ACTIVA -->
+  <div class="listen-tabla-wrap">
+    <h4>📋 Escucha Activa · Completa la tabla</h4>
+    <p class="tabla-instruccion">Mientras escuchas, escribe el hobby que menciona cada estudiante.</p>
+    <table class="listen-tabla">
+      <thead>
+        <tr><th>Estudiante</th><th>Grado</th><th>Edad</th><th>Hobby (completa)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Saray</td><td>6°</td><td>12</td>
+          <td><input type="text" class="tabla-input" data-estudiante="saray" placeholder="I like..." onchange="validarTabla()"/></td>
+        </tr>
+        <tr>
+          <td>Andrea</td><td>6°</td><td>12</td>
+          <td><input type="text" class="tabla-input" data-estudiante="andrea" placeholder="I like..." onchange="validarTabla()"/></td>
+        </tr>
+        <tr>
+          <td>Leonardo</td><td>7°</td><td>13</td>
+          <td><input type="text" class="tabla-input" data-estudiante="leonardo" placeholder="I like..." onchange="validarTabla()"/></td>
+        </tr>
+        <tr>
+          <td>Duván</td><td>7°</td><td>13</td>
+          <td><input type="text" class="tabla-input" data-estudiante="duvan" placeholder="I like..." onchange="validarTabla()"/></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tabla-feedback" id="tabla-feedback"></div>
+  </div>
+
+  <!-- MINI-JUEGO GUESS THE HOBBY -->
+  <div class="juego-hobbies">
+    <h4>🎮 Guess the Hobby · ¿Qué les gusta hacer?</h4>
+    <p class="juego-instruccion">Escucha la frase y selecciona el hobby correcto.</p>
+          <button class="btn-juego" onclick="iniciarJuegoHobbies()">
+        ▶️ Jugar · Guess the Hobby
+      </button>
+    </div>
+
+    <div class="juego-contenedor" id="juego-contenedor" style="display:none">
+      <div class="juego-pregunta" id="juego-pregunta">
+        <p class="juego-frase-audio" id="juego-frase">
+          <strong>Escucha:</strong> <span id="juego-texto-frase">...</span>
+        </p>
+        <button class="btn-repetir-frase" onclick="repetirFraseJuego()">🔊 Repetir</button>
+      </div>
+      <div class="juego-opciones-grid" id="juego-opciones">
+        <!-- Opciones generadas dinámicamente -->
+      </div>
+      <div class="juego-result" id="juego-result"></div>
+    </div>
+  </div>
+
+  <!-- ESTUDIO VISUAL TIP -->
+  <div class="listen-study-tip">
+    <div class="study-tip-icon">💡</div>
+    <div class="study-tip-content">
+      <strong>Study Tip</strong>
+      <p>You can use visual diagrams to organize and remember vocabulary. Try drawing each hobby next to the student's name!</p>
+      <span class="en-es">Puedes usar diagramas visuales para organizar y recordar vocabulario. ¡Intenta dibujar cada hobby al lado del nombre!</span>
+    </div>
+  </div>
+
+ <!-- ══════════════════════════════════════════════
+     BLOQUE 2: WRITE → "Expressions to say Hello!"
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-write" id="bloque-write">
+  <div class="seccion-titulo">
+    <span class="seccion-titulo-icono">📝</span>
+    <div>
+      <h3>2. Write · Complete the diagram</h3>
+      <small>📌 Arrastra las expresiones correctas al diagrama. Practica con un compañero después.</small>
+    </div>
+  </div>
+
+  <!-- Instrucciones -->
+  <div class="write-instrucciones">
+    <div class="write-tip-box">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>Study Tip</strong>
+        <p>You can use visual diagrams to organize and remember vocabulary. Expressions to say <em>Hello!</em></p>
+        <span class="en-es">Puedes usar diagramas visuales para organizar y recordar vocabulario. ¡Completa el diagrama y practica con un amigo!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagrama Interactivo -->
+  <div class="write-diagrama-wrap">
+    <h4>📋 Complete the Diagram · Arrastra las expresiones</h4>
+    <p class="diagrama-instruccion">Arrastra cada expresión al espacio correcto del diagrama.</p>
+    
+    <!-- Espacios del Diagrama -->
+    <div class="diagrama-espacios" id="diagrama-espacios">
+      
+      <!-- Espacio 1: Saludos Formales -->
+      <div class="diagrama-nodo">
+        <div class="nodo-titulo" style="background:var(--eng-rosa)">👋 Formal Greetings</div>
+        <div class="nodo-espacios" data-categoria="formal">
+          <div class="espacio-vacio" data-expresion="good morning">
+            <span class="espacio-label">Good ___</span>
+            <span class="espacio-pista">Mañana ☀️</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="good afternoon">
+            <span class="espacio-label">Good ___</span>
+            <span class="espacio-pista">Tarde 🌤️</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="how do you do">
+            <span class="espacio-label">How do you ___?</span>
+            <span class="espacio-pista">Formal 👔</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Espacio 2: Saludos Informales -->
+      <div class="diagrama-nodo">
+        <div class="nodo-titulo" style="background:var(--eng-morado)">😄 Informal Greetings</div>
+        <div class="nodo-espacios" data-categoria="informal">
+          <div class="espacio-vacio" data-expresion="hello">
+            <span class="espacio-label">___!</span>
+            <span class="espacio-pista">Universal 👋</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="hi">
+            <span class="espacio-label">___!</span>
+            <span class="espacio-pista">Corto ⚡</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="hey">
+            <span class="espacio-label">___!</span>
+            <span class="espacio-pista">Amigable 🤙</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Espacio 3: Despedidas -->
+      <div class="diagrama-nodo">
+        <div class="nodo-titulo" style="background:var(--eng-azul)">👋 Goodbyes</div>
+        <div class="nodo-espacios" data-categoria="despedidas">
+          <div class="espacio-vacio" data-expresion="goodbye">
+            <span class="espacio-label">___!</span>
+            <span class="espacio-pista">Clásico 📖</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="see you later">
+            <span class="espacio-label">See you ___</span>
+            <span class="espacio-pista">Después 🔜</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="good night">
+            <span class="espacio-label">Good ___</span>
+            <span class="espacio-pista">Noche 🌙</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Espacio 4: Presentaciones -->
+      <div class="diagrama-nodo">
+        <div class="nodo-titulo" style="background:var(--eng-cyan)">🤝 Introductions</div>
+        <div class="nodo-espacios" data-categoria="presentaciones">
+          <div class="espacio-vacio" data-expresion="my name is">
+            <span class="espacio-label">My name ___</span>
+            <span class="espacio-pista">Nombre 📛</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="nice to meet you">
+            <span class="espacio-label">Nice to meet ___</span>
+            <span class="espacio-pista">Encantado 🤗</span>
+          </div>
+          <div class="espacio-vacio" data-expresion="how are you">
+            <span class="espacio-label">How are ___?</span>
+            <span class="espacio-pista">Estado 😊</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="write-tarjetas-wrap">
+      <h4>🃏 Expresiones · Arrastra cada una al espacio correcto</h4>
+      <div class="tarjetas-contenedor" id="tarjetas-contenedor">
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="hi"><span class="tarjeta-icono">⚡</span> Hi!</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="hello"><span class="tarjeta-icono">👋</span> Hello!</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="hey"><span class="tarjeta-icono">🤙</span> Hey!</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="goodbye"><span class="tarjeta-icono">📖</span> Goodbye!</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="good morning"><span class="tarjeta-icono">☀️</span> Good morning</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="good afternoon"><span class="tarjeta-icono">🌤️</span> Good afternoon</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="good night"><span class="tarjeta-icono">🌙</span> Good night</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="see you later"><span class="tarjeta-icono">🔜</span> See you later</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="how are you"><span class="tarjeta-icono">😊</span> How are you?</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="my name is"><span class="tarjeta-icono">📛</span> My name is...</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="nice to meet you"><span class="tarjeta-icono">🤗</span> Nice to meet you</div>
+        <div class="tarjeta-arrastrable" draggable="true" data-expresion="how do you do"><span class="tarjeta-icono">👔</span> How do you do?</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px">
+      <button class="btn-verificar-diagrama" onclick="verificarDiagrama()">✅ Verificar diagrama</button>
+    </div>
+    <div class="diagrama-feedback" id="diagrama-feedback" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="write-practica-parejas">
+    <h4>🗣️ Practise with a partner · Simulador de conversación</h4>
+    <p class="practica-instruccion">Lee los diálogos en voz alta con tu compañero. ¡Cambia los nombres!</p>
+    <div class="chat-simulado">
+      <div class="burbuja estudiante-a"><strong>Saray:</strong> Hello! I'm Saray. What's your name?<span class="es-traduccion">¡Hola! Soy Saray. ¿Cómo te llamas?</span></div>
+      <div class="burbuja estudiante-b"><strong>Leonardo:</strong> Hi! My name's Leonardo. Nice to meet you.<span class="es-traduccion">¡Hola! Mi nombre es Leonardo. Encantado de conocerte.</span></div>
+      <div class="burbuja estudiante-a"><strong>Saray:</strong> Nice to meet you, too. How old are you?<span class="es-traduccion">Encantada de conocerte también. ¿Cuántos años tienes?</span></div>
+      <div class="burbuja estudiante-b"><strong>Leonardo:</strong> I'm 13 years old. And you?<span class="es-traduccion">Tengo 13 años. ¿Y tú?</span></div>
+      <div class="burbuja estudiante-a"><strong>Saray:</strong> I'm 12. I like riding my bike. What about you?<span class="es-traduccion">Tengo 12. Me gusta montar mi bicicleta. ¿Y tú?</span></div>
+      <div class="burbuja estudiante-b"><strong>Leonardo:</strong> I like playing football. See you later!<span class="es-traduccion">Me gusta jugar fútbol. ¡Nos vemos luego!</span></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-practica-audio" onclick="hablarDialogo('a')">🔊 Escuchar Saray</button>
+      <button class="btn-practica-audio" onclick="hablarDialogo('b')">🔊 Escuchar Leonardo</button>
+      <button class="btn-practica-audio" onclick="hablarDialogo('todos')">🔊 Escuchar todos</button>
+    </div>
+  </div>
+ </div>
+
+  <!-- ══════════════════════════════════════════════
+     BLOQUE 3: READ → "Saray meets a new friend"
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-read" id="bloque-read">
+  <div class="seccion-titulo">
+    <span class="seccion-titulo-icono">📖</span>
+    <div>
+      <h3>3. Read · Saray meets a new friend</h3>
+      <small>📌 Lee y escucha la conversación entre Saray y Leonardo en el primer día de clases.</small>
+    </div>
+  </div>
+
+  <!-- Contexto Narrativo -->
+  <div class="read-contexto">
+    <div class="read-badge-escenario">📍 Patio de la IE Técnica Camacho Angarita, Chichalá</div>
+    <p class="read-narrativa">
+      Saray es nueva en la sede. Ve a un estudiante solo y decide presentarse. 
+      <strong>¿Qué aprenderán el uno del otro?</strong> Lee y escucha con atención.
+    </p>
+  </div>
+
+    <!-- Diálogo Interactivo -->
+  <div class="read-dialogo-wrap">
+    <div class="dialogo-personajes">
+      <div class="personaje-foto">
+        <span class="foto-icon">👧</span>
+        <span class="foto-nombre">Saray (6°)</span>
+      </div>
+      <div class="personaje-foto">
+        <span class="foto-icon">👦</span>
+        <span class="foto-nombre">Leonardo (7°)</span>
+      </div>
+    </div>
+
+    <div class="dialogo-lineas" id="dialogo-lineas">
+      
+      <!-- Línea 1: Saray -->
+      <div class="linea-dialogo saray" onclick="reproducirLinea(0)">
+        <div class="avatar-mini">👧</div>
+        <div class="burbuja-dialogo izquierda">
+          <p class="linea-en">Hi! I'm Saray. What's your name?</p>
+          <p class="linea-es">¡Hola! Soy Saray. ¿Cómo te llamas?</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+      <!-- Línea 2: Leonardo -->
+      <div class="linea-dialogo leonardo" onclick="reproducirLinea(1)">
+        <div class="avatar-mini">👦</div>
+        <div class="burbuja-dialogo derecha">
+          <p class="linea-en">My name's Leonardo. Nice to meet you.</p>
+          <p class="linea-es">Mi nombre es Leonardo. Encantado de conocerte.</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+      <!-- Línea 3: Saray -->
+      <div class="linea-dialogo saray" onclick="reproducirLinea(2)">
+        <div class="avatar-mini">👧</div>
+        <div class="burbuja-dialogo izquierda">
+          <p class="linea-en">Nice to meet you, too. How old are you?</p>
+          <p class="linea-es">Encantada de conocerte también. ¿Cuántos años tienes?</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+      <!-- Línea 4: Leonardo -->
+      <div class="linea-dialogo leonardo" onclick="reproducirLinea(3)">
+        <div class="avatar-mini">👦</div>
+        <div class="burbuja-dialogo derecha">
+          <p class="linea-en">I'm 12 years old. And you?</p>
+          <p class="linea-es">Tengo 12 años. ¿Y tú?</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+      <!-- Línea 5: Saray -->
+      <div class="linea-dialogo saray" onclick="reproducirLinea(4)">
+        <div class="avatar-mini">👧</div>
+        <div class="burbuja-dialogo izquierda">
+          <p class="linea-en">I'm 12, too. I like riding my bike. What about you?</p>
+          <p class="linea-es">Yo también tengo 12. Me gusta montar bicicleta. ¿Y tú?</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+      <!-- Línea 6: Leonardo -->
+      <div class="linea-dialogo leonardo" onclick="reproducirLinea(5)">
+        <div class="avatar-mini">👦</div>
+        <div class="burbuja-dialogo derecha">
+          <p class="linea-en">I like playing football. See you later!</p>
+          <p class="linea-es">Me gusta jugar fútbol. ¡Nos vemos luego!</p>
+          <span class="linea-audio">🔊 Escuchar</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botón Repetir Todo -->
+    <div style="text-align:center;margin-top:16px">
+      <button class="btn-leer-todo" onclick="leerDialogoCompleto()">🔊 Escuchar diálogo completo</button>
+    </div>
+  </div>
+
+  <!-- Ejercicio: Emparejar inglés y español -->
+  <div class="read-ejercicio-ordenar">
+    <h4>🧩 Match the Conversation · Une cada frase</h4>
+    <p class="ejercicio-instruccion">Une cada frase en inglés con su traducción. Selecciona una frase de cada columna o arrastra una hacia su pareja.</p>
+    <div class="emparejar-dialogo" id="emparejar-dialogo">
+      <svg class="emparejar-lineas" id="emparejar-lineas" aria-hidden="true"></svg>
+      <div class="emparejar-columna" id="frases-ingles"></div>
+      <div class="emparejar-columna" id="frases-espanol"></div>
+    </div>
+
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn-verificar-orden" onclick="verificarOrden()">✅ Verificar uniones</button>
+    </div>
+    <div class="orden-feedback" id="orden-feedback" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- Vocabulario Clave (Flip Cards) -->
+  <div class="read-vocabulario">
+
+
+  <!-- ══════════════════════════════════════════════
+     BLOQUE 4: SPELL → "How do you spell that?"
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-spell" id="bloque-spell">
+  <div class="seccion-titulo">
+    <span class="seccion-titulo-icono">🔤</span>
+    <div>
+      <h3>4. Spell · How do you spell that?</h3>
+      <small>📌 Aprende el abecedario en inglés. Escucha y repite cada letra.</small>
+    </div>
+  </div>
+
+  <!-- Study Tip -->
+  <div class="spell-study-tip">
+    <div class="tip-icon">💡</div>
+    <div class="tip-content">
+      <strong>Study Tip</strong>
+      <p>You can say the alphabet at your own pace. Take your time! Click each letter to hear it.</p>
+      <span class="en-es">Puedes decir el abecedario a tu propio ritmo. ¡Tómate tu tiempo! Haz clic en cada letra para escucharla.</span>
+    </div>
+  </div>
+
+  <!-- Abecedario Interactivo -->
+  <div class="spell-abecedario-wrap">
+    <h4>🔤 The English Alphabet · Haz clic para escuchar</h4>
+    <div class="alphabet-grid" id="alphabet-grid">
+      <!-- Letras generadas por JS -->
+    </div>
+    <div class="audio-status" id="spell-audio-status" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- Práctica: Nombres Colombianos -->
+  <div class="spell-practica-nombres">
+    <h4>🇨🇴 Spell Colombian Names · Escucha y repite</h4>
+    <p class="practica-instruccion">Estos son nombres reales de estudiantes colombianos. Escucha cómo se deletrean.</p>
+    
+    <div class="nombres-card" onclick="reproducirDeletreo('juliana')">
+      <div class="nombre-header">
+        <span class="nombre-icono">👧</span>
+        <span class="nombre-texto">Juliana</span>
+      </div>
+      <div class="nombre-deletreo">
+        <span class="deletreo-texto">J-U-L-I-A-N-A</span>
+      </div>
+      <button class="btn-escuchar-deletreo">🔊 Escuchar deletreo</button>
+    </div>
+
+    <div class="nombres-card" onclick="reproducirDeletreo('estefan')">
+      <div class="nombre-header">
+        <span class="nombre-icono">👦</span>
+        <span class="nombre-icono">👦</span>
+        <span class="nombre-texto">Estefan</span>
+      </div>
+      <div class="nombre-deletreo">
+        <span class="deletreo-texto">E-S-T-E-F-A-N</span>
+      </div>
+      <button class="btn-escuchar-deletreo">🔊 Escuchar deletreo</button>
+    </div>
+
+    <div class="nombres-card" onclick="reproducirDeletreo('hakani')">
+      <div class="nombre-header">
+        <span class="nombre-icono">👦</span>
+        <span class="nombre-texto">Hakani</span>
+      </div>
+      <div class="nombre-deletreo">
+        <span class="deletreo-texto">H-A-K-A-N-I</span>
+      </div>
+      <button class="btn-escuchar-deletreo">🔊 Escuchar deletreo</button>
+    </div>
+  </div>
+
+  <!-- Juego: Spell My Name -->
+  <div class="spell-juego-wrap">
+    <h4>🎮 Spell My Name · ¡Escribe cómo se deletrea!</h4>
+    <p class="juego-instruccion">Escucha el nombre y escribe su deletreo en inglés.</p>
+    
+    <div class="juego-contenedor" id="juego-spell">
+      <div class="juego-nombre-oculto" id="juego-nombre-oculto">
+        <span class="nombre-enigma">❓ ❓ ❓ ❓ ❓ ❓</span>
+        <p class="juego-instruccion-audio">Presiona el botón para escuchar el nombre</p>
+      </div>
+      
+      <button class="btn-escuchar-nombre" onclick="reproducirNombreJuego()">🔊 Escuchar nombre</button>
+      
+      <div class="juego-input-wrap">
+        <label for="input-deletreo">Escribe el deletreo:</label>
+        <input type="text" id="input-deletreo" class="input-deletreo" placeholder="Ej: J-U-L-I-A-N-A" maxlength="20" autocomplete="off"/>
+      </div>
+      
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
+        <button class="btn-verificar-deletreo" onclick="verificarDeletreo()">✅ Verificar</button>
+        <button class="btn-nuevo-nombre" onclick="nuevoNombreJuego()">🔄 Otro nombre</button>
+      </div>
+      
+      <div class="juego-result-spell" id="juego-result-spell"></div>
+    </div>
+  </div>
+
+  <!-- Actividad Personalizada -->
+  <div class="spell-personalizada">
+    <h4>✨ Your Turn · Deletrea tu propio nombre</h4>
+    <p class="personalizada-instruccion">Escribe tu nombre y practica su deletreo en inglés.</p>
+    
+    <div class="personalizada-wrap">
+      <label for="input-mi-nombre">Tu nombre completo:</label>
+      <input type="text" id="input-mi-nombre" class="input-mi-nombre" placeholder="Escribe tu nombre aquí..." maxlength="30"/>
+      
+      <button class="btn-practicar-mi-nombre" onclick="practicarMiDeletreo()">🔤 Practicar mi deletreo</button>
+      
+      <div class="mi-deletreo-result" id="mi-deletreo-result"></div>
+    </div>
+  </div>
+</div>
+
+  <!-- ══════════════════════════════════════════════
+     BLOQUE 5: SPEAK → "Practise with a partner"
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-speak" id="bloque-speak">
+  <div class="seccion-titulo">
+    <span class="seccion-titulo-icono">🗣️</span>
+    <div>
+      <h3>5. Speak · Practise with a partner</h3>
+      <small>📌 Role-play en parejas. Turnos de presentación con tarjetas interactivas.</small>
+    </div>
+  </div>
+
+  <!-- Contexto Inmersivo -->
+  <div class="speak-contexto">
+    <div class="speak-badge-escenario">📍 Aula de Tecnología · IE Técnica Camacho Angarita</div>
+    <p class="speak-narrativa">
+      Ahora es tu turno. Trabaja con un compañero. Uno será <strong>Linda</strong> y el otro <strong>Nicolás</strong>. 
+      Practiquen la presentación y luego cambien de rol.
+    </p>
+  </div>
+
+  <!-- Tarjetas de Personaje -->
+  <div class="speak-tarjetas-wrap">
+    <div class="speak-tarjetas-grid">
+      
+      <!-- Tarjeta Linda -->
+      <div class="speak-tarjeta" id="tarjeta-linda">
+        <div class="tarjeta-header" style="background:linear-gradient(135deg,var(--eng-rosa),var(--eng-fucsia))">
+          <span class="tarjeta-avatar">👧</span>
+          <span class="tarjeta-nombre">Linda</span>
+        </div>
+        <div class="tarjeta-body">
+          <div class="tarjeta-info">
+            <p class="info-line"><strong>Nombre:</strong> Linda</p>
+            <p class="info-line"><strong>Edad:</strong> 12 años</p>
+            <p class="info-line"><strong>Hobby:</strong> Reading books</p>
+          </div>
+          <div class="tarjeta-dialogo">
+            <p class="dialogo-en"><em>"Hi! I am Linda. What's your name? How do you spell that? Are you 12 years old?"</em></p>
+            <p class="dialogo-es">"¡Hola! Soy Linda. ¿Cómo te llamas? ¿Cómo se deletrea? ¿Tienes 12 años?"</p>
+          </div>
+          <button class="btn-audio-tarjeta" onclick="hablarTarjeta('linda')">🔊 Escuchar a Linda</button>
+        </div>
+      </div>
+
+      <!-- Tarjeta Nicolás -->
+      <div class="speak-tarjeta" id="tarjeta-nicolas">
+        <div class="tarjeta-header" style="background:linear-gradient(135deg,var(--eng-azul),var(--eng-cyan))">
+          <span class="tarjeta-avatar">👦</span>
+          <span class="tarjeta-nombre">Nicolás</span>
+        </div>
+        <div class="tarjeta-body">
+          <div class="tarjeta-info">
+            <p class="info-line"><strong>Nombre:</strong> Nicolás Moreno</p>
+            <p class="info-line"><strong>Edad:</strong> 11 años</p>
+            <p class="info-line"><strong>Hobby:</strong> Playing video games</p>
+          </div>
+          <div class="tarjeta-dialogo">
+            <p class="dialogo-en"><em>"Hey! I'm Nicolás Moreno. That's N-I-C... No, I'm not. I'm 11."</em></p>
+            <p class="dialogo-es">"¡Hola! Soy Nicolás Moreno. Eso es N-I-C... No, no lo soy. Tengo 11."</p>
+          </div>
+          <button class="btn-audio-tarjeta" onclick="hablarTarjeta('nicolas')">🔊 Escuchar a Nicolás</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generador de Diálogos Aleatorios -->
+  <div class="speak-generador-wrap">
+    <h4>🎲 Generate New Dialogues · Diálogos nuevos para practicar</h4>
+    <p class="generador-instruccion">Presiona el botón para generar un nuevo par de personajes y practica con tu compañero.</p>
+    
+    <button class="btn-generar-dialogo" onclick="generarNuevoDialogo()">🎲 Generar nuevos personajes</button>
+    
+    <div class="dialogo-generado" id="dialogo-generado" style="display:none">
+      <div class="personaje-generado" id="personaje-a"></div>
+      <div class="personaje-generado" id="personaje-b"></div>
+      
+      <!-- Mini-chat de práctica -->
+      <div class="chat-practica" id="chat-practica">
+        <!-- Se genera dinámicamente -->
+      </div>
+      
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn-audio-chat" onclick="hablarChatCompleto()">🔊 Escuchar todo el diálogo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Práctica Guiada -->
+  <div class="speak-practica-guiada">
+    <h4>🗣️ Guided Practice · Frases clave para tu presentación</h4>
+    <p class="guiada-instruccion">Practica estas frases en voz alta una por una.</p>
+    
+    <div class="frases-clave" id="frases-clave">
+      <div class="frase-clave-item" onclick="hablarFrase(this, 0)">
+        <span class="frase-icono">1️⃣</span>
+        <span class="frase-en">Hello! My name is ___.</span>
+        <span class="frase-es">¡Hola! Mi nombre es ___.</span>
+        <span class="frase-audio">🔊</span>
+      </div>
+      <div class="frase-clave-item" onclick="hablarFrase(this, 1)">
+        <span class="frase-icono">2️⃣</span>
+        <span class="frase-en">I am ___ years old.</span>
+        <span class="frase-es">Tengo ___ años.</span>
+        <span class="frase-audio">🔊</span>
+      </div>
+      <div class="frase-clave-item" onclick="hablarFrase(this, 2)">
+        <span class="frase-icono">3️⃣</span>
+        <span class="frase-en">I like ___.</span>
+        <span class="frase-es">Me gusta ___.</span>
+        <span class="frase-audio">🔊</span>
+      </div>
+      <div class="frase-clave-item" onclick="hablarFrase(this, 3)">
+        <span class="frase-icono">4️⃣</span>
+        <span class="frase-en">Nice to meet you!</span>
+        <span class="frase-es">¡Encantado de conocerte!</span>
+        <span class="frase-audio">🔊</span>
+      </div>
+      <div class="frase-clave-item" onclick="hablarFrase(this, 4)">
+        <span class="frase-icono">5️⃣</span>
+        <span class="frase-en">How do you spell your name?</span>
+        <span class="frase-es">¿Cómo se deletrea tu nombre?</span>
+        <span class="frase-audio">🔊</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grabación Simulada -->
+  <div class="speak-grabacion-wrap">
+    <h4>🎙️ Record Your Presentation · Graba tu presentación</h4>
+    <p class="grabacion-instruccion">Lee tu presentación en voz alta. ¡Confía en ti!</p>
+    
+    <div class="grabacion-contenedor">
+      <div class="grabacion-visual" id="grabacion-visual">
+        <div class="grabacion-icono">🎙️</div>
+        <p class="grabacion-estado" id="grabacion-estado">Presiona para comenzar</p>
+      </div>
+      
+      <div class="grabacion-controles">
+        <button class="btn-grabar" id="btn-grabar" onclick="iniciarGrabacion()">🔴 Grabar presentación</button>
+        <button class="btn-detener" id="btn-detener" onclick="detenerGrabacion()" style="display:none">⏹️ Detener</button>
+      </div>
+      
+      <div class="grabacion-feedback" id="grabacion-feedback"></div>
+    </div>
+  </div>
+</div>
+
+  <!-- ══════════════════════════════════════════════
+     EVALUACIÓN INTERACTIVA · 12 PREGUNTAS
+     ══════════════════════════════════════════════ -->
+<div class="seccion seccion-auto" id="bloque-quiz">
+  <div class="evaluacion" id="evaluacion">
+    <div class="evaluacion-cabecera">
+      <div>
+        <span class="evaluacion-etiqueta">PRUEBA DIAGNÓSTICA · SEMANA 1</span>
+        <h4>✍️ English Quiz · Hello! My First Day at School</h4>
+        <p>Responde una pregunta a la vez. Recibirás retroalimentación inmediata tras cada respuesta.</p>
+      </div>
+      <span class="evaluacion-tiempo">⏱️ 15 min</span>
+    </div>
+    <div class="evaluacion-progreso">
+      <div class="evaluacion-progreso-barra"><span id="quiz-progress-fill"></span></div>
+            <span id="quiz-progress-text">Pregunta 1 de 12</span>
+    </div>
+    <div id="quiz-question" class```html
+    <div id="quiz-question" class="quiz-question"></div>
+    <div id```html
+    <div id="quiz-feedback"
+        <div id="quiz-question" class="quiz-question"></div>
+    <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+    <button id="quiz-next" class="btn-quiz-next" type="button" onclick="siguientePregunta()" disabled>
+      Siguiente pregunta ➜
+    </button>
+    <div id="quiz-result" class="quiz-result" hidden></div>
+  </div>
+</div>
+
+  <!-- AUTOEVALUACIÓN -->
+  <div class="seccion seccion-auto">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤝</span>
+      <h3>Autoevaluación · ¿Qué logré esta semana?</h3>
+      <small>✅ Marca lo que ya dominas y verás tu avance real</small>
+    </div>
+    <div class="auto-grid" id="auto-grid">
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Puedo saludar y presentarme en inglés</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Puedo preguntar y decir mi edad</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Puedo deletrear mi nombre en inglés</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Entiendo la información de mis compañeros</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Puedo introducir a otra persona</label>
+      <label class="auto-item"><input type="checkbox" onchange="actualizarAuto(this)"/> Reconozco objetos en el aula en inglés</label>
+    </div>
+    <div class="auto-total" id="auto-total">0 de 6 logros conseguidos</div>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir el Cofre del Conector Global</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos del Mundo en Inglés</div>
+    <p>¿Sabías que...?</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🇬🇧</span>
+      <div><strong>"How do you do?" es un saludo formal:</strong> En Reino Unido, se usa al presentarse por primera vez. No espera una respuesta real sobre tu bienestar, sino que se responde con "How do you do?".</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🇺🇸</span>
+      <div><strong>El apretón de manos (Handshake):</strong> En muchos países anglófonos, mirar a los ojos y dar la mano al decir "Nice to meet you" es señal de confianza y respeto.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌍</span>
+      <div><strong>Inglés como puente:</strong> Saray es de Cali y Leonardo puede ser de cualquier parte del mundo. El inglés es la herramienta que les permite conectar sin barreras.</div>
+    </div>
+  </div>
+
+    <!-- ══════════════════════════════════════════════
+       DIPLOMA · CERTIFICADO DE GLOBAL CONNECTOR
+       ══════════════════════════════════════════════ -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICATE OF COMPLETION</div>
+    <p style="font-size:.85rem;color:var(--eng-dim);margin:0 0 4px">Este certificado se otorga a</p>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🌎</span>
+    <p style="max-width:520px;margin:0 auto;font-size:.92rem;line-height:1.7;color:var(--eng-texto)">
+      Por completar con éxito la <strong>Semana 2 · Hello! My First Day at School</strong> 
+      con creatividad, precisión y espíritu global.
+    </p>
+    <div class="diploma-grado-badge" id="diploma-grado">7°</div>
+    <div class="diploma-fecha" id="diploma-fecha">Fecha de expedición</div>
+    <div class="diploma-firma">
+      <span class="firma-linea"></span>
+      <span class="firma-nombre">Profe Nelson · IE Técnica Camacho Angarita</span>
+    </div>
+    <p style="font-size:.75rem;margin-top:16px;color:var(--eng-dim)">Sede Chichalá · Chaparral, Tolima · Colombia</p>
+  </div>
+
+  <!-- Botón Finalizar Misión -->
+  <button class="btn-completar" onclick="completarMision()">🏆 Completar mi misión y obtener diploma</button>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌎 Connecting the world, one word at a time · Chichalá, Tolima</p>
+        <p>👨‍🏫 Diseñado con dedicación por el Profe Nelson · IE Técnica Camacho Angarita</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+</div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// Abrir cofre
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+// Completar misión
+function completarMision(){
+  const piezas = document.querySelectorAll('.pieza');
+  piezas.forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '7°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+}
+
+// Crear confeti
+function crearConfeti(){
+  const colores = ['#EC4899','#7C3AED','#2563EB','#FACC15','#06B6D4'];
+  for(let i=0;i<50;i++){
+    const confeti = document.createElement('div');
+    confeti.style.position='fixed';
+    confeti.style.left=Math.random()*100+'vw';
+    confeti.style.top='-20px';
+    confeti.style.width=Math.random()*10+10+'px';
+    confeti.style.height=Math.random()*10+10+'px';
+    confeti.style.background=colores[Math.floor(Math.random()*colores.length)];
+    confeti.style.animation='caerConfeti '+(Math.random()*3+2)+'s linear';
+    document.body.appendChild(confeti);
+    setTimeout(()=>confeti.remove(),5000);
+  }
+}
+
+// Autoevaluación
+function actualizarAuto(checkbox){
+  checkbox.closest('.auto-item').classList.toggle('marcado', checkbox.checked);
+  const total = document.querySelectorAll('#auto-grid input:checked').length;
+  const texto = document.getElementById('auto-total');
+  texto.textContent = `${total} de 6 logros conseguidos`;
+  if(total === 6){
+    texto.textContent = '🏆 ¡Los 6 logros conseguidos! Eres un Global Connector.';
+    crearConfeti();
+  }
+}
+
+// ══════════════════════════════════════════════
+// BLOQUE 1: LISTEN · LÓGICA COMPLETA
+// ══════════════════════════════════════════════
+const estudiantes = {
+  saray:    {nombre:"Saray",    frase:"Hello! I'm Saray. I'm 12 years old. I like riding my bike in the countryside.", hobby:"riding my bike", icono:"🚲"},
+  andrea:   {nombre:"Andrea",   frase:"Good morning! I'm Andrea. I'm 12 years old. I like listening to music while doing homework.", hobby:"listening to music", icono:"🎧"},
+  leonardo: {nombre:"Leonardo", frase:"Hi! My name's Leonardo. I'm 13 years old. I like playing football with my friends after school.", hobby:"playing football", icono:"⚽"},
+  duvan:    {nombre:"Duván",    frase:"Hello! I'm Duván. I'm 13 years old. I like helping on the farm with my family.", hobby:"helping on the farm", icono:"🌱"}
+};
+
+const pronunciacionEspanol = {
+  "Hello! I'm Saray. I'm 12 years old. I like riding my bike in the countryside.": "Jelóu. Aim Saréi. Aim tuélv yírs óuld. Ai laik ráiding mai báik in de cáuntrisaid.",
+  "Good morning! I'm Andrea. I'm 12 years old. I like listening to music while doing homework.": "Gud mórning. Aim Andrea. Aim tuélv yírs óuld. Ai laik lísening tu miúsik uáil dúing jóum-uérk.",
+  "Hi! My name's Leonardo. I'm 13 years old. I like playing football with my friends after school.": "Jái. Mai néimz Leonardo. Aim zertín yírs óuld. Ai laik pléing fútbol uiz mai frénds áfter skúul.",
+  "Hello! I'm Duván. I'm 13 years old. I like helping on the farm with my family.": "Jelóu. Aim Duván. Aim zertín yírs óuld. Ai laik jélping on de farm uiz mai fámili.",
+  "I like riding my bike.": "Ai laik ráiding mai báik.",
+  "I like playing football.": "Ai laik pléing fútbol.",
+  "I like listening to music.": "Ai laik lísening tu miúsik.",
+  "I like helping on the farm.": "Ai laik jélping on de farm."
+};
+
+let audioGlobal = null;
+let reproduciendoEstudiante = null;
+
+// Síntesis de voz con una voz inglesa, priorizando el acento americano
+function hablar(texto){
+  const aviso = document.getElementById('audio-status');
+  if(!('speechSynthesis' in window)){
+    if(aviso) aviso.textContent = 'La reproducción de audio no está disponible en este navegador.';
+    return false;
+  }
+
+  const voces = speechSynthesis.getVoices();
+  const vozEn = voces.find(v => v.lang.toLowerCase() === 'en-us')
+    || voces.find(v => v.lang.toLowerCase().startsWith('en-'))
+    || voces.find(v => v.lang.toLowerCase() === 'en');
+  const vozEs = voces.find(v => v.lang.toLowerCase().startsWith('es'));
+  const voz = vozEn || vozEs || voces[0];
+  if(!voz){
+    if(aviso) aviso.textContent = 'No se encontró una voz disponible en este navegador.';
+    return false;
+  }
+
+  speechSynthesis.cancel();
+  const usarFoneticaEspanol = !vozEn && voz.lang.toLowerCase().startsWith('es');
+  const u = new SpeechSynthesisUtterance(
+    usarFoneticaEspanol ? pronunciacionEspanol[texto] || texto : texto
+  );
+  u.voice = voz;
+  u.lang = voz.lang;
+  u.rate = 0.85; // Más lento para estudiantes
+  u.pitch = 1;
+
+  if(aviso){
+    aviso.textContent = usarFoneticaEspanol
+      ? 'Audio con pronunciación aproximada para voz en español.'
+      : !vozEn
+        ? 'No hay voz inglesa disponible; se usa la voz predeterminada del equipo.'
+        : '';
+  }
+  audioGlobal = u;
+  speechSynthesis.speak(u);
+  return true;
+}
+
+// Reproducir frase de un estudiante específico
+function reproducirFrase(estudianteKey){
+  const est = estudiantes[estudianteKey];
+  if(!est) return;
+  if(!hablar(est.frase)) return;
+  
+  // Remover clase reproduciendo de todos
+  document.querySelectorAll('.dialogo-card').forEach(c => c.classList.remove('reproduciendo'));
+  
+  // Agregar clase al actual
+  const card = document.getElementById('dialogo-' + estudianteKey);
+  if(card) card.classList.add('reproduciendo');
+  reproduciendoEstudiante = estudianteKey;
+  
+  // Quitar clase al terminar
+  audioGlobal.onend = function(){
+    if(card) card.classList.remove('reproduciendo');
+  };
+}
+
+// Audio principal (simulado con secuencia)
+function reproducirAudioPrincipal(){
+  const btn = document.querySelector('.btn-audio-main');
+  if(!('speechSynthesis' in window)){
+    btn.querySelector('.audio-text').textContent = 'Audio no disponible en este navegador';
+    return;
+  }
+  
+  if(btn.classList.contains('playing')){
+    speechSynthesis.cancel();
+    btn.classList.remove('playing');
+    btn.querySelector('.audio-icon').textContent = '▶️';
+    btn.querySelector('.audio-text').textContent = 'Escuchar diálogos completos (3:45)';
+    return;
+  }
+  
+  btn.classList.add('playing');
+  btn.querySelector('.audio-icon').textContent = '⏸️';
+  btn.querySelector('.audio-text').textContent = 'Reproduciendo...';
+  
+  // Secuencia de presentaciones
+  const secuencia = [
+    estudiantes.saray.frase,
+    estudiantes.andrea.frase,
+    estudiantes.leonardo.frase,
+    estudiantes.duvan.frase
+  ];
+  
+  let index = 0;
+  
+  function hablarSiguiente(){
+    if(index >= secuencia.length){
+      btn.classList.remove('playing');
+      btn.querySelector('.audio-icon').textContent = '▶️';
+      btn.querySelector('.audio-text').textContent = 'Escuchar diálogos completos (3:45)';
+      // Activar pieza de progreso
+      document.getElementById('pieza-1').classList.add('obtenida');
+      return;
+    }
+    
+    if(!hablar(secuencia[index])){
+      btn.classList.remove('playing');
+      btn.querySelector('.audio-icon').textContent = '▶️';
+      btn.querySelector('.audio-text').textContent = 'Escuchar diálogos completos (3:45)';
+      return;
+    }
+    audioGlobal.onend = hablarSiguiente;
+    index++;
+  }
+  
+  hablarSiguiente();
+}
+
+// Ir a fragmento específico (simulado)
+function irAFragmento(index){
+  const secuencia = [
+    estudiantes.saray.frase,
+    estudiantes.andrea.frase,
+    estudiantes.leonardo.frase,
+    estudiantes.duvan.frase
+  ];
+  if(secuencia[index]){
+    hablar(secuencia[index]);
+  }
+}
+
+// Validar tabla de escucha activa
+function validarTabla(){
+  const inputs = document.querySelectorAll('.tabla-input');
+  let correctas = 0;
+  let total = inputs.length;
+  
+  const respuestasCorrectas = {
+    saray: ['riding my bike', 'riding bike', 'bike'],
+    andrea: ['listening to music', 'music'],
+    leonardo: ['playing football', 'football', 'playing'],
+    duvan: ['helping on the farm', 'farm', 'helping']
+  };
+  
+  inputs.forEach(input => {
+    const key = input.dataset.estudiante;
+    const valor = input.value.trim().toLowerCase();
+    const correctasArr = respuestasCorrectas[key] || [];
+    
+    // Verificar si alguna respuesta correcta coincide
+    const esCorrecta = correctasArr.some(r => valor.includes(r) || r.includes(valor));
+    
+    if(esCorrecta && valor.length > 2){
+      input.classList.add('correct');
+      input.closest('tr').classList.add('completado');
+      correctas++;
+    } else {
+      input.classList.remove('correct');
+      input.closest('tr').classList.remove('completado');
+    }
+  });
+  
+  // Feedback
+  const feedback = document.getElementById('tabla-feedback');
+  if(correctas === total){
+    feedback.textContent = '✅ ¡Excelente! Completaste toda la tabla correctamente.';
+    feedback.className = 'tabla-feedback ok';
+    document.getElementById('pieza-1').classList.add('obtenida');
+  } else if(correctas > 0){
+    feedback.textContent = `🔎 Llevas ${correctas} de ${total}. ¡Sigue escuchando!`;
+    feedback.className = 'tabla-feedback pendiente';
+  } else {
+    feedback.textContent = '👂 Escucha el audio y completa los hobbies.';
+    feedback.className = 'tabla-feedback pendiente';
+  }
+}
+
+// Mini-Juego: Guess the Hobby
+const juegoPreguntas = [
+  {hobby:"riding my bike", icono:"🚲", distractors:[
+    {text:"playing football", icon:"⚽"},
+    {text:"listening to music", icon:"🎧"},
+    {text:"helping on the farm", icon:"🌱"}
+  ]},
+  {hobby:"playing football", icono:"⚽", distractors:[
+    {text:"riding my bike", icon:"🚲"},
+    {text:"listening to music", icon:"🎧"},
+    {text:"helping on the farm", icon:"🌱"}
+  ]},
+  {hobby:"listening to music", icono:"🎧", distractors:[
+    {text:"riding my bike", icon:"🚲"},
+    {text:"playing football", icon:"⚽"},
+    {text:"helping on the farm", icon:"🌱"}
+  ]},
+  {hobby:"helping on the farm", icono:"🌱", distractors:[
+    {text:"riding my bike", icon:"🚲"},
+    {text:"playing football", icon:"⚽"},
+    {text:"listening to music", icon:"🎧"}
+  ]}
+];
+
+let preguntaActualJuego = 0;
+let puntuacionJuego = 0;
+
+function iniciarJuegoHobbies(){
+  document.getElementById('juego-contenedor').style.display = 'block';
+  document.querySelector('.btn-juego').style.display = 'none';
+  preguntaActualJuego = 0;
+  puntuacionJuego = 0;
+  cargarPreguntaJuego();
+}
+
+function cargarPreguntaJuego(){
+  if(preguntaActualJuego >= juegoPreguntas.length){
+    mostrarResultadoJuego();
+    return;
+  }
+  
+  const pregunta = juegoPreguntas[preguntaActualJuego];
+  
+  // Mostrar texto de la frase
+  document.getElementById('juego-texto-frase').textContent = `"I like ${pregunta.hobby}."`;
+  
+  // Reproducir audio
+  hablar(`I like ${pregunta.hobby}.`);
+  
+  // Crear opciones (correcta + distractors)
+  const opciones = [
+    {text: pregunta.hobby, icon: pregunta.icono, correcta: true},
+    ...pregunta.distractors.map(d => ({text: d.text, icon: d.icon, correcta: false}))
+  ];
+  
+  // Mezclar opciones
+  for(let i = opciones.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+  }
+  
+  // Renderizar opciones
+  const contenedor = document.getElementById('juego-opciones');
+  contenedor.innerHTML = '';
+  
+  opciones.forEach(opcion => {
+    const btn = document.createElement('button');
+    btn.className = 'juego-opcion';
+    btn.innerHTML = `<span class="opcion-icon">${opcion.icon}</span><span>${opcion.text}</span>`;
+    btn.dataset.correcta = opcion.correcta;
+    btn.onclick = () => responderPreguntaJuego(btn, opcion.correcta);
+    contenedor.appendChild(btn);
+  });
+  
+  document.getElementById('juego-result').textContent = '';
+}
+
+function repetirFraseJuego(){
+  if(preguntaActualJuego < juegoPreguntas.length){
+    const pregunta = juegoPreguntas[preguntaActualJuego];
+    hablar(`I like ${pregunta.hobby}.`);
+  }
+}
+
+function responderPreguntaJuego(boton, esCorrecta){
+  const opciones = document.querySelectorAll('.juego-opcion');
+  opciones.forEach(o => o.disabled = true);
+  
+  const result = document.getElementById('juego-result');
+  
+  if(esCorrecta){
+    boton.classList.add('correcta');
+    result.textContent = '✅ ¡Correcto! Great ear!';
+    result.style.color = '#047857';
+    puntuacionJuego++;
+  } else {
+    boton.classList.add('incorrecta');
+    opciones.forEach(o => {
+      if(o.dataset.correcta === 'true'){
+        o.classList.add('correcta');
+      }
+    });
+    result.textContent = '❌ Not quite. Listen again and try the next one!';
+    result.style.color = '#B91C1C';
+  }
+  
+  // Siguiente pregunta después de 1.5s
+  setTimeout(() => {
+    preguntaActualJuego++;
+    cargarPreguntaJuego();
+  }, 1500);
+}
+
+function mostrarResultadoJuego(){
+  document.getElementById('juego-opciones').innerHTML = '';
+  document.getElementById('juego-texto-frase').textContent = '';
+  
+  const contenedor = document.getElementById('juego-contenedor');
+  contenedor.innerHTML = `
+    <div style="text-align:center">
+      <h4 style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:#047857;margin:0 0 10px">
+        🎉 Juego Completado!
+      </h4>
+      <p style="font-size:1rem;font-weight:700;color:var(--eng-texto)">
+        ${puntuacionJuego} de ${juegoPreguntas.length} correctas
+      </p>
+      <p style="font-size:.9rem;color:var(--eng-dim)">
+        ${puntuacionJuego === juegoPreguntas.length ? '🏆 Perfect score! You\'re a listening champion!' : '💪 Keep practicing your listening skills!'}
+      </p>
+      <button class="btn-juego" onclick="reiniciarJuego()" style="margin-top:14px">
+        🔄 Jugar de nuevo
+      </button>
+    </div>
+  `;
+  
+  if(puntuacionJuego >= 3){
+    document.getElementById('pieza-1').classList.add('obtenida');
+  }
+}
+
+function reiniciarJuego(){
+  document.getElementById('juego-contenedor').innerHTML = `
+    <div class="juego-pregunta" id="juego-pregunta">
+      <p class="juego-frase-audio" id="juego-frase">
+        <strong>Escucha:</strong> <span id="juego-texto-frase">...</span>
+      </p>
+      <button class="btn-repetir-frase" onclick="repetirFraseJuego()">🔊 Repetir</button>
+    </div>
+    <div class="juego-opciones-grid" id="juego-opciones"></div>
+    <div class="juego-result" id="juego-result"></div>
+  `;
+  iniciarJuegoHobbies();
+}
+
+// Cargar voces al iniciar
+if('speechSynthesis' in window){
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
+
+// Animación de caída del confeti (CSS inyectado)
+const styleSheet = document.createElement("style");
+styleSheet.innerText = `
+@keyframes caerConfeti{
+  0%{transform:translateY(-40px) rotate(0);opacity:1}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+`;
+document.head.appendChild(styleSheet);
+
+// ══════════════════════════════════════════════
+// BLOQUE 2: WRITE · LÓGICA (Drag & Drop)
+// ══════════════════════════════════════════════
+let tarjetaArrastrada = null;
+
+// Configurar tarjetas arrastrables
+document.addEventListener('DOMContentLoaded', function(){
+  const tarjetas = document.querySelectorAll('.tarjeta-arrastrable');
+  const espacios = document.querySelectorAll('.espacio-vacio');
+  
+  tarjetas.forEach(tarjeta => {
+    tarjeta.tabIndex = 0;
+    tarjeta.setAttribute('role', 'button');
+    tarjeta.addEventListener('click', function(){
+      if(this.classList.contains('usada')) return;
+      document.querySelectorAll('.tarjeta-arrastrable.seleccionada').forEach(t => t.classList.remove('seleccionada'));
+      tarjetaArrastrada = this;
+      this.classList.add('seleccionada');
+    });
+    tarjeta.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        this.click();
+      }
+    });
+    tarjeta.addEventListener('dragstart', function(e){
+      if(this.classList.contains('usada')){
+        e.preventDefault();
+        return;
+      }
+      tarjetaArrastrada = this;
+      this.style.opacity = '0.5';
+      e.dataTransfer.setData('text/plain', this.dataset.expresion);
+    });
+    
+    tarjeta.addEventListener('dragend', function(){
+      this.style.opacity = '1';
+      tarjetaArrastrada = null;
+    });
+    
+  });
+  
+  espacios.forEach(espacio => {
+    espacio.tabIndex = 0;
+    espacio.addEventListener('click', function(){
+      if(tarjetaArrastrada) colocarExpresion(tarjetaArrastrada, this);
+    });
+    espacio.addEventListener('keydown', function(e){
+      if((e.key === 'Enter' || e.key === ' ') && tarjetaArrastrada){
+        e.preventDefault();
+        colocarExpresion(tarjetaArrastrada, this);
+      }
+    });
+    espacio.addEventListener('dragover', function(e){
+      e.preventDefault();
+      this.classList.add('drag-over');
+    });
+    
+    espacio.addEventListener('dragleave', function(){
+      this.classList.remove('drag-over');
+    });
+    
+    espacio.addEventListener('drop', function(e){
+      e.preventDefault();
+      this.classList.remove('drag-over');
+      
+      colocarExpresion(tarjetaArrastrada, this, e.dataTransfer.getData('text/plain'));
+    });
+  });
+});
+
+function colocarExpresion(tarjeta, espacio, expresion){
+  if(!tarjeta || !espacio || tarjeta.classList.contains('usada') || espacio.classList.contains('completado')) return;
+  expresion = expresion || tarjeta.dataset.expresion;
+  if(expresion !== espacio.dataset.expresion){
+    espacio.style.borderColor = 'var(--eng-rojo)';
+    setTimeout(() => { espacio.style.borderColor = ''; }, 500);
+    return;
+  }
+  espacio.textContent = expresion;
+  espacio.classList.add('completado');
+  tarjeta.classList.add('usada');
+  tarjeta.classList.remove('seleccionada');
+  tarjetaArrastrada = null;
+  verificarDiagrama();
+}
+
+// Verificar diagrama completo
+function verificarDiagrama(){
+  const espaciosCompletados = document.querySelectorAll('.espacio-vacio.completado');
+  const totalEspacios = document.querySelectorAll('.espacio-vacio').length;
+  const feedback = document.getElementById('diagrama-feedback');
+  
+  if(espaciosCompletados.length === totalEspacios){
+    feedback.textContent = '✅ ¡Excelente! Completaste todo el diagrama correctamente.';
+    feedback.className = 'diagrama-feedback ok';
+    document.getElementById('pieza-2').classList.add('obtenida');
+  } else if(espaciosCompletados.length > 0){
+    feedback.textContent = `🔎 Llevas ${espaciosCompletados.length} de ${totalEspacios}. ¡Sigue arrastrando!`;
+    feedback.className = 'diagrama-feedback pendiente';
+  } else {
+    feedback.textContent = '👆 Arrastra las expresiones a los espacios correspondientes.';
+    feedback.className = 'diagrama-feedback pendiente';
+  }
+}
+
+// Hablar diálogo de práctica
+function hablarDialogo(tipo){
+  if(!('speechSynthesis' in window)){ return; }
+  
+  const dialogos = {
+    a: [
+      "Hello! I'm Saray. What's your name?",
+      "Nice to meet you, too. How old are you?",
+      "I'm 12. I like riding my bike. What about you?"
+    ],
+    b: [
+      "Hi! My name's Leonardo. Nice to meet you.",
+      "I'm 13 years old. And you?",
+      "I like playing football. See you later!"
+    ],
+    todos: [
+      "Hello! I'm Saray. What's your name?",
+      "Hi! My name's Leonardo. Nice to meet you.",
+      "Nice to meet you, too. How old are you?",
+      "I'm 13 years old. And you?",
+      "I'm 12. I like riding my bike. What about you?",
+      "I like playing football. See you later!"
+    ]
+  };
+  
+  const frases = dialogos[tipo] || [];
+  let index = 0;
+  
+  function hablarSiguiente(){
+    if(index >= frases.length){ return; }
+    hablar(frases[index]);
+    index++;
+  }
+  
+  hablarSiguiente();
+  audioGlobal.onend = hablarSiguiente;
+}
+
+// ══════════════════════════════════════════════
+// BLOQUE 3: READ · LÓGICA
+// ══════════════════════════════════════════════
+
+// Diálogo Saray ↔ Leonardo
+const dialogoSarayLeonardo = [
+  {personaje:"saray", en:"Hi! I'm Saray. What's your name?", es:"¡Hola! Soy Saray. ¿Cómo te llamas?"},
+  {personaje:"leonardo", en:"My name's Leonardo. Nice to meet you.", es:"Mi nombre es Leonardo. Encantado de conocerte."},
+  {personaje:"saray", en:"Nice to meet you, too. How old are you?", es:"Encantada de conocerte también. ¿Cuántos años tienes?"},
+  {personaje:"leonardo", en:"I'm 12 years old. And you?", es:"Tengo 12 años. ¿Y tú?"},
+  {personaje:"saray", en:"I'm 12, too. I like riding my bike. What about you?", es:"Yo también tengo 12. Me gusta montar bicicleta. ¿Y tú?"},
+  {personaje:"leonardo", en:"I like playing football. See you later!", es:"Me gusta jugar fútbol. ¡Nos vemos luego!"}
+];
+
+let lineaReproduciendo = -1;
+
+function crearAudioDialogo(index){
+  const linea = dialogoSarayLeonardo[index];
+  const audio = new SpeechSynthesisUtterance(linea.en);
+  const voces = speechSynthesis.getVoices();
+  const vocesIngles = voces.filter(voz => voz.lang.toLowerCase().startsWith('en'));
+  const vozNatural = vocesIngles.find(voz => /natural|neural|premium|enhanced/i.test(voz.name));
+  audio.lang = 'en-US';
+  audio.rate = 0.92;
+  audio.pitch = linea.personaje === 'saray' ? 1.06 : 0.96;
+  audio.voice = vozNatural
+    || vocesIngles.find(voz => voz.lang.toLowerCase() === 'en-us')
+    || vocesIngles[0]
+    || null;
+  return audio;
+}
+
+function reproducirLinea(index){
+  if(!('speechSynthesis' in window) || !dialogoSarayLeonardo[index]) return;
+
+  if(lineaReproduciendo === index){
+    // Si ya está reproduciendo esta línea, detener
+    speechSynthesis.cancel();
+    lineaReproduciendo = -1;
+    document.querySelectorAll('.linea-dialogo').forEach(l => l.classList.remove('reproduciendo'));
+    return;
+  }
+  
+  // Remover clase de todas las líneas
+  document.querySelectorAll('.linea-dialogo').forEach(l => l.classList.remove('reproduciendo'));
+  
+  // Agregar clase a la línea actual
+  const lineas = document.querySelectorAll('.linea-dialogo');
+  if(lineas[index]){
+    lineas[index].classList.add('reproduciendo');
+    lineaReproduciendo = index;
+  }
+  
+  // Hablar la frase en inglés
+  speechSynthesis.cancel();
+  const audio = crearAudioDialogo(index);
+  audio.onend = function(){
+    if(lineas[index]) lineas[index].classList.remove('reproduciendo');
+    lineaReproduciendo = -1;
+  };
+  speechSynthesis.speak(audio);
+}
+
+function leerDialogoCompleto(){
+  if(!('speechSynthesis' in window)) return;
+
+  // Detener reproducción individual
+  speechSynthesis.cancel();
+  lineaReproduciendo = -1;
+  document.querySelectorAll('.linea-dialogo').forEach(l => l.classList.remove('reproduciendo'));
+  
+  let index = 0;
+  
+  function hablarSiguiente(){
+    if(index >= dialogoSarayLeonardo.length){
+      // Activar pieza de progreso
+      document.getElementById('pieza-3').classList.add('obtenida');
+      return;
+    }
+    
+    // Agregar clase reproduciendo
+    const lineas = document.querySelectorAll('.linea-dialogo');
+    if(lineas[index]) lineas[index].classList.add('reproduciendo');
+    
+    const audio = crearAudioDialogo(index);
+    audio.onend = function(){
+      if(lineas[index]) lineas[index].classList.remove('reproduciendo');
+      index++;
+      setTimeout(hablarSiguiente, 450);
+    };
+    speechSynthesis.speak(audio);
+  }
+  
+  hablarSiguiente();
+}
+
+// Actividad: unir frases en inglés con su traducción
+const frasesParaUnir = [
+  {id:'1', en:"Hi! I'm Saray. What's your name?", es:'¡Hola! Soy Saray. ¿Cómo te llamas?'},
+  {id:'2', en:"My name's Leonardo. Nice to meet you.", es:'Mi nombre es Leonardo. Encantado de conocerte.'},
+  {id:'3', en:'Nice to meet you, too. How old are you?', es:'Encantada de conocerte también. ¿Cuántos años tienes?'},
+  {id:'4', en:"I'm 12 years old. And you?", es:'Tengo 12 años. ¿Y tú?'},
+  {id:'5', en:"I'm 12, too. I like riding my bike. What about you?", es:'Yo también tengo 12. Me gusta montar bicicleta. ¿Y tú?'},
+  {id:'6', en:'I like playing football. See you later!', es:'Me gusta jugar fútbol. ¡Nos vemos luego!'}
+];
+const unionesDialogo = new Map();
+let inglesSeleccionado = null;
+
+function mezclar(lista){
+  for(let i = lista.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [lista[i], lista[j]] = [lista[j], lista[i]];
+  }
+  return lista;
+}
+
+function iniciarEmparejamiento(){
+  const columnaIngles = document.getElementById('frases-ingles');
+  const columnaEspanol = document.getElementById('frases-espanol');
+  if(!columnaIngles || !columnaEspanol) return;
+
+  columnaIngles.innerHTML = '<strong>🇬🇧 English</strong>';
+  columnaEspanol.innerHTML = '<strong>🇪🇸 Español</strong>';
+  mezclar([...frasesParaUnir]).forEach(frase => {
+    columnaIngles.appendChild(crearOpcion(frase, 'en'));
+  });
+  mezclar([...frasesParaUnir]).forEach(frase => {
+    columnaEspanol.appendChild(crearOpcion(frase, 'es'));
+  });
+  dibujarUniones();
+}
+
+function crearOpcion(frase, idioma){
+  const boton = document.createElement('button');
+  boton.type = 'button';
+  boton.className = 'emparejar-opcion';
+  boton.dataset.id = frase.id;
+  boton.dataset.idioma = idioma;
+  boton.textContent = frase[idioma];
+  boton.addEventListener('click', () => seleccionarOpcion(boton));
+  if(idioma === 'en'){
+    boton.draggable = true;
+    boton.addEventListener('dragstart', event => {
+      event.dataTransfer.setData('text/plain', frase.id);
+      event.dataTransfer.effectAllowed = 'link';
+      inglesSeleccionado = frase.id;
+    });
+  } else {
+    boton.addEventListener('dragover', event => event.preventDefault());
+    boton.addEventListener('drop', event => {
+      event.preventDefault();
+      const idIngles = event.dataTransfer.getData('text/plain');
+      if(idIngles) conectarFrases(idIngles, frase.id);
+    });
+  }
+  return boton;
+}
+
+function seleccionarOpcion(boton){
+  if(boton.dataset.idioma === 'en'){
+    inglesSeleccionado = boton.dataset.id;
+    document.querySelectorAll('#frases-ingles .emparejar-opcion').forEach(opcion => opcion.classList.remove('seleccionada'));
+    boton.classList.add('seleccionada');
+    return;
+  }
+  if(inglesSeleccionado){
+    conectarFrases(inglesSeleccionado, boton.dataset.id);
+  }
+}
+
+function conectarFrases(idIngles, idEspanol){
+  unionesDialogo.forEach((destino, origen) => {
+    if(destino === idEspanol && origen !== idIngles) unionesDialogo.delete(origen);
+  });
+  unionesDialogo.set(idIngles, idEspanol);
+  inglesSeleccionado = null;
+  document.querySelectorAll('.emparejar-opcion').forEach(opcion => opcion.classList.remove('seleccionada'));
+  verificarOrden();
+  dibujarUniones();
+}
+
+function dibujarUniones(){
+  const area = document.getElementById('emparejar-dialogo');
+  const svg = document.getElementById('emparejar-lineas');
+  if(!area || !svg) return;
+  const areaRect = area.getBoundingClientRect();
+  svg.setAttribute('viewBox', `0 0 ${areaRect.width} ${areaRect.height}`);
+  svg.replaceChildren();
+
+  unionesDialogo.forEach((idEspanol, idIngles) => {
+    const ingles = document.querySelector(`#frases-ingles [data-id="${idIngles}"]`);
+    const espanol = document.querySelector(`#frases-espanol [data-id="${idEspanol}"]`);
+    if(!ingles || !espanol) return;
+    const a = ingles.getBoundingClientRect();
+    const b = espanol.getBoundingClientRect();
+    const linea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    linea.setAttribute('x1', a.right - areaRect.left);
+    linea.setAttribute('y1', a.top + a.height / 2 - areaRect.top);
+    linea.setAttribute('x2', b.left - areaRect.left);
+    linea.setAttribute('y2', b.top + b.height / 2 - areaRect.top);
+    if(idIngles !== idEspanol) linea.classList.add('incorrecta');
+    svg.appendChild(linea);
+  });
+
+  document.querySelectorAll('.emparejar-opcion').forEach(opcion => {
+    opcion.classList.remove('correcta', 'incorrecta');
+  });
+  unionesDialogo.forEach((idEspanol, idIngles) => {
+    const correcta = idIngles === idEspanol;
+    document.querySelector(`#frases-ingles [data-id="${idIngles}"]`)?.classList.add(correcta ? 'correcta' : 'incorrecta');
+    document.querySelector(`#frases-espanol [data-id="${idEspanol}"]`)?.classList.add(correcta ? 'correcta' : 'incorrecta');
+  });
+}
+
+function verificarOrden(){
+  const correctas = [...unionesDialogo].filter(([idIngles, idEspanol]) => idIngles === idEspanol).length;
+  const total = frasesParaUnir.length;
+  const feedback = document.getElementById('orden-feedback');
+  if(correctas === total){
+    feedback.textContent = '✅ ¡Excelente! Uniste correctamente todas las frases.';
+    feedback.className = 'orden-feedback ok';
+    document.getElementById('pieza-3').classList.add('obtenida');
+  } else {
+    feedback.textContent = correctas
+      ? `🔎 ${correctas} de ${total} uniones correctas. Puedes cambiar cualquier unión.`
+      : '👆 Une cada frase en inglés con su traducción en español.';
+    feedback.className = 'orden-feedback pendiente';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', iniciarEmparejamiento);
+window.addEventListener('resize', dibujarUniones);
+
+// Activar tarjetas flip de vocabulario (click para voltear)
+document.addEventListener('DOMContentLoaded', function(){
+  const vocabCards = document.querySelectorAll('.vocab-card');
+  vocabCards.forEach(card => {
+    card.addEventListener('click', function(){
+      this.classList.toggle('flipped');
+    });
+  });
+});
+
+// Mini Quiz de Comprensión
+function verificarQuizComprension(){
+  const respuestasCorrectas = {q1:'b', q2:'c', q3:'c'};
+  let correctas = 0;
+  let total = 3;
+  
+  const opciones = document.querySelectorAll('.quiz-opcion input[type="radio"]:checked');
+  
+  // Resetear estilos
+  document.querySelectorAll('.quiz-opcion').forEach(o => {
+    o.classList.remove('correcta','incorrecta');
+  });
+  
+  opciones.forEach(opcion => {
+    const nombre = opcion.name;
+    const valor = opcion.value;
+    const padre = opcion.closest('.quiz-pregunta');
+    const opcionSeleccionada = opcion.closest('.quiz-opcion');
+    
+    if(valor === respuestasCorrectas[nombre]){
+      opcionSeleccionada.classList.add('correcta');
+      correctas++;
+    } else {
+      opcionSeleccionada.classList.add('incorrecta');
+      // Mostrar la correcta
+      const opcionesCorrectas = padre.querySelectorAll(`input[name="${nombre}"][value="${respuestasCorrectas[nombre]}"]`);
+      if(opcionesCorrectas.length){
+        opcionesCorrectas[0].closest('.quiz-opcion').classList.add('correcta');
+      }
+    }
+  });
+  
+  const result = document.getElementById('quiz-result');
+  if(correctas === total){
+    result.innerHTML = `
+      <p style="font-weight:700;color:#047857;font-size:1rem">✅ ¡Excelente! ${correctas} de ${total} correctas.</p>
+      <p style="font-size:.85rem;color:var(--eng-dim)">Entendiste perfectamente el diálogo entre Saray y Leonardo.</p>
+    `;
+    document.getElementById('pieza-3').classList.add('obtenida');
+  } else {
+    result.innerHTML = `
+      <p style="font-weight:700;color:#B45309;font-size:1rem">🔎 ${correctas} de ${total} correctas.</p>
+      <p style="font-size:.85rem;color:var(--eng-dim)">Lee el diálogo otra vez y presta atención a los detalles.</p>
+    `;
+  }
+}
+
+// ══════════════════════════════════════════════
+// BLOQUE 4: SPELL · LÓGICA
+// ══════════════════════════════════════════════
+
+const alphabet = [
+  ['A','ei'],['B','bi'],['C','si'],['D','di'],['E','i'],['F','ef'],
+  ['G','yi'],['H','eich'],['I','ai'],['J','yei'],['K','kei'],['L','el'],
+  ['M','em'],['N','en'],['O','ou'],['P','pi'],['Q','kiu'],['R','ar'],
+  ['S','es'],['T','ti'],['U','iu'],['V','vi'],['W','dábol iu'],['X','eks'],
+  ['Y','uai'],['Z','zi']
+];
+const pronunciacionParaVozEspanol = {
+  A:'ei', B:'bi', C:'si', D:'di', E:'í', F:'ef', G:'yi', H:'eich',
+  I:'ai', J:'yei', K:'kei', L:'el', M:'em', N:'en', O:'ou', P:'pi',
+  Q:'kiu', R:'ar', S:'es', T:'ti', U:'iu', V:'ví', W:'dabol i',
+  X:'eks', Y:'uai', Z:'zi'
+};
+let spellPlaybackId = 0;
+
+function obtenerVozSpell(){
+  const voces = speechSynthesis.getVoices();
+  const vocesIngles = voces.filter(voz => voz.lang.toLowerCase().startsWith('en'));
+  return vocesIngles.find(voz => voz.lang.toLowerCase() === 'en-us' && /natural|neural|premium|enhanced|aria|jenny/i.test(voz.name))
+    || vocesIngles.find(voz => voz.lang.toLowerCase() === 'en-us')
+    || vocesIngles.find(voz => voz.lang.toLowerCase().startsWith('en-gb'))
+    || vocesIngles[0]
+    || voces.find(voz => voz.lang.toLowerCase().startsWith('es'))
+    || voces[0]
+    || null;
+}
+
+function reproducirSecuenciaSpell(textos, alTerminar){
+  const status = document.getElementById('spell-audio-status');
+  if(!('speechSynthesis' in window)){
+    if(status) status.textContent = 'La reproducción de audio no está disponible en este navegador.';
+    return;
+  }
+
+  const reproduccion = ++spellPlaybackId;
+  speechSynthesis.cancel();
+  const voz = obtenerVozSpell();
+  const vozIngles = voz ? voz.lang.toLowerCase().startsWith('en') : false;
+  if(status) status.textContent = vozIngles
+    ? ''
+    : 'Se usa la voz instalada con una aproximación fonética del inglés.';
+
+  let indice = 0;
+  function reproducirSiguiente(){
+    if(reproduccion !== spellPlaybackId) return;
+    if(indice >= textos.length){
+      if(alTerminar) alTerminar();
+      return;
+    }
+    const texto = textos[indice++];
+    const audio = new SpeechSynthesisUtterance(vozIngles ? texto.en : texto.es);
+    audio.lang = voz ? voz.lang : 'es-ES';
+    if(voz) audio.voice = voz;
+    audio.rate = 0.88;
+    audio.pitch = 1;
+    audio.onend = () => setTimeout(reproducirSiguiente, 180);
+    audio.onerror = event => {
+      if(reproduccion !== spellPlaybackId || event.error === 'canceled' || event.error === 'interrupted') return;
+      if(status) status.textContent = 'No se pudo reproducir el audio. Intenta de nuevo.';
+      spellPlaybackId++;
+    };
+    speechSynthesis.speak(audio);
+  }
+  reproducirSiguiente();
+}
+
+function obtenerLetrasDeletreo(nombre){
+  return nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().match(/[A-Z]/g) || [];
+}
+
+function crearAudioLetra(letra){
+  return {en:letra, es:pronunciacionParaVozEspanol[letra] || letra};
+}
+
+function crearAudioFrase(ingles, espanol){
+  return {en:ingles, es:espanol};
+}
+
+// Generar abecedario interactivo
+document.addEventListener('DOMContentLoaded', function(){
+  const grid = document.getElementById('alphabet-grid');
+  if(!grid) return;
+  
+  alphabet.forEach(([letra, pronunciacion]) => {
+    const btn = document.createElement('button');
+    btn.className = 'letter-btn';
+    btn.type = 'button';
+    btn.innerHTML = `${letra}<span class="letter-pronunciation">(${pronunciacion})</span>`;
+    btn.setAttribute('aria-label', `${letra}, pronunciado ${pronunciacion}`);
+    btn.onclick = () => reproducirLetra(letra, btn);
+    grid.appendChild(btn);
+  });
+});
+
+function reproducirLetra(letra, btnElement){
+  document.querySelectorAll('.letter-btn').forEach(b => b.classList.remove('playing'));
+  btnElement.classList.add('playing');
+  reproducirSecuenciaSpell([crearAudioLetra(letra)], () => btnElement.classList.remove('playing'));
+}
+
+// Deletreo de nombres colombianos
+const nombresDeletreo = {
+  jullana: {nombre:'Juliana', letras:'J-U-L-I-A-N-A'},
+  estefan: {nombre:'Estefan', letras:'E-S-T-E-F-A-N'},
+  hakani: {nombre:'Hakani', letras:'H-A-K-A-N-I'}
+};
+
+function reproducirDeletreo(nombreKey){
+  const data = nombresDeletreo[nombreKey];
+  if(!data) return;
+  reproducirSecuenciaSpell(
+    [crearAudioFrase(`My name is ${data.nombre}.`, `Mi nombre es ${data.nombre}.`)]
+      .concat(data.letras.split('-').map(crearAudioLetra))
+  );
+}
+
+// Juego: Spell My Name
+const nombresJuego = [
+  {nombre:'Saray', deletreo:'S-A-R-A-Y'},
+  {nombre:'Leonardo', deletreo:'L-E-O-N-A-R-D-O'},
+  {nombre:'Andrea', deletreo:'A-N-D-R-E-A'},
+  {nombre:'Duván', deletreo:'D-U-V-A-N'},
+  {nombre:'Carlos', deletreo:'C-A-R-L-O-S'},
+  {nombre:'Maria', deletreo:'M-A-R-I-A'}
+];
+
+let nombreActualJuego = null;
+
+function nuevoNombreJuego(){
+  // Seleccionar nombre aleatorio
+  const index = Math.floor(Math.random() * nombresJuego.length);
+  nombreActualJuego = nombresJuego[index];
+  
+  // Resetear UI
+  document.getElementById('juego-nombre-oculto').innerHTML = `
+    <span class="nombre-enigma">❓ ${nombreActualJuego.deletreo.length} letras</span>
+    <p class="juego-instruccion-audio">Presiona el botón para escuchar el nombre</p>
+  `;
+  document.getElementById('input-deletreo').value = '';
+  document.getElementById('juego-result-spell').innerHTML = '';
+}
+
+function reproducirNombreJuego(){
+  if(!nombreActualJuego){
+    nuevoNombreJuego();
+  }
+  reproducirSecuenciaSpell(
+    [crearAudioFrase(`How do you spell ${nombreActualJuego.nombre}?`, `¿Cómo se deletrea ${nombreActualJuego.nombre}?`)]
+      .concat(nombreActualJuego.deletreo.split('-').map(crearAudioLetra))
+  );
+}
+
+function verificarDeletreo(){
+  if(!nombreActualJuego){
+    nuevoNombreJuego();
+  }
+  
+  const input = document.getElementById('input-deletreo');
+  const inputValor = input.value.trim().toUpperCase().replace(/[-\s]/g, '');
+  const valorCorrecto = nombreActualJuego.deletreo.replace(/-/g, '');
+  const result = document.getElementById('juego-result-spell');
+  
+  if(inputValor === valorCorrecto){
+    result.innerHTML = `
+      <p style="color:#047857">✅ ¡Excelente! ${nombreActualJuego.nombre} se deletrea ${nombreActualJuego.deletreo}.</p>
+    `;
+    document.getElementById('pieza-4').classList.add('obtenida');
+    
+    // Auto-siguiente después de 2s
+    setTimeout(() => {
+      nuevoNombreJuego();
+    }, 2000);
+  } else {
+    result.innerHTML = `
+      <p style="color:#B91C1C">❌ No exactamente. Intenta otra vez.</p>
+      <p style="font-size:.8rem;color:var(--eng-dim)">Pista: ${nombreActualJuego.deletreo.length} letras</p>
+    `;
+    input.classList.add('incorrecta');
+    setTimeout(() => input.classList.remove('incorrecta'), 500);
+  }
+}
+
+// Actividad Personalizada
+function practicarMiDeletreo(){
+  const input = document.getElementById('input-mi-nombre');
+  const nombre = input.value.trim();
+  const result = document.getElementById('mi-deletreo-result');
+  
+  if(!nombre){
+    result.innerHTML = '<p style="color:#B45309">Por favor, escribe tu nombre primero.</p>';
+    return;
+  }
+  
+  const letras = obtenerLetrasDeletreo(nombre);
+  if(!letras.length){
+    result.textContent = 'Escribe un nombre con letras para practicar su deletreo.';
+    return;
+  }
+
+  result.replaceChildren();
+  const titulo = document.createElement('p');
+  titulo.style.cssText = 'font-size:.85rem;color:var(--eng-texto);margin-bottom:8px';
+  titulo.append('Tu nombre: ');
+  const nombreSeguro = document.createElement('strong');
+  nombreSeguro.textContent = nombre;
+  titulo.appendChild(nombreSeguro);
+  const deletreo = document.createElement('p');
+  deletreo.className = 'mi-deletreo-texto';
+  deletreo.textContent = letras.join('-');
+  const boton = document.createElement('button');
+  boton.type = 'button';
+  boton.className = 'btn-escuchar-deletreo';
+  boton.style.marginTop = '10px';
+  boton.textContent = '🔊 Escuchar mi deletreo';
+  boton.addEventListener('click', () => hablarMiDeletreo(nombre, letras));
+  result.append(titulo, deletreo, boton);
+}
+
+function hablarMiDeletreo(nombre, deletreo){
+  const letras = Array.isArray(deletreo) ? deletreo : obtenerLetrasDeletreo(deletreo);
+  reproducirSecuenciaSpell(
+    [crearAudioFrase(`My name is ${nombre}.`, `Mi nombre es ${nombre}.`)]
+      .concat(letras.map(crearAudioLetra))
+  );
+}
+
+// ══════════════════════════════════════════════
+// BLOQUE 5: SPEAK · LÓGICA
+// ══════════════════════════════════════════════
+
+// Frases clave para práctica guiada
+const frasesClave = [
+  "Hello! My name is Profe Nelson.",
+  "I am an engineer and a teacher.",
+  "I like technology and English.",
+  "Nice to meet you!",
+  "How do you spell your name?"
+];
+
+function hablarFrase(elemento, index){
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    
+    document.querySelectorAll('.frase-clave-item').forEach(f => f.classList.remove('reproduciendo'));
+    elemento.classList.add('reproduciendo');
+    
+    const u = new SpeechSynthesisUtterance(frasesClave[index]);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    
+    const voces = speechSynthesis.getVoices();
+    const vozEn = voces.find(v => v.lang.startsWith('en'));
+    if(vozEn) u.voice = vozEn;
+    
+    u.onend = function(){
+      elemento.classList.remove('reproduciendo');
+    };
+    
+    speechSynthesis.speak(u);
+  }
+}
+
+// Hablar tarjeta completa
+function hablarTarjeta(personaje){
+  const dialogos = {
+    linda: "Hi! I am Linda. What's your name? How do you spell that? Are you 12 years old?",
+    nicolas: "Hey! I'm Nicolás Moreno. That's N-I-C. No, I'm not. I'm 11."
+  };
+  
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(dialogos[personaje]);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    
+    const voces = speechSynthesis.getVoices();
+    const vozEn = voces.find(v => v.lang.startsWith('en'));
+    if(vozEn) u.voice = vozEn;
+    
+    speechSynthesis.speak(u);
+  }
+}
+
+// Generador de Diálogos Aleatorios
+const personajesAleatorios = [
+  {nombre:'Saray', edad:12, hobby:'riding my bike', icono:'👧'},
+  {nombre:'Leonardo', edad:13, hobby:'playing football', icono:'👦'},
+  {nombre:'Andrea', edad:12, hobby:'listening to music', icono:'👧'},
+  {nombre:'Duván', edad:13, hobby:'helping on the farm', icono:'👦'},
+  {nombre:'Valentina', edad:12, hobby:'drawing pictures', icono:'👧'},
+  {nombre:'Sebastián', edad:13, hobby:'reading books', icono:'👦'}
+];
+
+let dialogoGenerado = [];
+
+function generarNuevoDialogo(){
+  // Seleccionar 2 personajes aleatorios distintos
+  const indexA = Math.floor(Math.random() * personajesAleatorios.length);
+  let indexB = Math.floor(Math.random() * personajesAleatorios.length);
+  while(indexB === indexA){
+    indexB = Math.floor(Math.random() * personajesAleatorios.length);
+  }
+  
+  const perA = personajesAleatorios[indexA];
+  const perB = personajesAleatorios[indexB];
+  
+  // Mostrar contenedor
+  document.getElementById('dialogo-generado').style.display = 'block';
+  
+  // Renderizar personajes
+  document.getElementById('personaje-a').innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <span style="font-size:2rem">${perA.icono}</span>
+      <div>
+        <strong style="font-family:'Fredoka',sans-serif;font-size:1.1rem">${perA.nombre}</strong>
+        <p style="font-size:.82rem;color:var(--eng-dim);margin:0">${perA.edad} años · ${perA.hobby}</p>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('personaje-b').innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <span style="font-size:2rem">${perB.icono}</span>
+      <div>
+        <strong style="font-family:'Fredoka',sans-serif;font-size:1.1rem">${perB.nombre}</strong>
+        <p style="font-size:.82rem;color:var(--eng-dim);margin:0">${perB.edad} años · ${perB.hobby}</p>
+      </div>
+    </div>
+  `;
+  
+  // Generar diálogo
+  dialogoGenerado = [
+    {personaje:perA.nombre, texto:`Hi! I'm ${perA.nombre}. What's your name?`, es:`¡Hola! Soy ${perA.nombre}. ¿Cómo te llamas?`},
+    {personaje:perB.nombre, texto:`My name's ${perB.nombre}. Nice to meet you.`, es:`Mi nombre es ${perB.nombre}. Encantado de conocerte.`},
+    {personaje:perA.nombre, texto:`Nice to meet you, too. How old are you?`, es:`Encantada de conocerte también. ¿Cuántos años tienes?`},
+    {personaje:perB.nombre, texto:`I'm ${perB.edad} years old. And you?`, es:`Tengo ${perB.edad} años. ¿Y tú?`},
+    {personaje:perA.nombre, texto:`I'm ${perA.edad}, too. I like ${perA.hobby}. What about you?`, es:`Yo también tengo ${perA.edad}. Me gusta ${perA.hobby}. ¿Y tú?`},
+    {personaje:perB.nombre, texto:`I like ${perB.hobby}. See you later!`, es:`Me gusta ${perB.hobby}. ¡Nos vemos luego!`}
+  ];
+  
+  // Renderizar chat
+  const chat = document.getElementById('chat-practica');
+  chat.innerHTML = '';
+  
+  dialogoGenerado.forEach((turno, index) => {
+    const esPersonajeA = turno.personaje === perA.nombre;
+    const burbuja = document.createElement('div');
+    burbuja.className = `chat-burbuja ${esPersonajeA ? 'a' : 'b'}`;
+    burbuja.innerHTML = `
+      <span class="nombre-parlante">${turno.personaje}</span>
+      ${turno.texto}
+      <span class="es-traduccion" style="display:block;font-size:.72rem;opacity:.85;font-style:italic;margin-top:4px">${turno.es}</span>
+    `;
+    burbuja.onclick = () => hablarFraseIndividual(index);
+    burbuja.style.cursor = 'pointer';
+    chat.appendChild(burbuja);
+  });
+}
+
+function hablarFraseIndividual(index){
+  if('speechSynthesis' in window && dialogoGenerado.length > 0){
+    speechSynthesis.cancel();
+    const turno = dialogoGenerado[index];
+    
+    const u = new SpeechSynthesisUtterance(turno.texto);
+    u.lang = 'en-US';
+    u.rate = 0.85;
+    
+    const voces = speechSynthesis.getVoices();
+    const vozEn = voces.find(v => v.lang.startsWith('en'));
+    if(vozEn) u.voice = vozEn;
+    
+    speechSynthesis.speak(u);
+  }
+}
+
+function hablarChatCompleto(){
+  if('speechSynthesis' in window && dialogoGenerado.length > 0){
+    speechSynthesis.cancel();
+    
+    let index = 0;
+    
+    function hablarSiguiente(){
+      if(index >= dialogoGenerado.length){
+        document.getElementById('pieza-5').classList.add('obtenida');
+        return;
+      }
+      
+      const turno = dialogoGenerado[index];
+      
+      const u = new SpeechSynthesisUtterance(turno.texto);
+      u.lang = 'en-US';
+      u.rate = 0.85;
+      
+      const voces = speechSynthesis.getVoices();
+      const vozEn = voces.find(v => v.lang.startsWith('en'));
+      if(vozEn) u.voice = vozEn;
+      
+      u.onend = function(){
+        index++;
+        setTimeout(hablarSiguiente, 300);
+      };
+      
+      speechSynthesis.speak(u);
+    }
+    
+    hablarSiguiente();
+  }
+}
+
+// Grabación Simulada (Usa Web Speech API para reconocimiento)
+let reconocimientoActivo = false;
+let reconocimiento = null;
+let textoAcumulado = '';
+
+function iniciarGrabacion(){
+  if(reconocimientoActivo) return;
+  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)){
+    document.getElementById('grabacion-feedback').innerHTML = `
+      <p style="color:#B45309">⚠️ Tu navegador no soporta reconocimiento de voz. Usa Chrome.</p>
+      <p style="font-size:.8rem;color:var(--eng-dim)">Practica en voz alta igual de todas formas.</p>
+    `;
+    return;
+  }
+  
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(location.protocol === 'file:'){
+    document.getElementById('grabacion-feedback').innerHTML = `
+      <p style="color:#B45309">⚠️ El micrófono no funciona al abrir el archivo directamente. Abre la guía desde el sitio web (https) o un servidor local.</p>
+    `;
+    return;
+  }
+  
+  reconocimiento = new SpeechRecognition();
+  textoAcumulado = '';
+  
+  reconocimiento.lang = 'en-US';
+  reconocimiento.continuous = true;
+  reconocimiento.interimResults = true;
+  
+  reconocimiento.onstart = function(){
+    reconocimientoActivo = true;
+    document.getElementById('grabacion-estado').textContent = '🎙️ Grabando... Habla ahora';
+    document.getElementById('grabacion-estado').classList.add('grabando');
+    document.getElementById('btn-grabar').style.display = 'none';
+    document.getElementById('btn-detener').style.display = 'inline-flex';
+    document.getElementById('grabacion-feedback').innerHTML = '';
+  };
+  
+  reconocimiento.onresult = function(event){
+    let finales = '';
+    let parcial = '';
+    for(let i = 0; i < event.results.length; i++){
+      const t = event.results[i][0].transcript;
+      if(event.results[i].isFinal) finales += t + ' ';
+      else parcial += t;
+    }
+    textoAcumulado = (finales + parcial).trim();
+    
+    const salida = document.getElementById('grabacion-feedback');
+    salida.innerHTML = `
+      <p style="font-weight:700;color:var(--eng-texto)">📝 Escuché:</p>
+      <p class="texto-escuchado" style="font-style:italic;color:var(--eng-dim)"></p>
+    `;
+    salida.querySelector('.texto-escuchado').textContent = '"' + textoAcumulado + '"';
+  };
+  
+  reconocimiento.onerror = function(event){
+    const mensajes = {
+      'not-allowed': 'Permiso de micrófono denegado. Permite el micrófono en el candado de la barra de direcciones y vuelve a intentar.',
+      'service-not-allowed': 'Permiso de micrófono denegado. Permite el micrófono en el navegador.',
+      'no-speech': 'No se escuchó nada. Acércate al micrófono e intenta de nuevo.',
+      'audio-capture': 'No se encontró un micrófono conectado.',
+      'network': 'Error de red. El reconocimiento de voz necesita internet.'
+    };
+    document.getElementById('grabacion-feedback').innerHTML = `
+      <p style="color:#B45309">⚠️ ${mensajes[event.error] || 'Error: ' + event.error}</p>
+    `;
+  };
+  
+  reconocimiento.onend = function(){
+    detenerGrabacionReal();
+  };
+  
+  try{
+    reconocimiento.start();
+  }catch(e){
+    detenerGrabacionReal();
+  }
+}
+
+function detenerGrabacion(){
+  if(reconocimiento && reconocimientoActivo){
+    reconocimiento.stop();
+  }
+}
+
+function detenerGrabacionReal(){
+  reconocimientoActivo = false;
+  document.getElementById('grabacion-estado').textContent = '✅ Grabación finalizada';
+  document.getElementById('grabacion-estado').classList.remove('grabando');
+  document.getElementById('btn-grabar').style.display = 'inline-flex';
+  document.getElementById('btn-detener').style.display = 'none';
+  
+  // Activar pieza de progreso
+  document.getElementById('pieza-5').classList.add('obtenida');
+}
+
+// ══════════════════════════════════════════════
+// EVALUACIÓN INTERACTIVA · LÓGICA (12 preguntas)
+// ══════════════════════════════════════════════
+const quizQuestions = [
+  {
+    bloque:"Listen",
+    q:"¿Qué edad tiene Saray?",
+    options:["11 years old","12 years old","13 years old","14 years old"],
+    correct:1,
+    feedback:"✅ Correcto. Saray dijo: 'I'm 12 years old.'"
+  },
+  {
+    bloque:"Listen",
+    q:"¿Qué hobby tiene Duván?",
+    options:["Playing football","Riding my bike","Helping on the farm","Listening to music"],
+    correct:2,
+    feedback:"✅ ¡Muy bien! A Duván le gusta ayudar en la finca con su familia."
+  },
+  {
+    bloque:"Listen",
+    q:"¿Cuál es la forma correcta de preguntar la edad?",
+    options:["How many years you?","How old are you?","What is your age old?","How years do you have?"],
+    correct:1,
+    feedback:"✅ Perfecto. La estructura correcta es 'How old are you?'"
+  },
+  {
+    bloque:"Write",
+    q:"¿Cuál es un saludo FORMAL?",
+    options:["Hey!","Hi!","Good morning!","What's up?"],
+    correct:2,
+    feedback:"✅ Exacto. 'Good morning!' es un saludo formal y respetuoso."
+  },
+  {
+    bloque:"Write",
+    q:"Completa: 'Nice to meet ___.'",
+    options:["me","you","him","them"],
+    correct:1,
+    feedback:"✅ Correcto. Se dice 'Nice to meet you' para presentarse."
+  },
+  {
+    bloque:"Read",
+    q:"¿Qué le pregunta Saray primero a Leonardo?",
+    options:["How old are you?","Where are you from?","What's your name?","Do you like football?"],
+    correct:2,
+    feedback:"✅ Bien hecho. Saray inicia con 'What's your name?'"
+  },
+  {
+    bloque:"Read",
+    q:"¿Cuántos años tiene Leonardo en el diálogo?",
+    options:["11 years old","12 years old","13 years old","14 years old"],
+    correct:1,
+    feedback:"✅ Correcto. Leonardo tiene 12 años, igual que Saray."
+  },
+  {
+    bloque:"Read",
+    q:"¿Cómo se despide Leonardo al final?",
+    options:["Good night!","See you later!","Goodbye forever!","Bye bye!"],
+    correct:1,
+    feedback:"✅ ¡Excelente! Leonardo cierra con 'See you later!'"
+  },
+  {
+    bloque:"Spell",
+    q:"¿Cómo se deletrea 'SARAY' en inglés?",
+    options:["S-A-R-A-Y","ES-AR-A-Y","SA-RA-Y","ESS-ARR-AI-WAI"],
+    correct:0,
+    feedback:"✅ Correcto. Cada letra se pronuncia individualmente: S-A-R-A-Y."
+  },
+  {
+    bloque:"Spell",
+    q:"¿Qué letra en inglés suena como 'double-you'?",
+    options:["V","U","W","Q"],
+    correct:2,
+    feedback:"✅ Muy bien. La W es la única que se llama 'double-you'."
+  },
+  {
+    bloque:"Speak",
+    q:"Si alguien te pregunta 'Are you 12 years old?' pero tienes 11, ¿qué respondes?",
+    options:["Yes, I am.","No, I'm not. I'm 11.","I don't know.","How old are you?"],
+    correct:1,
+    feedback:"✅ Perfecto. Como Nicolás: 'No, I'm not. I'm 11.'"
+  },
+  {
+    bloque:"Speak",
+    q:"¿Cuál es la mejor forma de presentar a tu hobby?",
+    options:["My hobby is like dance.","I like dancing.","I am like dance.","Hobby me likes dance."],
+    correct:1,
+    feedback:"✅ ¡Excelente! La estructura correcta es 'I like + verbo-ing'."
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion(){
+  const data = quizQuestions[currentQuestion];
+  const container = document.getElementById('quiz-question');
+  
+  // Actualizar progreso
+  const progress = ((currentQuestion) / quizQuestions.length) * 100;
+  document.getElementById('quiz-progress-fill').style.width = progress + '%';
+  document.getElementById('quiz-progress-text').textContent = `Pregunta ${currentQuestion + 1} de ${quizQuestions.length}`;
+  
+  // Renderizar pregunta
+  let html = `<h5>${data.q}</h5><div class="quiz-options">`;
+  data.options.forEach((opt, index) => {
+    html += `<button class="quiz-option" onclick="checkAnswer(${index})"><strong>${String.fromCharCode(65 + index)}.</strong> ${opt}</button>`;
+  });
+  html += `</div>`;
+  
+  container.innerHTML = html;
+  
+  // Resetear estados
+  answered = false;
+  document.getElementById('quiz-feedback').textContent = '';
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-next').disabled = true;
+}
+
+function checkAnswer(selectedIndex){
+  if(answered) return;
+  answered = true;
+  
+  const data = quizQuestions[currentQuestion];
+  const options = document.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById('quiz-feedback');
+  
+  // Deshabilitar todas las opciones
+  options.forEach(opt => opt.disabled = true);
+  
+  if(selectedIndex === data.correct){
+    options[selectedIndex].classList.add('correct');
+    feedback.textContent = data.feedback;
+    feedback.className = 'quiz-feedback correct';
+    score++;
+  } else {
+    options[selectedIndex].classList.add('incorrect');
+    options[data.correct].classList.add('correct');
+    feedback.textContent = `❌ Incorrecta. La respuesta era "${data.options[data.correct]}".`;
+    feedback.className = 'quiz-feedback incorrect';
+  }
+  
+  document.getElementById('quiz-next').disabled = false;
+}
+
+function siguientePregunta(){
+  currentQuestion++;
+  
+  if(currentQuestion < quizQuestions.length){
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult(){
+  const result = document.getElementById('quiz-result');
+  const percentage = Math.round((score / quizQuestions.length) * 100);
+  
+  let mensaje = '';
+  let emoji = '';
+  
+  if(percentage >= 90){
+    mensaje = "¡Eres un Global Connector! Tu nivel de inglés es sobresaliente.";
+    emoji = "🏆";
+  } else if(percentage >= 70){
+    mensaje = "¡Excelente trabajo! Tienes una base sólida para seguir avanzando.";
+    emoji = "🌟";
+  } else if(percentage >= 50){
+    mensaje = "¡Buen intento! Repasa los bloques donde fallaste y vuelve a intentarlo.";
+    emoji = "💪";
+  } else {
+    mensaje = "No te rindas. El inglés se aprende practicando. ¡Revisa los audios otra vez!";
+    emoji = "📚";
+  }
+  
+  document.getElementById('quiz-question').innerHTML = '';
+  document.getElementById('quiz-feedback').style.display = 'none';
+  document.getElementById('quiz-next').style.display = 'none';
+  
+  result.hidden = false;
+  result.innerHTML = `
+    <h5>${emoji} Resultado Final</h5>
+    <p style="font-size:1.3rem;font-weight:800">${score} de ${quizQuestions.length} correctas (${percentage}%)</p>
+    <p>${mensaje}</p>
+    <button class="btn-quiz-download" onclick="window.print()">🖨️ Descargar resultados</button>
+  `;
+  
+  // Activar pieza final si aprueba
+  if(percentage >= 50){
+    document.getElementById('pieza-6').classList.add('obtenida');
+  }
+}
+
+// Iniciar quiz al cargar
+document.addEventListener('DOMContentLoaded', function(){
+  renderQuestion();
+});
+
+function completarMision(){
+  // Activar todas las piezas
+  document.querySelectorAll('.pieza').forEach(p => p.classList.add('obtenida'));
+  document.getElementById('barra-fill').style.width = '100%';
+  
+  // Tomar datos del Hero
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '7°';
+  const fechaInput = document.getElementById('input-fecha').value;
+  const fecha = fechaInput || new Date().toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
+  
+  // Rellenar diploma
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma-fecha').textContent = 'Expedido el ' + fecha;
+  
+  // Mostrar diploma con confeti
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+  
+  // Scroll suave al diploma
+  setTimeout(() => {
+    document.getElementById('diploma').scrollIntoView({behavior:'smooth',block:'center'});
+  }, 300);
+}
+</script>
+</body>
+</html>

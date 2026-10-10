@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placa Interactiva Chichalá v2 | Laboratorio</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f2f5; --primary:#1A9BAB; --secondary:#3DBE8C; --accent:#F4872B;
+  --dark:#2D3748; --light:#fff; --danger:#E53E3E; --violet:#7C3AED;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
+header{width:100%;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:18px 0;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.12);position:relative;z-index:20}
+header h1{font-size:1.7rem;margin-bottom:4px}
+header p{font-size:.95rem;opacity:.92}
+.back-btn{position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;transition:.3s;font-family:inherit}
+.back-btn:hover{background:rgba(255,255,255,.35)}
+.lvl-badge{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.22);padding:6px 14px;border-radius:20px;font-weight:800;font-size:.85rem}
+.bar{width:110px;height:6px;margin-top:4px;background:rgba(255,255,255,.3);border-radius:5px;overflow:hidden}
+.bar i{display:block;width:0;height:100%;background:#fff;transition:width .3s ease}
+
+.main{display:flex;gap:28px;width:100%;max-width:1400px;padding:26px 20px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+
+/* ---------- ESCENARIO CON ZOOM ---------- */
+.stage{position:relative;width:min(760px,100%);aspect-ratio:1/1;background:#0d1117;border-radius:18px;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.35);flex:1 1 620px}
+#zoomLayer{position:absolute;inset:0;transform-origin:0 0;transition:transform .8s cubic-bezier(.22,1,.36,1);will-change:transform}
+#boardImg{width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+#boardImg.dimmed{filter:brightness(.42) saturate(.6) blur(1.5px);transition:filter .5s}
+
+/* Capa SVG de hotspots (coordenadas 0-100 %) */
+#hotLayer{position:absolute;inset:0;width:100%;height:100%}
+.hot{cursor:pointer}
+.hot .ring{fill:none;stroke:var(--secondary);stroke-width:.7;opacity:.95;transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+.hot .dot{fill:var(--accent);stroke:#fff;stroke-width:.5;filter:drop-shadow(0 0 2px rgba(244,135,43,.9))}
+.hot .num{fill:#fff;font-size:2.6px;font-weight:900;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.hot:hover .dot{fill:var(--primary)}
+.hot.sel .dot{fill:var(--primary);stroke:var(--accent);stroke-width:.9}
+.hot.sel .ring{stroke:var(--accent);animation-duration:1.1s}
+@keyframes pulse{0%{transform:scale(.5);opacity:1}70%{transform:scale(1.9);opacity:0}100%{opacity:0}}
+#boardImg.dimmed ~ #hotLayer .hot:not(.sel){opacity:.18;pointer-events:none}
+.tip{display:none;pointer-events:none}
+.hot:hover .tip{display:block}
+.tip rect{fill:rgba(13,17,23,.94);stroke:var(--secondary);stroke-width:.3;rx:1}
+.tip .tip-name{fill:#fff;font-size:1.7px;font-weight:900;text-anchor:middle}
+.tip .tip-description{fill:#e2e8f0;font-size:1.25px;text-anchor:middle}
+
+/* Trazado de pista */
+.trace{fill:none;stroke:var(--secondary);stroke-width:1.1;stroke-linecap:round;stroke-dasharray:4 3;filter:drop-shadow(0 0 2px var(--secondary))}
+.trace.run{animation:dash 1.4s linear forwards}
+@keyframes dash{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+
+/* HUD */
+.hud{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;z-index:9}
+.hud button{border:none;background:rgba(13,17,23,.78);color:#fff;font-family:inherit;font-weight:800;padding:8px 12px;border-radius:10px;cursor:pointer;font-size:.82rem;backdrop-filter:blur(4px)}
+.hud button:hover{background:var(--primary)}
+.legend{position:absolute;right:12px;top:12px;background:rgba(13,17,23,.78);color:#e2e8f0;border-radius:12px;padding:10px 12px;font-size:.72rem;line-height:1.5;z-index:9;backdrop-filter:blur(4px)}
+.legend b{color:var(--secondary)}
+
+/* ---------- PANEL ---------- */
+.panel{flex:1 1 380px;max-width:520px;background:#fff;border-radius:16px;padding:26px;box-shadow:0 10px 30px rgba(0,0,0,.1);border-top:5px solid var(--primary);position:sticky;top:20px}
+.p-head{display:flex;gap:14px;align-items:center;border-bottom:2px solid #e2e8f0;padding-bottom:14px;margin-bottom:16px}
+.p-icon{font-size:2.2rem;width:58px;height:58px;display:flex;align-items:center;justify-content:center;background:#f0f4f8;border-radius:12px}
+.p-title h2{font-size:1.45rem}
+.p-title span{font-size:.82rem;color:#718096;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.tag{display:inline-block;font-size:.68rem;font-weight:900;padding:3px 9px;border-radius:20px;background:#edf2f7;color:#4a5568;margin-left:6px;vertical-align:middle}
+.p-body p{line-height:1.6;margin-bottom:10px;font-size:.95rem}
+.p-body strong{color:var(--primary)}
+.component-info{display:grid;gap:8px;margin:12px 0}
+.component-info div{padding:9px 11px;background:#f7fafc;border-left:3px solid var(--primary);border-radius:7px;font-size:.86rem;line-height:1.5}
+.component-info b{display:block;margin-bottom:2px;color:var(--primary);font-size:.72rem;text-transform:uppercase;letter-spacing:.3px}
+.analogia{background:#e6fffa;border-left:4px solid var(--secondary);padding:14px 14px 14px;border-radius:8px;margin:14px 0;position:relative}
+.analogia::before{content:'🌱 Analogía Chichalá';position:absolute;top:-10px;left:10px;background:var(--secondary);color:#fff;font-size:.68rem;font-weight:900;padding:2px 8px;border-radius:4px}
+.analogia p{font-size:.92rem;color:#2c5f5d;font-style:italic;margin:0}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:14px 0}
+.spec div{background:#f7fafc;border:1px solid #e2e8f0;border-radius:10px;padding:8px 10px;font-size:.78rem}
+.spec b{display:block;color:var(--primary);font-size:.7rem;text-transform:uppercase;letter-spacing:.3px}
+
+/* MULTÍMETRO */
+.meter{margin-top:14px;border:2px dashed #cbd5e0;border-radius:12px;padding:14px;background:#1a202c;color:#e2e8f0}
+.meter h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.6px;color:#a0aec0;margin-bottom:8px}
+.reading{font-family:'Courier New',monospace;font-size:1.5rem;font-weight:900;color:var(--secondary);min-height:34px}
+.reading.err{color:var(--danger)}
+.mbtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.mbtns button{flex:1;min-width:110px;border:none;border-radius:8px;padding:9px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.8rem}
+.b-go{background:var(--accent);color:#fff}.b-go:hover{filter:brightness(1.1)}
+.b-fix{background:#2d3748;color:#cbd5e0}
+.verdict{font-size:.8rem;margin-top:8px;min-height:18px;font-weight:700}
+.ok{color:var(--secondary)}.bad{color:var(--danger)}
+
+.btns{display:flex;gap:10px;margin-top:18px}
+.btn{flex:1;padding:12px;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.88rem;transition:.2s}
+.btn-audio{background:var(--primary);color:#fff}.btn-audio:hover{background:#158496}
+.btn-reset{background:#e2e8f0;color:var(--dark)}.btn-reset:hover{background:#cbd5e0}
+
+/* RETO */
+.challenge{margin-top:16px;background:linear-gradient(135deg,#fffaf0,#fefcbf);border:2px solid var(--accent);border-radius:12px;padding:14px}
+.challenge h4{font-size:.9rem;color:#975a16;margin-bottom:6px}
+.challenge p{font-size:.88rem;margin-bottom:8px}
+.score{font-size:.8rem;font-weight:900;color:var(--primary)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--dark);color:#fff;padding:12px 22px;border-radius:30px;font-weight:800;opacity:0;transition:.4s;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.toast.success{background:var(--secondary)}.toast.error{background:var(--danger)}.toast.info{background:var(--primary)}
+
+.detail-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.58);display:grid;place-items:center;padding:24px}
+.detail-overlay[hidden]{display:none}
+.detail-modal{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;width:min(960px,100%);max-height:min(680px,90vh);overflow:auto;padding:42px 32px 32px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.detail-close{position:absolute;top:10px;right:10px;width:42px;height:42px;border:0;border-radius:50%;background:#1a202c;color:#fff;font-size:1.5rem;cursor:pointer}
+.detail-close:hover{background:var(--primary)}
+.detail-photo{position:relative;min-height:300px;overflow:hidden;border-radius:8px;background:#e2e8f0}
+.detail-photo img{position:absolute;inset:0;width:100%;height:100%;min-height:300px;object-fit:contain;display:block}
+.detail-modal.no-photo{grid-template-columns:1fr;width:min(560px,100%)}
+.detail-modal.no-photo .detail-photo{display:none}
+.detail-icon{position:absolute;z-index:1;left:16px;bottom:16px;width:58px;height:58px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.94);font-size:2rem;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.detail-copy{align-self:center}
+.detail-copy h2{margin-bottom:8px;font-size:1.8rem}
+.detail-copy .detail-sub{margin-bottom:16px;color:#718096;font-size:.86rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.detail-copy p{margin:0 0 14px;color:#4a5568;font-size:1rem;line-height:1.65}
+.detail-copy .detail-explainer{padding:12px 14px;border-left:4px solid var(--primary);border-radius:6px;background:#f7fafc}
+.detail-copy .detail-spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:16px}
+.detail-copy .detail-spec div{padding:9px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:.78rem}
+.detail-copy .detail-spec b{display:block;color:var(--primary);font-size:.68rem;text-transform:uppercase}
+
+@media(max-width:900px){.panel{position:static}.legend{display:none}}
+@media(max-width:640px){
+  .detail-overlay{padding:12px}
+  .detail-modal{grid-template-columns:1fr;gap:18px;padding:56px 20px 22px;max-height:94vh}
+  .detail-photo,.detail-photo img{min-height:210px;max-height:260px}
+  .detail-copy h2{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn" onclick="history.back()">⬅️ Teoría</button>
+  <h1>🔌 Placa Interactiva Chichalá <span style="font-size:.9rem;opacity:.8">v2 · Modo Taller</span></h1>
+  <p>Toca los puntos calientes y diagnostica la placa como un técnico real</p>
+  <div class="lvl-badge">
+    🏆 Cosecha: <span id="score">0</span>/10
+    <div class="bar"><i id="barFill"></i></div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- ============ TABLERO ============ -->
+  <div class="stage">
+    <div id="zoomLayer">
+      <img id="boardImg" src="placa.png" alt="Placa madre real" onerror="this.style.display='none'">
+      <svg id="hotLayer" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <g id="traces"></g>
+        <g id="hots"></g>
+      </svg>
+    </div>
+
+    <div class="legend">
+      <b>Naranja</b> = punto caliente<br>
+      <b>Verde</b> = señal de datos<br>
+      Clic en 🔍 Zoom Explorador
+    </div>
+
+    <div class="hud">
+      <button onclick="resetView()">🔄 Vista general</button>
+      <button onclick="toggleTraces()">🧭 Trazar pista</button>
+      <button onclick="nextChallenge()">🎯 Siguiente reto</button>
+      <button onclick="exportFicha()">📄 Ficha</button>
+    </div>
+  </div>
+
+  <!-- ============ PANEL ============ -->
+  <div class="panel" id="panel">
+    <div class="p-head">
+      <div class="p-icon" id="pIcon">🧠</div>
+      <div class="p-title">
+        <h2 id="pName">Selecciona un punto</h2>
+        <span id="pSub">Haz clic en un marcador naranja</span>
+      </div>
+    </div>
+
+    <div class="p-body">
+      <p id="pDef">La placa madre es la <strong>finca completa</strong>: todos los caminos salen de aquí.</p>
+
+      <div class="component-info" id="componentInfo" hidden></div>
+
+      <div class="analogia"><p id="pAna">Cada componente es un oficio de la vereda que trabaja en equipo para sacar la cosecha adelante.</p></div>
+
+      <div class="spec" id="pSpec"></div>
+
+      <p id="pEx" style="font-size:.9rem;color:#4a5568"></p>
+    </div>
+
+    <!-- MULTÍMETRO VIRTUAL -->
+    <div class="meter">
+      <h4>⚡ Banco de pruebas · Multímetro virtual</h4>
+      <div class="reading" id="read">--.---- V</div>
+      <div class="mbtns">
+        <button class="b-go" onclick="measure()">🔌 Medir voltaje</button>
+        <button class="b-fix" onclick="faultMode()" id="faultBtn">💥 Simular falla</button>
+      </div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-audio" onclick="speak()">🔊 Escuchar en inglés</button>
+      <button class="btn btn-reset" onclick="resetBoard()">🔄 Limpiar vista</button>
+    </div>
+
+    <div class="challenge">
+      <h4>🎯 Reto del taller</h4>
+      <p id="chText">Pulsa "Siguiente reto" para comenzar la cosecha de conocimiento.</p>
+      <div class="score">Aciertos: <span id="hits">0</span> · Racha: <span id="streak">0</span> 🔥</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="detail-overlay" id="detailOverlay" hidden>
+  <section class="detail-modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <button class="detail-close" type="button" aria-label="Cerrar descripción" onclick="closeDetails()">×</button>
+    <div class="detail-photo">
+      <img id="detailImage" alt="">
+      <span class="detail-icon" id="detailIcon" aria-hidden="true"></span>
+    </div>
+    <div class="detail-copy">
+      <h2 id="detailTitle"></h2>
+      <div class="detail-sub" id="detailSub"></div>
+      <p id="detailDefinition"></p>
+      <p class="detail-explainer" id="detailExplanation"></p>
+      <div class="detail-spec" id="detailSpec"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* =========================================================
+   DATOS — coordenadas calibradas para placa.png.
+   Vista isométrica; x/y en % del contenedor.
+   Nota: el panel I/O queda al borde IZQUIERDO, no inferior.
+   ========================================================= */
+const DATA = {
+  cpu:{n:"Zócalo CPU",sub:"Socket LGA · con palanca",icon:"🧠",x:41,y:42,volt:1.25,tol:.15,
+    def:"El <strong>zócalo</strong> aloja el procesador: ahí se conecta el cerebro que ejecuta cada instrucción.",
+    what:"Es el conector donde se instala el procesador.",
+    how:"Sus contactos eléctricos enlazan los pines del procesador con la placa y sus circuitos de alimentación.",
+    purpose:"Permite que el procesador intercambie datos y reciba energía.",
+    tip:"Conecta el procesador con la placa.",
+    ana:"Es el <strong>molino del trapiche</strong>. Sin él no hay quién muela la caña, por más buena que llegue la cosecha.",
+    ex:"The <strong>CPU socket</strong> holds the brain of your computer.",
+    spec:[["Tipo","LGA"],["Fijación","Palanca metálica"],["Circuitos","VRM cercano"]],
+    trace:[[41,42,60,38],[41,42,55,22]]},
+
+  vrm:{n:"VRM / Mosfets",sub:"Etapa de poder",icon:"🔺",x:29,y:27,volt:12,tol:1,
+    def:"Los bloques negros junto al zócalo <strong>regulan el voltaje</strong> que recibe el procesador.",
+    what:"Es el módulo regulador de voltaje de la placa.",
+    how:"Convierte los 12 V de la fuente en un voltaje bajo y estable para el procesador.",
+    purpose:"Entrega energía adecuada y ayuda a proteger la CPU de variaciones eléctricas.",
+    tip:"Regula la energía que recibe la CPU.",
+    ana:"El <strong>tanque de gasolina del molino</strong>: entrega la medida justa, ni una gota de más que lo queme.",
+    ex:"The <strong>VRM</strong> feeds clean power to the CPU.",
+    spec:[["Rieles","12 V → Vcore"],["Elementos","Mosfet + bobina"],["Refrigeración","Disipado"]],
+    trace:[[29,27,41,42]]},
+
+  cpu_pwr:{n:"Alimentación CPU",sub:"4 pines 12 V",icon:"⚡",x:49,y:13,volt:12,tol:1,
+    def:"Entrega los <strong>12 V directos</strong> al procesador antes de regularlos en el VRM.",
+    what:"Es la entrada de alimentación dedicada al procesador.",
+    how:"Recibe 12 V desde la fuente; el VRM de la placa los adapta después.",
+    purpose:"Aporta la energía necesaria para que la CPU pueda funcionar.",
+    tip:"Entrada de energía dedicada a la CPU.",
+    ana:"El <strong>canal exclusivo del molino</strong>: agua limpia solo para la rueda que hace el trabajo duro.",
+    ex:"This plug gives <strong>extra power</strong> to the CPU.",
+    spec:[["Pines","4"],["Voltaje","12 V"],["Uso","CPU"]],
+    trace:[[49,13,29,27],[29,27,41,42]]},
+
+  ram:{n:"Ranuras RAM",sub:"DDR3 DIMM ×2 (verdes)",icon:"🟩",x:62,y:22,volt:1.5,tol:.2,
+    def:"Memoria <strong>volátil</strong> y rapidísima donde viven los programas abiertos. Se borra al apagar.",
+    what:"Son los conectores para los módulos de memoria RAM.",
+    how:"La memoria guarda temporalmente datos e instrucciones que la CPU necesita con rapidez.",
+    purpose:"Permite mantener programas y tareas activos; su contenido se pierde al apagar.",
+    tip:"Aloja la memoria temporal del equipo.",
+    ana:"La <strong>mesa de la cocina</strong>: mientras cocinas, todo está a mano. Al apagar la estufa, se recoge y queda vacía.",
+    ex:"More <strong>RAM</strong> lets you run many apps at the same time.",
+    spec:[["Tipo","DDR3"],["Ranuras","2"],["Voltaje","1.5 V"]],
+    trace:[[62,22,41,42]]},
+
+  atx:{n:"Alimentación ATX",sub:"Conector 24 pines",icon:"🔋",x:73,y:16,volt:12,tol:1,
+    def:"La <strong>entrada de energía principal</strong>: reparte 3.3 V, 5 V y 12 V a toda la placa.",
+    what:"Es el conector principal entre la fuente y la placa madre.",
+    how:"La fuente entrega por sus pines varios voltajes que la placa distribuye a sus circuitos.",
+    purpose:"Suministra energía a la placa y a los componentes conectados a ella.",
+    tip:"Lleva energía de la fuente a la placa.",
+    ana:"El <strong>acueducto mayor</strong> de la finca: si se seca, se detiene el molino, las bestias y la cocina.",
+    ex:"The <strong>ATX connector</strong> feeds power to the whole board.",
+    spec:[["Pines","24"],["Rieles","3.3/5/12 V"],["Señal","PS_ON"]],
+    trace:[[73,16,62,22],[73,16,41,42]]},
+
+  chipset:{n:"Chipset HLOP",sub:"Puentes sur/norte",icon:"🎛️",x:68,y:52,volt:1.05,tol:.15,
+    def:"El <strong>organizador</strong> que decide por qué camino viaja cada dato entre CPU, RAM y puertos.",
+    what:"Es el conjunto de controladores que coordina comunicaciones en la placa.",
+    how:"Gestiona el tránsito de datos entre el procesador, almacenamiento y otros dispositivos.",
+    purpose:"Organiza las conexiones y funciones que la plataforma ofrece al equipo.",
+    tip:"Coordina el tráfico de datos de la placa.",
+    ana:"El <strong>capataz de bodega</strong>: nadie mueve un costal sin que él anote hacia dónde va.",
+    ex:"The <strong>chipset</strong> routes data between all parts of the board.",
+    spec:[["Marca","HLOP"],["Rol","Enrutamiento"],["Puertos","SATA/USB"]],
+    trace:[[68,52,41,42],[68,52,86,42]]},
+
+  cooler:{n:"Disipador pasivo",sub:"Bloque acanalado",icon:"❄️",x:47,y:62,volt:0,tol:0,
+    def:"Láminas metálicas que <strong>sacan el calor</strong> sin ventilador: silencioso y sin partes móviles.",
+    what:"Es una pieza metálica diseñada para disipar calor.",
+    how:"Sus láminas amplían la superficie y transfieren el calor al aire alrededor.",
+    purpose:"Ayuda a evitar el sobrecalentamiento de los componentes que refrigera.",
+    tip:"Disipa calor mediante sus láminas metálicas.",
+    ana:"El <strong>techo de tejas del rancho</strong>: deja escapar el calor del mediodía sin gastar una gota de aceite.",
+    ex:"A <strong>passive heatsink</strong> cools the board without noise.",
+    spec:[["Material","Aluminio"],["Ventilador","No"],["Ruido","0 dB"]],
+    trace:[[47,62,68,52]]},
+
+  caps:{n:"Condensadores sólidos",sub:"Capacitores polímero",icon:"🥫",x:34,y:37,volt:6.3,tol:.6,
+    def:"Almacenan y <strong>estabilizan la energía</strong>, filtrando picos que dañarían el procesador.",
+    what:"Son componentes que almacenan una pequeña carga eléctrica.",
+    how:"Se cargan y descargan rápidamente para suavizar cambios y ruido en el voltaje.",
+    purpose:"Ayudan a mantener estable la alimentación de CPU y otros circuitos.",
+    tip:"Ayudan a estabilizar el voltaje de la placa.",
+    ana:"Las <strong>tinajas de agua lluvia</strong>: guardan reserva y entregan el chorro parejo, sin variaciones.",
+    ex:"<strong>Capacitors</strong> keep the voltage smooth and steady.",
+    spec:[["Tipo","Sólido"],["Típico","6.3 V"],["Vida","Mayor a electrolítico"]],
+    trace:[[34,37,41,42]]},
+
+  pciex:{n:"Ranura PCI Express",sub:"×16 blanca",icon:"🎨",x:60,y:72,volt:12,tol:1,
+    def:"La autopista de <strong>alta velocidad</strong> para la tarjeta gráfica y su procesamiento visual.",
+    what:"Es una ranura de expansión PCI Express para tarjetas adicionales.",
+    how:"Usa enlaces de datos seriales de alta velocidad entre la tarjeta y la placa.",
+    purpose:"Permite instalar tarjetas gráficas, de red u otras tarjetas compatibles.",
+    tip:"Conecta tarjetas de expansión de alta velocidad.",
+    ana:"El <strong>artista del mural</strong> escolar: toma las ideas y las vuelve color visible para todos.",
+    ex:"The <strong>GPU slot</strong> makes games look colorful and real.",
+    spec:[["Líneas","×16"],["Voltaje","12 V"],["Traba","Clip lateral"]],
+    trace:[[60,72,68,52],[68,52,41,42]]},
+
+  sata:{n:"Conectores SATA",sub:"Verde en ángulo",icon:"💾",x:97,y:41,volt:3.3,tol:.4,
+    def:"Conectan el <strong>almacenamiento permanente</strong>: aquí viven tus archivos aunque apagues el equipo.",
+    what:"Son puertos para unidades de almacenamiento SATA.",
+    how:"Un cable SATA transmite datos entre la placa y un disco o SSD.",
+    purpose:"Conectan el almacenamiento donde se guardan archivos y el sistema operativo.",
+    tip:"Conecta discos y unidades SSD SATA.",
+    ana:"Las <strong>trojes del granero</strong>: el grano guardado allí está seguro, haya o no haya gente en la finca.",
+    ex:"Your photos live safely in the <strong>SATA</strong> drive.",
+    spec:[["Versión","SATA II/III"],["Velocidad","3-6 Gb/s"],["Cable","7 pines"]],
+    trace:[[97,41,68,52],[68,52,41,42]]},
+
+  vga:{n:"Salida VGA",sub:"Monitor analógico",icon:"🖥️",x:11,y:46,volt:0.7,tol:.3,
+    def:"Envía la imagen <strong>analógica</strong> al monitor. Señal en rojo, verde y azul.",
+    what:"Es un conector de video analógico para monitores VGA.",
+    how:"Envía las señales de color rojo, verde y azul por separado hasta la pantalla.",
+    purpose:"Permite conectar un monitor compatible para mostrar la imagen del equipo.",
+    tip:"Salida de video analógica para el monitor.",
+    ana:"La <strong>ventana de la casa</strong>: por ahí se ve todo lo que se cocina adentro.",
+    ex:"The <strong>VGA port</strong> shows your work on the screen.",
+    spec:[["Color","Azul"],["Señal","Analógica"],["Pines","15"]],
+    trace:[[11,46,68,52],[68,52,41,42]]},
+
+  lan:{n:"Puerto de Red RJ45",sub:"Ethernet con LED",icon:"🌐",x:9,y:39,volt:2.5,tol:.4,
+    def:"Conecta la placa a la <strong>red</strong>. Los LED indican actividad y velocidad del enlace.",
+    what:"Es el puerto Ethernet con conector RJ45.",
+    how:"Envía y recibe paquetes de datos por un cable de red; sus luces muestran el enlace y la actividad.",
+    purpose:"Conecta el computador a una red local o a internet mediante cable.",
+    tip:"Conecta el equipo a una red por cable.",
+    ana:"El <strong>camino de herradura</strong> que baja al pueblo: por ahí sale y entra todo el trueque con el mundo.",
+    ex:"The <strong>RJ45 port</strong> connects you to the internet.",
+    spec:[["Estándar","10/100/1000"],["LED","Link/Act"],["Cable","Cat5e"]],
+    trace:[[9,39,68,52]]},
+
+  usb:{n:"Puertos USB",sub:"Apilados ×4",icon:"🔌",x:13,y:57,volt:5,tol:.5,
+    def:"Puertos <strong>universales</strong>: memorias, mouse, impresoras y carga de dispositivos.",
+    what:"Son conectores USB para periféricos y accesorios.",
+    how:"Transportan datos y también pueden suministrar energía al dispositivo conectado.",
+    purpose:"Permiten conectar memorias, teclados, mouse, impresoras y otros equipos.",
+    tip:"Conectan periféricos y memorias USB.",
+    ana:"La <strong>puerta principal de la finca</strong>: por ahí entra cualquier visitante sin cita previa.",
+    ex:"<strong>USB</strong> ports connect almost any device you own.",
+    spec:[["Versión","2.0"],["Corriente","500 mA"],["Topología","Bus"]],
+    trace:[[13,57,68,52]]},
+
+  audio:{n:"Salidas de Audio",sub:"Jack 3.5 mm",icon:"🔊",x:39,y:83,volt:1,tol:.4,
+    def:"Tres canales: <span style='color:#3DBE8C'>verde</span> parlantes, <span style='color:#F4872B'>rosa</span> micrófono, <span style='color:#1A9BAB'>azul</span> entrada línea.",
+    what:"Son conectores analógicos de audio de 3,5 mm.",
+    how:"Cada jack transporta una señal de audio de entrada o salida según su función.",
+    purpose:"Sirven para conectar parlantes, audífonos o un micrófono.",
+    tip:"Conectan parlantes, audífonos y micrófono.",
+    ana:"El <strong>parlante de la plaza</strong> del pueblo: donde toda la vereda escucha la música de la cosecha.",
+    ex:"Green is speakers, pink is the microphone.",
+    spec:[["Canales","2/5.1"],["Códec","Realtek"],["Impedancia","32 Ω"]],
+    trace:[[39,83,68,52]]},
+
+  battery:{n:"Pila CMOS",sub:"CR2032 · 3 V",icon:"🪙",x:76,y:62,volt:3,tol:.2,
+    def:"Guarda la <strong>configuración de la BIOS</strong> y la hora cuando el equipo está apagado.",
+    what:"Es una pila tipo moneda que alimenta el circuito RTC/CMOS.",
+    how:"Mantiene una pequeña corriente cuando el computador está desconectado de la red eléctrica.",
+    purpose:"Conserva la hora y algunos ajustes de firmware mientras el equipo está apagado.",
+    tip:"Mantiene la hora y ajustes al apagar el equipo.",
+    ana:"La <strong>linterna del velorio</strong>: consume poquito, pero mantiene viva la memoria de la casa toda la noche.",
+    ex:"The <strong>CMOS battery</strong> keeps your clock and BIOS setup.",
+    spec:[["Modelo","CR2032"],["Voltaje","3 V"],["Vida","≈5 años"]],
+    trace:[[76,62,68,52]]}
+};
+
+const HOTSPOT_ORDER = [
+  "cpu","vrm","vga","cpu_pwr","ram","atx","chipset","cooler","caps",
+  "usb","pciex","sata","lan","audio","battery"
+];
+
+const CHALLENGES = [
+  {q:"¿Dónde conectas la memoria donde viven los programas abiertos?", a:["ram"], hint:"Las dos franjas verdes"},
+  {q:"¿Qué conector alimenta a TODO el computador desde la fuente?", a:["atx"], hint:"24 pines, arriba a la derecha"},
+  {q:"¿Por qué puerto sale la imagen ANALÓGICA al monitor?", a:["vga"], hint:"Azul, en el borde izquierdo"},
+  {q:"¿Cuál es el 'granero' donde tus fotos siguen vivas sin energía?", a:["sata"], hint:"Conectores verdes en el borde derecho"},
+  {q:"¿Qué marcador guarda la hora y la BIOS al apagar el equipo?", a:["battery"], hint:"Una moneda plateada"},
+  {q:"¿Quién organiza por dónde viaja cada dato? El capataz de bodega.", a:["chipset"], hint:"El cuadrado con borde verde brillante"},
+  {q:"¿Qué ranura es la autopista de la tarjeta gráfica?", a:["pciex"], hint:"Ranura blanca larga abajo"},
+  {q:"¿Qué bloque regula el voltaje antes de que llegue al CPU?", a:["vrm"], hint:"Cubos negros junto al zócalo"},
+  {q:"¿Qué enfría la placa SIN usar ventilador?", a:["cooler"], hint:"Láminas metálicas acanaladas"},
+  {q:"¿Qué componente funciona como tinaja de agua contra los picos de energía?", a:["caps"], hint:"Cilindros plateados"}
+];
+/* ================== ESTADO ================== */
+let current=null, tracesOn=false, chIdx=-1, score=0, hits=0, streak=0, faulted=false, challengeAnswered=false;
+const hotsG=document.getElementById('hots'), tracesG=document.getElementById('traces');
+const img=document.getElementById('boardImg'), zoomLayer=document.getElementById('zoomLayer');
+
+function exportFicha(){
+  if(!current){toast('⚠️ Selecciona un componente','error');return}
+  const c=DATA[current];
+  const txt=`LABORATORIO CHICHALÁ — FICHA TÉCNICA\n${'='.repeat(42)}\n`+
+    `Componente : ${c.n} (${c.sub})\n`+
+    `Definición : ${c.def.replace(/<[^>]+>/g,'')}\n`+
+    `Qué es     : ${c.what}\n`+
+    `Cómo funciona: ${c.how}\n`+
+    `Para qué sirve: ${c.purpose}\n`+
+    `Analogía   : ${c.ana.replace(/<[^>]+>/g,'')}\n`+
+    `Inglés     : ${c.ex.replace(/<[^>]+>/g,'')}\n`+
+    `Voltaje    : ${c.volt} V ±${c.tol}\n`+
+    `Especific.\n - ${c.spec.map(s=>s[0]+': '+s[1]).join('\n - ')}\n`;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'}));
+  a.download=`ficha_${current}.txt`; a.click(); URL.revokeObjectURL(a.href);
+  toast('📄 Ficha lista para imprimir','success');
+}
+
+/* ================== RENDER HOTSPOTS ================== */
+function build(){
+  HOTSPOT_ORDER.forEach((id,i)=>{
+    const c=DATA[id];
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','hot'); g.id='h_'+id;
+    const lx=Math.min(76,Math.max(24,c.x));
+    const ly=c.y<20?c.y+6:c.y-6;
+    g.innerHTML=`<circle class="ring" cx="${c.x}" cy="${c.y}" r="3"/>
+      <circle class="dot" cx="${c.x}" cy="${c.y}" r="2.2"/>
+      <text class="num" x="${c.x}" y="${c.y}">${i+1}</text>
+      <g class="tip"><rect x="${lx-14}" y="${ly-2.5}" width="28" height="5"/>
+      <text class="tip-name" x="${lx}" y="${ly+.6}">Haz clic para más información</text></g>`;
+    g.addEventListener('click',e=>{e.stopPropagation();select(id)});
+    hotsG.appendChild(g);
+  });
+}
+build();
+
+/* ================== SELECCIÓN + ZOOM ================== */
+function select(id){
+  if(!DATA[id]) return;
+  current=id; faulted=false;
+  document.querySelectorAll('.hot').forEach(h=>h.classList.remove('sel'));
+  const h=document.getElementById('h_'+id); if(h) h.classList.add('sel');
+  img.classList.remove('dimmed');
+
+  const c=DATA[id];
+  document.getElementById('pIcon').textContent=c.icon;
+  document.getElementById('pName').innerHTML=c.n+'<span class="tag">'+c.sub+'</span>';
+  document.getElementById('pSub').textContent='Punto caliente '+(HOTSPOT_ORDER.indexOf(id)+1);
+  document.getElementById('pDef').innerHTML=c.def;
+  const info=document.getElementById('componentInfo');
+  info.innerHTML=[
+    ['Qué es',c.what],
+    ['Cómo funciona',c.how],
+    ['Para qué sirve',c.purpose]
+  ].map(([label,text])=>`<div><b>${label}</b>${text}</div>`).join('');
+  info.hidden=false;
+  document.getElementById('pAna').innerHTML=c.ana;
+  document.getElementById('pEx').innerHTML='<strong>Ejemplo:</strong> '+c.ex;
+  document.getElementById('pSpec').innerHTML=(c.spec||[]).map(s=>`<div><b>${s[0]}</b>${s[1]}</div>`).join('');
+  document.getElementById('detailTitle').textContent=c.n;
+  document.getElementById('detailSub').textContent=c.sub;
+  document.getElementById('detailDefinition').textContent=c.what;
+  document.getElementById('detailExplanation').textContent=
+    `${c.how} ${c.purpose}`;
+  document.getElementById('detailSpec').innerHTML=(c.spec||[])
+    .map(([label,value])=>`<div><b>${label}</b>${value}</div>`).join('');
+  document.getElementById('detailIcon').textContent=c.icon;
+  const detailImage=document.getElementById('detailImage');
+  const modal=document.getElementById('detailModal');
+  modal.classList.add('no-photo');
+  detailImage.onload=()=>modal.classList.remove('no-photo');
+  detailImage.onerror=()=>modal.classList.add('no-photo');
+  detailImage.alt=c.n;
+  detailImage.src=COMPONENT_IMG_DIR+componentFileName(c.n);
+  document.getElementById('detailOverlay').hidden=false;
+  document.querySelector('.detail-close').focus();
+  document.getElementById('read').textContent='--.---- V';
+  document.getElementById('read').classList.remove('err');
+  document.getElementById('verdict').textContent='';
+  document.getElementById('faultBtn').textContent='💥 Simular falla';
+  document.getElementById('panel').style.borderTopColor='#'+hashColor(c.n);
+
+  if(tracesOn) drawTraces(c); else tracesG.innerHTML='';
+  checkChallenge(id);
+  toast('🔍 '+c.n,'info');
+}
+
+/* Imagen del componente: carpeta + nombre sin tildes, p. ej. "Alimentación ATX" → componentes/Alimentacion_ATX.png */
+const COMPONENT_IMG_DIR='componentes/';
+function componentFileName(name){
+  return name.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^A-Za-z0-9]+/g,'_').replace(/^_|_$/g,'')+'.png';
+}
+
+function closeDetails(){
+  document.getElementById('detailOverlay').hidden=true;
+}
+
+function hashColor(s){let h=0;for(let i=0;i<s.length;i++)h=s.charCodeAt(i)+((h<<5)-h);return (h&0xffffff).toString(16).padStart(6,'0')}
+
+/* Zoom Explorador: centra y amplía sobre el punto */
+function zoomTo(xp,yp){
+  const S=2.35, W=100, H=100;
+  const tx=(W/2)-(xp*S), ty=(H/2)-(yp*S);
+  zoomLayer.style.transform=`translate(${tx}%,${ty}%) scale(${S})`;
+}
+function resetView(){
+  zoomLayer.style.transform='translate(0,0) scale(1)';
+  img.classList.remove('dimmed');
+  tracesG.innerHTML='';
+}
+
+/* ================== TRAZADO DE PISTA ================== */
+function drawTraces(c){
+  tracesG.innerHTML='';
+  if(!c.trace) return;
+  c.trace.forEach(seg=>{
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',`M ${seg[0]} ${seg[1]} Q ${(seg[0]+seg[2])/2} ${(seg[1]+seg[3])/2-6} ${seg[2]} ${seg[3]}`);
+    p.setAttribute('class','trace run');
+    tracesG.appendChild(p);
+  });
+}
+function toggleTraces(){
+  tracesOn=!tracesOn;
+  if(tracesOn && current) drawTraces(DATA[current]);
+  else tracesG.innerHTML='';
+  toast(tracesOn?'🧭 Trazado activo':'🧭 Trazado oculto','info');
+}
+
+/* ================== MULTÍMETRO VIRTUAL ================== */
+function measure(){
+  if(!current){toast('⚠️ Selecciona un componente primero','error');return}
+  const c=DATA[current], out=document.getElementById('read'), v=document.getElementById('verdict');
+  out.textContent='midiendo…';
+  let t=0;
+  const iv=setInterval(()=>{
+    t++;
+    out.textContent=(Math.random()*12).toFixed(3)+' V';
+    if(t>8){clearInterval(iv);finish()}
+  },70);
+  function finish(){
+    const noise=faulted?(c.volt*0.45):(Math.random()*c.tol*0.5-c.tol*0.25);
+    const val=(c.volt+noise);
+    out.textContent=val.toFixed(3)+' V';
+    const good=Math.abs(val-c.volt)<=c.tol;
+    out.classList.toggle('err',!good);
+    v.className='verdict '+(good?'ok':'bad');
+    v.textContent=good?`✅ Correcto — ${c.n} dentro de rango (${c.volt} V ±${c.tol})`
+                      :`❌ Fuera de rango — esperado ≈${c.volt} V. Revisa soldadura o fuente.`;
+    if(faulted) toast('💥 Falla detectada: diagnóstico correcto','success');
+  }
+}
+function faultMode(){
+  if(!current){toast('⚠️ Selecciona un componente primero','error');return}
+  faulted=!faulted;
+  document.getElementById('faultBtn').textContent=faulted?'🛠️ Reparar circuito':'💥 Simular falla';
+  toast(faulted?'💥 Inyectando caída de tensión…':'🛠️ Circuito reparado', faulted?'error':'success');
+}
+
+/* ================== AUDIO ================== */
+function speak(){
+  if(!current){toast('⚠️ Selecciona un componente','error');return}
+  const c=DATA[current], txt=c.n+'. '+c.sub+'. '+c.ex.replace(/<[^>]+>/g,'');
+  if(!window.speechSynthesis){toast('⚠️ Navegador sin soporte de audio','error');return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='en-US'; u.rate=.9; u.pitch=1.05;
+  speechSynthesis.speak(u);
+  toast('🔊 Pronunciando en inglés…','success');
+}
+
+/* ================== LIMPIAR VISTA ================== */
+function resetBoard(){
+  current=null; faulted=false;
+  closeDetails();
+  document.querySelectorAll('.hot').forEach(h=>h.classList.remove('sel'));
+  img.classList.remove('dimmed');
+  tracesG.innerHTML='';
+  resetView();
+  document.getElementById('pIcon').textContent='🧠';
+  document.getElementById('pName').innerHTML='Selecciona un punto';
+  document.getElementById('pSub').textContent='Haz clic en un marcador naranja';
+  document.getElementById('componentInfo').hidden=true;
+  document.getElementById('pDef').innerHTML='La placa madre es la <strong>finca completa</strong>: todos los caminos salen de aquí.';
+  document.getElementById('pAna').innerHTML='Cada componente es un oficio de la vereda que trabaja en equipo para sacar la cosecha adelante.';
+  document.getElementById('pSpec').innerHTML='';
+  document.getElementById('pEx').innerHTML='';
+  document.getElementById('read').textContent='--.---- V';
+  document.getElementById('read').classList.remove('err');
+  document.getElementById('verdict').textContent='';
+  toast('🏠 Vista limpia','info');
+}
+
+/* ================== RETOS DEL TALLER ================== */
+function nextChallenge(){
+  chIdx=(chIdx+1)%CHALLENGES.length;
+  challengeAnswered=false;
+  const c=CHALLENGES[chIdx];
+  document.getElementById('chText').innerHTML=
+    `<b>${chIdx+1}/${CHALLENGES.length}</b> — ${c.q}<br><span style="font-size:.78rem;color:#975a16">💡 Pista: ${c.hint}</span>`;
+  toast('🎯 Nuevo reto: encuentra el componente','info');
+}
+
+function checkChallenge(id){
+  if(chIdx<0||challengeAnswered) return;
+  const c=CHALLENGES[chIdx];
+  if(!c) return;
+  if(c.a.includes(id)){
+    challengeAnswered=true;
+    hits++; streak++; score=Math.min(10,score+1);
+    document.getElementById('hits').textContent=hits;
+    document.getElementById('streak').textContent=streak;
+    document.getElementById('score').textContent=score;
+    document.getElementById('barFill').style.width=(score*10)+'%';
+    toast(`✅ ¡Cosecha! +1 · racha ${streak} 🔥`,'success');
+    celebrate();
+    setTimeout(()=>{ if(chIdx<CHALLENGES.length-1) nextChallenge(); else toast('🏆 ¡Completaste los 10 retos!','success'); },1200);
+  }else{
+    streak=0;
+    document.getElementById('streak').textContent=streak;
+    toast(`❌ No es ${DATA[id].n}. Observa la pista.`,'error');
+  }
+}
+
+/* Lluvia de chispas de "cosecha" sobre el tablero */
+function celebrate(){
+  const layer=document.getElementById('zoomLayer');
+  for(let i=0;i<18;i++){
+    const s=document.createElement('div');
+    const size=4+Math.random()*7;
+    s.style.cssText=`position:absolute;left:${30+Math.random()*40}%;top:${35+Math.random()*30}%;
+      width:${size}px;height:${size}px;border-radius:50%;pointer-events:none;z-index:15;
+      background:${['#F4872B','#3DBE8C','#1A9BAB','#7C3AED'][i%4]};
+      box-shadow:0 0 8px currentColor;transition:transform .9s ease-out,opacity .9s`;
+    layer.appendChild(s);
+    requestAnimationFrame(()=>{
+      s.style.transform=`translate(${(Math.random()-.5)*260}px,${(Math.random()-.5)*220}px) scale(.2)`;
+      s.style.opacity='0';
+    });
+    setTimeout(()=>s.remove(),950);
+  }
+}
+
+/* ================== TOAST ================== */
+let tTimer;
+function toast(msg,type='info'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+type;
+  clearTimeout(tTimer);
+  tTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+/* ================== ATAJOS DE TECLADO (modo taller) ================== */
+document.addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(k==='r') resetBoard();
+  if(k==='t') toggleTraces();
+  if(k==='m') measure();
+  if(k==='n') nextChallenge();
+  if(k==='escape'){
+    if(!document.getElementById('detailOverlay').hidden) closeDetails();
+    else resetView();
+  }
+  if(/^[1-9]$/.test(e.key)){
+    const id=HOTSPOT_ORDER[+e.key-1];
+    if(id) select(id);
+  }
+});
+
+document.getElementById('detailOverlay').addEventListener('click',e=>{
+  if(e.target===e.currentTarget) closeDetails();
+});
+
+/* Clic en zona vacía = deseleccionar sin perder zoom */
+document.getElementById('hotLayer').addEventListener('click',()=>{
+  document.querySelectorAll('.hot').forEach(h=>h.classList.remove('sel'));
+  img.classList.remove('dimmed');
+});
+
+/* ================== ARRANQUE ================== */
+window.addEventListener('load',()=>{
+  toast('🚀 ¡Bienvenido al Modo Taller, Profe Nelson!','success');
+  // Pulso de bienvenida: recorre los hotspots uno a uno
+  const hs=[...document.querySelectorAll('.hot')];
+  hs.forEach((h,i)=>setTimeout(()=>{
+    h.querySelector('.dot').animate(
+      [{fill:'#fff'},{fill:'#F4872B'}],{duration:280,easing:'ease-out'});
+  },i*90));
+  setTimeout(nextChallenge,hs.length*90+600);
+});
+</script>
+</body>
+</html>
