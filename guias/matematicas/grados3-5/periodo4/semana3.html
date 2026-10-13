@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Matemáticas · Semana 3 · Período 4 · Grados 3°-4°-5° · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🧮 Matemáticas Aventura · Semana 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   MATEMÁTICAS AVENTURA · SEMANA 3 · PERÍODO 4
+   Basado en la plantilla "Inventores de Chichalá"
+   v3 — Valor posicional (3°) · Operaciones y problemas (4°) · Secuencias lógicas (5°)
+══════════════════════════════════════════════ */
+:root{
+  --inv-naranja:#FF6B35; --inv-azul:#1A9BAB; --inv-verde:#3DBE8C;
+  --inv-morado:#7C3AED;  --inv-amarillo:#FFD23F; --inv-rosa:#FF6B9D;
+  --inv-rojo:#EF4444;    --inv-celeste:#38BDF8;
+  --inv-bg:#F0F9FF;      --inv-card:#FFFFFF;
+  --inv-texto:#1E293B;   --inv-dim:#64748B; --inv-border:#E2E8F0;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--inv-bg);color:var(--inv-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(26,155,171,.06) 1px,transparent 1px),radial-gradient(circle,rgba(255,107,53,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* BARRA DE PROGRESO */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--inv-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--inv-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--inv-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--inv-verde),var(--inv-azul));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(61,190,140,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* HERO */
+.hero-header{background:linear-gradient(135deg,#7C3AED 0%,#1A9BAB 55%,#3DBE8C 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'➗';position:absolute;font-size:10rem;opacity:.07;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🧩';position:absolute;font-size:8rem;opacity:.07;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--inv-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s,transform .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-mapa::before{background:linear-gradient(180deg,var(--inv-azul),var(--inv-celeste))}
+.seccion-guia::before{background:linear-gradient(180deg,var(--inv-naranja),var(--inv-amarillo))}
+.seccion-juego::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-azul))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--inv-verde),var(--inv-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--inv-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--inv-dim);font-weight:600;margin-top:2px}
+
+/* TABS DE GRADO */
+.niveles-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nivel-tab{font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:600;padding:8px 22px;border-radius:50px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .25s;color:var(--inv-dim)}
+.nivel-tab:hover{transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.nivel-tab.activo-3{background:var(--inv-verde);border-color:var(--inv-verde);color:white;box-shadow:0 4px 12px rgba(61,190,140,.35)}
+.nivel-tab.activo-4{background:var(--inv-azul);border-color:var(--inv-azul);color:white;box-shadow:0 4px 12px rgba(26,155,171,.35)}
+.nivel-tab.activo-5{background:var(--inv-morado);border-color:var(--inv-morado);color:white;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+.nivel-panel{display:none}
+.nivel-panel.activo{display:block;animation:fadeSlide .4s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nivel-card{background:white;border:3px solid var(--inv-border);border-radius:var(--r-lg);padding:22px;position:relative}
+.nivel-card.grado3{border-color:var(--inv-verde)}
+.nivel-card.grado4{border-color:var(--inv-azul)}
+.nivel-card.grado5{border-color:var(--inv-morado)}
+.nivel-badge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nivel-badge{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 18px;border-radius:50px;color:white}
+.grado3 .nivel-badge{background:var(--inv-verde)}
+.grado4 .nivel-badge{background:var(--inv-azul)}
+.grado5 .nivel-badge{background:var(--inv-morado)}
+.nivel-dba{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:rgba(26,155,171,.1);color:var(--inv-azul);border:1px solid rgba(26,155,171,.25)}
+
+/* VISOR DE IMÁGENES */
+.visor-bloque{margin-bottom:22px}
+.visor-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.visor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;color:white;font-size:.95rem;flex-shrink:0}
+.visor-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:0;color:var(--inv-texto)}
+.visor-cabecera .paso-tag{font-size:.7rem;font-weight:800;padding:3px 12px;border-radius:50px;background:rgba(56,189,248,.12);color:#0369A1;border:1px solid rgba(56,189,248,.3);letter-spacing:.05em}
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--inv-border);background:linear-gradient(135deg,#F8FAFC,#EFF6FF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s,max-height .3s ease;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto;transition:transform .25s ease}
+.marco-img.expanded{max-height:none;box-shadow:var(--sombra-lg);border-width:4px}
+.marco-img.expanded img{transform:scale(1.04)}
+.marco-img.malla-3{border-color:var(--inv-verde)}
+.marco-img.malla-4{border-color:var(--inv-azul)}
+.marco-img.malla-5{border-color:var(--inv-morado)}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--inv-azul);box-shadow:var(--sombra-sm);pointer-events:none;display:flex;align-items:center;gap:6px}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--inv-dim);font-size:.85rem}
+.marco-img.sin-img .img-fallback{display:block}
+.marco-img.sin-img img{display:none}
+.ruta-code{font-family:'Courier New',monospace;background:#EEF2FF;color:#4338CA;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeSlide .3s ease}
+.lightbox.visible{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;border-radius:var(--r-md);box-shadow:0 24px 80px rgba(0,0,0,.5);object-fit:contain}
+.lightbox-cerrar{position:absolute;top:18px;right:22px;background:white;border:none;width:44px;height:44px;border-radius:50%;font-size:1.3rem;font-weight:900;color:var(--inv-texto);cursor:pointer;box-shadow:var(--sombra-md);transition:transform .2s}
+.lightbox-cerrar:hover{transform:scale(1.1) rotate(90deg)}
+.lightbox-pie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);border-radius:50px;padding:8px 24px;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--inv-texto);white-space:nowrap}
+.flecha-lb{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;font-weight:900;color:var(--inv-azul);cursor:pointer;box-shadow:var(--sombra-md);transition:all .2s}
+.flecha-lb:hover{transform:translateY(-50%) scale(1.15);background:white}
+.flecha-prev{left:16px}.flecha-next{right:16px}
+
+/* TARJETAS CONCEPTO CLAVE (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(255,107,53,.07);border-color:var(--inv-naranja)}
+.concepto-card.geo{background:rgba(26,155,171,.07);border-color:var(--inv-azul)}
+.concepto-card.met{background:rgba(61,190,140,.07);border-color:var(--inv-verde)}
+.concepto-card.ale{background:rgba(255,107,157,.07);border-color:var(--inv-rosa)}
+.concepto-card.var{background:rgba(124,58,237,.07);border-color:var(--inv-morado)}
+.concepto-card.frac{background:rgba(255,210,63,.1);border-color:var(--inv-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--inv-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--inv-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--inv-naranja)}
+.concepto-card.geo .concepto-flip{background:var(--inv-azul)}
+.concepto-card.met .concepto-flip{background:var(--inv-verde)}
+.concepto-card.ale .concepto-flip{background:var(--inv-rosa)}
+.concepto-card.var .concepto-flip{background:var(--inv-morado)}
+.concepto-card.frac .concepto-flip{background:var(--inv-amarillo);color:var(--inv-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+/* RETO RÁPIDO */
+.reto-box{background:linear-gradient(135deg,#FFFBEB,#FFF7ED);border:2px dashed var(--inv-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#B45309;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.reto-linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px}
+
+/* BOTÓN COMPLETAR */
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 24px rgba(26,155,171,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+/* CIUDADANÍA */
+.lineas{margin-top:10px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--inv-azul)}
+.cc-caja{background:rgba(61,190,140,.07);border:2px solid var(--inv-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-amarillo),var(--inv-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #B45309,0 8px 20px rgba(255,107,53,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #B45309,0 14px 28px rgba(255,107,53,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #B45309,0 4px 10px rgba(255,107,53,.2)}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border:3px solid var(--inv-celeste);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--inv-azul);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--inv-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--inv-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--inv-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(255,210,63,.12),rgba(61,190,140,.1),rgba(26,155,171,.08));border:4px solid var(--inv-amarillo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--inv-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--inv-azul);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--inv-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));box-shadow:0 4px 0 rgba(26,155,171,.4)}
+
+/* ══ RETOS INTERACTIVOS (novedad Semana 3) ══ */
+.reto-int{background:linear-gradient(135deg,#F8FAFC,#EEF6FF);border:2px solid var(--inv-border);border-radius:var(--r-md);padding:18px;margin:14px 0}
+.reto-int h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 10px;color:var(--inv-texto);display:flex;align-items:center;gap:8px}
+.preguntas-lista{display:flex;flex-direction:column;gap:10px}
+.pregunta-fila{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:white;border:2px solid var(--inv-border);border-radius:var(--r-sm);padding:10px 14px}
+.pregunta-txt{font-weight:800;font-size:.95rem;min-width:170px}
+.input-num{width:82px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;text-align:center;border:2px solid var(--inv-border);border-radius:10px;padding:6px 8px;outline:none;transition:all .2s}
+.input-num:focus{border-color:var(--inv-azul);box-shadow:0 0 0 3px rgba(26,155,171,.15)}
+.input-num.ok{border-color:var(--inv-verde);background:#ECFDF5;color:#065F46}
+.input-num.mal{border-color:var(--inv-rojo);background:#FEF2F2;color:#B91C1C;animation:sacudir .35s}
+@keyframes sacudir{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.btn-verificar{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:8px 20px;border:none;border-radius:50px;background:var(--inv-azul);color:white;cursor:pointer;box-shadow:0 3px 0 #0E7490;transition:all .15s}
+.btn-verificar:hover{transform:translateY(-2px)}
+.btn-verificar:active{transform:translateY(1px);box-shadow:0 1px 0 #0E7490}
+.feedback-reto{margin-top:10px;font-weight:800;font-size:.9rem;min-height:22px}
+
+/* Selector V/F */
+.botonera{display:flex;gap:8px}
+.btn-vf{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:50px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .2s;color:var(--inv-dim)}
+.btn-vf.sel-v{background:var(--inv-verde);border-color:var(--inv-verde);color:white}
+.btn-vf.sel-f{background:var(--inv-rojo);border-color:var(--inv-rojo);color:white}
+
+/* Comparaciones > < = */
+.btn-cmp{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:900;width:40px;height:36px;border-radius:10px;border:2px solid var(--inv-border);background:white;cursor:pointer;transition:all .2s;color:var(--inv-dim)}
+.btn-cmp.sel{background:var(--inv-morado);border-color:var(--inv-morado);color:white;transform:scale(1.1)}
+
+/* Contador de puntaje */
+.puntaje-chip{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--inv-amarillo),var(--inv-naranja));color:white;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.9rem;padding:8px 20px;border-radius:50px;box-shadow:0 4px 0 #B45309;margin-left:auto}
+
+/* Ábaco / bloques posicional */
+.abaco-zona{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.abaco-col{background:white;border:3px solid var(--inv-border);border-radius:var(--r-md);padding:12px;text-align:center;min-width:120px}
+.abaco-col.c-centenas{border-color:#F97316}
+.abaco-col.c-decenas{border-color:var(--inv-verde)}
+.abaco-col.c-unidades{border-color:var(--inv-azul)}
+.abaco-col h6{font-family:'Fredoka',sans-serif;margin:0 0 6px;font-size:.85rem}
+.c-centenas h6{color:#C2410C}.c-decenas h6{color:#047857}.c-unidades h6{color:#0369A1}
+.abaco-cubos{font-size:1.05rem;line-height:1.5;min-height:48px;word-break:break-all}
+.abaco-controles{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.btn-abaco{width:32px;height:32px;border-radius:50%;border:none;font-size:1.1rem;font-weight:900;cursor:pointer;color:white;transition:transform .15s}
+.btn-abaco:hover{transform:scale(1.15)}
+.btn-abaco.mas{background:var(--inv-verde)}.btn-abaco.menos{background:var(--inv-rojo)}
+.abaco-lectura{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;text-align:center;margin:10px 0;color:var(--inv-texto)}
+.abaco-lectura .dig-cent{color:#C2410C}.abaco-lectura .dig-dec{color:#047857}.abaco-lectura .dig-uni{color:#0369A1}
+.btn-abaco-generar{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:8px 20px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--inv-naranja),var(--inv-amarillo));color:white;cursor:pointer;box-shadow:0 3px 0 #B45309;transition:all .15s;margin-top:10px}
+.btn-abaco-generar:hover{transform:translateY(-2px)}
+
+/* Secuencias interactivas */
+.seq-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0}
+.seq-num{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;background:white;border:2px solid var(--inv-border);border-radius:8px;padding:5px 10px;min-width:36px;text-align:center}
+.seq-input{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;background:#F8FAFC;border:2px dashed var(--inv-azul);border-radius:8px;padding:5px 10px;width:48px;text-align:center;outline:none;transition:all .2s}
+.seq-input:focus{border-style:solid;border-color:var(--inv-azul);box-shadow:0 0 0 3px rgba(26,155,171,.15)}
+.seq-input.ok{border-color:var(--inv-verde);background:#ECFDF5;color:#065F46;border-style:solid}
+.seq-input.mal{border-color:var(--inv-rojo);background:#FEF2F2;color:#B91C1C;border-style:solid;animation:sacudir .35s}
+.seq-regla-input{width:200px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:600;border:2px solid var(--inv-border);border-radius:8px;padding:6px 10px;outline:none;transition:all .2s}
+.seq-regla-input:focus{border-color:var(--inv-morado);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+
+/* Tabla del 7 interactiva */
+.tabla7-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px;margin:14px 0}
+.tabla7-celda{background:white;border:2px solid var(--inv-border);border-radius:10px;padding:8px 4px;text-align:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.9rem}
+.tabla7-celda .n{color:var(--inv-morado)}
+.tabla7-celda .eq{font-size:.75rem;color:var(--inv-dim)}
+.tabla7-celda .ans-input{width:52px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;text-align:center;border:2px solid var(--inv-border);border-radius:6px;padding:4px;outline:none;transition:all .2s}
+.tabla7-celda .ans-input:focus{border-color:var(--inv-morado);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+.tabla7-celda .ans-input.ok{border-color:var(--inv-verde);background:#ECFDF5;color:#065F46}
+.tabla7-celda .ans-input.mal{border-color:var(--inv-rojo);background:#FEF2F2;color:#B91C1C;animation:sacudir .35s}
+
+/* Reto geométrico interactivos */
+.geo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:14px 0}
+.geo-fila{background:white;border:2px solid var(--inv-border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:700}
+.geo-emoji{font-size:1.8rem}
+.geo-input{width:56px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;text-align:center;border:2px solid var(--inv-border);border-radius:8px;padding:4px;outline:none;transition:all .2s}
+.geo-input:focus{border-color:var(--inv-naranja);box-shadow:0 0 0 3px rgba(255,107,53,.15)}
+.geo-input.ok{border-color:var(--inv-verde);background:#ECFDF5;color:#065F46}
+.geo-input.mal{border-color:var(--inv-rojo);background:#FEF2F2;color:#B91C1C;animation:sacudir .35s}
+
+/* Autocalificación */
+.auto-check{background:rgba(61,190,140,.07);border:2px solid var(--inv-verde);border-radius:var(--r-md);padding:16px;margin-top:16px}
+.auto-check h6{font-family:'Fredoka',sans-serif;font-size:.95rem;margin:0 0 10px;color:#065F46}
+.auto-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.88rem;font-weight:600}
+.auto-check-box{width:18px;height:18px;border:2px solid var(--inv-border);border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.auto-check-box.checked{background:var(--inv-verde);border-color:var(--inv-verde);color:white}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--inv-border);color:var(--inv-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--inv-azul);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--inv-azul);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--inv-azul);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.btn-print{display:block;width:fit-content;margin:0 auto 24px;background:linear-gradient(135deg,var(--inv-verde),var(--inv-azul));color:white;border:none;padding:13px 36px;border-radius:50px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 5px 0 #0E7490,0 8px 20px rgba(26,155,171,.35);transition:all .15s}
+.btn-print:hover{transform:translateY(-3px);box-shadow:0 8px 0 #0E7490,0 12px 28px rgba(26,155,171,.4)}
+.btn-print:active{transform:translateY(2px);box-shadow:0 2px 0 #0E7490}
+
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .visor-cabecera h4{font-size:.95rem}
+  .img-lupa{font-size:.68rem;padding:5px 10px}
+  .abaco-zona{flex-direction:column;align-items:center}
+  .pregunta-fila{flex-direction:column;align-items:flex-start}
+  .seq-row{gap:4px}
+}
+@media print{
+  body{background:white;padding:0}
+  .container{box-shadow:none;border-radius:0}
+  .btn-print,.btn-volver,.barra-mision-wrap,.lightbox,.btn-verificar,.btn-abaco-generar,.btn-cofre,.btn-completar,.botonera,.btn-cmp{display:none!important}
+  .nivel-panel{display:block!important}
+  .seccion,.nivel-card,.visor-bloque{break-inside:avoid}
+  .marco-img{cursor:default;transform:none}
+  .input-num,.seq-input,.ans-input,.geo-input,.seq-regla-input{border:1px solid #ccc;background:white!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Exportar PDF</button>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🧮 SEMANA 3</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré la Malla">🗺️</span>
+      <span class="pieza" id="pieza-2" title="Leí mi Guía">📘</span>
+      <span class="pieza" id="pieza-3" title="¡Actividades hechas!">🧩</span>
+      <span class="pieza" id="pieza-4" title="Retos resueltos">⚡</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🧮 MISIÓN SEMANA 3 ACTIVA</div>
+    <h1 class="hero-titulo">🧮 Matemáticas Aventura<br/>¡Piensa, Resuelve y Avanza!</h1>
+    <p class="hero-subtitulo">Matemáticas · Semana 3 · Período 4 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 4°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 17 septiembre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 1: VISOR DE MALLAS Y GUÍAS
+  ══════════════════════ -->
+  <div class="seccion seccion-mapa">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗺️</span>
+      <h3>Exploración Visual · Malla Curricular + Guía Didáctica</h3>
+      <small>👆 ¡Pasa el mouse para ver detalles o haz clic para ampliar!</small>
+    </div>
+
+    <!-- Tabs de grado -->
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">🟢 Grado 3° · Explorador</button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">🔵 Grado 4° · Estratega</button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">🟣 Grado 5° · Maestro</button>
+    </div>
+
+    <!-- PANEL GRADO 3 -->
+    <div class="nivel-panel activo" id="panel-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Explorador de Números</span>
+          <span class="nivel-dba">DBA: Valor posicional, lectura y escritura de números hasta 999</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-verde)">1</div>
+            <h4>Malla Curricular · Pensamiento Numérico — Valor Posicional</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-3" data-index="0" ondblclick="abrirLightbox(0)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_3.png" alt="Malla Curricular Grado 3° · Valor Posicional" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_3.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-amarillo)">2</div>
+            <h4>Guía Didáctica · Unidades, Decenas y Centenas</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-4" data-index="1" ondblclick="abrirLightbox(1)" onclick="toggleZoom(this)">
+            <img src="Semana3_Grado_3.jpg" alt="Guía Didáctica Grado 3° · Valor Posicional" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code"><Semana3_Grado_3 class="jpg"></Semana3_Grado_3></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-3 -->
+
+    <!-- PANEL GRADO 4 -->
+    <div class="nivel-panel" id="panel-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Estratega Numérico</span>
+          <span class="nivel-dba">DBA: Operaciones combinadas, resolución de problemas y patrones numéricos</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-azul)">1</div>
+            <h4>Malla Curricular · Pensamiento Numérico — Operaciones y Retos (Grado 5°)</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-5" data-index="2" ondblclick="abrirLightbox(2)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_5.png" alt="Malla Curricular Grado 5°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_5.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-rosa)">2</div>
+            <h4>Guía Didáctica · "Pienso y Resuelvo: Retos para Pensar"</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-4" data-index="3" ondblclick="abrirLightbox(3)" onclick="toggleZoom(this)">
+            <img src="Semana3_Grado_4.jpg" alt="Guía Didáctica Grado 4° · Retos para Pensar" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Semana3_Grado_4.jpg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-4 -->
+
+    <!-- PANEL GRADO 5 -->
+    <div class="nivel-panel" id="panel-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟣 Grado 5° · Maestro de Patrones</span>
+          <span class="nivel-dba">DBA: Secuencias y patrones lógicos · Reglas de formación de sucesiones</span>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-morado)">1</div>
+            <h4>Malla Curricular · Razonamiento Lógico y Secuencias</h4>
+            <span class="paso-tag">PASO 1: VISIÓN GENERAL</span>
+          </div>
+          <div class="marco-img malla-5" data-index="4" ondblclick="abrirLightbox(4)" onclick="toggleZoom(this)">
+            <img src="Malla_1_Grado_5.png" alt="Malla Curricular Grado 5°" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Malla_1_Grado_5.png</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visor-bloque">
+          <div class="visor-cabecera">
+            <div class="visor-num" style="background:var(--inv-morado)">2</div>
+            <h4>Guía Didáctica · Secuencias y Patrones Lógicos</h4>
+            <span class="paso-tag">PASO 2: ACTIVIDADES</span>
+          </div>
+          <div class="marco-img malla-5" data-index="5" ondblclick="abrirLightbox(5)" onclick="toggleZoom(this)">
+            <img src="Semana3_Grado_5.jpg" alt="Guía Didáctica Grado 5° · Secuencias y Patrones" onerror="this.parentElement.classList.add('sin-img')">
+            <div class="img-lupa">🔍 Ampliar</div>
+            <div class="img-fallback">
+              📂 <strong>Imagen no encontrada</strong><br/>
+              Ruta esperada: <span class="ruta-code">Semana3_Grado_5.jpg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- fin panel-5 -->
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 2: GUÍA INTERACTIVA POR GRADO (actividades con corrección automática)
+  ══════════════════════ -->
+  <div class="seccion seccion-guia">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎮</span>
+      <h3>Misión Interactiva · ¡Resuelve y Gana Estrellas!</h3>
+      <small>Escribe tu respuesta y pulsa ✔ Verificar. Las correctas se ponen verdes ✅</small>
+    </div>
+
+    <!-- Tabs de grado (sincronizados con los de arriba) -->
+    <div class="niveles-tabs">
+      <button class="nivel-tab activo-3" onclick="cambiarNivel(3, this)">🟢 Grado 3°</button>
+      <button class="nivel-tab" onclick="cambiarNivel(4, this)">🔵 Grado 4°</button>
+      <button class="nivel-tab" onclick="cambiarNivel(5, this)">🟣 Grado 5°</button>
+    </div>
+
+    <!-- ─────── RETOS GRADO 3° : Valor posicional ─────── -->
+    <div class="nivel-panel activo" id="reto-3">
+      <div class="nivel-card grado3">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟢 Grado 3° · Constructores de Números</span>
+          <span class="puntaje-chip">⭐ <span id="pts-3">0</span> / 9</span>
+        </div>
+
+        <div class="conceptos-grid">
+          <div class="concepto-card num" onclick="flipCard(this)">
+            <span class="concepto-emoji">🧊</span>
+            <div class="concepto-titulo">Unidades</div>
+            <div class="concepto-desc">Elementos sueltos. Cada unidad vale 1.</div>
+            <div class="concepto-flip">Ejemplos: 1 manzana 🍎, 1 lápiz ✏️, 1 cubito 🧊</div>
+          </div>
+          <div class="concepto-card met" onclick="flipCard(this)">
+            <span class="concepto-emoji">🟩</span>
+            <div class="concepto-titulo">Decenas</div>
+            <div class="concepto-desc">Grupos de 10 unidades. Cada decena vale 10.</div>
+            <div class="concepto-flip">1 decena = 10 unidades. Ej: 10 lápices, 10 canicas.</div>
+          </div>
+          <div class="concepto-card geo" onclick="flipCard(this)">
+            <span class="concepto-emoji">🟧</span>
+            <div class="concepto-titulo">Centenas</div>
+            <div class="concepto-desc">Grupos de 100 unidades. Cada centena vale 100.</div>
+            <div class="concepto-flip">1 centena = 100 unidades. Ej: 100 hojas, 100 monedas.</div>
+          </div>
+        </div>
+
+        <!-- ÁBACO VIRTUAL -->
+        <div class="reto-int">
+          <h5>🧱 Laboratorio de Bloques: arma el número</h5>
+          <p style="font-size:.85rem;margin:0 0 6px">Usa los botones ➕➖ para construir un número con centenas, decenas y unidades. ¡Descubre cuánto vale!</p>
+          <div class="abaco-zona">
+            <div class="abaco-col c-centenas">
+              <h6>🟧 CENTENAS (100)</h6>
+              <div class="abaco-cubos" id="cubos-cent">🟧</div>
+              <div class="abaco-controles">
+                <button class="btn-abaco menos" onclick="abacoCambio('cent',-1)">−</button>
+                <button class="btn-abaco mas" onclick="abacoCambio('cent',1)">＋</button>
+              </div>
+            </div>
+            <div class="abaco-col c-decenas">
+              <h6>🟩 DECENAS (10)</h6>
+              <div class="abaco-cubos" id="cubos-dec">🟩</div>
+              <div class="abaco-controles">
+                <button class="btn-abaco menos" onclick="abacoCambio('dec',-1)">−</button>
+                <button class="btn-abaco mas" onclick="abacoCambio('dec',1)">＋</button>
+              </div>
+            </div>
+            <div class="abaco-col c-unidades">
+              <h6>🟦 UNIDADES (1)</h6>
+              <div class="abaco-cubos" id="cubos-uni">🟦</div>
+              <div class="abaco-controles">
+                <button class="btn-abaco menos" onclick="abacoCambio('uni',-1)">−</button>
+                <button class="btn-abaco mas" onclick="abacoCambio('uni',1)">＋</button>
+              </div>
+            </div>
+          </div>
+          <div class="abaco-lectura" id="abaco-lectura"></div>
+          <div style="text-align:center">
+            <button class="btn-abaco-generar" onclick="abacoGenerar()">🎲 ¡Sorpréndeme con otro número!</button>
+          </div>
+        </div>
+
+        <!-- EJERCICIOS RÁPIDOS: C D U -->
+        <div class="reto-int">
+          <h5>⚡ Ejercicios rápidos: ¿Cuántas centenas, decenas y unidades hay?</h5>
+          <div class="preguntas-lista">
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🍎 243 →</span>
+              <label>C: <input class="input-num" data-resp="2" size="2"/></label>
+              <label>D: <input class="input-num" data-resp="4" size="2"/></label>
+              <label>U: <input class="input-num" data-resp="3" size="2"/></label>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🍌 106 →</span>
+              <label>C: <input class="input-num" data-resp="1" size="2"/></label>
+              <label>D: <input class="input-num" data-resp="0" size="2"/></label>
+              <label>U: <input class="input-num" data-resp="6" size="2"/></label>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🍇 58 →</span>
+              <label>C: <input class="input-num" data-resp="0" size="2"/></label>
+              <label>D: <input class="input-num" data-resp="5" size="2"/></label>
+              <label>U: <input class="input-num" data-resp="8" size="2"/></label>
+            </div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarReto(3,'CDU')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-CDU"></div>
+        </div>
+
+        <!-- DESCOMPONER NÚMEROS -->
+        <div class="reto-int">
+          <h5>🔨 Descompón como en la guía: 135 = 100 + 30 + 5</h5>
+          <div class="preguntas-lista">
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">347 = ___ + 40 + 7</span>
+              <input class="input-num" data-resp="300"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">205 = 200 + ___ + 5</span>
+              <input class="input-num" data-resp="0"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">___ = 100 + 60 + 9</span>
+              <input class="input-num" data-resp="169"/>
+            </div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarReto(3,'DECOMP')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-DECOMP"></div>
+        </div>
+
+        <!-- ESCRIBIR NÚMEROS -->
+        <div class="reto-int">
+          <h5>✍️ ¿Cómo se lee este número? Escribe el nombre (sin tildes)</h5>
+          <div class="preguntas-lista">
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">24 →</span>
+              <input class="seq-regla-input" style="width:260px" data-resp="veinticuatro"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">135 →</span>
+              <input class="seq-regla-input" style="width:260px" data-resp="ciento treinta y cinco"/>
+            </div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarTexto(3,'LECTURA')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-LECTURA"></div>
+        </div>
+
+        <div class="auto-check">
+          <h6>🌟 Autocalifícate (marca lo que lograste)</h6>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Identifico unidades, decenas y centenas.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Compongo y descompongo números hasta 999.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Leo y escribo números correctamente.</div>
+        </div>
+
+        <button class="btn-completar" onclick="completarGrado(3)">🏁 ¡Completé mi misión de Grado 3°!</button>
+      </div>
+    </div><!-- fin reto-3 -->
+
+    <!-- ─────── RETOS GRADO 4° : Operaciones combinadas y problemas ─────── -->
+    <div class="nivel-panel" id="reto-4">
+      <div class="nivel-card grado4">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🔵 Grado 4° · Retos para Pensar</span>
+          <span class="puntaje-chip">⭐ <span id="pts-4">0</span> / 20</span>
+        </div>
+
+        <div class="conceptos-grid">
+          <div class="concepto-card num" onclick="flipCard(this)">
+            <span class="concepto-emoji">🥇</span>
+            <div class="concepto-titulo">Orden de operaciones</div>
+            <div class="concepto-desc">Primero paréntesis, luego × ÷, al final + −.</div>
+            <div class="concepto-flip">Ej: 45 + 20 × 3 = 45 + 60 = 105. ¡La multiplicación gana primero!</div>
+          </div>
+          <div class="concepto-card met" onclick="flipCard(this)">
+            <span class="concepto-emoji">🔎</span>
+            <div class="concepto-titulo">Código matemático</div>
+            <div class="concepto-desc">Cada figura vale un número secreto.</div>
+            <div class="concepto-flip">Usa las pistas para descubrir cuánto vale cada figura. 🕵️</div>
+          </div>
+          <div class="concepto-card ale" onclick="flipCard(this)">
+            <span class="concepto-emoji">✖️</span>
+            <div class="concepto-titulo">Tabla del 7</div>
+            <div class="concepto-desc">Sumar de 7 en 7 te hace veloz.</div>
+            <div class="concepto-flip">7, 14, 21, 28, 35, 42, 49, 56, 63... ¡Domínala!</div>
+          </div>
+        </div>
+
+        <!-- CÓDIGO MATEMÁTICO -->
+        <div class="reto-int">
+          <h5>🕵️‍♂️ Código Matemático: descubre el valor de cada figura</h5>
+          <p style="font-size:.85rem;margin:0 0 8px">🟩 + 🟨 = 45 &nbsp;·&nbsp; 🟩 + 🔺 = 19 &nbsp;·&nbsp; 🔺 + 🟦 = 26 &nbsp;·&nbsp; 🟦 + 🟨 = 7<br/>
+          <em>Pista: empieza comparando las dos primeras pistas.</em></p>
+          <div class="geo-grid">
+            <div class="geo-fila"><span class="geo-emoji">🟩</span> = <input class="geo-input" data-resp="11"/></div>
+            <div class="geo-fila"><span class="geo-emoji">🟨</span> = <input class="geo-input" data-resp="34"/></div>
+            <div class="geo-fila"><span class="geo-emoji">🔺</span> = <input class="geo-input" data-resp="8"/></div>
+            <div class="geo-fila"><span class="geo-emoji">🟦</span> = <input class="geo-input" data-resp="18"/></div>
+          </div>
+          <button class="btn-verificar" onclick="verificarReto(4,'CODIGO')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-CODIGO"></div>
+        </div>
+
+        <!-- OPERACIONES COMBINADAS -->
+        <div class="reto-int">
+          <h5>➗ Operaciones Combinadas: ¡respeta el orden!</h5>
+          <div class="preguntas-lista">
+            <div class="pregunta-fila"><span class="pregunta-txt">a. 45 + 20 × 3 =</span><input class="input-num" data-resp="105"/></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">b. (72 − 18) × 4 =</span><input class="input-num" data-resp="216"/></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">c. 96 ÷ 8 + 15 =</span><input class="input-num" data-resp="27"/></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">d. 100 − (25 × 2) + 30 =</span><input class="input-num" data-resp="80"/></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">e. 64 ÷ 4 × 6 + 7 =</span><input class="input-num" data-resp="103"/></div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarReto(4,'OPCOMP')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-OPCOMP"></div>
+        </div>
+
+        <!-- TABLA DEL 7 -->
+        <div class="reto-int">
+          <h5>7️⃣ Completa la Tabla del 7</h5>
+          <div class="tabla7-grid" id="tabla7-grid"></div>
+          <button class="btn-verificar" onclick="verificarTabla7()">✔ Verificar tabla</button>
+          <div class="feedback-reto" id="fb-TABLA7"></div>
+        </div>
+
+        <!-- RESOLUCIÓN DE PROBLEMAS -->
+        <div class="reto-int">
+          <h5>📚 Resuelvo Problemas de la vida real</h5>
+          <div class="preguntas-lista">
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🧃 Una caja tiene 8 filas con 12 botellas cada una. ¿Cuántas botellas hay en total?</span>
+              <input class="input-num" data-resp="96"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🏫 El colegio tiene 480 estudiantes. Si en cada salón hay 24, ¿cuántos salones hay?</span>
+              <input class="input-num" data-resp="20"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">💰 Daniela tiene $3.450 y compra 2 cuadernos de $850 cada uno y un lápiz de $450. ¿Cuánto dinero le sobra?</span>
+              <input class="input-num" data-resp="450"/>
+            </div>
+            <div class="pregunta-fila">
+              <span class="pregunta-txt">🐔 En una granja hay 6 gallinas, 2 pavos y 3 patos. ¿Cuántas patas hay en total?</span>
+              <input class="input-num" data-resp="22"/>
+            </div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarReto(4,'PROBLEMAS')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-PROBLEMAS"></div>
+        </div>
+
+        <!-- V O F -->
+        <div class="reto-int">
+          <h5>✅❌ Verdadero o Falso: marca según creas</h5>
+          <div class="preguntas-lista" id="vf-lista">
+            <div class="pregunta-fila"><span class="pregunta-txt">7 × 8 = 56</span><div class="botonera" data-resp="V"><button class="btn-vf" onclick="marcarVF(this,'V')">V</button><button class="btn-vf" onclick="marcarVF(this,'F')">F</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">48 + 6 = 57</span><div class="botonera" data-resp="F"><button class="btn-vf" onclick="marcarVF(this,'V')">V</button><button class="btn-vf" onclick="marcarVF(this,'F')">F</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">125 + 75 = 190</span><div class="botonera" data-resp="F"><button class="btn-vf" onclick="marcarVF(this,'V')">V</button><button class="btn-vf" onclick="marcarVF(this,'F')">F</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">9 × 5 = 45</span><div class="botonera" data-resp="V"><button class="btn-vf" onclick="marcarVF(this,'V')">V</button><button class="btn-vf" onclick="marcarVF(this,'F')">F</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">64 − 28 = 34</span><div class="botonera" data-resp="F"><button class="btn-vf" onclick="marcarVF(this,'V')">V</button><button class="btn-vf" onclick="marcarVF(this,'F')">F</button></div></div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarVF(4)">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-VF"></div>
+        </div>
+
+        <!-- COMPARO Y COMPLETO -->
+        <div class="reto-int">
+          <h5>⚖️ Comparo y Completo: elige &gt; , &lt; o =</h5>
+          <div class="preguntas-lista" id="cmp-lista">
+            <div class="pregunta-fila"><span class="pregunta-txt">8 × 7 ___ 50</span><div class="botonera" data-resp="&gt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">7 × 6 ___ 36</span><div class="botonera" data-resp="&gt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">64 − 8 ___ 9</span><div class="botonera" data-resp="&gt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">81 − 9 ___ 8</span><div class="botonera" data-resp="&gt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">45 + 19 ___ 63</span><div class="botonera" data-resp="&lt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+            <div class="pregunta-fila"><span class="pregunta-txt">34 + 27 ___ 60</span><div class="botonera" data-resp="&gt;"><button class="btn-cmp" onclick="marcarCmp(this,'&gt;')">&gt;</button><button class="btn-cmp" onclick="marcarCmp(this,'&lt;')">&lt;</button><button class="btn-cmp" onclick="marcarCmp(this,'=')">=</button></div></div>
+          </div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarCmp()">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-CMP"></div>
+        </div>
+
+        <!-- RETO GEOMÉTRICO -->
+        <div class="reto-int">
+          <h5>🔷 Reto Geométrico: descubre el valor de cada figura</h5>
+          <div class="geo-grid">
+            <div class="geo-fila"><span class="geo-emoji">⬡</span>+<span class="geo-emoji">⬡</span>+<span class="geo-emoji">⬡</span>=36 → <span class="geo-emoji">⬡</span>=<input class="geo-input" data-resp="12"/></div>
+            <div class="geo-fila"><span class="geo-emoji">⬡</span>+<span class="geo-emoji">🔵</span>=20 → <span class="geo-emoji">🔵</span>=<input class="geo-input" data-resp="8"/></div>
+            <div class="geo-fila"><span class="geo-emoji">🔵</span>+<span class="geo-emoji">🔺</span>=17 → <span class="geo-emoji">🔺</span>=<input class="geo-input" data-resp="9"/></div>
+          </div>
+          <button class="btn-verificar" onclick="verificarReto(4,'GEO')">✔ Verificar</button>
+          <div class="feedback-reto" id="fb-GEO"></div>
+        </div>
+
+        <!-- SECUENCIAS NUMÉRICAS (nivel básico 4°) -->
+        <div class="reto-int">
+          <h5>🔢 Secuencias Numéricas: encuentra la regla y sigue</h5>
+          <div class="seq-row">a. <span class="seq-num">7</span><span class="seq-num">10</span><span class="seq-num">13</span><span class="seq-num">16</span><span class="seq-num">19</span><input class="seq-input" data-resp="22"/><input class="seq-input" data-resp="25"/><input class="seq-input" data-resp="28"/></div>
+          <div class="seq-row">b. <span class="seq-num">7</span><span class="seq-num">14</span><span class="seq-num">28</span><span class="seq-num">56</span><input class="seq-input" data-resp="112"/><input class="seq-input" data-resp="224"/><input class="seq-input" data-resp="448"/></div>
+          <div class="seq-row">c. <span class="seq-num">30</span><span class="seq-num">26</span><span class="seq-num">22</span><span class="seq-num">18</span><input class="seq-input" data-resp="14"/><input class="seq-input" data-resp="10"/><input class="seq-input" data-resp="6"/></div>
+          <button class="btn-verificar" style="margin-top:12px" onclick="verificarSeq(4)">✔ Verificar secuencias</button>
+          <div class="feedback-reto" id="fb-SEQ4"></div>
+        </div>
+
+        <div class="auto-check">
+          <h6>🌟 Autocalifícate (marca lo que lograste)</h6>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Respeté el orden de las operaciones.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Descubrí el código de las figuras.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Resolví los problemas explicando mi respuesta.</div>
+        </div>
+
+        <button class="btn-completar" onclick="completarGrado(4)">🏁 ¡Completé mi misión de Grado 4°!</button>
+      </div>
+    </div><!-- fin reto-4 -->
+
+    <!-- ─────── RETOS GRADO 5° : Secuencias y patrones lógicos ─────── -->
+    <div class="nivel-panel" id="reto-5">
+      <div class="nivel-card grado5">
+        <div class="nivel-badge-wrap">
+          <span class="nivel-badge">🟣 Grado 5° · Cazadores de Patrones</span>
+          <span class="puntaje-chip">⭐ <span id="pts-5">0</span> / 15</span>
+        </div>
+
+        <div class="conceptos-grid">
+          <div class="concepto-card var" onclick="flipCard(this)">
+            <span class="concepto-emoji">👀</span>
+            <div class="concepto-titulo">1. Observa</div>
+            <div class="concepto-desc">Mira con atención los primeros elementos.</div>
+            <div class="concepto-flip">Antes de escribir, compara el 1°, 2° y 3° número.</div>
+          </div>
+          <div class="concepto-card num" onclick="flipCard(this)">
+            <span class="concepto-emoji">🧠</span>
+            <div class="concepto-titulo">2. Deduce la regla</div>
+            <div class="concepto-desc">Encuentra el patrón que se repite.</div>
+            <div class="concepto-flip">¿Suma? ¿Resta? ¿Multiplica? Prueba con todos los términos.</div>
+          </div>
+          <div class="concepto-card met" onclick="flipCard(this)">
+            <span class="concepto-emoji">✏️</span>
+            <div class="concepto-titulo">3. Aplica</div>
+            <div class="concepto-desc">Usa la regla para seguir la secuencia.</div>
+            <div class="concepto-flip">Si la regla funciona en todos, ¡ya puedes continuarla!</div>
+          </div>
+        </div>
+
+        <!-- EJEMPLO GUIADO -->
+        <div class="reto-int" style="background:linear-gradient(135deg,#F5F3FF,#EEF6FF);border-color:var(--inv-morado)">
+          <h5>💡 Ejemplo guiado</h5>
+          <div class="seq-row"><span class="seq-num">2</span><span class="seq-num">5</span><span class="seq-num">8</span><span class="seq-num">11</span><span class="seq-num">14</span></div>
+          <p style="font-size:.85rem;margin:6px 0 0"><strong>Regla:</strong> se suma 3 cada vez (+3, +3, +3...). <strong>Continuación:</strong> 17, 20, 23 ✅</p>
+        </div>
+
+        <!-- RETO 1: +6 -->
+        <div class="reto-int">
+          <h5>🧩 Reto 1 — Observa y completa</h5>
+          <div class="seq-row"><span class="seq-num">7</span><span class="seq-num">13</span><span class="seq-num">19</span><span class="seq-num">25</span><span class="seq-num">31</span><input class="seq-input" data-resp="37"/><input class="seq-input" data-resp="43"/><input class="seq-input" data-resp="49"/></div>
+          <div class="seq-row" style="margin-top:8px"><label style="font-size:.85rem;font-weight:700">¿Cuál es la regla?</label><input class="seq-regla-input" data-resp="suma 6|+6|se suma 6|anade 6|agrega 6"/></div>
+          <button class="btn-verificar" style="margin-top:10px" onclick="verificarSeq(5,'R1')">✔ Verificar Reto 1</button>
+          <div class="feedback-reto" id="fb-R1"></div>
+        </div>
+
+        <!-- RETO 2: -10 -->
+        <div class="reto-int">
+          <h5>🧩 Reto 2 — Observa y completa</h5>
+          <div class="seq-row"><span class="seq-num">100</span><span class="seq-num">90</span><span class="seq-num">80</span><span class="seq-num">70</span><span class="seq-num">60</span><input class="seq-input" data-resp="50"/><input class="seq-input" data-resp="40"/><input class="seq-input" data-resp="30"/></div>
+          <div class="seq-row" style="margin-top:8px"><label style="font-size:.85rem;font-weight:700">¿Cuál es la regla?</label><input class="seq-regla-input" data-resp="resta 10|-10|se resta 10|disminuye 10"/></div>
+          <button class="btn-verificar" style="margin-top:10px" onclick="verificarSeq(5,'R2')">✔ Verificar Reto 2</button>
+          <div class="feedback-reto" id="fb-R2"></div>
+        </div>
+
+        <!-- RETO 3: x2 -->
+        <div class="reto-int">
+          <h5>🧩 Reto 3 — ¡Aquí el patrón se multiplica!</h5>
+          <div class="seq-row"><span class="seq-num">3</span><span class="seq-num">6</span><span class="seq-num">12</span><span class="seq-num">24</span><span class="seq-num">48</span><input class="seq-input" data-resp="96"/><input class="seq-input" data-resp="192"/><input class="seq-input" data-resp="384"/></div>
+          <div class="seq-row" style="margin-top:8px"><label style="font-size:.85rem;font-weight:700">¿Cuál es la regla?</label><input class="seq-regla-input" data-resp="multiplica por 2|x2|por 2|duplica|x 2"/></div>
+          <button class="btn-verificar" style="margin-top:10px" onclick="verificarSeq(5,'R3')">✔ Verificar Reto 3</button>
+          <div class="feedback-reto" id="fb-R3"></div>
+        </div>
+
+        <!-- RETO 4: cuadrados -->
+        <div class="reto-int">
+          <h5>🧩 Reto 4 — Números con forma cuadrada 🟦</h5>
+          <div class="seq-row"><span class="seq-num">1</span><span class="seq-num">4</span><span class="seq-num">9</span><span class="seq-num">16</span><span class="seq-num">25</span><input class="seq-input" data-resp="36"/><input class="seq-input" data-resp="49"/><input class="seq-input" data-resp="64"/></div>
+          <div class="seq-row" style="margin-top:8px"><label style="font-size:.85rem;font-weight:700">¿Cuál es la regla?</label><input class="seq-regla-input" data-resp="cuadrados|al cuadrado|n x n|potencia 2|sumar impares"/></div>
+          <button class="btn-verificar" style="margin-top:10px" onclick="verificarSeq(5,'R4')">✔ Verificar Reto 4</button>
+          <div class="feedback-reto" id="fb-R4"></div>
+        </div>
+
+        <!-- RETO 5: +1+2+3 (nivel experto) -->
+        <div class="reto-int">
+          <h5>🏆 Reto 5 — Nivel Maestro 🔥 (¡el salto también crece!)</h5>
+          <div class="seq-row"><span class="seq-num">2</span><span class="seq-num">3</span><span class="seq-num">5</span><span class="seq-num">8</span><span class="seq-num">12</span><input class="seq-input" data-resp="17"/><input class="seq-input" data-resp="23"/><input class="seq-input" data-resp="30"/></div>
+          <div class="seq-row" style="margin-top:8px"><label style="font-size:.85rem;font-weight:700">¿Cuál es la regla?</label><input class="seq-regla-input" data-resp="suma 1 2 3|aumenta 1 2 3|salto creciente|+1 +2 +3|crece 1 2 3"/></div>
+          <button class="btn-verificar" style="margin-top:10px" onclick="verificarSeq(5,'R5')">✔ Verificar Reto 5</button>
+          <div class="feedback-reto" id="fb-R5"></div>
+        </div>
+
+        <!-- GENERADOR DE RETOS -->
+        <div class="reto-int" style="background:linear-gradient(135deg,#FFF7ED,#FFFBEB);border-color:var(--inv-naranja)">
+          <h5>🎲 Generador de Patrones Infinitos</h5>
+          <p style="font-size:.85rem;margin:0 0 8px">Pulsa el dado y descubre una secuencia nueva. ¡Demuestra que eres un Maestro de Patrones!</p>
+          <div class="seq-row" id="gen-seq"></div>
+          <div class="seq-row" style="margin-top:8px">
+            <input class="seq-input" id="gen-a" placeholder="?"/>
+            <input class="seq-input" id="gen-b" placeholder="?"/>
+            <input class="seq-input" id="gen-c" placeholder="?"/>
+            <button class="btn-verificar" onclick="verificarGenerado()">✔ Comprobar</button>
+            <button class="btn-abaco-generar" onclick="generarSecuencia()">🎲 Nueva secuencia</button>
+          </div>
+          <div class="feedback-reto" id="fb-GEN"></div>
+        </div>
+
+        <div class="auto-check">
+          <h6>🌟 Autoevalúate (marca lo que lograste)</h6>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Observé con atención los primeros elementos.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Descubrí la regla de cada secuencia.</div>
+          <div class="auto-item"><div class="auto-check-box" onclick="toggleCheck(this)">✓</div> Completé correctamente las continuaciones.</div>
+        </div>
+
+        <button class="btn-completar" onclick="completarGrado(5)">🏁 ¡Completé mi misión de Grado 5°!</button>
+      </div>
+    </div><!-- fin reto-5 -->
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 3: ZONA LÚDICA (juego relámpago)
+  ══════════════════════ -->
+  <div class="seccion seccion-juego">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">⚡</span>
+      <h3>Zona Relámpago · Cálculo Veloz</h3>
+      <small>Responde antes de que se acabe el tiempo. ¡Cada acierto suma una estrella!</small>
+    </div>
+
+    <div class="reto-int" style="text-align:center;background:linear-gradient(135deg,#F0FDF4,#EEF6FF)">
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px">
+        <span class="hero-dato" style="background:rgba(61,190,140,.15);color:#065F46;border-color:var(--inv-verde)">⭐ Aciertos: <span id="rl-aciertos">0</span></span>
+        <span class="hero-dato" style="background:rgba(239,68,68,.12);color:#B91C1C;border-color:var(--inv-rojo)">❌ Fallos: <span id="rl-fallos">0</span></span>
+        <span class="hero-dato" style="background:rgba(255,210,63,.2);color:#B45309;border-color:var(--inv-amarillo)">🔥 Racha: <span id="rl-racha">0</span></span>
+      </div>
+      <div id="rl-operacion" style="font-family:'Fredoka',sans-serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:700;color:var(--inv-morado);margin:10px 0">Pulsa JUGAR ▶</div>
+      <div style="height:12px;background:var(--inv-border);border-radius:50px;max-width:420px;margin:0 auto 14px;overflow:hidden">
+        <div id="rl-timer" style="height:100%;width:100%;background:linear-gradient(90deg,var(--inv-verde),var(--inv-amarillo),var(--inv-rojo));border-radius:50px;transition:width .1s linear"></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap">
+        <input class="input-num" id="rl-input" style="width:110px;font-size:1.3rem;padding:10px" placeholder="?" onkeydown="if(event.key==='Enter')rlRevisar()"/>
+        <button class="btn-verificar" style="font-size:1rem;padding:12px 26px" onclick="rlRevisar()">Enviar 🚀</button>
+        <button class="btn-abaco-generar" style="margin-top:0" onclick="rlIniciar()">▶ Jugar</button>
+      </div>
+      <div class="feedback-reto" id="fb-RL" style="text-align:center"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 4: CIUDADANÍA / CONTEXTUALIZACIÓN
+  ══════════════════════ -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🌿</span>
+      <h3>Matemáticas en mi Vereda · Chichalá</h3>
+      <small>Las números viven en nuestro campo: contemos juntos.</small>
+    </div>
+
+    <div class="cc-caja">
+      <p>💬 Conversa con tu familia y responde en las líneas:</p>
+      <div class="lineas">
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--inv-texto);border:none;width:100%;font-size:.9rem" placeholder="1) ¿Cuántos animales tienes en casa? Cuenta sus patas en total: ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--inv-texto);border:none;width:100%;font-size:.9rem" placeholder="2) Si una libra de café se paga a $2.000, ¿cuánto valen 3 libras? ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--inv-texto);border:none;width:100%;font-size:.9rem" placeholder="3) Busca en tu casa un número mayor que 100 y escríbelo: ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--inv-texto);border:none;width:100%;font-size:.9rem" placeholder="4) Inventa una secuencia con semillas o granos y escribe su regla: ___"/></div>
+      </div>
+    </div>
+
+    <div class="reto-box">
+      <div class="reto-titulo">⭐ Reto para pensar en casa</div>
+      <p style="font-size:.9rem;margin:0 0 8px">En el trapiche de Don José se llenan 8 canastos con 12 panelas cada uno. Si se venden 75 panelas, ¿cuántas quedan? <strong>Escribe la operación y el resultado.</strong></p>
+      <div class="linea"></div>
+      <div class="linea"></div>
+    </div>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre del Saber</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ ¡Secretos Matemáticos Desvelados!</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🔢</span>
+      <div><strong>El número 142857 es un número mágico:</strong> al multiplicarlo por 2, 3, 4, 5 y 6 siempre da los mismos dígitos... ¡pero en otro orden! Pruébalo.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌻</span>
+      <div><strong>Las flores siguen secuencias:</strong> los pétalos de un girasol aparecen en cantidades de la sucesión 1, 1, 2, 3, 5, 8, 13... (¡Fibonacci!). La naturaleza hace matemática.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá las matemáticas están en todo:</strong> contar el café por libras, dividir la leche en partes iguales y medir surcos son operaciones combinadas reales.</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p class="diploma-texto">Ha completado exitosamente la <strong>Semana 3 · Matemáticas Aventura</strong> con dedicación, lógica y creatividad.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">3°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--inv-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌿 Matemáticas con corazón · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con amor por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Vista ampliada"/>
+    <div class="lightbox-pie" id="lightbox-pie">Vista ampliada</div>
+    <button class="flecha-lb flecha-prev" onclick="cambiarImg(-1)">❮</button>
+    <button class="flecha-lb flecha-next" onclick="cambiarImg(1)">❯</button>
+  </div>
+
+</div><!-- fin container -->
+
+<!-- JAVASCRIPT -->
+<script>
+/* ═════ VARIABLES GLOBALES ═════ */
+let indiceImgActual = 0;
+const imagenes = [
+  'Malla_3_Grado_3.png','Guia_3_Grado_3.png',
+  'Malla_3_Grado_4.png','Guia_3_Grado_4.png',
+  'Malla_3_Grado_5.png','Guia_3_Grado_5.png'
+];
+
+/* Puntajes por grado */
+const puntajes = {3:0, 4:0, 5:0};
+const maximos  = {3:9, 4:20, 5:15};
+const logrados = {};   // bloques ya sumados al puntaje
+
+/* ═════ NAVEGACIÓN / TABS ═════ */
+function cambiarNivel(grado, btn){
+  document.querySelectorAll('.nivel-panel').forEach(p => p.classList.remove('activo'));
+  ['panel-','reto-'].forEach(pref => {
+    const el = document.getElementById(pref + grado);
+    if (el) el.classList.add('activo');
+  });
+  document.querySelectorAll('.nivel-tab').forEach(t => t.classList.remove('activo-3','activo-4','activo-5'));
+  // marcar todos los tabs que correspondan a este grado
+  document.querySelectorAll('.niveles-tabs').forEach(cont => {
+    cont.querySelectorAll('.nivel-tab').forEach((t,i) => {
+      if ([3,4,5][i] === grado) t.classList.add('activo-'+grado);
+    });
+  });
+  document.querySelectorAll('.marco-img').forEach(img => {
+    img.classList.remove('expanded');
+    const badge = img.querySelector('.img-lupa');
+    if (badge) badge.textContent = '🔍 Ampliar';
+  });
+}
+
+/* ═════ VISOR DE IMÁGENES ═════ */
+function toggleZoom(element){
+  const isExpanded = element.classList.toggle('expanded');
+  const badge = element.querySelector('.img-lupa');
+  if (badge) badge.textContent = isExpanded ? '🔍 Reducir' : '🔍 Ampliar';
+}
+function abrirLightbox(indice){
+  indiceImgActual = indice;
+  document.getElementById('lightbox-img').src = imagenes[indice];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indice+1} de ${imagenes.length}`;
+  document.getElementById('lightbox').classList.add('visible');
+}
+function cerrarLightbox(){
+  document.getElementById('lightbox').classList.remove('visible');
+}
+function cambiarImg(delta){
+  indiceImgActual += delta;
+  if(indiceImgActual < 0) indiceImgActual = imagenes.length - 1;
+  if(indiceImgActual >= imagenes.length) indiceImgActual = 0;
+  document.getElementById('lightbox-img').src = imagenes[indiceImgActual];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indiceImgActual+1} de ${imagenes.length}`;
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') cerrarLightbox(); });
+
+/* ═════ TARJETAS FLIP ═════ */
+function flipCard(card){ card.classList.toggle('flipped'); }
+
+/* ═════ ÁBACO VIRTUAL (Grado 3°) ═════ */
+const abaco = {cent:1, dec:3, uni:5};
+function abacoCambio(col, delta){
+  abaco[col] = Math.max(0, Math.min(9, abaco[col] + delta));
+  pintarAbaco();
+}
+function abacoGenerar(){
+  abaco.cent = Math.floor(Math.random()*9)+1;
+  abaco.dec  = Math.floor(Math.random()*10);
+  abaco.uni  = Math.floor(Math.random()*10);
+  pintarAbaco();
+}
+function pintarAbaco(){
+  const cubo = (emoji,n) => n===0 ? '<span style="opacity:.3">—</span>' : emoji.repeat(n);
+  document.getElementById('cubos-cent').innerHTML = cubo('🟧', abaco.cent);
+  document.getElementById('cubos-dec').innerHTML  = cubo('🟩', abaco.dec);
+  document.getElementById('cubos-uni').innerHTML  = cubo('🟦', abaco.uni);
+  const total = abaco.cent*100 + abaco.dec*10 + abaco.uni;
+  document.getElementById('abaco-lectura').innerHTML =
+    `<span class="dig-cent">${abaco.cent}</span><span class="dig-dec">${abaco.dec}</span><span class="dig-uni">${abaco.uni}</span>` +
+    ` &nbsp;=&nbsp; ${abaco.cent*100} + ${abaco.dec*10} + ${abaco.uni} = <strong>${total}</strong>`;
+}
+
+/* ═════ CORRECCIÓN GENÉRICA DE INPUTS NUMÉRICOS ═════ */
+function normaliza(s){ return String(s).toLowerCase().trim().replace(/\s+/g,' ').replace(/[áéíóú]/g,m=>({a:'a',e:'e',i:'i',o:'o',u:'u'}[m])); }
+
+function verificarReto(grado, clave){
+  const panel = document.getElementById('reto-'+grado);
+  const caja  = panel.querySelector('#fb-'+clave) ? document.getElementById('fb-'+clave) : null;
+  let inputs = [];
+  if (clave === 'CODIGO' || clave === 'GEO'){
+    // solo los .geo-input del reto activo más cercano
+    const reto = buscarRetoPorFeedback(clave);
+    inputs = Array.from(reto.querySelectorAll('.geo-input'));
+  } else {
+    const reto = buscarRetoPorFeedback(clave);
+    inputs = Array.from(reto.querySelectorAll('.input-num'));
+  }
+  let ok = 0;
+  inputs.forEach(inp => {
+    const bien = normaliza(inp.value) === normaliza(inp.dataset.resp);
+    inp.classList.toggle('ok', bien);
+    inp.classList.toggle('mal', !bien && inp.value !== '');
+    if (bien) ok++;
+  });
+  mostrarFeedback(clave, ok, inputs.length);
+  sumarPuntaje(grado, clave, ok, inputs.length);
+}
+
+function buscarRetoPorFeedback(clave){
+  const fb = document.getElementById('fb-'+clave);
+  return fb ? fb.closest('.reto-int') : document;
+}
+
+function verificarTexto(grado, clave){
+  const reto = buscarRetoPorFeedback(clave);
+  const inputs = Array.from(reto.querySelectorAll('.seq-regla-input'));
+  let ok = 0;
+  inputs.forEach(inp => {
+    const opciones = inp.dataset.resp.split('|').map(normaliza);
+    const bien = opciones.includes(normaliza(inp.value));
+    inp.classList.toggle('ok', bien);
+    inp.classList.toggle('mal', !bien && inp.value !== '');
+    if (bien) ok++;
+  });
+  mostrarFeedback(clave, ok, inputs.length);
+  sumarPuntaje(grado, clave, ok, inputs.length);
+}
+
+function mostrarFeedback(clave, ok, total){
+  const fb = document.getElementById('fb-'+clave);
+  if (!fb) return;
+  if (ok === total && total > 0){
+    fb.style.color = '#059669';
+    fb.textContent = ['🎉 ¡Perfecto! Todo correcto. 🌟','🏅 ¡Excelente! Eres un crack. 💪','🚀 ¡Impecable! Sigue así. ✨'][Math.floor(Math.random()*3)];
+  } else if (ok > 0){
+    fb.style.color = '#B45309';
+    fb.textContent = `👏 ¡Vas muy bien! Correctas: ${ok} de ${total}. Revisa las rojas y vuelve a intentar.`;
+  } else {
+    fb.style.color = '#B91C1C';
+    fb.textContent = '💡 Casi... revisa con calma: recuerda el orden de las operaciones y vuelve a intentarlo.';
+  }
+}
+
+function sumarPuntaje(grado, clave, ok, total){
+  const id = grado+'-'+clave;
+  const prev = logrados[id] || 0;
+  logrados[id] = Math.max(prev, ok);
+  let suma = 0;
+  Object.keys(logrados).forEach(k => { if (k.startsWith(grado+'-')) suma += logrados[k]; });
+  puntajes[grado] = Math.min(suma, maximos[grado]);
+  const chip = document.getElementById('pts-'+grado);
+  if (chip) chip.textContent = puntajes[grado];
+  actualizarBarra();
+}
+
+/* ═════ V / F ═════ */
+function marcarVF(btn, val){
+  const box = btn.closest('.botonera');
+  box.querySelectorAll('.btn-vf').forEach(b => b.classList.remove('sel-v','sel-f'));
+  btn.classList.add(val === 'V' ? 'sel-v' : 'sel-f');
+  box.dataset.eleccion = val;
+}
+function verificarVF(grado){
+  const boxes = document.querySelectorAll('#vf-lista .botonera');
+  let ok = 0;
+  boxes.forEach(b => {
+    const bien = b.dataset.eleccion === b.dataset.resp;
+    b.style.outline = bien ? '3px solid var(--inv-verde)' : (b.dataset.eleccion ? '3px solid var(--inv-rojo)' : 'none');
+    if (bien) ok++;
+  });
+  mostrarFeedback('VF', ok, boxes.length);
+  sumarPuntaje(grado, 'VF', ok, boxes.length);
+}
+
+/* ═════ COMPARACIONES > < = ═════ */
+function marcarCmp(btn, val){
+  const box = btn.closest('.botonera');
+  box.querySelectorAll('.btn-cmp').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  box.dataset.eleccion = val;
+}
+function verificarCmp(){
+  const boxes = document.querySelectorAll('#cmp-lista .botonera');
+  let ok = 0;
+  boxes.forEach(b => {
+    const bien = b.dataset.eleccion === b.dataset.resp;
+    b.style.outline = bien ? '3px solid var(--inv-verde)' : (b.dataset.eleccion ? '3px solid var(--inv-rojo)' : 'none');
+    if (bien) ok++;
+  });
+  mostrarFeedback('CMP', ok, boxes.length);
+  sumarPuntaje(4, 'CMP', ok, boxes.length);
+}
+
+/* ═════ TABLA DEL 7 ═════ */
+const nums7 = [12,23,34,45,56,67,78,89,91];
+function construirTabla7(){
+  const g = document.getElementById('tabla7-grid');
+  if (!g) return;
+  g.innerHTML = nums7.map(n => `
+    <div class="tabla7-celda">
+      <div class="n">${n} × 7</div>
+      <input class="ans-input" data-resp="${n*7}" placeholder="?"/>
+    </div>`).join('');
+}
+function verificarTabla7(){
+  const inputs = Array.from(document.querySelectorAll('#tabla7-grid .ans-input'));
+  let ok = 0;
+  inputs.forEach(inp => {
+    const bien = Number(inp.value) === Number(inp.dataset.resp);
+    inp.classList.toggle('ok', bien);
+    inp.classList.toggle('mal', !bien && inp.value !== '');
+    if (bien) ok++;
+  });
+  mostrarFeedback('TABLA7', ok, inputs.length);
+  sumarPuntaje(4, 'TABLA7', ok, inputs.length);
+}
+
+/* ═════ SECUENCIAS ═════ */
+function verificarSeq(grado, clave){
+  const contenedor = clave ? buscarRetoPorFeedback(clave) : document.getElementById('reto-'+grado);
+  const nums = Array.from(contenedor.querySelectorAll('.seq-input'));
+  const reglas = Array.from(contenedor.querySelectorAll('.seq-regla-input'));
+  let ok = 0, total = nums.length + reglas.length;
+  nums.forEach(inp => {
+    const bien = Number(inp.value) === Number(inp.dataset.resp);
+    inp.classList.toggle('ok', bien);
+    inp.classList.toggle('mal', !bien && inp.value !== '');
+    if (bien) ok++;
+  });
+  reglas.forEach(inp => {
+    const opciones = inp.dataset.resp.split('|').map(normaliza);
+    const bien = opciones.some(op => normaliza(inp.value).includes(op) || op.includes(normaliza(inp.value)));
+    inp.classList.toggle('ok', bien);
+    inp.classList.toggle('mal', !bien && inp.value !== '');
+    if (bien) ok++;
+  });
+  const fbClave = clave || 'SEQ4';
+  mostrarFeedback(fbClave, ok, total);
+  sumarPuntaje(grado, fbClave, ok, total);
+}
+
+/* ═════ GENERADOR DE SECUENCIAS (5°) ═════ */
+let genData = null;
+function generarSecuencia(){
+  const tipos = [
+    {regla:'suma fija', gen:()=>{const i=Math.floor(Math.random()*8)+2,d=Math.floor(Math.random()*9)+2,s=[];let v=i;for(let k=0;k<5;k++){s.push(v);v+=d;}return{s,next:[v,v+d,v+2*d],txt:`se suma ${d}`};}},
+    {regla:'resta fija', gen:()=>{const d=Math.floor(Math.random()*7)+3,s=[];let v=Math.floor(Math.random()*40)+50;for(let k=0;k<5;k++){s.push(v);v-=d;}return{s,next:[v,v-d,v-2*d],txt:`se resta ${d}`};}},
+    {regla:'multiplica', gen:()=>{const m=Math.random()<.5?2:3,s=[];let v=Math.floor(Math.random()*4)+2;for(let k=0;k<4;k++){s.push(v);v*=m;}return{s,next:[v,v*m,v*m*m],txt:`se multiplica por ${m}`};}}
+  ];
+  genData = tipos[Math.floor(Math.random()*tipos.length)].gen();
+  document.getElementById('gen-seq').innerHTML =
+    genData.s.map(n=>`<span class="seq-num">${n}</span>`).join('') + '<span style="font-weight:800;color:var(--inv-dim)">→</span>';
+  ['gen-a','gen-b','gen-c'].forEach(id=>{
+    const el=document.getElementById(id); el.value=''; el.classList.remove('ok','mal');
+  });
+  document.getElementById('fb-GEN').textContent = '🔎 Descubre la regla y escribe los 3 siguientes.';
+  document.getElementById('fb-GEN').style.color = 'var(--inv-dim)';
+}
+function verificarGenerado(){
+  if(!genData){ generarSecuencia(); return; }
+  const ids=['gen-a','gen-b','gen-c'];
+  let ok=0;
+  ids.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    const bien=Number(el.value)===genData.next[i];
+    el.classList.toggle('ok',bien);
+    el.classList.toggle('mal',!bien&&el.value!=='');
+    if(bien) ok++;
+  });
+  const fb=document.getElementById('fb-GEN');
+  if(ok===3){fb.style.color='#059669';fb.textContent=`🏆 ¡Lo clavaste! La regla era: ${genData.txt}.`;}
+  else{fb.style.color='#B45309';fb.textContent=`🤔 Correctos ${ok}/3. Pista: la regla es "${genData.txt}".`; }
+}
+
+/* ═════ ZONA RELÁMPAGO ═════ */
+let rlTimer=null, rlRestante=0, rlRespuesta=0, rlAciertos=0, rlFallos=0, rlRacha=0;
+const RL_TIEMPO = 12;
+function rlIniciar(){
+  rlAciertos=0; rlFallos=0; rlRacha=0;
+  actualizarRLStats();
+  nuevaOperacionRL();
+}
+function nuevaOperacionRL(){
+  const modo = Math.floor(Math.random()*4);
+  let a,b,texto,res;
+  if(modo===0){a=Math.floor(Math.random()*40)+10;b=Math.floor(Math.random()*40)+1;res=a+b;texto=`${a} + ${b}`;}
+  else if(modo===1){a=Math.floor(Math.random()*60)+20;b=Math.floor(Math.random()*20)+1;res=a-b;texto=`${a} − ${b}`;}
+  else if(modo===2){a=Math.floor(Math.random()*9)+2;b=Math.floor(Math.random()*9)+2;res=a*b;texto=`${a} × ${b}`;}
+  else {b=Math.floor(Math.random()*8)+2;res=Math.floor(Math.random()*9)+2;a=b*res;texto=`${a} ÷ ${b}`;}
+  rlRespuesta=res;
+  document.getElementById('rl-operacion').textContent=texto+' = ?';
+  const inp=document.getElementById('rl-input'); inp.value=''; inp.focus();
+  rlRestante=RL_TIEMPO;
+  clearInterval(rlTimer);
+  rlTimer=setInterval(()=>{
+    rlRestante-=0.1;
+    document.getElementById('rl-timer').style.width=(rlRestante/RL_TIEMPO*100)+'%';
+    if(rlRestante<=0){      clearInterval(rlTimer);
+      rlFallos++;
+      rlRacha=0;
+      actualizarRLStats();
+      document.getElementById('fb-RL').textContent='⏰ ¡Se acabó! La respuesta era '+rlRespuesta;
+      document.getElementById('fb-RL').style.color='#B91C1C';
+      setTimeout(nuevaOperacionRL,2000);
+    }
+  },100);
+}
+function actualizarRLStats(){
+  document.getElementById('rl-aciertos').textContent=rlAciertos;
+  document.getElementById('rl-fallos').textContent=rlFallos;
+  document.getElementById('rl-racha').textContent=rlRacha;
+}
+function rlRevisar(){
+  if(rlRestante<=0) return;
+  const inp=document.getElementById('rl-input');
+  const val=Number(inp.value);
+  if(val===rlRespuesta){
+    rlAciertos++;rlRacha++;
+    inp.classList.add('ok');inp.classList.remove('mal');
+    document.getElementById('fb-RL').textContent='🎉 ¡Correcto! +1 ⭐';
+    document.getElementById('fb-RL').style.color='#059669';
+    actualizarRLStats();
+    clearInterval(rlTimer);
+    setTimeout(nuevaOperacionRL,800);
+  } else {
+    rlFallos++;rlRacha=0;
+    inp.classList.add('mal');inp.classList.remove('ok');
+    document.getElementById('fb-RL').textContent='❌ Incorrecto. Intenta la próxima.';
+    document.getElementById('fb-RL').style.color='#B91C1C';
+    actualizarRLStats();
+    inp.value='';inp.focus();
+  }
+}
+
+/* ═════ COFRE DEL SABER ═════ */
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+/* ═════ CONFETI ═════ */
+function crearConfeti(){
+  const colores=['#FF6B35','#1A9BAB','#3DBE8C','#7C3AED','#FFD23F'];
+  for(let i=0;i<50;i++){
+    const c=document.createElement('div');
+    c.style.position='fixed';
+    c.style.left=Math.random()*100+'vw';
+    c.style.top='-20px';
+    c.style.width=Math.random()*10+10+'px';
+    c.style.height=Math.random()*10+10+'px';
+    c.style.background=colores[Math.floor(Math.random()*colores.length)];
+    c.style.animation=`caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+/* ═════ AUTO-VALIDACIÓN ═════ */
+function toggleCheck(box){box.classList.toggle('checked');}
+
+/* ═════ COMPLETAR GRADO ═════ */
+function completarGrado(grado){
+  // Marcar piezas de la barra de progreso
+  for(let i=1;i<=5;i++){
+    document.getElementById('pieza-'+i).classList.add('obtenida');
+  }
+  // Mostrar diploma con nombre y grado
+  const nombre=document.getElementById('input-nombre').value||'Estudiante';
+  const gradoVal=document.getElementById('input-grado').value||grado+'°';
+  document.getElementById('diploma-nombre').textContent=nombre;
+  document.getElementById('diploma-grado').textContent=gradoVal;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+  // Scroll al diploma
+  document.getElementById('diploma').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ═════ BARRA DE PROGRESO ═════ */
+function actualizarBarra(){
+  const totalPuntos=puntajes[3]+puntajes[4]+puntajes[5];
+  const maxTotal=maximos[3]+maximos[4]+maximos[5];
+  const pct=Math.min(100,Math.round(totalPuntos/maxTotal*100));
+  document.getElementById('barra-fill').style.width=pct+'%';
+}
+
+/* ═════ INICIALIZACIÓN ═════ */
+document.addEventListener('DOMContentLoaded',function(){
+  // Inicializar guías
+  document.querySelectorAll('.marco-img').forEach(img=>{
+    const badge=img.querySelector('.img-lupa');
+    if(badge) badge.textContent='🔍 Ampliar';
+    img.classList.remove('expanded');
+    const image=img.querySelector('img');
+    if(image&&image.complete&&image.naturalWidth>0){
+      img.classList.remove('sin-img');
+    }
+  });
+  // Construir tabla del 7
+  construirTabla7();
+  // Inicializar abaco
+  pintarAbaco();
+  // Inicializar generador de secuencias
+  generarSecuencia();
+  console.log('🧮 Matemáticas Aventura — Semana 3 cargada con éxito. ¡A explorar!');
+});
+</script>
+
+</body>
+</html>

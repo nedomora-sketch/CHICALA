@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Tecnología e Informática · Grados 6° y 7° · Semana 2 · Naturaleza y Evolución de la Tecnología · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>⚙️ Tecnología Aventura · Semana 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+  TECNOLOGÍA AVENTURA · SEMANA 2 · GRADOS 6°-7°
+  Naturaleza y Evolución de la Tecnología
+══════════════════════════════════════════════ */
+:root{
+  --tec-verde:#10B981;   --tec-esmeralda:#059669; --tec-cyan:#06B6D4;
+  --tec-azul:#2563EB;    --tec-morado:#7C3AED;    --tec-amarillo:#FACC15;
+  --tec-naranja:#F97316; --tec-rosa:#EC4899;      --tec-rojo:#EF4444;
+  --tec-celeste:#38BDF8;
+  --tec-bg:#ECFDF5;      --tec-card:#FFFFFF;
+  --tec-texto:#0F172A;   --tec-dim:#64748B;       --tec-border:#D1FAE5;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--tec-bg);color:var(--tec-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(16,185,129,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+/* BARRA DE PROGRESO */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:24px;box-shadow:var(--sombra-sm);border:2px solid var(--tec-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--tec-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:140px;height:14px;background:var(--tec-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(16,185,129,.4)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+/* HERO */
+.hero-header{background:linear-gradient(135deg,#059669 0%,#06B6D4 50%,#7C3AED 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'⚙️';position:absolute;font-size:10rem;opacity:.08;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🚀';position:absolute;font-size:8rem;opacity:.08;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--tec-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.seccion-evolucion::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-cyan))}
+.seccion-timeline::before{background:linear-gradient(180deg,var(--tec-azul),var(--tec-celeste))}
+.seccion-laboratorio::before{background:linear-gradient(180deg,var(--tec-morado),var(--tec-rosa))}
+.seccion-ciudadana::before{background:linear-gradient(180deg,var(--tec-verde),var(--tec-amarillo))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--tec-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--tec-dim);font-weight:600;margin-top:2px}
+
+/* TARJETAS TIMELINE */
+.timeline-container{position:relative;padding:20px 0}
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--tec-verde),var(--tec-azul),var(--tec-morado));transform:translateX(-50%);border-radius:4px}
+.timeline-item{display:flex;align-items:flex-start;margin-bottom:30px;position:relative}
+.timeline-item:nth-child(odd){flex-direction:row}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-content{width:calc(50% - 40px);background:white;border:3px solid var(--tec-border);border-radius:var(--r-md);padding:18px;box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s}
+.timeline-content:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.timeline-dot{position:absolute;left:50%;top:20px;width:24px;height:24px;border-radius:50%;background:var(--tec-verde);border:4px solid white;box-shadow:var(--sombra-sm);transform:translateX(-50%);z-index:2}
+.timeline-item:nth-child(2) .timeline-dot{background:var(--tec-azul)}
+.timeline-item:nth-child(3) .timeline-dot{background:var(--tec-morado)}
+.timeline-item:nth-child(4) .timeline-dot{background:var(--tec-naranja)}
+.timeline-item:nth-child(5) .timeline-dot{background:var(--tec-rosa)}
+.timeline-era{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;color:var(--tec-esmeralda);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.timeline-era span{font-size:1.5rem}
+.timeline-desc{font-size:.88rem;color:var(--tec-texto);line-height:1.6}
+.timeline-desc strong{color:var(--tec-azul)}
+.timeline-img{width:100%;height:120px;object-fit:cover;border-radius:var(--r-sm);margin-top:10px;background:linear-gradient(135deg,var(--tec-border),#E2E8F0)}
+
+/* CONCEPTOS CLAVE (flip cards) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.num{background:rgba(16,185,129,.07);border-color:var(--tec-verde)}
+.concepto-card.geo{background:rgba(6,182,212,.07);border-color:var(--tec-cyan)}
+.concepto-card.met{background:rgba(37,99,235,.07);border-color:var(--tec-azul)}
+.concepto-card.ale{background:rgba(124,58,237,.07);border-color:var(--tec-morado)}
+.concepto-card.var{background:rgba(236,72,153,.07);border-color:var(--tec-rosa)}
+.concepto-card.frac{background:rgba(250,204,21,.1);border-color:var(--tec-amarillo)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--tec-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--tec-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.num .concepto-flip{background:var(--tec-verde)}
+.concepto-card.geo .concepto-flip{background:var(--tec-cyan)}
+.concepto-card.met .concepto-flip{background:var(--tec-azul).7}
+.concepto-card.var .concepto-flip{background:var(--tec-rosa)}
+.concepto-card.frac .concepto-flip{background:var(--tec-amarillo);color:var(--tec-texto)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+/* QUIZ INTERACTIVO */
+.evaluacion{margin:24px 0;padding:24px;border:3px solid var(--tec-verde);border-radius:var(--r-lg);background:linear-gradient(135deg,#ECFDF5,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--tec-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--tec-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--tec-esmeralda)}
+.evaluacion-tiempo{padding:6px 12px;border-radius:50px;background:white;color:var(--tec-esmeralda);font-size:.75rem;font-weight:800;white-space:nowrap}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--tec-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(16,185,129,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--tec-verde),var(--tec-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(16,185,129,.18)}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--tec-texto)}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--tec-border);border-radius:var(--r-sm);background:white;color:var(--tec-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--tec-verde);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--tec-esmeralda);flex-shrink:0}
+.quiz-option.correct{border-color:var(--tec-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--tec-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #047857;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:20px;background:white;border:3px solid var(--tec-verde);border-radius:var(--r-md);text-align:center}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 8px}
+.quiz-result p{margin:5px 0;color:var(--tec-texto);font-size:.9rem}
+
+/* LABORATORIO DE ROBOTS (canvas) */
+.lab-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.lab-lienzo-marco{border:3px solid var(--tec-morado);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm);position:relative}
+#lienzo{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:20px 20px}
+.lab-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#FAF5FF,#FDF2F8);border:2px solid var(--tec-border);border-radius:var(--r-md);padding:14px 16px}
+.lab-grupo{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;color:var(--tec-dim)}
+.swatch{width:30px;height:30px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s}
+.swatch:hover{transform:scale(1.15)}
+.swatch.sel{outline:3px solid var(--tec-morado);outline-offset:2px;transform:scale(1.12)}
+.lab-btn{font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:8px 16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-morado),var(--tec-rosa));color:white;cursor:pointer;box-shadow:0 3px 0 #5B21B6;transition:all .15s}
+.lab-btn:hover{transform:translateY(-2px)}
+.lab-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+.lab-slider{accent-color:var(--tec-morado);cursor:pointer}
+.lab-pista{background:rgba(124,58,237,.07);border-left:5px solid var(--tec-morado);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#5B21B6}
+
+/* JUEGO DE ORDENAR LA LÍNEA DE TIEMPO (drag & drop) */
+.juego-orden{background:linear-gradient(135deg,#EFF6FF,#ECFEFF);border:2px dashed var(--tec-cyan);border-radius:var(--r-md);padding:18px;margin-top:16px}
+.juego-orden h5{font-family:'Fredoka',sans-serif;font-size:1rem;margin:0 0 10px;color:#0E7490}
+.inventos-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.invento-chip{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;background:white;border:2px solid var(--tec-cyan);color:#0E7490;border-radius:50px;padding:8px 16px;cursor:grab;user-select:none;transition:all .2s;box-shadow:var(--sombra-sm)}
+.invento-chip:hover{transform:translateY(-2px);box-shadow:var(--sombra-md)}
+.invento-chip.usado{opacity:.35;pointer-events:none}
+.slots-orden{display:flex;flex-direction:column;gap:8px}
+.slot-linea{display:flex;align-items:center;gap:12px;background:white;border:2px dashed var(--tec-border);border-radius:var(--r-sm);padding:10px 14px;min-height:48px;transition:all .2s}
+.slot-linea.sobre{border-color:var(--tec-verde);background:rgba(16,185,129,.08)}
+.slot-num{font-family:'Fredoka',sans-serif;font-weight:700;color:var(--tec-dim);min-width:24px}
+.slot-drop{flex:1;display:flex;align-items:center;gap:10px}
+.slot-vacio{font-size:.8rem;color:var(--tec-dim);font-style:italic}
+.slot-fill{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;background:var(--tec-verde);color:white;border-radius:50px;padding:6px 14px;cursor:pointer}
+.slot-fill.mal{background:var(--tec-rojo)}
+.btn-verificar-orden{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:8px 20px;border:none;border-radius:50px;background:var(--tec-cyan);color:white;cursor:pointer;box-shadow:0 3px 0 #0E7490;transition:all .15s;margin-top:12px}
+.btn-verificar-orden:hover{transform:translateY(-2px)}
+
+/* RETO Y ESCRITURA */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--tec-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E0;height:32px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--tec-verde)}
+.cc-caja{background:rgba(16,185,129,.07);border:2px solid var(--tec-verde);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#065F46;font-size:.92rem}
+
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-verde),var(--tec-azul));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s;display:block;margin:18px auto 0}
+.btn-completar:hover{transform:translateY(-3px);box-shadow:0 8px 0 #047857,0 12px 24px rgba(16,185,129,.35)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+
+/* COFRE */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--tec-amarillo),var(--tec-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px);box-shadow:0 10px 0 #A16207,0 14px 28px rgba(249,115,22,.4)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--tec-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--tec-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--tec-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--tec-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+/* AUTOEVALUACIÓN */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--tec-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--tec-verde);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--tec-verde);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--tec-verde);background:rgba(16,185,129,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--tec-esmeralda);text-align:center;margin-top:14px}
+
+/* DIPLOMA */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(6,182,212,.1),rgba(37,99,235,.08));border:4px solid var(--tec-verde);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--tec-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--tec-esmeralda);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--tec-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--tec-verde),var(--tec-cyan));box-shadow:0 4px 0 #047857}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--tec-border);color:var(--tec-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--tec-azul);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--tec-azul);border-radius:50px;transition:all .2s}
+.btn-volver:hover{background:var(--tec-azul);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(15,23,42,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;animation:fadeSlide .3s ease}
+.lightbox.visible{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;border-radius:var(--r-md);box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.lightbox-cerrar{position:absolute;top:18px;right:22px;background:white;border:none;width:44px;height:44px;border-radius:50%;font-size:1.3rem;font-weight:900;color:var(--tec-texto);cursor:pointer;box-shadow:var(--sombra-md);transition:transform .2s}
+.lightbox-cerrar:hover{transform:scale(1.1) rotate(90deg)}
+.lightbox-pie{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);border-radius:50px;padding:8px 24px;font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:var(--tec-texto);white-space:nowrap}
+.flecha-lb{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:48px;height:48px;border-radius:50%;font-size:1.4rem;font-weight:900;color:var(--tec-esmeralda);cursor:pointer;box-shadow:var(--sombra-md);transition:all .2s}
+.flecha-lb:hover{transform:translateY(-50%) scale(1.15);background:white}
+.flecha-prev{left:16px}.flecha-next{right:16px}
+
+/* VISOR DE IMAGENES */
+.marco-img{position:relative;border-radius:var(--r-md);overflow:hidden;border:3px solid var(--tec-border);background:linear-gradient(135deg,#F0FDF4,#ECFEFF);box-shadow:var(--sombra-sm);transition:transform .3s,box-shadow .3s;cursor:zoom-in;max-height:420px}
+.marco-img:hover{transform:translateY(-4px);box-shadow:var(--sombra-md)}
+.marco-img img{display:block;width:100%;height:auto}
+.img-lupa{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:50px;padding:6px 14px;font-size:.75rem;font-weight:800;color:var(--tec-esmeralda);box-shadow:var(--sombra-sm);pointer-events:none}
+.img-fallback{display:none;padding:40px 20px;text-align:center;color:var(--tec-dim);font-size:.85rem}
+.marco-img.sin-img img{display:none}
+.marco-img.sin-img .img-lupa{display:none}
+.marco-img.sin-img .img-fallback{display:block}
+.ruta-code{font-family:'Courier New',monospace;background:#ECFEFF;color:#0E7490;padding:2px 8px;border-radius:6px;font-size:.78rem}
+
+/* ANIMACIONES */
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+/* RESPONSIVE */
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .timeline-container{padding:10px 0}
+  .timeline-line{left:20px}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:row;padding-left:50px}
+  .timeline-content{width:100%}
+  .timeline-dot{left:20px}
+  .quiz-options{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">⚙️ SEMANA 2</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Exploré la Malla">🗺️</span>
+      <span class="pieza" id="pieza-2" title="Leí mi Guía">📘</span>
+      <span class="pieza" id="pieza-3" title="¡Actividades hechas!">🧩</span>
+      <span class="pieza" id="pieza-4" title="Retos resueltos">⚡</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">⚙️ MISIÓN SEMANA 2 ACTIVA</div>
+    <h1 class="hero-titulo">⚙️ Tecnología Aventura<br/>¡Explora la Evolución!</h1>
+    <p class="hero-subtitulo">Tecnología e Informática · Semana 2 · Periodo 4 · Grados 6° y 7°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 6°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 10 septiembre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 1: VISOR DE MALLAS Y GUÍAS
+  ══════════════════════ -->
+  <div class="seccion seccion-evolucion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🗺️</span>
+      <h3>Exploración Visual · Malla Curricular + Guía Didáctica</h3>
+      <small>👆 ¡Haz clic en una imagen para ampliarla!</small>
+    </div>
+
+    <div class="visor-bloque">
+      <div class="visor-cabecera">
+        <div class="visor-num" style="background:var(--tec-verde)">1</div>
+        <h4>Malla Curricular · Tecnología · Naturaleza y Evolución de la Tecnología</h4>
+        <span class="tipo-tag tipo-img">IMAGEN</span>
+      </div>
+      <div class="marco-img" data-index="0" role="button" tabindex="0" aria-label="Ampliar malla curricular" onclick="abrirLightbox(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirLightbox(0)}">
+        <img src="Malla.png" alt="Malla Curricular Tecnología Grados 6° y 7°" onerror="this.parentElement.classList.add('sin-img')">
+        <div class="img-lupa">🔍 Ampliar</div>
+        <div class="img-fallback">
+          📂 <strong>Imagen no encontrada</strong><br/>
+          Ruta esperada: <span class="ruta-code">Malla.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="visor-bloque">
+      <div class="visor-cabecera">
+        <div class="visor-num" style="background:var(--tec-azul)">2</div>
+        <h4>Guía Didáctica · Evolución de la Tecnología</h4>
+        <span class="tipo-tag tipo-img">IMAGEN</span>
+      </div>
+      <div class="marco-img" data-index="1" role="button" tabindex="0" aria-label="Ampliar guía didáctica" onclick="abrirLightbox(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirLightbox(1)}">
+        <img src="Semana2.png" alt="Guía Didáctica Tecnología Grados 6° y 7°" onerror="this.parentElement.classList.add('sin-img')">
+        <div class="img-lupa">🔍 Ampliar</div>
+        <div class="img-fallback">
+          📂 <strong>Imagen no encontrada</strong><br/>
+          Ruta esperada: <span class="ruta-code">Semana2.png</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 2: EVOLUCIÓN DE LA TECNOLOGÍA (LÍNEA DE TIEMPO)
+  ══════════════════════ -->
+  <div class="seccion seccion-timeline">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">⏳</span>
+      <h3>Línea de Tiempo · La Evolución de la Tecnología</h3>
+      <small>¡Cada era nos dejó avances increíbles que transformaron el mundo!</small>
+    </div>
+
+    <div class="conceptos-grid">
+      <div class="concepto-card num" onclick="flipCard(this)">
+        <span class="concepto-emoji">🪨</span>
+        <div class="concepto-titulo">Tecnología Prehistórica</div>
+        <div class="concepto-desc">Herramientas de piedra, fuego, domesticación de animales.</div>
+        <div class="concepto-flip">El hombre creó la primera herramienta: una piedra afilada. ¡Todo comenzó así!</div>
+      </div>
+      <div class="concepto-card geo" onclick="flipCard(this)">
+        <span class="concepto-emoji">🏛️</span>
+        <div class="concepto-titulo">Tecnología Antigua</div>
+        <div class="concepto-desc">Rueda, escritura, metalurgia, pirámides, acueductos.</div>
+        <div class="concepto-flip">Los egipcios construyeron pirámides y los romanos acueductos que aún se usan.</div>
+      </div>
+      <div class="concepto-card met" onclick="flipCard(this)">
+        <span class="concepto-emoji">🏭</span>
+        <div class="concepto-titulo">Revolución Industrial</div>
+        <div class="concepto-desc">Máquina de vapor, telares, tren, electricidad.</div>
+        <div class="concepto-flip">James Watt mejoró la máquina de vapor y todo cambió: fábricas, transporte, ciudades.</div>
+      </div>
+      <div class="concepto-card ale" onclick="flipCard(this)">
+        <span class="concepto-emoji">💻</span>
+        <div class="concepto-titulo">Era Digital</div>
+        <div class="concepto-desc">Computadora, internet, teléfono móvil, inteligencia artificial.</div>
+        <div class="concepto-flip">De la primera computadora del tamaño de una sala a un smartphone en tu bolsillo.</div>
+      </div>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-era"><span>🪨</span> Prehistoria (30.000 a.C.)</div>
+          <div class="timeline-desc">
+            <strong>Primeras herramientas:</strong> Piedras afiladas, huesos, madera.<br/>
+            <strong>Descubrimiento del fuego:</strong> Calor, cocina, protección.<br/>
+            <strong>Domesticación:</strong> Perros, ganado, agricultura incipiente.<br/>
+            🛠️ <strong>Objeto de aprendizaje:</strong> Las redes, transformación de productos tecnológicos.
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-era"><span>🏛️</span> Antigüedad (3.000 a.C. - 476 d.C.)</div>
+          <div class="timeline-desc">
+            <strong>La rueda:</strong> Transporte, alfarería, molinos.<br/>
+            <strong>Escritura:</strong> Jeroglíficos egipcios, alfabeto fenicio.<br/>
+            <strong>Metalurgia:</strong> Bronce y hierro para herramientas y armas.<br/>
+            <strong>Grandes obras:</strong> Pirámides de Egipto, Coliseo romano, acueductos.
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-era"><span>🏭</span> Revolución Industrial (1760 - 1840)</div>
+          <div class="timeline-desc">
+            <strong>Máquina de vapor:</strong> Fábricas, trenes, barcos de vapor.<br/>
+            <strong>Electricidad:</strong> Bombillo (Edison), telégrafo, teléfono.<br/>
+            <strong>Cambio social:</strong> Del campo a la ciudad, nuevas profesiones.<br/>
+            ⚡ <strong>Objeto de aprendizaje:</strong> Fuentes de energía y redes.
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-era"><span>💻</span> Era Digital (1970 - Hoy)</div>
+          <div class="timeline-desc">
+            <strong>Computadoras:</strong> Del tamaño de una sala a tu bolsillo.<br/>
+            <strong>Internet:</strong> Conexión mundial de la información.<br/>
+            <strong>Robots e IA:</strong> Robots del futuro que aprenden solos.<br/>
+            🤖 <strong>Objeto de aprendizaje:</strong> Robots, el futuro, unidades de almacenamiento.
+          </div>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+    </div>
+
+    <!-- JUEGO: ORDENA LOS INVENTOS -->
+    <div class="juego-orden" id="juego-orden">
+      <h5>🎮 Juego: ¡Ordena los inventos del más antiguo al más moderno!</h5>
+      <p style="font-size:.82rem;color:var(--tec-dim);margin:0 0 12px">Haz clic en un invento y luego en el casillero donde va. Después pulsa ✔ Verificar.</p>
+      <div class="inventos-pool" id="pool-inventos"></div>
+      <div class="slots-orden" id="slots-orden"></div>
+      <button class="btn-verificar-orden" onclick="verificarOrden()">✔ Verificar orden</button>
+      <div class="quiz-feedback" id="fb-ORDEN"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 3: LABORATORIO DE ROBOTS (DIBUJO)
+  ══════════════════════ -->
+  <div class="seccion seccion-laboratorio">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🤖</span>
+      <h3>Laboratorio · Diseña tu Robot del Futuro</h3>
+      <small>Dibuja el robot que imaginas para el año 2050. ¡Usa colores y formas!</small>
+    </div>
+
+    <div class="lab-wrap">
+      <div class="lab-lienzo-marco">
+        <canvas id="lienzo" width="800" height="450"></canvas>
+      </div>
+      <div class="lab-controles">
+        <div class="lab-grupo">
+          <span>🎨 Color:</span>
+          <div class="swatch sel" style="background:#7C3AED" data-color="#7C3AED" onclick="elegirColor(this)"></div>
+          <div class="swatch" style="background:#06B6D4" data-color="#06B6D4" onclick="elegirColor(this)"></div>
+          <div class="swatch" style="background:#10B981" data-color="#10B981" onclick="elegirColor(this)"></div>
+          <div class="swatch" style="background:#FACC15" data-color="#FACC15" onclick="elegirColor(this)"></div>
+          <div class="swatch" style="background:#F97316" data-color="#F97316" onclick="elegirColor(this)"></div>
+          <div class="swatch" style="background:#EC4899" data-color="#EC4899" onclick="elegirColor(this)"></div>
+        </div>
+        <div class="lab-grupo">
+          <span>✏️ Grosor:</span>
+          <input type="range" class="lab-slider" id="grosor" min="2" max="24" value="6"/>
+        </div>
+        <div class="lab-grupo">
+          <button class="lab-btn" onclick="dibujarRobotBase()">🤖 Plantilla robot</button>
+          <button class="lab-btn" onclick="limpiarLienzo()">🗑️ Limpiar</button>
+          <button class="lab-btn" onclick="guardarDibujo()">💾 Guardar</button>
+        </div>
+      </div>
+      <div class="lab-pista">
+        💡 <strong>Pista creativa:</strong> Todo  robot tiene: <strong>cabeza</strong> (sensores), <strong>cuerpo</strong> (procesador) y <strong>brazos</strong> (herramientas). ¿Qué problema resolvería tu robot en Chichalá? 🌿☕
+      </div>
+    </div>
+
+    <!-- FICHA TÉCNICA DEL ROBOT -->
+    <div class="reto-box">
+      <div class="reto-titulo">📋 Ficha Técnica de mi Robot Inventor</div>
+      <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="Nombre del robot: ___"/></div>
+      <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="¿Para qué sirve? (su función principal): ___"/></div>
+      <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="¿Qué fuente de energía usa? (solar, eólica, pilas...): ___"/></div>
+      <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="¿Cómo ayuda a mi vereda o colegio?: ___"/></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 4: EVALUACIÓN INTERACTIVA
+  ══════════════════════ -->
+  <div class="seccion seccion-evolucion">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🧠</span>
+      <h3>Reto de Conocimiento · ¡Demuestra lo que Aprendiste!</h3>
+      <small>Responde las 8 preguntas. Cada acierto suma una pieza para tu insignia.</small>
+    </div>
+
+    <div class="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <div class="evaluacion-etiqueta">EVALUACIÓN FORMATIVA</div>
+          <h4>Naturaleza y Evolución de la Tecnología</h4>
+          <p>Grados 6° y 7° · Periodo 4 · Semana 2</p>
+        </div>
+        <div class="evaluacion-tiempo">⏱️ Sin tiempo límite</div>
+      </div>
+
+      <div class="evaluacion-progreso">
+        <span id="quiz-paso">Pregunta 1 de 8</span>
+        <div class="evaluacion-progreso-barra"><span id="quiz-barra"></span></div>
+        <span>⭐ <span id="quiz-score">0</span>/8</span>
+      </div>
+
+      <div id="quiz-contenedor"></div>
+      <button class="btn-quiz-next" id="btn-siguiente" onclick="siguientePregunta()" disabled>Siguiente ➡️</button>
+      <div id="quiz-final"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════
+       SECCIÓN 5: CIUDADANÍA Y CONTEXTUALIZACIÓN
+  ══════════════════════ -->
+  <div class="seccion seccion-ciudadana">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🌿</span>
+      <h3>Tecnología con Propósito · Mi Vereda Chichalá</h3>
+      <small>La tecnología también cuida el planeta y mejora nuestra comunidad.</small>
+    </div>
+
+    <div class="cc-caja">
+      <p>💬 Reflexiona y responde en las líneas:</p>
+      <div class="lineas">
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="1) Nombra 3 tecnologías que usan tu familia en el campo todos los días: ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="2) ¿Qué ventaja tiene el celular para un campesino? Escribe una: ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="3) ¿Qué desventaja o riesgo tiene usar mucha tecnología? ___"/></div>
+        <div class="linea"><input class="hero-campo-linea" style="color:var(--tec-texto);border:none;width:100%;font-size:.9rem" placeholder="4) Inventa una tecnología sencilla que ayudaría a tu vereda: ___"/></div>
+      </div>
+    </div>
+
+    <div class="reto-box">
+      <div class="reto-titulo">⭐ Reto para pensar en casa</div>
+      <p style="font-size:.9rem;margin:0 0 8px">Observa con tu familia un objeto antiguo de la casa (un molino manual, una plancha de hierro, una radio...). Dibuja cómo era y escribe cómo la tecnología lo mejoró hoy. <strong>¡Compártelo en clase!</strong></p>
+      <div class="linea"></div>
+      <div class="linea"></div>
+    </div>
+  </div>
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre del Saber</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ ¡Secretos Tecnológicos Desvelados!</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🤖</span>
+      <div><strong>La palabra "robot"</strong> viene del checo "robota", que significa "trabajo forzado". ¡Se usó por primera vez en una obra de teatro en 1920!</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">💾</span>
+      <div><strong>El primer disco duro</strong> pesaba más de una tonelada y guardaba solo 2 megabytes. Hoy, tu celular guarda millones de veces más... ¡y cabe en tu bolsillo!</div>
+    </div>
+        <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá la tecnología ya está presente:</strong> el celular para vender el café, el panel solar que da luz y hasta la bomba de agua son evolución tecnológica en acción.</div>
+    </div>
+  </div>
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <p class="diploma-texto">Ha completado exitosamente la <strong>Semana 2 · Tecnología Aventura</strong>, explorando la evolución de la tecnología con creatividad y pensamiento crítico.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">6° - 7°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--tec-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌿 Tecnología con propósito · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con amor por el Profe Nelson</p>
+    <a href="#" class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬅️ Volver arriba</a>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-cerrar" onclick="cerrarLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="Vista ampliada"/>
+    <div class="lightbox-pie" id="lightbox-pie">Vista ampliada</div>
+    <button class="flecha-lb flecha-prev" onclick="cambiarImg(-1)">❮</button>
+    <button class="flecha-lb flecha-next" onclick="cambiarImg(1)">❯</button>
+  </div>
+
+</div><!-- fin container -->
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ═════ VARIABLES GLOBALES ═════ */
+let indiceImgActual = 0;
+const imagenes = ['Malla.png','Semana2.png'];
+let quizIndex = 0, quizScore = 0, respondida = false;
+
+/* ═════ LIGHTBOX / VISOR ═════ */
+function abrirLightbox(indice){
+  indiceImgActual = indice;
+  document.getElementById('lightbox-img').src = imagenes[indice];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indice+1} de ${imagenes.length}`;
+  document.getElementById('lightbox').classList.add('visible');
+}
+function cerrarLightbox(){ document.getElementById('lightbox').classList.remove('visible'); }
+function cambiarImg(delta){
+  indiceImgActual += delta;
+  if(indiceImgActual < 0) indiceImgActual = imagenes.length - 1;
+  if(indiceImgActual >= imagenes.length) indiceImgActual = 0;
+  document.getElementById('lightbox-img').src = imagenes[indiceImgActual];
+  document.getElementById('lightbox-pie').textContent = `Imagen ${indiceImgActual+1} de ${imagenes.length}`;
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') cerrarLightbox(); });
+
+/* ═════ TARJETAS FLIP ═════ */
+function flipCard(card){ card.classList.toggle('flipped'); }
+
+/* ═════ JUEGO ORDENAR INVENTOS ═════ */
+const inventosOrden = [
+  {id:'piedra', texto:'🪨 Herramienta de piedra'},
+  {id:'rueda',  texto:'🛞 La rueda'},
+  {id:'vapor',  texto:'♨️ Máquina de vapor'},
+  {id:'foco',   texto:'💡 El bombillo'},
+  {id:'celular',texto:'📱 Teléfono móvil'}
+];
+let seleccionInvento = null;
+let slotsEstado = [null,null,null,null,null];
+
+function construirJuegoOrden(){
+  const pool = document.getElementById('pool-inventos');
+  const slots = document.getElementById('slots-orden');
+  if(!pool || !slots) return;
+  // mezclar pool
+  const mezclados = [...inventosOrden].sort(() => Math.random() - 0.5);
+  pool.innerHTML = mezclados.map(i => `<div class="inventento-chip" id="chip-${i.id}" data-id="${i.id}" onclick="seleccionarInvento('${i.id}')">${i.texto}</div>`).join('');
+  slots.innerHTML = inventosOrden.map((_,idx) => `
+    <div class="slot-linea" id="slot-${idx}" onclick="colocarEnSlot(${idx})">
+      <span class="slot-num">${idx+1}.</span>
+      <div class="slot-drop"><span class="slot-vacio">Haz clic aquí para colocar un invento…</span></div>
+    </div>`).join('');
+}
+function seleccionarInvento(id){
+  seleccionInvento = id;
+  document.querySelectorAll('.inventento-chip').forEach(c => c.style.outline = 'none');
+  const chip = document.getElementById('chip-' + id);
+  if (chip && !chip.classList.contains('usado')) {
+    chip.style.outline = '3px solid var(--tec-azul)';
+  }
+}
+function colocarEnSlot(idx){
+  if (!seleccionInvento) return;
+  // si el slot ya tenía algo, liberar ese chip
+  if (slotsEstado[idx]) {
+    const viejo = document.getElementById('chip-' + slotsEstado[idx]);
+    if (viejo) viejo.classList.remove('usado');
+  }
+  // si el invento ya estaba en otro slot, liberarlo
+  const prevIdx = slotsEstado.indexOf(seleccionInvento);
+  if (prevIdx !== -1) {
+    slotsEstado[prevIdx] = null;
+    renderizarSlot(prevIdx);
+  }
+  slotsEstado[idx] = seleccionInvento;
+  const chip = document.getElementById('chip-' + seleccionInvento);
+  if (chip) chip.classList.add('usado');
+  renderizarSlot(idx);
+  seleccionInvento = null;
+  document.querySelectorAll('.inventento-chip').forEach(c => c.style.outline = 'none');
+  renderizarSlot(idx);
+}
+function renderizarSlot(idx){
+  const slot = document.getElementById('slot-' + idx);
+  if (!slot) return;
+  const drop = slot.querySelector('.slot-drop');
+  const id = slotsEstado[idx];
+  if (id) {
+    const invento = inventosOrden.find(i => i.id === id);
+    if (invento) {
+      drop.innerHTML = `<div class="slot-fill" onclick="liberarSlot(${idx})">${invento.texto} ✕</div>`;
+    }
+  } else {
+    drop.innerHTML = '<span class="slot-vacio">Haz clic aquí para colocar un invento…</span>';
+  }
+}
+function liberarSlot(idx){
+  const id = slotsEstado[idx];
+  if (!id) return;
+  const chip = document.getElementById('chip-' + id);
+  if (chip) chip.classList.remove('usado');
+  slotsEstado[idx] = null;
+  renderizarSlot(idx);
+}
+function verificarOrden(){
+  const correctos = slotsEstado.map((id, idx) => id === inventosOrden[idx].id);
+  const aciertos = correctos.filter(Boolean).length;
+  const fb = document.getElementById('fb-ORDEN');
+  if (aciertos === 5) {
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = '🏆 ¡Perfecto! ¡Ordenaste toda la evolución!';
+  } else if (aciertos >= 3) {
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = `👏 ¡Muy bien! ${aciertos}/5 correctos. ¡Casi perfecto!`;
+  } else {
+    fb.className = 'quiz-feedback incorrect';
+    fb.textContent = `💡 ${aciertos}/5 correctos. Piensa: primero piedra, luego rueda, máquina de vapor, bombillo, celular.`;
+  }
+}
+
+/* ═════ LIENZO DE DIBUJO ═════ */
+let lienzo, ctx, dibujando = false, colorActivo = '#7C3AED';
+
+function initLienzo(){
+  lienzo = document.getElementById('lienzo');
+  if (!lienzo) return;
+  ctx = lienzo.getContext('2d');
+  // ajustar tamaño
+  const rect = lienzo.parentElement.getBoundingClientRect();
+  lienzo.width = Math.min(rect.width - 6, 800);
+  lienzo.height = 450;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, lienzo.width, lienzo.height);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // eventos ratón
+  lienzo.addEventListener('mousedown', iniciarDibujo);
+  lienzo.addEventListener('mousemove', dibujar);
+  lienzo.addEventListener('mouseup', detenerDibujo);
+  lienzo.addEventListener('mouseleave', detenerDibujo);
+
+  // eventos táctiles
+  lienzo.addEventListener('touchstart', e => { e.preventDefault(); iniciarDibujo(getTouchPos(e)); });
+  lienzo.addEventListener('touchmove', e => { e.preventDefault(); dibujar(getTouchPos(e)); });
+  lienzo.addEventListener('touchend', e => { e.preventDefault(); detenerDibujo(); });
+}
+
+function getTouchPos(e){
+  const rect = lienzo.getBoundingClientRect();
+  const touch = e.touches[0];
+  return {
+    offsetX: touch.clientX - rect.left,
+    offsetY: touch.clientY - rect.top
+  };
+}
+
+function iniciarDibujo(e){
+  dibujando = true;
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX, e.offsetY);
+}
+function dibujar(e){
+  if (!dibujando) return;
+  ctx.strokeStyle = colorActivo;
+  ctx.lineWidth = document.getElementById('grosor').value;
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+}
+function detenerDibujo(){ dibujando = false; }
+
+function elegirColor(el){
+  colorActivo = el.dataset.color;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function limpiarLienzo(){
+  if (!ctx) return;
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, lienzo.width, lienzo.height);
+}
+
+function dibujarRobotBase(){
+  if (!ctx) return;
+  const w = lienzo.width, h = lienzo.height;
+  ctx.strokeStyle = '#7C3AED';
+  ctx.lineWidth = 3;
+  // cabeza
+  ctx.strokeRect(w/2-40, h/2-60, 80, 60);
+  // ojos
+  ctx.fillStyle = '#06B6D4';
+  ctx.fillRect(w/2-25, h/2-45, 18, 18);
+  ctx.fillRect(w/2+7, h/2-45, 18, 18);
+  // cuerpo
+  ctx.strokeStyle = '#7C3AED';
+  ctx.strokeRect(w/2-50, h/2, 100, 80);
+  // brazos
+  ctx.strokeRect(w/2-90, h/2+10, 40, 15);
+  ctx.strokeRect(w/2+50, h/2+10, 40, 15);
+  // piernas
+  ctx.strokeRect(w/2-35, h/2+80, 25, 50);
+  ctx.strokeRect(w/2+10, h/2+80, 25, 50);
+  // antena
+  ctx.beginPath();
+  ctx.moveTo(w/2, h/2-60);
+  ctx.lineTo(w/2, h/2-80);
+  ctx.stroke();
+  ctx.fillStyle = '#FACC15';
+  ctx.beginPath();
+  ctx.arc(w/2, h/2-80, 6, 0, Math.PI*2);
+  ctx.fill();
+  ctx.fillStyle = '#FFFFFF';
+}
+
+function guardarDibujo(){
+  if (!lienzo) return;
+  const link = document.createElement('a');
+  link.download = 'mi_robot_chichala.png';
+  link.href = lienzo.toDataURL();
+  link.click();
+}
+
+/* ═════ QUIZ ═════ */
+const preguntas = [
+  {
+    pregunta: '¿Cuál es el objeto de aprendizaje de "Naturaleza y Evolución de la Tecnología"?',
+    opciones: [
+      'Crear animaciones digitales',
+      'Principios y conceptos de la tecnología e informática en diferentes hitos',
+      'Usar redes sociales responsablemente',
+      'Resolver problemas de proporcionalidad'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Correcto! Este objeto de aprendizaje se enfoca en los principios y conceptos de la tecnología a lo largo de la historia.'
+  },
+  {
+    pregunta: '¿Cuál fue la primera tecnología creada por el ser humano?',
+    opciones: [
+      'La rueda',
+      'El teléfono',
+      'Herramientas de piedra',
+      'La computadora'
+    ],
+    correcta: 2,
+    explicacion: '✅ ¡Exacto! Las herramientas de piedra fueron la primera tecnología humana. ¡Con 30.000 años de antigüedad!'
+  },
+  {
+    pregunta: '¿Qué tecnología transformó la agricultura y permitió el transporte a gran escala?',
+    opciones: [
+      'Internet',
+      'El bombillo',
+      'La rueda',
+      'El celular'
+    ],
+    correcta: 2,
+    explicacion: '✅ ¡Perfecto! La rueda cambió todo: transporte, molinos, máquinas. Una de las invenciones más importantes.'
+  },
+  {
+    pregunta: '¿Qué inventó Thomas Edison que cambió la vida en las casas?',
+    opciones: [
+      'El teléfono',
+      'El tren',
+      'La máquina de vapor',
+      'El bombillo eléctrico'
+    ],
+    correcta: 3,
+    explicacion: '✅ ¡Muy bien! Edison perfeccionó el bombillo y llevó la electricidad a los hogares del mundo.'
+  },
+  {
+    pregunta: '¿Qué significa "robot" en su idioma de origen?',
+    opciones: [
+      'Cabeza inteligente',
+      'Trabajo forzado',
+      'Máquina rápida',
+      'Hombre de metal'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Correcto! "Robota" en checo significa "trabajo forzado". ¡Se usó por primera vez en 1920!'
+  },
+  {
+    pregunta: '¿Cuál es un objeto de aprendizaje de "Solución de Problemas con Tecnología"?',
+    opciones: [
+      'Las redes',
+      'Pivot Figure',
+      'Redes sociales: uso y características',
+      'Regla de tres simple'
+    ],
+    correcta: 2,
+    explicacion: '✅ ¡Exacto! Las redes sociales como herramienta para resolver problemas es parte de este objeto de aprendizaje.'
+  },
+  {
+    pregunta: 'Según la malla, ¿qué competencia ciudadana se trabaja con Tecnología?',
+    opciones: [
+      'Competencia lectora',
+      'Convivencia y paz, participación responsable',
+      'Pensamiento crítico matemático',
+      'Expresión artística'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Correcto! Convivencia y paz, participación y responsabilidad democrática son competencias ciudadanas de Tecnología.'
+  },
+  {
+    pregunta: '¿Qué objeto de aprendizaje corresponde a "Pensamiento Variacional"?',
+    opciones: [
+      'Robots y el futuro',
+      'Regla de tres simple y proporcionalidad',
+      'Tableros de control',
+      'Fuentes de energía'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Perfecto! La regla de tres simple y la proporcionalidad directa e inversa son el núcleo del Pensamiento Variacional.'
+  }
+];
+
+function construirQuiz(){
+  quizIndex = 0;
+  quizScore = 0;
+  respondida = false;
+  document.getElementById('quiz-score').textContent = '0';
+  document.getElementById('quiz-final').innerHTML = '';
+  document.getElementById('btn-siguiente').style.display = 'none';
+  mostrarPregunta();
+}
+
+function mostrarPregunta(){
+  const contenedor = document.getElementById('quiz-contenedor');
+  if (quizIndex >= preguntas.length) {
+    mostrarResultado();
+    return;
+  }
+  const p = preguntas[quizIndex];
+  document.getElementById('quiz-paso').textContent = `Pregunta ${quizIndex+1} de ${preguntas.length}`;
+  document.getElementById('quiz-barra').style.width = ((quizIndex+1)/preguntas.length*100)+'%';
+  respondida = false;
+  document.getElementById('btn-siguiente').disabled = true;
+  document.getElementById('btn-siguiente').style.display = quizIndex < preguntas.length - 1 ? 'block' : 'none';
+
+  contenedor.innerHTML = `
+    <div class="quiz-question">
+      <h5>${p.pregunta}</h5>
+      <div class="quiz-options">
+        ${p.opciones.map((op, i) => `
+          <button class="quiz-option" onclick="responderPregunta(${i})">
+            <strong>${String.fromCharCode(65+i)})</strong> ${op}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+  `;
+}
+
+function responderPregunta(indice){
+  if (respondida) return;
+  respondida = true;
+  const p = preguntas[quizIndex];
+  const botones = document.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('quiz-feedback');
+
+  botones.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === p.correcta) btn.classList.add('correct');
+    if (i === indice && i !== p.correcta) btn.classList.add('incorrect');
+  });
+
+  if (indice === p.correcta) {
+    quizScore++;
+    fb.textContent = p.explicacion;
+    fb.className = 'quiz-feedback correct';
+    document.getElementById('quiz-score').textContent = quizScore;
+    // pieza de progreso
+    document.getElementById('pieza-' + (quizIndex+1 > 5 ? 5 : quizIndex+1)).classList.add('obtenida');
+  } else {
+    fb.textContent = '❌ No es esa. ' + p.explicacion.replace('✅ ¡','');
+    fb.className = 'quiz-feedback incorrect';
+  }
+
+  document.getElementById('btn-siguiente').disabled = false;
+}
+
+function siguientePregunta(){
+  quizIndex++;
+  mostrarPregunta();
+}
+
+function mostrarResultado(){
+  const contenedor = document.getElementById('quiz-contenedor');
+  document.getElementById('quiz-barra').style.width = '100%';
+  document.getElementById('btn-siguiente').style.display = 'none';
+
+  let mensaje, emoji;
+  if (quizScore === 8) { mensaje = '¡PERFECTO! Eres un experto en evolución tecnológica.'; emoji = '🏆'; }
+  else if (quizScore >= 6) { mensaje = '¡Excelente! Dominas la evolución de la tecnología.'; emoji = '🌟'; }
+  else if (quizScore >= 4) { mensaje = '¡Bien hecho! Vas por buen camino, sigue aprendiendo.'; emoji = '💪'; }
+  else { mensaje = '¡Buen intento! Revisa la línea de tiempo y vuelve a intentarlo.'; emoji = '💡'; }
+
+  contenedor.innerHTML = `
+    <div class="quiz-result">
+      <h5>${emoji} ${quizScore}/8 Correctas</h5>
+      <p>${mensaje}</p>
+    </div>
+  `;
+
+  // todas las piezas
+  for(let i=1;i<=5;i++) document.getElementById('pieza-'+i).classList.add('obtenida');
+}
+
+/* ═════ COFRE DEL SABER ═════ */
+function abrirCofre(){
+  document.getElementById('cofre-secreto').classList.add('visible');
+  crearConfeti();
+}
+
+/* ═════ CONFETI ═════ */
+function crearConfeti(){
+  const colores = ['#10B981','#06B6D4','#2563EB','#7C3AED','#FACC15'];
+  for(let i=0;i<50;i++){
+    const c = document.createElement('div');
+    c.style.position = 'fixed';
+    c.style.left = Math.random()*100+'vw';
+    c.style.top = '-20px';
+    c.style.width = Math.random()*10+10+'px';
+    c.style.height = c.style.width;
+    c.style.background = colores[Math.floor(Math.random()*colores.length)];
+    c.style.borderRadius = Math.random()>.5 ? '50%' : '2px';
+    c.style.animation = `caerConfeti ${Math.random()*3+2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+/* ═════ COMPLETAR GRADO / DIPLOMA ═════ */
+function completarMision(){
+  for(let i=1;i<=5;i++) document.getElementById('pieza-'+i).classList.add('obtenida');
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '6° - 7°';
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma').classList.add('visible');
+  crearConfeti();
+  document.getElementById('diploma').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ═════ BARRA DE PROGRESO ═════ */
+function actualizarBarra(){
+  const piezas = document.querySelectorAll('.pieza.obtenida').length;
+  const pct = piezas/5*100;
+  document.getElementById('barra-fill').style.width = pct+'%';
+}
+
+/* ═════ INICIALIZACIÓN ═════ */
+document.addEventListener('DOMContentLoaded', function(){
+  initLienzo();
+  construirJuegoOrden();
+  construirQuiz();
+  actualizarBarra();
+  console.log('⚙️ Tecnología Aventura — Semana 2 cargada. ¡A explorar la evolución!');
+});
+</script>
+</body>
+</html>
