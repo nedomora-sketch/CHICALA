@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="MateWall · Matemáticas Grados 3° a 5° · Periodo 4 · Semana 3 · Ejes de Simetría · IE Técnica Camacho Angarita · Sede Chichalá"/>
+<title>🔷 MateWall · Semana 3 · ¡Espejo Mágico!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════════
+   MATEWALL · SEMANA 3 · GRADOS 3°-5° · PERIODO 4
+   Geometría: Ejes de simetría + figuras 2D
+   Estilo Wordwall · HTML + CSS + JS en un archivo
+══════════════════════════════════════════════ */
+:root{
+  --mw-indigo:#4F46E5;   --mw-violeta:#7C3AED;  --mw-cyan:#06B6D4;
+  --mw-verde:#10B981;    --mw-esmeralda:#059669;--mw-amarillo:#FACC15;
+  --mw-naranja:#F97316;  --mw-rosa:#EC4899;     --mw-rojo:#EF4444;
+  --mw-celeste:#38BDF8;
+  --mw-bg:#EEF2FF;       --mw-card:#FFFFFF;
+  --mw-texto:#0F172A;    --mw-dim:#64748B;      --mw-border:#E0E7FF;
+  --sombra-sm:0 4px 12px rgba(0,0,0,.08);
+  --sombra-md:0 8px 24px rgba(0,0,0,.12);
+  --sombra-lg:0 16px 40px rgba(0,0,0,.16);
+  --r-sm:12px; --r-md:18px; --r-lg:26px; --r-xl:36px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--mw-bg);color:var(--mw-texto);margin:0;padding:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(79,70,229,.07) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,20px 20px;pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;background:white;padding:32px;border-radius:var(--r-xl);box-shadow:var(--sombra-lg);position:relative;z-index:1}
+
+
+/* BARRA DE MISIÓN */
+.barra-mision-wrap{position:sticky;top:0;z-index:100;background:white;border-radius:var(--r-lg);padding:12px 20px;margin-bottom:20px;box-shadow:var(--sombra-sm);border:2px solid var(--mw-border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra-titulo{font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--mw-dim);letter-spacing:.06em;white-space:nowrap}
+.barra-track{flex:1;min-width:120px;height:14px;background:var(--mw-border);border-radius:50px;overflow:hidden}
+.barra-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--mw-indigo),var(--mw-cyan));border-radius:50px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(79,70,229,.4)}
+.marcador{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#FEF9C3,#FEF3C7);border:2px solid var(--mw-amarillo);border-radius:50px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-size:.88rem;font-weight:700;color:#92400E;white-space:nowrap;box-shadow:var(--sombra-sm)}
+.btn-audio{border:2px solid var(--mw-violeta);background:white;color:var(--mw-violeta);border-radius:50px;padding:6px 14px;font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-audio.activo{background:var(--mw-violeta);color:white;box-shadow:0 0 0 4px rgba(124,58,237,.18)}
+.btn-audio:hover{transform:translateY(-2px)}
+.barra-piezas{display:flex;gap:6px;flex-wrap:wrap}
+.pieza{font-size:1.2rem;filter:grayscale(1) opacity(.35);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+.pieza.obtenida{filter:grayscale(0) opacity(1);animation:piezaPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes piezaPop{0%{transform:scale(0) rotate(-20deg)}60%{transform:scale(1.4) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+
+
+/* HERO */
+.hero-header{background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 45%,#06B6D4 100%);border-radius:var(--r-xl);padding:36px 32px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;color:white}
+.hero-header::before{content:'🔷';position:absolute;font-size:10rem;opacity:.09;top:-20px;left:-20px;animation:floatIcon 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-header::after{content:'🪞';position:absolute;font-size:8rem;opacity:.09;bottom:-10px;right:-10px;animation:floatIcon 8s ease-in-out infinite alternate-reverse;pointer-events:none}
+@keyframes floatIcon{0%{transform:translateY(0) rotate(-10deg) scale(1)}100%{transform:translateY(-20px) rotate(10deg) scale(1.1)}}
+.hero-inst{font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;opacity:.85;margin-bottom:10px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:50px;padding:6px 20px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;margin-bottom:14px;animation:pulseBadge 2.5s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.3)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.hero-titulo{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.hero-subtitulo{font-size:1rem;font-weight:600;opacity:.9;margin-bottom:18px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.hero-dato{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:50px;padding:6px 16px;font-size:.82rem;font-weight:700}
+.hero-campos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;background:rgba(255,255,255,.12);border-radius:var(--r-md);padding:16px}
+.hero-campo{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:180px}
+.hero-campo label{font-size:.72rem;font-weight:800;letter-spacing:.08em;opacity:.8}
+.hero-campo-linea{border:none;border-bottom:2px solid rgba(255,255,255,.5);background:transparent;color:white;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;outline:none;width:100%;padding:4px 0}
+.hero-campo-linea::placeholder{color:rgba(255,255,255,.5);font-weight:400}
+.hero-campo-linea.oscuro{color:var(--mw-texto);border-bottom-color:#CBD5E1}
+
+
+/* SECCIONES */
+.seccion{background:white;border:2px solid var(--mw-border);border-radius:var(--r-lg);padding:26px;margin-bottom:24px;box-shadow:var(--sombra-sm);position:relative;overflow:hidden;transition:box-shadow .3s}
+.seccion:hover{box-shadow:var(--sombra-md)}
+.seccion::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px 0 0 6px}
+.sec-simetria::before{background:linear-gradient(180deg,var(--mw-indigo),var(--mw-violeta))}
+.sec-espejo::before{background:linear-gradient(180deg,var(--mw-cyan),var(--mw-verde))}
+.sec-quiz::before{background:linear-gradient(180deg,var(--mw-rosa),var(--mw-naranja))}
+.sec-retos::before{background:linear-gradient(180deg,var(--mw-amarillo),var(--mw-naranja))}
+.sec-crea::before{background:linear-gradient(180deg,var(--mw-violeta),var(--mw-rosa))}
+.seccion-titulo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.seccion-titulo-icono{font-size:2rem;animation:floatIcon 4s ease-in-out infinite alternate}
+.seccion-titulo h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--mw-texto);margin:0}
+.seccion-titulo small{display:block;font-size:.78rem;color:var(--mw-dim);font-weight:600;margin-top:2px}
+
+
+/* BOTÓN LEER EN VOZ ALTA */
+.btn-leer{border:none;background:linear-gradient(135deg,var(--mw-violeta),var(--mw-indigo));color:white;border-radius:50px;padding:6px 14px;font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #4C1D95;transition:all .15s;flex-shrink:0}
+.btn-leer:hover{transform:translateY(-2px)}
+.btn-leer:active{transform:translateY(2px);box-shadow:0 1px 0 #4C1D95}
+
+
+/* TARJETAS CONCEPTO (flip) */
+.conceptos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0}
+.concepto-card{border-radius:var(--r-md);padding:18px 14px;text-align:center;border:3px solid transparent;transition:transform .25s,box-shadow .25s;cursor:pointer;position:relative;overflow:hidden}
+.concepto-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:var(--sombra-md)}
+.concepto-card.c1{background:rgba(79,70,229,.07);border-color:var(--mw-indigo)}
+.concepto-card.c2{background:rgba(6,182,212,.07);border-color:var(--mw-cyan)}
+.concepto-card.c3{background:rgba(16,185,129,.07);border-color:var(--mw-verde)}
+.concepto-card.c4{background:rgba(236,72,153,.07);border-color:var(--mw-rosa)}
+.concepto-emoji{font-size:2.8rem;display:block;margin-bottom:10px;animation:floatIcon 4s ease-in-out infinite alternate}
+.concepto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--mw-texto);margin-bottom:8px}
+.concepto-desc{font-size:.78rem;color:var(--mw-dim);line-height:1.6}
+.concepto-card .concepto-flip{position:absolute;inset:0;border-radius:calc(var(--r-md) - 2px);display:flex;align-items:center;justify-content:center;padding:14px;font-size:.82rem;line-height:1.6;font-weight:600;color:white;opacity:0;transform:rotateY(90deg);transition:all .3s ease;text-align:center}
+.concepto-card.c1 .concepto-flip{background:var(--mw-indigo)}
+.concepto-card.c2 .concepto-flip{background:var(--mw-cyan)}
+.concepto-card.c3 .concepto-flip{background:var(--mw-verde)}
+.concepto-card.c4 .concepto-flip{background:var(--mw-rosa)}
+.concepto-card.flipped .concepto-flip{opacity:1;transform:rotateY(0deg)}
+
+
+/* ══════ LABORATORIO ESPEJO (canvas) ══════ */
+.espejo-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.espejo-marco{border:3px solid var(--mw-cyan);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm);position:relative;display:flex;justify-content:center}
+#lienzo-espejo{display:block;max-width:100%;height:auto;touch-action:none;cursor:pointer}
+.espejo-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:2px solid var(--mw-border);border-radius:var(--r-md);padding:14px 16px}
+.nivel-info{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:#0E7490;background:white;border:2px solid var(--mw-cyan);border-radius:50px;padding:6px 16px}
+.espejo-pista{background:rgba(6,182,212,.08);border-left:5px solid var(--mw-cyan);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#0E7490}
+.espejo-figura-nombre{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--mw-indigo);margin:0 0 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn-espejo{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:9px 20px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-cyan),var(--mw-verde));color:white;cursor:pointer;box-shadow:0 3px 0 #0E7490;transition:all .15s}
+.btn-espejo:hover{transform:translateY(-2px)}
+.btn-espejo:active{transform:translateY(2px);box-shadow:0 1px 0 #0E7490}
+.btn-espejo.alt{background:linear-gradient(135deg,var(--mw-violeta),var(--mw-indigo));box-shadow:0 3px 0 #4C1D95}
+.btn-espejo.alt:active{box-shadow:0 1px 0 #4C1D95}
+.espejo-feedback{min-height:30px;margin-top:12px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;text-align:center}
+.espejo-feedback.ok{color:#047857}
+.espejo-feedback.no{color:#B91C1C}
+
+
+/* ══════ QUIZ ══════ */
+.evaluacion{margin:24px 0 0;padding:24px;border:3px solid var(--mw-indigo);border-radius:var(--r-lg);background:linear-gradient(135deg,#EEF2FF,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--mw-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--mw-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--mw-indigo)}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--mw-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(79,70,229,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--mw-indigo),var(--mw-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(79,70,229,.18)}
+.quiz-pregunta-fila{display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--mw-texto)}
+.quiz-opciones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--mw-border);border-radius:var(--r-sm);background:white;color:var(--mw-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--mw-indigo);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--mw-indigo);flex-shrink:0}
+.quiz-option.correct{border-color:var(--mw-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--mw-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--mw-indigo),var(--mw-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #3730A3;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:22px;background:white;border:3px solid var(--mw-verde);border-radius:var(--r-md);text-align:center;animation:fadeSlide .5s ease}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 6px}
+.quiz-result p{margin:5px 0;color:var(--mw-texto);font-size:.9rem}
+.rango-badge{display:inline-block;margin-top:10px;padding:8px 24px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;color:white;box-shadow:var(--sombra-sm)}
+.rango-superior{background:linear-gradient(135deg,#059669,#10B981)}
+.rango-alto{background:linear-gradient(135deg,#2563EB,#38BDF8)}
+.rango-basico{background:linear-gradient(135deg,#F97316,#FACC15);color:#78350F}
+.rango-bajo{background:linear-gradient(135deg,#EF4444,#EC4899)}
+
+
+/* ══════ RETOS DE ESCRITURA ══════ */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--mw-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E1;height:38px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--mw-indigo)}
+.linea input{border:none;background:transparent;width:100%;height:100%;font:600 .9rem 'Nunito',sans-serif;color:var(--mw-texto);outline:none}
+.cc-caja{background:rgba(79,70,229,.06);border:2px solid var(--mw-indigo);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#3730A3;font-size:.92rem;margin:0 0 10px}
+
+
+/* ══════ LABORATORIO CREA TU FIGURA ══════ */
+.lab-lienzo-marco{border:3px solid var(--mw-violeta);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm)}
+#lienzo-libre{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:20px 20px}
+.lab-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#FAF5FF,#FDF2F8);border:2px solid var(--mw-border);border-radius:var(--r-md);padding:14px 16px;margin-top:12px}
+.lab-grupo{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;color:var(--mw-dim)}
+.swatch{width:30px;height:30px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s}
+.swatch:hover{transform:scale(1.15)}
+.swatch.sel{outline:3px solid var(--mw-violeta);outline-offset:2px;transform:scale(1.12)}
+.lab-btn{font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:8px 16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-violeta),var(--mw-rosa));color:white;cursor:pointer;box-shadow:0 3px 0 #5B21B6;transition:all .15s}
+.lab-btn:hover{transform:translateY(-2px)}
+.lab-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+.lab-slider{accent-color:var(--mw-violeta);cursor:pointer}
+.lab-pista{background:rgba(124,58,237,.07);border-left:5px solid var(--mw-violeta);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#5B21B6;margin-top:12px}
+
+
+/* ══════ COFRE ══════ */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-amarillo),var(--mw-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--mw-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--mw-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--mw-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--mw-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--mw-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+
+/* ══════ AUTOEVALUACIÓN ══════ */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--mw-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--mw-verde);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--mw-verde);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--mw-verde);background:rgba(16,185,129,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--mw-esmeralda);text-align:center;margin-top:14px}
+
+
+/* ══════ BOTONES FINALES ══════ */
+.acciones-finales{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px}
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-verde),var(--mw-cyan));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s}
+.btn-completar:hover{transform:translateY(-3px)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+.btn-descargar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:2px solid var(--mw-indigo);border-radius:50px;background:white;color:var(--mw-indigo);cursor:pointer;transition:all .15s}
+.btn-descargar:hover{background:var(--mw-indigo);color:white;transform:translateY(-3px)}
+.btn-siguiente-semana{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;padding:14px 34px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-violeta),var(--mw-rosa));color:white;cursor:pointer;box-shadow:0 5px 0 #6D28D9,0 8px 20px rgba(124,58,237,.3);transition:all .15s;display:none;margin:20px auto 0;animation:pulseBadge 2.5s ease-in-out infinite}
+.btn-siguiente-semana.visible{display:block}
+.btn-siguiente-semana:hover{transform:translateY(-3px)}
+
+
+/* ══════ DIPLOMA ══════ */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(6,182,212,.1),rgba(124,58,237,.08));border:4px solid var(--mw-indigo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--mw-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--mw-indigo);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--mw-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+.diploma-stat{background:white;border:2px solid var(--mw-border);border-radius:50px;padding:6px 18px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;color:var(--mw-texto)}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--mw-indigo),var(--mw-cyan));box-shadow:0 4px 0 #3730A3}
+
+
+/* ══════ FOOTER ══════ */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--mw-border);color:var(--mw-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--mw-indigo);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--mw-indigo);border-radius:50px;transition:all .2s;cursor:pointer;background:white}
+.btn-volver:hover{background:var(--mw-indigo);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.aviso-guardado{position:fixed;bottom:18px;right:18px;z-index:200;background:#065F46;color:white;font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:10px 20px;border-radius:50px;box-shadow:var(--sombra-md);opacity:0;transform:translateY(14px);transition:all .35s ease;pointer-events:none}
+.aviso-guardado.visible{opacity:1;transform:translateY(0)}
+
+
+/* ══════ ANIMACIONES ══════ */
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.sacudir{animation:shakeX .45s ease}
+
+
+/* ══════ RESPONSIVE ══════ */
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .quiz-opciones{grid-template-columns:1fr}
+  .barra-mision-wrap{gap:8px;padding:10px 14px}
+  .acciones-finales{flex-direction:column;align-items:stretch}
+  .btn-completar,.btn-descargar{width:100%}
+}
+</style>
+</head>
+<!--
+<body>
+<div class="container">
+
+
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🔷 SEMANA 3</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="marcador" title="Tu puntaje en vivo">⭐ <span id="marcador-score">0</span> pts</div>
+    <button class="btn-audio" id="btn-audio" onclick="toggleAudio()">🔇 Audio OFF</button>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Aprendí qué es la simetría">📐</span>
+      <span class="pieza" id="pieza-2" title="Completé figuras espejo">🪞</span>
+      <span class="pieza" id="pieza-3" title="Reto de conocimiento">🧠</span>
+      <span class="pieza" id="pieza-4" title="Retos resueltos">✏️</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+    <div class="hero-badge">🔷 MISIÓN SEMANA 3 ACTIVA</div>
+    <h1 class="hero-titulo">🔷 MateWall<br/>¡El Espejo Mágico!</h1>
+    <p class="hero-subtitulo">Matemáticas · Geometría y Simetría · Semana 3 · Periodo 4 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 3°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 14 octubre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="seccion sec-simetria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🪞</span>
+      <h3>Aprende · El Mundo de los Espejos</h3>
+      <small>👆 Toca una tarjeta para voltearla. Toca 🔊 para escucharla.</small>
+    </div>
+
+
+    <div class="conceptos-grid">
+      <div class="concepto-card c1" onclick="flipCard(this)" data-texto="Figura simétrica: una figura es simétrica cuando puedes doblarla por la mitad y las dos partes quedan exactamente iguales.">
+        <span class="concepto-emoji">🦋</span>
+        <div class="concepto-titulo">Figura Simétrica</div>
+        <div class="concepto-desc">Al doblarla, las dos mitades coinciden perfectamente.</div>
+        <div class="concepto-flip">¡Como una mariposa! Sus dos alas son idénticas.</div>
+      </div>
+      <div class="concepto-card c2" onclick="flipCard(this)" data-texto="Eje de simetría: es la línea imaginaria que divide una figura en dos mitades iguales, como si fuera un espejo.">
+        <span class="concepto-emoji">📏</span>
+        <div class="concepto-titulo">Eje de Simetría</div>
+        <div class="concepto-desc">La línea mágica que parte la figura en dos mitades iguales.</div>
+        <div class="concepto-flip">Puede ser vertical, horizontal o diagonal.</div>
+      </div>
+      <div class="concepto-card c3" onclick="flipCard(this)" data-texto="Reflexión: es el movimiento de girar una figura sobre un eje, como cuando te miras en el espejo del baño.">
+        <span class="concepto-emoji">🚿</span>
+        <div class="concepto-titulo">Reflexión</div>
+        <div class="concepto-desc">Girar una figura sobre un eje, igual que en un espejo real.</div>
+        <div class="concepto-flip">Lo que queda a la izquierda pasa a la derecha.</div>
+      </div>
+      <div class="concepto-card c4" onclick="flipCard(this)" data-texto="Simetría en la naturaleza: las hojas, las flores, las abejas y hasta tu cara tienen ejes de simetría. ¡La naturaleza ama la simetría!">
+        <span class="concepto-emoji">🌸</span>
+        <div class="concepto-titulo">Simetría Natural</div>
+        <div class="concepto-desc">Hojas, flores, abejas y estrellas de mar la usan.</div>
+        <div class="concepto-flip">En Chichalá: busca la simetría en una hoja de café 🌿</div>
+      </div>
+    </div>
+
+
+    <div class="espejo-pista" style="border-left-color:var(--mw-indigo);background:rgba(79,70,229,.07);color:#3730A3">
+      💡 <strong>Idea clave:</strong> Si una figura tiene un <strong>eje de simetría</strong>, la mitad que ves... ¡es exactamente igual a la mitad escondida! Tu misión será descubrirla.
+    </div>
+  </div>
+
+
+  <div class="seccion sec-espejo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎯</span>
+      <h3>Misión Espejo · Completa la Figura</h3>
+      <small>Haz clic en los cuadros vacíos para dibujar la otra mitad. ¡Cuidado con los errores!</small>
+    </div>
+
+
+    <div class="espejo-figura-nombre">
+      <span id="espejo-nivel-label">Nivel 1 · La Mariposa 🦋</span>
+      <button class="btn-leer" onclick="hablar(document.getElementById('espejo-consigna').textContent)">🔊 Escuchar</button>
+    </div>
+    <p id="espejo-consigna" style="font-size:.9rem;font-weight:600;color:var(--mw-dim);margin:0
+    #espejo-consigna{font-size:.9rem;font-weight:600;color:var(--mw-dim);margin:0 0 14px}
+
+
+/* ══════ LABORATORIO ESPEJO (canvas) ══════ */
+.espejo-wrap{display:grid;grid-template-columns:1fr;gap:16px}
+.espejo-marco{border:3px solid var(--mw-cyan);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm);position:relative;display:flex;justify-content:center}
+#lienzo-espejo{display:block;max-width:100%;height:auto;touch-action:none;cursor:pointer}
+.espejo-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:2px solid var(--mw-border);border-radius:var```css
+.espejo-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:2px solid var(--mw-border);border-radius:var(--r-md);padding:14px 16px}
+.nivel-info{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;color:#0E7490;background:white;border:2px solid var(--mw-cyan);border-radius:50px;padding:6px 16px}
+.espejo-pista{background:rgba(6,182,212,.08);border-left:5px solid var(--mw-cyan);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#0E7490}
+.btn-espejo{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700;padding:9px 20px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-cyan),var(--mw-verde));color:white;cursor:pointer;box-shadow:0 3px 0 #0E7490;transition:all .15s}
+.btn-espejo:hover{transform:translateY(-2px)}
+.btn-espejo:active{transform:translateY(2px);box-shadow:0 1px 0 #0E7490}
+.btn-espejo.alt{background:linear-gradient(135deg,var(--mw-violeta),var(--mw-indigo));box-shadow:0 3px 0 #4C1D95}
+.btn-espejo.alt:active{box-shadow:0 1px 0 #4C1D95}
+.espejo-feedback{min-height:30px;margin-top:12px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;text-align:center}
+.espejo-feedback.ok{color:#047857}
+.espejo-feedback.no{color:#B91C1C}
+
+
+/* ══════ QUIZ ══════ */
+.evaluacion{margin:24px 0 0;padding:24px;border:3px solid var(--mw-indigo);border-radius:var(--r-lg);background:linear-gradient(135deg,#EEF2FF,#ECFEFF);box-shadow:var(--sombra-sm)}
+.evaluacion-cabecera{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.evaluacion-cabecera h4{font-family:'Fredoka',sans-serif;font-size:1.25rem;margin:4px 0;color:var(--mw-texto)}
+.evaluacion-cabecera p{font-size:.82rem;color:var(--mw-dim);margin:0}
+.evaluacion-etiqueta{font-size:.68rem;font-weight:900;letter-spacing:.1em;color:var(--mw-indigo)}
+.evaluacion-progreso{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:var(--mw-dim);font-size:.75rem;font-weight:800}
+.evaluacion-progreso-barra{height:10px;flex:1;background:white;border-radius:50px;overflow:hidden;border:1px solid rgba(79,70,229,.2)}
+.evaluacion-progreso-barra span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--mw-indigo),var(--mw-cyan));border-radius:50px;transition:width .35s ease}
+.quiz-question{background:white;border-radius:var(--r-md);padding:20px;border:2px solid rgba(79,70,229,.18)}
+.quiz-pregunta-fila{display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
+.quiz-question h5{font-family:'Fredoka',sans-serif;font-size:1.05rem;line-height:1.45;margin:0 0 16px;color:var(--mw-texto)}
+.quiz-opciones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;text-align:left;border:2px solid var(--mw-border);border-radius:var(--r-sm);background:white;color:var(--mw-texto);font:600 .85rem 'Nunito',sans-serif;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--mw-indigo);transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.quiz-option strong{color:var(--mw-indigo);flex-shrink:0}
+.quiz-option.correct{border-color:var(--mw-verde);background:rgba(16,185,129,.12);color:#065F46}
+.quiz-option.incorrect{border-color:var(--mw-rojo);background:rgba(239,68,68,.1);color:#991B1B}
+.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:28px;margin:12px 0 0;font-size:.85rem;font-weight:800}
+.quiz-feedback.correct{color:#047857}.quiz-feedback.incorrect{color:#B91C1C}
+.btn-quiz-next{display:block;margin:16px 0 0 auto;padding:10px 20px;border:0;border-radius:50px;background:linear-gradient(135deg,var(--mw-indigo),var(--mw-cyan));color:white;font:700 .85rem 'Fredoka',sans-serif;cursor:pointer;box-shadow:0 4px 0 #3730A3;transition:all .15s}
+.btn-quiz-next:hover:not(:disabled){transform:translateY(-2px)}
+.btn-quiz-next:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.quiz-result{margin-top:18px;padding:22px;background:white;border:3px solid var(--mw-verde);border-radius:var(--r-md);text-align:center;animation:fadeSlide .5s ease}
+.quiz-result h5{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#047857;margin:0 0 6px}
+.quiz-result p{margin:5px 0;color:var(--mw-texto);font-size:.9rem}
+.rango-badge{display:inline-block;margin-top:10px;padding:8px 24px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;color:white;box-shadow:var(--sombra-sm)}
+.rango-superior{background:linear-gradient(135deg,#059669,#10B981)}
+.rango-alto{background:linear-gradient(135deg,#2563EB,#38BDF8)}
+.rango-basico{background:linear-gradient(135deg,#F97316,#FACC15);color:#78350F}
+.rango-bajo{background:linear-gradient(135deg,#EF4444,#EC4899)}
+
+
+/* ══════ RETOS DE ESCRITURA ══════ */
+.reto-box{background:linear-gradient(135deg,#FEFCE8,#FFF7ED);border:2px dashed var(--mw-amarillo);border-radius:var(--r-md);padding:18px 22px;margin-top:16px}
+.reto-titulo{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:#A16207;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.linea{border-bottom:2px dashed #CBD5E1;height:38px;margin-bottom:6px;border-radius:2px;transition:border-color .2s}
+.linea:focus-within{border-color:var(--mw-indigo)}
+.linea input{border:none;background:transparent;width:100%;height:100%;font:600 .9rem 'Nunito',sans-serif;color:var(--mw-texto);outline:none}
+.cc-caja{background:rgba(79,70,229,.06);border:2px solid var(--mw-indigo);border-radius:var(--r-md);padding:18px;margin-top:14px}
+.cc-caja p{font-weight:700;color:#3730A3;font-size:.92rem;margin:0 0 10px}
+
+
+/* ══════ LABORATORIO CREA TU FIGURA ══════ */
+.lab-lienzo-marco{border:3px solid var(--mw-violeta);border-radius:var(--r-md);overflow:hidden;background:white;box-shadow:var(--sombra-sm)}
+#lienzo-libre{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;background-image:linear-gradient(rgba(124,58,237,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.08) 1px,transparent 1px);background-size:20px 20px}
+.lab-controles{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#FAF5FF,#FDF2F8);border:2px solid var(--mw-border);border-radius:var(--r-md);padding:14px 16px;margin-top:12px}
+.lab-grupo{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;color:var(--mw-dim)}
+.swatch{width:30px;height:30px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s}
+.swatch:hover{transform:scale(1.15)}
+.swatch.sel{outline:3px solid var(--mw-violeta);outline-offset:2px;transform:scale(1.12)}
+.lab-btn{font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:8px 16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-violeta),var(--mw-rosa));color:white;cursor:pointer;box-shadow:0 3px 0 #5B21B6;transition:all .15s}
+.lab-btn:hover{transform:translateY(-2px)}
+.lab-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #5B21B6}
+.lab-slider{accent-color:var(--mw-violeta);cursor:pointer}
+.lab-pista{background:rgba(124,58,237,.07);border-left:5px solid var(--mw-violeta);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 16px;font-size:.85rem;font-weight:600;color:#5B21B6;margin-top:12px}
+
+
+/* ══════ COFRE ══════ */
+.cofre-wrap{text-align:center;margin:20px 0}
+.btn-cofre{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;padding:16px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-amarillo),var(--mw-naranja));color:white;cursor:pointer;box-shadow:0 6px 0 #A16207,0 8px 20px rgba(249,115,22,.35);transition:all .15s;animation:wobbleBtn 3s ease-in-out infinite;letter-spacing:.04em}
+.btn-cofre:hover{transform:translateY(-4px)}
+.btn-cofre:active{transform:translateY(3px);box-shadow:0 2px 0 #A16207}
+@keyframes wobbleBtn{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--mw-cyan);border```css
+.cofre-secreto{display:none;background:linear-gradient(135deg,#ECFEFF,#F0FDF4);border:3px solid var(--mw-cyan);border-radius:var(--r-lg);padding:24px;margin-top:16px;animation:fadeSlide .5s ease;text-align:left}
+.cofre-secreto.visible{display:block}
+.cofre-secreto-titulo{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;color:var(--mw-esmeralda);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cofre-secreto p{font-size:.92rem;color:var(--mw-texto);line-height:1.8;margin-bottom:10px}
+.cofre-dato{background:white;border:2px solid var(--mw-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.85rem;font-weight:600;color:var(--mw-texto);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;transition:transform .2s}
+.cofre-dato:hover{transform:translateX(4px)}
+.cofre-dato-icon{font-size:1.4rem;flex-shrink:0}
+
+
+/* ══════ AUTOEVALUACIÓN ══════ */
+.auto-grid{display:grid;gap:10px;margin-top:14px}
+.auto-item{display:flex;align-items:center;gap:12px;background:white;border:2px solid var(--mw-border);border-radius:var(--r-sm);padding:12px 16px;cursor:pointer;transition:all .2s;font-weight:700;font-size:.88rem}
+.auto-item:hover{border-color:var(--mw-verde);transform:translateX(4px)}
+.auto-item input{width:22px;height:22px;accent-color:var(--mw-verde);cursor:pointer;flex-shrink:0}
+.auto-item.marcado{border-color:var(--mw-verde);background:rgba(16,185,129,.08)}
+.auto-total{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;color:var(--mw-esmeralda);text-align:center;margin-top:14px}
+
+
+/* ══════ BOTONES FINALES ══════ */
+.acciones-finales{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px}
+.btn-completar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-verde),var(--mw-cyan));color:white;cursor:pointer;box-shadow:0 5px 0 #047857,0 8px 20px rgba(16,185,129,.3);transition:all .15s}
+.btn-completar:hover{transform:translateY(-3px)}
+.btn-completar:active{transform:translateY(2px);box-shadow:0 2px 0 #047857}
+.btn-descargar{font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:700;padding:12px 30px;border:2px solid var(--mw-indigo);border-radius:50px;background:white;color:var(--mw-indigo);cursor:pointer;transition:all .15s}
+.btn-descargar:hover{background:var(--mw-indigo);color:white;transform:translateY(-3px)}
+.btn-siguiente-semana{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;padding:14px 34px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--mw-violeta),var(--mw-rosa));color:white;cursor:pointer;box-shadow:0 5px 0 #6D28D9,0 8px 20px rgba(124,58,237,.3);transition:all .15s;display:none;margin:20px auto 0;animation:pulseBadge 2.5s ease-in-out infinite}
+.btn-siguiente-semana.visible{display:block}
+.btn-siguiente-semana:hover{transform:translateY(-3px)}
+
+
+/* ══════ DIPLOMA ══════ */
+.diploma-wrap{display:none;background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(6,182,212,.1),rgba(124,58,237,.08));border:4px solid var(--mw-indigo);border-radius:var(--r-xl);padding:36px 28px;text-align:center;margin:24px 0;position:relative;overflow:hidden;animation:fadeSlide .6s ease}
+.diploma-wrap.visible{display:block}
+.diploma-wrap::before,.diploma-wrap::after{content:'⭐';position:absolute;font-size:6rem;opacity:.06;pointer-events:none}
+.diploma-wrap::before{top:-20px;left:-10px}
+.diploma-wrap::after{bottom:-20px;right:-10px;transform:rotate(20deg)}
+.diploma-titulo{font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;color:var(--mw-dim);margin-bottom:8px}
+.diploma-nombre-display{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--mw-indigo);margin:8px 0 14px}
+.diploma-insignia{font-size:4rem;display:block;margin:14px auto;animation:floatIcon 3s ease-in-out infinite alternate}
+.diploma-texto{font-size:.9rem;color:var(--mw-texto);line-height:1.8;max-width:480px;margin:0 auto 16px}
+.diploma-stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+.diploma-stat{background:white;border:2px solid var(--mw-border);border-radius:50px;padding:6px 18px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:700;color:var(--mw-texto)}
+.diploma-grado-badge{display:inline-block;padding:8px 28px;border-radius:50px;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:white;background:linear-gradient(135deg,var(--mw-indigo),var(--mw-cyan));box-shadow:0 4px 0 #3730A3}
+
+
+/* ══════ FOOTER ══════ */
+.footer{text-align:center;margin-top:36px;padding-top:20px;border-top:2px solid var(--mw-border);color:var(--mw-dim);font-size:.82rem}
+.footer p{margin:3px 0}
+.btn-volver{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--mw-indigo);text-decoration:none;font-weight:800;font-size:.9rem;padding:10px 24px;border:2px solid var(--mw-indigo);border-radius:50px;transition:all .2s;cursor:pointer;background:white}
+.btn-volver:hover{background:var(--mw-indigo);color:white;transform:translateY(-2px);box-shadow:var(--sombra-sm)}
+.aviso-guardado{position:fixed;bottom:18px;right:18px;z-index:200;background:#065F46;color:white;font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:700;padding:10px 20px;border-radius:50px;box-shadow:var(--sombra-md);opacity:0;transform:translateY(14px);transition:all .35s ease;pointer-events:none}
+.aviso-guardado.visible{opacity:1;transform:translateY(0)}
+
+
+/* ══════ ANIMACIONES ══════ */
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes caerConfeti{0%{transform:translateY(-40px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.sacudir{animation:shakeX .45s ease}
+
+
+/* ══════ RESPONSIVE ══════ */
+@media (max-width:640px){
+  .container{padding:18px}
+  .hero-header{padding:24px 16px}
+  .conceptos-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-titulo{font-size:1.6rem}
+  .quiz-opciones{grid-template-columns:1fr}
+  .barra-mision-wrap{gap:8px;padding:10px 14px}
+  .acciones-finales{flex-direction:column;align-items:stretch}
+  .btn-completar,.btn-descargar{width:100%}
+}
+</style>
+-->
+<body>
+<div class="container">
+
+
+  <!-- BARRA DE MISIÓN -->
+  <div class="barra-mision-wrap">
+    <span class="barra-titulo">🔷 SEMANA 3</span>
+    <div class="barra-track"><div class="barra-fill" id="barra-fill"></div></div>
+    <div class="marcador" title="Tu puntaje en vivo">⭐ <span id="marcador-score">0</span> pts</div>
+    <button class="btn-audio" id="btn-audio" onclick="toggleAudio()">🔇 Audio OFF</button>
+    <div class="barra-piezas" id="barra-piezas">
+      <span class="pieza" id="pieza-1" title="Aprendí qué es la simetría">📐</span>
+      <span class="pieza" id="pieza-2" title="Completé figuras espejo">🪞</span>
+      <span class="pieza" id="pieza-3" title="Reto de conocimiento">🧠</span>
+      <span class="pieza" id="pieza-4" title="Retos resueltos">✏️</span>
+      <span class="pieza" id="pieza-5" title="Misión completa">🏆</span>
+    </div>
+  </div>
+
+
+  <!-- HERO HEADER -->
+  <div class="hero-header">
+    <div class="hero-inst">IE TÉCNICA CAMACHO ANGARITA · SEDE CHICHALÁ</div>
+        <div class="hero-badge">🔷 MISIÓN SEMANA 3 ACTIVA</div>
+    <h1 class="hero-titulo">🔷 MateWall<br/>¡El Espejo Mágico!</h1>
+    <p class="hero-subtitulo">Matemáticas · Geometría y Simetría · Semana 3 · Periodo 4 · Grados 3°, 4° y 5°</p>
+    <div class="hero-datos">
+      <span class="hero-dato">📅 Vereda Chichalá</span>
+      <span class="hero-dato">🌿 Corregimiento El Limón</span>
+      <span class="hero-dato">📍 Chaparral, Tolima</span>
+      <span class="hero-dato">👨‍🏫 Profe Nelson</span>
+    </div>
+    <div class="hero-campos">
+      <div class="hero-campo">
+        <label>👤 NOMBRE COMPLETO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Escribe tu nombre aquí..." id="input-nombre"/>
+      </div>
+      <div class="hero-campo">
+        <label>🎓 GRADO</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 3°" id="input-grado"/>
+      </div>
+      <div class="hero-campo">
+        <label>📅 FECHA</label>
+        <input class="hero-campo-linea" type="text" placeholder="Ej: 14 octubre 2026" id="input-fecha"/>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════
+       SECCIÓN 1: ¿QUÉ ES LA SIMETRÍA?
+  ══════════════════════ -->
+  <div class="seccion sec-simetria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🪞</span>
+      <h3>Aprende · El Mundo de los Espejos</h3>
+      <small>👆 Toca una tarjeta para voltearla. Toca 🔊 para escucharla.</small>
+    </div>
+
+
+    <div class="conceptos-grid">
+      <div class="concepto-card c1" onclick="flipCard(this)" data-texto="Figura simétrica: una figura es simétrica cuando puedes doblarla por la mitad y las dos partes quedan exactamente iguales.">
+        <span class="concepto-emoji">🦋</span>
+        <div class="concepto-titulo">Figura Simétrica</div>
+        <div class="concepto-desc">Al doblarla, las dos mitades coinciden perfectamente.</div>
+        <div class="concepto-flip">¡Como una mariposa! Sus dos alas son idénticas.</div>
+      </div>
+      <div class="concepto-card c2" onclick="flipCard(this)" data-texto="Eje de simetría: es la línea imaginaria que divide una figura en dos mitades iguales, como si fuera un espejo.">
+        <span class="concepto-emoji">📏</span>
+        <div class="concepto-titulo">Eje de Simetría</div>
+        <div class="concepto-desc">La línea mágica que parte la figura en dos mitades iguales.</div>
+        <div class="concepto-flip">Puede ser vertical, horizontal o diagonal.</div>
+      </div>
+      <div class="concepto-card c3" onclick="flipCard(this)" data-texto="Reflexión: es el movimiento de girar una figura sobre un eje, como cuando te miras en el espejo del baño.">
+        <span class="concepto-emoji">🚿</span>
+        <div class="concepto-titulo">Reflexión</div>
+        <div class="concepto-desc">Girar una figura sobre un eje, igual que en un espejo real.</div>
+        <div class="concepto-flip">Lo que queda a la izquierda pasa a la derecha.</div>
+      </div>
+      <div class="concepto-card c4" onclick="flipCard(this)" data-texto="Simetría en la naturaleza: las hojas, las flores, las abejas y hasta tu cara tienen ejes de simetría. La naturaleza ama la simetría.">
+        <span class="concepto-emoji">🌸</span>
+        <div class="concepto-titulo">Simetría Natural</div>
+        <div class="concepto-desc">Hojas, flores, abejas y estrellas de mar la usan.</div>
+        <div class="concepto-flip">En Chichalá: busca la simetría en una hoja de café 🌿</div>
+      </div>
+    </div>
+
+
+    <div class="espejo-pista" style="border-left-color:var(--mw-indigo);background:rgba(79,70,229,.07);color:#3730A3">
+      💡 <strong>Idea clave:</strong> Si una figura tiene un <strong>eje de simetría</strong>, la mitad que ves... ¡es exactamente igual a la mitad escondida! Tu misión será descubrirla.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════
+       SECCIÓN 2: LABORATORIO ESPEJO (canvas interactivo)
+  ══════════════════════ -->
+  <div class="seccion sec-espejo">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎯</span>
+      <h3>Misión Espejo · Completa la Figura</h3>
+      <small>Haz clic en los cuadros vacíos para dibujar la otra mitad.</small>
+    </div>
+
+
+    <div class="espejo-figura-nombre">
+      <span id="espejo-nivel-label">Nivel 1 · La Mariposa 🦋</span>
+      <button class="btn-leer" onclick="hablar(document.getElementById('espejo-consigna').textContent)">🔊 Escuchar</button>
+    </div>
+    <p id="espejo-consigna" style="font-size:.9rem;font-weight:600;color:var(--mw-dim);margin:0 0 14px">
+      Observa la mitad coloreada a la izquierda del eje punteado. Haz clic en los cuadros de la derecha para completar la figura. Cuando creas que está lista, pulsa ✔ Comprobar.
+    </p>
+
+
+    <div class="espejo-wrap">
+      <div class="espejo-marco">
+        <canvas id="lienzo-espejo" width="640" height="420"></canvas>
+      </div>
+      <div class="espejo-controles">
+        <span class="nivel-info" id="nivel-info">Nivel 1 / 3</span>
+        <button class="btn-espejo" onclick="comprobarEspejo()">✔ Comprobar</button>
+        <button class="btn-espejo alt" onclick="reiniciarNivel()">↩️ Reiniciar nivel</button>
+        <button class="btn-espejo alt" onclick="verPista()">💡 Pista</button>
+        <button class="btn-espejo" id="btn-siguiente-nivel" onclick="siguienteNivel()" style="display:none">Siguiente nivel ➡️</button>
+      </div>
+      <div class="espejo-feedback" id="espejo-feedback"></div>
+      <div class="espejo-pista" id="espejo-hint-box" style="display:none">
+        💡 <strong>Pista:</strong> Cada cuadro coloreado a la izquierda tiene su gemelo exacto a la misma altura, pero al otro lado del eje. ¡Cuenta las filas!
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════
+       SECCIÓN 3: RETO DE CONOCIMIENTO (quiz)
+  ══════════════════════ -->
+  <div class="seccion sec-quiz">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🧠</span>
+      <h3>Reto de Conocimiento · ¡Demuestra lo que Aprendiste!</h3>
+      <small>Responde las 8 preguntas. Cada acierto suma puntos para tu insignia.</small>
+    </div>
+
+
+    <div class="evaluacion">
+      <div class="evaluacion-cabecera">
+        <div>
+          <div class="evaluacion-etiqueta">EVALUACIÓN FORMATIVA</div>
+          <h4>Geometría · Ejes de Simetría y Figuras</h4>
+          <p>Grados 3°, 4° y 5° · Periodo 4 · Semana 3</p>
+        </div>
+        <div class="evaluacion-progreso" style="margin:0;min-width:160px">
+          <span>⭐ <span id="quiz-score">0</span>/8</span>
+        </div>
+      </div>
+      <div id="quiz-contenedor"></div>
+      <button class="btn-quiz-next" id="btn-siguiente" onclick="siguientePregunta()" disabled>Siguiente ➡️</button>
+      <div id="quiz-final"></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════
+       SECCIÓN 4: RETOS DE ESCRITURA Y CONTEXTO
+  ══════════════════════ -->
+  <div class="seccion sec-retos">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✏️</span>
+      <h3>Mis Retos · La Simetría en Mi Vida</h3>
+      <small>Escribe con letra clara. Tus respuestas se guardan solas.</small>
+    </div>
+
+
+    <div class="cc-caja">
+      <p>💬 Observa a tu alrededor y responde:</p>
+      <div class="linea"><input type="text" id="reto-1" placeholder="1) Nombra 3 objetos de tu casa que tengan simetría: ___"/></div>
+      <div class="linea"><input type="text" id="reto-2" placeholder="2) ¿Cuántos ejes de simetría tiene un cuadrado? ___"/></div>
+      <div class="linea"><input type="text" id="reto-3" placeholder="3) Dibuja o describe una letra del abecedario que NO es simétrica: ___"/></div>
+      <div class="linea"><input type="text" id="reto-4" placeholder="4) ¿Qué forma simétrica ves en una flor del patio? ___"/></div>
+    </div>
+
+
+    <div class="reto-box">
+      <div class="reto-titulo">⭐ Reto para pensar en casa</div>
+      <p style="font-size:.9rem;margin:0 0 8px">Sal al patio y busca 3 hojas o piedras con simetría. Cuéntalas en clase: <strong>¿cuántos ejes tenía cada una?</strong> 🌿☕</p>
+      <div class="linea"><input type="text" id="reto-5" placeholder="Mi hallazgo de la hoja 1: ___"/></div>
+      <div class="linea"><input type="text" id="reto-6" placeholder="Mi hallazgo de la hoja 2: ___"/></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════
+       SECCIÓN 5: CREA TU FIGURA SIMÉTRICA (dibujo libre)
+  ══════════════════════ -->
+  <div class="seccion sec-crea">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">🎨</span>
+      <h3>Laboratorio · Inventa Tu Figura Simétrica</h3>
+      <small>Dibuja tu propia figura perfecta sobre el eje. ¡Sé creativo!</small>
+    </div>
+
+
+    <div class="lab-lienzo-marco">
+      <canvas id="lienzo-libre" width="800" height="420"></canvas>
+    </div>
+    <div class="lab-controles">
+      <div class="lab-grupo">
+        <span>🎨 Color:</span>
+        <div class="swatch sel" style="background:#7C3AED" data-color="#7C3AED" onclick="elegirColor(this)"></div>
+        <div class="swatch" style="background:#06B6D4" data-color="#06B6D4" onclick="elegirColor(this)"></div>
+        <div class="swatch" style="background:#10B981" data-color="#10B981" onclick="elegirColor(this)"></div>
+        <div class="swatch" style="background:#FACC15" data-color="#FACC15" onclick="elegirColor(this)"></div>
+        <div class="swatch" style="background:#F97316" data-color="#F97316" onclick="elegirColor(this)"></div>
+        <div class="swatch" style="background:#EC4899" data-color="#EC4899" onclick="elegirColor(this)"></div>
+      </div>
+      <div class="lab-grupo">
+        <span>✏️ Grosor:</span>
+        <input type="range" class="lab-slider" id="grosor" min="2" max="24" value="6"/>
+      </div>
+      <div class="lab-grupo">
+        <button class="lab-btn" onclick="dibujarEjeVertical()">📏 Trazar eje</button>
+        <button class="lab-btn" onclick="limpiarLienzoLibre()">🗑️ Limpiar</button>
+        <button class="lab-btn" onclick="guardarFigura()">💾 Guardar</button>
+      </div>
+    </div>
+    <div class="lab-pista">
+      💡 <strong>Pista creativa:</strong> Traza primero el eje con 📏, luego dibuja solo la mitad. Puedes usar el espejo mental: lo que va arriba a la izquierda debe repetirse arriba a la derecha.
+    </div>
+  </div>
+
+
+  <!-- COFRE DEL SABER -->
+  <div class="cofre-wrap">
+    <button class="btn-cofre" onclick="abrirCofre()">🔓 Abrir Cofre Matemágico</button>
+  </div>
+  <div class="cofre-secreto" id="cofre-secreto">
+    <div class="cofre-secreto-titulo">🗝️ Secretos de la Simetría Desvelados</div>
+    <p>¿Sabías que...</p>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🦋</span>
+      <div><strong>Las mariposas</strong> son tan simétricas que los científicos las usan como modelo para estudiar cómo crecen las alas.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🏛️</span>
+      <div><strong>El Taj Mahal</strong> es casi perfectamente simétrico. Si lo doblaras por la mitad, sus dos lados coincidirían casi exactamente.</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">❄️</span>
+      <div><strong>Los copos de nieve</strong> tienen 6 ejes de simetría. ¡Ningún copo del mundo es igual a otro, pero todos son simétricos!</div>
+    </div>
+    <div class="cofre-dato">
+      <span class="cofre-dato-icon">🌿</span>
+      <div><strong>En Chichalá</strong> la simetría está en las alas de las libélulas del río y en las hojas del café. ¡La matemática también vive en el campo!</div>
+    </div>
+  </div>
+
+
+  <!-- AUTOEVALUACIÓN -->
+  <div class="seccion sec-simetria">
+    <div class="seccion-titulo">
+      <span class="seccion-titulo-icono">✅</span>
+      <h3>Autoevaluación · ¿Cómo me fue?</h3>
+      <small>Marca lo que lograste hoy.</small>
+    </div>
+    <div class="auto-grid" id="auto-grid">
+      <label class="auto-item"><input type="checkbox" id="auto-1" onchange="marcarAuto(this)"/> Entendí qué es un eje de simetría.</label>
+      <label class="auto-item"><input type="checkbox" id="auto-2" onchange="marcarAuto(this)"/> Pude completar figuras espejo sin ayuda.</label>
+      <label class="auto-item"><input type="checkbox" id="auto-3" onchange="marcarAuto(this)"/> Respondí bien el reto de conocimiento.</label>
+      <label class="auto-item"><input type="checkbox" id="auto-4" onchange="marcarAuto(this)"/> Encontré simetría en objetos reales de mi casa.</label>
+      <label class="auto-item"><input type="checkbox" id="auto-5" onchange="marcarAuto(this)"/> Creé mi propia figura simétrica en el lienzo.</label>
+    </div>
+    <div class="auto-total" id="auto-total">Logros marcados: 0 / 5</div>
+    </div>
+
+
+  <!-- BOTONES FINALES -->
+  <div class="acciones-finales">
+    <button class="btn-completar" id="btn-completar" onclick="completarMision()">🏆 Completar Misión</button>
+    <button class="btn-descargar" onclick="descargarTrabajo()">📥 Descargar mi Trabajo</button>
+  </div>
+  <button class="btn-siguiente-semana" id="btn-siguiente-semana" onclick="window.location.href='semana4.html'">🚀 ¡Continuar a Semana 4!</button>
+
+
+  <!-- DIPLOMA -->
+  <div class="diploma-wrap" id="diploma">
+    <div class="diploma-titulo">CERTIFICADO DE COMPLETACIÓN</div>
+    <div class="diploma-nombre-display" id="diploma-nombre">Estudiante</div>
+    <span class="diploma-insignia">🏆</span>
+    <div class="diploma-stats">
+      <span class="diploma-stat" id="diploma-score">⭐ 0 pts</span>
+      <span class="diploma-stat" id="diploma-porcentaje">📊 0%</span>
+      <span class="diploma-stat" id="diploma-rango">📋 Rango: --</span>
+    </div>
+    <p class="diploma-texto">Ha completado exitosamente la <strong>Semana 3 · MateWall</strong>, explorando los ejes de simetría con creatividad y pensamiento geométrico.</p>
+    <div class="diploma-grado-badge" id="diploma-grado">3° - 4° - 5°</div>
+    <p style="font-size:0.75rem;margin-top:16px;color:var(--mw-dim)">IE Técnica Camacho Angarita · Sede Chichalá · Profe Nelson</p>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🌿 Matemáticas con propósito · Chichalá, Tolima</p>
+    <p>👨‍🏫 Diseñado con amor por el Profe Nelson</p>
+    <button class="btn-volver" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">⬆️ Volver arriba</button>
+  </div>
+
+
+  <!-- AVISO GUARDADO -->
+  <div class="aviso-guardado" id="aviso-guardado">💾 Trabajo guardado</div>
+
+
+</div><!-- fin container -->
+
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT COMPLETO
+══════════════════════════════════════════════ -->
+<script>
+/* ═════ VARIABLES GLOBALES ═════ */
+let quizIndex = 0, quizScore = 0, respondida = false;
+let audioActivo = false;
+let nivelActual = 0;
+let marcadorScore = 0;
+let piezasObtenidas = 0;
+
+/* ═════ DATOS DE NIVELES ESPEJO ═════ */
+const nivelesEspejo = [
+  {
+    nombre: 'La Mariposa 🦋',
+    filas: 6, columnas: 8,
+    consigna: 'Observa la mitad coloreada a la izquierda del eje punteado. Haz clic en los cuadros de la derecha para completar la mariposa.',
+    pistas: 'Cada cuadro coloreado a la izquierda tiene su gemelo exacto a la misma altura, pero al otro lado del eje. ¡Cuenta las filas!',
+    objetivo: [
+      [1,1,0,0,0,1,1,0],
+      [1,1,1,0,0,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,0,0,1,1,0],
+      [0,1,0,0,0,0,1,0]
+    ]
+  },
+  {
+    nombre: 'El Corazón ❤️',
+    filas: 7, columnas: 8,
+    consigna: 'Completa el corazón. Presta atención a la forma curva.',
+    pistas: 'El corazón es más ancho arriba y se estrecha hacia abajo. Busca el patrón.',
+    objetivo: [
+      [0,1,1,0,0,1,1,0],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,1,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0]
+    ]
+  },
+  {
+    nombre: 'El Árbol 🌳',
+    filas: 8, columnas: 8,
+    consigna: 'Completa el árbol. ¡Cuidado con la copa y el tronco!',
+    pistas: 'La copa es ancha arriba y el tronco es delgado abajo.',
+    objetivo: [
+      [0,0,1,0,0,0,1,0],
+      [0,1,1,1,1,1,1,0],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,1,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,0,0,0,0],
+      [0,0,0,1,0,0,0,0]
+    ]
+  }
+];
+
+/* ═════ DATOS QUIZ ═════ */
+const preguntas = [
+  {
+    pregunta: '¿Qué es un eje de simetría?',
+    opciones: [
+      'Una línea que divide una figura en dos partes iguales',
+      'Un color brillante',
+      'Una forma redonda',
+      'Un número par'
+    ],
+    correcta: 0,
+    explicacion: '✅ ¡Correcto! Un eje de simetría divide la figura en dos mitades que son espejo una de la otra.'
+  },
+  {
+    pregunta: '¿Cuál de estas figuras tiene un eje de simetría vertical?',
+    opciones: [
+      'Un triángulo escaleno',
+      'Una mariposa',
+      'Un rectángulo torcido',
+      'Una nube'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Exacto! Una mariposa tiene un eje de simetría vertical: su cuerpo es el eje.'
+  },
+  {
+    pregunta: 'Si doblas una hoja por la mitad y los bordes coinciden, ¿qué tiene la hoja?',
+    opciones: [
+      'Un eje de simetría',
+      'Cuatro esquinas',
+      'Un color verde',
+      'Un borde rugoso'
+    ],
+    correcta: 0,
+    explicacion: '✅ ¡Perfecto! Si al doblar coinciden los bordes, esa línea de doblez es un eje de simetría.'
+  },
+  {
+    pregunta: '¿Cuántos ejes de simetría tiene un cuadrado?',
+    opciones: [
+      '1',
+      '2',
+      '4',
+      '0'
+    ],
+    correcta: 2,
+    explicacion: '✅ ¡Muy bien! El cuadrado tiene 4 ejes: vertical, horizontal y dos diagonales.'
+  },
+  {
+    pregunta: '¿Cuál letra del abecedario NO tiene eje de simetría vertical?',
+    opciones: [
+      'A',
+      'M',
+      'F',
+      'T'
+    ],
+    correcta: 2,
+    explicacion: '✅ Correcto. La letra F no es simétrica por la mitad vertical.'
+  },
+  {
+    pregunta: '¿Qué animal es conocido por su simetría perfecta?',
+    opciones: [
+      'La serpiente',
+      'La estrella de mar',
+      'El caracol',
+      'La araña'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Exacto! La estrella de mar tiene simetría radial con 5 ejes.'
+  },
+  {
+    pregunta: '¿La reflexión en geometría es como mirar...',
+    opciones: [
+      'Un dibujo',
+      'Un espejo',
+      'Una pintura',
+      'Un mapa'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Perfecto! La reflexión es como mirror: lo izquierda se convierte en derecha.'
+  },
+  {
+    pregunta: '¿Qué forma geométrica tiene un eje de simetría diagonal?',
+    opciones: [
+      'El círculo',
+      'El rombo',
+      'El triángulo',
+      'El rectángulo'
+    ],
+    correcta: 1,
+    explicacion: '✅ ¡Bien hecho! El rombo tiene 2 ejes diagonales de simetría.'
+  }
+];
+
+/* ═════ AUDIO (Speech Synthesis) ═════ */
+function toggleAudio() {
+  audioActivo = !audioActivo;
+  const btn = document.getElementById('btn-audio');
+  btn.textContent = audioActivo ? '🔊 Audio ON' : '🔇 Audio OFF';
+  btn.classList.toggle('activo', audioActivo);
+  if (!audioActivo) window.speechSynthesis.cancel();
+}
+
+function hablar(texto) {
+  if (!audioActivo) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(texto);
+  utter.lang = 'es-CO';
+  utter.rate = 0.9;
+  utter.pitch = 1.05;
+  window.speechSynthesis.speak(utter);
+}
+
+/* ═════ TARJETAS FLIP ═════ */
+function flipCard(card) {
+  card.classList.toggle('flipped');
+  // audio opcional
+  const texto = card.getAttribute('data-texto') || card.querySelector('.concepto-desc')?.textContent;
+  if (texto && audioActivo) hablar(texto);
+}
+
+/* ═════ LIENZO ESPEJO ═════ */
+let lienzoEspejo, ctxEspejo, estadoCeldas = [];
+let celdaAncho, celdaAlto;
+
+function initLienzoEspejo() {
+  lienzoEspejo = document.getElementById('lienzo-espejo');
+  if (!lienzoEspejo) return;
+  ctxEspejo = lienzoEspejo.getContext('2d');
+  lienzoEspejo.width = 640;
+  lienzoEspejo.height = 420;
+  ctxEspejo.fillStyle = '#FFFFFF';
+  ctxEspejo.fillRect(0, 0, 640, 420);
+
+  lienzoEspejo.addEventListener('mousedown', clickEspejo);
+  lienzoEspejo.addEventListener('touchstart', e => { e.preventDefault(); clickEspejo(getTouchPos(e)); });
+  cargarNivel(0);
+}
+
+function getTouchPos(e) {
+  const rect = lienzoEspejo.getBoundingClientRect();
+  const touch = e.touches[0];
+  return { offsetX: (touch.clientX - rect.left) * (640 / rect.width), offsetY: (touch.clientY - rect.top) * (420 / rect.height) };
+}
+
+function cargarNivel(idx) {
+  nivelActual = idx;
+  const nivel = nivelesEspejo[idx];
+  if (!nivel) return;
+
+  document.getElementById('espejo-nivel-label').textContent = `Nivel ${idx+1} · ${nivel.nombre}`;
+  document.getElementById('espejo-consigna').textContent = nivel.consigna;
+  document.getElementById('nivel-info').textContent = `Nivel ${idx+1} / ${nivelesEspejo.length}`;
+  document.getElementById('espejo-feedback').textContent = '';
+  document.getElementById('espejo-feedback').className = 'espejo-feedback';
+  document.getElementById('espejo-hint-box').style.display = 'none';
+  document.getElementById('btn-siguiente-nivel').style.display = 'none';
+
+  // guardar estado
+  estadoCeldas = [];
+  for (let r = 0; r < nivel.filas; r++) {
+    estadoCeldas[r] = [];
+    for (let c = 0; c < nivel.columnas; c++) {
+      estadoCeldas[r][c] = 0; // 0=vacío, 1=coloreado por usuario
+    }
+  }
+  celdaAncho = 640 / nivel.columnas;
+  celdaAlto = 420 / nivel.filas;
+  dibujarNivel();
+}
+
+function dibujarNivel() {
+  const nivel = nivelesEspejo[nivelActual];
+  ctxEspejo.fillStyle = '#FFFFFF';
+  ctxEspejo.fillRect(0, 0, 640, 420);
+
+  // eje vertical punteado en el centro
+  const cx = 640 / 2;
+  ctxEspejo.setLineDash([6, 4]);
+  ctxEspejo.strokeStyle = '#94A3B8';
+  ctxEspejo.lineWidth = 2;
+  ctxEspejo.beginPath();
+  ctxEspejo.moveTo(cx, 0);
+  ctxEspejo.lineTo(cx, 420);
+  ctxEspejo.stroke();
+  ctxEspejo.setLineDash([]);
+
+  // cuadrícula
+  ctxEspejo.strokeStyle = '#E2E8F0';
+  ctxEspejo.lineWidth = 1;
+  for (let c = 0; c <= nivel.columnas; c++) {
+    ctxEspejo.beginPath();
+    ctxEspejo.moveTo(c * celdaAncho, 0);
+    ctxEspejo.lineTo(c * celdaAncho, 420);
+    ctxEspejo.stroke();
+  }
+  for (let r = 0; r <= nivel.filas; r++) {
+    ctxEspejo.beginPath();
+    ctxEspejo.moveTo(0, r * celdaAlto);
+    ctxEspejo.lineTo(640, r * celdaAlto);
+    ctxEspejo.stroke();
+  }
+
+  // mitad original (izquierda) coloreada
+  ctxEspejo.fillStyle = '#4F46E5';
+  for (let r = 0; r < nivel.filas; r++) {
+    for (let c = 0; c < nivel.columnas / 2; c++) {
+      if (nivel.objetivo[r][c]) {
+        ctxEspejo.fillRect(c * celdaAncho + 1, r * celdaAlto + 1, celdaAncho - 2, celdaAlto - 2);
+      }
+    }
+  }
+
+  // mitad usuario (derecha) coloreada
+  ctxEspejo.fillStyle = '#06B6D4';
+  for (let r = 0; r < nivel.filas; r++) {
+    for (let c = nivel.columnas / 2; c < nivel.columnas; c++) {
+      if (estadoCeldas[r][c]) {
+        ctxEspejo.fillRect(c * celdaAncho + 1, r * celdaAlto + 1, celdaAncho - 2, celdaAlto - 2);
+      }
+    }
+  }
+}
+
+function clickEspejo(e) {
+  const col = Math.floor(e.offsetX / celdaAncho);
+  const row = Math.floor(e.offsetY / celdaAlto);
+  const nivel = nivelesEspejo[nivelActual];
+  if (!nivel || col < nivel.columnas / 2 || row >= nivel.filas) return;
+
+  // toggle celda derecha
+  estadoCeldas[row][col] = estadoCeldas[row][col] ? 0 : 1;
+  dibujarNivel();
+}
+
+function comprobarEspejo() {
+  const nivel = nivelesEspejo[nivelActual];
+  let aciertos = 0, errores = 0, vacios = 0;
+
+  for (let r = 0; r < nivel.filas; r++) {
+    for (let c = nivel.columnas / 2; c < nivel.columnas; c++) {
+      const esperado = nivel.objetivo[r][c] ? 1 : 0;
+      const dado = estadoCeldas[r][c];
+      if (dado === 1 && esperado === 1) aciertos++;
+      else if (dado === 1 && esperado === 0) errores++;
+      else if (dado === 0 && esperado === 1) vacios++;
+    }
+  }
+
+  const fb = document.getElementById('espejo-feedback');
+  if (errores === 0 && vacios === 0) {
+    fb.textContent = '🏆 ¡Perfecto! ¡Completaste la figura espejo!';
+    fb.className = 'espejo-feedback ok';
+    document.getElementById('btn-siguiente-nivel').style.display = 'inline-block';
+    sumarPuntos(50);
+    document.getElementById('pieza-2').classList.add('obtenida');
+    crearConfeti();
+  } else {
+    fb.textContent = `💡 ${aciertos} bien, ${errores} de más, ${vacios} por llenar. ¡Intenta de nuevo!`;
+    fb.className = 'espejo-feedback no';
+    lienzoEspejo.classList.add('sacudir');
+    setTimeout(() => lienzoEspejo.classList.remove('sacudir'), 500);
+  }
+}
+
+function reiniciarNivel() {
+  cargarNivel(nivelActual);
+}
+
+function verPista() {
+  const nivel = nivelesEspejo[nivelActual];
+  const box = document.getElementById('espejo-hint-box');
+  box.style.display = 'block';
+  box.innerHTML = '💡 <strong>Pista:</strong> ' + nivel.pistas;
+  if (audioActivo) hablar(nivel.pistas);
+}
+
+function siguienteNivel() {
+  if (nivelActual < nivelesEspejo.length - 1) {
+    cargarNivel(nivelActual + 1);
+  } else {
+    document.getElementById('espejo-feedback').textContent = '🏆 ¡Completaste todos los niveles del Espejo Mágico!';
+    document.getElementById('espejo-feedback').className = 'espejo-feedback ok';
+    document.getElementById('pieza-2').classList.add('obtenida');
+  }
+}
+
+/* ═════ LIENZO LIBRE (dibujo creativo) ═════ */
+let lienzoLibre, ctxLibre, dibujando = false, colorActivo = '#7C3AED';
+
+function initLienzoLibre() {
+  lienzoLibre = document.getElementById('lienzo-libre');
+  if (!lienzoLibre) return;
+  ctxLibre = lienzoLibre.getContext('2d');
+  ctxLibre.fillStyle = '#FFFFFF';
+  ctxLibre.fillRect(0, 0, 800, 420);
+  ctxLibre.lineCap = 'round';
+  ctxLibre.lineJoin = 'round';
+
+  // eje punteado vertical
+  ctxLibre.setLineDash([8, 6]);
+  ctxLibre.strokeStyle = '#CBD5E1';
+  ctxLibre.lineWidth = 2;
+  ctxLibre.beginPath();
+  ctxLibre.moveTo(400, 0);
+  ctxLibre.lineTo(400, 420);
+  ctxLibre.stroke();
+  ctxLibre.setLineDash([]);
+
+  lienzoLibre.addEventListener('mousedown', iniciarDibujoLibre);
+  lienzoLibre.addEventListener('mousemove', dibujarLibre);
+  lienzoLibre.addEventListener('mouseup', detenerDibujoLibre);
+  lienzoLibre.addEventListener('mouseleave', detenerDibujoLibre);
+  lienzoLibre.addEventListener('touchstart', e => { e.preventDefault(); iniciarDibujoLibre(getTouchPosLibre(e)); });
+  lienzoLibre.addEventListener('touchmove', e => { e.preventDefault(); dibujarLibre(getTouchPosLibre(e)); });
+  lienzoLibre.addEventListener('touchend', e => { e.preventDefault(); detenerDibujoLibre(); });
+}
+
+function getTouchPosLibre(e) {
+  const rect = lienzoLibre.getBoundingClientRect();
+  const touch = e.touches[0];
+  return { offsetX: (touch.clientX - rect.left) * (800 / rect.width), offsetY: (touch.clientY - rect.top) * (420 / rect.height) };
+}
+
+function iniciarDibujoLibre(e) {
+  dibujando = true;
+  ctxLibre.beginPath();
+  ctxLibre.moveTo(e.offsetX, e.offsetY);
+}
+
+function dibujarLibre(e) {
+  if (!dibujando) return;
+  ctxLibre.strokeStyle = colorActivo;
+  ctxLibre.lineWidth = document.getElementById('grosor').value;
+  ctxLibre.lineTo(e.offsetX, e.offsetY);
+  ctxLibre.stroke();
+}
+
+function detenerDibujoLibre() { dibujando = false; }
+
+function elegirColor(el) {
+  colorActivo = el.dataset.color;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function dibujarEjeVertical() {
+  if (!ctxLibre) return;
+  ctxLibre.setLineDash([8, 6]);
+  ctxLibre.strokeStyle = '#4F46E5';
+  ctxLibre.lineWidth = 3;
+  ctxLibre.beginPath();
+  ctxLibre.moveTo(400, 0);
+  ctxLibre.lineTo(400, 420);
+  ctxLibre.stroke();
+  ctxLibre.setLineDash([]);
+}
+
+function limpiarLienzoLibre() {
+  if (!ctxLibre) return;
+  ctxLibre.fillStyle = '#FFFFFF';
+  ctxLibre.fillRect(0, 0, 800, 420);
+  ctxLibre.setLineDash([]);
+  ctxLibre.strokeStyle = '#CBD5E1';
+  ctxLibre.lineWidth = 2;
+  ctxLibre.setLineDash([8, 6]);
+  ctxLibre.beginPath();
+  ctxLibre.moveTo(400, 0);
+  ctxLibre.lineTo(400, 420);
+  ctxLibre.stroke();
+  ctxLibre.setLineDash([]);
+}
+
+function guardarFigura() {
+  if (!lienzoLibre) return;
+  const link = document.createElement('a');
+  link.download = 'mi_figura_simetrica_chichala.png';
+  link.href = lienzoLibre.toDataURL();
+  link.click();
+}
+
+/* ═════ QUIZ ═════ */
+function construirQuiz() {
+  quizIndex = 0;
+  quizScore = 0;
+  respondida = false;
+  document.getElementById('quiz-score').textContent = '0';
+  document.getElementById('quiz-final').innerHTML = '';
+  document.getElementById('btn-siguiente').style.display = 'none';
+  mostrarPregunta();
+}
+
+function mostrarPregunta() {
+  const contenedor = document.getElementById('quiz-contenedor');
+  if (quizIndex >= preguntas.length) {
+    mostrarResultado();
+    return;
+  }
+  const p = preguntas[quizIndex];
+  document.getElementById('quiz-paso').textContent = `Pregunta ${quizIndex+1} de ${preguntas.length}`;
+  document.getElementById('quiz-barra').style.width = ((quizIndex+1)/preguntas.length*100)+'%';
+  respondida = false;
+  document.getElementById('btn-siguiente').disabled = true;
+  document.getElementById('btn-siguiente').style.display = quizIndex < preguntas.length - 1 ? 'block' : 'none';
+
+  contenedor.innerHTML = `
+    <div class="quiz-question">
+      <div class="quiz-pregunta-fila">
+        <h5>${p.pregunta}</h5>
+        <button class="btn-leer" onclick="hablar('${p.pregunta.replace(/'/g, "\\'")}')">🔊</button>
+      </div>
+      <div class="quiz-opciones">
+        ${p.opciones.map((op, i) => `
+          <button class="quiz-option" onclick="responderPregunta(${i})">
+            <strong>${String.fromCharCode(65+i)})</strong> ${op}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+  `;
+
+  // audio automático si está activo
+  if (audioActivo) hablar(p.pregunta);
+}
+
+function responderPregunta(indice) {
+  if (respondida) return;
+  respondida = true;
+  const p = preguntas[quizIndex];
+  const botones = document.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('quiz-feedback');
+
+  botones.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === p.correcta) btn.classList.add('correct');
+    if (i === indice && i !== p.correcta) btn.classList.add('incorrect');
+  });
+
+  if (indice === p.correcta) {
+    quizScore++;
+    marcadorScore += 10;
+    document.getElementById('marcador-score').textContent = marcadorScore;
+    document.getElementById('quiz-score').textContent = quizScore;
+    fb.textContent = p.explicacion;
+    fb.className = 'quiz-feedback correct';
+    document.getElementById('pieza-3').classList.add('obtenida');
+  } else {
+    fb.textContent = '❌ No es esa. ' + p.explicacion.replace('✅ ¡','');
+    fb.className = 'quiz-feedback incorrect';
+  }
+
+  document.getElementById('btn-siguiente').disabled = false;
+  guardarEstado();
+}
+
+function siguientePregunta() {
+  quizIndex++;
+  mostrarPregunta();
+}
+
+function mostrarResultado() {
+  const contenedor = document.getElementById('quiz-contenedor');
+  document.getElementById('quiz-barra').style.width = '100%';
+  document.getElementById('btn-siguiente').style.display = 'none';
+
+  let mensaje, emoji, claseRango;
+  if (quizScore === 8) { mensaje = '¡PERFECTO! Eres un experto en simetría.'; emoji = '🏆'; claseRango = 'rango-superior'; }
+  else if (quizScore >= 6) { mensaje = '¡Excelente! Dominas los ejes de simetría.'; emoji = '🌟'; claseRango = 'rango-alto'; }
+  else if (quizScore >= 4) { mensaje = '¡Bien hecho! Vas por buen camino.'; emoji = '💪'; claseRango = 'rango-basico'; }
+  else { mensaje = '¡Buen intento! Revisa los conceptos y vuelve a intentarlo.'; emoji = '💡'; claseRango = 'rango-bajo'; }
+
+  contenedor.innerHTML = `
+    <div class="quiz-result">
+      <h5>${emoji} ${quizScore}/8 Correctas</h5>
+      <p>${mensaje}</p>
+      <div class="rango-badge ${claseRango}">
+        📋 Rango MEN: ${quizScore===8?'Superior':quizScore>=6?'Alto':quizScore>=4?'Básico':'Bajo'}
+      </div>
+    </div>
+  `;
+
+  // disparar todas las piezas de quiz
+  document.getElementById('pieza-3').classList.add('obtenida');
+  document.getElementById('btn-siguiente-semana').classList.add('visible');
+  guardarEstado();
+
+  if (audioActivo) hablar(`${emoji} ${quizScore} de 8 correctas. ${mensaje}`);
+}
+
+/* ═════ COFRE ═════ */
+function abrirCofre() {
+  const cofre = document.getElementById('cofre-secreto');
+  cofre.classList.toggle('visible');
+  if (cofre.classList.contains('visible')) crearConfeti();
+}
+
+/* ═════ CONFETI ═════ */
+function crearConfeti() {
+  const colores = ['#4F46E5','#06B6D4','#10B981','#FACC15','#EC4899','#7C3AED'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.style.position = 'fixed';
+    c.style.left = Math.random()*100+'vw';
+    c.style.top = '-20px';
+    c.style.width = Math.random()*10+8+'px';
+    c.style.height = c.style.width;
+    c.style.background = colores[Math.floor(Math.random()*colores.length)];
+    c.style.borderRadius = Math.random()>.5 ? '50%' : '2px';
+    c.style.animation = `caerConfeti ${Math.random()*3+2}s linear`;
+    c.style.zIndex = '9999';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 5000);
+  }
+}
+
+/* ═════ PUNTOS ═════ */
+function sumarPuntos(cantidad) {
+  marcadorScore += cantidad;
+  document.getElementById('marcador-score').textContent = marcadorScore;
+  guardarEstado();
+}
+
+/* ═════ PIEZAS / BARRA ═════ */
+function actualizarBarra() {
+  const piezas = document.querySelectorAll('.pieza.obtenida').length;
+  piezasObtenidas = piezas;
+  const pct = piezas/5*100;
+  document.getElementById('barra-fill').style.width = pct+'%';
+}
+
+/* ═════ AUTOEVALUACIÓN ═════ */
+function marcarAuto(cb) {
+  const item = cb.closest('.auto-item');
+  item.classList.toggle('marcado', cb.checked);
+  const total = document.querySelectorAll('.auto-item input:checked').length;
+  document.getElementById('auto-total').textContent = `Logros marcados: ${total} / 5`;
+  if (cb.checked) sumarPuntos(5);
+  guardarEstado();
+}
+
+/* ═════ COMPLETAR MISIÓN ═════ */
+function completarMision() {
+  // activar todas las piezas
+  for (let i = 1; i <= 5; i++) document.getElementById('pieza-'+i).classList.add('obtenida');
+  actualizarBarra();
+
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '3° - 4° - 5°';
+
+  document.getElementById('diploma-nombre').textContent = nombre;
+  document.getElementById('diploma-grado').textContent = grado;
+  document.getElementById('diploma-score').textContent = `⭐ ${marcadorScore} pts`;
+
+  const pct = quizScore ? Math.round(quizScore/preguntas.length*100) : 0;
+  document.getElementById('diploma-porcentaje').textContent = `📊 ${pct}%`;
+
+  let rango = 'Bajo';
+  if (quizScore >= 7) rango = 'Superior';
+  else if (quizScore >= 5) rango = 'Alto';
+  else if (quizScore >= 3) rango = 'Básico';
+  document.getElementById('diploma-rango').textContent = `📋 Rango: ${rango}`;
+
+  document.getElementById('diploma').classList.add('visible');
+  document.getElementById('btn-siguiente-semana').classList.add('visible');
+
+  crearConfeti();
+  document.getElementById('diploma').scrollIntoView({behavior:'smooth',block:'center'});
+  guardarEstado();
+
+  if (audioActivo) hablar(`¡Felicidades ${nombre}! Completaste la misión con ${marcadorScore} puntos.`);
+}
+
+/* ═════ DESCARGAR TRABAJO ═════ */
+function descargarTrabajo() {
+  const nombre = document.getElementById('input-nombre').value || 'Estudiante';
+  const grado = document.getElementById('input-grado').value || '--';
+  const fecha = document.getElementById('input-fecha').value || '--';
+  const puntos = marcadorScore;
+  const scoreQuizz = `${quizScore}/${preguntas.length}`;
+  const pct = quizScore ? Math.round(quizScore/preguntas.length*100) : 0;
+  let rango = 'Sin evaluar';
+  if (quizScore >= 7) rango = 'Superior';
+  else if (quizScore >= 5) rango = 'Alto';
+  else if (quizScore >= 3) rango = 'Básico';
+
+  let texto = `═══════════════════════════════════\n`;
+  texto += `  MATEWALL · SEMANA 3 · RESULTADO\n`;
+  texto += `═══════════════════════════════════\n\n`;
+  texto += `👤 Nombre: ${nombre}\n`;
+  texto += `🎓 Grado: ${grado}\n`;
+  texto += `📅 Fecha: ${fecha}\n\n`;
+  texto += `🪞 Laboratorio Espejo: ${nivelActual+1} nivel(es) completado(s)\n`;
+  texto += `🧠 Quiz: ${scoreQuizz} (${pct}%)\n`;
+  texto += `⭐ Puntos totales: ${puntos}\n`;
+  texto += `📋 Rango MEN: ${rango}\n\n`;
+  texto += `── RETOS DE ESCRITURA ──\n`;
+  for (let i = 1; i <= 6; i++) {
+    const val = document.getElementById(`reto-${i}`)?.value || '(sin responder)';
+    texto += `Reto ${i}: ${val}\n`;
+  }
+  texto += `\n── FIGURA CREADA ──\n`;
+  texto += `(Descarga la imagen con el botón "Guardar Figura()")\n`;
+  texto += `\n═══════════════════════════════════\n`;
+  texto += `IE Técnica Camacho Angarita · Sede Chichalá\n`;
+  texto += `Profe Nelson · Matemáticas · Periodo 4 · Semana 3\n`;
+
+  const blob = new Blob([texto], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `MateWall_Semana3_${nombre.replace(/\s+/g,'_')}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ═════ GUARDADO AUTOMÁTICO (localStorage) ═════ */
+const CLAVE = 'matewall_semana3_v1';
+
+function guardarEstado() {
+  try {
+    const datos = {
+      nombre: document.getElementById('input-nombre').value,
+      grado: document.getElementById('input-grado').value,
+      fecha: document.getElementById('input-fecha').value,
+      puntos: marcadorScore,
+      quizIndex, quizScore, respondida,
+      nivelActual, estadoCeldas,
+      audioActivo,
+      piezas: [...document.querySelectorAll('.pieza.obtenida')].map(p => p.id),
+      retos: [1,2,3,4,5,6].map(i => document.getElementById(`reto-${i}`)?.value || ''),
+      autos: [1,2,3,4,5].map(i => document.getElementById(`auto-${i}`)?.checked || false),
+      dibujoLibre: lienzoLibre ? lienzoLibre.toDataURL() : null,
+      diplomaVisible: document.getElementById('diploma').classList.contains('visible'),
+      cofreAbierto: document.getElementById('cofre-secreto').classList.contains('visible'),
+      timestamp: Date.now()
+    };
+    localStorage.setItem(CLAVE, JSON.stringify(datos));
+    mostrarAvisoGuardado();
+  } catch (err) {
+    console.warn('⚠️ No se pudo guardar:', err);
+  }
+}
+
+function cargarEstado() {
+  let raw;
+  try { raw = localStorage.getItem(CLAVE); } catch (e) { return false; }
+  if (!raw) return false;
+  try {
+    const d = JSON.parse(raw);
+
+    // identidad
+    document.getElementById('input-nombre').value = d.nombre || '';
+    document.getElementById('input-grado').value = d.grado || '';
+    document.getElementById('input-fecha').value = d.fecha || '';
+
+    // puntaje y audio
+    marcadorScore = d.puntos || 0;
+    document.getElementById('marcador-score').textContent = marcadorScore;
+    audioActivo = !!d.audioActivo;
+    const btnAudio = document.getElementById('btn-audio');
+    btnAudio.textContent = audioActivo ? '🔊 Audio ON' : '🔇 Audio OFF';
+    btnAudio.classList.toggle('activo', audioActivo);
+
+    // piezas de progreso
+    (d.piezas || []).forEach(id => document.getElementById(id)?.classList.add('obtenida'));
+    actualizarBarra();
+
+    // retos y autoevaluación
+    (d.retos || []).forEach((v, i) => {
+      const el = document.getElementById(`reto-${i+1}`);
+      if (el) el.value = v;
+    });
+    (d.autos || []).forEach((v, i) => {
+      const cb = document.getElementById(`auto-${i+1}`);
+      if (cb && v) { cb.checked = true; marcarAutoVisual(cb); }
+    });
+    const totalAutos = document.querySelectorAll('.auto-item input:checked').length;
+    document.getElementById('auto-total').textContent = `Logros marcados: ${totalAutos} / 5`;
+
+    // espejo restaurado
+    if (Array.isArray(d.estadoCeldas) && d.estadoCeldas.length) {
+      estadoCeldas = d.estadoCeldas;
+      nivelActual = d.nivelActual || 0;
+      const nivel = nivelesEspejo[nivelActual];
+      celdaAncho = 640 / nivel.columnas;
+      celdaAlto = 420 / nivel.filas;
+      document.getElementById('espejo-nivel-label').textContent = `Nivel ${nivelActual+1} · ${nivel.nombre}`;
+      document.getElementById('espejo-consigna').textContent = nivel.consigna;
+      document.getElementById('nivel-info').textContent = `Nivel ${nivelActual+1} / ${nivelesEspejo.length}`;
+      dibujarNivel();
+    }
+
+    // dibujo libre restaurado
+    if (d.dibujoLibre && ctxLibre) {
+      const img = new Image();
+      img.onload = () => { ctxLibre.drawImage(img, 0, 0, 800, 420); };
+      img.src = d.dibujoLibre;
+    }
+
+    // cofre y diploma
+    if (d.cofreAbierto) document.getElementById('cofre-secreto').classList.add('visible');
+    if (d.diplomaVisible) document.getElementById('diploma').classList.add('visible');
+
+    return true;
+  } catch (err) {
+    console.warn('⚠️ Estado corrupto, se inicia limpio:', err);
+    return false;
+  }
+}
+
+/* solo pinta la casilla, sin sumar puntos otra vez */
+function marcarAutoVisual(cb) {
+  cb.closest('.auto-item')?.classList.add('marcado');
+}
+
+let timerAviso;
+function mostrarAvisoGuardado() {
+  const aviso = document.getElementById('aviso-guardado');
+  aviso.classList.add('visible');
+  clearTimeout(timerAviso);
+  timerAviso = setTimeout(() => aviso.classList.remove('visible'), 1800);
+}
+
+/* ═════ AUTOGUARDADO EN CAMPOS DE TEXTO ═════ */
+function activarAutoguardado() {
+  const ids = ['input-nombre','input-grado','input-fecha','reto-1','reto-2','reto-3','reto-4','reto-5','reto-6'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', debounce(guardarEstado, 900));
+  });
+}
+
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+/* ═════ INICIALIZACIÓN ═════ */
+document.addEventListener('DOMContentLoaded', function () {
+  initLienzoEspejo();
+  initLienzoLibre();
+  activarAutoguardado();
+
+  const recuperado = cargarEstado();
+
+  if (recuperado) {
+    // reanudar el quiz donde iba
+    quizIndex = Math.min(quizIndex, preguntas.length - 1);
+    document.getElementById('quiz-score').textContent = quizScore;
+    mostrarPregunta();
+    console.log('💾 MateWall: sesión recuperada. ¡Bienvenido de vuelta!');
+  } else {
+    construirQuiz();
+    // fecha sugerida automática
+    const hoy = new Date().toLocaleDateString('es-CO', { day:'numeric', month:'long', year:'numeric' });
+    document.getElementById('input-fecha').value = hoy;
+  }
+
+  actualizarBarra();
+  console.log('🔷 MateWall — Semana 3 cargada. ¡A descubrir la simetría!');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CromoLógica · Sudoku de colores</title>
+<style>
+  :root{
+    --bg:#0f1226; --panel:#1b1f3d; --line:#3a3f66; --text:#eef0ff;
+    --accent:#7c5cff; --ok:#2ecc71; --bad:#ff5470;
+  }
+  *{box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+  body{margin:0;min-height:100vh;background:radial-gradient(1200px 600px at 20% -10%,#2a2f6b,var(--bg));
+       color:var(--text);display:flex;flex-direction:column;align-items:center;padding:24px}
+  h1{margin:0;font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:.5px}
+  h1 span{color:var(--accent)}
+  .sub{opacity:.7;margin:.3rem 0 1.2rem;text-align:center;max-width:640px}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+  button,select{background:var(--panel);color:var(--text);border:1px solid var(--line);
+    padding:10px 16px;border-radius:12px;font-size:1rem;cursor:pointer;transition:.2s}
+  button:hover{transform:translateY(-2px);border-color:var(--accent)}
+  button.primary{background:linear-gradient(135deg,#7c5cff,#4f8cff);border:none;font-weight:600}
+    #board{display:grid;gap:6px;background:var(--panel);padding:12px;border-radius:18px;
+    box-shadow:0 20px 50px rgba(0,0,0,.45);width:fit-content}
+    .cell{aspect-ratio:1/1;border-radius:10px;background:#262b52;display:grid;place-items:center;
+    cursor:pointer;transition:.15s;border:2px solid transparent;min-width:48px;min-height:48px}
+  .cell:hover{filter:brightness(1.25)}
+  .cell.given{cursor:not-allowed;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+  .cell.conflict{animation:shake .3s;border-color:var(--bad)}
+  @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  .palette{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+  .swatch{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.15s}
+  .swatch.sel{border-color:#fff;transform:scale(1.15)}
+  .status{margin-top:14px;min-height:28px;font-weight:600;text-align:center}
+  .stats{display:flex;gap:18px;margin-top:8px;opacity:.85;font-size:.9rem;flex-wrap:wrap;justify-content:center}
+  .win{position:fixed;inset:0;background:rgba(10,12,30,.85);display:none;place-items:center;z-index:9}
+  .win.show{display:grid}
+  .card{background:var(--panel);padding:34px 40px;border-radius:22px;text-align:center;
+    animation:pop .4s;border:1px solid var(--line)}
+  @keyframes pop{from{transform:scale(.7);opacity:0}}
+</style>
+</head>
+<body>
+  <h1>Cromo<span>Lógica</span></h1>
+  <p class="sub">Rellena la cuadrícula con colores sin repetir ninguno en la misma fila ni columna. Las pistas fijas no se pueden modificar.</p>
+
+  <div class="bar">
+    <select id="level">
+      <option value="facil">Nivel 1 · Fácil (4×4)</option>
+      <option value="medio" selected>Nivel 2 · Medio (5×5)</option>
+      <option value="dificil">Nivel 3 · Difícil (6×6)</option>
+      <option value="experto">Nivel 4 · Experto (7×7)</option>
+    </select>
+    <button class="primary" id="newBtn">🎲 Nuevo reto</button>
+    <button id="checkBtn">✔ Comprobar</button>
+    <button id="hintBtn">💡 Pista</button>
+    <button id="clearBtn">🧹 Limpiar</button>
+  </div>
+
+  <div id="board"></div>
+  <div class="palette" id="palette"></div>
+  <div class="status" id="status"></div>
+  <div class="stats"><span id="timer">⏱ 0s</span><span id="best"></span></div>
+
+  <div class="win" id="winScreen"><div class="card">
+    <h2>🏆 ¡Resuelto!</h2><p id="winMsg"></p><button class="primary" onclick="closeWin()">Seguir jugando</button>
+  </div></div>
+
+<script>
+const COLORS=['#e8232e','#12a150','#f5c400','#ff9a3c','#54b8f0','#a05cf6','#ff6fae'];
+const LEVELS={facil:{n:4,givens:6},medio:{n:5,givens:8},dificil:{n:6,givens:10},experto:{n:7,givens:12}};
+let N,G,grid=[],given=[],sel=0,t0=null,timerId=null;
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
+
+// Genera un cuadrado latino aleatorio (solución válida garantizada)
+function makeSolution(n){
+  // 1) Construimos una solución base determinista: cada fila es un desplazamiento cíclico de la anterior
+  let base=[];
+  for(let r=0;r<n;r++){
+    const row=[];
+    for(let c=0;c<n;c++){
+      row.push((r+c)%n);  // desplazamiento cíclico
+    }
+    base.push(row);
+  }
+  // 2) Barajamos los valores (permutación de colores)
+  const perm=[...Array(n).keys()];
+  shuffle(perm);
+  for(let r=0;r<n;r++){
+    for(let c=0;c<n;c++){
+      base[r][c]=perm[base[r][c]];
+    }
+  }
+  // 3) Barajamos filas (excepto la primera para mantener estructura)
+  const fIndices=[...Array(n).keys()];
+  shuffle(fIndices);
+  const shuffled=Array.from({length:n},(_,i)=>base[fIndices[i]]);
+  // 4) Barajamos columnas
+  const cIndices=[...Array(n).keys()];
+  shuffle(cIndices);
+  const final=shuffled.map(row=>{
+    const newRow=[];
+    for(let i=0;i<n;i++) newRow.push(row[cIndices[i]]);
+    return newRow;
+  });
+  return final;
+}
+
+let fullSolution=null;
+
+function build(){
+  const cfg=LEVELS[level.value];N=cfg.n;G=cfg.givens;
+  fullSolution=makeSolution(N);
+  if(!fullSolution){alert('Error generando puzzle. Intenta de nuevo.');return false}
+  given=Array.from({length:N},()=>Array(N).fill(false));
+  grid=Array.from({length:N},()=>Array(N).fill(null));
+  const cells=[];for(let r=0;r<N;r++)for(let c=0;c<N;c++)cells.push([r,c]);
+  shuffle(cells);
+  for(let i=0;i<G&&i<cells.length;i++){
+    const[r,c]=cells[i];grid[r][c]=fullSolution[r][c];given[r][c]=true;
+  }
+  return true;
+}
+
+function render(){
+  board.style.gridTemplateColumns=`repeat(${N},1fr)`;
+  board.innerHTML='';
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+    const d=document.createElement('div');d.className='cell';
+    if(given[r][c])d.classList.add('given');
+    if(grid[r][c]!=null)d.style.background=COLORS[grid[r][c]];
+    d.onclick=()=>click(r,c,d);
+    board.appendChild(d);
+  }
+  palette.innerHTML='';
+  for(let i=0;i<N;i++){
+    const s=document.createElement('div');s.className='swatch'+(i===sel?' sel':'');
+    s.style.background=COLORS[i];s.onclick=()=>{sel=i;render()};palette.appendChild(s);
+  }
+}
+
+function click(r,c,el){
+  if(given[r][c])return;
+  grid[r][c]=(grid[r][c]===sel)?null:sel;
+  el.style.background=grid[r][c]!=null?COLORS[grid[r][c]]:'';
+  checkLive(el,r,c);if(won())victory();
+}
+
+function conflictAt(r,c){
+  const v=grid[r][c];if(v==null)return false;
+  for(let i=0;i<N;i++){
+    if(i!==c&&grid[r][i]===v)return true;
+    if(i!==r&&grid[i][c]===v)return true;
+  }
+  return false;
+}
+
+function checkLive(el,r,c){el.classList.toggle('conflict',conflictAt(r,c))}
+
+function won(){
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++){
+    if(grid[r][c]==null||conflictAt(r,c))return false;
+  }
+  return true;
+}
+
+function victory(){
+  stopTimer();const t=elapsed();const key='best_'+level.value;
+  const prev=localStorage.getItem(key);
+  if(!prev||t<+prev)localStorage.setItem(key,t);
+  winMsg.textContent=`Lo lograste en ${t}s · Nivel ${level.options[level.selectedIndex].text}`;
+  winScreen.classList.add('show');updateBest();
+}
+
+function closeWin(){winScreen.classList.remove('show')}
+
+function checkAll(){
+  let bad=0;
+  document.querySelectorAll('.cell').forEach((el,i)=>{
+    const r=Math.floor(i/N),c=i%N;
+    el.classList.toggle('conflict',conflictAt(r,c));
+    if(conflictAt(r,c))bad++;
+  });
+  setStatus(bad?`❌ ${bad} conflicto(s)`:'✅ Sin conflictos',bad?'var(--bad)':'var(--ok)');
+}
+
+function hint(){
+  const empty=[];
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++)
+    if(!given[r][c]&&grid[r][c]!==fullSolution[r][c])empty.push([r,c]);
+  if(empty.length){
+    const[r,c]=empty[Math.random()*empty.length|0];
+    grid[r][c]=fullSolution[r][c];render();
+    setStatus('💡 Pista aplicada','var(--accent)');
+  }
+}
+
+function clearUser(){
+  for(let r=0;r<N;r++)for(let c=0;c<N;c++)
+    if(!given[r][c])grid[r][c]=null;
+  render();setStatus('Tablero limpio','');
+}
+
+function setStatus(t,color){status.textContent=t;status.style.color=color||''}
+
+function elapsed(){return Math.floor((Date.now()-t0)/1000)}
+
+function startTimer(){t0=Date.now();timerId=setInterval(()=>timer.textContent='⏱ '+elapsed()+'s',500);updateBest()}
+function stopTimer(){clearInterval(timerId)}
+function updateBest(){const b=localStorage.getItem('best_'+level.value);best.textContent=b?`🥇 Mejor: ${b}s`:''}
+
+// === INICIALIZACIÓN CORREGIDA ===
+function startGame(){
+  if(!build())return;
+  sel=0;
+  stopTimer();
+  startTimer();
+  render();
+  setStatus('','');
+}
+
+level.onchange=function(){startGame()};
+newBtn.onclick=function(){startGame()};
+checkBtn.onclick=checkAll;
+hintBtn.onclick=hint;
+clearBtn.onclick=clearUser;
+
+// Arrancar al cargar
+startGame();
+</script>
+</body>
+</html>

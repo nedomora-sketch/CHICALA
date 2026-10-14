@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebula Link · Conecta los colores</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+
+  <header class="game-header">
+    <h1>🌌 Nebula<span>Link</span></h1>
+    <p class="subtitle">Conecta los recuadros del mismo color sin que las líneas se crucen.</p>
+  </header>
+
+  <div class="controls">
+    <select id="level">
+      <option value="easy">Nivel 1 · Fácil (5×5)</option>
+      <option value="medium" selected>Nivel 2 · Medio (6×6)</option>
+      <option value="hard">Nivel 3 · Difícil (7×7)</option>
+      <option value="expert">Nivel 4 · Experto (8×8)</option>
+    </select>
+    <button id="newGame" class="btn primary">🎲 Nuevo reto</button>
+    <button id="checkRoute" class="btn">✔ Comprobar</button>
+    <button id="clearRoute" class="btn">🧹 Limpiar ruta</button>
+    <button id="hintRoute" class="btn">💡 Pista</button>
+  </div>
+
+  <div id="gameBoard" class="board"></div>
+
+  <div class="status-bar">
+    <span id="timer">⏱ 0s</span>
+    <span id="bestTime">🥇 Mejor: --</span>
+    <span id="statusMsg"></span>
+  </div>
+
+  <div id="victoryOverlay" class="overlay">
+    <div class="victory-card">
+      <h2>🏆 ¡Conexión completa!</h2>
+      <p id="victoryMsg"></p>
+      <button class="btn primary" id="playAgain">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
